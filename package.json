@@ -69,6 +69,7 @@
     "jest": "^24.8.0",
     "jest-plugin-context": "^2.9.0",
     "js-beautify": "^1.5.10",
+    "jscodeshift-add-imports": "^1.0.3",
     "jsdoc-to-markdown": "^5.0.0",
     "karma": "^3.1.4",
     "karma-benchmark": "^1.0.4",
