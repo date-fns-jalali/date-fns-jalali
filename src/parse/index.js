@@ -13,6 +13,11 @@ import toInteger from '../_lib/toInteger/index'
 import parsers from './_lib/parsers/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreGetUTCMonth from '../_core/getUTCMonth/index'
+import coreGetUTCDate from '../_core/getUTCDate/index'
+import coreGetUTCFullYear from '../_core/getUTCFullYear/index'
+
 var TIMEZONE_UNIT_PRIORITY = 10
 
 // This RegExp consists of three parts separated by `|`:
@@ -607,10 +612,11 @@ function dateToSystemTimezone(date, flags) {
   }
 
   var convertedDate = new Date(0)
-  convertedDate.setFullYear(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate()
+  coreSetFullYear(
+    convertedDate,
+    coreGetUTCFullYear(date),
+    coreGetUTCMonth(date),
+    coreGetUTCDate(date)
   )
   convertedDate.setHours(
     date.getUTCHours(),
