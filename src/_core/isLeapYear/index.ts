@@ -1,8 +1,10 @@
+import { isLeapJalaliYear } from '../../_jalali/index'
+
 /**
  *
  * @param year {number}
  * @returns {boolean}
  */
 export default function isLeapYear(year: number) {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
+  return isLeapJalaliYear(year)
 }
