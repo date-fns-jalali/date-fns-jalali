@@ -1,19 +1,4 @@
-/*
-  Expose functions.
-*/
-module.exports = {
-  toJalaali: toJalaali,
-  toGregorian: toGregorian,
-  isValidJalaaliDate: isValidJalaaliDate,
-  isLeapJalaaliYear: isLeapJalaaliYear,
-  jalaaliMonthLength: jalaaliMonthLength,
-  jalCal: jalCal,
-  j2d: j2d,
-  d2j: d2j,
-  g2d: g2d,
-  d2g: d2g
-}
-
+// source: https://github.com/jalaali/jalaali-js/blob/2c0cfe1a70caf96ef68ac314f7082a6adbe07d0b/index.js
 /*
   Jalaali years starting the 33-year rule.
 */
@@ -43,26 +28,21 @@ var breaks = [
 /*
   Converts a Gregorian date to Jalaali.
 */
-function toJalaali(gy, gm, gd) {
-  if (Object.prototype.toString.call(gy) === '[object Date]') {
-    gd = gy.getDate()
-    gm = gy.getMonth() + 1
-    gy = gy.getFullYear()
-  }
+function toJalaali(gy: number, gm: number, gd: number) {
   return d2j(g2d(gy, gm, gd))
 }
 
 /*
   Converts a Jalaali date to Gregorian.
 */
-function toGregorian(jy, jm, jd) {
+function toGregorian(jy: number, jm: number, jd: number) {
   return d2g(j2d(jy, jm, jd))
 }
 
 /*
   Checks whether a Jalaali date is valid or not.
 */
-function isValidJalaaliDate(jy, jm, jd) {
+function isValidJalaaliDate(jy: number, jm: number, jd: number) {
   return (
     jy >= -61 &&
     jy <= 3177 &&
@@ -76,14 +56,14 @@ function isValidJalaaliDate(jy, jm, jd) {
 /*
   Is this a leap year or not?
 */
-function isLeapJalaaliYear(jy) {
+function isLeapJalaaliYear(jy: number) {
   return jalCalLeap(jy) === 0
 }
 
 /*
   Number of days in a given month in a Jalaali year.
 */
-function jalaaliMonthLength(jy, jm) {
+function jalaaliMonthLength(jy: number, jm: number) {
   if (jm <= 6) return 31
   if (jm <= 11) return 30
   if (isLeapJalaaliYear(jy)) return 30
@@ -97,17 +77,14 @@ function jalaaliMonthLength(jy, jm) {
     @param jy Jalaali calendar year (-61 to 3177)
     @returns number of years since the last leap year (0 to 4)
  */
-function jalCalLeap(jy) {
+function jalCalLeap(jy: number) {
   var bl = breaks.length,
     jp = breaks[0],
     jm,
-    jump,
+    jump = 0,
     leap,
     n,
     i
-
-  if (jy < jp || jy >= breaks[bl - 1])
-    throw new Error('Invalid Jalaali year ' + jy)
 
   for (i = 1; i < bl; i += 1) {
     jm = breaks[i]
@@ -141,21 +118,22 @@ function jalCalLeap(jy) {
   @see: http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm
   @see: http://www.fourmilab.ch/documents/calendar/
 */
-function jalCal(jy, withoutLeap) {
+function jalCal(jy: number, withoutLeap: boolean) {
+  if (isNaN(jy)) {
+    if (withoutLeap) return { gy: NaN, march: NaN }
+    return { leap: NaN, gy: NaN, march: NaN }
+  }
   var bl = breaks.length,
     gy = jy + 621,
     leapJ = -14,
     jp = breaks[0],
     jm,
-    jump,
+    jump = 0,
     leap,
     leapG,
     march,
     n,
     i
-
-  if (jy < jp || jy >= breaks[bl - 1])
-    throw new Error('Invalid Jalaali year ' + jy)
 
   // Find the limiting years for the Jalaali year jy.
   for (i = 1; i < bl; i += 1) {
@@ -199,8 +177,11 @@ function jalCal(jy, withoutLeap) {
   @param jd Jalaali day (1 to 29/31)
   @return Julian Day number
 */
-function j2d(jy, jm, jd) {
-  var r = jalCal(jy, true)
+function j2d(jy: number, jm: number, jd: number) {
+  var m = mod(mod(jm, 12) + 12 - 1, 12) + 1
+  var y = div(jm - m, 12)
+  jm = m
+  var r = jalCal(jy + y, true)
   return g2d(r.gy, 3, r.march) + (jm - 1) * 31 - div(jm, 7) * (jm - 7) + jd - 1
 }
 
@@ -213,7 +194,10 @@ function j2d(jy, jm, jd) {
     jm: Jalaali month (1 to 12)
     jd: Jalaali day (1 to 29/31)
 */
-function d2j(jdn) {
+function d2j(jdn: number) {
+  if (isNaN(jdn)) {
+    return { jy: NaN, jm: NaN, jd: NaN }
+  }
   var gy = d2g(jdn).gy, // Calculate Gregorian year (gy).
     jy = gy - 621,
     r = jalCal(jy, false),
@@ -257,7 +241,7 @@ function d2j(jdn) {
   @param gd Calendar day of the month (1 to 28/29/30/31)
   @return Julian Day number
 */
-function g2d(gy, gm, gd) {
+function g2d(gy: number, gm: number, gd: number) {
   var d =
     div((gy + div(gm - 8, 6) + 100100) * 1461, 4) +
     div(153 * mod(gm + 9, 12) + 2, 5) +
@@ -278,7 +262,10 @@ function g2d(gy, gm, gd) {
     gm: Calendar month (1 to 12)
     gd: Calendar day of the month M (1 to 28/29/30/31)
 */
-function d2g(jdn) {
+function d2g(jdn: number) {
+  if (isNaN(jdn)) {
+    return { gy: NaN, gm: NaN, gd: NaN }
+  }
   var j, i, gd, gm, gy
   j = 4 * jdn + 139361631
   j = j + div(div(4 * jdn + 183187720, 146097) * 3, 4) * 4 - 3908
@@ -293,10 +280,27 @@ function d2g(jdn) {
   Utility helper functions.
 */
 
-function div(a, b) {
+function div(a: number, b: number) {
   return ~~(a / b)
 }
 
-function mod(a, b) {
+function mod(a: number, b: number) {
   return a - ~~(a / b) * b
+}
+
+/*
+  Expose functions.
+*/
+
+export {
+  toJalaali as toJalali,
+  toGregorian,
+  isValidJalaaliDate as isValidJalaliDate,
+  isLeapJalaaliYear as isLeapJalaliYear,
+  jalaaliMonthLength as jalaliMonthLength,
+  jalCal,
+  j2d,
+  d2j,
+  g2d,
+  d2g
 }
