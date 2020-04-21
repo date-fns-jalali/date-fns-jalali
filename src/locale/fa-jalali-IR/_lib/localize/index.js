@@ -2,8 +2,8 @@ import buildLocalizeFn from '../../../_lib/buildLocalizeFn/index.js'
 
 var eraValues = {
   narrow: ['ق', 'ب'],
-  abbreviated: ['ق.م.', 'ب.م.'],
-  wide: ['قبل از میلاد', 'بعد از میلاد']
+  abbreviated: ['ق.ه.', 'ب.ه.'],
+  wide: ['قبل از هجرت', 'بعد از هجرت']
 }
 
 var quarterValues = {
@@ -17,34 +17,47 @@ var quarterValues = {
 // Generally, formatted dates should look like they are in the middle of a sentence,
 // e.g. in Spanish language the weekdays and months should be in the lowercase.
 var monthValues = {
-  narrow: ['ژ', 'ف', 'م', 'آ', 'م', 'ج', 'ج', 'آ', 'س', 'ا', 'ن', 'د'],
+  narrow: [
+    'فر',
+    'ار',
+    'خر',
+    'تی',
+    'مر',
+    'شه',
+    'مه',
+    'آب',
+    'آذ',
+    'دی',
+    'به',
+    'اس'
+  ],
   abbreviated: [
-    'ژانـ',
-    'فور',
-    'مارس',
-    'آپر',
-    'می',
-    'جون',
-    'جولـ',
-    'آگو',
-    'سپتـ',
-    'اکتـ',
-    'نوامـ',
-    'دسامـ'
+    'فرو',
+    'ارد',
+    'خرد',
+    'تیر',
+    'مرد',
+    'شهر',
+    'مهر',
+    'آبا',
+    'آذر',
+    'دی',
+    'بهم',
+    'اسف'
   ],
   wide: [
-    'ژانویه',
-    'فوریه',
-    'مارس',
-    'آپریل',
-    'می',
-    'جون',
-    'جولای',
-    'آگوست',
-    'سپتامبر',
-    'اکتبر',
-    'نوامبر',
-    'دسامبر'
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند'
   ]
 }
 
@@ -52,15 +65,15 @@ var dayValues = {
   narrow: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
   short: ['1ش', '2ش', '3ش', '4ش', '5ش', 'ج', 'ش'],
   abbreviated: [
-    'یکشنبه',
+    'یک‌شنبه',
     'دوشنبه',
     'سه‌شنبه',
     'چهارشنبه',
-    'پنجشنبه',
+    'پنج‌شنبه',
     'جمعه',
     'شنبه'
   ],
-  wide: ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه']
+  wide: ['یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه']
 }
 
 var dayPeriodValues = {
@@ -129,7 +142,8 @@ var formattingDayPeriodValues = {
 }
 
 function ordinalNumber(dirtyNumber) {
-  return String(dirtyNumber)
+  var number = Number(dirtyNumber)
+  return number + '-ام'
 }
 
 var localize = {
