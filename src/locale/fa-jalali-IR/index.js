@@ -10,17 +10,17 @@ import match from './_lib/match/index.js'
  * @summary Persian/Farsi locale (Iran).
  * @language Persian
  * @iso-639-2 ira
- * @author Morteza Ziyae [@mort3za]{@link https://github.com/mort3za}
+ * @author Seyyed Morteza Moosavi [@smmoosavi]{@link https://github.com/smmoosavi}
  */
 var locale = {
-  code: 'fa-IR',
+  code: 'fa-jalali-IR',
   formatDistance: formatDistance,
   formatLong: formatLong,
   formatRelative: formatRelative,
   localize: localize,
   match: match,
   options: {
-    weekStartsOn: 0 /* Sunday */,
+    weekStartsOn: 6 /* Sat */,
     firstWeekContainsDate: 1
   }
 }
