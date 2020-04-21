@@ -15411,6 +15411,9 @@ declare module 'date-fns/locale' {
   const faIR: Locale
   namespace faIR {}
 
+  const fajalaaliIR: Locale
+  namespace fajalaaliIR {}
+
   const fi: Locale
   namespace fi {}
 
@@ -15672,6 +15675,11 @@ declare module 'date-fns/locale/et' {
 declare module 'date-fns/locale/fa-IR' {
   import { faIR } from 'date-fns/locale'
   export default faIR
+}
+
+declare module 'date-fns/locale/fa-jalaali-IR' {
+  import { fajalaaliIR } from 'date-fns/locale'
+  export default fajalaaliIR
 }
 
 declare module 'date-fns/locale/fi' {
@@ -16034,6 +16042,11 @@ declare module 'date-fns/locale/fa-IR/index' {
   export default faIR
 }
 
+declare module 'date-fns/locale/fa-jalaali-IR/index' {
+  import { fajalaaliIR } from 'date-fns/locale'
+  export default fajalaaliIR
+}
+
 declare module 'date-fns/locale/fi/index' {
   import { fi } from 'date-fns/locale'
   export default fi
@@ -16394,6 +16407,11 @@ declare module 'date-fns/locale/fa-IR/index.js' {
   export default faIR
 }
 
+declare module 'date-fns/locale/fa-jalaali-IR/index.js' {
+  import { fajalaaliIR } from 'date-fns/locale'
+  export default fajalaaliIR
+}
+
 declare module 'date-fns/locale/fi/index.js' {
   import { fi } from 'date-fns/locale'
   export default fi
@@ -16711,6 +16729,9 @@ declare module 'date-fns/esm/locale' {
   const faIR: Locale
   namespace faIR {}
 
+  const fajalaaliIR: Locale
+  namespace fajalaaliIR {}
+
   const fi: Locale
   namespace fi {}
 
@@ -16972,6 +16993,11 @@ declare module 'date-fns/esm/locale/et' {
 declare module 'date-fns/esm/locale/fa-IR' {
   import { faIR } from 'date-fns/esm/locale'
   export default faIR
+}
+
+declare module 'date-fns/esm/locale/fa-jalaali-IR' {
+  import { fajalaaliIR } from 'date-fns/esm/locale'
+  export default fajalaaliIR
 }
 
 declare module 'date-fns/esm/locale/fi' {
@@ -17334,6 +17360,11 @@ declare module 'date-fns/esm/locale/fa-IR/index' {
   export default faIR
 }
 
+declare module 'date-fns/esm/locale/fa-jalaali-IR/index' {
+  import { fajalaaliIR } from 'date-fns/esm/locale'
+  export default fajalaaliIR
+}
+
 declare module 'date-fns/esm/locale/fi/index' {
   import { fi } from 'date-fns/esm/locale'
   export default fi
@@ -17692,6 +17723,11 @@ declare module 'date-fns/esm/locale/et/index.js' {
 declare module 'date-fns/esm/locale/fa-IR/index.js' {
   import { faIR } from 'date-fns/esm/locale'
   export default faIR
+}
+
+declare module 'date-fns/esm/locale/fa-jalaali-IR/index.js' {
+  import { fajalaaliIR } from 'date-fns/esm/locale'
+  export default fajalaaliIR
 }
 
 declare module 'date-fns/esm/locale/fi/index.js' {
