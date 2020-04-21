@@ -1,18 +1,10 @@
 {
-  "name": "date-fns",
+  "name": "date-fns-jalali",
   "version": "DON'T CHANGE; IT'S SET AUTOMATICALLY DURING DEPLOYMENT; ALSO, USE YARN FOR DEVELOPMENT",
   "sideEffects": false,
-  "contributors": [
-    "Sasha Koss <koss@nocorp.me>",
-    "Lesha Koss <regiusprod@gmail.com>"
-  ],
   "license": "MIT",
-  "description": "Modern JavaScript date utility library",
-  "repository": "https://github.com/date-fns/date-fns",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/date-fns"
-  },
+  "description": "Modern JavaScript date utility library for jalali calendar",
+  "repository": "https://github.com/smmoosavi/date-fns-jalali",
   "engines": {
     "node": ">=0.11"
   },
@@ -33,10 +25,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write", "git add"]
   },
   "dependencies": {},
   "devDependencies": {
