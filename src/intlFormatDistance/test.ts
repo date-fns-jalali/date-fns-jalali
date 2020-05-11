@@ -312,8 +312,8 @@ describe('intlFormatDistance', () => {
 
       it('works with future with more than a month', () => {
         const result = intlFormatDistance(
-          /* 1365/3/1 */ new Date(1986, 4, 22),
-          /* 1365/1/12 */ new Date(1986, 3, 1)
+          /* 1365/5/22 */ new Date(1986, 7, 13),
+          /* 1365/4/1 */ new Date(1986, 5, 22)
         )
         assert(result === 'next month')
       })
@@ -328,8 +328,8 @@ describe('intlFormatDistance', () => {
 
       it('works with past with more than a month', () => {
         const result = intlFormatDistance(
-          /* 1365/1/12 */ new Date(1986, 3, 1),
-          /* 1365/3/1 */ new Date(1986, 4, 22)
+          /* 1365/4/1 */ new Date(1986, 5, 22),
+          /* 1365/5/22 */ new Date(1986, 7, 13)
         )
         assert(result === 'last month')
       })
@@ -346,8 +346,8 @@ describe('intlFormatDistance', () => {
 
       it('works with future with more than a quarter', () => {
         const result = intlFormatDistance(
-          /* 1365/4/1 */ new Date(1986, 5, 22),
-          /* 1364/11/12 */ new Date(1986, 1, 1)
+          /* 1364/6/22 */ new Date(1985, 8, 13),
+          /* 1364/2/1 */ new Date(1985, 3, 21)
         )
         assert(result === 'next quarter')
       })
@@ -362,8 +362,8 @@ describe('intlFormatDistance', () => {
 
       it('works with past with more than a quarter', () => {
         const result = intlFormatDistance(
-          /* 1364/11/12 */ new Date(1986, 1, 1),
-          /* 1365/4/1 */ new Date(1986, 5, 22)
+          /* 1364/2/1 */ new Date(1985, 3, 21),
+          /* 1364/6/22 */ new Date(1985, 8, 13)
         )
         assert(result === 'last quarter')
       })
@@ -414,8 +414,8 @@ describe('intlFormatDistance', () => {
 
       it('works with future with more that a year', () => {
         const result = intlFormatDistance(
-          /* 1366/8/11 */ new Date(1987, 10, 2),
-          /* 1364/11/12 */ new Date(1986, 1, 1)
+          /* 1365/11/2 */ new Date(1987, 0, 22),
+          /* 1364/2/1 */ new Date(1985, 3, 21)
         )
         assert(result === 'next year')
       })
@@ -430,8 +430,8 @@ describe('intlFormatDistance', () => {
 
       it('works with past with more than a year', () => {
         const result = intlFormatDistance(
-          /* 1364/11/12 */ new Date(1986, 1, 1),
-          /* 1366/8/11 */ new Date(1987, 10, 2)
+          /* 1364/2/1 */ new Date(1985, 3, 21),
+          /* 1365/11/2 */ new Date(1987, 0, 22)
         )
         assert(result === 'last year')
       })

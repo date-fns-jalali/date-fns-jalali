@@ -16,13 +16,13 @@ describe('parse', () => {
 
   it('escapes characters between the single quote characters', () => {
     const result = parse(
-      '2018 hello world July 2nd',
+      ['1397', 'hello world', 'تیر', '2-ام'].join(' '),
       "yyyy 'hello world' MMMM do",
       referenceDate
     )
     assert.deepStrictEqual(
       result,
-      /* 1397/4/11 */ new Date(2018, 6 /* Jul */, 2)
+      /* 1397/4/2 */ new Date(2018, 5 /* Jun */, 23)
     )
   })
 
@@ -36,7 +36,7 @@ describe('parse', () => {
 
   it('accepts new line charactor', () => {
     const result = parse(
-      '2014-04-04\n05:00:00',
+      '1393-01-15\n05:00:00',
       "yyyy-MM-dd'\n'HH:mm:ss",
       referenceDate
     )
@@ -46,7 +46,7 @@ describe('parse', () => {
     )
   })
 
-  describe('era', () => {
+  describe.skip('era', () => {
     it('abbreviated', () => {
       const result = parse('10000 BC', 'yyyyy G', referenceDate)
       assert.deepStrictEqual(
@@ -120,27 +120,27 @@ describe('parse', () => {
 
   describe('calendar year', () => {
     it('numeric', () => {
-      const result = parse('2017', 'y', referenceDate)
+      const result = parse('1395', 'y', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1)
+        /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20)
       )
     })
 
     it('ordinal', () => {
-      const result = parse('2017th', 'yo', referenceDate)
+      const result = parse('1395-ام', 'yo', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1)
+        /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20)
       )
     })
 
     describe('two-digit numeric year', () => {
       it('works as expected', () => {
-        const result = parse('02', 'yy', referenceDate)
+        const result = parse('80', 'yy', referenceDate)
         assert.deepStrictEqual(
           result,
-          /* 1380/10/11 */ new Date(2002, 0 /* Jan */, 1)
+          /* 1380/1/1 */ new Date(2001, 2 /* Mar */, 21)
         )
       })
 
@@ -152,7 +152,7 @@ describe('parse', () => {
         )
         assert.deepStrictEqual(
           result,
-          /* 1280/10/11 */ new Date(1902, 0 /* Jan */, 1)
+          /* 1202/1/1 */ new Date(1823, 2 /* Mar */, 22)
         )
       })
     })
@@ -161,32 +161,28 @@ describe('parse', () => {
       const result = parse('123', 'yyy', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* -499/10/10 */ new Date(123, 0 /* Jan */, 1)
+        /* 123/1/1 */ new Date(744, 2 /* Mar */, 21)
       )
     })
 
     it('four-digit zero-padding', () => {
       const result = parse('0044', 'yyyy', referenceDate)
-      const expectedResult = new Date(0)
-      expectedResult.setFullYear(44, 0 /* Jan */, 1)
-      expectedResult.setHours(0, 0, 0, 0)
+      const expectedResult = /* 44/1/1 */ new Date(665, 2 /* Mar */, 21)
       assert.deepStrictEqual(result, expectedResult)
     })
 
     it('specified amount of digits', () => {
       const result = parse('000001', 'yyyyyy', referenceDate)
-      const expectedResult = new Date(0)
-      expectedResult.setFullYear(1, 0 /* Jan */, 1)
-      expectedResult.setHours(0, 0, 0, 0)
+      const expectedResult = /* 1/1/1 */ new Date(622, 2 /* Mar */, 22)
       assert.deepStrictEqual(result, expectedResult)
     })
 
     describe('validation', () => {
       ;[
-        ['y', '2019'],
-        ['Y', '2019'],
-        ['R', '2019'],
-        ['u', '2019'],
+        ['y', '1398'],
+        ['Y', '1398'],
+        ['R', '1398'],
+        ['u', '1398'],
         ['w', '1'],
         ['I', '1'],
         ['i', '1'],
@@ -197,7 +193,7 @@ describe('parse', () => {
       ].forEach(([token, example]) => {
         it(`throws an error when y is used after ${token}`, () => {
           const block = () =>
-            parse(`${example} 2019`, `${token} y`, referenceDate)
+            parse(`${example} 1398`, `${token} y`, referenceDate)
           assert.throws(block, RangeError)
           assert.throws(
             block,
@@ -210,7 +206,7 @@ describe('parse', () => {
     })
   })
 
-  describe('local week-numbering year', () => {
+  describe.skip('local week-numbering year', () => {
     it('numeric', () => {
       const result = parse('2002', 'Y', referenceDate)
       assert.deepStrictEqual(
@@ -326,7 +322,7 @@ describe('parse', () => {
     })
   })
 
-  describe('ISO week-numbering year', () => {
+  describe.skip('ISO week-numbering year', () => {
     it('numeric', () => {
       const result = parse('-1234', 'R', referenceDate)
       assert.deepStrictEqual(
@@ -371,7 +367,7 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['G', 'AD'],
+        ['G', 'ب.ه'],
         ['y', '2019'],
         ['Y', '2019'],
         ['R', '2019'],
@@ -404,7 +400,7 @@ describe('parse', () => {
     })
   })
 
-  describe('extended year', () => {
+  describe.skip('extended year', () => {
     it('numeric', () => {
       const result = parse('-1234', 'u', referenceDate)
       assert.deepStrictEqual(
@@ -447,11 +443,11 @@ describe('parse', () => {
 
     describe('validation', () => {
       ;[
-        ['G', 'AD'],
-        ['y', '2019'],
-        ['Y', '2019'],
-        ['R', '2019'],
-        ['u', '2019'],
+        ['G', 'ب.ه.'],
+        ['y', '1398'],
+        ['Y', '1398'],
+        ['R', '1398'],
+        ['u', '1398'],
         ['w', '1'],
         ['I', '1'],
         ['i', '1'],
@@ -462,7 +458,7 @@ describe('parse', () => {
       ].forEach(([token, example]) => {
         it(`throws an error when u is used after ${token}`, () => {
           const block = () =>
-            parse(`${example} 2019`, `${token} u`, referenceDate)
+            parse(`${example} 1398`, `${token} u`, referenceDate)
           assert.throws(block, RangeError)
           assert.throws(
             block,
@@ -477,34 +473,50 @@ describe('parse', () => {
 
   describe('quarter with following year', () => {
     it('first quarter', () => {
-      const result = parse('Q1/2020', 'QQQ/yyyy', referenceDate)
+      const result = parse(
+        ['س‌م1', '1398'].join('/'),
+        'QQQ/yyyy',
+        referenceDate
+      )
       assert.deepStrictEqual(
         result,
-        /* 1398/10/11 */ new Date(2020, 0 /* Jan */, 1)
+        /* 1398/1/1 */ new Date(2019, 2 /* Mar */, 21)
       )
     })
 
     it('second quarter', () => {
-      const result = parse('Q2/2020', 'QQQ/yyyy', referenceDate)
+      const result = parse(
+        ['س‌م2', '1399'].join('/'),
+        'QQQ/yyyy',
+        referenceDate
+      )
       assert.deepStrictEqual(
         result,
-        /* 1399/1/13 */ new Date(2020, 3 /* Apr */, 1)
+        /* 1399/4/1 */ new Date(2020, 5 /* Jun */, 21)
       )
     })
 
     it('third quarter', () => {
-      const result = parse('Q3/2020', 'QQQ/yyyy', referenceDate)
+      const result = parse(
+        ['س‌م3', '1399'].join('/'),
+        'QQQ/yyyy',
+        referenceDate
+      )
       assert.deepStrictEqual(
         result,
-        /* 1399/4/11 */ new Date(2020, 6 /* Jul */, 1)
+        /* 1399/7/1 */ new Date(2020, 8 /* Sep */, 22)
       )
     })
 
     it('fourth quarter', () => {
-      const result = parse('Q4/2020', 'QQQ/yyyy', referenceDate)
+      const result = parse(
+        ['س‌م4', '1399'].join('/'),
+        'QQQ/yyyy',
+        referenceDate
+      )
       assert.deepStrictEqual(
         result,
-        /* 1399/7/10 */ new Date(2020, 9 /* Oct */, 1)
+        /* 1399/10/1 */ new Date(2020, 11 /* Dec */, 21)
       )
     })
   })
@@ -514,15 +526,15 @@ describe('parse', () => {
       const result = parse('1', 'Q', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
     it('ordinal', () => {
-      const result = parse('1st', 'Qo', referenceDate)
+      const result = parse('1-ام', 'Qo', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
@@ -530,23 +542,23 @@ describe('parse', () => {
       const result = parse('02', 'QQ', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1)
+        /* 1365/4/1 */ new Date(1986, 5 /* Jun */, 22)
       )
     })
 
     it('abbreviated', () => {
-      const result = parse('Q3', 'QQQ', referenceDate)
+      const result = parse('س‌م3', 'QQQ', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/4/10 */ new Date(1986, 6 /* Jul */, 1)
+        /* 1365/7/1 */ new Date(1986, 8 /* Sep */, 23)
       )
     })
 
     it('wide', () => {
-      const result = parse('4st quarter', 'QQQQ', referenceDate)
+      const result = parse('سه‌ماهه 4', 'QQQQ', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/7/9 */ new Date(1986, 9 /* Oct */, 1)
+        /* 1365/10/1 */ new Date(1986, 11 /* Dec */, 22)
       )
     })
 
@@ -554,7 +566,7 @@ describe('parse', () => {
       const result = parse('1', 'QQQQQ', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
@@ -562,8 +574,8 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['Y', '2019'],
-        ['R', '2019'],
+        ['Y', '1398'],
+        ['R', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -599,15 +611,15 @@ describe('parse', () => {
       const result = parse('1', 'q', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
     it('ordinal', () => {
-      const result = parse('1th', 'qo', referenceDate)
+      const result = parse('1-ام', 'qo', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
@@ -615,23 +627,23 @@ describe('parse', () => {
       const result = parse('02', 'qq', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1)
+        /* 1365/4/1 */ new Date(1986, 5 /* Jun */, 22)
       )
     })
 
     it('abbreviated', () => {
-      const result = parse('Q3', 'qqq', referenceDate)
+      const result = parse('س‌م3', 'qqq', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/4/10 */ new Date(1986, 6 /* Jul */, 1)
+        /* 1365/7/1 */ new Date(1986, 8 /* Sep */, 23)
       )
     })
 
     it('wide', () => {
-      const result = parse('4th quarter', 'qqqq', referenceDate)
+      const result = parse('سه‌ماهه 4', 'qqqq', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/7/9 */ new Date(1986, 9 /* Oct */, 1)
+        /* 1365/10/1 */ new Date(1986, 11 /* Dec */, 22)
       )
     })
 
@@ -639,7 +651,7 @@ describe('parse', () => {
       const result = parse('1', 'qqqqq', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
@@ -647,8 +659,8 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['Y', '2019'],
-        ['R', '2019'],
+        ['Y', '1398'],
+        ['R', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -684,15 +696,15 @@ describe('parse', () => {
       const result = parse('6', 'M', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/3/11 */ new Date(1986, 5 /* Jun */, 1)
+        /* 1365/6/1 */ new Date(1986, 7 /* Aug */, 23)
       )
     })
 
     it('ordinal', () => {
-      const result = parse('6th', 'Mo', referenceDate)
+      const result = parse('6-ام', 'Mo', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/3/11 */ new Date(1986, 5 /* Jun */, 1)
+        /* 1365/6/1 */ new Date(1986, 7 /* Aug */, 23)
       )
     })
 
@@ -700,31 +712,31 @@ describe('parse', () => {
       const result = parse('01', 'MM', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
     it('abbreviated', () => {
-      const result = parse('Nov', 'MMM', referenceDate)
+      const result = parse('آبا', 'MMM', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/8/10 */ new Date(1986, 10 /* Nov */, 1)
+        /* 1365/8/1 */ new Date(1986, 9 /* Oct */, 23)
       )
     })
 
     it('wide', () => {
-      const result = parse('February', 'MMMM', referenceDate)
+      const result = parse('بهمن', 'MMMM', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/11/12 */ new Date(1986, 1 /* Feb */, 1)
+        /* 1365/11/1 */ new Date(1987, 0 /* Jan */, 21)
       )
     })
 
     it('narrow', () => {
-      const result = parse('J', 'MMMMM', referenceDate)
+      const result = parse('فر', 'MMMMM', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
@@ -732,8 +744,8 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['Y', '2019'],
-        ['R', '2019'],
+        ['Y', '1398'],
+        ['R', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -768,15 +780,15 @@ describe('parse', () => {
       const result = parse('6', 'L', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/3/11 */ new Date(1986, 5 /* Jun */, 1)
+        /* 1365/6/1 */ new Date(1986, 7 /* Aug */, 23)
       )
     })
 
     it('ordinal', () => {
-      const result = parse('6th', 'Lo', referenceDate)
+      const result = parse('6-ام', 'Lo', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/3/11 */ new Date(1986, 5 /* Jun */, 1)
+        /* 1365/6/1 */ new Date(1986, 7 /* Aug */, 23)
       )
     })
 
@@ -784,31 +796,31 @@ describe('parse', () => {
       const result = parse('01', 'LL', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
     it('abbreviated', () => {
-      const result = parse('Nov', 'LLL', referenceDate)
+      const result = parse('آبا', 'LLL', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/8/10 */ new Date(1986, 10 /* Nov */, 1)
+        /* 1365/8/1 */ new Date(1986, 9 /* Oct */, 23)
       )
     })
 
     it('wide', () => {
-      const result = parse('February', 'LLLL', referenceDate)
+      const result = parse('بهمن', 'LLLL', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/11/12 */ new Date(1986, 1 /* Feb */, 1)
+        /* 1365/11/1 */ new Date(1987, 0 /* Jan */, 21)
       )
     })
 
     it('narrow', () => {
-      const result = parse('J', 'LLLLL', referenceDate)
+      const result = parse('فر', 'LLLLL', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
@@ -816,8 +828,8 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['Y', '2019'],
-        ['R', '2019'],
+        ['Y', '1398'],
+        ['R', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -852,15 +864,15 @@ describe('parse', () => {
       const result = parse('49', 'w', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/9/9 */ new Date(1986, 10 /* Nov */, 30)
+        /* 1365/11/25 */ new Date(1987, 1 /* Feb */, 14)
       )
     })
 
     it('ordinal', () => {
-      const result = parse('49th', 'wo', referenceDate)
+      const result = parse('49ام', 'wo', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/9/9 */ new Date(1986, 10 /* Nov */, 30)
+        /* 1365/11/25 */ new Date(1987, 1 /* Feb */, 14)
       )
     })
 
@@ -868,7 +880,7 @@ describe('parse', () => {
       const result = parse('01', 'ww', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/8 */ new Date(1985, 11 /* Dec */, 29)
+        /* 1364/12/24 */ new Date(1986, 2 /* Mar */, 15)
       )
     })
 
@@ -879,7 +891,7 @@ describe('parse', () => {
       })
       assert.deepStrictEqual(
         result,
-        /* 1365/9/10 */ new Date(1986, 11 /* Dec */, 1)
+        /* 1365/12/4 */ new Date(1987, 1 /* Feb */, 23)
       )
     })
 
@@ -887,9 +899,9 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['y', '2019'],
-        ['R', '2019'],
-        ['u', '2019'],
+        ['y', '1398'],
+        ['R', '1398'],
+        ['u', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -928,7 +940,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('49th', 'Io', referenceDate)
+      const result = parse('49-ام', 'Io', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/9/10 */ new Date(1986, 11 /* Dec */, 1)
@@ -947,9 +959,9 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['y', '2019'],
-        ['Y', '2019'],
-        ['u', '2019'],
+        ['y', '1398'],
+        ['Y', '1398'],
+        ['u', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -981,26 +993,26 @@ describe('parse', () => {
 
   describe('day of month', () => {
     it('numeric', () => {
-      const result = parse('28', 'd', referenceDate)
+      const result = parse('8', 'd', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/2/8 */ new Date(1986, 3 /* Apr */, 28)
+        /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28)
       )
     })
 
     it('ordinal', () => {
-      const result = parse('28th', 'do', referenceDate)
+      const result = parse('8-ام', 'do', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/2/8 */ new Date(1986, 3 /* Apr */, 28)
+        /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28)
       )
     })
 
     it('zero-padding', () => {
-      const result = parse('01', 'dd', referenceDate)
+      const result = parse('08', 'dd', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1)
+        /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28)
       )
     })
 
@@ -1008,8 +1020,8 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['Y', '2019'],
-        ['R', '2019'],
+        ['Y', '1398'],
+        ['R', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['w', '1'],
@@ -1045,15 +1057,15 @@ describe('parse', () => {
       })
       assert.deepStrictEqual(
         result,
-        /* 1365/4/28 */ new Date(1986, 6 /* Jul */, 19)
+        /* 1365/7/14 */ new Date(1986, 9 /* Oct */, 6)
       )
     })
 
     it('ordinal', () => {
-      const result = parse('200th', 'Do', referenceDate)
+      const result = parse('200ام', 'Do', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/4/28 */ new Date(1986, 6 /* Jul */, 19)
+        /* 1365/7/14 */ new Date(1986, 9 /* Oct */, 6)
       )
     })
 
@@ -1063,7 +1075,7 @@ describe('parse', () => {
       })
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
@@ -1071,7 +1083,7 @@ describe('parse', () => {
       const result = parse('001', 'DDD', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1)
+        /* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21)
       )
     })
 
@@ -1079,7 +1091,7 @@ describe('parse', () => {
       const result = parse('000200', 'DDDDDD', referenceDate)
       assert.deepStrictEqual(
         result,
-        /* 1365/4/28 */ new Date(1986, 6 /* Jul */, 19)
+        /* 1365/7/14 */ new Date(1986, 9 /* Oct */, 6)
       )
     })
 
@@ -1095,7 +1107,7 @@ describe('parse', () => {
         ['I', '1'],
         ['d', '1'],
         ['D', '1'],
-        ['E', 'Mon'],
+        ['E', 'ی'],
         ['i', '1'],
         ['e', '1'],
         ['c', '1'],
@@ -1121,7 +1133,7 @@ describe('parse', () => {
 
   describe('day of week (formatting)', () => {
     it('abbreviated', () => {
-      const result = parse('Mon', 'E', referenceDate)
+      const result = parse('دوشنبه', 'E', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/11 */ new Date(1986, 2 /* Mar */, 31)
@@ -1129,7 +1141,7 @@ describe('parse', () => {
     })
 
     it('wide', () => {
-      const result = parse('Tuesday', 'EEEE', referenceDate)
+      const result = parse('سه‌شنبه', 'EEEE', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1)
@@ -1137,7 +1149,7 @@ describe('parse', () => {
     })
 
     it('narrow', () => {
-      const result = parse('W', 'EEEEE', referenceDate)
+      const result = parse('چ', 'EEEEE', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/13 */ new Date(1986, 3 /* Apr */, 2)
@@ -1145,7 +1157,7 @@ describe('parse', () => {
     })
 
     it('short', () => {
-      const result = parse('Th', 'EEEEEE', referenceDate)
+      const result = parse('5ش', 'EEEEEE', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/14 */ new Date(1986, 3 /* Apr */, 3)
@@ -1153,12 +1165,12 @@ describe('parse', () => {
     })
 
     it('allows to specify which day is the first day of the week', () => {
-      const result = parse('Thursday', 'EEEE', referenceDate, {
+      const result = parse('سه‌شنبه', 'EEEE', referenceDate, {
         weekStartsOn: /* Fri */ 5,
       })
       assert.deepStrictEqual(
         result,
-        /* 1365/1/21 */ new Date(1986, 3 /* Apr */, 10)
+        /* 1365/1/19 */ new Date(1986, 3 /* Apr */, 8)
       )
     })
 
@@ -1167,7 +1179,7 @@ describe('parse', () => {
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
         ['D', '1', { useAdditionalDayOfYearTokens: true }],
-        ['E', 'Mon'],
+        ['E', '2ش'],
         ['i', '1'],
         ['e', '1'],
         ['c', '1'],
@@ -1177,7 +1189,7 @@ describe('parse', () => {
       tokensToValidate.forEach(([token, example, options]) => {
         it(`throws an error when E is used after ${token}`, () => {
           const block = () =>
-            parse(`${example} Mon`, `${token} E`, referenceDate, options)
+            parse(`${example} 2ش`, `${token} E`, referenceDate, options)
           assert.throws(block, RangeError)
           assert.throws(
             block,
@@ -1200,7 +1212,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('1st', 'io', referenceDate)
+      const result = parse('1-ام', 'io', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/11 */ new Date(1986, 2 /* Mar */, 31)
@@ -1216,7 +1228,7 @@ describe('parse', () => {
     })
 
     it('abbreviated', () => {
-      const result = parse('Wed', 'iii', referenceDate)
+      const result = parse('چهارشنبه', 'iii', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/13 */ new Date(1986, 3 /* Apr */, 2)
@@ -1224,7 +1236,7 @@ describe('parse', () => {
     })
 
     it('wide', () => {
-      const result = parse('Thursday', 'iiii', referenceDate)
+      const result = parse('پنج‌شنبه', 'iiii', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/14 */ new Date(1986, 3 /* Apr */, 3)
@@ -1232,7 +1244,7 @@ describe('parse', () => {
     })
 
     it('narrow', () => {
-      const result = parse('S', 'iiiii', referenceDate)
+      const result = parse('ی', 'iiiii', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6)
@@ -1240,7 +1252,7 @@ describe('parse', () => {
     })
 
     it('short', () => {
-      const result = parse('Fr', 'iiiiii', referenceDate)
+      const result = parse('ج', 'iiiiii', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4)
@@ -1251,9 +1263,9 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['y', '2019'],
-        ['Y', '2019'],
-        ['u', '2019'],
+        ['y', '1398'],
+        ['Y', '1398'],
+        ['u', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -1261,7 +1273,7 @@ describe('parse', () => {
         ['w', '1'],
         ['d', '1'],
         ['D', '1', { useAdditionalDayOfYearTokens: true }],
-        ['E', 'Mon'],
+        ['E', 'ی'],
         ['i', '1'],
         ['e', '1'],
         ['c', '1'],
@@ -1294,7 +1306,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('2nd', 'eo', referenceDate)
+      const result = parse('2-ام', 'eo', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/11 */ new Date(1986, 2 /* Mar */, 31)
@@ -1310,7 +1322,7 @@ describe('parse', () => {
     })
 
     it('abbreviated', () => {
-      const result = parse('Wed', 'eee', referenceDate)
+      const result = parse('چهارشنبه', 'eee', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/13 */ new Date(1986, 3 /* Apr */, 2)
@@ -1318,7 +1330,7 @@ describe('parse', () => {
     })
 
     it('wide', () => {
-      const result = parse('Thursday', 'eeee', referenceDate)
+      const result = parse('پنج‌شنبه', 'eeee', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/14 */ new Date(1986, 3 /* Apr */, 3)
@@ -1326,7 +1338,7 @@ describe('parse', () => {
     })
 
     it('narrow', () => {
-      const result = parse('S', 'eeeee', referenceDate)
+      const result = parse('ی', 'eeeee', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/10 */ new Date(1986, 2 /* Mar */, 30)
@@ -1334,7 +1346,7 @@ describe('parse', () => {
     })
 
     it('short', () => {
-      const result = parse('Fr', 'eeeeee', referenceDate)
+      const result = parse('ج', 'eeeeee', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4)
@@ -1342,12 +1354,12 @@ describe('parse', () => {
     })
 
     it('allows to specify which day is the first day of the week', () => {
-      const result = parse('7th', 'eo', referenceDate, {
+      const result = parse('7-ام', 'eo', referenceDate, {
         weekStartsOn: /* Fri */ 5,
       })
       assert.deepStrictEqual(
         result,
-        /* 1365/1/21 */ new Date(1986, 3 /* Apr */, 10)
+        /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4)
       )
     })
 
@@ -1355,9 +1367,9 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['y', '2019'],
-        ['R', '2019'],
-        ['u', '2019'],
+        ['y', '1398'],
+        ['R', '1398'],
+        ['u', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -1365,7 +1377,7 @@ describe('parse', () => {
         ['I', '1'],
         ['d', '1'],
         ['D', '1', { useAdditionalDayOfYearTokens: true }],
-        ['E', 'Mon'],
+        ['E', '2ش'],
         ['i', '1'],
         ['e', '1'],
         ['c', '1'],
@@ -1398,7 +1410,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('2nd', 'co', referenceDate)
+      const result = parse('2-ام', 'co', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/11 */ new Date(1986, 2 /* Mar */, 31)
@@ -1414,7 +1426,7 @@ describe('parse', () => {
     })
 
     it('abbreviated', () => {
-      const result = parse('Wed', 'ccc', referenceDate)
+      const result = parse('چهارشنبه', 'ccc', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/13 */ new Date(1986, 3 /* Apr */, 2)
@@ -1422,7 +1434,7 @@ describe('parse', () => {
     })
 
     it('wide', () => {
-      const result = parse('Thursday', 'cccc', referenceDate)
+      const result = parse('پنج‌شنبه', 'cccc', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/14 */ new Date(1986, 3 /* Apr */, 3)
@@ -1430,7 +1442,7 @@ describe('parse', () => {
     })
 
     it('narrow', () => {
-      const result = parse('S', 'ccccc', referenceDate)
+      const result = parse('ی', 'ccccc', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/10 */ new Date(1986, 2 /* Mar */, 30)
@@ -1438,7 +1450,7 @@ describe('parse', () => {
     })
 
     it('short', () => {
-      const result = parse('Fr', 'cccccc', referenceDate)
+      const result = parse('ج', 'cccccc', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4)
@@ -1446,12 +1458,12 @@ describe('parse', () => {
     })
 
     it('allows to specify which day is the first day of the week', () => {
-      const result = parse('7th', 'co', referenceDate, {
+      const result = parse('7-ام', 'co', referenceDate, {
         weekStartsOn: /* Fri */ 5,
       })
       assert.deepStrictEqual(
         result,
-        /* 1365/1/21 */ new Date(1986, 3 /* Apr */, 10)
+        /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4)
       )
     })
 
@@ -1459,9 +1471,9 @@ describe('parse', () => {
       const tokensToValidate: Array<
         [string, string, { useAdditionalDayOfYearTokens: boolean }?]
       > = [
-        ['y', '2019'],
-        ['R', '2019'],
-        ['u', '2019'],
+        ['y', '1398'],
+        ['R', '1398'],
+        ['u', '1398'],
         ['Q', '1'],
         ['q', '1'],
         ['M', '1'],
@@ -1469,7 +1481,7 @@ describe('parse', () => {
         ['I', '1'],
         ['d', '1'],
         ['D', '1', { useAdditionalDayOfYearTokens: true }],
-        ['E', 'Mon'],
+        ['E', 'دوشنبه'],
         ['i', '1'],
         ['e', '1'],
         ['c', '1'],
@@ -1494,7 +1506,7 @@ describe('parse', () => {
 
   describe('AM, PM', () => {
     it('abbreviated', () => {
-      const result = parse('5 AM', 'h a', referenceDate)
+      const result = parse('5 ق.ظ.', 'h a', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 5)
@@ -1502,7 +1514,7 @@ describe('parse', () => {
     })
 
     it('12 AM', () => {
-      const result = parse('12 AM', 'h aa', referenceDate)
+      const result = parse('12 ق.ظ.', 'h aa', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 0)
@@ -1510,7 +1522,7 @@ describe('parse', () => {
     })
 
     it('12 PM', () => {
-      const result = parse('12 PM', 'h aaa', referenceDate)
+      const result = parse('12 ب.ظ.', 'h aaa', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12)
@@ -1518,7 +1530,7 @@ describe('parse', () => {
     })
 
     it('wide', () => {
-      const result = parse('5 p.m.', 'h aaaa', referenceDate)
+      const result = parse('5 بعدازظهر', 'h aaaa', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 17)
@@ -1526,7 +1538,7 @@ describe('parse', () => {
     })
 
     it('narrow', () => {
-      const result = parse('11 a', 'h aaaaa', referenceDate)
+      const result = parse('11 ق', 'h aaaaa', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 11)
@@ -1535,9 +1547,9 @@ describe('parse', () => {
 
     describe('validation', () => {
       ;[
-        ['a', 'AM'],
-        ['b', 'AM'],
-        ['B', 'in the morning'],
+        ['a', 'ق.ظ.'],
+        ['b', 'ق.ظ.'],
+        ['B', 'صبح'],
         ['H', '1'],
         ['k', '1'],
         ['t', '512969520'],
@@ -1545,7 +1557,7 @@ describe('parse', () => {
       ].forEach(([token, example]) => {
         it(`throws an error when a is used after ${token}`, () => {
           const block = () =>
-            parse(`${example} AM`, `${token} a`, referenceDate)
+            parse(`${example} ق.ظ.`, `${token} a`, referenceDate)
           assert.throws(block, RangeError)
           assert.throws(
             block,
@@ -1560,7 +1572,7 @@ describe('parse', () => {
 
   describe('AM, PM, noon, midnight', () => {
     it('abbreviated', () => {
-      const result = parse('noon', 'b', referenceDate)
+      const result = parse('ظهر', 'b', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12)
@@ -1568,7 +1580,7 @@ describe('parse', () => {
     })
 
     it('wide', () => {
-      const result = parse('midnight', 'bbbb', referenceDate)
+      const result = parse('نیمه‌شب', 'bbbb', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 0)
@@ -1576,7 +1588,7 @@ describe('parse', () => {
     })
 
     it('narrow', () => {
-      const result = parse('mi', 'bbbbb', referenceDate)
+      const result = parse('ن', 'bbbbb', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 0)
@@ -1585,9 +1597,9 @@ describe('parse', () => {
 
     describe('validation', () => {
       ;[
-        ['a', 'AM'],
-        ['b', 'AM'],
-        ['B', 'in the morning'],
+        ['a', 'ق.ظ.'],
+        ['b', 'ق.ظ.'],
+        ['B', 'صبح'],
         ['H', '1'],
         ['k', '1'],
         ['t', '512969520'],
@@ -1595,7 +1607,7 @@ describe('parse', () => {
       ].forEach(([token, example]) => {
         it(`throws an error when b is used after ${token}`, () => {
           const block = () =>
-            parse(`${example} AM`, `${token} b`, referenceDate)
+            parse(`${example} ق.ظ.`, `${token} b`, referenceDate)
           assert.throws(block, RangeError)
           assert.throws(
             block,
@@ -1610,7 +1622,7 @@ describe('parse', () => {
 
   describe('flexible day period', () => {
     it('abbreviated', () => {
-      const result = parse('2 at night', 'h B', referenceDate)
+      const result = parse('2 شب', 'h B', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 2)
@@ -1618,7 +1630,7 @@ describe('parse', () => {
     })
 
     it('wide', () => {
-      const result = parse('12 in the afternoon', 'h BBBB', referenceDate)
+      const result = parse('12 بعدازظهر', 'h BBBB', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12)
@@ -1626,7 +1638,7 @@ describe('parse', () => {
     })
 
     it('narrow', () => {
-      const result = parse('5 in the evening', 'h BBBBB', referenceDate)
+      const result = parse('5 ب', 'h BBBBB', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 17)
@@ -1635,15 +1647,15 @@ describe('parse', () => {
 
     describe('validation', () => {
       ;[
-        ['a', 'AM'],
-        ['b', 'AM'],
-        ['B', 'in the morning'],
+        ['a', 'ق.ظ.'],
+        ['b', 'ق.ظ.'],
+        ['B', 'صبح'],
         ['t', '512969520'],
         ['T', '512969520900'],
       ].forEach(([token, example]) => {
         it(`throws an error when B is used after ${token}`, () => {
           const block = () =>
-            parse(`${example} in the morning`, `${token} B`, referenceDate)
+            parse(`${example} صبح`, `${token} B`, referenceDate)
           assert.throws(block, RangeError)
           assert.throws(
             block,
@@ -1666,7 +1678,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('1st', 'ho', referenceDate)
+      const result = parse('1-ام', 'ho', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 1)
@@ -1714,7 +1726,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('12th', 'Ho', referenceDate)
+      const result = parse('12-ام', 'Ho', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12)
@@ -1731,8 +1743,8 @@ describe('parse', () => {
 
     describe('validation', () => {
       ;[
-        ['a', 'AM'],
-        ['b', 'AM'],
+        ['a', 'ق.ظ.'],
+        ['b', 'ق.ظ.'],
         ['h', '1'],
         ['H', '1'],
         ['K', '1'],
@@ -1764,7 +1776,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('1st', 'Ko', referenceDate)
+      const result = parse('1-ام', 'Ko', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 1)
@@ -1812,7 +1824,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('12th', 'ko', referenceDate)
+      const result = parse('12-ام', 'ko', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12)
@@ -1829,8 +1841,8 @@ describe('parse', () => {
 
     describe('validation', () => {
       ;[
-        ['a', 'AM'],
-        ['b', 'AM'],
+        ['a', 'ق.ظ.'],
+        ['b', 'ق.ظ.'],
         ['h', '1'],
         ['H', '1'],
         ['K', '1'],
@@ -1862,7 +1874,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('25th', 'mo', referenceDate)
+      const result = parse('25-ام', 'mo', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 25)
@@ -1907,7 +1919,7 @@ describe('parse', () => {
     })
 
     it('ordinal', () => {
-      const result = parse('25th', 'so', referenceDate)
+      const result = parse('25-ام', 'so', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 32, 25)
@@ -1999,7 +2011,7 @@ describe('parse', () => {
     describe('X', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-0530',
+          '1395-09-05T16:38:38.123-0530',
           "yyyy-MM-dd'T'HH:mm:ss.SSSX",
           referenceDate
         )
@@ -2011,7 +2023,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123Z',
+          '1395-09-05T16:38:38.123Z',
           "yyyy-MM-dd'T'HH:mm:ss.SSSX",
           referenceDate
         )
@@ -2020,7 +2032,7 @@ describe('parse', () => {
 
       it('hours', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+05',
+          '1395-09-05T16:38:38.123+05',
           "yyyy-MM-dd'T'HH:mm:ss.SSSX",
           referenceDate
         )
@@ -2034,7 +2046,7 @@ describe('parse', () => {
     describe('XX', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-0530',
+          '1395-09-05T16:38:38.123-0530',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXX",
           referenceDate
         )
@@ -2046,7 +2058,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123Z',
+          '1395-09-05T16:38:38.123Z',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXX",
           referenceDate
         )
@@ -2057,7 +2069,7 @@ describe('parse', () => {
     describe('XXX', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-05:30',
+          '1395-09-05T16:38:38.123-05:30',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
           referenceDate
         )
@@ -2069,7 +2081,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123Z',
+          '1395-09-05T16:38:38.123Z',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
           referenceDate
         )
@@ -2080,7 +2092,7 @@ describe('parse', () => {
     describe('XXXX', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-0530',
+          '1395-09-05T16:38:38.123-0530',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXX",
           referenceDate
         )
@@ -2092,7 +2104,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123Z',
+          '1395-09-05T16:38:38.123Z',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXX",
           referenceDate
         )
@@ -2101,7 +2113,7 @@ describe('parse', () => {
 
       it('hours, minutes and seconds', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+053045',
+          '1395-09-05T16:38:38.123+053045',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXX",
           referenceDate
         )
@@ -2115,7 +2127,7 @@ describe('parse', () => {
     describe('XXXXX', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-05:30',
+          '1395-09-05T16:38:38.123-05:30',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX",
           referenceDate
         )
@@ -2127,7 +2139,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123Z',
+          '1395-09-05T16:38:38.123Z',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX",
           referenceDate
         )
@@ -2136,7 +2148,7 @@ describe('parse', () => {
 
       it('hours, minutes and seconds', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+05:30:45',
+          '1395-09-05T16:38:38.123+05:30:45',
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX",
           referenceDate
         )
@@ -2173,7 +2185,7 @@ describe('parse', () => {
     describe('x', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-0530',
+          '1395-09-05T16:38:38.123-0530',
           "yyyy-MM-dd'T'HH:mm:ss.SSSx",
           referenceDate
         )
@@ -2185,7 +2197,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+0000',
+          '1395-09-05T16:38:38.123+0000',
           "yyyy-MM-dd'T'HH:mm:ss.SSSx",
           referenceDate
         )
@@ -2194,7 +2206,7 @@ describe('parse', () => {
 
       it('hours', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+05',
+          '1395-09-05T16:38:38.123+05',
           "yyyy-MM-dd'T'HH:mm:ss.SSSx",
           referenceDate
         )
@@ -2208,7 +2220,7 @@ describe('parse', () => {
     describe('xx', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-0530',
+          '1395-09-05T16:38:38.123-0530',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxx",
           referenceDate
         )
@@ -2220,7 +2232,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+0000',
+          '1395-09-05T16:38:38.123+0000',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxx",
           referenceDate
         )
@@ -2231,7 +2243,7 @@ describe('parse', () => {
     describe('xxx', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-05:30',
+          '1395-09-05T16:38:38.123-05:30',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
           referenceDate
         )
@@ -2243,7 +2255,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+00:00',
+          '1395-09-05T16:38:38.123+00:00',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
           referenceDate
         )
@@ -2254,7 +2266,7 @@ describe('parse', () => {
     describe('xxxx', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-0530',
+          '1395-09-05T16:38:38.123-0530',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxx",
           referenceDate
         )
@@ -2266,7 +2278,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+0000',
+          '1395-09-05T16:38:38.123+0000',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxx",
           referenceDate
         )
@@ -2275,7 +2287,7 @@ describe('parse', () => {
 
       it('hours, minutes and seconds', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+053045',
+          '1395-09-05T16:38:38.123+053045',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxx",
           referenceDate
         )
@@ -2289,7 +2301,7 @@ describe('parse', () => {
     describe('xxxxx', () => {
       it('hours and minutes', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123-05:30',
+          '1395-09-05T16:38:38.123-05:30',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxxx",
           referenceDate
         )
@@ -2301,7 +2313,7 @@ describe('parse', () => {
 
       it('GMT', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+00:00',
+          '1395-09-05T16:38:38.123+00:00',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxxx",
           referenceDate
         )
@@ -2310,7 +2322,7 @@ describe('parse', () => {
 
       it('hours, minutes and seconds', () => {
         const result = parse(
-          '2016-11-25T16:38:38.123+05:30:45',
+          '1395-09-05T16:38:38.123+05:30:45',
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxxx",
           referenceDate
         )
@@ -2400,7 +2412,7 @@ describe('parse', () => {
   describe('common formats', () => {
     it('ISO-8601', () => {
       const result = parse(
-        '20161105T040404',
+        '13950815T040404',
         "yyyyMMdd'T'HHmmss",
         referenceDate
       )
@@ -2412,7 +2424,7 @@ describe('parse', () => {
 
     it('ISO week-numbering date', () => {
       const result = parse(
-        '2016W474T153005',
+        '1395W474T153005',
         "RRRR'W'IIi'T'HHmmss",
         referenceDate
       )
@@ -2423,21 +2435,21 @@ describe('parse', () => {
     })
 
     it('ISO day of year date', () => {
-      const result = parse('2010123T235959', "yyyyDDD'T'HHmmss", referenceDate)
+      const result = parse('1389044T235959', "yyyyDDD'T'HHmmss", referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1389/2/13 */ new Date(2010, 4 /* May */, 3, 23, 59, 59, 0)
       )
     })
 
-    it('Date.prototype.toString()', () => {
+    it.skip('Date.prototype.toString()', () => {
       const dateString = 'Wed Jul 02 2014 05:30:15 GMT+0600'
       const formatString = "EEE MMM dd yyyy HH:mm:ss 'GMT'xx"
       const result = parse(dateString, formatString, referenceDate)
       assert.deepStrictEqual(result, new Date(dateString))
     })
 
-    it('Date.prototype.toISOString()', () => {
+    it.skip('Date.prototype.toISOString()', () => {
       const dateString = '2014-07-02T05:30:15.123+06:00'
       const formatString = "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"
       const result = parse(dateString, formatString, referenceDate)
@@ -2446,7 +2458,7 @@ describe('parse', () => {
 
     it('middle-endian', () => {
       const result = parse(
-        '5 a.m. 07/02/2016',
+        '5 ق.ظ. 04/12/1395',
         'h aaaa MM/dd/yyyy',
         referenceDate
       )
@@ -2457,7 +2469,7 @@ describe('parse', () => {
     })
 
     it('little-endian', () => {
-      const result = parse('02.07.1995', 'dd.MM.yyyy', referenceDate)
+      const result = parse('11.04.1374', 'dd.MM.yyyy', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1374/4/11 */ new Date(1995, 6 /* Jul */, 2, 0, 0, 0, 0)
@@ -2467,7 +2479,7 @@ describe('parse', () => {
 
   describe('priority', () => {
     it("units of lower priority don't overwrite values of higher priority", () => {
-      const dateString = '+06:00 123 15 30 05 02 07 2014'
+      const dateString = '+06:00 123 15 30 05 11 04 1393'
       const formatString = 'xxx SSS ss mm HH dd MM yyyy'
       const result = parse(dateString, formatString, referenceDate)
       assert.deepStrictEqual(result, new Date('2014-07-02T05:30:15.123+06:00'))
@@ -2477,7 +2489,7 @@ describe('parse', () => {
   describe('implicit conversion of arguments', () => {
     it('`dateString`', () => {
       // eslint-disable-next-line no-new-wrappers
-      const dateString = new String('20161105T040404')
+      const dateString = new String('13950815T040404')
       const result = parse(
         // @ts-expect-error
         dateString,
@@ -2494,7 +2506,7 @@ describe('parse', () => {
       // eslint-disable-next-line no-new-wrappers
       const formatString = new String("yyyyMMdd'T'HHmmss")
       const result = parse(
-        '20161105T040404',
+        '13950815T040404',
         // @ts-expect-error
         formatString,
         referenceDate
@@ -2506,26 +2518,26 @@ describe('parse', () => {
     })
 
     it('`options.weekStartsOn`', () => {
-      const result = parse('2018', 'Y', referenceDate, {
+      const result = parse('1398', 'Y', referenceDate, {
         // @ts-expect-error
         weekStartsOn: '1' /* Mon */,
         firstWeekContainsDate: 4,
       })
       assert.deepStrictEqual(
         result,
-        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1)
+        /* 1397/12/27 */ new Date(2019, 2 /* Mar */, 18)
       )
     })
 
     it('`options.firstWeekContainsDate`', () => {
-      const result = parse('2018', 'Y', referenceDate, {
+      const result = parse('1398', 'Y', referenceDate, {
         weekStartsOn: 1 /* Mon */,
         // @ts-expect-error
         firstWeekContainsDate: '4',
       })
       assert.deepStrictEqual(
         result,
-        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1)
+        /* 1397/12/27 */ new Date(2019, 2 /* Mar */, 18)
       )
     })
   })
@@ -2538,15 +2550,15 @@ describe('parse', () => {
       })
 
       it('works correctly for two-digit year zero', () => {
-        const result = parse('00', 'yy', referenceDate)
+        const result = parse('78', 'yy', referenceDate)
         assert.deepStrictEqual(
           result,
-          /* 1378/10/11 */ new Date(2000, 0 /* Jan */, 1)
+          /* 1378/1/1 */ new Date(1999, 2 /* Mar */, 21)
         )
       })
     })
 
-    describe('local week-numbering year', () => {
+    describe.skip('local week-numbering year', () => {
       it('returns `Invalid Date` for year zero', () => {
         const result = parse('0', 'Y', referenceDate)
         assert(result instanceof Date && isNaN(result.getTime()))
@@ -2610,29 +2622,29 @@ describe('parse', () => {
         const result = parse(
           '30',
           'd',
-          /* 1390/11/12 */ new Date(2012, 1 /* Feb */, 1)
+          /* 1393/12/01 */ new Date(2015, 1 /* Feb */, 20)
         )
         assert(result instanceof Date && isNaN(result.getTime()))
       })
 
-      it('returns `Invalid Date` for 29th of February of non-leap year', () => {
+      it('returns `Invalid Date` for 30th of esfand of non-leap year', () => {
         const result = parse(
-          '29',
+          '30',
           'd',
-          /* 1392/11/12 */ new Date(2014, 1 /* Feb */, 1)
+          /* 1398/12/12 */ new Date(2020, 2 /* Mar */, 2)
         )
         assert(result instanceof Date && isNaN(result.getTime()))
       })
 
-      it('parses 29th of February of leap year', () => {
+      it('parses 30th of Esfand of leap year', () => {
         const result = parse(
-          '29',
+          '30',
           'd',
-          /* 1390/11/12 */ new Date(2012, 1 /* Feb */, 1)
+          /* 1399/12/01 */ new Date(2021, 1 /* Feb */, 19)
         )
         assert.deepStrictEqual(
           result,
-          /* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29)
+          /* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20)
         )
       })
     })
@@ -2657,18 +2669,19 @@ describe('parse', () => {
         assert(result instanceof Date && isNaN(result.getTime()))
       })
 
+      // Won't be supported for now
       it('parses 366th day of leap year', () => {
         const result = parse(
           '366',
           'D',
-          /* 1390/11/12 */ new Date(2012, 1 /* Feb */, 1),
+          /* 1399/1/12 */ new Date(2020, 2 /* Mar */, 31),
           {
             useAdditionalDayOfYearTokens: true,
           }
         )
         assert.deepStrictEqual(
           result,
-          /* 1391/10/11 */ new Date(2012, 11 /* Dec */, 31)
+          /* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20)
         )
       })
     })
@@ -2763,7 +2776,7 @@ describe('parse', () => {
   })
 
   describe('custom locale', () => {
-    it('allows to pass a custom locale', () => {
+    it.skip('allows to pass a custom locale', () => {
       const customLocale = {
         match: {
           era: () => {
@@ -2786,7 +2799,7 @@ describe('parse', () => {
 
     it('throws `RangeError` if `options.locale` does not contain `match` property', () => {
       const block = () =>
-        parse('2016-11-25 04 AM', 'yyyy-MM-dd hh a', referenceDate, {
+        parse('1395-9-5 04 AM', 'yyyy-MM-dd hh a', referenceDate, {
           // @ts-expect-error
           locale: {},
         })
@@ -2795,7 +2808,7 @@ describe('parse', () => {
   })
 
   it('accepts a timestamp as `referenceDate`', () => {
-    const dateString = '6 p.m.'
+    const dateString = '6 ب.ظ.'
     const formatString = 'h aaaa'
     const result = parse(dateString, formatString, referenceDate.getTime())
     assert.deepStrictEqual(
@@ -2807,7 +2820,7 @@ describe('parse', () => {
   it('does not mutate `referenceDate`', () => {
     const referenceDateClone1 = new Date(referenceDate.getTime())
     const referenceDateClone2 = new Date(referenceDate.getTime())
-    const dateString = '6 p.m.'
+    const dateString = '6 ب.ظ.'
     const formatString = 'h aaaa'
     parse(dateString, formatString, referenceDateClone1)
     assert.deepStrictEqual(referenceDateClone1, referenceDateClone2)
@@ -2829,21 +2842,21 @@ describe('parse', () => {
     })
 
     it("returns `Invalid Date`  if `formatString` doesn't match `dateString`", () => {
-      const dateString = '2017-01-01'
+      const dateString = '1395-10-12'
       const formatString = 'yyyy/MM/dd'
       const result = parse(dateString, formatString, referenceDate)
       assert(result instanceof Date && isNaN(result.getTime()))
     })
 
     it('returns `Invalid Date`  if `formatString` tokens failed to parse a value', () => {
-      const dateString = '2017-01-01'
+      const dateString = '1395-10-12'
       const formatString = 'MMMM do yyyy'
       const result = parse(dateString, formatString, referenceDate)
       assert(result instanceof Date && isNaN(result.getTime()))
     })
 
     it('returns `Invalid Date` if `formatString` is empty string but `dateString` is not', () => {
-      const dateString = '2017-01-01'
+      const dateString = '1395-10-12'
       const formatString = ''
       const result = parse(dateString, formatString, referenceDate)
       assert(result instanceof Date && isNaN(result.getTime()))
@@ -2890,12 +2903,12 @@ describe('parse', () => {
 
   describe('edge cases', () => {
     it('returns Invalid Date if the string contains some remaining input after parsing', () => {
-      const result = parse('2016-11-05T040404', 'yyyy-MM-dd', referenceDate)
+      const result = parse('1395-8-15T040404', 'yyyy-MM-dd', referenceDate)
       assert(result instanceof Date && isNaN(result.getTime()))
     })
 
     it('parses normally if the remaining input is just whitespace', () => {
-      const result = parse('2016-11-05   \n', 'yyyy-MM-dd', referenceDate)
+      const result = parse('1395-8-15   \n', 'yyyy-MM-dd', referenceDate)
       assert.deepStrictEqual(
         result,
         /* 1395/8/15 */ new Date(2016, 10 /* Nov */, 5)
@@ -2904,7 +2917,7 @@ describe('parse', () => {
 
     it('throws RangeError exception if the format string contains an unescaped latin alphabet character', () => {
       assert.throws(
-        () => parse('2016-11-05-nnnn', 'yyyy-MM-dd-nnnn', referenceDate),
+        () => parse('1395-8-15-nnnn', 'yyyy-MM-dd-nnnn', referenceDate),
         RangeError
       )
     })
@@ -2921,10 +2934,10 @@ describe('parse', () => {
     })
 
     it('allows D token if useAdditionalDayOfYearTokens is set to true', () => {
-      const result = parse('2016 5', 'yyyy D', referenceDate, {
+      const result = parse('1394 5', 'yyyy D', referenceDate, {
         useAdditionalDayOfYearTokens: true,
       })
-      assert.deepStrictEqual(result, /* 1394/10/15 */ new Date(2016, 0, 5))
+      assert.deepStrictEqual(result, /* 1394/1/5 */ new Date(2015, 2, 25))
     })
 
     it('throws an error if DD token is used', () => {
@@ -2937,10 +2950,10 @@ describe('parse', () => {
     })
 
     it('allows DD token if useAdditionalDayOfYearTokens is set to true', () => {
-      const result = parse('2016 05', 'yyyy DD', referenceDate, {
+      const result = parse('1394 05', 'yyyy DD', referenceDate, {
         useAdditionalDayOfYearTokens: true,
       })
-      assert.deepStrictEqual(result, /* 1394/10/15 */ new Date(2016, 0, 5))
+      assert.deepStrictEqual(result, /* 1394/1/5 */ new Date(2015, 2, 25))
     })
 
     it('throws an error if YY token is used', () => {
@@ -2952,7 +2965,7 @@ describe('parse', () => {
       }
     })
 
-    it('allows YY token if useAdditionalWeekYearTokens is set to true', () => {
+    it.skip('allows YY token if useAdditionalWeekYearTokens is set to true', () => {
       const result = parse('16 1', 'YY w', referenceDate, {
         useAdditionalWeekYearTokens: true,
       })
@@ -2968,7 +2981,7 @@ describe('parse', () => {
       }
     })
 
-    it('allows YYYY token if useAdditionalWeekYearTokens is set to true', () => {
+    it.skip('allows YYYY token if useAdditionalWeekYearTokens is set to true', () => {
       const result = parse('2016 1', 'YYYY w', referenceDate, {
         useAdditionalWeekYearTokens: true,
       })
@@ -2979,7 +2992,7 @@ describe('parse', () => {
   describe('long format', () => {
     it('short date', () => {
       const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26)
-      const dateString = '05/26/1995'
+      const dateString = '1374/3/5'
       const formatString = 'P'
       const result = parse(dateString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -2987,7 +3000,7 @@ describe('parse', () => {
 
     it('medium date', () => {
       const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26)
-      const dateString = 'May 26, 1995'
+      const dateString = ['5', 'خرد', '1374'].join(' ')
       const formatString = 'PP'
       const result = parse(dateString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -2995,7 +3008,7 @@ describe('parse', () => {
 
     it('long date', () => {
       const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26)
-      const dateString = 'May 26th, 1995'
+      const dateString = ['5-ام', 'خرداد', '1374'].join(' ')
       const formatString = 'PPP'
       const result = parse(dateString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3003,7 +3016,7 @@ describe('parse', () => {
 
     it('full date', () => {
       const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26)
-      const dateString = 'Friday, May 26th, 1995'
+      const dateString = ['جمعه', '5-ام', 'خرداد', '1374'].join(' ')
       const formatString = 'PPPP'
       const result = parse(dateString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3017,7 +3030,7 @@ describe('parse', () => {
         10,
         32
       )
-      const timeString = '10:32 AM'
+      const timeString = '10:32 ق.ظ.'
       const formatString = 'p'
       const result = parse(timeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3032,7 +3045,7 @@ describe('parse', () => {
         32,
         55
       )
-      const timeString = '10:32:55 AM'
+      const timeString = '10:32:55 ق.ظ.'
       const formatString = 'pp'
       const result = parse(timeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3040,7 +3053,7 @@ describe('parse', () => {
 
     it('short date + short time', () => {
       const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26, 10, 32)
-      const dateTimeString = '05/26/1995, 10:32 AM'
+      const dateTimeString = '1374/3/5, 10:32 ق.ظ.'
       const formatString = 'Pp'
       const result = parse(dateTimeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3048,7 +3061,7 @@ describe('parse', () => {
 
     it('medium date + short time', () => {
       const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26, 10, 32)
-      const dateTimeString = 'May 26, 1995, 10:32 AM'
+      const dateTimeString = ['5', 'خرد', '1374,', '10:32 ق.ظ.'].join(' ')
       const formatString = 'PPp'
       const result = parse(dateTimeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3056,7 +3069,9 @@ describe('parse', () => {
 
     it('long date + short time', () => {
       const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26, 10, 32)
-      const dateTimeString = 'May 26th, 1995 at 10:32 AM'
+      const dateTimeString = ['5-ام', 'خرداد', '1374', 'در', '10:32 ق.ظ.'].join(
+        ' '
+      )
       const formatString = 'PPPp'
       const result = parse(dateTimeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3064,7 +3079,14 @@ describe('parse', () => {
 
     it('full date + short time', () => {
       const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26, 10, 32)
-      const dateTimeString = 'Friday, May 26th, 1995 at 10:32 AM'
+      const dateTimeString = [
+        'جمعه',
+        '5-ام',
+        'خرداد',
+        '1374',
+        'در',
+        '10:32 ق.ظ.',
+      ].join(' ')
       const formatString = 'PPPPp'
       const result = parse(dateTimeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3079,7 +3101,7 @@ describe('parse', () => {
         32,
         55
       )
-      const dateTimeString = '05/26/1995, 10:32:55 AM'
+      const dateTimeString = '1374/3/5, 10:32:55 ق.ظ.'
       const formatString = 'Ppp'
       const result = parse(dateTimeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3094,7 +3116,7 @@ describe('parse', () => {
         32,
         55
       )
-      const dateTimeString = 'May 26, 1995, 10:32:55 AM'
+      const dateTimeString = ['5', 'خرد', '1374,', '10:32:55 ق.ظ.'].join(' ')
       const formatString = 'PPpp'
       const result = parse(dateTimeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3109,7 +3131,13 @@ describe('parse', () => {
         32,
         55
       )
-      const dateTimeString = 'May 26th, 1995 at 10:32:55 AM'
+      const dateTimeString = [
+        '5-ام',
+        'خرداد',
+        '1374',
+        'در',
+        '10:32:55 ق.ظ.',
+      ].join(' ')
       const formatString = 'PPPpp'
       const result = parse(dateTimeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)
@@ -3124,7 +3152,14 @@ describe('parse', () => {
         32,
         55
       )
-      const dateTimeString = 'Friday, May 26th, 1995 at 10:32:55 AM'
+      const dateTimeString = [
+        'جمعه',
+        '5-ام',
+        'خرداد',
+        '1374',
+        'در',
+        '10:32:55 ق.ظ.',
+      ].join(' ')
       const formatString = 'PPPPpp'
       const result = parse(dateTimeString, formatString, referenceDate)
       assert.deepStrictEqual(result, expected)

@@ -9,7 +9,7 @@ describe('startOfWeek', () => {
     const result = startOfWeek(date)
     assert.deepStrictEqual(
       result,
-      /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31)
+      /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30)
     )
   })
 
@@ -75,7 +75,7 @@ describe('startOfWeek', () => {
     const result = startOfWeek(date)
     assert.deepStrictEqual(
       result,
-      /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31)
+      /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30)
     )
   })
 
@@ -127,7 +127,7 @@ describe('startOfWeek', () => {
       const result = startOfWeek(date)
       assert.deepStrictEqual(
         result,
-        /* 1392/10/8 */ new Date(2013, 11 /* Dec */, 29)
+        /* 1392/10/7 */ new Date(2013, 11 /* Dec */, 28)
       )
     })
   })

@@ -2,7 +2,7 @@
 
 import assert from 'assert'
 import isMatch from '.'
-import eo from '../locale/eo'
+import en from '../locale/en-US'
 
 describe('isMatch', () => {
   it('accepts a dd-MM-yyyy format against 22-02-1998', () => {
@@ -15,8 +15,9 @@ describe('isMatch', () => {
 
   it('accepts a date & format with locale', () => {
     assert(
-      isMatch('28-a de februaro', "do 'de' MMMM", {
-        locale: eo,
+      isMatch('28th of farvardin', "do 'of' MMMM", {
+        // @ts-expect-error
+        locale: en,
       })
     )
   })

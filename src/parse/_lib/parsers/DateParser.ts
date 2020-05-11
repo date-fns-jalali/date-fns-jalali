@@ -8,8 +8,8 @@ import coreGetUTCMonth from '../../../_core/getUTCMonth/index'
 import coreSetUTCDate from '../../../_core/setUTCDate/index'
 import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index'
 
-const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-const DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+const DAYS_IN_MONTH = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
+const DAYS_IN_MONTH_LEAP_YEAR = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30]
 
 // Day of the month
 export class DateParser extends Parser<number> {

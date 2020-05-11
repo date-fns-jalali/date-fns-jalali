@@ -9,7 +9,7 @@ describe('lastDayOfQuarter', () => {
     const result = lastDayOfQuarter(date)
     assert.deepStrictEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30)
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22)
     )
   })
 
@@ -25,7 +25,7 @@ describe('lastDayOfQuarter', () => {
     const result = lastDayOfQuarter(date)
     assert.deepStrictEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30)
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22)
     )
   })
 
