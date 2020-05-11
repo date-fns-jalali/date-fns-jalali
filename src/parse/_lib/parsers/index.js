@@ -5,6 +5,7 @@ import setUTCISOWeek from '../../../_lib/setUTCISOWeek/index'
 import setUTCWeek from '../../../_lib/setUTCWeek/index'
 import startOfUTCISOWeek from '../../../_lib/startOfUTCISOWeek/index'
 import startOfUTCWeek from '../../../_lib/startOfUTCWeek/index'
+import isLeapYear from '../../../isLeapYear/index'
 
 import coreGetUTCMonth from '../../../_core/getUTCMonth/index'
 import coreSetUTCMonth from '../../../_core/setUTCMonth/index'
@@ -211,12 +212,12 @@ function normalizeTwoDigitYear(twoDigitYear, currentYear) {
   return isCommonEra ? result : 1 - result
 }
 
-var DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-var DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+var DAYS_IN_MONTH = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
+var DAYS_IN_MONTH_LEAP_YEAR = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30]
 
 // User for validation
 function isLeapYearIndex(year) {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
+  return isLeapYear(coreNewDate(year, 0))
 }
 
 /*
@@ -1035,7 +1036,10 @@ var parsers = {
     parse: function (string, token, match, options) {
       var valueCallback = function (value) {
         var wholeWeekDays = Math.floor((value - 1) / 7) * 7
-        return ((value + options.weekStartsOn + 6) % 7) + wholeWeekDays
+        return (
+          ((value + options.weekStartsOn + 6 /* move sun -> sat */ + 1) % 7) +
+          wholeWeekDays
+        )
       }
 
       switch (token) {
@@ -1117,7 +1121,10 @@ var parsers = {
     parse: function (string, token, match, options) {
       var valueCallback = function (value) {
         var wholeWeekDays = Math.floor((value - 1) / 7) * 7
-        return ((value + options.weekStartsOn + 6) % 7) + wholeWeekDays
+        return (
+          ((value + options.weekStartsOn + 6 /* move sun -> sat */ + 1) % 7) +
+          wholeWeekDays
+        )
       }
 
       switch (token) {
