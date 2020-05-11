@@ -23,14 +23,14 @@ describe('formatDistanceToNowStrict', function() {
         var result = formatDistanceToNowStrict(
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0)
         )
-        assert(result === '0 seconds')
+        assert(result === '0 ثانیه')
       })
 
       it('5 seconds', function() {
         var result = formatDistanceToNowStrict(
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5)
         )
-        assert(result === '5 seconds')
+        assert(result === '5 ثانیه')
       })
     })
   })
@@ -40,14 +40,14 @@ describe('formatDistanceToNowStrict', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 0)
       )
-      assert(result === '1 minute')
+      assert(result === '1 دقیقه')
     })
 
     it('n minutes', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 35, 0)
       )
-      assert(result === '3 minutes')
+      assert(result === '3 دقیقه')
     })
   })
 
@@ -56,14 +56,14 @@ describe('formatDistanceToNowStrict', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0)
       )
-      assert(result === '1 hour')
+      assert(result === '1 ساعت')
     })
 
     it('n hours', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/1/15 */ new Date(1986, 3, 4, 13, 32, 0)
       )
-      assert(result === '3 hours')
+      assert(result === '3 ساعت')
     })
   })
 
@@ -72,14 +72,14 @@ describe('formatDistanceToNowStrict', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/1/16 */ new Date(1986, 3, 5, 10, 32, 0)
       )
-      assert(result === '1 day')
+      assert(result === '1 روز')
     })
 
     it('n days', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0)
       )
-      assert(result === '3 days')
+      assert(result === '3 روز')
     })
   })
 
@@ -88,14 +88,14 @@ describe('formatDistanceToNowStrict', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/2/14 */ new Date(1986, 4, 4, 10, 32, 0)
       )
-      assert(result === '1 month')
+      assert(result === '1 ماه')
     })
 
     it('n months', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/4/13 */ new Date(1986, 6, 4, 10, 32, 0)
       )
-      assert(result === '3 months')
+      assert(result === '3 ماه')
     })
   })
 
@@ -104,14 +104,14 @@ describe('formatDistanceToNowStrict', function() {
       var result = formatDistanceToNowStrict(
         /* 1366/1/15 */ new Date(1987, 3, 4, 10, 32, 0)
       )
-      assert(result === '1 year')
+      assert(result === '1 سال')
     })
 
     it('n years', function() {
       var result = formatDistanceToNowStrict(
         /* 1370/1/15 */ new Date(1991, 3, 4, 10, 32, 0)
       )
-      assert(result === '5 years')
+      assert(result === '5 سال')
     })
   })
 
@@ -122,7 +122,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'second' }
         )
-        assert(result === '0 seconds')
+        assert(result === '0 ثانیه')
       })
 
       it('5 seconds', function() {
@@ -130,7 +130,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5),
           { unit: 'second' }
         )
-        assert(result === '5 seconds')
+        assert(result === '5 ثانیه')
       })
 
       it('120 seconds', function() {
@@ -138,7 +138,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 34, 0),
           { unit: 'second' }
         )
-        assert(result === '120 seconds')
+        assert(result === '120 ثانیه')
       })
     })
 
@@ -148,7 +148,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'minute' }
         )
-        assert(result === '0 minutes')
+        assert(result === '0 دقیقه')
       })
 
       it('5 minutes', function() {
@@ -156,7 +156,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 37, 0),
           { unit: 'minute' }
         )
-        assert(result === '5 minutes')
+        assert(result === '5 دقیقه')
       })
 
       it('120 minutes', function() {
@@ -164,7 +164,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 12, 32, 0),
           { unit: 'minute' }
         )
-        assert(result === '120 minutes')
+        assert(result === '120 دقیقه')
       })
     })
 
@@ -174,7 +174,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'hour' }
         )
-        assert(result === '0 hours')
+        assert(result === '0 ساعت')
       })
 
       it('5 hours', function() {
@@ -182,7 +182,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 15, 32, 0),
           { unit: 'hour' }
         )
-        assert(result === '5 hours')
+        assert(result === '5 ساعت')
       })
 
       it('48 hours', function() {
@@ -190,7 +190,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/17 */ new Date(1986, 3, 6, 10, 32, 0),
           { unit: 'hour' }
         )
-        assert(result === '48 hours')
+        assert(result === '48 ساعت')
       })
     })
 
@@ -200,7 +200,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'day' }
         )
-        assert(result === '0 days')
+        assert(result === '0 روز')
       })
 
       it('5 days', function() {
@@ -208,7 +208,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/20 */ new Date(1986, 3, 9, 10, 32, 0),
           { unit: 'day' }
         )
-        assert(result === '5 days')
+        assert(result === '5 روز')
       })
 
       it('60 days', function() {
@@ -216,7 +216,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/3/13 */ new Date(1986, 5, 3, 10, 32, 0),
           { unit: 'day' }
         )
-        assert(result === '60 days')
+        assert(result === '60 روز')
       })
     })
     context('month', function() {
@@ -225,7 +225,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'month' }
         )
-        assert(result === '0 months')
+        assert(result === '0 ماه')
       })
 
       it('5 months', function() {
@@ -233,7 +233,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/5/13 */ new Date(1986, 7, 4, 10, 32, 0),
           { unit: 'month' }
         )
-        assert(result === '4 months')
+        assert(result === '4 ماه')
       })
 
       it('24 months', function() {
@@ -241,7 +241,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1367/1/15 */ new Date(1988, 3, 4, 10, 32, 0),
           { unit: 'month' }
         )
-        assert(result === '24 months')
+        assert(result === '24 ماه')
       })
     })
 
@@ -251,7 +251,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'year' }
         )
-        assert(result === '0 years')
+        assert(result === '0 سال')
       })
 
       it('5 years', function() {
@@ -259,7 +259,7 @@ describe('formatDistanceToNowStrict', function() {
           /* 1370/1/15 */ new Date(1991, 3, 4, 15, 32, 0),
           { unit: 'year' }
         )
-        assert(result === '5 years')
+        assert(result === '5 سال')
       })
     })
   })
@@ -268,7 +268,7 @@ describe('formatDistanceToNowStrict', function() {
     var result = formatDistanceToNowStrict(
       /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0).getTime()
     )
-    assert(result === '1 hour')
+    assert(result === '1 ساعت')
   })
 
   describe('when the addSuffix option is true', function() {
@@ -279,7 +279,7 @@ describe('formatDistanceToNowStrict', function() {
           addSuffix: true
         }
       )
-      assert(result === '25 seconds ago')
+      assert(result === '25 ثانیه قبل')
     })
 
     it('adds a future suffix', function() {
@@ -289,7 +289,7 @@ describe('formatDistanceToNowStrict', function() {
           addSuffix: true
         }
       )
-      assert(result === 'in 1 hour')
+      assert(result === 'در 1 ساعت')
     })
   })
 
@@ -298,7 +298,7 @@ describe('formatDistanceToNowStrict', function() {
       var result = formatDistanceToNowStrict(
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 59)
       )
-      assert(result === '2 minutes')
+      assert(result === '2 دقیقه')
     })
 
     it('"floor"', function() {
@@ -308,7 +308,7 @@ describe('formatDistanceToNowStrict', function() {
           roundingMethod: 'floor'
         }
       )
-      assert(result === '1 minute')
+      assert(result === '1 دقیقه')
     })
 
     it('"ceil"', function() {
@@ -318,7 +318,7 @@ describe('formatDistanceToNowStrict', function() {
           roundingMethod: 'ceil'
         }
       )
-      assert(result === '2 minutes')
+      assert(result === '2 دقیقه')
     })
 
     it('"round" (down)', function() {
@@ -328,7 +328,7 @@ describe('formatDistanceToNowStrict', function() {
           roundingMethod: 'round'
         }
       )
-      assert(result === '1 minute')
+      assert(result === '1 دقیقه')
     })
 
     it('"round" (up)', function() {
@@ -338,7 +338,7 @@ describe('formatDistanceToNowStrict', function() {
           roundingMethod: 'round'
         }
       )
-      assert(result === '2 minutes')
+      assert(result === '2 دقیقه')
     })
   })
 
@@ -352,7 +352,7 @@ describe('formatDistanceToNowStrict', function() {
         // $ExpectedMistake
         { unit: unit }
       )
-      assert(result === '0 years')
+      assert(result === '0 سال')
     })
 
     it('`options.addSuffix`', function() {
@@ -361,7 +361,7 @@ describe('formatDistanceToNowStrict', function() {
         // $ExpectedMistake
         { addSuffix: 1 }
       )
-      assert(result === '25 seconds ago')
+      assert(result === '25 ثانیه قبل')
     })
 
     it('`options.ceil`', function() {
@@ -373,7 +373,7 @@ describe('formatDistanceToNowStrict', function() {
         // $ExpectedMistake
         { roundingMethod: roundingMethod }
       )
-      assert(result === '2 minutes')
+      assert(result === '2 دقیقه')
     })
   })
 
@@ -419,7 +419,7 @@ describe('formatDistanceToNowStrict', function() {
       var result = formatDistanceToNowStrict(
         /* 1364/12/16 */ new Date(1986, 2 /* Mar */, 7)
       )
-      assert(result === '28 days')
+      assert(result === '28 روز')
     })
   })
 

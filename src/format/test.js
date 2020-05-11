@@ -37,12 +37,12 @@ describe('format', function() {
 
   it('accepts a timestamp', function() {
     var date = /* 1393/1/15 */ new Date(2014, 3, 4).getTime()
-    assert(format(date, 'yyyy-MM-dd') === '2014-04-04')
+    assert(format(date, 'yyyy-MM-dd') === '1393-01-15')
   })
 
   it('escapes characters between the single quote characters', function() {
     var result = format(date, "'yyyy-'MM-dd'THH:mm:ss.SSSX' yyyy-'MM-dd'")
-    assert(result === 'yyyy-04-04THH:mm:ss.SSSX 1986-MM-dd')
+    assert(result === 'yyyy-01-15THH:mm:ss.SSSX 1365-MM-dd')
   })
 
   it('two single quote characters are transformed into a "real" single quote', function() {
@@ -52,52 +52,54 @@ describe('format', function() {
 
   it('accepts new line charactor', function() {
     var date = /* 1393/1/15 */ new Date(2014, 3, 4, 5)
-    assert.equal(format(date, "yyyy-MM-dd'\n'HH:mm:ss"), '2014-04-04\n05:00:00')
+    assert.equal(format(date, "yyyy-MM-dd'\n'HH:mm:ss"), '1393-01-15\n05:00:00')
   })
 
   describe('ordinal numbers', function() {
     it('ordinal day of an ordinal month', function() {
-      var result = format(date, "do 'day of the' Mo 'month of' yyyy")
-      assert(result === '4th day of the 4th month of 1986')
+      var result = format(date, "'روز' do 'ماه' Mo 'از سال' yyyy")
+      assert(
+        result === ['روز', '15-ام', 'ماه', '1-ام', 'از سال', '1365'].join(' ')
+      )
     })
 
     it('should return a correct ordinal number', function() {
       var result = []
       for (var i = 1; i <= 31; i++) {
-        result.push(format(new Date(2015, 0, i), 'do'))
+        result.push(format(new Date(2015, 5, i - 10), 'do'))
       }
       var expected = [
-        '1st',
-        '2nd',
-        '3rd',
-        '4th',
-        '5th',
-        '6th',
-        '7th',
-        '8th',
-        '9th',
-        '10th',
-        '11th',
-        '12th',
-        '13th',
-        '14th',
-        '15th',
-        '16th',
-        '17th',
-        '18th',
-        '19th',
-        '20th',
-        '21st',
-        '22nd',
-        '23rd',
-        '24th',
-        '25th',
-        '26th',
-        '27th',
-        '28th',
-        '29th',
-        '30th',
-        '31st'
+        '1-ام',
+        '2-ام',
+        '3-ام',
+        '4-ام',
+        '5-ام',
+        '6-ام',
+        '7-ام',
+        '8-ام',
+        '9-ام',
+        '10-ام',
+        '11-ام',
+        '12-ام',
+        '13-ام',
+        '14-ام',
+        '15-ام',
+        '16-ام',
+        '17-ام',
+        '18-ام',
+        '19-ام',
+        '20-ام',
+        '21-ام',
+        '22-ام',
+        '23-ام',
+        '24-ام',
+        '25-ام',
+        '26-ام',
+        '27-ام',
+        '28-ام',
+        '29-ام',
+        '30-ام',
+        '31-ام'
       ]
       assert.deepEqual(result, expected)
     })
@@ -105,24 +107,27 @@ describe('format', function() {
 
   it('era', function() {
     var result = format(date, 'G GG GGG GGGG GGGGG')
-    assert(result === 'AD AD AD Anno Domini A')
+    assert(result === ['ب.ه.', 'ب.ه.', 'ب.ه.', 'بعد از هجرت', 'ب'].join(' '))
   })
 
   describe('year', function() {
     describe('regular year', function() {
       it('works as expected', function() {
         var result = format(date, 'y yo yy yyy yyyy yyyyy')
-        assert(result === '1986 1986th 86 1986 1986 01986')
+        assert(
+          result ===
+            ['1365', '1365-ام', '65', '1365', '1365', '01365'].join(' ')
+        )
       })
 
-      it('1 BC formats as 1', function() {
+      it.skip('1 BC formats as 1', function() {
         var date = /* -622/10/10 */ new Date(0, 0 /* Jan */, 1)
         date.setFullYear(0)
         var result = format(date, 'y')
         assert(result === '1')
       })
 
-      it('2 BC formats as 2', function() {
+      it.skip('2 BC formats as 2', function() {
         var date = /* -622/10/10 */ new Date(0, 0 /* Jan */, 1)
         date.setFullYear(-1)
         var result = format(date, 'y')
@@ -130,7 +135,7 @@ describe('format', function() {
       })
     })
 
-    describe('local week-numbering year', function() {
+    describe.skip('local week-numbering year', function() {
       it('works as expected', function() {
         var result = format(date, 'Y Yo YY YYY YYYY YYYYY', {
           useAdditionalWeekYearTokens: true
@@ -225,7 +230,7 @@ describe('format', function() {
       })
     })
 
-    describe('extended year', function() {
+    describe.skip('extended year', function() {
       it('works as expected', function() {
         var result = format(date, 'u uu uuu uuuu uuuuu')
         assert(result === '1986 1986 1986 1986 01986')
@@ -250,18 +255,18 @@ describe('format', function() {
   describe('quarter', function() {
     it('formatting quarter', function() {
       var result = format(date, 'Q Qo QQ QQQ QQQQ QQQQQ')
-      assert(result === '2 2nd 02 Q2 2nd quarter 2')
+      assert(result === ['1', '1-ام', '01', 'س‌م1', 'سه‌ماهه 1', '1'].join(' '))
     })
 
     it('stand-alone quarter', function() {
       var result = format(date, 'q qo qq qqq qqqq qqqqq')
-      assert(result === '2 2nd 02 Q2 2nd quarter 2')
+      assert(result === ['1', '1-ام', '01', 'س‌م1', 'سه‌ماهه 1', '1'].join(' '))
     })
 
     it('returns a correct quarter for each month', function() {
       var result = []
       for (var i = 0; i <= 11; i++) {
-        result.push(format(new Date(1986, i, 1), 'Q'))
+        result.push(format(new Date(1986, i + 3, 1), 'Q'))
       }
       var expected = [
         '1',
@@ -284,12 +289,12 @@ describe('format', function() {
   describe('month', function() {
     it('formatting month', function() {
       var result = format(date, 'M Mo MM MMM MMMM MMMMM')
-      assert(result === '4 4th 04 Apr April A')
+      assert(result === ['1', '1-ام', '01', 'فرو', 'فروردین', 'فر'].join(' '))
     })
 
     it('stand-alone month', function() {
       var result = format(date, 'L Lo LL LLL LLLL LLLLL')
-      assert(result === '4 4th 04 Apr April A')
+      assert(result === ['1', '1-ام', '01', 'فرو', 'فروردین', 'فر'].join(' '))
     })
   })
 
@@ -298,7 +303,7 @@ describe('format', function() {
       it('works as expected', function() {
         var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6)
         var result = format(date, 'w wo ww')
-        assert(result === '15 15th 15')
+        assert(result === ['4', '4-ام', '04'].join(' '))
       })
 
       it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in options', function() {
@@ -307,21 +312,21 @@ describe('format', function() {
           weekStartsOn: 1,
           firstWeekContainsDate: 4
         })
-        assert(result === '14 14th 14')
+        assert(result === ['2', '2-ام', '02'].join(' '))
       })
     })
 
     it('ISO week of year', function() {
       var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6)
       var result = format(date, 'I Io II')
-      assert(result === '14 14th 14')
+      assert(result === ['14', '14-ام', '14'].join(' '))
     })
   })
 
   describe('day', function() {
     it('date', function() {
       var result = format(date, 'd do dd')
-      assert(result === '4 4th 04')
+      assert(result === ['15', '15-ام', '15'].join(' '))
     })
 
     describe('day of year', function() {
@@ -329,12 +334,12 @@ describe('format', function() {
         var result = format(date, 'D Do DD DDD DDDDD', {
           useAdditionalDayOfYearTokens: true
         })
-        assert(result === '94 94th 94 094 00094')
+        assert(result === ['15', '15-ام', '15', '015', '00015'].join(' '))
       })
 
       it('returns a correct day number for the last day of a leap year', function() {
         var result = format(
-          /* 1371/10/10 */ new Date(1992, 11 /* Dec */, 31, 23, 59, 59, 999),
+          /* 1366/12/30 */ new Date(1988, 2 /* Mar */, 20, 23, 59, 59, 999),
           'D',
           { useAdditionalDayOfYearTokens: true }
         )
@@ -347,14 +352,16 @@ describe('format', function() {
     describe('day of week', function() {
       it('works as expected', function() {
         var result = format(date, 'E EE EEE EEEE EEEEE EEEEEE')
-        assert(result === 'Fri Fri Fri Friday F Fr')
+        assert(result === 'جمعه جمعه جمعه جمعه ج ج')
       })
     })
 
     describe('ISO day of week', function() {
       it('works as expected', function() {
         var result = format(date, 'i io ii iii iiii iiiii iiiiii')
-        assert(result === '5 5th 05 Fri Friday F Fr')
+        assert(
+          result === ['5', '5-ام', '05', 'جمعه', 'جمعه', 'ج', 'ج'].join(' ')
+        )
       })
 
       it('returns a correct day of an ISO week', function() {
@@ -370,12 +377,13 @@ describe('format', function() {
     describe('formatting day of week', function() {
       it('works as expected', function() {
         var result = format(date, 'e eo ee eee eeee eeeee eeeeee')
-        assert(result === '6 6th 06 Fri Friday F Fr')
+        const expected = ['7', '7-ام', '07', 'جمعه', 'جمعه', 'ج', 'ج'].join(' ')
+        assert(result === expected)
       })
 
-      it('by default, 1 is Sunday, 2 is Monday, ...', function() {
+      it('by default, 1 is Saturday, 2 is Sunday, ...', function() {
         var result = []
-        for (var i = 7; i <= 13; i++) {
+        for (var i = 6; i <= 12; i++) {
           result.push(format(new Date(1986, 8 /* Sep */, i), 'e'))
         }
         var expected = ['1', '2', '3', '4', '5', '6', '7']
@@ -397,12 +405,14 @@ describe('format', function() {
     describe('stand-alone day of week', function() {
       it('works as expected', function() {
         var result = format(date, 'c co cc ccc cccc ccccc cccccc')
-        assert(result === '6 6th 06 Fri Friday F Fr')
+        assert(
+          result === ['7', '7-ام', '07', 'جمعه', 'جمعه', 'ج', 'ج'].join(' ')
+        )
       })
 
-      it('by default, 1 is Sunday, 2 is Monday, ...', function() {
+      it('by default, 1 is Saturday, 2 is Sunday, ...', function() {
         var result = []
-        for (var i = 7; i <= 13; i++) {
+        for (var i = 6; i <= 12; i++) {
           result.push(format(new Date(1986, 8 /* Sep */, i), 'c'))
         }
         var expected = ['1', '2', '3', '4', '5', '6', '7']
@@ -428,7 +438,7 @@ describe('format', function() {
         /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         'h ho hh'
       )
-      assert(result === '12 12th 12')
+      assert(result === ['12', '12-ام', '12'].join(' '))
     })
 
     it('hour [0-23]', function() {
@@ -436,7 +446,7 @@ describe('format', function() {
         /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         'H Ho HH'
       )
-      assert(result === '0 0th 00')
+      assert(result === ['0', '0-ام', '00'].join(' '))
     })
 
     it('hour [0-11]', function() {
@@ -444,7 +454,7 @@ describe('format', function() {
         /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         'K Ko KK'
       )
-      assert(result === '0 0th 00')
+      assert(result === ['0', '0-ام', '00'].join(' '))
     })
 
     it('hour [1-24]', function() {
@@ -452,7 +462,7 @@ describe('format', function() {
         /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         'k ko kk'
       )
-      assert(result === '24 24th 24')
+      assert(result === ['24', '24-ام', '24'].join(' '))
     })
 
     describe('AM, PM', function() {
@@ -461,17 +471,17 @@ describe('format', function() {
           /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
           'a aa aaa aaaa aaaaa'
         )
-        assert(result === 'AM AM AM a.m. a')
+        assert(result === 'ق.ظ. ق.ظ. ق.ظ. قبل‌ازظهر ق')
       })
 
       it('12 PM', function() {
         var date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
-        assert(format(date, 'h H K k a') === '12 12 0 12 PM')
+        assert(format(date, 'h H K k a') === '12 12 0 12 ب.ظ.')
       })
 
       it('12 AM', function() {
         var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
-        assert(format(date, 'h H K k a') === '12 0 0 24 AM')
+        assert(format(date, 'h H K k a') === '12 0 0 24 ق.ظ.')
       })
     })
 
@@ -481,19 +491,19 @@ describe('format', function() {
           /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 2, 0, 0, 900),
           'b bb bbb bbbb bbbbb'
         )
-        assert(result === 'AM AM AM a.m. a')
+        assert(result === 'ق.ظ. ق.ظ. ق.ظ. قبل‌ازظهر ق')
       })
 
       it('12 PM', function() {
         var date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
-        assert(format(date, 'b bb bbb bbbb bbbbb') === 'noon noon noon noon n')
+        assert(format(date, 'b bb bbb bbbb bbbbb') === 'ظهر ظهر ظهر ظهر ظ')
       })
 
       it('12 AM', function() {
         var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
         assert(
           format(date, 'b bb bbb bbbb bbbbb') ===
-            'midnight midnight midnight midnight mi'
+            'نیمه‌شب نیمه‌شب نیمه‌شب نیمه‌شب ن'
         )
       })
     })
@@ -501,43 +511,40 @@ describe('format', function() {
     describe('flexible day periods', function() {
       it('works as expected', function() {
         var result = format(date, 'B, BB, BBB, BBBB, BBBBB')
-        assert(
-          result ===
-            'in the morning, in the morning, in the morning, in the morning, in the morning'
-        )
+        assert(result === 'صبح, صبح, صبح, صبح, ص')
       })
 
       it('12 PM', function() {
         var date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
-        assert(format(date, 'h B') === '12 in the afternoon')
+        assert(format(date, 'h B') === '12 بعدازظهر')
       })
 
       it('5 PM', function() {
         var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 17, 0, 0, 900)
-        assert(format(date, 'h B') === '5 in the evening')
+        assert(format(date, 'h B') === '5 عصر')
       })
 
       it('12 AM', function() {
         var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
-        assert(format(date, 'h B') === '12 at night')
+        assert(format(date, 'h B') === '12 شب')
       })
 
       it('4 AM', function() {
         var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 4, 0, 0, 900)
-        assert(format(date, 'h B') === '4 in the morning')
+        assert(format(date, 'h B') === '4 صبح')
       })
     })
   })
 
   it('minute', function() {
     var result = format(date, 'm mo mm')
-    assert(result === '32 32nd 32')
+    assert(result === ['32', '32-ام', '32'].join(' '))
   })
 
   describe('second', function() {
     it('second', function() {
       var result = format(date, 's so ss')
-      assert(result === '55 55th 55')
+      assert(result === ['55', '55-ام', '55'].join(' '))
     })
 
     it('fractional seconds', function() {
@@ -609,67 +616,79 @@ describe('format', function() {
   describe('long format', function() {
     it('short date', function() {
       var result = format(date, 'P')
-      assert(result === '04/04/1986')
+      assert(result === '1365/01/15')
     })
 
     it('medium date', function() {
       var result = format(date, 'PP')
-      assert(result === 'Apr 4, 1986')
+      assert(result === ['15', 'فرو', '1365'].join(' '))
     })
 
     it('long date', function() {
       var result = format(date, 'PPP')
-      assert(result === 'April 4th, 1986')
+      assert(result === ['15-ام', 'فروردین', '1365'].join(' '))
     })
 
     it('full date', function() {
       var result = format(date, 'PPPP')
-      assert(result === 'Friday, April 4th, 1986')
+      assert(result === 'جمعه 15-ام فروردین 1365')
     })
 
     it('short time', function() {
       var result = format(date, 'p')
-      assert(result === '10:32 AM')
+      assert(result === '10:32 ق.ظ.')
     })
 
     it('medium time', function() {
       var result = format(date, 'pp')
-      assert(result === '10:32:55 AM')
+      assert(result === '10:32:55 ق.ظ.')
     })
 
     it('long time', function() {
       var result = format(date, 'ppp')
-      assert(result === '10:32:55 AM ' + timezoneGMTShort)
+      assert(result === '10:32:55 ق.ظ. ' + timezoneGMTShort)
     })
 
     it('full time', function() {
       var result = format(date, 'pppp')
-      assert(result === '10:32:55 AM ' + timezoneGMT)
+      assert(result === '10:32:55 ق.ظ. ' + timezoneGMT)
     })
 
     it('short date + time', function() {
       var result = format(date, 'Pp')
-      assert(result === '04/04/1986, 10:32 AM')
+      assert(result === '1365/01/15, 10:32 ق.ظ.')
     })
 
     it('medium date + time', function() {
       var result = format(date, 'PPpp')
-      assert(result === 'Apr 4, 1986, 10:32:55 AM')
+      assert(result === '15 فرو 1365, 10:32:55 ق.ظ.')
     })
 
     it('long date + time', function() {
       var result = format(date, 'PPPppp')
-      assert(result === 'April 4th, 1986 at 10:32:55 AM ' + timezoneGMTShort)
+      assert(
+        result ===
+          ['15-ام', 'فروردین', '1365', 'در', '10:32:55 ق.ظ.'].join(' ') +
+            ' ' +
+            timezoneGMTShort
+      )
     })
 
     it('full date + time', function() {
       var result = format(date, 'PPPPpppp')
-      assert(result === 'Friday, April 4th, 1986 at 10:32:55 AM ' + timezoneGMT)
+      assert(
+        result ===
+          ['جمعه', '15-ام', 'فروردین', '1365', 'در', '10:32:55 ق.ظ.'].join(
+            ' '
+          ) +
+            ' ' +
+            timezoneGMT
+      )
     })
 
     it('allows arbitrary combination of date and time', function() {
       var result = format(date, 'Ppppp')
-      assert(result === '04/04/1986, 10:32:55 AM ' + timezoneGMT)
+      assert(result === '1365/01/15, 10:32:55 ق.ظ. ' + timezoneGMT)
     })
   })
 
@@ -681,7 +700,7 @@ describe('format', function() {
       )
     })
 
-    it('handles dates before 100 AD', function() {
+    it.skip('handles dates before 100 AD', function() {
       var initialDate = new Date(0)
       initialDate.setFullYear(7, 11 /* Dec */, 31)
       initialDate.setHours(0, 0, 0, 0)
@@ -696,7 +715,7 @@ describe('format', function() {
     var date = /* 1393/1/15 */ new Date(2014, 3, 4)
 
     // $ExpectedMistake
-    assert(format(date, formatString) === '2014-04-04')
+    assert(format(date, formatString) === '1393-01-15')
   })
 
   describe('custom locale', function() {
@@ -791,7 +810,7 @@ describe('format', function() {
       const result = format(date, 'yyyy-MM-D', {
         useAdditionalDayOfYearTokens: true
       })
-      assert.deepEqual(result, '1986-04-94')
+      assert.deepEqual(result, '1365-01-15')
     })
 
     it('throws an error if DD token is used', () => {
@@ -807,7 +826,7 @@ describe('format', function() {
       const result = format(date, 'yyyy-MM-DD', {
         useAdditionalDayOfYearTokens: true
       })
-      assert.deepEqual(result, '1986-04-94')
+      assert.deepEqual(result, '1365-01-15')
     })
 
     it('throws an error if YY token is used', () => {
@@ -823,7 +842,7 @@ describe('format', function() {
       const result = format(date, 'YY-MM-dd', {
         useAdditionalWeekYearTokens: true
       })
-      assert.deepEqual(result, '86-04-04')
+      assert.deepEqual(result, '65-01-15')
     })
 
     it('throws an error if YYYY token is used', () => {
@@ -839,7 +858,7 @@ describe('format', function() {
       const result = format(date, 'YYYY-MM-dd', {
         useAdditionalWeekYearTokens: true
       })
-      assert.deepEqual(result, '1986-04-04')
+      assert.deepEqual(result, '1365-01-15')
     })
   })
 })

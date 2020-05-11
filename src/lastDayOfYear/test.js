@@ -8,7 +8,7 @@ describe('lastDayOfYear', function() {
   it('returns the date with the time set to 00:00:00 and the date set to the last day of a year', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = lastDayOfYear(date)
-    assert.deepEqual(result, /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31))
+    assert.deepEqual(result, /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20))
   })
 
   it('accepts a timestamp', function() {
@@ -21,7 +21,7 @@ describe('lastDayOfYear', function() {
       0
     ).getTime()
     var result = lastDayOfYear(date)
-    assert.deepEqual(result, /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31))
+    assert.deepEqual(result, /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20))
   })
 
   it('does not mutate the original date', function() {

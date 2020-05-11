@@ -7,7 +7,7 @@ import isLastDayOfMonth from '.'
 describe('isLastDayOfMonth', function() {
   it('returns true if the given date is in the last day of month', function() {
     var result = isLastDayOfMonth(
-      /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31)
+      /* 1393/8/30 */ new Date(2014, 10 /* Nov */, 21)
     )
     assert(result === true)
   })
@@ -20,7 +20,7 @@ describe('isLastDayOfMonth', function() {
   })
 
   it('accepts a timestamp', function() {
-    var date = /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31).getTime()
+    var date = /* 1393/8/30 */ new Date(2014, 10 /* Oct */, 21).getTime()
     var result = isLastDayOfMonth(date)
     assert(result === true)
   })
