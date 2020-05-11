@@ -17,7 +17,7 @@ describe('isSameUTCWeek', function () {
   it('returns false if the given dates have different weeks', function () {
     const result = isSameUTCWeek(
       new Date(/* 1393/6/8 */ Date.UTC(2014, 7 /* Aug */, 30)),
-      new Date(/* 1393/6/13 */ Date.UTC(2014, 8 /* Sep */, 4))
+      new Date(/* 1393/6/7 */ Date.UTC(2014, 7 /* Aug */, 29))
     )
     assert(result === false)
   })

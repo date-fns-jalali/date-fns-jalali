@@ -13,7 +13,7 @@ describe('startOfUTCWeek', () => {
     const result = startOfUTCWeek(date)
     assert.deepStrictEqual(
       result,
-      new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31))
+      new Date(/* 1393/6/8 */ Date.UTC(2014, 7 /* Aug */, 30))
     )
   })
 
@@ -80,7 +80,7 @@ describe('startOfUTCWeek', () => {
     const result = startOfUTCWeek(date)
     assert.deepStrictEqual(
       result,
-      new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31))
+      new Date(/* 1393/6/8 */ Date.UTC(2014, 7 /* Aug */, 30))
     )
   })
 
@@ -130,11 +130,11 @@ describe('startOfUTCWeek', () => {
     })
 
     it('handles the week at the start of a year', () => {
-      const date = new Date(/* 1392/10/11 */ Date.UTC(2014, 0 /* Jan */, 1))
+      const date = new Date(/* 1392/1/1 */ Date.UTC(2013, 2 /* Mar */, 21))
       const result = startOfUTCWeek(date)
       assert.deepStrictEqual(
         result,
-        new Date(/* 1392/10/8 */ Date.UTC(2013, 11 /* Dec */, 29))
+        new Date(/* 1391/12/26 */ Date.UTC(2013, 2 /* Mar */, 16))
       )
     })
   })
