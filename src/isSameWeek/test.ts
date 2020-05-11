@@ -14,7 +14,7 @@ describe('isSameWeek', () => {
 
   it('returns false if the given dates have different weeks', () => {
     const result = isSameWeek(
-      /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30),
+      /* 1393/6/7 */ new Date(2014, 7 /* Aug */, 29),
       /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4)
     )
     assert(result === false)
