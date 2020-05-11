@@ -8,19 +8,29 @@ describe('lastDayOfQuarter', function() {
   it('returns the date with the time set to 00:00:00 and the date set to the last day of a quarter', function() {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     const result = lastDayOfQuarter(date)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22))
   })
 
   it('accepts a timestamp', function() {
-    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime()
+    const date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+      0
+    ).getTime()
     const result = lastDayOfQuarter(date)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22))
   })
 
   it('does not mutate the original date', function() {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     lastDayOfQuarter(date)
-    assert.deepEqual(date, /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0))
+    assert.deepEqual(
+      date,
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {
