@@ -36,7 +36,7 @@ export default function getWeekOfMonth(
 ): number {
   requiredArgs(1, arguments)
 
-  const defaultWeekStartsOn = options?.locale?.options?.weekStartsOn || 0
+  const defaultWeekStartsOn = options?.locale?.options?.weekStartsOn || 6
 
   const weekStartsOn =
     options?.weekStartsOn == null

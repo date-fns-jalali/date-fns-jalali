@@ -20,7 +20,7 @@ export default function setUTCDay(
   const localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   const defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   const weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
@@ -39,7 +39,11 @@ export default function setUTCDay(
   const remainder = day % 7
   const dayIndex = (remainder + 7) % 7
 
-  const diff = (dayIndex < weekStartsOn ? 7 : 0) + day - currentDay
+  const delta = 7 - weekStartsOn
+  const diff =
+    day < 0 || day > 6
+      ? day - ((currentDay + delta) % 7)
+      : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7)
 
   coreSetUTCDate(date, coreGetUTCDate(date) + diff)
   return date
