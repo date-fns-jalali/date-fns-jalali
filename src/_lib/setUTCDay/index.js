@@ -15,7 +15,7 @@ export default function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
   var localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
@@ -34,7 +34,11 @@ export default function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
   var remainder = day % 7
   var dayIndex = (remainder + 7) % 7
 
-  var diff = (dayIndex < weekStartsOn ? 7 : 0) + day - currentDay
+  var delta = 7 - weekStartsOn
+  var diff =
+    day < 0 || day > 6
+      ? day - ((currentDay + delta) % 7)
+      : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7)
 
   coreSetUTCDate(date, coreGetUTCDate(date) + diff)
   return date
