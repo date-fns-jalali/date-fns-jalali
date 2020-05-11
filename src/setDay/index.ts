@@ -47,7 +47,7 @@ export default function setDay(
   const localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   const defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   const weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
