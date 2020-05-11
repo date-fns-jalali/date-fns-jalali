@@ -20,7 +20,7 @@ export default function setUTCDay(
       options?.locale?.options?.weekStartsOn ??
       defaultOptions.weekStartsOn ??
       defaultOptions.locale?.options?.weekStartsOn ??
-      0
+      6
   )
 
   // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
@@ -36,7 +36,11 @@ export default function setUTCDay(
   const remainder = day % 7
   const dayIndex = (remainder + 7) % 7
 
-  const diff = (dayIndex < weekStartsOn ? 7 : 0) + day - currentDay
+  const delta = 7 - weekStartsOn
+  const diff =
+    day < 0 || day > 6
+      ? day - ((currentDay + delta) % 7)
+      : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7)
 
   coreSetUTCDate(date, coreGetUTCDate(date) + diff)
   return date

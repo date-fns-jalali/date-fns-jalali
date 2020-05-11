@@ -371,7 +371,7 @@ export default function format(
       options?.locale?.options?.weekStartsOn ??
       defaultOptions.weekStartsOn ??
       defaultOptions.locale?.options?.weekStartsOn ??
-      0
+      6
   )
 
   // Test if weekStartsOn is between 0 and 6 _and_ is not NaN

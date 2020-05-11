@@ -93,7 +93,7 @@ describe('setDay', () => {
       const result = setDay(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 8)
       assert.deepStrictEqual(
         result,
-        /* 1393/6/17 */ new Date(2014, 8 /* Sep */, 8)
+        /* 1393/6/16 */ new Date(2014, 8 /* Sep */, 7)
       )
     })
 
@@ -127,7 +127,7 @@ describe('setDay', () => {
       const result = setDay(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), -6)
       assert.deepStrictEqual(
         result,
-        /* 1393/6/3 */ new Date(2014, 7 /* Aug */, 25)
+        /* 1393/6/2 */ new Date(2014, 7 /* Aug */, 24)
       )
     })
 
