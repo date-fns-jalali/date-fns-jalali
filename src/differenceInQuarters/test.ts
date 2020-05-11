@@ -7,7 +7,7 @@ describe('differenceInQuarters', () => {
   it('returns the number of full quarters between the given dates  with `trunc` as a default rounding method', () => {
     const result = differenceInQuarters(
       /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 5, 0),
-      /* 1390/4/11 */ new Date(2011, 6 /* Jul */, 2, 6, 0)
+      /* 1390/4/12 */ new Date(2011, 6 /* Jul */, 3, 6, 0)
     )
     assert(result === 3)
   })
@@ -74,7 +74,7 @@ describe('differenceInQuarters', () => {
   it('accepts timestamps', () => {
     const result = differenceInQuarters(
       /* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2).getTime(),
-      /* 1389/4/11 */ new Date(2010, 6 /* Jul */, 2).getTime()
+      /* 1389/4/10 */ new Date(2010, 6 /* Jul */, 1).getTime()
     )
     assert(result === 17)
   })
