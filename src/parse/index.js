@@ -1,4 +1,4 @@
-import defaultLocale from '../locale/en-US/index.js'
+import defaultLocale from '../locale/fa-jalali-IR/index.js'
 import subMilliseconds from '../subMilliseconds/index.js'
 import toDate from '../toDate/index.js'
 import assign from '../_lib/assign/index.js'
@@ -398,7 +398,7 @@ export default function parse(
 
   var localeWeekStartsOn = locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn

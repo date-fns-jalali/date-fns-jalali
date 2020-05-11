@@ -24,7 +24,7 @@ describe('differenceInQuarters', function() {
   it('accepts timestamps', function() {
     var result = differenceInQuarters(
       /* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2).getTime(),
-      /* 1389/4/11 */ new Date(2010, 6 /* Jul */, 2).getTime()
+      /* 1389/4/10 */ new Date(2010, 6 /* Jul */, 1).getTime()
     )
     assert(result === 17)
   })

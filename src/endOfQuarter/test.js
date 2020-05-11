@@ -10,7 +10,7 @@ describe('endOfQuarter', function() {
     var result = endOfQuarter(date)
     assert.deepEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999)
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999)
     )
   })
 
@@ -26,7 +26,7 @@ describe('endOfQuarter', function() {
     var result = endOfQuarter(date)
     assert.deepEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999)
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999)
     )
   })
 

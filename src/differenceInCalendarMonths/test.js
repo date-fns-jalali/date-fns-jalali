@@ -32,16 +32,16 @@ describe('differenceInCalendarMonths', function() {
   describe('edge cases', function() {
     it('the difference is less than a month, but the given dates are in different calendar months', function() {
       var result = differenceInCalendarMonths(
-        /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
-        /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31)
+        /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23),
+        /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22)
       )
       assert(result === 1)
     })
 
     it('the same for the swapped dates', function() {
       var result = differenceInCalendarMonths(
-        /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31),
-        /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1)
+        /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22),
+        /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23)
       )
       assert(result === -1)
     })

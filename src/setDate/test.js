@@ -7,7 +7,7 @@ import setDate from '.'
 describe('setDate', function() {
   it('sets the day of the month', function() {
     var result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 30)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/30 */ new Date(2014, 8 /* Sep */, 21))
   })
 
   it('accepts a timestamp', function() {
@@ -15,18 +15,18 @@ describe('setDate', function() {
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
       25
     )
-    assert.deepEqual(result, /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25))
+    assert.deepEqual(result, /* 1393/6/25 */ new Date(2014, 8 /* Sep */, 16))
   })
 
   it('converts a fractional number to an integer', function() {
     var result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 30.3)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/30 */ new Date(2014, 8 /* Sep */, 21))
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
     var result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), '30')
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/30 */ new Date(2014, 8 /* Sep */, 21))
   })
 
   it('does not mutate the original date', function() {
