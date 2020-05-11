@@ -24,7 +24,7 @@ describe('isSameQuarter', function() {
   it('accepts a timestamp', function() {
     var result = isSameQuarter(
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime()
+      /* 1393/6/3 */ new Date(2014, 7 /* Sep */, 25).getTime()
     )
     assert(result === true)
   })

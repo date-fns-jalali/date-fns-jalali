@@ -10,7 +10,7 @@ describe('endOfMonth', function() {
     var result = endOfMonth(date)
     assert.deepEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999)
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999)
     )
   })
 
@@ -26,7 +26,7 @@ describe('endOfMonth', function() {
     var result = endOfMonth(date)
     assert.deepEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999)
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999)
     )
   })
 
@@ -41,20 +41,20 @@ describe('endOfMonth', function() {
 
   describe('edge cases', function() {
     it('works for last month in year', function() {
-      var date = /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 0, 0, 0)
+      var date = /* 1393/12/10 */ new Date(2015, 2 /* Mar */, 1, 0, 0, 0)
       var result = endOfMonth(date)
       assert.deepEqual(
         result,
-        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999)
+        /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20, 23, 59, 59, 999)
       )
     })
 
     it('works for last day of month', function() {
-      var date = /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31)
+      var date = /* 1393/8/30 */ new Date(2014, 10 /* Nov */, 21)
       var result = endOfMonth(date)
       assert.deepEqual(
         result,
-        /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31, 23, 59, 59, 999)
+        /* 1393/8/30 */ new Date(2014, 10 /* Nov */, 21, 23, 59, 59, 999)
       )
     })
   })

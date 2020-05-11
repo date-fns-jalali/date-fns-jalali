@@ -34,7 +34,7 @@ export default function endOfDecade(dirtyDate) {
   var date = toDate(dirtyDate)
   var year = coreGetFullYear(date)
   var decade = 9 + Math.floor(year / 10) * 10
-  coreSetFullYear(date, decade, 11, 31)
+  coreSetFullYear(date, decade + 1, 0, 0)
   date.setHours(23, 59, 59, 999)
   return date
 }
