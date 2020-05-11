@@ -1,1 +1,1 @@
-export { default } from '../en-US/index'
+export { default } from '../fa-IR/index'
