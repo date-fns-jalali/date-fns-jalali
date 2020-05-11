@@ -32,16 +32,16 @@ describe('differenceInCalendarYears', function() {
   describe('edge cases', function() {
     it('the difference is less than a year, but the given dates are in different calendar years', function() {
       var result = differenceInCalendarYears(
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31)
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+        /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20)
       )
       assert(result === 1)
     })
 
     it('the same for the swapped dates', function() {
       var result = differenceInCalendarYears(
-        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31),
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1)
+        /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21)
       )
       assert(result === -1)
     })

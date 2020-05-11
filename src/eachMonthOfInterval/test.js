@@ -11,12 +11,12 @@ describe('eachMonthOfInterval', function() {
       end: /* 1393/5/21 */ new Date(2014, 7 /* Aug */, 12)
     })
     assert.deepEqual(result, [
-      /* 1392/12/10 */ new Date(2014, 2 /* Oct */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Oct */, 1),
-      /* 1393/2/11 */ new Date(2014, 4 /* Oct */, 1),
-      /* 1393/3/11 */ new Date(2014, 5 /* Oct */, 1),
-      /* 1393/4/10 */ new Date(2014, 6 /* Oct */, 1),
-      /* 1393/5/10 */ new Date(2014, 7 /* Oct */, 1)
+      /* 1392/12/1 */ new Date(2014, 1 /* Oct */, 20),
+      /* 1393/1/1 */ new Date(2014, 2 /* Oct */, 21),
+      /* 1393/2/1 */ new Date(2014, 3 /* Oct */, 21),
+      /* 1393/3/1 */ new Date(2014, 4 /* Oct */, 22),
+      /* 1393/4/1 */ new Date(2014, 5 /* Oct */, 22),
+      /* 1393/5/1 */ new Date(2014, 6 /* Oct */, 23)
     ])
   })
 
@@ -26,12 +26,12 @@ describe('eachMonthOfInterval', function() {
       end: /* 1393/5/21 */ new Date(2014, 7 /* Aug */, 12)
     })
     assert.deepEqual(result, [
-      /* 1392/12/10 */ new Date(2014, 2 /* Oct */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Oct */, 1),
-      /* 1393/2/11 */ new Date(2014, 4 /* Oct */, 1),
-      /* 1393/3/11 */ new Date(2014, 5 /* Oct */, 1),
-      /* 1393/4/10 */ new Date(2014, 6 /* Oct */, 1),
-      /* 1393/5/10 */ new Date(2014, 7 /* Oct */, 1)
+      /* 1392/12/1 */ new Date(2014, 1 /* Oct */, 20),
+      /* 1393/1/1 */ new Date(2014, 2 /* Oct */, 21),
+      /* 1393/2/1 */ new Date(2014, 3 /* Oct */, 21),
+      /* 1393/3/1 */ new Date(2014, 4 /* Oct */, 22),
+      /* 1393/4/1 */ new Date(2014, 5 /* Oct */, 22),
+      /* 1393/5/1 */ new Date(2014, 6 /* Oct */, 23)
     ])
   })
 
@@ -41,12 +41,12 @@ describe('eachMonthOfInterval', function() {
       end: /* 1393/5/21 */ new Date(2014, 7 /* Aug */, 12, 22, 15)
     })
     assert.deepEqual(result, [
-      /* 1392/12/10 */ new Date(2014, 2 /* Oct */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Oct */, 1),
-      /* 1393/2/11 */ new Date(2014, 4 /* Oct */, 1),
-      /* 1393/3/11 */ new Date(2014, 5 /* Oct */, 1),
-      /* 1393/4/10 */ new Date(2014, 6 /* Oct */, 1),
-      /* 1393/5/10 */ new Date(2014, 7 /* Oct */, 1)
+      /* 1392/12/1 */ new Date(2014, 1 /* Oct */, 20),
+      /* 1393/1/1 */ new Date(2014, 2 /* Oct */, 21),
+      /* 1393/2/1 */ new Date(2014, 3 /* Oct */, 21),
+      /* 1393/3/1 */ new Date(2014, 4 /* Oct */, 22),
+      /* 1393/4/1 */ new Date(2014, 5 /* Oct */, 22),
+      /* 1393/5/1 */ new Date(2014, 6 /* Oct */, 23)
     ])
   })
 
@@ -56,12 +56,12 @@ describe('eachMonthOfInterval', function() {
       end: /* 1393/5/10 */ new Date(2014, 7 /* Oct */)
     })
     assert.deepEqual(result, [
-      /* 1392/12/10 */ new Date(2014, 2 /* Oct */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Oct */, 1),
-      /* 1393/2/11 */ new Date(2014, 4 /* Oct */, 1),
-      /* 1393/3/11 */ new Date(2014, 5 /* Oct */, 1),
-      /* 1393/4/10 */ new Date(2014, 6 /* Oct */, 1),
-      /* 1393/5/10 */ new Date(2014, 7 /* Oct */, 1)
+      /* 1392/12/1 */ new Date(2014, 1 /* Oct */, 20),
+      /* 1393/1/1 */ new Date(2014, 2 /* Oct */, 21),
+      /* 1393/2/1 */ new Date(2014, 3 /* Oct */, 21),
+      /* 1393/3/1 */ new Date(2014, 4 /* Oct */, 22),
+      /* 1393/4/1 */ new Date(2014, 5 /* Oct */, 22),
+      /* 1393/5/1 */ new Date(2014, 6 /* Oct */, 23)
     ])
   })
 
@@ -70,7 +70,7 @@ describe('eachMonthOfInterval', function() {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/17 */ new Date(2014, 9 /* Oct */, 9, 15)
     })
-    assert.deepEqual(result, [/* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1)])
+    assert.deepEqual(result, [/* 1393/7/1 */ new Date(2014, 8 /* Oct */, 23)])
   })
 
   it('returns one month if the both arguments are the same', function() {
@@ -78,7 +78,7 @@ describe('eachMonthOfInterval', function() {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14)
     })
-    assert.deepEqual(result, [/* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1)])
+    assert.deepEqual(result, [/* 1393/7/1 */ new Date(2014, 8 /* Oct */, 23)])
   })
 
   it('throws an exception if the start date is after the end date', function() {

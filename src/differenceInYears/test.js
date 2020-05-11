@@ -32,8 +32,8 @@ describe('differenceInYears', function() {
   describe('leap days', function() {
     it('supports past dates with right side after leap day', () => {
       var result = differenceInYears(
-        /* 1382/12/10 */ new Date(2004, 1 /* Feb */, 29, 0, 0),
-        /* 1380/12/10 */ new Date(2002, 2 /* Mar */, 1, 0, 0)
+        /* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20, 0, 0),
+        /* 1382/1/1 */ new Date(2003, 2 /* Mar */, 21, 0, 0)
       )
       assert(result === 1)
     })
@@ -90,7 +90,7 @@ describe('differenceInYears', function() {
 
     it('the days and months of the given dates are the same', function() {
       var result = differenceInYears(
-        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5),
+        /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6),
         /* 1391/6/15 */ new Date(2012, 8 /* Sep */, 5)
       )
       assert(result === 2)

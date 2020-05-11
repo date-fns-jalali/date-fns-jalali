@@ -8,7 +8,7 @@ describe('isSameMonth', function() {
   it('returns true if the given dates have the same month (and year)', function() {
     var result = isSameMonth(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25)
+      /* 1393/6/3 */ new Date(2014, 7 /* Aug */, 25)
     )
     assert(result === true)
   })
@@ -24,7 +24,7 @@ describe('isSameMonth', function() {
   it('accepts a timestamp', function() {
     var result = isSameMonth(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2).getTime(),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime()
+      /* 1393/6/3 */ new Date(2014, 7 /* Sep */, 25).getTime()
     )
     assert(result === true)
   })

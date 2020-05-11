@@ -8,7 +8,7 @@ describe('startOfWeek', function() {
   it('returns the date with the time set to 00:00:00 and the date set to the first day of a week', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = startOfWeek(date)
-    assert.deepEqual(result, /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31))
+    assert.deepEqual(result, /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30))
   })
 
   it('allows to specify which day is the first day of the week', function() {
@@ -57,7 +57,7 @@ describe('startOfWeek', function() {
       0
     ).getTime()
     var result = startOfWeek(date)
-    assert.deepEqual(result, /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31))
+    assert.deepEqual(result, /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30))
   })
 
   it('does not mutate the original date', function() {
@@ -97,7 +97,7 @@ describe('startOfWeek', function() {
     it('handles the week at the start of a year', function() {
       var date = /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1)
       var result = startOfWeek(date)
-      assert.deepEqual(result, /* 1392/10/8 */ new Date(2013, 11 /* Dec */, 29))
+      assert.deepEqual(result, /* 1392/10/7 */ new Date(2013, 11 /* Dec */, 28))
     })
   })
 

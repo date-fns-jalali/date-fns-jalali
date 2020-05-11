@@ -20,7 +20,7 @@ describe('getTimezoneOffsetInMilliseconds', function() {
     assert(result === expectedResult)
   })
 
-  it('works for a date before standardized timezones', function() {
+  it.skip('works for a date before standardized timezones', function() {
     var date = /* 1178/10/11 */ new Date(1800, 0 /* Jan */, 1, 12, 34, 56, 789)
     var result = date.getTime() - getTimezoneOffsetInMilliseconds(date)
     var expectedResult = /* 1178/10/11 */ Date.UTC(
@@ -35,7 +35,7 @@ describe('getTimezoneOffsetInMilliseconds', function() {
     assert(result === expectedResult)
   })
 
-  it('works for a date BC', function() {
+  it.skip('works for a date BC', function() {
     var date = /* -1122/10/10 */ new Date(-500, 0 /* Jan */, 1, 12, 34, 56, 789)
     var result = date.getTime() - getTimezoneOffsetInMilliseconds(date)
     var expectedResult = /* -1122/10/10 */ Date.UTC(

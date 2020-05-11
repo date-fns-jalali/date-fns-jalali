@@ -49,7 +49,7 @@ describe('FP functions', function() {
 
   it('addMonths', function() {
     var result = fp.addMonths(5)(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
-    assert.deepEqual(result, /* 1393/11/12 */ new Date(2015, 1 /* Feb */, 1))
+    assert.deepEqual(result, /* 1393/11/10 */ new Date(2015, 0 /* Jan */, 30))
   })
 
   it('addQuarters', function() {
@@ -275,14 +275,14 @@ describe('FP functions', function() {
     }
     var result = fp.eachWeekOfInterval(interval)
     assert.deepEqual(result, [
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-      /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-      /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-      /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-      /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-      /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-      /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-      /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23)
+      /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+      /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+      /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+      /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+      /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+      /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+      /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+      /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22)
     ])
   })
 
@@ -355,7 +355,7 @@ describe('FP functions', function() {
     var result = fp.endOfMonth(date)
     assert.deepEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999)
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999)
     )
   })
 
@@ -364,7 +364,7 @@ describe('FP functions', function() {
     var result = fp.endOfQuarter(date)
     assert.deepEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999)
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999)
     )
   })
 
@@ -382,7 +382,7 @@ describe('FP functions', function() {
     var result = fp.endOfWeek(date)
     assert.deepEqual(
       result,
-      /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6, 23, 59, 59, 999)
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 23, 59, 59, 999)
     )
   })
 
@@ -400,62 +400,62 @@ describe('FP functions', function() {
     var result = fp.endOfYear(date)
     assert.deepEqual(
       result,
-      /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999)
+      /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20, 23, 59, 59, 999)
     )
   })
 
   it('format', function() {
     var date = /* 1393/1/15 */ new Date(2014, 3, 4)
     var result = fp.format('yyyy-MM-dd')(date)
-    assert(result === '2014-04-04')
+    assert(result === '1393-01-15')
   })
 
   it('formatWithOptions', function() {
     var date = /* 1393/1/15 */ new Date(2014, 3, 4)
     var result = fp.formatWithOptions({})('yyyy-MM-dd')(date)
-    assert(result === '2014-04-04')
+    assert(result === '1393-01-15')
   })
 
   it('formatDistance', function() {
     var result = fp.formatDistance(
       /* 1365/1/15 */ new Date(1986, 3, 4, 10, 34, 50)
     )(/* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0))
-    assert(result === '3 minutes')
+    assert(result === '3 دقیقه')
   })
 
   it('formatDistanceWithOptions', function() {
     var result = fp.formatDistanceWithOptions({ includeSeconds: true })(
       /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 3)
     )(/* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0))
-    assert(result === 'less than 5 seconds')
+    assert(result === 'کمتر از 5 ثانیه')
   })
 
   it('formatDistanceStrict', function() {
     var result = fp.formatDistanceStrict(
       /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0)
     )(/* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0))
-    assert(result === '3 days')
+    assert(result === '3 روز')
   })
 
   it('formatDistanceStrictWithOptions', function() {
     var result = fp.formatDistanceStrictWithOptions({ addSuffix: true })(
       /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0)
     )(/* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0))
-    assert(result === 'in 1 hour')
+    assert(result === 'در 1 ساعت')
   })
 
   it('formatRelative', function() {
     var result = fp.formatRelative(
       /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 32)
     )(/* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50))
-    assert(result === '03/28/1986')
+    assert(result === '1365/01/08')
   })
 
   it('formatRelativeWithOptions', function() {
     var result = fp.formatRelativeWithOptions({})(
       /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 32)
     )(/* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50))
-    assert(result === '03/28/1986')
+    assert(result === '1365/01/08')
   })
 
   it('fromUnixTime', function() {
@@ -465,7 +465,7 @@ describe('FP functions', function() {
 
   it('getDate', function() {
     var result = fp.getDate(/* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29))
-    assert(result === 29)
+    assert(result === 10)
   })
 
   it('getDay', function() {
@@ -475,19 +475,19 @@ describe('FP functions', function() {
 
   it('getDayOfYear', function() {
     var result = fp.getDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2))
-    assert(result === 183)
+    assert(result === 31 * 3 + 11)
   })
 
   it('getDaysInMonth', function() {
     var result = fp.getDaysInMonth(
       /* 1478/11/23 */ new Date(2100, 1 /* Feb */, 11)
     )
-    assert(result === 28)
+    assert(result === 30)
   })
 
   it('getDaysInYear', function() {
     var result = fp.getDaysInYear(
-      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2)
+      /* 1399/4/12 */ new Date(2020, 6 /* Jul */, 2)
     )
     assert(result === 366)
   })
@@ -539,7 +539,7 @@ describe('FP functions', function() {
 
   it('getMonth', function() {
     var result = fp.getMonth(/* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29))
-    assert(result === 1)
+    assert(result === 11)
   })
 
   it('getOverlappingDaysInIntervals', function() {
@@ -559,7 +559,7 @@ describe('FP functions', function() {
 
   it('getQuarter', function() {
     var result = fp.getQuarter(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2))
-    assert(result === 3)
+    assert(result === 2)
   })
 
   it('getSeconds', function() {
@@ -576,7 +576,7 @@ describe('FP functions', function() {
   })
 
   it('getWeek', function() {
-    var result = fp.getWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2))
+    var result = fp.getWeek(/* 1383/1/8 */ new Date(2004, 2 /* Mar */, 27))
     assert(result === 2)
   })
 
@@ -584,35 +584,35 @@ describe('FP functions', function() {
     var result = fp.getWeeksInMonth(
       /* 1396/1/19 */ new Date(2017, 3 /* Apr */, 8, 18, 0)
     )
-    assert(result === 6)
+    assert(result === 5)
   })
 
   it('getWeeksInMonthWithOptions', function() {
     var result = fp.getWeeksInMonthWithOptions({})(
       /* 1396/1/19 */ new Date(2017, 3 /* Apr */, 8, 18, 0)
     )
-    assert(result === 6)
+    assert(result === 5)
   })
 
   it('getWeekOfMonth', function() {
     var result = fp.getWeekOfMonth(
       /* 1396/8/24 */ new Date(2017, 10 /* Nov */, 15)
     )
-    assert(result === 3)
+    assert(result === 4)
   })
 
   it('getWeekOfMonthWithOptions', function() {
     var result = fp.getWeekOfMonthWithOptions({ weekStartsOn: 1 })(
       /* 1396/7/9 */ new Date(2017, 9 /* Oct */, 1)
     )
-    assert(result === 1)
+    assert(result === 2)
   })
 
   it('getWeekYear', function() {
     var result = fp.getWeekYear(
       /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26)
     )
-    assert(result === 2005)
+    assert(result === 1383)
   })
 
   it('getWeekYearWithOptions', function() {
@@ -620,12 +620,12 @@ describe('FP functions', function() {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     })(/* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26))
-    assert(result === 2004)
+    assert(result === 1383)
   })
 
   it('getYear', function() {
     var result = fp.getYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2))
-    assert(result === 2014)
+    assert(result === 1393)
   })
 
   it('isAfter', function() {
@@ -651,7 +651,7 @@ describe('FP functions', function() {
 
   it('isFirstDayOfMonth', function() {
     var result = fp.isFirstDayOfMonth(
-      /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1)
+      /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23)
     )
     assert(result === true)
   })
@@ -663,7 +663,7 @@ describe('FP functions', function() {
 
   it('isLastDayOfMonth', function() {
     var result = fp.isLastDayOfMonth(
-      /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31)
+      /* 1393/8/30 */ new Date(2014, 10 /* Nov */, 21)
     )
     assert(result === true)
   })
@@ -715,7 +715,7 @@ describe('FP functions', function() {
 
   it('isSameMonth', function() {
     var result = fp.isSameMonth(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25))(
-      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2)
+      /* 1393/7/11 */ new Date(2014, 9 /* Oct */, 3)
     )
     assert(result === true)
   })
@@ -817,19 +817,19 @@ describe('FP functions', function() {
   it('lastDayOfMonth', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = fp.lastDayOfMonth(date)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22))
   })
 
   it('lastDayOfQuarter', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = fp.lastDayOfQuarter(date)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22))
   })
 
   it('lastDayOfWeek', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = fp.lastDayOfWeek(date)
-    assert.deepEqual(result, /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6))
+    assert.deepEqual(result, /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5))
   })
 
   it('lastDayOfWeekWithOptions', function() {
@@ -841,7 +841,7 @@ describe('FP functions', function() {
   it('lastDayOfYear', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = fp.lastDayOfYear(date)
-    assert.deepEqual(result, /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31))
+    assert.deepEqual(result, /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20))
   })
 
   it('max', function() {
@@ -870,7 +870,7 @@ describe('FP functions', function() {
       0,
       900
     )
-    var result = fp.parse(baseDate)("yyyyMMdd'T'HHmmss")('20161105T040404')
+    var result = fp.parse(baseDate)("yyyyMMdd'T'HHmmss")('13950815T040404')
     assert.deepEqual(
       result,
       /* 1395/8/15 */ new Date(2016, 10 /* Nov */, 5, 4, 4, 4, 0)
@@ -888,7 +888,7 @@ describe('FP functions', function() {
       900
     )
     var result = fp.parseWithOptions({})(baseDate)("yyyyMMdd'T'HHmmss")(
-      '20161105T040404'
+      '13950815T040404'
     )
     assert.deepEqual(
       result,
@@ -926,7 +926,7 @@ describe('FP functions', function() {
 
   it('setDate', function() {
     var result = fp.setDate(30)(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/30 */ new Date(2014, 8 /* Sep */, 21))
   })
 
   it('setDay', function() {
@@ -938,7 +938,7 @@ describe('FP functions', function() {
     var result = fp.setDayOfYear(2)(
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2)
     )
-    assert.deepEqual(result, /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2))
+    assert.deepEqual(result, /* 1393/1/2 */ new Date(2014, 2 /* Mar */, 22))
   })
 
   it('setHours', function() {
@@ -992,14 +992,14 @@ describe('FP functions', function() {
 
   it('setMonth', function() {
     var result = fp.setMonth(1)(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
-    assert.deepEqual(result, /* 1392/11/12 */ new Date(2014, 1 /* Feb */, 1))
+    assert.deepEqual(result, /* 1393/2/10 */ new Date(2014, 3 /* Apr */, 30))
   })
 
   it('setQuarter', function() {
     var result = fp.setQuarter(1)(
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2)
     )
-    assert.deepEqual(result, /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2))
+    assert.deepEqual(result, /* 1393/1/11 */ new Date(2014, 2 /* Mar */, 31))
   })
 
   it('setSeconds', function() {
@@ -1014,7 +1014,7 @@ describe('FP functions', function() {
 
   it('setWeek', function() {
     var result = fp.setWeek(1)(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2))
-    assert.deepEqual(result, /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26))
+    assert.deepEqual(result, /* 1383/1/2 */ new Date(2004, 2 /* Mar */, 21))
   })
 
   it('setWeekWithOptions', function() {
@@ -1022,26 +1022,26 @@ describe('FP functions', function() {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     })(1)(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2))
-    assert.deepEqual(result, /* 1382/10/14 */ new Date(2004, 0 /* Jan */, 4))
+    assert.deepEqual(result, /* 1383/1/9 */ new Date(2004, 2 /* Mar */, 28))
   })
 
   it('setWeekYear', function() {
-    var result = fp.setWeekYear(2004)(
-      /* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2)
+    var result = fp.setWeekYear(1382)(
+      /* 1388/1/2 */ new Date(2009, 2 /* Mar */, 22)
     )
-    assert.deepEqual(result, /* 1382/10/13 */ new Date(2004, 0 /* Jan */, 3))
+    assert.deepEqual(result, /* 1381/12/25 */ new Date(2003, 2 /* Mar */, 16))
   })
 
   it('setWeekYearWithOptions', function() {
     var result = fp.setWeekYearWithOptions({
       weekStartsOn: 1,
       firstWeekContainsDate: 4
-    })(2004)(/* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2))
+    })(1383)(/* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2))
     assert.deepEqual(result, /* 1383/10/12 */ new Date(2005, 0 /* Jan */, 1))
   })
 
   it('setYear', function() {
-    var result = fp.setYear(2013)(
+    var result = fp.setYear(1392)(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1)
     )
     assert.deepEqual(result, /* 1392/6/10 */ new Date(2013, 8 /* Sep */, 1))
@@ -1090,13 +1090,13 @@ describe('FP functions', function() {
   it('startOfMonth', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = fp.startOfMonth(date)
-    assert.deepEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(result, /* 1393/6/1 */ new Date(2014, 7 /* Aug */, 23))
   })
 
   it('startOfQuarter', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = fp.startOfQuarter(date)
-    assert.deepEqual(result, /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1))
+    assert.deepEqual(result, /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22))
   })
 
   it('startOfSecond', function() {
@@ -1111,7 +1111,7 @@ describe('FP functions', function() {
   it('startOfWeek', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = fp.startOfWeek(date)
-    assert.deepEqual(result, /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31))
+    assert.deepEqual(result, /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30))
   })
 
   it('startOfWeekWithOptions', function() {
@@ -1126,7 +1126,7 @@ describe('FP functions', function() {
     )
     assert.deepEqual(
       result,
-      /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26, 0, 0, 0, 0)
+      /* 1383/12/29 */ new Date(2005, 2 /* Mar */, 19, 0, 0, 0, 0)
     )
   })
 
@@ -1137,7 +1137,7 @@ describe('FP functions', function() {
     })(/* 1384/4/11 */ new Date(2005, 6 /* Jul */, 2))
     assert.deepEqual(
       result,
-      /* 1383/10/14 */ new Date(2005, 0 /* Jan */, 3, 0, 0, 0, 0)
+      /* 1384/1/1 */ new Date(2005, 2 /* Mar */, 21, 0, 0, 0, 0)
     )
   })
 
@@ -1146,7 +1146,7 @@ describe('FP functions', function() {
     var result = fp.startOfYear(date)
     assert.deepEqual(
       result,
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1, 0, 0, 0, 0)
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21, 0, 0, 0, 0)
     )
   })
 
@@ -1196,7 +1196,7 @@ describe('FP functions', function() {
     var result = fp.subMonths(5)(
       /* 1393/11/12 */ new Date(2015, 1 /* Feb */, 1)
     )
-    assert.deepEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(result, /* 1393/6/12 */ new Date(2014, 8 /* Sep */, 3))
   })
 
   it('subQuarters', function() {

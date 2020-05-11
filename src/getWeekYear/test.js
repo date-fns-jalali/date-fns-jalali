@@ -6,18 +6,18 @@ import getWeekYear from '.'
 
 describe('getWeekYear', function() {
   it('returns the local week-numbering year of the given date', function() {
-    var result = getWeekYear(/* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26))
-    assert(result === 2005)
+    var result = getWeekYear(/* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20))
+    assert(result === 1384)
   })
 
   it('accepts a timestamp', function() {
     var result = getWeekYear(
-      /* 1379/10/10 */ new Date(2000, 11 /* Dec */, 30).getTime()
+      /* 1388/12/29 */ new Date(2010, 2 /* Mar */, 20).getTime()
     )
-    assert(result === 2000)
+    assert(result === 1389)
   })
 
-  it('handles dates before 100 AD', function() {
+  it.skip('handles dates before 100 AD', function() {
     var initialDate = new Date(0)
     initialDate.setFullYear(7, 11 /* Dec */, 31)
     initialDate.setHours(0, 0, 0, 0)
@@ -31,18 +31,18 @@ describe('getWeekYear', function() {
   })
 
   it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale', function() {
-    var date = /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26)
+    var date = /* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20)
     var result = getWeekYear(date, {
       // $ExpectedMistake
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 }
       }
     })
-    assert(result === 2004)
+    assert(result === 1383)
   })
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', function() {
-    var date = /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26)
+    var date = /* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20)
     var result = getWeekYear(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
@@ -51,7 +51,7 @@ describe('getWeekYear', function() {
         options: { weekStartsOn: 0, firstWeekContainsDate: 1 }
       }
     })
-    assert(result === 2004)
+    assert(result === 1383)
   })
 
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', function() {

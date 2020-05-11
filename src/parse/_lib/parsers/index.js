@@ -5,12 +5,14 @@ import setUTCISOWeek from '../../../_lib/setUTCISOWeek/index.js'
 import setUTCWeek from '../../../_lib/setUTCWeek/index.js'
 import startOfUTCISOWeek from '../../../_lib/startOfUTCISOWeek/index.js'
 import startOfUTCWeek from '../../../_lib/startOfUTCWeek/index.js'
+import isLeapYear from '../../../isLeapYear/index.js'
 
 import coreGetUTCMonth from '../../../_core/getUTCMonth/index.js'
 import coreSetUTCMonth from '../../../_core/setUTCMonth/index.js'
 import coreSetUTCDate from '../../../_core/setUTCDate/index.js'
 import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index.js'
 import coreSetUTCFullYear from '../../../_core/setUTCFullYear/index.js'
+import coreNewDate from '../../../_core/newDate/index.js'
 
 var MILLISECONDS_IN_HOUR = 3600000
 var MILLISECONDS_IN_MINUTE = 60000
@@ -210,12 +212,12 @@ function normalizeTwoDigitYear(twoDigitYear, currentYear) {
   return isCommonEra ? result : 1 - result
 }
 
-var DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-var DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+var DAYS_IN_MONTH = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
+var DAYS_IN_MONTH_LEAP_YEAR = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30]
 
 // User for validation
 function isLeapYearIndex(year) {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
+  return isLeapYear(coreNewDate(year, 0))
 }
 
 /*
@@ -1030,7 +1032,10 @@ var parsers = {
     parse: function(string, token, match, options) {
       var valueCallback = function(value) {
         var wholeWeekDays = Math.floor((value - 1) / 7) * 7
-        return ((value + options.weekStartsOn + 6) % 7) + wholeWeekDays
+        return (
+          ((value + options.weekStartsOn + 6 /* move sun -> sat */ + 1) % 7) +
+          wholeWeekDays
+        )
       }
 
       switch (token) {
@@ -1112,7 +1117,10 @@ var parsers = {
     parse: function(string, token, match, options) {
       var valueCallback = function(value) {
         var wholeWeekDays = Math.floor((value - 1) / 7) * 7
-        return ((value + options.weekStartsOn + 6) % 7) + wholeWeekDays
+        return (
+          ((value + options.weekStartsOn + 6 /* move sun -> sat */ + 1) % 7) +
+          wholeWeekDays
+        )
       }
 
       switch (token) {

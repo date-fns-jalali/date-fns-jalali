@@ -7,9 +7,9 @@ import set from '.'
 describe('set', function() {
   it('sets all values', function() {
     var result = set(new Date(2013), {
-      year: 2014,
-      month: 8, // Sep
-      date: 20,
+      year: 1393,
+      month: 5, // Shahrivar
+      date: 29,
       hours: 12,
       minutes: 12,
       seconds: 12,
@@ -23,21 +23,21 @@ describe('set', function() {
 
   it('sets year', function() {
     var result = set(/* 1392/6/10 */ new Date(2013, 8 /* Sep */), {
-      year: 2014
+      year: 1393
     })
     assert.deepEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */))
   })
 
   it('sets month', function() {
     var result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
-      month: 9 /* Oct */
+      month: 6 /* Mehr */
     })
-    assert.deepEqual(result, /* 1393/7/9 */ new Date(2014, 9 /* Oct */))
+    assert.deepEqual(result, /* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2))
   })
 
   it('sets day of month', function() {
     var result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), { date: 20 })
-    assert.deepEqual(result, /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20))
+    assert.deepEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('sets hours', function() {
@@ -82,14 +82,14 @@ describe('set', function() {
       var result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), {
         month: 12 /* 13th month */
       })
-      assert.deepEqual(result, /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1))
+      assert.deepEqual(result, /* 1394/1/10 */ new Date(2015, 2 /* Mar */, 30))
     })
 
     it('days of months overflow into months', function() {
-      var result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), {
+      var result = set(/* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2), {
         date: 31
       })
-      assert.deepEqual(result, /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1))
+      assert.deepEqual(result, /* 1393/8/1 */ new Date(2014, 9 /* Oct */, 23))
     })
 
     it('hours overflow into days', function() {
@@ -135,18 +135,18 @@ describe('set', function() {
   })
 
   describe('edge cases', function() {
-    it('sets January', function() {
+    it('sets Farvardin', function() {
       var result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
         month: 0 /* Jan */
       })
-      assert.deepEqual(result, /* 1392/10/11 */ new Date(2014, 0 /* Jan */))
+      assert.deepEqual(result, /* 1393/1/10 */ new Date(2014, 2 /* Mar */, 30))
     })
 
     it('sets the last day of new month if the initial date was the last day of a longer month', function() {
-      var result = set(/* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31), {
-        month: 8 /* Sep */
+      var result = set(/* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22), {
+        month: 8 /* Azar */
       })
-      assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+      assert.deepEqual(result, /* 1393/9/30 */ new Date(2014, 11 /* Dec */, 21))
     })
 
     it('ignores undefined values', function() {

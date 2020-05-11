@@ -74,22 +74,22 @@ describe('differenceInCalendarWeeks', function() {
       /* 1393/4/21 */ new Date(2014, 6 /* Jul */, 12).getTime(),
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime()
     )
-    assert(result === 1)
+    assert(result === 2)
   })
 
   describe('edge cases', function() {
     it('the difference is less than a week, but the given dates are in different calendar weeks', function() {
       var result = differenceInCalendarWeeks(
-        /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6),
-        /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5)
+        /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5),
+        /* 1393/4/13 */ new Date(2014, 6 /* Jul */, 4)
       )
       assert(result === 1)
     })
 
     it('the same for the swapped dates', function() {
       var result = differenceInCalendarWeeks(
-        /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5),
-        /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6)
+        /* 1393/4/13 */ new Date(2014, 6 /* Jul */, 4),
+        /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5)
       )
       assert(result === -1)
     })

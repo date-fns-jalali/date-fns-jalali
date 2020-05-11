@@ -8,7 +8,7 @@ describe('lastDayOfMonth', function() {
   it('returns the date with the time set to 00:00:00 and the date set to the last day of a month', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = lastDayOfMonth(date)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30))
+    assert.deepEqual(result, /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22))
   })
 
   it('accepts a timestamp', function() {
@@ -21,7 +21,7 @@ describe('lastDayOfMonth', function() {
       0
     ).getTime()
     var result = lastDayOfMonth(date)
-    assert.deepEqual(result, /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31))
+    assert.deepEqual(result, /* 1393/5/31 */ new Date(2014, 7 /* Aug */, 22))
   })
 
   it('does not mutate the original date', function() {
@@ -34,16 +34,16 @@ describe('lastDayOfMonth', function() {
   })
 
   describe('edge cases', function() {
-    it('works for the February of a leap year', function() {
-      var date = /* 1390/11/22 */ new Date(2012, 1 /* Feb */, 11, 11, 55, 0)
+    it('works for the Esfand of a leap year', function() {
+      var date = /* 1399/12/22 */ new Date(2021, 2 /* Mar */, 12, 11, 55, 0)
       var result = lastDayOfMonth(date)
-      assert.deepEqual(result, /* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29))
+      assert.deepEqual(result, /* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20))
     })
 
-    it('works for the February of a non-leap year', function() {
-      var date = /* 1392/11/22 */ new Date(2014, 1 /* Feb */, 11, 11, 55, 0)
+    it('works for the Esfand of a non-leap year', function() {
+      var date = /* 1398/12/22 */ new Date(2020, 2 /* Mar */, 12, 11, 55, 0)
       var result = lastDayOfMonth(date)
-      assert.deepEqual(result, /* 1392/12/9 */ new Date(2014, 1 /* Feb */, 28))
+      assert.deepEqual(result, /* 1398/12/29 */ new Date(2020, 2 /* Mar */, 19))
     })
   })
 

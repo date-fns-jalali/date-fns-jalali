@@ -20,8 +20,8 @@ describe('intervalToDuration', function() {
     })
   })
   it('Returns correct duration (1 of everything)', function() {
-    const start = /* 1398/12/11 */ new Date(2020, 2, 1, 12, 0, 0)
-    const end = /* 1400/1/13 */ new Date(2021, 3, 2, 13, 1, 1)
+    const start = /* 1398/2/11 */ new Date(2019, 4, 1, 12, 0, 0)
+    const end = /* 1399/3/12 */ new Date(2020, 5, 1, 13, 1, 1)
     const result = intervalToDuration({ start, end })
 
     assert.deepEqual(result, {
