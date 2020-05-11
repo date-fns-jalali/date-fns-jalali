@@ -6,27 +6,27 @@ import eachWeekendOfInterval from '.'
 describe('eachWeekendOfInterval', () => {
   it('returns all weekends within the interval', () => {
     const result = eachWeekendOfInterval({
-      start: /* 1397/6/26 */ new Date(2018, 8 /* Sept */, 17),
-      end: /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30),
+      start: /* 1397/6/26 */ new Date(2018, 8 /* Sep */, 17),
+      end: /* 1397/7/8 */ new Date(2018, 8 /* Sep */, 30),
     })
     assert.deepStrictEqual(result, [
-      /* 1397/6/31 */ new Date(2018, 8 /* Sept */, 22),
-      /* 1397/7/1 */ new Date(2018, 8 /* Sept */, 23),
-      /* 1397/7/7 */ new Date(2018, 8 /* Sept */, 29),
-      /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30),
+      /* 1397/6/31 */ new Date(2018, 8 /* Sep */, 22),
+      /* 1397/7/1 */ new Date(2018, 8 /* Sep */, 23),
+      /* 1397/7/7 */ new Date(2018, 8 /* Sep */, 29),
+      /* 1397/7/8 */ new Date(2018, 8 /* Sep */, 30),
     ])
   })
 
   it('returns all weekends within the interval when starting on a weekend', () => {
     const result = eachWeekendOfInterval({
-      start: /* 1397/6/31 */ new Date(2018, 8 /* Sept */, 22),
-      end: /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30),
+      start: /* 1397/6/31 */ new Date(2018, 8 /* Sep */, 22),
+      end: /* 1397/7/8 */ new Date(2018, 8 /* Sep */, 30),
     })
     assert.deepStrictEqual(result, [
-      /* 1397/6/31 */ new Date(2018, 8 /* Sept */, 22),
-      /* 1397/7/1 */ new Date(2018, 8 /* Sept */, 23),
-      /* 1397/7/7 */ new Date(2018, 8 /* Sept */, 29),
-      /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30),
+      /* 1397/6/31 */ new Date(2018, 8 /* Sep */, 22),
+      /* 1397/7/1 */ new Date(2018, 8 /* Sep */, 23),
+      /* 1397/7/7 */ new Date(2018, 8 /* Sep */, 29),
+      /* 1397/7/8 */ new Date(2018, 8 /* Sep */, 30),
     ])
   })
 
@@ -53,8 +53,8 @@ describe('eachWeekendOfInterval', () => {
 
   it('throws `RangeError` if start of an interval is after its end', () => {
     const block = eachWeekendOfInterval.bind(null, {
-      start: /* 1397/7/3 */ new Date(2018, 8 /* Sept */, 25),
-      end: /* 1397/6/15 */ new Date(2018, 8 /* Sept */, 6),
+      start: /* 1397/7/3 */ new Date(2018, 8 /* Sep */, 25),
+      end: /* 1397/6/15 */ new Date(2018, 8 /* Sep */, 6),
     })
     assert.throws(block, RangeError)
   })

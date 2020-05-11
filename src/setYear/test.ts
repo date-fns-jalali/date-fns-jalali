@@ -5,7 +5,7 @@ import setYear from '.'
 
 describe('setYear', () => {
   it('sets the year', () => {
-    const result = setYear(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 2013)
+    const result = setYear(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 1392)
     assert.deepStrictEqual(
       result,
       /* 1392/6/10 */ new Date(2013, 8 /* Sep */, 1)
@@ -15,18 +15,18 @@ describe('setYear', () => {
   it('accepts a timestamp', () => {
     const result = setYear(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
-      2016
+      1395
     )
     assert.deepStrictEqual(
       result,
-      /* 1395/6/11 */ new Date(2016, 8 /* Sep */, 1)
+      /* 1395/6/10 */ new Date(2016, 7 /* Aug */, 31)
     )
   })
 
   it('converts a fractional number to an integer', () => {
     const result = setYear(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
-      2013.987654321
+      1392.987654321
     )
     assert.deepStrictEqual(
       result,
@@ -38,7 +38,7 @@ describe('setYear', () => {
     const result = setYear(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
       // @ts-expect-error
-      '2013'
+      '1392'
     )
     assert.deepStrictEqual(
       result,

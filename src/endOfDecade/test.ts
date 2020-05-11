@@ -9,7 +9,7 @@ describe('endOfDecade', () => {
     const result = endOfDecade(date)
     assert.deepStrictEqual(
       result,
-      /* 1398/10/10 */ new Date(2019, 11 /* Dec */, 31, 23, 59, 59, 999)
+      /* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20, 23, 59, 59, 999)
     )
   })
 
@@ -25,7 +25,7 @@ describe('endOfDecade', () => {
     const result = endOfDecade(date)
     assert.deepStrictEqual(
       result,
-      /* 1388/10/10 */ new Date(2009, 11 /* Dec */, 31, 23, 59, 59, 999)
+      /* 1389/12/29 */ new Date(2011, 2 /* Mar */, 20, 23, 59, 59, 999)
     )
   })
 

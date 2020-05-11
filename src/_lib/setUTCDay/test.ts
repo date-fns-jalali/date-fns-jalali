@@ -72,7 +72,7 @@ describe('setUTCDay', () => {
       )
       assert.deepStrictEqual(
         result,
-        new Date(/* 1393/6/17 */ Date.UTC(2014, 8 /* Sep */, 8))
+        new Date(/* 1393/6/16 */ Date.UTC(2014, 8 /* Sep */, 7))
       )
     })
 
@@ -86,7 +86,7 @@ describe('setUTCDay', () => {
       )
       assert.deepStrictEqual(
         result,
-        new Date(/* 1393/6/23 */ Date.UTC(2014, 8 /* Sep */, 14))
+        new Date(/* 1393/6/17 */ Date.UTC(2014, 8 /* Sep */, 8))
       )
     })
 
@@ -100,7 +100,7 @@ describe('setUTCDay', () => {
       )
       assert.deepStrictEqual(
         result,
-        new Date(/* 1393/6/30 */ Date.UTC(2014, 8 /* Sep */, 21))
+        new Date(/* 1393/6/24 */ Date.UTC(2014, 8 /* Sep */, 15))
       )
     })
   })
@@ -113,7 +113,7 @@ describe('setUTCDay', () => {
       )
       assert.deepStrictEqual(
         result,
-        new Date(/* 1393/6/3 */ Date.UTC(2014, 7 /* Aug */, 25))
+        new Date(/* 1393/6/2 */ Date.UTC(2014, 7 /* Aug */, 24))
       )
     })
 
@@ -127,7 +127,7 @@ describe('setUTCDay', () => {
       )
       assert.deepStrictEqual(
         result,
-        new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31))
+        new Date(/* 1393/6/3 */ Date.UTC(2014, 7 /* Aug */, 25))
       )
     })
 
@@ -141,7 +141,7 @@ describe('setUTCDay', () => {
       )
       assert.deepStrictEqual(
         result,
-        new Date(/* 1393/6/2 */ Date.UTC(2014, 7 /* Aug */, 24))
+        new Date(/* 1393/5/27 */ Date.UTC(2014, 7 /* Aug */, 18))
       )
     })
   })
