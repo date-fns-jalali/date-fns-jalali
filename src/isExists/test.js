@@ -4,18 +4,18 @@
 import assert from 'power-assert'
 import isExists from '.'
 
-describe('isValid', function() {
-  it('returns true if the given date is valid', function() {
-    var result = isExists(2018, 0, 31)
+describe('isValid', function () {
+  it('returns true if the given date is valid', function () {
+    var result = isExists(1399, 0, 31)
     assert(result === true)
   })
 
-  it('returns false if the given date is invalid', function() {
-    var result = isExists(2018, 1 /* Feb */, 31)
+  it('returns false if the given date is invalid', function () {
+    var result = isExists(1399, 10 /* Azar */, 31)
     assert(result === false)
   })
 
-  it('throws TypeError exception if passed less than 3 arguments', function() {
+  it('throws TypeError exception if passed less than 3 arguments', function () {
     assert.throws(isExists.bind(null), TypeError)
   })
 })

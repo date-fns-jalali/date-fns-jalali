@@ -9,7 +9,7 @@ describe('endOfWeek', function() {
   it('returns the date with the time set to 23:59:59:999 and the date set to the last day of a week', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = endOfWeek(date)
-    assert.deepStrictEqual(result, /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6, 23, 59, 59, 999))
+    assert.deepStrictEqual(result, /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 23, 59, 59, 999))
   })
 
   it('allows to specify which day is the first day of the week', function() {
@@ -51,7 +51,7 @@ describe('endOfWeek', function() {
   it('accepts a timestamp', function() {
     var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime()
     var result = endOfWeek(date)
-    assert.deepStrictEqual(result, /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6, 23, 59, 59, 999))
+    assert.deepStrictEqual(result, /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 23, 59, 59, 999))
   })
 
   it('does not mutate the original date', function() {

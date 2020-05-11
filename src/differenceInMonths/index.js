@@ -40,9 +40,9 @@ export default function differenceInMonths(dirtyDateLeft, dirtyDateRight) {
   var sign = compareAsc(dateLeft, dateRight)
   var difference = Math.abs(differenceInCalendarMonths(dateLeft, dateRight))
 
-  // This will check if the date is end of Feb and assign a higher end of month date
-  // to compare it with Jan
-  if (coreGetMonth(dateLeft) === 1 && coreGetDate(dateLeft) > 27) {
+  // This will check if the date is end of Esfand and assign a higher end of month date
+  // to compare it with Farvardin
+  if (coreGetMonth(dateLeft) === 11 && coreGetDate(dateLeft) > 28) {
     coreSetDate(dateLeft, 30)
   }
 
