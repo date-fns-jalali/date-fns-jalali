@@ -8,7 +8,7 @@ describe('lastDayOfWeek', function () {
   it('returns the date with the time set to 00:00:00 and the date set to the last day of a week', function () {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     const result = lastDayOfWeek(date)
-    assert.deepEqual(result, /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6))
+    assert.deepEqual(result, /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5))
   })
 
   it('allows to specify which day is the first day of the week', function () {
@@ -57,7 +57,7 @@ describe('lastDayOfWeek', function () {
       0
     ).getTime()
     const result = lastDayOfWeek(date)
-    assert.deepEqual(result, /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6))
+    assert.deepEqual(result, /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5))
   })
 
   it('does not mutate the original date', function () {
@@ -116,6 +116,7 @@ describe('lastDayOfWeek', function () {
     const block = lastDayOfWeek.bind(
       null,
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
+      // @ts-expect-error
       { weekStartsOn: NaN }
     )
     assert.throws(block, RangeError)
