@@ -18,7 +18,7 @@ describe('isThisQuarter', function() {
   })
 
   it('returns true if the given date and the current date have the same quarter (and year)', function() {
-    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2)
+    const date = /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2)
     assert(isThisQuarter(date) === true)
   })
 
@@ -28,7 +28,7 @@ describe('isThisQuarter', function() {
   })
 
   it('accepts a timestamp', function() {
-    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime()
+    const date = /* 1393/8/11 */ new Date(2014, 10 /* Jul */, 2).getTime()
     assert(isThisQuarter(date) === true)
   })
 

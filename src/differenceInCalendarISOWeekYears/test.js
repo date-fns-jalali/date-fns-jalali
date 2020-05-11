@@ -29,7 +29,7 @@ describe('differenceInCalendarISOWeekYears', function() {
     assert(result === 4)
   })
 
-  it('handles dates before 100 AD', function() {
+  it.skip('handles dates before 100 AD', function() {
     var firstDate = new Date(0)
     firstDate.setFullYear(14, 0 /* Jan */, 1)
     firstDate.setHours(0, 0, 0, 0)

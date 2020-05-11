@@ -7,7 +7,7 @@ import isFirstDayOfMonth from '.'
 describe('isFirstDayOfMonth', function() {
   it('returns true if the given date is in the last day of month', function() {
     var result = isFirstDayOfMonth(
-      /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1)
+      /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23)
     )
     assert(result === true)
   })
@@ -20,7 +20,7 @@ describe('isFirstDayOfMonth', function() {
   })
 
   it('accepts a timestamp', function() {
-    var date = /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1).getTime()
+    var date = /* 1393/7/1 */ new Date(2014, 8 /* Oct */, 23).getTime()
     var result = isFirstDayOfMonth(date)
     assert(result === true)
   })
