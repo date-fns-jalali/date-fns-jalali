@@ -42,7 +42,7 @@ export default function setDay(dirtyDate, dirtyDay, dirtyOptions) {
   var localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn

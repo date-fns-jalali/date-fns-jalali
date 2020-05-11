@@ -45,9 +45,9 @@ export default function differenceInMonths(dirtyDateLeft, dirtyDateRight) {
   if (difference < 1) {
     result = 0
   } else {
-    if (coreGetMonth(dateLeft) === 1 && coreGetDate(dateLeft) > 27) {
-      // This will check if the date is end of Feb and assign a higher end of month date
-      // to compare it with Jan
+    if (coreGetMonth(dateLeft) === 11 && coreGetDate(dateLeft) > 28) {
+      // This will check if the date is end of Esfand and assign a higher end of month date
+      // to compare it with Farvardin
       coreSetDate(dateLeft, 30)
     }
 
