@@ -11,14 +11,14 @@ describe('eachWeekOfInterval', function() {
       end: /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23)
     })
     assert.deepEqual(result, [
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-      /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-      /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-      /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-      /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-      /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-      /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-      /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23)
+      /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+      /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+      /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+      /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+      /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+      /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+      /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+      /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22)
     ])
   })
 
@@ -28,14 +28,14 @@ describe('eachWeekOfInterval', function() {
       end: /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23).getTime()
     })
     assert.deepEqual(result, [
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-      /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-      /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-      /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-      /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-      /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-      /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-      /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23)
+      /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+      /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+      /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+      /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+      /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+      /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+      /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+      /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22)
     ])
   })
 
@@ -45,14 +45,14 @@ describe('eachWeekOfInterval', function() {
       end: /* 1393/9/4 */ new Date(2014, 10 /* Nov */, 25, 22, 16)
     })
     assert.deepEqual(result, [
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-      /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-      /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-      /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-      /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-      /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-      /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-      /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23)
+      /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+      /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+      /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+      /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+      /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+      /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+      /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+      /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22)
     ])
   })
 
@@ -82,7 +82,7 @@ describe('eachWeekOfInterval', function() {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/16 */ new Date(2014, 9 /* Oct */, 8, 15)
     })
-    assert.deepEqual(result, [/* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5)])
+    assert.deepEqual(result, [/* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4)])
   })
 
   it('returns one day if the both arguments are the same', function() {
@@ -90,7 +90,7 @@ describe('eachWeekOfInterval', function() {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14)
     })
-    assert.deepEqual(result, [/* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5)])
+    assert.deepEqual(result, [/* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4)])
   })
 
   it('throws an exception if the start date is after the end date', function() {

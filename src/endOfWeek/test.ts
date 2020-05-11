@@ -11,7 +11,7 @@ describe('endOfWeek', function () {
     var result = endOfWeek(date)
     assert.deepStrictEqual(
       result,
-      /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6, 23, 59, 59, 999)
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 23, 59, 59, 999)
     )
   })
 
@@ -68,7 +68,7 @@ describe('endOfWeek', function () {
     var result = endOfWeek(date)
     assert.deepStrictEqual(
       result,
-      /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6, 23, 59, 59, 999)
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 23, 59, 59, 999)
     )
   })
 

@@ -33,12 +33,12 @@ describe('addQuarters', function() {
   })
 
   it('works well if the desired month has fewer days and the provided date is in the last day of a month', function() {
-    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31)
+    const date = /* 1393/3/31 */ new Date(2014, 5 /* Jun */, 21)
     const result = addQuarters(date, 3)
-    assert.deepStrictEqual(result, /* 1394/7/8 */ new Date(2015, 8 /* Sep */, 30))
+    assert.deepStrictEqual(result, /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20))
   })
 
-  it('handles dates before 100 AD', function() {
+  it.skip('handles dates before 100 AD', function() {
     const initialDate = new Date(0)
     initialDate.setFullYear(-1, 10 /* Nov */, 30)
     initialDate.setHours(0, 0, 0, 0)

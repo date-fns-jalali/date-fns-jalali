@@ -7,24 +7,24 @@ import setDayOfYear from '.'
 describe('setDayOfYear', function() {
   it('sets the day of the year', function() {
     const result = setDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2), 2)
-    assert.deepEqual(result, /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2))
+    assert.deepEqual(result, /* 1393/1/2 */ new Date(2014, 2 /* Mar */, 22))
   })
 
   it('accepts a timestamp', function() {
     const result = setDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(), 60)
-    assert.deepEqual(result, /* 1392/12/10 */ new Date(2014, 2 /* Mar */, 1))
+    assert.deepEqual(result, /* 1393/2/29 */ new Date(2014, 4 /* May */, 19))
   })
 
   it('converts a fractional number to an integer', function() {
     const result = setDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2), 2.75)
-    assert.deepEqual(result, /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2))
+    assert.deepEqual(result, /* 1393/1/2 */ new Date(2014, 2 /* Mar */, 22))
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
     // @ts-expect-error
     const result = setDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2), '2')
-    assert.deepEqual(result, /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2))
+    assert.deepEqual(result, /* 1393/1/2 */ new Date(2014, 2 /* Mar */, 22))
   })
 
   it('does not mutate the original date', function() {

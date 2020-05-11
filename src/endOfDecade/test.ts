@@ -8,13 +8,13 @@ describe('endOfDecade', function() {
   it('returns the date with the time set to 23:59:59.999 and the date set to the last millisecond of a decade', function() {
     const date = /* 1396/1/21 */ new Date(2017, 3 /* Apr */, 10, 0, 0, 0)
     const result = endOfDecade(date)
-    assert.deepEqual(result, /* 1398/10/10 */ new Date(2019, 11 /* Dec */, 31, 23, 59, 59, 999))
+    assert.deepEqual(result, /* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20, 23, 59, 59, 999))
   })
 
   it('accepts a timestamp', function() {
     const date = /* 1386/7/18 */ new Date(2007, 9 /* Oct */, 10, 0, 0, 0).getTime()
     const result = endOfDecade(date)
-    assert.deepEqual(result, /* 1388/10/10 */ new Date(2009, 11 /* Dec */, 31, 23, 59, 59, 999))
+    assert.deepEqual(result, /* 1389/12/29 */ new Date(2011, 2 /* Mar */, 20, 23, 59, 59, 999))
   })
 
   it('does not mutate the original date', function() {

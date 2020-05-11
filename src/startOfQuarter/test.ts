@@ -8,13 +8,13 @@ describe('startOfQuarter', function() {
   it('returns the date with the time set to 00:00:00 and the date set to the first day of a quarter', function() {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     const result = startOfQuarter(date)
-    assert.deepEqual(result, /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1))
+    assert.deepEqual(result, /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22))
   })
 
   it('accepts a timestamp', function() {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime()
     const result = startOfQuarter(date)
-    assert.deepEqual(result, /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1))
+    assert.deepEqual(result, /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22))
   })
 
   it('does not mutate the original date', function() {

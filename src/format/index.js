@@ -373,7 +373,7 @@ export default function format(dirtyDate, dirtyFormatStr, dirtyOptions) {
 
   var localeWeekStartsOn = locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn

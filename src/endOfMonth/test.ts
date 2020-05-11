@@ -8,13 +8,13 @@ describe('endOfMonth', function() {
   it('returns the date with the time set to 23:59:59.999 and the date set to the last day of a month', function() {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     const result = endOfMonth(date)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999))
+    assert.deepEqual(result, /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999))
   })
 
   it('accepts a timestamp', function() {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime()
     const result = endOfMonth(date)
-    assert.deepEqual(result, /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999))
+    assert.deepEqual(result, /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999))
   })
 
   it('does not mutate the original date', function() {
@@ -25,18 +25,18 @@ describe('endOfMonth', function() {
 
   describe('edge cases', function() {
     it('works for last month in year', function() {
-      const date = /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 0, 0, 0)
+      const date = /* 1393/12/10 */ new Date(2015, 2 /* Mar */, 1, 0, 0, 0)
       const result = endOfMonth(date)
       assert.deepEqual(
         result,
-        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999)
+        /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20, 23, 59, 59, 999)
       )
     })
 
     it('works for last day of month', function() {
-      const date = /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31)
+      const date = /* 1393/8/30 */ new Date(2014, 10 /* Nov */, 21)
       const result = endOfMonth(date)
-      assert.deepEqual(result, /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31, 23, 59, 59, 999))
+      assert.deepEqual(result, /* 1393/8/30 */ new Date(2014, 10 /* Nov */, 21, 23, 59, 59, 999))
     })
   })
 
