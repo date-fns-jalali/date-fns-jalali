@@ -3,6 +3,8 @@ import differenceInCalendarYears from '../differenceInCalendarYears/index.js'
 import compareAsc from '../compareAsc/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name differenceInYears
  * @category Year Helpers
@@ -36,8 +38,8 @@ export default function differenceInYears(dirtyDateLeft, dirtyDateRight) {
 
   // Set both dates to a valid leap year for accurate comparison when dealing
   // with leap days
-  dateLeft.setFullYear('1584')
-  dateRight.setFullYear('1584')
+  coreSetFullYear(dateLeft, '1584')
+  coreSetFullYear(dateRight, '1584')
 
   // Math.abs(diff in full years - diff in calendar years) === 1 if last calendar year is not full
   // If so, result must be decreased by 1 in absolute value

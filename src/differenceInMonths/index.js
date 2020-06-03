@@ -3,6 +3,9 @@ import differenceInCalendarMonths from '../differenceInCalendarMonths/index.js'
 import compareAsc from '../compareAsc/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+import coreSetMonth from '../_core/setMonth/index.js'
+
 /**
  * @name differenceInMonths
  * @category Month Helpers
@@ -33,7 +36,7 @@ export default function differenceInMonths(dirtyDateLeft, dirtyDateRight) {
 
   var sign = compareAsc(dateLeft, dateRight)
   var difference = Math.abs(differenceInCalendarMonths(dateLeft, dateRight))
-  dateLeft.setMonth(dateLeft.getMonth() - sign * difference)
+  coreSetMonth(dateLeft, coreGetMonth(dateLeft) - sign * difference)
 
   // Math.abs(diff in full months - diff in calendar months) === 1 if last calendar month is not full
   // If so, result must be decreased by 1 in absolute value

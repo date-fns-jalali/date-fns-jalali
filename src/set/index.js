@@ -3,6 +3,9 @@ import setMonth from '../setMonth/index.js'
 import toInteger from '../_lib/toInteger/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreSetDate from '../_core/setDate/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name set
  * @category Common Helpers
@@ -57,7 +60,7 @@ export default function set(dirtyDate, values) {
   }
 
   if (values.year != null) {
-    date.setFullYear(values.year)
+    coreSetFullYear(date, values.year)
   }
 
   if (values.month != null) {
@@ -65,7 +68,7 @@ export default function set(dirtyDate, values) {
   }
 
   if (values.date != null) {
-    date.setDate(toInteger(values.date))
+    coreSetDate(date, toInteger(values.date))
   }
 
   if (values.hours != null) {

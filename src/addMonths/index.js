@@ -3,6 +3,12 @@ import toDate from '../toDate/index.js'
 import getDaysInMonth from '../getDaysInMonth/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+import coreSetMonth from '../_core/setMonth/index.js'
+import coreGetDate from '../_core/getDate/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name addMonths
  * @category Month Helpers
@@ -30,13 +36,13 @@ export default function addMonths(dirtyDate, dirtyAmount) {
 
   var date = toDate(dirtyDate)
   var amount = toInteger(dirtyAmount)
-  var desiredMonth = date.getMonth() + amount
+  var desiredMonth = coreGetMonth(date) + amount
   var dateWithDesiredMonth = new Date(0)
-  dateWithDesiredMonth.setFullYear(date.getFullYear(), desiredMonth, 1)
+  coreSetFullYear(dateWithDesiredMonth, coreGetFullYear(date), desiredMonth, 1)
   dateWithDesiredMonth.setHours(0, 0, 0, 0)
   var daysInMonth = getDaysInMonth(dateWithDesiredMonth)
   // Set the last day of the new month
   // if the original date was the last day of the longer month
-  date.setMonth(desiredMonth, Math.min(daysInMonth, date.getDate()))
+  coreSetMonth(date, desiredMonth, Math.min(daysInMonth, coreGetDate(date)))
   return date
 }

@@ -13,6 +13,11 @@ import toInteger from '../_lib/toInteger/index.js'
 import parsers from './_lib/parsers/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreSetFullYear from '../_core/setFullYear/index.js'
+import coreGetUTCMonth from '../_core/getUTCMonth/index.js'
+import coreGetUTCDate from '../_core/getUTCDate/index.js'
+import coreGetUTCFullYear from '../_core/getUTCFullYear/index.js'
+
 var TIMEZONE_UNIT_PRIORITY = 10
 
 // This RegExp consists of three parts separated by `|`:
@@ -478,9 +483,7 @@ export default function parse(
         }
         if (incompatibleToken) {
           throw new RangeError(
-            `The format string mustn't contain \`${
-              incompatibleToken.fullToken
-            }\` and \`${token}\` at the same time`
+            `The format string mustn't contain \`${incompatibleToken.fullToken}\` and \`${token}\` at the same time`
           )
         }
       } else if (parser.incompatibleTokens === '*' && usedTokens.length) {
@@ -604,10 +607,11 @@ function dateToSystemTimezone(date, flags) {
   }
 
   var convertedDate = new Date(0)
-  convertedDate.setFullYear(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate()
+  coreSetFullYear(
+    convertedDate,
+    coreGetUTCFullYear(date),
+    coreGetUTCMonth(date),
+    coreGetUTCDate(date)
   )
   convertedDate.setHours(
     date.getUTCHours(),
