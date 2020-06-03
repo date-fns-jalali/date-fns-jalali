@@ -1,6 +1,9 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+import coreSetMonth from '../_core/setMonth/index.js'
+
 /**
  * @name lastDayOfQuarter
  * @category Quarter Helpers
@@ -30,9 +33,9 @@ export default function lastDayOfQuarter(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var currentMonth = date.getMonth()
+  var currentMonth = coreGetMonth(date)
   var month = currentMonth - (currentMonth % 3) + 3
-  date.setMonth(month, 0)
+  coreSetMonth(date, month, 0)
   date.setHours(0, 0, 0, 0)
   return date
 }

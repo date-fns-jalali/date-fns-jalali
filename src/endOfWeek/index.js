@@ -2,6 +2,9 @@ import toDate from '../toDate/index.js'
 import toInteger from '../_lib/toInteger/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetDate from '../_core/getDate/index.js'
+import coreSetDate from '../_core/setDate/index.js'
+
 /**
  * @name endOfWeek
  * @category Week Helpers
@@ -57,7 +60,7 @@ export default function endOfWeek(dirtyDate, dirtyOptions) {
   var day = date.getDay()
   var diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn)
 
-  date.setDate(date.getDate() + diff)
+  coreSetDate(date, coreGetDate(date) + diff)
   date.setHours(23, 59, 59, 999)
   return date
 }

@@ -3,6 +3,9 @@ import toDate from '../toDate/index.js'
 import toInteger from '../_lib/toInteger/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetFullYear from '../_core/getFullYear/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name getWeekYear
  * @category Week-Numbering Year Helpers
@@ -50,7 +53,7 @@ export default function getWeekYear(dirtyDate, dirtyOptions) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var year = date.getFullYear()
+  var year = coreGetFullYear(date)
 
   var options = dirtyOptions || {}
   var locale = options.locale
@@ -73,12 +76,12 @@ export default function getWeekYear(dirtyDate, dirtyOptions) {
   }
 
   var firstWeekOfNextYear = new Date(0)
-  firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate)
+  coreSetFullYear(firstWeekOfNextYear, year + 1, 0, firstWeekContainsDate)
   firstWeekOfNextYear.setHours(0, 0, 0, 0)
   var startOfNextYear = startOfWeek(firstWeekOfNextYear, dirtyOptions)
 
   var firstWeekOfThisYear = new Date(0)
-  firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate)
+  coreSetFullYear(firstWeekOfThisYear, year, 0, firstWeekContainsDate)
   firstWeekOfThisYear.setHours(0, 0, 0, 0)
   var startOfThisYear = startOfWeek(firstWeekOfThisYear, dirtyOptions)
 
