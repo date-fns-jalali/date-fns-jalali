@@ -21,14 +21,19 @@
  * var result = startOfTomorrow()
  * //=> Tue Oct 7 2014 00:00:00
  */
+import coreGetMonth from '../_core/getMonth/index.js'
+
+import coreGetDate from '../_core/getDate/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
 export default function startOfTomorrow() {
   var now = new Date()
-  var year = now.getFullYear()
-  var month = now.getMonth()
-  var day = now.getDate()
+  var year = coreGetFullYear(now)
+  var month = coreGetMonth(now)
+  var day = coreGetDate(now)
 
   var date = new Date(0)
-  date.setFullYear(year, month, day + 1)
+  coreSetFullYear(date, year, month, day + 1)
   date.setHours(0, 0, 0, 0)
   return date
 }

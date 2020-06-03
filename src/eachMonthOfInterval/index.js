@@ -1,6 +1,10 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+import coreSetMonth from '../_core/setMonth/index.js'
+import coreSetDate from '../_core/setDate/index.js'
+
 /**
  * @name eachMonthOfInterval
  * @category Interval Helpers
@@ -49,11 +53,11 @@ export default function eachMonthOfInterval(dirtyInterval) {
 
   var currentDate = startDate
   currentDate.setHours(0, 0, 0, 0)
-  currentDate.setDate(1)
+  coreSetDate(currentDate, 1)
 
   while (currentDate.getTime() <= endTime) {
     dates.push(toDate(currentDate))
-    currentDate.setMonth(currentDate.getMonth() + 1)
+    coreSetMonth(currentDate, coreGetMonth(currentDate) + 1)
   }
 
   return dates
