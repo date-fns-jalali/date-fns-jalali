@@ -142,6 +142,7 @@ describe('setDay', function() {
     var block = setDay.bind(
       null,
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      // $ExpectedMistake
       0,
       {
         weekStartsOn: NaN
