@@ -30,6 +30,7 @@ describe('addQuarters', function() {
     // $ExpectedMistake
     var result = addQuarters(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      // $ExpectedMistake
       '1'
     )
     assert.deepEqual(result, /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1))

@@ -85,6 +85,7 @@ describe('setWeek', function() {
     var block = setWeek.bind(
       null,
       /* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7),
+      // $ExpectedMistake
       53,
       {
         weekStartsOn: NaN
@@ -98,6 +99,7 @@ describe('setWeek', function() {
     var block = setWeek.bind(
       null,
       /* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7),
+      // $ExpectedMistake
       53,
       {
         firstWeekContainsDate: NaN

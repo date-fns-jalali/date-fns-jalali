@@ -42,6 +42,7 @@ describe('addHours', function() {
     // $ExpectedMistake
     var result = addHours(
       /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 23, 0),
+      // $ExpectedMistake
       '2'
     )
     assert.deepEqual(

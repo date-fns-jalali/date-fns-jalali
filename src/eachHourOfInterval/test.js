@@ -126,6 +126,7 @@ describe('eachHourOfInterval', () => {
     it('throws TypeError error if `options.step` is NaN', () => {
       // $ExpectedMistake
       assert.throws(
+        // $ExpectedMistake
         () => eachHourOfInterval(interval, { step: 'w' }),
         stepError
       )

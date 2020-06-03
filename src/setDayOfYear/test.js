@@ -30,6 +30,7 @@ describe('setDayOfYear', function() {
     // $ExpectedMistake
     var result = setDayOfYear(
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2),
+      // $ExpectedMistake
       '2'
     )
     assert.deepEqual(result, /* 1393/1/2 */ new Date(2014, 2 /* Mar */, 22))
