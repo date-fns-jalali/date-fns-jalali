@@ -138,7 +138,9 @@ describe('formatRelative', function() {
       // $ExpectedMistake
       var block = formatRelative.bind(
         null,
+        // $ExpectedMistake
         /* 1395/10/12 */ new Date(2017, 0, 1),
+        // $ExpectedMistake
         baseDate,
         {
           locale: customLocale
@@ -177,6 +179,7 @@ describe('formatRelative', function() {
       var block = formatRelative.bind(
         null,
         /* 1395/10/12 */ new Date(2017, 0, 1),
+        // $ExpectedMistake
         baseDate,
         {
           locale: customLocale
