@@ -58,6 +58,7 @@ describe('getWeekYear', function() {
     // $ExpectedMistake
     var block = getWeekYear.bind(
       null,
+      // $ExpectedMistake
       /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
       {
         weekStartsOn: NaN
@@ -70,6 +71,7 @@ describe('getWeekYear', function() {
     // $ExpectedMistake
     var block = getWeekYear.bind(
       null,
+      // $ExpectedMistake
       /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
       {
         firstWeekContainsDate: NaN

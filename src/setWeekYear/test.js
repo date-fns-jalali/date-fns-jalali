@@ -33,6 +33,7 @@ describe('setWeekYear', function() {
     // $ExpectedMistake
     var result = setWeekYear(
       /* 1388/1/2 */ new Date(2009, 2 /* Mar */, 22),
+      // $ExpectedMistake
       '1382'
     )
     assert.deepEqual(result, /* 1381/12/25 */ new Date(2003, 2 /* Mar */, 16))
@@ -106,6 +107,7 @@ describe('setWeekYear', function() {
     var block = setWeekYear.bind(
       null,
       /* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7),
+      // $ExpectedMistake
       2018,
       {
         weekStartsOn: NaN
@@ -119,6 +121,7 @@ describe('setWeekYear', function() {
     var block = setWeekYear.bind(
       null,
       /* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7),
+      // $ExpectedMistake
       2018,
       {
         firstWeekContainsDate: NaN

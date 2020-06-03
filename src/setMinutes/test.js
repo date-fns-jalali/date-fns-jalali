@@ -42,6 +42,7 @@ describe('setMinutes', function() {
     // $ExpectedMistake
     var result = setMinutes(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40),
+      // $ExpectedMistake
       '45'
     )
     assert.deepEqual(

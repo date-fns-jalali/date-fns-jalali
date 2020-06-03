@@ -766,6 +766,7 @@ describe('format', function() {
     var block = format.bind(
       null,
       /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
+      // $ExpectedMistake
       'yyyy',
       {
         weekStartsOn: NaN
