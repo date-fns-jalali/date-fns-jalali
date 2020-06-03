@@ -42,6 +42,7 @@ describe('subSeconds', function() {
     // $ExpectedMistake
     var result = subSeconds(
       /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0),
+      // $ExpectedMistake
       '30'
     )
     assert.deepEqual(
