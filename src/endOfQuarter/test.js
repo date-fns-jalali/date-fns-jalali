@@ -6,21 +6,37 @@ import endOfQuarter from '.'
 
 describe('endOfQuarter', function() {
   it('returns the date with the time set to 23:59:59.999 and the date set to the last day of a quarter', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     var result = endOfQuarter(date)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999))
+    assert.deepEqual(
+      result,
+      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999)
+    )
   })
 
   it('accepts a timestamp', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime()
+    var date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+      0
+    ).getTime()
     var result = endOfQuarter(date)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999))
+    assert.deepEqual(
+      result,
+      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999)
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    var date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     endOfQuarter(date)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 2, 11, 55, 0))
+    assert.deepEqual(
+      date,
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {

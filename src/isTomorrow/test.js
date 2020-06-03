@@ -8,7 +8,9 @@ import isTomorrow from '.'
 describe('isTomorrow', () => {
   let clock
   beforeEach(() => {
-    clock = sinon.useFakeTimers(new Date(2014, 8 /* Aug */, 25).getTime())
+    clock = sinon.useFakeTimers(
+      /* 1393/7/3 */ new Date(2014, 8 /* Aug */, 25).getTime()
+    )
   })
 
   afterEach(() => {
@@ -16,17 +18,19 @@ describe('isTomorrow', () => {
   })
 
   it('returns true if the given date is tomorrow', () => {
-    const result = isTomorrow(new Date(2014, 8 /* Sep */, 26))
+    const result = isTomorrow(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26))
     assert(result === true)
   })
 
   it('returns false if the given date is not tomorrow', () => {
-    const result = isTomorrow(new Date(2014, 8 /* Sep */, 25))
+    const result = isTomorrow(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25))
     assert(result === false)
   })
 
   it('accepts a timestamp', () => {
-    const result = isTomorrow(new Date(2014, 8 /* Sep */, 26).getTime())
+    const result = isTomorrow(
+      /* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26).getTime()
+    )
     assert(result === true)
   })
 

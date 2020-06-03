@@ -5,29 +5,32 @@ import assert from 'power-assert'
 import formatRelative from '.'
 
 describe('formatRelative', function() {
-  var baseDate = new Date(1986, 3 /* Apr */, 4, 10, 32, 0, 900)
+  var baseDate = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 32, 0, 900)
 
   it('accepts a timestamp', function() {
-    var date = new Date(2014, 3 /* Apr */, 4)
+    var date = /* 1393/1/15 */ new Date(2014, 3 /* Apr */, 4)
     assert(formatRelative(date.getTime(), baseDate.getTime()) === '04/04/2014')
   })
 
   it('before the last week', function() {
     var result = formatRelative(
-      new Date(1986, 2 /* Mar */, 28, 16, 50),
+      /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50),
       baseDate
     )
     assert(result === '03/28/1986')
   })
 
   it('last week', function() {
-    var result = formatRelative(new Date(1986, 3 /* Apr */, 1), baseDate)
+    var result = formatRelative(
+      /* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1),
+      baseDate
+    )
     assert(result === 'last Tuesday at 12:00 AM')
   })
 
   it('yesterday', function() {
     var result = formatRelative(
-      new Date(1986, 3 /* Apr */, 3, 22, 22),
+      /* 1365/1/14 */ new Date(1986, 3 /* Apr */, 3, 22, 22),
       baseDate
     )
     assert(result === 'yesterday at 10:22 PM')
@@ -35,25 +38,31 @@ describe('formatRelative', function() {
 
   it('today', function() {
     var result = formatRelative(
-      new Date(1986, 3 /* Apr */, 4, 16, 50),
+      /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 16, 50),
       baseDate
     )
     assert(result === 'today at 4:50 PM')
   })
 
   it('tomorrow', function() {
-    var result = formatRelative(new Date(1986, 3 /* Apr */, 5, 7, 30), baseDate)
+    var result = formatRelative(
+      /* 1365/1/16 */ new Date(1986, 3 /* Apr */, 5, 7, 30),
+      baseDate
+    )
     assert(result === 'tomorrow at 7:30 AM')
   })
 
   it('next week', function() {
-    var result = formatRelative(new Date(1986, 3 /* Apr */, 6, 12, 0), baseDate)
+    var result = formatRelative(
+      /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 12, 0),
+      baseDate
+    )
     assert(result === 'Sunday at 12:00 PM')
   })
 
   it('after the next week', function() {
     var result = formatRelative(
-      new Date(1986, 3 /* Apr */, 11, 16, 50),
+      /* 1365/1/22 */ new Date(1986, 3 /* Apr */, 11, 16, 50),
       baseDate
     )
     assert(result === '04/11/1986')
@@ -71,7 +80,7 @@ describe('formatRelative', function() {
       assert.throws(
         formatRelative.bind(
           null,
-          new Date(2017, 0 /* Jan */, 1),
+          /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
           new Date(NaN)
         ),
         RangeError
@@ -111,7 +120,7 @@ describe('formatRelative', function() {
         }
       }
       var result = formatRelative(
-        new Date(1986, 2 /* Mar */, 28, 16, 50),
+        /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50),
         baseDate,
         // $ExpectedMistake
         { locale: customLocale }
@@ -127,9 +136,14 @@ describe('formatRelative', function() {
         }
       }
       // $ExpectedMistake
-      var block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
-      })
+      var block = formatRelative.bind(
+        null,
+        /* 1395/10/12 */ new Date(2017, 0, 1),
+        baseDate,
+        {
+          locale: customLocale
+        }
+      )
       assert.throws(block, RangeError)
     })
 
@@ -142,9 +156,14 @@ describe('formatRelative', function() {
         }
       }
       // $ExpectedMistake
-      var block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
-      })
+      var block = formatRelative.bind(
+        null,
+        /* 1395/10/12 */ new Date(2017, 0, 1),
+        baseDate,
+        {
+          locale: customLocale
+        }
+      )
       assert.throws(block, RangeError)
     })
 
@@ -155,9 +174,14 @@ describe('formatRelative', function() {
         formatLong: {}
       }
       // $ExpectedMistake
-      var block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
-      })
+      var block = formatRelative.bind(
+        null,
+        /* 1395/10/12 */ new Date(2017, 0, 1),
+        baseDate,
+        {
+          locale: customLocale
+        }
+      )
       assert.throws(block, RangeError)
     })
   })

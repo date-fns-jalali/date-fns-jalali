@@ -6,21 +6,38 @@ import startOfSecond from '.'
 
 describe('startOfSecond', function() {
   it('returns the date with the time set to the first millisecond of a second', function() {
-    var date = new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
+    var date = /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
     var result = startOfSecond(date)
-    assert.deepEqual(result, new Date(2014, 11 /* Dec */, 1, 22, 15, 45))
+    assert.deepEqual(
+      result,
+      /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15, 45)
+    )
   })
 
   it('accepts a timestamp', function() {
-    var date = new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400).getTime()
+    var date = /* 1393/9/10 */ new Date(
+      2014,
+      11 /* Dec */,
+      1,
+      22,
+      15,
+      45,
+      400
+    ).getTime()
     var result = startOfSecond(date)
-    assert.deepEqual(result, new Date(2014, 11 /* Dec */, 1, 22, 15, 45))
+    assert.deepEqual(
+      result,
+      /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15, 45)
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
+    var date = /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
     startOfSecond(date)
-    assert.deepEqual(date, new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400))
+    assert.deepEqual(
+      date,
+      /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {

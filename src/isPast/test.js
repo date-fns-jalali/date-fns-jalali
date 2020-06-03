@@ -8,7 +8,9 @@ import isPast from '.'
 describe('isPast', () => {
   let clock
   beforeEach(() => {
-    clock = sinon.useFakeTimers(new Date(2014, 8 /* Sep */, 25).getTime())
+    clock = sinon.useFakeTimers(
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime()
+    )
   })
 
   afterEach(() => {
@@ -16,22 +18,24 @@ describe('isPast', () => {
   })
 
   it('returns true if the given date is in the past', () => {
-    const result = isPast(new Date(2014, 6 /* Jul */, 2))
+    const result = isPast(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2))
     assert(result === true)
   })
 
   it('returns false if the given date is in the future', () => {
-    const result = isPast(new Date(2014, 11 /* Dec */, 31))
+    const result = isPast(/* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31))
     assert(result === false)
   })
 
   it('returns false if the given date is now', () => {
-    const result = isPast(new Date(2014, 8 /* Sep */, 25))
+    const result = isPast(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25))
     assert(result === false)
   })
 
   it('accepts a timestamp', () => {
-    const result = isPast(new Date(2014, 6 /* Jul */, 2).getTime())
+    const result = isPast(
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime()
+    )
     assert(result === true)
   })
 

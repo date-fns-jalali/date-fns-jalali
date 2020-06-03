@@ -82,14 +82,14 @@ describe('parseJSON', function() {
   })
 
   it('clones a date object', () => {
-    const date = new Date(2000, 2, 15, 5, 20, 10, 20)
+    const date = /* 1378/12/25 */ new Date(2000, 2, 15, 5, 20, 10, 20)
     const parsedDate = parseJSON(date)
     assert.deepEqual(parsedDate, date)
     assert.notEqual(parsedDate, date)
   })
 
   it('assumes a number is a timestamp', () => {
-    const date = new Date(2000, 2, 15, 5, 20, 10, 20)
+    const date = /* 1378/12/25 */ new Date(2000, 2, 15, 5, 20, 10, 20)
     const timestamp = date.getTime()
     const parsedDate = parseJSON(timestamp)
     assert.deepEqual(parsedDate, date)
