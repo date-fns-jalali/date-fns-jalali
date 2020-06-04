@@ -3,7 +3,7 @@ import compareAsc from '../compareAsc/index.js'
 import toDate from '../toDate/index.js'
 import differenceInSeconds from '../differenceInSeconds/index.js'
 import cloneObject from '../_lib/cloneObject/index.js'
-import defaultLocale from '../locale/en-US/index.js'
+import defaultLocale from '../locale/fa-jalali-IR/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
 var MINUTES_IN_DAY = 1440

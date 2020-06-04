@@ -1,6 +1,9 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetDate from '../_core/getDate/index.js'
+import coreSetDate from '../_core/setDate/index.js'
+
 /**
  * @name eachDayOfInterval
  * @category Interval Helpers
@@ -87,7 +90,7 @@ export default function eachDayOfInterval(dirtyInterval, options) {
 
   while (currentDate.getTime() <= endTime) {
     dates.push(toDate(currentDate))
-    currentDate.setDate(currentDate.getDate() + step)
+    coreSetDate(currentDate, coreGetDate(currentDate) + step)
     currentDate.setHours(0, 0, 0, 0)
   }
 

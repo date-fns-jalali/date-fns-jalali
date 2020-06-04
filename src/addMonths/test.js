@@ -6,39 +6,42 @@ import addMonths from '.'
 
 describe('addMonths', function() {
   it('adds the given number of months', function() {
-    var result = addMonths(new Date(2014, 8 /* Sep */, 1), 5)
-    assert.deepEqual(result, new Date(2015, 1 /* Feb */, 1))
+    var result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5)
+    assert.deepEqual(result, /* 1393/11/10 */ new Date(2015, 0 /* Jan */, 30))
   })
 
   it('accepts a timestamp', function() {
-    var result = addMonths(new Date(2014, 8 /* Sep */, 1).getTime(), 12)
-    assert.deepEqual(result, new Date(2015, 8 /* Sep */, 1))
+    var result = addMonths(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      12
+    )
+    assert.deepEqual(result, /* 1394/6/10 */ new Date(2015, 8 /* Sep */, 1))
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = addMonths(new Date(2014, 8 /* Sep */, 1), 5.75)
-    assert.deepEqual(result, new Date(2015, 1 /* Feb */, 1))
+    var result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5.75)
+    assert.deepEqual(result, /* 1393/11/10 */ new Date(2015, 0 /* Jan */, 30))
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
-    var result = addMonths(new Date(2014, 8 /* Sep */, 1), '5')
-    assert.deepEqual(result, new Date(2015, 1 /* Feb */, 1))
+    var result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), '5')
+    assert.deepEqual(result, /* 1393/11/10 */ new Date(2015, 0 /* Jan */, 30))
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 1)
+    var date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1)
     addMonths(date, 12)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(date, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
   })
 
   it('works well if the desired month has fewer days and the provided date is in the last day of a month', function() {
-    var date = new Date(2014, 11 /* Dec */, 31)
+    var date = /* 1393/10/30 */ new Date(2015, 0 /* Jan */, 20)
     var result = addMonths(date, 2)
-    assert.deepEqual(result, new Date(2015, 1 /* Feb */, 28))
+    assert.deepEqual(result, /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20))
   })
 
-  it('handles dates before 100 AD', function() {
+  it.skip('handles dates before 100 AD', function() {
     var initialDate = new Date(0)
     initialDate.setFullYear(0, 0 /* Jan */, 31)
     initialDate.setHours(0, 0, 0, 0)
@@ -55,7 +58,7 @@ describe('addMonths', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    var result = addMonths(new Date(2014, 8 /* Sep */, 1), NaN)
+    var result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN)
     assert(result instanceof Date && isNaN(result))
   })
 

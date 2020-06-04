@@ -5,28 +5,28 @@ import assert from 'power-assert'
 import lightFormat from '.'
 
 describe('lightFormat', () => {
-  const date = new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123)
+  const date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123)
 
   it('accepts a timestamp', () => {
-    var date = new Date(2014, 3, 4).getTime()
-    assert(lightFormat(date, 'yyyy-MM-dd') === '2014-04-04')
+    var date = /* 1393/1/15 */ new Date(2014, 3, 4).getTime()
+    assert(lightFormat(date, 'yyyy-MM-dd') === '1393-01-15')
   })
 
   it('escapes characters between the single quote characters', () => {
     var result = lightFormat(date, "'yyyy-'MM-dd'D yyyy-'MM-dd'")
-    assert(result === 'yyyy-04-04D yyyy-04-04')
+    assert(result === 'yyyy-01-15D yyyy-01-15')
   })
 
   it('two single quote characters are transformed into a "real" single quote', () => {
-    var date = new Date(2014, 3, 4, 5)
+    var date = /* 1393/1/15 */ new Date(2014, 3, 4, 5)
     assert(lightFormat(date, "''h 'o''clock'''") === "'5 o'clock'")
   })
 
   it('accepts new line charactor', function() {
-    var date = new Date(2014, 3, 4, 5)
+    var date = /* 1393/1/15 */ new Date(2014, 3, 4, 5)
     assert.equal(
       lightFormat(date, "yyyy-MM-dd'\n'HH:mm:ss"),
-      '2014-04-04\n05:00:00'
+      '1393-01-15\n05:00:00'
     )
   })
 
@@ -34,19 +34,19 @@ describe('lightFormat', () => {
     describe('regular year', () => {
       it('works as expected', () => {
         var result = lightFormat(date, 'y yy yyy yyyy yyyyy')
-        assert(result === '1986 86 1986 1986 01986')
+        assert(result === '1365 65 1365 1365 01365')
       })
 
       it('1 BC formats as 1', () => {
-        var date = new Date(0, 0 /* Jan */, 1)
-        date.setFullYear(0)
+        var date = /* 1/10/10 */ new Date(623, 0 /* Jan */, 1)
+
         var result = lightFormat(date, 'y')
         assert(result === '1')
       })
 
       it('2 BC formats as 2', () => {
-        var date = new Date(0, 0 /* Jan */, 1)
-        date.setFullYear(-1)
+        var date = /* 2/10/10 */ new Date(624, 0 /* Jan */, 1)
+
         var result = lightFormat(date, 'y')
         assert(result === '2')
       })
@@ -56,21 +56,21 @@ describe('lightFormat', () => {
   describe('month', () => {
     it('formatting month', () => {
       var result = lightFormat(date, 'M MM')
-      assert(result === '4 04')
+      assert(result === '1 01')
     })
   })
 
   describe('day', () => {
     it('date', () => {
       var result = lightFormat(date, 'd dd')
-      assert(result === '4 04')
+      assert(result === '15 15')
     })
   })
 
   describe('hour', () => {
     it('hour [1-12]', () => {
       var result = lightFormat(
-        new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         'h hh'
       )
       assert(result === '12 12')
@@ -78,7 +78,7 @@ describe('lightFormat', () => {
 
     it('hour [0-23]', () => {
       var result = lightFormat(
-        new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         'H HH'
       )
       assert(result === '0 00')
@@ -87,19 +87,19 @@ describe('lightFormat', () => {
     describe('AM, PM', () => {
       it('works as expected', () => {
         var result = lightFormat(
-          new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+          /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
           'a aa aaa aaaa aaaaa'
         )
         assert(result === 'AM AM AM a.m. a')
       })
 
       it('12 PM', () => {
-        var date = new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
+        var date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
         assert(lightFormat(date, 'h H a') === '12 12 PM')
       })
 
       it('12 AM', () => {
-        var date = new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
+        var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
         assert(lightFormat(date, 'h H a') === '12 0 AM')
       })
     })
@@ -133,10 +133,10 @@ describe('lightFormat', () => {
     // eslint-disable-next-line no-new-wrappers
     var formatString = new String('yyyy-MM-dd')
 
-    var date = new Date(2014, 3, 4)
+    var date = /* 1393/1/15 */ new Date(2014, 3, 4)
 
     // $ExpectedMistake
-    assert(lightFormat(date, formatString) === '2014-04-04')
+    assert(lightFormat(date, formatString) === '1393-01-15')
   })
 
   it('throws RangeError exception if the format string contains an unescaped latin alphabet character', function() {

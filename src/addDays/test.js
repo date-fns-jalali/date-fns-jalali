@@ -6,30 +6,33 @@ import addDays from '.'
 
 describe('addDays', function() {
   it('adds the given number of days', function() {
-    var result = addDays(new Date(2014, 8 /* Sep */, 1), 10)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 11))
+    var result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 10)
+    assert.deepEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('accepts a timestamp', function() {
-    var result = addDays(new Date(2014, 8 /* Sep */, 1).getTime(), 10)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 11))
+    var result = addDays(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      10
+    )
+    assert.deepEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = addDays(new Date(2014, 8 /* Sep */, 1), 10.5)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 11))
+    var result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 10.5)
+    assert.deepEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
-    var result = addDays(new Date(2014, 8 /* Sep */, 1), '10')
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 11))
+    var result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), '10')
+    assert.deepEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 1)
+    var date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1)
     addDays(date, 11)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(date, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {
@@ -38,7 +41,7 @@ describe('addDays', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    var result = addDays(new Date(2014, 8 /* Sep */, 1), NaN)
+    var result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN)
     assert(result instanceof Date && isNaN(result))
   })
 

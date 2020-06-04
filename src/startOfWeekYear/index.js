@@ -3,6 +3,8 @@ import startOfWeek from '../startOfWeek/index.js'
 import toInteger from '../_lib/toInteger/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name startOfWeekYear
  * @category Week-Numbering Year Helpers
@@ -64,7 +66,7 @@ export default function startOfWeekYear(dirtyDate, dirtyOptions) {
 
   var year = getWeekYear(dirtyDate, dirtyOptions)
   var firstWeek = new Date(0)
-  firstWeek.setFullYear(year, 0, firstWeekContainsDate)
+  coreSetFullYear(firstWeek, year, 0, firstWeekContainsDate)
   firstWeek.setHours(0, 0, 0, 0)
   var date = startOfWeek(firstWeek, dirtyOptions)
   return date
