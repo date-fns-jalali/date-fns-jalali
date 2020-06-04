@@ -1,13 +1,11 @@
-<p align="center">
-  <a href="https://date-fns.org/">
-    <img alt="date-fns" title="date-fns" src="https://raw.githubusercontent.com/date-fns/date-fns/master/docs/logotype.svg" width="300" />
-  </a>
-</p>
+[![date-fns-jalali](docs/logotype.svg)](https://date-fns.org/)
 
 <p align="center">
-  <b>date-fns</b> provides the most comprehensive, yet simple and consistent toolset
+  <b>date-fns-jalali</b> provides the most comprehensive, yet simple and consistent toolset
   <br>
   for manipulating <b>JavaScript dates</b> in <b>a browser</b> & <b>Node.js</b>.</b>
+  <br>
+  for <b>jalali calendar</b>
 </p>
 
 <div align="center">
@@ -26,11 +24,13 @@
 - **I18n**: Dozens of locales. Include only what you need.
 - [and many more benefits](https://date-fns.org/)
 
+**date-fns-jalali** provides **date-fns** toolset for [jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar)
+
 ```js
-import { compareAsc, format } from 'date-fns'
+import { compareAsc, format } from 'date-fns-jalali'
 
 format(new Date(2014, 1, 11), 'yyyy-MM-dd')
-//=> '2014-02-11'
+//=> '1392-11-22'
 
 const dates = [
   new Date(1995, 6, 2),
@@ -45,13 +45,13 @@ dates.sort(compareAsc)
 // ]
 ```
 
-The library is available as an [npm package](https://www.npmjs.com/package/date-fns).
+The library is available as an [npm package](https://www.npmjs.com/package/date-fns-jalali).
 To install the package run:
 
 ```bash
-npm install date-fns --save
+npm install date-fns-jalali --save
 # or with yarn
-yarn add date-fns
+yarn add date-fns-jalali
 ```
 
 ## Docs
@@ -64,4 +64,4 @@ and other docs.
 
 ## License
 
-[MIT © Sasha Koss](https://kossnocorp.mit-license.org/)
+MIT
