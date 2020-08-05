@@ -3,6 +3,9 @@ import toDate from '../toDate/index.js'
 import toInteger from '../_lib/toInteger/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetDate from '../_core/getDate/index.js'
+import coreSetDate from '../_core/setDate/index.js'
+
 /**
  * @name addBusinessDays
  * @category Day Helpers
@@ -33,14 +36,14 @@ export default function addBusinessDays(dirtyDate, dirtyAmount) {
   const sign = amount < 0 ? -1 : 1
   const fullWeeks = toInteger(amount / 5)
 
-  date.setDate(date.getDate() + fullWeeks * 7)
+  coreSetDate(date, coreGetDate(date) + fullWeeks * 7)
 
   // Get remaining days not part of a full week
   let restDays = Math.abs(amount % 5)
 
   // Loops over remaining days
   while (restDays > 0) {
-    date.setDate(date.getDate() + sign)
+    coreSetDate(date, coreGetDate(date) + sign)
     if (!isWeekend(date)) restDays -= 1
   }
 

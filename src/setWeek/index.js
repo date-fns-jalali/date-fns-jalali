@@ -3,6 +3,9 @@ import toDate from '../toDate/index.js'
 import toInteger from '../_lib/toInteger/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetDate from '../_core/getDate/index.js'
+import coreSetDate from '../_core/setDate/index.js'
+
 /**
  * @name setWeek
  * @category Week Helpers
@@ -53,6 +56,6 @@ export default function setWeek(dirtyDate, dirtyWeek, dirtyOptions) {
   var date = toDate(dirtyDate)
   var week = toInteger(dirtyWeek)
   var diff = getWeek(date, dirtyOptions) - week
-  date.setDate(date.getDate() - diff * 7)
+  coreSetDate(date, coreGetDate(date) - diff * 7)
   return date
 }

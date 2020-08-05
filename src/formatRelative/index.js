@@ -1,6 +1,6 @@
 import differenceInCalendarDays from '../differenceInCalendarDays/index.js'
 import format from '../format/index.js'
-import defaultLocale from '../locale/en-US/index.js'
+import defaultLocale from '../locale/fa-jalali-IR/index.js'
 import subMilliseconds from '../subMilliseconds/index.js'
 import toDate from '../toDate/index.js'
 import getTimezoneOffsetInMilliseconds from '../_lib/getTimezoneOffsetInMilliseconds/index.js'
