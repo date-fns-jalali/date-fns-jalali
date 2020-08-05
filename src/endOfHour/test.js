@@ -6,20 +6,28 @@ import endOfHour from '.'
 
 describe('endOfHour', function() {
   it('returns the date with the time set to the last millisecond before an hour ends', function() {
-    var date = new Date(2014, 11, 1, 22, 15)
+    var date = /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15)
     var result = endOfHour(date)
-    assert.deepEqual(result, new Date(2014, 11, 1, 22, 59, 59, 999))
+    assert.deepEqual(
+      result,
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 59, 59, 999)
+    )
   })
 
   it('accepts a timestamp', function() {
-    var result = endOfHour(new Date(2014, 11, 1, 22, 15).getTime())
-    assert.deepEqual(result, new Date(2014, 11, 1, 22, 59, 59, 999))
+    var result = endOfHour(
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15).getTime()
+    )
+    assert.deepEqual(
+      result,
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 59, 59, 999)
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 11, 1, 22, 15)
+    var date = /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15)
     endOfHour(date)
-    assert.deepEqual(date, new Date(2014, 11, 1, 22, 15))
+    assert.deepEqual(date, /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15))
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {

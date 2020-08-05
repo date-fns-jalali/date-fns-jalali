@@ -6,12 +6,16 @@ import getUTCWeekYear from '.'
 
 describe('getUTCWeekYear', function() {
   it('returns the local week-numbering year of the given date', function() {
-    var result = getUTCWeekYear(new Date(Date.UTC(2004, 11 /* Dec */, 26)))
+    var result = getUTCWeekYear(
+      new Date(/* 1383/10/6 */ Date.UTC(2004, 11 /* Dec */, 26))
+    )
     assert(result === 2005)
   })
 
   it('accepts a timestamp', function() {
-    var result = getUTCWeekYear(Date.UTC(2000, 11 /* Dec */, 30))
+    var result = getUTCWeekYear(
+      /* 1379/10/10 */ Date.UTC(2000, 11 /* Dec */, 30)
+    )
     assert(result === 2000)
   })
 
@@ -29,7 +33,7 @@ describe('getUTCWeekYear', function() {
   })
 
   it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale', function() {
-    var date = new Date(Date.UTC(2004, 11 /* Dec */, 26))
+    var date = new Date(/* 1383/10/6 */ Date.UTC(2004, 11 /* Dec */, 26))
     var result = getUTCWeekYear(date, {
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 }
@@ -39,7 +43,7 @@ describe('getUTCWeekYear', function() {
   })
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', function() {
-    var date = new Date(Date.UTC(2004, 11 /* Dec */, 26))
+    var date = new Date(/* 1383/10/6 */ Date.UTC(2004, 11 /* Dec */, 26))
     var result = getUTCWeekYear(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
@@ -51,16 +55,24 @@ describe('getUTCWeekYear', function() {
   })
 
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', function() {
-    var block = getUTCWeekYear.bind(null, new Date(2007, 11 /* Dec */, 31), {
-      weekStartsOn: NaN
-    })
+    var block = getUTCWeekYear.bind(
+      null,
+      /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
+      {
+        weekStartsOn: NaN
+      }
+    )
     assert.throws(block, RangeError)
   })
 
   it('throws `RangeError` if `options.firstWeekContainsDate` is not convertable to 1, 2, ..., 7 or undefined', function() {
-    var block = getUTCWeekYear.bind(null, new Date(2007, 11 /* Dec */, 31), {
-      firstWeekContainsDate: NaN
-    })
+    var block = getUTCWeekYear.bind(
+      null,
+      /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
+      {
+        firstWeekContainsDate: NaN
+      }
+    )
     assert.throws(block, RangeError)
   })
 

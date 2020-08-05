@@ -6,25 +6,32 @@ import startOfUTCWeekYear from '.'
 
 describe('startOfUTCWeekYear', function() {
   it('returns the date with the time set to 00:00:00 and the date set to the first day of a week year', function() {
-    var result = startOfUTCWeekYear(new Date(Date.UTC(2005, 6 /* Jul */, 2)))
+    var result = startOfUTCWeekYear(
+      new Date(/* 1384/4/11 */ Date.UTC(2005, 6 /* Jul */, 2))
+    )
     assert.deepEqual(
       result,
-      new Date(Date.UTC(2004, 11 /* Dec */, 26, 0, 0, 0, 0))
+      new Date(/* 1383/10/6 */ Date.UTC(2004, 11 /* Dec */, 26, 0, 0, 0, 0))
     )
   })
 
   it('accepts a timestamp', function() {
-    var result = startOfUTCWeekYear(Date.UTC(2005, 0 /* Jan */, 1, 6, 0))
+    var result = startOfUTCWeekYear(
+      /* 1383/10/12 */ Date.UTC(2005, 0 /* Jan */, 1, 6, 0)
+    )
     assert.deepEqual(
       result,
-      new Date(Date.UTC(2004, 11 /* Dec */, 26, 0, 0, 0, 0))
+      new Date(/* 1383/10/6 */ Date.UTC(2004, 11 /* Dec */, 26, 0, 0, 0, 0))
     )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(Date.UTC(2014, 6 /* Jul */, 2))
+    var date = new Date(/* 1393/4/11 */ Date.UTC(2014, 6 /* Jul */, 2))
     startOfUTCWeekYear(date)
-    assert.deepEqual(date, new Date(Date.UTC(2014, 6 /* Jul */, 2)))
+    assert.deepEqual(
+      date,
+      new Date(/* 1393/4/11 */ Date.UTC(2014, 6 /* Jul */, 2))
+    )
   })
 
   it('handles dates before 100 AD', function() {
@@ -44,7 +51,7 @@ describe('startOfUTCWeekYear', function() {
   })
 
   it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale', function() {
-    var date = new Date(Date.UTC(2005, 6 /* Jul */, 2))
+    var date = new Date(/* 1384/4/11 */ Date.UTC(2005, 6 /* Jul */, 2))
     var result = startOfUTCWeekYear(date, {
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 }
@@ -52,12 +59,12 @@ describe('startOfUTCWeekYear', function() {
     })
     assert.deepEqual(
       result,
-      new Date(Date.UTC(2005, 0 /* Jan */, 3, 0, 0, 0, 0))
+      new Date(/* 1383/10/14 */ Date.UTC(2005, 0 /* Jan */, 3, 0, 0, 0, 0))
     )
   })
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', function() {
-    var date = new Date(2005, 6 /* Jul */, 2)
+    var date = /* 1384/4/11 */ new Date(2005, 6 /* Jul */, 2)
     var result = startOfUTCWeekYear(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
@@ -67,14 +74,14 @@ describe('startOfUTCWeekYear', function() {
     })
     assert.deepEqual(
       result,
-      new Date(Date.UTC(2005, 0 /* Jan */, 3, 0, 0, 0, 0))
+      new Date(/* 1383/10/14 */ Date.UTC(2005, 0 /* Jan */, 3, 0, 0, 0, 0))
     )
   })
 
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', function() {
     var block = startOfUTCWeekYear.bind(
       null,
-      new Date(2007, 11 /* Dec */, 31),
+      /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
       { weekStartsOn: NaN }
     )
     assert.throws(block, RangeError)
@@ -83,7 +90,7 @@ describe('startOfUTCWeekYear', function() {
   it('throws `RangeError` if `options.firstWeekContainsDate` is not convertable to 1, 2, ..., 7 or undefined', function() {
     var block = startOfUTCWeekYear.bind(
       null,
-      new Date(2007, 11 /* Dec */, 31),
+      /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
       { firstWeekContainsDate: NaN }
     )
     assert.throws(block, RangeError)
