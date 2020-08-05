@@ -2,6 +2,12 @@ import toInteger from '../_lib/toInteger/index.js'
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+import coreSetMonth from '../_core/setMonth/index.js'
+import coreGetDate from '../_core/getDate/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name addMonths
  * @category Month Helpers
@@ -36,7 +42,7 @@ export default function addMonths(dirtyDate, dirtyAmount) {
     // If 0 months, no-op to avoid changing times in the hour before end of DST
     return date
   }
-  var dayOfMonth = date.getDate()
+  var dayOfMonth = coreGetDate(date)
 
   // The JS Date object supports date math by accepting out-of-bounds values for
   // month, day, etc. For example, new Date(2020, 1, 0) returns 31 Dec 2019 and
@@ -47,8 +53,8 @@ export default function addMonths(dirtyDate, dirtyAmount) {
   // month and using a date of 0 to back up one day to the end of the desired
   // month.
   var endOfDesiredMonth = new Date(date.getTime())
-  endOfDesiredMonth.setMonth(date.getMonth() + amount + 1, 0)
-  var daysInMonth = endOfDesiredMonth.getDate()
+  coreSetMonth(endOfDesiredMonth, coreGetMonth(date) + amount + 1, 0)
+  var daysInMonth = coreGetDate(endOfDesiredMonth)
   if (dayOfMonth >= daysInMonth) {
     // If we're already at the end of the month, then this is the correct date
     // and we're done.
@@ -61,9 +67,10 @@ export default function addMonths(dirtyDate, dirtyAmount) {
     // the last day of the month and its local time was in the hour skipped or
     // repeated next to a DST transition.  So we use `date` instead which is
     // guaranteed to still have the original time.
-    date.setFullYear(
-      endOfDesiredMonth.getFullYear(),
-      endOfDesiredMonth.getMonth(),
+    coreSetFullYear(
+      date,
+      coreGetFullYear(endOfDesiredMonth),
+      coreGetMonth(endOfDesiredMonth),
       dayOfMonth
     )
     return date

@@ -1,6 +1,11 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+import coreGetDate from '../_core/getDate/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name getDaysInMonth
  * @category Month Helpers
@@ -26,10 +31,10 @@ export default function getDaysInMonth(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var year = date.getFullYear()
-  var monthIndex = date.getMonth()
+  var year = coreGetFullYear(date)
+  var monthIndex = coreGetMonth(date)
   var lastDayOfMonth = new Date(0)
-  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0)
+  coreSetFullYear(lastDayOfMonth, year, monthIndex + 1, 0)
   lastDayOfMonth.setHours(0, 0, 0, 0)
-  return lastDayOfMonth.getDate()
+  return coreGetDate(lastDayOfMonth)
 }

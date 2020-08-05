@@ -1,6 +1,8 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetFullYear from '../_core/getFullYear/index.js'
+
 /**
  * @name differenceInCalendarYears
  * @category Year Helpers
@@ -35,5 +37,5 @@ export default function differenceInCalendarYears(
   var dateLeft = toDate(dirtyDateLeft)
   var dateRight = toDate(dirtyDateRight)
 
-  return dateLeft.getFullYear() - dateRight.getFullYear()
+  return coreGetFullYear(dateLeft) - coreGetFullYear(dateRight)
 }

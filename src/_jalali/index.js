@@ -2,6 +2,10 @@
 /*
   Jalaali years starting the 33-year rule.
 */
+import coreGetMonth from '../_core/getMonth/index.js'
+
+import coreGetDate from '../_core/getDate/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
 var breaks = [
   -61,
   9,
@@ -30,9 +34,9 @@ var breaks = [
 */
 function toJalaali(gy, gm, gd) {
   if (Object.prototype.toString.call(gy) === '[object Date]') {
-    gd = gy.getDate()
-    gm = gy.getMonth() + 1
-    gy = gy.getFullYear()
+    gd = coreGetDate(gy)
+    gm = coreGetMonth(gy) + 1
+    gy = coreGetFullYear(gy)
   }
   return d2j(g2d(gy, gm, gd))
 }
