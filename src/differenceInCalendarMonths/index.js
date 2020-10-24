@@ -1,6 +1,9 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
+
 /**
  * @name differenceInCalendarMonths
  * @category Month Helpers
@@ -35,8 +38,8 @@ export default function differenceInCalendarMonths(
   var dateLeft = toDate(dirtyDateLeft)
   var dateRight = toDate(dirtyDateRight)
 
-  var yearDiff = dateLeft.getFullYear() - dateRight.getFullYear()
-  var monthDiff = dateLeft.getMonth() - dateRight.getMonth()
+  var yearDiff = coreGetFullYear(dateLeft) - coreGetFullYear(dateRight)
+  var monthDiff = coreGetMonth(dateLeft) - coreGetMonth(dateRight)
 
   return yearDiff * 12 + monthDiff
 }

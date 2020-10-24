@@ -2,6 +2,9 @@ import toInteger from '../_lib/toInteger/index.js'
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetDate from '../_core/getDate/index.js'
+import coreSetDate from '../_core/setDate/index.js'
+
 /**
  * @name addDays
  * @category Day Helpers
@@ -36,6 +39,6 @@ export default function addDays(dirtyDate, dirtyAmount) {
     // If 0 days, no-op to avoid changing times in the hour before end of DST
     return date
   }
-  date.setDate(date.getDate() + amount)
+  coreSetDate(date, coreGetDate(date) + amount)
   return date
 }

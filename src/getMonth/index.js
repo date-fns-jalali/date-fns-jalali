@@ -1,6 +1,8 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+
 /**
  * @name getMonth
  * @category Month Helpers
@@ -26,6 +28,6 @@ export default function getMonth(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var month = date.getMonth()
+  var month = coreGetMonth(date)
   return month
 }
