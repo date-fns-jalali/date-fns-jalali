@@ -7,16 +7,16 @@ import differenceInCalendarWeeks from '.'
 describe('differenceInCalendarWeeks', function() {
   it('returns the number of calendar weeks between the given dates', function() {
     var result = differenceInCalendarWeeks(
-      new Date(2014, 6 /* Jul */, 8, 18, 0),
-      new Date(2014, 5 /* Jun */, 29, 6, 0)
+      /* 1393/4/17 */ new Date(2014, 6 /* Jul */, 8, 18, 0),
+      /* 1393/4/8 */ new Date(2014, 5 /* Jun */, 29, 6, 0)
     )
     assert(result === 1)
   })
 
   it('allows to specify which day is the first day of the week', function() {
     var result = differenceInCalendarWeeks(
-      new Date(2014, 6 /* Jul */, 8, 18, 0),
-      new Date(2014, 5 /* Jun */, 29, 6, 0),
+      /* 1393/4/17 */ new Date(2014, 6 /* Jul */, 8, 18, 0),
+      /* 1393/4/8 */ new Date(2014, 5 /* Jun */, 29, 6, 0),
       { weekStartsOn: 1 }
     )
     assert(result === 2)
@@ -24,8 +24,8 @@ describe('differenceInCalendarWeeks', function() {
 
   it('allows to specify which day is the first day of the week in locale', function() {
     var result = differenceInCalendarWeeks(
-      new Date(2014, 6 /* Jul */, 8, 18, 0),
-      new Date(2014, 5 /* Jun */, 29, 6, 0),
+      /* 1393/4/17 */ new Date(2014, 6 /* Jul */, 8, 18, 0),
+      /* 1393/4/8 */ new Date(2014, 5 /* Jun */, 29, 6, 0),
       {
         // $ExpectedMistake
         locale: {
@@ -38,8 +38,8 @@ describe('differenceInCalendarWeeks', function() {
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', function() {
     var result = differenceInCalendarWeeks(
-      new Date(2014, 6 /* Jul */, 8, 18, 0),
-      new Date(2014, 5 /* Jun */, 29, 6, 0),
+      /* 1393/4/17 */ new Date(2014, 6 /* Jul */, 8, 18, 0),
+      /* 1393/4/8 */ new Date(2014, 5 /* Jun */, 29, 6, 0),
       {
         weekStartsOn: 1,
         // $ExpectedMistake
@@ -53,8 +53,8 @@ describe('differenceInCalendarWeeks', function() {
 
   it('returns a positive number if the time value of the second date is smaller', function() {
     var result = differenceInCalendarWeeks(
-      new Date(2014, 6 /* Jul */, 8, 18, 0),
-      new Date(2014, 5 /* Jun */, 29, 6, 0),
+      /* 1393/4/17 */ new Date(2014, 6 /* Jul */, 8, 18, 0),
+      /* 1393/4/8 */ new Date(2014, 5 /* Jun */, 29, 6, 0),
       // $ExpectedMistake
       { weekStartsOn: '1' }
     )
@@ -63,16 +63,16 @@ describe('differenceInCalendarWeeks', function() {
 
   it('returns a negative number if the time value of the first date is smaller', function() {
     var result = differenceInCalendarWeeks(
-      new Date(2014, 5 /* Jun */, 29, 6, 0),
-      new Date(2014, 6 /* Jul */, 8, 18, 0)
+      /* 1393/4/8 */ new Date(2014, 5 /* Jun */, 29, 6, 0),
+      /* 1393/4/17 */ new Date(2014, 6 /* Jul */, 8, 18, 0)
     )
     assert(result === -1)
   })
 
   it('accepts timestamps', function() {
     var result = differenceInCalendarWeeks(
-      new Date(2014, 6 /* Jul */, 12).getTime(),
-      new Date(2014, 6 /* Jul */, 2).getTime()
+      /* 1393/4/21 */ new Date(2014, 6 /* Jul */, 12).getTime(),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime()
     )
     assert(result === 1)
   })
@@ -80,32 +80,32 @@ describe('differenceInCalendarWeeks', function() {
   describe('edge cases', function() {
     it('the difference is less than a week, but the given dates are in different calendar weeks', function() {
       var result = differenceInCalendarWeeks(
-        new Date(2014, 6 /* Jul */, 6),
-        new Date(2014, 6 /* Jul */, 5)
+        /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6),
+        /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5)
       )
       assert(result === 1)
     })
 
     it('the same for the swapped dates', function() {
       var result = differenceInCalendarWeeks(
-        new Date(2014, 6 /* Jul */, 5),
-        new Date(2014, 6 /* Jul */, 6)
+        /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5),
+        /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6)
       )
       assert(result === -1)
     })
 
     it('the days of weeks of the given dates are the same', function() {
       var result = differenceInCalendarWeeks(
-        new Date(2014, 6 /* Jul */, 9),
-        new Date(2014, 6 /* Jul */, 2)
+        /* 1393/4/18 */ new Date(2014, 6 /* Jul */, 9),
+        /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2)
       )
       assert(result === 1)
     })
 
     it('the given dates are the same', function() {
       var result = differenceInCalendarWeeks(
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
-        new Date(2014, 8 /* Sep */, 5, 0, 0)
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0)
       )
       assert(result === 0)
     })
@@ -116,8 +116,8 @@ describe('differenceInCalendarWeeks', function() {
       }
 
       var result = differenceInCalendarWeeks(
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
-        new Date(2014, 8 /* Sep */, 5, 0, 0)
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0)
       )
 
       var resultIsNegative = isNegativeZero(result)
@@ -128,14 +128,14 @@ describe('differenceInCalendarWeeks', function() {
   it('returns NaN if the first date is `Invalid Date`', function() {
     var result = differenceInCalendarWeeks(
       new Date(NaN),
-      new Date(2017, 0 /* Jan */, 1)
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1)
     )
     assert(isNaN(result))
   })
 
   it('returns NaN if the second date is `Invalid Date`', function() {
     var result = differenceInCalendarWeeks(
-      new Date(2017, 0 /* Jan */, 1),
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
       new Date(NaN)
     )
     assert(isNaN(result))
@@ -149,8 +149,8 @@ describe('differenceInCalendarWeeks', function() {
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', function() {
     var block = differenceInCalendarWeeks.bind(
       null,
-      new Date(2014, 6 /* Jul */, 8, 18, 0),
-      new Date(2014, 5 /* Jun */, 29, 6, 0),
+      /* 1393/4/17 */ new Date(2014, 6 /* Jul */, 8, 18, 0),
+      /* 1393/4/8 */ new Date(2014, 5 /* Jun */, 29, 6, 0),
       // $ExpectedMistake
       { weekStartsOn: NaN }
     )

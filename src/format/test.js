@@ -5,7 +5,7 @@ import assert from 'power-assert'
 import format from '.'
 
 describe('format', function() {
-  var date = new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123)
+  var date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123)
 
   var offset = date.getTimezoneOffset()
   var absoluteOffset = Math.abs(offset)
@@ -36,7 +36,7 @@ describe('format', function() {
   var secondsTimestamp = Math.floor(date.getTime() / 1000).toString()
 
   it('accepts a timestamp', function() {
-    var date = new Date(2014, 3, 4).getTime()
+    var date = /* 1393/1/15 */ new Date(2014, 3, 4).getTime()
     assert(format(date, 'yyyy-MM-dd') === '2014-04-04')
   })
 
@@ -46,12 +46,12 @@ describe('format', function() {
   })
 
   it('two single quote characters are transformed into a "real" single quote', function() {
-    var date = new Date(2014, 3, 4, 5)
+    var date = /* 1393/1/15 */ new Date(2014, 3, 4, 5)
     assert(format(date, "''h 'o''clock'''") === "'5 o'clock'")
   })
 
   it('accepts new line charactor', function() {
-    var date = new Date(2014, 3, 4, 5)
+    var date = /* 1393/1/15 */ new Date(2014, 3, 4, 5)
     assert.equal(format(date, "yyyy-MM-dd'\n'HH:mm:ss"), '2014-04-04\n05:00:00')
   })
 
@@ -116,14 +116,14 @@ describe('format', function() {
       })
 
       it('1 BC formats as 1', function() {
-        var date = new Date(0, 0 /* Jan */, 1)
+        var date = /* -622/10/10 */ new Date(0, 0 /* Jan */, 1)
         date.setFullYear(0)
         var result = format(date, 'y')
         assert(result === '1')
       })
 
       it('2 BC formats as 2', function() {
-        var date = new Date(0, 0 /* Jan */, 1)
+        var date = /* -622/10/10 */ new Date(0, 0 /* Jan */, 1)
         date.setFullYear(-1)
         var result = format(date, 'y')
         assert(result === '2')
@@ -139,37 +139,49 @@ describe('format', function() {
       })
 
       it('the first week of the next year', function() {
-        var result = format(new Date(2013, 11 /* Dec */, 29), 'YYYY', {
-          useAdditionalWeekYearTokens: true
-        })
+        var result = format(
+          /* 1392/10/8 */ new Date(2013, 11 /* Dec */, 29),
+          'YYYY',
+          {
+            useAdditionalWeekYearTokens: true
+          }
+        )
         assert(result === '2014')
       })
 
       it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in options', function() {
-        var result = format(new Date(2013, 11 /* Dec */, 29), 'YYYY', {
-          weekStartsOn: 1,
-          firstWeekContainsDate: 4,
-          useAdditionalWeekYearTokens: true
-        })
+        var result = format(
+          /* 1392/10/8 */ new Date(2013, 11 /* Dec */, 29),
+          'YYYY',
+          {
+            weekStartsOn: 1,
+            firstWeekContainsDate: 4,
+            useAdditionalWeekYearTokens: true
+          }
+        )
         assert(result === '2013')
       })
 
       it('the first week of year', function() {
-        var result = format(new Date(2016, 0 /* Jan */, 1), 'YYYY', {
-          useAdditionalWeekYearTokens: true
-        })
+        var result = format(
+          /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
+          'YYYY',
+          {
+            useAdditionalWeekYearTokens: true
+          }
+        )
         assert(result === '2016')
       })
 
       it('1 BC formats as 1', function() {
-        var date = new Date(0, 6 /* Jul */, 2)
+        var date = /* -621/4/11 */ new Date(0, 6 /* Jul */, 2)
         date.setFullYear(0)
         var result = format(date, 'Y')
         assert(result === '1')
       })
 
       it('2 BC formats as 2', function() {
-        var date = new Date(0, 6 /* Jul */, 2)
+        var date = /* -621/4/11 */ new Date(0, 6 /* Jul */, 2)
         date.setFullYear(-1)
         var result = format(date, 'Y')
         assert(result === '2')
@@ -183,24 +195,30 @@ describe('format', function() {
       })
 
       it('the first week of the next year', function() {
-        var result = format(new Date(2013, 11 /* Dec */, 30), 'RRRR')
+        var result = format(
+          /* 1392/10/9 */ new Date(2013, 11 /* Dec */, 30),
+          'RRRR'
+        )
         assert(result === '2014')
       })
 
       it('the last week of the previous year', function() {
-        var result = format(new Date(2016, 0 /* Jan */, 1), 'RRRR')
+        var result = format(
+          /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
+          'RRRR'
+        )
         assert(result === '2015')
       })
 
       it('1 BC formats as 0', function() {
-        var date = new Date(0, 6 /* Jul */, 2)
+        var date = /* -621/4/11 */ new Date(0, 6 /* Jul */, 2)
         date.setFullYear(0)
         var result = format(date, 'R')
         assert(result === '0')
       })
 
       it('2 BC formats as -1', function() {
-        var date = new Date(0, 6 /* Jul */, 2)
+        var date = /* -621/4/11 */ new Date(0, 6 /* Jul */, 2)
         date.setFullYear(-1)
         var result = format(date, 'R')
         assert(result === '-1')
@@ -214,14 +232,14 @@ describe('format', function() {
       })
 
       it('1 BC formats as 0', function() {
-        var date = new Date(0, 0, 1)
+        var date = /* -622/10/10 */ new Date(0, 0, 1)
         date.setFullYear(0)
         var result = format(date, 'u')
         assert(result === '0')
       })
 
       it('2 BC formats as -1', function() {
-        var date = new Date(0, 0, 1)
+        var date = /* -622/10/10 */ new Date(0, 0, 1)
         date.setFullYear(-1)
         var result = format(date, 'u')
         assert(result === '-1')
@@ -278,13 +296,13 @@ describe('format', function() {
   describe('week', function() {
     describe('local week of year', function() {
       it('works as expected', function() {
-        var date = new Date(1986, 3 /* Apr */, 6)
+        var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6)
         var result = format(date, 'w wo ww')
         assert(result === '15 15th 15')
       })
 
       it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in options', function() {
-        var date = new Date(1986, 3 /* Apr */, 6)
+        var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6)
         var result = format(date, 'w wo ww', {
           weekStartsOn: 1,
           firstWeekContainsDate: 4
@@ -294,7 +312,7 @@ describe('format', function() {
     })
 
     it('ISO week of year', function() {
-      var date = new Date(1986, 3 /* Apr */, 6)
+      var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6)
       var result = format(date, 'I Io II')
       assert(result === '14 14th 14')
     })
@@ -316,7 +334,7 @@ describe('format', function() {
 
       it('returns a correct day number for the last day of a leap year', function() {
         var result = format(
-          new Date(1992, 11 /* Dec */, 31, 23, 59, 59, 999),
+          /* 1371/10/10 */ new Date(1992, 11 /* Dec */, 31, 23, 59, 59, 999),
           'D',
           { useAdditionalDayOfYearTokens: true }
         )
@@ -406,41 +424,53 @@ describe('format', function() {
 
   describe('day period and hour', function() {
     it('hour [1-12]', function() {
-      var result = format(new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0), 'h ho hh')
+      var result = format(
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        'h ho hh'
+      )
       assert(result === '12 12th 12')
     })
 
     it('hour [0-23]', function() {
-      var result = format(new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0), 'H Ho HH')
+      var result = format(
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        'H Ho HH'
+      )
       assert(result === '0 0th 00')
     })
 
     it('hour [0-11]', function() {
-      var result = format(new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0), 'K Ko KK')
+      var result = format(
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        'K Ko KK'
+      )
       assert(result === '0 0th 00')
     })
 
     it('hour [1-24]', function() {
-      var result = format(new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0), 'k ko kk')
+      var result = format(
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        'k ko kk'
+      )
       assert(result === '24 24th 24')
     })
 
     describe('AM, PM', function() {
       it('works as expected', function() {
         var result = format(
-          new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+          /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
           'a aa aaa aaaa aaaaa'
         )
         assert(result === 'AM AM AM a.m. a')
       })
 
       it('12 PM', function() {
-        var date = new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
+        var date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
         assert(format(date, 'h H K k a') === '12 12 0 12 PM')
       })
 
       it('12 AM', function() {
-        var date = new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
+        var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
         assert(format(date, 'h H K k a') === '12 0 0 24 AM')
       })
     })
@@ -448,19 +478,19 @@ describe('format', function() {
     describe('AM, PM, noon, midnight', function() {
       it('works as expected', function() {
         var result = format(
-          new Date(1986, 3 /* Apr */, 6, 2, 0, 0, 900),
+          /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 2, 0, 0, 900),
           'b bb bbb bbbb bbbbb'
         )
         assert(result === 'AM AM AM a.m. a')
       })
 
       it('12 PM', function() {
-        var date = new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
+        var date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
         assert(format(date, 'b bb bbb bbbb bbbbb') === 'noon noon noon noon n')
       })
 
       it('12 AM', function() {
-        var date = new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
+        var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
         assert(
           format(date, 'b bb bbb bbbb bbbbb') ===
             'midnight midnight midnight midnight mi'
@@ -478,22 +508,22 @@ describe('format', function() {
       })
 
       it('12 PM', function() {
-        var date = new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
+        var date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900)
         assert(format(date, 'h B') === '12 in the afternoon')
       })
 
       it('5 PM', function() {
-        var date = new Date(1986, 3 /* Apr */, 6, 17, 0, 0, 900)
+        var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 17, 0, 0, 900)
         assert(format(date, 'h B') === '5 in the evening')
       })
 
       it('12 AM', function() {
-        var date = new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
+        var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900)
         assert(format(date, 'h B') === '12 at night')
       })
 
       it('4 AM', function() {
-        var date = new Date(1986, 3 /* Apr */, 6, 4, 0, 0, 900)
+        var date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 4, 0, 0, 900)
         assert(format(date, 'h B') === '4 in the morning')
       })
     })
@@ -663,7 +693,7 @@ describe('format', function() {
     // eslint-disable-next-line no-new-wrappers
     var formatString = new String('yyyy-MM-dd')
 
-    var date = new Date(2014, 3, 4)
+    var date = /* 1393/1/15 */ new Date(2014, 3, 4)
 
     // $ExpectedMistake
     assert(format(date, formatString) === '2014-04-04')
@@ -714,17 +744,27 @@ describe('format', function() {
 
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', function() {
     // $ExpectedMistake
-    var block = format.bind(null, new Date(2007, 11 /* Dec */, 31), 'yyyy', {
-      weekStartsOn: NaN
-    })
+    var block = format.bind(
+      null,
+      /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
+      'yyyy',
+      {
+        weekStartsOn: NaN
+      }
+    )
     assert.throws(block, RangeError)
   })
 
   it('throws `RangeError` if `options.firstWeekContainsDate` is not convertable to 1, 2, ..., 7 or undefined', function() {
     // $ExpectedMistake
-    var block = format.bind(null, new Date(2007, 11 /* Dec */, 31), 'yyyy', {
-      firstWeekContainsDate: NaN
-    })
+    var block = format.bind(
+      null,
+      /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
+      'yyyy',
+      {
+        firstWeekContainsDate: NaN
+      }
+    )
     assert.throws(block, RangeError)
   })
 

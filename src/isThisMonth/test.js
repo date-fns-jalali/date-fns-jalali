@@ -8,7 +8,9 @@ import isThisMonth from '.'
 describe('isThisMonth', () => {
   let clock
   beforeEach(() => {
-    clock = sinon.useFakeTimers(new Date(2014, 8 /* Sep */, 25).getTime())
+    clock = sinon.useFakeTimers(
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime()
+    )
   })
 
   afterEach(() => {
@@ -16,17 +18,17 @@ describe('isThisMonth', () => {
   })
 
   it('returns true if the given date and the current date have the same month (and year)', () => {
-    const date = new Date(2014, 8 /* Sep */, 15)
+    const date = /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15)
     assert(isThisMonth(date) === true)
   })
 
   it('returns false if the given date and the current date have different months', () => {
-    const date = new Date(2013, 7 /* Aug */, 31)
+    const date = /* 1392/6/9 */ new Date(2013, 7 /* Aug */, 31)
     assert(isThisMonth(date) === false)
   })
 
   it('accepts a timestamp', () => {
-    const date = new Date(2014, 8 /* Sep */, 30).getTime()
+    const date = /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30).getTime()
     assert(isThisMonth(date) === true)
   })
 

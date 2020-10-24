@@ -8,7 +8,9 @@ import isToday from '.'
 describe('isToday', function() {
   let clock
   beforeEach(function() {
-    clock = sinon.useFakeTimers(new Date(2014, 8 /* Sep */, 25).getTime())
+    clock = sinon.useFakeTimers(
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime()
+    )
   })
 
   afterEach(function() {
@@ -16,17 +18,19 @@ describe('isToday', function() {
   })
 
   it('returns true if the given date is today', function() {
-    const result = isToday(new Date(2014, 8 /* Sep */, 25))
+    const result = isToday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25))
     assert(result === true)
   })
 
   it('returns false if the given date is not today', function() {
-    const result = isToday(new Date(2014, 8 /* Sep */, 26))
+    const result = isToday(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26))
     assert(result === false)
   })
 
   it('accepts a timestamp', function() {
-    const result = isToday(new Date(2014, 8 /* Sep */, 25).getTime())
+    const result = isToday(
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime()
+    )
     assert(result === true)
   })
 

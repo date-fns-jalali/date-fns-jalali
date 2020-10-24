@@ -6,12 +6,14 @@ import getQuarter from '.'
 
 describe('getQuarter', function() {
   it('returns the quarter of the given date', function() {
-    var result = getQuarter(new Date(2014, 6 /* Jul */, 2))
+    var result = getQuarter(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2))
     assert(result === 3)
   })
 
   it('accepts a timestamp', function() {
-    var result = getQuarter(new Date(2014, 3 /* Apr */, 2).getTime())
+    var result = getQuarter(
+      /* 1393/1/13 */ new Date(2014, 3 /* Apr */, 2).getTime()
+    )
     assert(result === 2)
   })
 
