@@ -2,6 +2,9 @@ import toInteger from '../toInteger/index.js'
 import toDate from '../../toDate/index.js'
 import requiredArgs from '../requiredArgs/index.js'
 
+import coreGetUTCDate from '../../_core/getUTCDate/index.js'
+import coreSetUTCDate from '../../_core/setUTCDate/index.js'
+
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 export default function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
@@ -12,7 +15,7 @@ export default function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
   var localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
@@ -31,8 +34,12 @@ export default function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
   var remainder = day % 7
   var dayIndex = (remainder + 7) % 7
 
-  var diff = (dayIndex < weekStartsOn ? 7 : 0) + day - currentDay
+  var delta = 7 - weekStartsOn
+  var diff =
+    day < 0 || day > 6
+      ? day - ((currentDay + delta) % 7)
+      : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7)
 
-  date.setUTCDate(date.getUTCDate() + diff)
+  coreSetUTCDate(date, coreGetUTCDate(date) + diff)
   return date
 }

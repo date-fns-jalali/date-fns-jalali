@@ -1,6 +1,8 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetFullYear from '../_core/getFullYear/index.js'
+
 /**
  * @name getDecade
  * @category Decade Helpers
@@ -26,7 +28,7 @@ export default function getDecade(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var year = date.getFullYear()
+  var year = coreGetFullYear(date)
   var decade = Math.floor(year / 10) * 10
   return decade
 }

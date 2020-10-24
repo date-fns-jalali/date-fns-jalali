@@ -32,7 +32,7 @@ describe('addISOWeekYears', function() {
     assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
   })
 
-  it('handles dates before 100 AD', function() {
+  it.skip('handles dates before 100 AD', function() {
     var initialDate = new Date(0)
     initialDate.setFullYear(10, 6 /* Jul */, 2)
     initialDate.setHours(0, 0, 0, 0)
