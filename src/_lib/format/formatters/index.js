@@ -6,6 +6,10 @@ import getUTCWeek from '../../../_lib/getUTCWeek/index.js'
 import getUTCWeekYear from '../../../_lib/getUTCWeekYear/index.js'
 import addLeadingZeros from '../../addLeadingZeros/index.js'
 
+import coreGetUTCMonth from '../../../_core/getUTCMonth/index.js'
+import coreGetUTCDate from '../../../_core/getUTCDate/index.js'
+import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index.js'
+
 var dayPeriodEnum = {
   am: 'am',
   pm: 'pm',
@@ -66,7 +70,7 @@ var dayPeriodEnum = {
 var formatters = {
   // Era
   G: function(date, token, localize) {
-    var era = date.getUTCFullYear() > 0 ? 1 : 0
+    var era = coreGetUTCFullYear(date) > 0 ? 1 : 0
     switch (token) {
       // AD, BC
       case 'G':
@@ -87,7 +91,7 @@ var formatters = {
   y: function(date, token, localize) {
     // Ordinal number
     if (token === 'yo') {
-      var signedYear = date.getUTCFullYear()
+      var signedYear = coreGetUTCFullYear(date)
       // Returns 1 for 1 BC (which is year 0 in JavaScript)
       var year = signedYear > 0 ? signedYear : 1 - signedYear
       return localize.ordinalNumber(year, { unit: 'year' })
@@ -135,13 +139,13 @@ var formatters = {
   // Also `yy` always returns the last two digits of a year,
   // while `uu` pads single digit years to 2 characters and returns other years unchanged.
   u: function(date, token) {
-    var year = date.getUTCFullYear()
+    var year = coreGetUTCFullYear(date)
     return addLeadingZeros(year, token.length)
   },
 
   // Quarter
   Q: function(date, token, localize) {
-    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3)
+    var quarter = Math.ceil((coreGetUTCMonth(date) + 1) / 3)
     switch (token) {
       // 1, 2, 3, 4
       case 'Q':
@@ -176,7 +180,7 @@ var formatters = {
 
   // Stand-alone quarter
   q: function(date, token, localize) {
-    var quarter = Math.ceil((date.getUTCMonth() + 1) / 3)
+    var quarter = Math.ceil((coreGetUTCMonth(date) + 1) / 3)
     switch (token) {
       // 1, 2, 3, 4
       case 'q':
@@ -211,7 +215,7 @@ var formatters = {
 
   // Month
   M: function(date, token, localize) {
-    var month = date.getUTCMonth()
+    var month = coreGetUTCMonth(date)
     switch (token) {
       case 'M':
       case 'MM':
@@ -237,7 +241,7 @@ var formatters = {
 
   // Stand-alone month
   L: function(date, token, localize) {
-    var month = date.getUTCMonth()
+    var month = coreGetUTCMonth(date)
     switch (token) {
       // 1, 2, ..., 12
       case 'L':
@@ -289,7 +293,7 @@ var formatters = {
   // Day of the month
   d: function(date, token, localize) {
     if (token === 'do') {
-      return localize.ordinalNumber(date.getUTCDate(), { unit: 'date' })
+      return localize.ordinalNumber(coreGetUTCDate(date), { unit: 'date' })
     }
 
     return lightFormatters.d(date, token)

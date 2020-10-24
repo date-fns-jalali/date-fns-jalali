@@ -6,35 +6,38 @@ import addYears from '.'
 
 describe('addYears', function() {
   it('adds the given number of years', function() {
-    var result = addYears(new Date(2014, 8 /* Sep */, 1), 5)
-    assert.deepEqual(result, new Date(2019, 8 /* Sep */, 1))
+    var result = addYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5)
+    assert.deepEqual(result, /* 1398/6/10 */ new Date(2019, 8 /* Sep */, 1))
   })
 
   it('accepts a timestamp', function() {
-    var result = addYears(new Date(2014, 8 /* Sep */, 1).getTime(), 12)
-    assert.deepEqual(result, new Date(2026, 8 /* Sep */, 1))
+    var result = addYears(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      12
+    )
+    assert.deepEqual(result, /* 1405/6/10 */ new Date(2026, 8 /* Sep */, 1))
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = addYears(new Date(2014, 8 /* Sep */, 1), 5.555)
-    assert.deepEqual(result, new Date(2019, 8 /* Sep */, 1))
+    var result = addYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5.555)
+    assert.deepEqual(result, /* 1398/6/10 */ new Date(2019, 8 /* Sep */, 1))
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
-    var result = addYears(new Date(2014, 8 /* Sep */, 1), '5')
-    assert.deepEqual(result, new Date(2019, 8 /* Sep */, 1))
+    var result = addYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), '5')
+    assert.deepEqual(result, /* 1398/6/10 */ new Date(2019, 8 /* Sep */, 1))
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 1)
+    var date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1)
     addYears(date, 12)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(date, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
   })
 
   it('handles the leap years properly', function() {
-    var result = addYears(new Date(2016, 1 /* Feb */, 29), 1)
-    assert.deepEqual(result, new Date(2017, 1 /* Feb */, 28))
+    var result = addYears(/* 1394/12/10 */ new Date(2016, 1 /* Feb */, 29), 1)
+    assert.deepEqual(result, /* 1395/12/10 */ new Date(2017, 1 /* Feb */, 28))
   })
 
   it('handles dates before 100 AD', function() {
@@ -54,7 +57,7 @@ describe('addYears', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    var result = addYears(new Date(2014, 8 /* Sep */, 1), NaN)
+    var result = addYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN)
     assert(result instanceof Date && isNaN(result))
   })
 

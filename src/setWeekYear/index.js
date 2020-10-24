@@ -4,6 +4,10 @@ import toDate from '../toDate/index.js'
 import toInteger from '../_lib/toInteger/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetDate from '../_core/getDate/index.js'
+import coreSetDate from '../_core/setDate/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name setWeekYear
  * @category Week-Numbering Year Helpers
@@ -69,9 +73,9 @@ export default function setWeekYear(dirtyDate, dirtyWeekYear, dirtyOptions) {
   var weekYear = toInteger(dirtyWeekYear)
   var diff = differenceInCalendarDays(date, startOfWeekYear(date, dirtyOptions))
   var firstWeek = new Date(0)
-  firstWeek.setFullYear(weekYear, 0, firstWeekContainsDate)
+  coreSetFullYear(firstWeek, weekYear, 0, firstWeekContainsDate)
   firstWeek.setHours(0, 0, 0, 0)
   date = startOfWeekYear(firstWeek, dirtyOptions)
-  date.setDate(date.getDate() + diff)
+  coreSetDate(date, coreGetDate(date) + diff)
   return date
 }

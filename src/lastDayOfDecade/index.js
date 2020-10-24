@@ -1,6 +1,9 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetFullYear from '../_core/getFullYear/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name lastDayOfDecade
  * @category Decade Helpers
@@ -26,9 +29,9 @@ export default function lastDayOfDecade(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var year = date.getFullYear()
+  var year = coreGetFullYear(date)
   var decade = 9 + Math.floor(year / 10) * 10
-  date.setFullYear(decade + 1, 0, 0)
+  coreSetFullYear(date, decade + 1, 0, 0)
   date.setHours(0, 0, 0, 0)
   return date
 }
