@@ -1,6 +1,8 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetFullYear from '../_core/getFullYear/index.js'
+
 /**
  * @name getYear
  * @category Year Helpers
@@ -26,6 +28,6 @@ export default function getYear(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var year = date.getFullYear()
+  var year = coreGetFullYear(date)
   return year
 }

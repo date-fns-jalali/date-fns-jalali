@@ -1,6 +1,10 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreGetMonth from '../_core/getMonth/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
+import coreSetFullYear from '../_core/setFullYear/index.js'
+
 /**
  * @name endOfMonth
  * @category Month Helpers
@@ -27,8 +31,8 @@ export default function endOfMonth(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var month = date.getMonth()
-  date.setFullYear(date.getFullYear(), month + 1, 0)
+  var month = coreGetMonth(date)
+  coreSetFullYear(date, coreGetFullYear(date), month + 1, 0)
   date.setHours(23, 59, 59, 999)
   return date
 }

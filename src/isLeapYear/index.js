@@ -1,6 +1,9 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreIsLeapYear from '../_core/isLeapYear/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
+
 /**
  * @name isLeapYear
  * @category Year Helpers
@@ -26,6 +29,6 @@ export default function isLeapYear(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var year = date.getFullYear()
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
+  var year = coreGetFullYear(date)
+  return coreIsLeapYear(year)
 }

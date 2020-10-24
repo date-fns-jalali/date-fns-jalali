@@ -22,6 +22,11 @@
  * var result = isExists(2018, 1, 31)
  * //=> false
  */
+import coreGetMonth from '../_core/getMonth/index.js'
+
+import coreGetDate from '../_core/getDate/index.js'
+import coreGetFullYear from '../_core/getFullYear/index.js'
+import newDate from '../_core/newDate/index.js'
 export default function isExists(year, month, day) {
   if (arguments.length < 3) {
     throw new TypeError(
@@ -29,10 +34,10 @@ export default function isExists(year, month, day) {
     )
   }
 
-  const date = new Date(year, month, day)
+  const date = newDate(year, month, day)
   return (
-    date.getFullYear() === year &&
-    date.getMonth() === month &&
-    date.getDate() === day
+    coreGetFullYear(date) === year &&
+    coreGetMonth(date) === month &&
+    coreGetDate(date) === day
   )
 }
