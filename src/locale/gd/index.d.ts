@@ -1,4 +1,4 @@
 // This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.
 
-import { gd } from 'date-fns/locale'
+import { gd } from 'date-fns-jalali/locale'
 export default gd
