@@ -6,20 +6,28 @@ import endOfMinute from '.'
 
 describe('endOfMinute', function() {
   it('returns the date with the time set to the last millisecond before a minute ends', function() {
-    var date = new Date(2014, 11, 1, 22, 15)
+    var date = /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15)
     var result = endOfMinute(date)
-    assert.deepEqual(result, new Date(2014, 11, 1, 22, 15, 59, 999))
+    assert.deepEqual(
+      result,
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 59, 999)
+    )
   })
 
   it('accepts a timestamp', function() {
-    var result = endOfMinute(new Date(2014, 11, 1, 22, 15).getTime())
-    assert.deepEqual(result, new Date(2014, 11, 1, 22, 15, 59, 999))
+    var result = endOfMinute(
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15).getTime()
+    )
+    assert.deepEqual(
+      result,
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 59, 999)
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 11, 1, 22, 15)
+    var date = /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15)
     endOfMinute(date)
-    assert.deepEqual(date, new Date(2014, 11, 1, 22, 15))
+    assert.deepEqual(date, /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15))
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {

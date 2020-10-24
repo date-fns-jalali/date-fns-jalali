@@ -16,7 +16,10 @@ describe('isValid', function() {
   })
 
   it('accepts a timestamp', function() {
-    assert(isValid(new Date(2014, 1 /* Feb */, 11).getTime()) === true)
+    assert(
+      isValid(/* 1392/11/22 */ new Date(2014, 1 /* Feb */, 11).getTime()) ===
+        true
+    )
     assert(isValid(NaN) === false)
   })
 

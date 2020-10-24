@@ -8,18 +8,29 @@ import toDate from '.'
 describe('toDate', () => {
   describe('date argument', () => {
     it('returns a clone of the given date', () => {
-      const date = new Date(2016, 0, 1)
+      const date = /* 1394/10/11 */ new Date(2016, 0, 1)
       const dateClone = toDate(date)
       dateClone.setFullYear(2015)
-      assert.deepEqual(date, new Date(2016, 0, 1))
+      assert.deepEqual(date, /* 1394/10/11 */ new Date(2016, 0, 1))
     })
   })
 
   describe('timestamp argument', () => {
     it('creates a date from the timestamp', () => {
-      const timestamp = new Date(2016, 0, 1, 23, 30, 45, 123).getTime()
+      const timestamp = /* 1394/10/11 */ new Date(
+        2016,
+        0,
+        1,
+        23,
+        30,
+        45,
+        123
+      ).getTime()
       const result = toDate(timestamp)
-      assert.deepEqual(result, new Date(2016, 0, 1, 23, 30, 45, 123))
+      assert.deepEqual(
+        result,
+        /* 1394/10/11 */ new Date(2016, 0, 1, 23, 30, 45, 123)
+      )
     })
   })
 
@@ -91,11 +102,14 @@ describe('toDate', () => {
     it('implicitly converts instance of Number into a number', () => {
       // eslint-disable-next-line no-new-wrappers
       const timestamp = new Number(
-        new Date(2016, 0, 1, 23, 30, 45, 123).getTime()
+        /* 1394/10/11 */ new Date(2016, 0, 1, 23, 30, 45, 123).getTime()
       )
       // $ExpectedMistake
       const result = toDate(timestamp)
-      assert.deepEqual(result, new Date(2016, 0, 1, 23, 30, 45, 123))
+      assert.deepEqual(
+        result,
+        /* 1394/10/11 */ new Date(2016, 0, 1, 23, 30, 45, 123)
+      )
     })
   })
 
