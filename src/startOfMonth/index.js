@@ -1,6 +1,8 @@
 import toDate from '../toDate/index.js'
 import requiredArgs from '../_lib/requiredArgs/index.js'
 
+import coreSetDate from '../_core/setDate/index.js'
+
 /**
  * @name startOfMonth
  * @category Month Helpers
@@ -27,7 +29,7 @@ export default function startOfMonth(dirtyDate) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  date.setDate(1)
+  coreSetDate(date, 1)
   date.setHours(0, 0, 0, 0)
   return date
 }
