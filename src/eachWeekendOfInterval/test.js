@@ -7,27 +7,27 @@ import eachWeekendOfInterval from '.'
 describe('eachWeekendOfInterval', function() {
   it('returns all weekends within the interval', function() {
     var result = eachWeekendOfInterval({
-      start: new Date(2018, 8 /* Sept */, 17),
-      end: new Date(2018, 8 /* Sept */, 30)
+      start: /* 1397/6/26 */ new Date(2018, 8 /* Sept */, 17),
+      end: /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30)
     })
     assert.deepEqual(result, [
-      new Date(2018, 8 /* Sept */, 22),
-      new Date(2018, 8 /* Sept */, 23),
-      new Date(2018, 8 /* Sept */, 29),
-      new Date(2018, 8 /* Sept */, 30)
+      /* 1397/6/31 */ new Date(2018, 8 /* Sept */, 22),
+      /* 1397/7/1 */ new Date(2018, 8 /* Sept */, 23),
+      /* 1397/7/7 */ new Date(2018, 8 /* Sept */, 29),
+      /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30)
     ])
   })
 
   it('returns all weekends within the interval when starting on a weekend', function() {
     var result = eachWeekendOfInterval({
-      start: new Date(2018, 8 /* Sept */, 22),
-      end: new Date(2018, 8 /* Sept */, 30)
+      start: /* 1397/6/31 */ new Date(2018, 8 /* Sept */, 22),
+      end: /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30)
     })
     assert.deepEqual(result, [
-      new Date(2018, 8 /* Sept */, 22),
-      new Date(2018, 8 /* Sept */, 23),
-      new Date(2018, 8 /* Sept */, 29),
-      new Date(2018, 8 /* Sept */, 30)
+      /* 1397/6/31 */ new Date(2018, 8 /* Sept */, 22),
+      /* 1397/7/1 */ new Date(2018, 8 /* Sept */, 23),
+      /* 1397/7/7 */ new Date(2018, 8 /* Sept */, 29),
+      /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30)
     ])
   })
 
@@ -35,7 +35,7 @@ describe('eachWeekendOfInterval', function() {
     // $ExpectedMistake
     var block = eachWeekendOfInterval.bind(null, {
       start: new Date(NaN),
-      end: new Date(2019, 11 /* Dec */, 31)
+      end: /* 1398/10/10 */ new Date(2019, 11 /* Dec */, 31)
     })
     assert.throws(block, RangeError)
   })
@@ -43,7 +43,7 @@ describe('eachWeekendOfInterval', function() {
   it('throws `RangeError` invalid interval end date is used', function() {
     // $ExpectedMistake
     var block = eachWeekendOfInterval.bind(null, {
-      start: new Date(2019, 0 /* Jan */, 1),
+      start: /* 1397/10/11 */ new Date(2019, 0 /* Jan */, 1),
       end: new Date(NaN)
     })
     assert.throws(block, RangeError)
@@ -58,8 +58,8 @@ describe('eachWeekendOfInterval', function() {
       null,
       // $ExpectedMistake
       {
-        start: new Date(2018, 8 /* Sept */, 25),
-        end: new Date(2018, 8 /* Sept */, 6)
+        start: /* 1397/7/3 */ new Date(2018, 8 /* Sept */, 25),
+        end: /* 1397/6/15 */ new Date(2018, 8 /* Sept */, 6)
       }
     )
     assert.throws(block, RangeError)

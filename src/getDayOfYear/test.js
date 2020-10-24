@@ -6,12 +6,14 @@ import getDayOfYear from '.'
 
 describe('getDayOfYear', function() {
   it('returns the day of the year of the given date', function() {
-    var result = getDayOfYear(new Date(2014, 6 /* Jul */, 2))
+    var result = getDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2))
     assert(result === 183)
   })
 
   it('accepts a timestamp', function() {
-    var result = getDayOfYear(new Date(2014, 0 /* Jan */, 2).getTime())
+    var result = getDayOfYear(
+      /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2).getTime()
+    )
     assert(result === 2)
   })
 

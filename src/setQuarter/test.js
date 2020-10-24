@@ -6,35 +6,41 @@ import setQuarter from '.'
 
 describe('setQuarter', function() {
   it('sets the quarter of the year', function() {
-    var result = setQuarter(new Date(2014, 6 /* Jul */, 2), 1)
-    assert.deepEqual(result, new Date(2014, 0 /* Jan */, 2))
+    var result = setQuarter(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2), 1)
+    assert.deepEqual(result, /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2))
   })
 
   it('sets the last day of the month if the original date was the last day of a longer month', function() {
-    var result = setQuarter(new Date(2014, 10 /* Nov */, 30), 1)
-    assert.deepEqual(result, new Date(2014, 1 /* Feb */, 28))
+    var result = setQuarter(/* 1393/9/9 */ new Date(2014, 10 /* Nov */, 30), 1)
+    assert.deepEqual(result, /* 1392/12/9 */ new Date(2014, 1 /* Feb */, 28))
   })
 
   it('accepts a timestamp', function() {
-    var result = setQuarter(new Date(2014, 6 /* Jul */, 1).getTime(), 4)
-    assert.deepEqual(result, new Date(2014, 9 /* Oct */, 1))
+    var result = setQuarter(
+      /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1).getTime(),
+      4
+    )
+    assert.deepEqual(result, /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1))
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = setQuarter(new Date(2014, 6 /* Jul */, 2), 1.951)
-    assert.deepEqual(result, new Date(2014, 0 /* Jan */, 2))
+    var result = setQuarter(
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2),
+      1.951
+    )
+    assert.deepEqual(result, /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2))
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
-    var result = setQuarter(new Date(2014, 6 /* Jul */, 2), '1')
-    assert.deepEqual(result, new Date(2014, 0 /* Jan */, 2))
+    var result = setQuarter(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2), '1')
+    assert.deepEqual(result, /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2))
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 6 /* Jul */, 1)
+    var date = /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1)
     setQuarter(date, 2)
-    assert.deepEqual(date, new Date(2014, 6 /* Jul */, 1))
+    assert.deepEqual(date, /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1))
   })
 
   it('handles dates before 100 AD', function() {
@@ -54,7 +60,7 @@ describe('setQuarter', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    var result = setQuarter(new Date(2014, 6 /* Jul */, 2), NaN)
+    var result = setQuarter(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2), NaN)
     assert(result instanceof Date && isNaN(result))
   })
 

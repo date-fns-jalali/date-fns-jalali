@@ -8,7 +8,9 @@ import isThisQuarter from '.'
 describe('isThisQuarter', function() {
   let clock
   beforeEach(function() {
-    clock = sinon.useFakeTimers(new Date(2014, 8 /* Sep */, 25).getTime())
+    clock = sinon.useFakeTimers(
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime()
+    )
   })
 
   afterEach(function() {
@@ -16,17 +18,17 @@ describe('isThisQuarter', function() {
   })
 
   it('returns true if the given date and the current date have the same quarter (and year)', function() {
-    const date = new Date(2014, 6 /* Jul */, 2)
+    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2)
     assert(isThisQuarter(date) === true)
   })
 
   it('returns false if the given date and the current date have different quarters', function() {
-    const date = new Date(2014, 1 /* Feb */, 11)
+    const date = /* 1392/11/22 */ new Date(2014, 1 /* Feb */, 11)
     assert(isThisQuarter(date) === false)
   })
 
   it('accepts a timestamp', function() {
-    const date = new Date(2014, 6 /* Jul */, 2).getTime()
+    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime()
     assert(isThisQuarter(date) === true)
   })
 

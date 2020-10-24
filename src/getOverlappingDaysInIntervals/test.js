@@ -5,13 +5,13 @@ import assert from 'power-assert'
 import getOverlappingDaysInIntervals from '.'
 
 describe('getOverlappingDaysInIntervals', function() {
-  var initialIntervalStart = new Date(2016, 10, 10, 13, 0, 0)
-  var initialIntervalEnd = new Date(2016, 11, 3, 15, 0, 0)
+  var initialIntervalStart = /* 1395/8/20 */ new Date(2016, 10, 10, 13, 0, 0)
+  var initialIntervalEnd = /* 1395/9/13 */ new Date(2016, 11, 3, 15, 0, 0)
 
   context("when the time intervals don't overlap", function() {
     it('returns 0 for a valid non overlapping interval before another interval', function() {
-      var earlierIntervalStart = new Date(2016, 9, 25)
-      var earlierIntervalEnd = new Date(2016, 10, 9)
+      var earlierIntervalStart = /* 1395/8/4 */ new Date(2016, 9, 25)
+      var earlierIntervalEnd = /* 1395/8/19 */ new Date(2016, 10, 9)
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -21,8 +21,8 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it('returns 0 for a valid non overlapping interval after another interval', function() {
-      var laterIntervalStart = new Date(2016, 11, 4)
-      var laterIntervalEnd = new Date(2016, 11, 9)
+      var laterIntervalStart = /* 1395/9/14 */ new Date(2016, 11, 4)
+      var laterIntervalEnd = /* 1395/9/19 */ new Date(2016, 11, 9)
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -32,8 +32,8 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it('returns 0 for a non overlapping same-day interval', function() {
-      var sameDayIntervalStart = new Date(2016, 11, 4, 9, 0, 0)
-      var sameDayIntervalEnd = new Date(2016, 11, 4, 18, 0, 0)
+      var sameDayIntervalStart = /* 1395/9/14 */ new Date(2016, 11, 4, 9, 0, 0)
+      var sameDayIntervalEnd = /* 1395/9/14 */ new Date(2016, 11, 4, 18, 0, 0)
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -43,8 +43,22 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it('returns 0 for an interval differing by a few hours', function() {
-      var oneDayOverlappingIntervalStart = new Date(2016, 11, 3, 18, 0, 0)
-      var oneDayOverlappingIntervalEnd = new Date(2016, 11, 14, 13, 0, 0)
+      var oneDayOverlappingIntervalStart = /* 1395/9/13 */ new Date(
+        2016,
+        11,
+        3,
+        18,
+        0,
+        0
+      )
+      var oneDayOverlappingIntervalEnd = /* 1395/9/24 */ new Date(
+        2016,
+        11,
+        14,
+        13,
+        0,
+        0
+      )
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -57,8 +71,22 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it("returns 0 for an interval with the same startDateTime as the initial time intervals's endDateTime", function() {
-      var oneDayOverlapIntervalStart = new Date(2016, 11, 3, 15, 0, 0)
-      var oneDayOverlapIntervalEnd = new Date(2016, 11, 14, 13, 0, 0)
+      var oneDayOverlapIntervalStart = /* 1395/9/13 */ new Date(
+        2016,
+        11,
+        3,
+        15,
+        0,
+        0
+      )
+      var oneDayOverlapIntervalEnd = /* 1395/9/24 */ new Date(
+        2016,
+        11,
+        14,
+        13,
+        0,
+        0
+      )
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -68,8 +96,22 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it("returns 0 for an interval with the same endDateTime as the initial time interval's startDateTime", function() {
-      var oneDayOverlapIntervalStart = new Date(2016, 10, 3, 15, 0, 0)
-      var oneDayOverlapIntervalEnd = new Date(2016, 10, 10, 13, 0, 0)
+      var oneDayOverlapIntervalStart = /* 1395/8/13 */ new Date(
+        2016,
+        10,
+        3,
+        15,
+        0,
+        0
+      )
+      var oneDayOverlapIntervalEnd = /* 1395/8/20 */ new Date(
+        2016,
+        10,
+        10,
+        13,
+        0,
+        0
+      )
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -81,8 +123,15 @@ describe('getOverlappingDaysInIntervals', function() {
 
   context('when the time intervals overlap', function() {
     it('rounds up the result to include each started overlapping day', function() {
-      var includedIntervalStart = new Date(2016, 10, 14, 9, 0, 0)
-      var includedIntervalEnd = new Date(2016, 10, 15, 18, 0, 0)
+      var includedIntervalStart = /* 1395/8/24 */ new Date(
+        2016,
+        10,
+        14,
+        9,
+        0,
+        0
+      )
+      var includedIntervalEnd = /* 1395/8/25 */ new Date(2016, 10, 15, 18, 0, 0)
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -92,8 +141,8 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it('returns the correct value for an interval included within another interval', function() {
-      var includedIntervalStart = new Date(2016, 10, 14)
-      var includedIntervalEnd = new Date(2016, 10, 15)
+      var includedIntervalStart = /* 1395/8/24 */ new Date(2016, 10, 14)
+      var includedIntervalEnd = /* 1395/8/25 */ new Date(2016, 10, 15)
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -103,8 +152,8 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it('returns the correct value for an interval overlapping at the end', function() {
-      var endOverlappingIntervalStart = new Date(2016, 10, 5)
-      var endOverlappingIntervalEnd = new Date(2016, 10, 14)
+      var endOverlappingIntervalStart = /* 1395/8/15 */ new Date(2016, 10, 5)
+      var endOverlappingIntervalEnd = /* 1395/8/24 */ new Date(2016, 10, 14)
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -114,8 +163,8 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it('returns the correct value for an interval overlapping at the beginning', function() {
-      var startOverlappingIntervalStart = new Date(2016, 10, 20)
-      var startOverlappingIntervalEnd = new Date(2016, 11, 14)
+      var startOverlappingIntervalStart = /* 1395/8/30 */ new Date(2016, 10, 20)
+      var startOverlappingIntervalEnd = /* 1395/9/24 */ new Date(2016, 11, 14)
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -128,8 +177,8 @@ describe('getOverlappingDaysInIntervals', function() {
     })
 
     it('returns the correct value for an interval including another interval', function() {
-      var includingIntervalStart = new Date(2016, 10, 5)
-      var includingIntervalEnd = new Date(2016, 11, 15)
+      var includingIntervalStart = /* 1395/8/15 */ new Date(2016, 10, 5)
+      var includingIntervalEnd = /* 1395/9/25 */ new Date(2016, 11, 15)
 
       var numOverlappingDays = getOverlappingDaysInIntervals(
         { start: initialIntervalStart, end: initialIntervalEnd },
@@ -140,11 +189,33 @@ describe('getOverlappingDaysInIntervals', function() {
   })
 
   it('accepts a timestamp', function() {
-    var initialIntervalStart = new Date(2016, 10, 10, 13, 0, 0).getTime()
-    var initialIntervalEnd = new Date(2016, 11, 3, 15, 0, 0).getTime()
+    var initialIntervalStart = /* 1395/8/20 */ new Date(
+      2016,
+      10,
+      10,
+      13,
+      0,
+      0
+    ).getTime()
+    var initialIntervalEnd = /* 1395/9/13 */ new Date(
+      2016,
+      11,
+      3,
+      15,
+      0,
+      0
+    ).getTime()
 
-    var endOverlappingIntervalStart = new Date(2016, 10, 5).getTime()
-    var endOverlappingIntervalEnd = new Date(2016, 10, 14).getTime()
+    var endOverlappingIntervalStart = /* 1395/8/15 */ new Date(
+      2016,
+      10,
+      5
+    ).getTime()
+    var endOverlappingIntervalEnd = /* 1395/8/24 */ new Date(
+      2016,
+      10,
+      14
+    ).getTime()
 
     var numOverlappingDays = getOverlappingDaysInIntervals(
       { start: initialIntervalStart, end: initialIntervalEnd },
@@ -156,8 +227,14 @@ describe('getOverlappingDaysInIntervals', function() {
   it('throws an exception if the start date of the initial time interval is after the end date', function() {
     var block = getOverlappingDaysInIntervals.bind(
       null,
-      { start: new Date(2016, 10, 7), end: new Date(2016, 10, 3) },
-      { start: new Date(2016, 10, 5), end: new Date(2016, 10, 15) }
+      {
+        start: /* 1395/8/17 */ new Date(2016, 10, 7),
+        end: /* 1395/8/13 */ new Date(2016, 10, 3)
+      },
+      {
+        start: /* 1395/8/15 */ new Date(2016, 10, 5),
+        end: /* 1395/8/25 */ new Date(2016, 10, 15)
+      }
     )
     assert.throws(block, RangeError)
   })
@@ -165,8 +242,14 @@ describe('getOverlappingDaysInIntervals', function() {
   it('throws an exception if the start date of the compared time interval is after the end date', function() {
     var block = getOverlappingDaysInIntervals.bind(
       null,
-      { start: new Date(2016, 10, 3), end: new Date(2016, 10, 7) },
-      { start: new Date(2016, 10, 15), end: new Date(2016, 10, 5) }
+      {
+        start: /* 1395/8/13 */ new Date(2016, 10, 3),
+        end: /* 1395/8/17 */ new Date(2016, 10, 7)
+      },
+      {
+        start: /* 1395/8/25 */ new Date(2016, 10, 15),
+        end: /* 1395/8/15 */ new Date(2016, 10, 5)
+      }
     )
     assert.throws(block, RangeError)
   })
@@ -176,7 +259,10 @@ describe('getOverlappingDaysInIntervals', function() {
       null,
       // $ExpectedMistake
       undefined,
-      { start: new Date(2016, 10, 5), end: new Date(2016, 10, 15) }
+      {
+        start: /* 1395/8/15 */ new Date(2016, 10, 5),
+        end: /* 1395/8/25 */ new Date(2016, 10, 15)
+      }
     )
     assert.throws(block, RangeError)
   })
@@ -184,7 +270,10 @@ describe('getOverlappingDaysInIntervals', function() {
   it('throws an exception if the compared interval is undefined', function() {
     var block = getOverlappingDaysInIntervals.bind(
       null,
-      { start: new Date(2016, 10, 3), end: new Date(2016, 10, 7) },
+      {
+        start: /* 1395/8/13 */ new Date(2016, 10, 3),
+        end: /* 1395/8/17 */ new Date(2016, 10, 7)
+      },
       // $ExpectedMistake
       undefined
     )
@@ -195,8 +284,11 @@ describe('getOverlappingDaysInIntervals', function() {
     it('throws an exception if the start date of the initial time interval is `Invalid Date`', function() {
       var block = getOverlappingDaysInIntervals.bind(
         null,
-        { start: new Date(NaN), end: new Date(2016, 10, 3) },
-        { start: new Date(2016, 10, 5), end: new Date(2016, 10, 15) }
+        { start: new Date(NaN), end: /* 1395/8/13 */ new Date(2016, 10, 3) },
+        {
+          start: /* 1395/8/15 */ new Date(2016, 10, 5),
+          end: /* 1395/8/25 */ new Date(2016, 10, 15)
+        }
       )
       assert.throws(block, RangeError)
     })
@@ -204,8 +296,11 @@ describe('getOverlappingDaysInIntervals', function() {
     it('throws an exception if the end date of the initial time interval is `Invalid Date`', function() {
       var block = getOverlappingDaysInIntervals.bind(
         null,
-        { start: new Date(2016, 10, 3), end: new Date(NaN) },
-        { start: new Date(2016, 10, 5), end: new Date(2016, 10, 15) }
+        { start: /* 1395/8/13 */ new Date(2016, 10, 3), end: new Date(NaN) },
+        {
+          start: /* 1395/8/15 */ new Date(2016, 10, 5),
+          end: /* 1395/8/25 */ new Date(2016, 10, 15)
+        }
       )
       assert.throws(block, RangeError)
     })
@@ -213,8 +308,11 @@ describe('getOverlappingDaysInIntervals', function() {
     it('throws an exception if the start date of the compared time interval is `Invalid Date`', function() {
       var block = getOverlappingDaysInIntervals.bind(
         null,
-        { start: new Date(2016, 10, 3), end: new Date(2016, 10, 7) },
-        { start: new Date(NaN), end: new Date(2016, 10, 5) }
+        {
+          start: /* 1395/8/13 */ new Date(2016, 10, 3),
+          end: /* 1395/8/17 */ new Date(2016, 10, 7)
+        },
+        { start: new Date(NaN), end: /* 1395/8/15 */ new Date(2016, 10, 5) }
       )
       assert.throws(block, RangeError)
     })
@@ -222,8 +320,11 @@ describe('getOverlappingDaysInIntervals', function() {
     it('throws an exception if the end date of the compared time interval is `Invalid Date`', function() {
       var block = getOverlappingDaysInIntervals.bind(
         null,
-        { start: new Date(2016, 10, 3), end: new Date(2016, 10, 7) },
-        { start: new Date(2016, 10, 5), end: new Date(NaN) }
+        {
+          start: /* 1395/8/13 */ new Date(2016, 10, 3),
+          end: /* 1395/8/17 */ new Date(2016, 10, 7)
+        },
+        { start: /* 1395/8/15 */ new Date(2016, 10, 5), end: new Date(NaN) }
       )
       assert.throws(block, RangeError)
     })
