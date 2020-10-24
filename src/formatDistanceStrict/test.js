@@ -9,16 +9,16 @@ describe('formatDistanceStrict', function() {
     context('when no unit is set', function() {
       it('0 seconds', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 5),
-          new Date(1986, 3, 4, 10, 32, 5)
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5)
         )
         assert(result === '0 seconds')
       })
 
       it('5 seconds', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 5)
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5)
         )
         assert(result === '5 seconds')
       })
@@ -28,16 +28,16 @@ describe('formatDistanceStrict', function() {
   describe('minutes', function() {
     it('1 minute', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 0)
       )
       assert(result === '1 minute')
     })
 
     it('n minutes', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 35, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 35, 0)
       )
       assert(result === '3 minutes')
     })
@@ -46,16 +46,16 @@ describe('formatDistanceStrict', function() {
   describe('hours', function() {
     it('1 hour', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 11, 32, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0)
       )
       assert(result === '1 hour')
     })
 
     it('n hours', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 13, 32, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 13, 32, 0)
       )
       assert(result === '3 hours')
     })
@@ -64,16 +64,16 @@ describe('formatDistanceStrict', function() {
   describe('days', function() {
     it('1 day', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 5, 10, 32, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/16 */ new Date(1986, 3, 5, 10, 32, 0)
       )
       assert(result === '1 day')
     })
 
     it('n days', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 7, 10, 32, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0)
       )
       assert(result === '3 days')
     })
@@ -82,16 +82,16 @@ describe('formatDistanceStrict', function() {
   describe('months', function() {
     it('1 month', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 4, 4, 10, 32, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/2/14 */ new Date(1986, 4, 4, 10, 32, 0)
       )
       assert(result === '1 month')
     })
 
     it('n months', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 6, 4, 10, 32, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/4/13 */ new Date(1986, 6, 4, 10, 32, 0)
       )
       assert(result === '3 months')
     })
@@ -100,16 +100,16 @@ describe('formatDistanceStrict', function() {
   describe('years', function() {
     it('1 year', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1987, 3, 4, 10, 32, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1366/1/15 */ new Date(1987, 3, 4, 10, 32, 0)
       )
       assert(result === '1 year')
     })
 
     it('n years', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1991, 3, 4, 10, 32, 0)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1370/1/15 */ new Date(1991, 3, 4, 10, 32, 0)
       )
       assert(result === '5 years')
     })
@@ -119,8 +119,8 @@ describe('formatDistanceStrict', function() {
     context('second', function() {
       it('0 seconds', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'second' }
         )
         assert(result === '0 seconds')
@@ -128,8 +128,8 @@ describe('formatDistanceStrict', function() {
 
       it('5 seconds', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 5),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5),
           { unit: 'second' }
         )
         assert(result === '5 seconds')
@@ -137,8 +137,8 @@ describe('formatDistanceStrict', function() {
 
       it('120 seconds', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 34, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 34, 0),
           { unit: 'second' }
         )
         assert(result === '120 seconds')
@@ -148,8 +148,8 @@ describe('formatDistanceStrict', function() {
     context('minute', function() {
       it('0 minutes', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'minute' }
         )
         assert(result === '0 minutes')
@@ -157,8 +157,8 @@ describe('formatDistanceStrict', function() {
 
       it('5 minutes', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 37, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 37, 0),
           { unit: 'minute' }
         )
         assert(result === '5 minutes')
@@ -166,8 +166,8 @@ describe('formatDistanceStrict', function() {
 
       it('120 minutes', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 12, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 12, 32, 0),
           { unit: 'minute' }
         )
         assert(result === '120 minutes')
@@ -177,8 +177,8 @@ describe('formatDistanceStrict', function() {
     context('hour', function() {
       it('0 hours', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'hour' }
         )
         assert(result === '0 hours')
@@ -186,8 +186,8 @@ describe('formatDistanceStrict', function() {
 
       it('5 hours', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 15, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 15, 32, 0),
           { unit: 'hour' }
         )
         assert(result === '5 hours')
@@ -195,8 +195,8 @@ describe('formatDistanceStrict', function() {
 
       it('48 hours', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 6, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/17 */ new Date(1986, 3, 6, 10, 32, 0),
           { unit: 'hour' }
         )
         assert(result === '48 hours')
@@ -206,8 +206,8 @@ describe('formatDistanceStrict', function() {
     context('day', function() {
       it('0 days', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'day' }
         )
         assert(result === '0 days')
@@ -215,8 +215,8 @@ describe('formatDistanceStrict', function() {
 
       it('5 days', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 9, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/20 */ new Date(1986, 3, 9, 10, 32, 0),
           { unit: 'day' }
         )
         assert(result === '5 days')
@@ -224,8 +224,8 @@ describe('formatDistanceStrict', function() {
 
       it('60 days', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 5, 3, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/3/13 */ new Date(1986, 5, 3, 10, 32, 0),
           { unit: 'day' }
         )
         assert(result === '60 days')
@@ -234,8 +234,8 @@ describe('formatDistanceStrict', function() {
     context('month', function() {
       it('0 months', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'month' }
         )
         assert(result === '0 months')
@@ -243,8 +243,8 @@ describe('formatDistanceStrict', function() {
 
       it('5 months', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 7, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/5/13 */ new Date(1986, 7, 4, 10, 32, 0),
           { unit: 'month' }
         )
         assert(result === '4 months')
@@ -252,8 +252,8 @@ describe('formatDistanceStrict', function() {
 
       it('24 months', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1988, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1367/1/15 */ new Date(1988, 3, 4, 10, 32, 0),
           { unit: 'month' }
         )
         assert(result === '24 months')
@@ -263,8 +263,8 @@ describe('formatDistanceStrict', function() {
     context('year', function() {
       it('0 years', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: 'year' }
         )
         assert(result === '0 years')
@@ -272,8 +272,8 @@ describe('formatDistanceStrict', function() {
 
       it('5 years', function() {
         var result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1991, 3, 4, 15, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1370/1/15 */ new Date(1991, 3, 4, 15, 32, 0),
           { unit: 'year' }
         )
         assert(result === '5 years')
@@ -283,8 +283,8 @@ describe('formatDistanceStrict', function() {
 
   it('accepts timestamps', function() {
     var result = formatDistanceStrict(
-      new Date(1986, 3, 4, 10, 32, 0).getTime(),
-      new Date(1986, 3, 4, 11, 32, 0).getTime()
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0).getTime(),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0).getTime()
     )
     assert(result === '1 hour')
   })
@@ -292,8 +292,8 @@ describe('formatDistanceStrict', function() {
   describe('when the addSuffix option is true', function() {
     it('adds a past suffix', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 25),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
         { addSuffix: true }
       )
       assert(result === '25 seconds ago')
@@ -301,8 +301,8 @@ describe('formatDistanceStrict', function() {
 
     it('adds a future suffix', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 11, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         { addSuffix: true }
       )
       assert(result === 'in 1 hour')
@@ -312,16 +312,16 @@ describe('formatDistanceStrict', function() {
   describe('when the roundingMethod option is supplied', function() {
     it('default is "round"', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 59)
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 59)
       )
       assert(result === '2 minutes')
     })
 
     it('"floor"', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 59),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 59),
         { roundingMethod: 'floor' }
       )
       assert(result === '1 minute')
@@ -329,8 +329,8 @@ describe('formatDistanceStrict', function() {
 
     it('"ceil"', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 1),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 1),
         { roundingMethod: 'ceil' }
       )
       assert(result === '2 minutes')
@@ -338,8 +338,8 @@ describe('formatDistanceStrict', function() {
 
     it('"round" (down)', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 29),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 29),
         { roundingMethod: 'round' }
       )
       assert(result === '1 minute')
@@ -347,8 +347,8 @@ describe('formatDistanceStrict', function() {
 
     it('"round" (up)', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 30),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 30),
         { roundingMethod: 'round' }
       )
       assert(result === '2 minutes')
@@ -361,8 +361,8 @@ describe('formatDistanceStrict', function() {
       var unit = new String('year')
 
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         // $ExpectedMistake
         { unit: unit }
       )
@@ -371,8 +371,8 @@ describe('formatDistanceStrict', function() {
 
     it('`options.addSuffix`', function() {
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 25),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
         // $ExpectedMistake
         { addSuffix: 1 }
       )
@@ -384,8 +384,8 @@ describe('formatDistanceStrict', function() {
       var roundingMethod = new String('ceil')
 
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 1),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 1),
         // $ExpectedMistake
         { roundingMethod: roundingMethod }
       )
@@ -408,8 +408,8 @@ describe('formatDistanceStrict', function() {
       }
 
       var result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 25),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
         // $ExpectedMistake
         { addSuffix: true, locale: customLocale }
       )
@@ -422,9 +422,9 @@ describe('formatDistanceStrict', function() {
         var customLocale = {}
         var block = formatDistanceStrict.bind(
           null,
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           // $ExpectedMistake
-          new Date(1986, 3, 4, 10, 37, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 37, 0),
           { unit: 'minute', locale: customLocale }
         )
         assert.throws(block, RangeError)
@@ -435,8 +435,8 @@ describe('formatDistanceStrict', function() {
   describe('edge cases', function() {
     it('detects unit correctly for short months', function() {
       var result = formatDistanceStrict(
-        new Date(2018, 1 /* Feb */, 1),
-        new Date(2018, 2 /* Mar */, 1)
+        /* 1396/11/12 */ new Date(2018, 1 /* Feb */, 1),
+        /* 1396/12/10 */ new Date(2018, 2 /* Mar */, 1)
       )
       assert(result === '28 days')
     })
@@ -447,7 +447,7 @@ describe('formatDistanceStrict', function() {
       formatDistanceStrict.bind(
         null,
         new Date(NaN),
-        new Date(1986, 3, 7, 10, 32, 0)
+        /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0)
       ),
       RangeError
     )
@@ -457,7 +457,7 @@ describe('formatDistanceStrict', function() {
     assert.throws(
       formatDistanceStrict.bind(
         null,
-        new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         new Date(NaN)
       ),
       RangeError
@@ -474,8 +474,8 @@ describe('formatDistanceStrict', function() {
   it("throws `RangeError` if `options.roundingMethod` is not 'floor', 'ceil', 'round' or undefined", function() {
     var block = formatDistanceStrict.bind(
       null,
-      new Date(1986, 3, 4, 10, 32, 0),
-      new Date(1986, 3, 4, 10, 33, 29),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 29),
       // $ExpectedMistake
       { roundingMethod: 'foobar' }
     )
@@ -485,8 +485,8 @@ describe('formatDistanceStrict', function() {
   it("throws `RangeError` if `options.unit` is not 's', 'm', 'h', 'd', 'M', 'Y' or undefined", function() {
     var block = formatDistanceStrict.bind(
       null,
-      new Date(1986, 3, 4, 10, 32, 0),
-      new Date(1986, 3, 4, 10, 33, 29),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 29),
       // $ExpectedMistake
       { unit: 'foobar' }
     )

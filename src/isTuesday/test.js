@@ -6,17 +6,19 @@ import isTuesday from '.'
 
 describe('isTuesday', function() {
   it('returns true if the given date is Tuesday', function() {
-    var result = isTuesday(new Date(2014, 8 /* Sep */, 23))
+    var result = isTuesday(/* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23))
     assert(result === true)
   })
 
   it('returns false if the given date is not Tuesday', function() {
-    var result = isTuesday(new Date(2014, 8 /* Sep */, 25))
+    var result = isTuesday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25))
     assert(result === false)
   })
 
   it('accepts a timestamp', function() {
-    var result = isTuesday(new Date(2014, 1 /* Feb */, 11).getTime())
+    var result = isTuesday(
+      /* 1392/11/22 */ new Date(2014, 1 /* Feb */, 11).getTime()
+    )
     assert(result === true)
   })
 

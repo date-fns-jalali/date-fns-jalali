@@ -6,12 +6,14 @@ import getMonth from '.'
 
 describe('getMonth', function() {
   it('returns the month of the given date', function() {
-    var result = getMonth(new Date(2012, 1 /* Feb */, 29))
+    var result = getMonth(/* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29))
     assert(result === 1)
   })
 
   it('accepts a timestamp', function() {
-    var result = getMonth(new Date(2014, 3 /* Apr */, 2).getTime())
+    var result = getMonth(
+      /* 1393/1/13 */ new Date(2014, 3 /* Apr */, 2).getTime()
+    )
     assert(result === 3)
   })
 

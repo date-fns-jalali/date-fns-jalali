@@ -6,29 +6,50 @@ import setUTCWeek from '.'
 
 describe('setUTCWeek', function() {
   it('sets the local week', function() {
-    var result = setUTCWeek(new Date(Date.UTC(2005, 0 /* Jan */, 2)), 1)
-    assert.deepEqual(result, new Date(Date.UTC(2004, 11 /* Dec */, 26)))
+    var result = setUTCWeek(
+      new Date(/* 1383/10/13 */ Date.UTC(2005, 0 /* Jan */, 2)),
+      1
+    )
+    assert.deepEqual(
+      result,
+      new Date(/* 1383/10/6 */ Date.UTC(2004, 11 /* Dec */, 26))
+    )
   })
 
   it('accepts a timestamp', function() {
-    var result = setUTCWeek(Date.UTC(2009, 11 /* Dec */, 2), 1)
-    assert.deepEqual(result, new Date(Date.UTC(2008, 11 /* Dec */, 31)))
+    var result = setUTCWeek(/* 1388/9/11 */ Date.UTC(2009, 11 /* Dec */, 2), 1)
+    assert.deepEqual(
+      result,
+      new Date(/* 1387/10/11 */ Date.UTC(2008, 11 /* Dec */, 31))
+    )
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = setUTCWeek(new Date(Date.UTC(2005, 0 /* Jan */, 2)), 1.1)
-    assert.deepEqual(result, new Date(Date.UTC(2004, 11 /* Dec */, 26)))
+    var result = setUTCWeek(
+      new Date(/* 1383/10/13 */ Date.UTC(2005, 0 /* Jan */, 2)),
+      1.1
+    )
+    assert.deepEqual(
+      result,
+      new Date(/* 1383/10/6 */ Date.UTC(2004, 11 /* Dec */, 26))
+    )
   })
 
   it('implicitly converts number arguments', function() {
-    var result = setUTCWeek(new Date(Date.UTC(2004, 7 /* Aug */, 7)), '53')
-    assert.deepEqual(result, new Date(Date.UTC(2005, 0 /* Jan */, 1)))
+    var result = setUTCWeek(
+      new Date(/* 1383/5/17 */ Date.UTC(2004, 7 /* Aug */, 7)),
+      '53'
+    )
+    assert.deepEqual(
+      result,
+      new Date(/* 1383/10/12 */ Date.UTC(2005, 0 /* Jan */, 1))
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 6 /* Jul */, 2)
+    var date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2)
     setUTCWeek(date, 52)
-    assert.deepEqual(date, new Date(2014, 6 /* Jul */, 2))
+    assert.deepEqual(date, /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2))
   })
 
   it('handles dates before 100 AD', function() {
@@ -48,22 +69,25 @@ describe('setUTCWeek', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    var result = setUTCWeek(new Date(2004, 7 /* Aug */, 7), NaN)
+    var result = setUTCWeek(/* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7), NaN)
     assert(result instanceof Date && isNaN(result))
   })
 
   it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale', function() {
-    var date = new Date(Date.UTC(2005, 0 /* Jan */, 2))
+    var date = new Date(/* 1383/10/13 */ Date.UTC(2005, 0 /* Jan */, 2))
     var result = setUTCWeek(date, 1, {
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 }
       }
     })
-    assert.deepEqual(result, new Date(Date.UTC(2004, 0 /* Jan */, 4)))
+    assert.deepEqual(
+      result,
+      new Date(/* 1382/10/14 */ Date.UTC(2004, 0 /* Jan */, 4))
+    )
   })
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', function() {
-    var date = new Date(Date.UTC(2005, 0 /* Jan */, 2))
+    var date = new Date(/* 1383/10/13 */ Date.UTC(2005, 0 /* Jan */, 2))
     var result = setUTCWeek(date, 1, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
@@ -71,20 +95,33 @@ describe('setUTCWeek', function() {
         options: { weekStartsOn: 0, firstWeekContainsDate: 1 }
       }
     })
-    assert.deepEqual(result, new Date(Date.UTC(2004, 0 /* Jan */, 4)))
+    assert.deepEqual(
+      result,
+      new Date(/* 1382/10/14 */ Date.UTC(2004, 0 /* Jan */, 4))
+    )
   })
 
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', function() {
-    var block = setUTCWeek.bind(null, new Date(2004, 7 /* Aug */, 7), 53, {
-      weekStartsOn: NaN
-    })
+    var block = setUTCWeek.bind(
+      null,
+      /* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7),
+      53,
+      {
+        weekStartsOn: NaN
+      }
+    )
     assert.throws(block, RangeError)
   })
 
   it('throws `RangeError` if `options.firstWeekContainsDate` is not convertable to 1, 2, ..., 7 or undefined', function() {
-    var block = setUTCWeek.bind(null, new Date(2004, 7 /* Aug */, 7), 53, {
-      firstWeekContainsDate: NaN
-    })
+    var block = setUTCWeek.bind(
+      null,
+      /* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7),
+      53,
+      {
+        firstWeekContainsDate: NaN
+      }
+    )
     assert.throws(block, RangeError)
   })
 
