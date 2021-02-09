@@ -6,12 +6,12 @@ import getDecade from '.'
 
 describe('getDecade', function() {
   it('returns the decade for a the given date', function() {
-    const result = getDecade(new Date(1971, 10 /* Nov */, 8))
+    const result = getDecade(/* 1350/8/17 */ new Date(1971, 10 /* Nov */, 8))
     assert(result === 1970)
   })
 
   it('accepts a timestamp', function() {
-    const result = getDecade(new Date(1969, 6 /* Jul */, 20).getTime())
+    const result = getDecade(/* 1348/4/29 */ new Date(1969, 6 /* Jul */, 20).getTime())
     assert(result === 1960)
   })
 

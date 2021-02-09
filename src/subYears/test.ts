@@ -6,36 +6,36 @@ import subYears from '.'
 
 describe('subYears', function() {
   it('subtracts the given number of years', function() {
-    const result = subYears(new Date(2014, 8 /* Sep */, 1), 5)
-    assert.deepEqual(result, new Date(2009, 8 /* Sep */, 1))
+    const result = subYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5)
+    assert.deepEqual(result, /* 1388/6/10 */ new Date(2009, 8 /* Sep */, 1))
   })
 
   it('accepts a timestamp', function() {
-    const result = subYears(new Date(2014, 8 /* Sep */, 1).getTime(), 12)
-    assert.deepEqual(result, new Date(2002, 8 /* Sep */, 1))
+    const result = subYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(), 12)
+    assert.deepEqual(result, /* 1381/6/10 */ new Date(2002, 8 /* Sep */, 1))
   })
 
   it('converts a fractional number to an integer', function() {
-    const result = subYears(new Date(2014, 8 /* Sep */, 1), 5.1)
-    assert.deepEqual(result, new Date(2009, 8 /* Sep */, 1))
+    const result = subYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5.1)
+    assert.deepEqual(result, /* 1388/6/10 */ new Date(2009, 8 /* Sep */, 1))
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
     // @ts-expect-error
-    const result = subYears(new Date(2014, 8 /* Sep */, 1), '5')
-    assert.deepEqual(result, new Date(2009, 8 /* Sep */, 1))
+    const result = subYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), '5')
+    assert.deepEqual(result, /* 1388/6/10 */ new Date(2009, 8 /* Sep */, 1))
   })
 
   it('does not mutate the original date', function() {
-    const date = new Date(2014, 8 /* Sep */, 1)
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1)
     subYears(date, 12)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(date, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
   })
 
   it('handles the leap years properly', function() {
-    const result = subYears(new Date(2016, 1 /* Feb */, 29), 1)
-    assert.deepEqual(result, new Date(2015, 1 /* Feb */, 28))
+    const result = subYears(/* 1394/12/10 */ new Date(2016, 1 /* Feb */, 29), 1)
+    assert.deepEqual(result, /* 1393/12/9 */ new Date(2015, 1 /* Feb */, 28))
   })
 
   it('handles dates before 100 AD', function() {
@@ -56,7 +56,7 @@ describe('subYears', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    const result = subYears(new Date(2014, 8 /* Sep */, 1), NaN)
+    const result = subYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN)
     // @ts-expect-error
     assert(result instanceof Date && isNaN(result))
   })

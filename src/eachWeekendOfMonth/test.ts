@@ -6,16 +6,16 @@ import eachWeekendOfMonth from '.'
 
 describe('eachWeekendOfMonth', () => {
   it('returns all weekends of the given month', () => {
-    var result = eachWeekendOfMonth(new Date(2022, 1, 20))
+    var result = eachWeekendOfMonth(/* 1400/12/1 */ new Date(2022, 1, 20))
     assert.deepStrictEqual(result, [
-      new Date(2022, 1, 5),
-      new Date(2022, 1, 6),
-      new Date(2022, 1, 12),
-      new Date(2022, 1, 13),
-      new Date(2022, 1, 19),
-      new Date(2022, 1, 20),
-      new Date(2022, 1, 26),
-      new Date(2022, 1, 27)
+      /* 1400/11/16 */ new Date(2022, 1, 5),
+      /* 1400/11/17 */ new Date(2022, 1, 6),
+      /* 1400/11/23 */ new Date(2022, 1, 12),
+      /* 1400/11/24 */ new Date(2022, 1, 13),
+      /* 1400/11/30 */ new Date(2022, 1, 19),
+      /* 1400/12/1 */ new Date(2022, 1, 20),
+      /* 1400/12/7 */ new Date(2022, 1, 26),
+      /* 1400/12/8 */ new Date(2022, 1, 27)
     ])
   })
 
