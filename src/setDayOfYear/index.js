@@ -2,6 +2,9 @@ import toInteger from '../_lib/toInteger/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreSetMonth from '../_core/setMonth/index'
+import coreSetDate from '../_core/setDate/index'
+
 /**
  * @name setDayOfYear
  * @category Day Helpers
@@ -29,7 +32,7 @@ export default function setDayOfYear(dirtyDate, dirtyDayOfYear) {
 
   var date = toDate(dirtyDate)
   var dayOfYear = toInteger(dirtyDayOfYear)
-  date.setMonth(0)
-  date.setDate(dayOfYear)
+  coreSetMonth(date, 0)
+  coreSetDate(date, dayOfYear)
   return date
 }
