@@ -4,28 +4,30 @@
 import assert from 'power-assert'
 import isFriday from '.'
 
-describe('isFriday', function() {
-  it('returns true if the given date is Friday', function() {
-    var result = isFriday(new Date(2014, 8 /* Sep */, 26))
+describe('isFriday', function () {
+  it('returns true if the given date is Friday', function () {
+    var result = isFriday(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26))
     assert(result === true)
   })
 
-  it('returns false if the given date is not Friday', function() {
-    var result = isFriday(new Date(2014, 8 /* Sep */, 25))
+  it('returns false if the given date is not Friday', function () {
+    var result = isFriday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25))
     assert(result === false)
   })
 
-  it('accepts a timestamp', function() {
-    var result = isFriday(new Date(2014, 1 /* Feb */, 14).getTime())
+  it('accepts a timestamp', function () {
+    var result = isFriday(
+      /* 1392/11/25 */ new Date(2014, 1 /* Feb */, 14).getTime()
+    )
     assert(result === true)
   })
 
-  it('returns false if the given date is `Invalid Date`', function() {
+  it('returns false if the given date is `Invalid Date`', function () {
     var result = isFriday(new Date(NaN))
     assert(result === false)
   })
 
-  it('throws TypeError exception if passed less than 1 argument', function() {
+  it('throws TypeError exception if passed less than 1 argument', function () {
     assert.throws(isFriday.bind(null), TypeError)
   })
 })

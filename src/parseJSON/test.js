@@ -4,7 +4,7 @@
 import assert from 'power-assert'
 import parseJSON from '.'
 
-describe('parseJSON', function() {
+describe('parseJSON', function () {
   it('parses a fully formed ISO date with Z', () => {
     const date = '2000-03-15T05:20:10.123Z'
     const parsedDate = parseJSON(date)
@@ -82,14 +82,14 @@ describe('parseJSON', function() {
   })
 
   it('clones a date object', () => {
-    const date = new Date(2000, 2, 15, 5, 20, 10, 20)
+    const date = /* 1378/12/25 */ new Date(2000, 2, 15, 5, 20, 10, 20)
     const parsedDate = parseJSON(date)
     assert.deepEqual(parsedDate, date)
     assert.notEqual(parsedDate, date)
   })
 
   it('assumes a number is a timestamp', () => {
-    const date = new Date(2000, 2, 15, 5, 20, 10, 20)
+    const date = /* 1378/12/25 */ new Date(2000, 2, 15, 5, 20, 10, 20)
     const timestamp = date.getTime()
     const parsedDate = parseJSON(timestamp)
     assert.deepEqual(parsedDate, date)

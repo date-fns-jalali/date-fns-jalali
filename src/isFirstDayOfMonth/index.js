@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetDate from '../_core/getDate/index'
+
 /**
  * @name isFirstDayOfMonth
  * @category Month Helpers
@@ -25,5 +27,5 @@ import requiredArgs from '../_lib/requiredArgs/index'
 export default function isFirstDayOfMonth(dirtyDate) {
   requiredArgs(1, arguments)
 
-  return toDate(dirtyDate).getDate() === 1
+  return coreGetDate(toDate(dirtyDate)) === 1
 }

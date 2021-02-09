@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from "../_core/getMonth/index";
+
 /**
  * @name getMonth
  * @category Month Helpers
@@ -26,6 +28,6 @@ export default function getMonth(dirtyDate: Date | number): number {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const month = date.getMonth()
+  const month = coreGetMonth(date)
   return month
 }

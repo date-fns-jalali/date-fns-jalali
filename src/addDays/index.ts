@@ -2,6 +2,9 @@ import toInteger from '../_lib/toInteger/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetDate from "../_core/getDate/index";
+import coreSetDate from "../_core/setDate/index";
+
 /**
  * @name addDays
  * @category Day Helpers
@@ -39,6 +42,6 @@ export default function addDays(
     // If 0 days, no-op to avoid changing times in the hour before end of DST
     return date
   }
-  date.setDate(date.getDate() + amount)
+  coreSetDate(date, coreGetDate(date) + amount)
   return date
 }

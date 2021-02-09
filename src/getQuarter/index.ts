@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from "../_core/getMonth/index";
+
 /**
  * @name getQuarter
  * @category Quarter Helpers
@@ -26,6 +28,6 @@ export default function getQuarter(dirtyDate: Date | number): number {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const quarter = Math.floor(date.getMonth() / 3) + 1
+  const quarter = Math.floor(coreGetMonth(date) / 3) + 1
   return quarter
 }
