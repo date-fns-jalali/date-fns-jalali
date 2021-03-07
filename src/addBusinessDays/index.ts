@@ -5,6 +5,9 @@ import requiredArgs from '../_lib/requiredArgs/index'
 import isSunday from '../isSunday/index'
 import isSaturday from '../isSaturday/index'
 
+import coreGetDate from "../_core/getDate/index";
+import coreSetDate from "../_core/setDate/index";
+
 /**
  * @name addBusinessDays
  * @category Day Helpers
@@ -39,14 +42,14 @@ export default function addBusinessDays(
   const sign = amount < 0 ? -1 : 1
   const fullWeeks = toInteger(amount / 5)
 
-  date.setDate(date.getDate() + fullWeeks * 7)
+  coreSetDate(date, coreGetDate(date) + fullWeeks * 7)
 
   // Get remaining days not part of a full week
   let restDays = Math.abs(amount % 5)
 
   // Loops over remaining days
   while (restDays > 0) {
-    date.setDate(date.getDate() + sign)
+    coreSetDate(date, coreGetDate(date) + sign)
     if (!isWeekend(date)) restDays -= 1
   }
 
@@ -56,8 +59,8 @@ export default function addBusinessDays(
   if (startedOnWeekend && isWeekend(date) && amount !== 0) {
     // If we're reducing days, we want to add days until we land on a weekday
     // If we're adding days we want to reduce days until we land on a weekday
-    if (isSaturday(date)) date.setDate(date.getDate() + (sign < 0 ? 2 : -1))
-    if (isSunday(date)) date.setDate(date.getDate() + (sign < 0 ? 1 : -2))
+    if (isSaturday(date)) coreSetDate(date, coreGetDate(date) + (sign < 0 ? 2 : -1))
+    if (isSunday(date)) coreSetDate(date, coreGetDate(date) + (sign < 0 ? 1 : -2))
   }
 
   // Restore hours to avoid DST lag
