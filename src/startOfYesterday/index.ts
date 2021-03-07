@@ -21,14 +21,19 @@
  * const result = startOfYesterday()
  * //=> Sun Oct 5 2014 00:00:00
  */
+import coreGetMonth from "../_core/getMonth/index";
+
+import coreGetDate from "../_core/getDate/index";
+import coreGetFullYear from "../_core/getFullYear/index";
+import coreSetFullYear from "../_core/setFullYear/index";
 export default function startOfYesterday() {
   const now = new Date()
-  const year = now.getFullYear()
-  const month = now.getMonth()
-  const day = now.getDate()
+  const year = coreGetFullYear(now)
+  const month = coreGetMonth(now)
+  const day = coreGetDate(now)
 
   const date = new Date(0)
-  date.setFullYear(year, month, day - 1)
+  coreSetFullYear(date, year, month, day - 1)
   date.setHours(0, 0, 0, 0)
   return date
 }

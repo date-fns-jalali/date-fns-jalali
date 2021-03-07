@@ -3,6 +3,9 @@ import toInteger from '../_lib/toInteger/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 import { LocalOptions, WeekStartOptions } from '../types';
 
+import coreGetDate from "../_core/getDate/index";
+import coreSetDate from "../_core/setDate/index";
+
 /**
  * @name lastDayOfWeek
  * @category Week Helpers
@@ -44,7 +47,7 @@ export default function lastDayOfWeek(
   const localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   const defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   const weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
@@ -60,6 +63,6 @@ export default function lastDayOfWeek(
   const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn)
 
   date.setHours(0, 0, 0, 0)
-  date.setDate(date.getDate() + diff)
+  coreSetDate(date, coreGetDate(date) + diff)
   return date
 }

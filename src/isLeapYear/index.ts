@@ -1,6 +1,9 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreIsLeapYear from "../_core/isLeapYear/index";
+import coreGetFullYear from "../_core/getFullYear/index";
+
 /**
  * @name isLeapYear
  * @category Year Helpers
@@ -26,6 +29,6 @@ export default function isLeapYear(dirtyDate: Date | number): boolean {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const year = date.getFullYear()
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
+  const year = coreGetFullYear(date)
+  return coreIsLeapYear(year);
 }

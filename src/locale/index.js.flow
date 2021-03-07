@@ -60,6 +60,7 @@ declare module.exports: {
   et: Locale,
   eu: Locale,
   faIR: Locale,
+  fajalaliIR: Locale,
   fi: Locale,
   fil: Locale,
   fr: Locale,

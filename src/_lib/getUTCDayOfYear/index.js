@@ -1,6 +1,8 @@
 import toDate from '../../toDate/index'
 import requiredArgs from '../requiredArgs/index'
 
+import coreSetUTCMonth from '../../_core/setUTCMonth/index'
+
 var MILLISECONDS_IN_DAY = 86400000
 
 // This function will be a part of public API when UTC function will be implemented.
@@ -10,7 +12,7 @@ export default function getUTCDayOfYear(dirtyDate) {
 
   var date = toDate(dirtyDate)
   var timestamp = date.getTime()
-  date.setUTCMonth(0, 1)
+  coreSetUTCMonth(date, 0, 1)
   date.setUTCHours(0, 0, 0, 0)
   var startOfYearTimestamp = date.getTime()
   var difference = timestamp - startOfYearTimestamp
