@@ -4,10 +4,10 @@
 import assert from 'power-assert'
 import intervalToDuration from '.'
 
-describe('intervalToDuration', function() {
-  it('Returns correct duration for arbitrary dates', function() {
-    const start = new Date(1929, 0, 15, 12, 0, 0)
-    const end = new Date(1968, 3, 4, 19, 5, 0)
+describe('intervalToDuration', function () {
+  it('Returns correct duration for arbitrary dates', function () {
+    const start = /* 1307/10/25 */ new Date(1929, 0, 15, 12, 0, 0)
+    const end = /* 1347/1/15 */ new Date(1968, 3, 4, 19, 5, 0)
     const result = intervalToDuration({ start, end })
 
     assert.deepEqual(result, {
@@ -16,12 +16,12 @@ describe('intervalToDuration', function() {
       days: 20,
       hours: 7,
       minutes: 5,
-      seconds: 0
+      seconds: 0,
     })
   })
-  it('Returns correct duration (1 of everything)', function() {
-    const start = new Date(2020, 2, 1, 12, 0, 0)
-    const end = new Date(2021, 3, 2, 13, 1, 1)
+  it('Returns correct duration (1 of everything)', function () {
+    const start = /* 1398/12/11 */ new Date(2020, 2, 1, 12, 0, 0)
+    const end = /* 1400/1/13 */ new Date(2021, 3, 2, 13, 1, 1)
     const result = intervalToDuration({ start, end })
 
     assert.deepEqual(result, {
@@ -30,12 +30,12 @@ describe('intervalToDuration', function() {
       days: 1,
       hours: 1,
       minutes: 1,
-      seconds: 1
+      seconds: 1,
     })
   })
-  it('Returns duration of 0 when the dates are the same', function() {
-    const start = new Date(2020, 2, 1, 12, 0, 0)
-    const end = new Date(2020, 2, 1, 12, 0, 0)
+  it('Returns duration of 0 when the dates are the same', function () {
+    const start = /* 1398/12/11 */ new Date(2020, 2, 1, 12, 0, 0)
+    const end = /* 1398/12/11 */ new Date(2020, 2, 1, 12, 0, 0)
     const result = intervalToDuration({ start, end })
 
     assert.deepEqual(result, {
@@ -44,7 +44,7 @@ describe('intervalToDuration', function() {
       days: 0,
       hours: 0,
       minutes: 0,
-      seconds: 0
+      seconds: 0,
     })
   })
 })

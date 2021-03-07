@@ -7,36 +7,36 @@ import { getDstTransitions } from '../../test/dst/tzOffsetTransitions'
 
 describe('addMonths', function() {
   it('adds the given number of months', function() {
-    const result = addMonths(new Date(2014, 8 /* Sep */, 1), 5)
-    assert.deepStrictEqual(result, new Date(2015, 1 /* Feb */, 1))
+    const result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5)
+    assert.deepStrictEqual(result, /* 1393/11/12 */ new Date(2015, 1 /* Feb */, 1))
   })
 
   it('accepts a timestamp', function() {
-    const result = addMonths(new Date(2014, 8 /* Sep */, 1).getTime(), 12)
-    assert.deepStrictEqual(result, new Date(2015, 8 /* Sep */, 1))
+    const result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(), 12)
+    assert.deepStrictEqual(result, /* 1394/6/10 */ new Date(2015, 8 /* Sep */, 1))
   })
 
   it('converts a fractional number to an integer', function() {
-    const result = addMonths(new Date(2014, 8 /* Sep */, 1), 5.75)
-    assert.deepStrictEqual(result, new Date(2015, 1 /* Feb */, 1))
+    const result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5.75)
+    assert.deepStrictEqual(result, /* 1393/11/12 */ new Date(2015, 1 /* Feb */, 1))
   })
 
   it('implicitly converts number arguments', function() {
     // @ts-expect-error
-    const result = addMonths(new Date(2014, 8 /* Sep */, 1), '5')
-    assert.deepStrictEqual(result, new Date(2015, 1 /* Feb */, 1))
+    const result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), '5')
+    assert.deepStrictEqual(result, /* 1393/11/12 */ new Date(2015, 1 /* Feb */, 1))
   })
 
   it('does not mutate the original date', function() {
-    const date = new Date(2014, 8 /* Sep */, 1)
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1)
     addMonths(date, 12)
-    assert.deepStrictEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepStrictEqual(date, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
   })
 
   it('works well if the desired month has fewer days and the provided date is in the last day of a month', function() {
-    const date = new Date(2014, 11 /* Dec */, 31)
+    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31)
     const result = addMonths(date, 2)
-    assert.deepStrictEqual(result, new Date(2015, 1 /* Feb */, 28))
+    assert.deepStrictEqual(result, /* 1393/12/9 */ new Date(2015, 1 /* Feb */, 28))
   })
 
   it('handles dates before 100 AD', function() {
@@ -57,7 +57,7 @@ describe('addMonths', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    const result = addMonths(new Date(2014, 8 /* Sep */, 1), NaN)
+    const result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN)
     // @ts-expect-error
     assert(result instanceof Date && isNaN(result))
   })

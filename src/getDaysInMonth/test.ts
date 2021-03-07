@@ -6,17 +6,17 @@ import getDaysInMonth from '.'
 
 describe('getDaysInMonth', function() {
   it('returns the number of days in the month of the given date', function() {
-    const result = getDaysInMonth(new Date(2100, 1 /* Feb */, 11))
+    const result = getDaysInMonth(/* 1478/11/23 */ new Date(2100, 1 /* Feb */, 11))
     assert(result === 28)
   })
 
   it('works for the February of a leap year', function() {
-    const result = getDaysInMonth(new Date(2000, 1 /* Feb */, 11))
+    const result = getDaysInMonth(/* 1378/11/22 */ new Date(2000, 1 /* Feb */, 11))
     assert(result === 29)
   })
 
   it('accepts a timestamp', function() {
-    const date = new Date(2014, 6 /* Jul */, 2).getTime()
+    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime()
     const result = getDaysInMonth(date)
     assert(result === 31)
   })

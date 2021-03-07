@@ -7,7 +7,7 @@ import { getDstTransitions } from '../../test/dst/tzOffsetTransitions'
 
 describe('add', function() {
   it('adds the values from the given object', function() {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10, 19, 50), {
+    const result = add(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10, 19, 50), {
       years: 2,
       months: 9,
       weeks: 1,
@@ -16,42 +16,42 @@ describe('add', function() {
       minutes: 9,
       seconds: 30
     })
-    assert.deepStrictEqual(result, new Date(2017, 5 /* June */, 15, 15, 29, 20))
+    assert.deepStrictEqual(result, /* 1396/3/25 */ new Date(2017, 5 /* June */, 15, 15, 29, 20))
   })
 
   it('returns same date object when passed empty duration values', function() {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {})
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 1, 10))
+    const result = add(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10).getTime(), {})
+    assert.deepStrictEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10))
   })
 
   it('accepts a timestamp', function() {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {
+    const result = add(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10).getTime(), {
       hours: 4
     })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 1, 14))
+    assert.deepStrictEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 14))
   })
 
   it('converts a fractional number to an integer', function() {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10), { hours: 4.2 })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 1, 14))
+    const result = add(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10), { hours: 4.2 })
+    assert.deepStrictEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 14))
   })
 
   it('implicitly converts number arguments', function() {
     // @ts-expect-error
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10), { hours: '4.2' })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 1, 14))
+    const result = add(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10), { hours: '4.2' })
+    assert.deepStrictEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 14))
   })
 
   it('does not mutate the original date', function() {
-    const date = new Date(2014, 8 /* Sep */, 1, 10)
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10)
     add(date, { hours: 4 })
-    assert.deepStrictEqual(date, new Date(2014, 8 /* Sep */, 1, 10))
+    assert.deepStrictEqual(date, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10))
   })
 
   it('works well if the desired month has fewer days and the provided date is in the last day of a month', function() {
-    const date = new Date(2014, 11 /* Dec */, 31)
+    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31)
     const result = add(date, { months: 9 })
-    assert.deepStrictEqual(result, new Date(2015, 8 /* Sep */, 30))
+    assert.deepStrictEqual(result, /* 1394/7/8 */ new Date(2015, 8 /* Sep */, 30))
   })
 
   const dstTransitions = getDstTransitions(2017)
@@ -86,7 +86,7 @@ describe('add', function() {
 
   it('throws RangeError exception if passed Number as duration', function() {
     // @ts-expect-error
-    const result = add(new Date(2014, 8, 1), 'wut')
+    const result = add(/* 1393/6/10 */ new Date(2014, 8, 1), 'wut')
     assert(result instanceof Date && isNaN(result.getTime()))
   })
 
