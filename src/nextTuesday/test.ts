@@ -7,38 +7,38 @@ import nextTuesday from '.'
 describe('nextTuesday', function () {
   it('returns the following Tuesday given various dates before the same', function () {
     assert.deepStrictEqual(
-      nextTuesday(new Date(2020, 2 /* Mar */, 23)),
-      new Date(2020, 2 /* Mar */, 24)
+      nextTuesday(/* 1399/1/4 */ new Date(2020, 2 /* Mar */, 23)),
+      /* 1399/1/5 */ new Date(2020, 2 /* Mar */, 24)
     )
 
     assert.deepStrictEqual(
-      nextTuesday(new Date(2020, 2 /* Mar */, 22)),
-      new Date(2020, 2 /* Mar */, 24)
+      nextTuesday(/* 1399/1/3 */ new Date(2020, 2 /* Mar */, 22)),
+      /* 1399/1/5 */ new Date(2020, 2 /* Mar */, 24)
     )
 
     assert.deepStrictEqual(
-      nextTuesday(new Date(2020, 2 /* Mar */, 21)),
-      new Date(2020, 2 /* Mar */, 24)
+      nextTuesday(/* 1399/1/2 */ new Date(2020, 2 /* Mar */, 21)),
+      /* 1399/1/5 */ new Date(2020, 2 /* Mar */, 24)
     )
 
     assert.deepStrictEqual(
-      nextTuesday(new Date(2020, 2 /* Mar */, 20)),
-      new Date(2020, 2 /* Mar */, 24)
+      nextTuesday(/* 1399/1/1 */ new Date(2020, 2 /* Mar */, 20)),
+      /* 1399/1/5 */ new Date(2020, 2 /* Mar */, 24)
     )
 
     assert.deepStrictEqual(
-      nextTuesday(new Date(2020, 2 /* Mar */, 19)),
-      new Date(2020, 2 /* Mar */, 24)
+      nextTuesday(/* 1398/12/29 */ new Date(2020, 2 /* Mar */, 19)),
+      /* 1399/1/5 */ new Date(2020, 2 /* Mar */, 24)
     )
 
     assert.deepStrictEqual(
-      nextTuesday(new Date(2020, 2 /* Mar */, 18)),
-      new Date(2020, 2 /* Mar */, 24)
+      nextTuesday(/* 1398/12/28 */ new Date(2020, 2 /* Mar */, 18)),
+      /* 1399/1/5 */ new Date(2020, 2 /* Mar */, 24)
     )
 
     assert.deepStrictEqual(
-      nextTuesday(new Date(2020, 2 /* Mar */, 17)),
-      new Date(2020, 2 /* Mar */, 24)
+      nextTuesday(/* 1398/12/27 */ new Date(2020, 2 /* Mar */, 17)),
+      /* 1399/1/5 */ new Date(2020, 2 /* Mar */, 24)
     )
   })
   it('returns `Invalid Date` if the given date is invalid', function () {

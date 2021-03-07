@@ -8,11 +8,11 @@ import startOfYesterday from '.'
 describe('startOfYesterday', function() {
   it('returns the start of yesterday', function() {
     const clock = sinon.useFakeTimers(
-      new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime()
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime()
     )
 
     const result = startOfYesterday()
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 24))
+    assert.deepEqual(result, /* 1393/7/2 */ new Date(2014, 8 /* Sep */, 24))
 
     clock.restore()
   })

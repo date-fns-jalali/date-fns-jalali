@@ -7,30 +7,30 @@ import { getDstTransitions } from '../../test/dst/tzOffsetTransitions'
 
 describe('addDays', function() {
   it('adds the given number of days', function() {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), 10)
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 11))
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 10)
+    assert.deepStrictEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('accepts a timestamp', function() {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1).getTime(), 10)
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 11))
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(), 10)
+    assert.deepStrictEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('converts a fractional number to an integer', function() {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), 10.5)
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 11))
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 10.5)
+    assert.deepStrictEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('implicitly converts number arguments', function() {
     // @ts-expect-error
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), '10')
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 11))
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), '10')
+    assert.deepStrictEqual(result, /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11))
   })
 
   it('does not mutate the original date', function() {
-    const date = new Date(2014, 8 /* Sep */, 1)
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1)
     addDays(date, 11)
-    assert.deepStrictEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepStrictEqual(date, /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {
@@ -39,7 +39,7 @@ describe('addDays', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), NaN)
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN)
     assert(result instanceof Date && isNaN(result.getTime()))
   })
 

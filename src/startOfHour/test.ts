@@ -6,21 +6,21 @@ import startOfHour from '.'
 
 describe('startOfHour', function() {
   it('returns the date with the time set to the first millisecond of an hour', function() {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55)
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55)
     const result = startOfHour(date)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 2, 11))
+    assert.deepEqual(result, /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11))
   })
 
   it('does not mutate the original date', function() {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55)
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55)
     startOfHour(date)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 2, 11, 55))
+    assert.deepEqual(date, /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55))
   })
 
   it('accepts a timestamp', function() {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55).getTime()
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55).getTime()
     const result = startOfHour(date)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 2, 11))
+    assert.deepEqual(result, /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11))
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {
