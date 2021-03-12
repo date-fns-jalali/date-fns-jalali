@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetDate from "../_core/getDate/index";
+
 /**
  * @name getDate
  * @category Day Helpers
@@ -26,6 +28,6 @@ export default function getDate(dirtyDate: Date | number): number {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const dayOfMonth = date.getDate()
+  const dayOfMonth = coreGetDate(date)
   return dayOfMonth
 }

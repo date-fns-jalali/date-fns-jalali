@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetFullYear from "../_core/getFullYear/index";
+
 /**
  * @name isSameYear
  * @category Year Helpers
@@ -31,5 +33,5 @@ export default function isSameYear(
 
   const dateLeft = toDate(dirtyDateLeft)
   const dateRight = toDate(dirtyDateRight)
-  return dateLeft.getFullYear() === dateRight.getFullYear()
+  return coreGetFullYear(dateLeft) === coreGetFullYear(dateRight);
 }

@@ -3,6 +3,11 @@ import toDate from '../toDate/index'
 import getDaysInMonth from '../getDaysInMonth/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreSetMonth from '../_core/setMonth/index'
+import coreGetDate from '../_core/getDate/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+
 /**
  * @name setMonth
  * @category Month Helpers
@@ -30,15 +35,15 @@ export default function setMonth(dirtyDate, dirtyMonth) {
 
   var date = toDate(dirtyDate)
   var month = toInteger(dirtyMonth)
-  var year = date.getFullYear()
-  var day = date.getDate()
+  var year = coreGetFullYear(date)
+  var day = coreGetDate(date)
 
   var dateWithDesiredMonth = new Date(0)
-  dateWithDesiredMonth.setFullYear(year, month, 15)
+  coreSetFullYear(dateWithDesiredMonth, year, month, 15)
   dateWithDesiredMonth.setHours(0, 0, 0, 0)
   var daysInMonth = getDaysInMonth(dateWithDesiredMonth)
   // Set the last day of the new month
   // if the original date was the last day of the longer month
-  date.setMonth(month, Math.min(day, daysInMonth))
+  coreSetMonth(date, month, Math.min(day, daysInMonth))
   return date
 }

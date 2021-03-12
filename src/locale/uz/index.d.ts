@@ -1,4 +1,4 @@
 // This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.
 
-import { uz } from 'date-fns/locale'
+import { uz } from 'date-fns-jalali/locale'
 export default uz

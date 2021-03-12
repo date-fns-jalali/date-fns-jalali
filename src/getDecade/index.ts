@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetFullYear from "../_core/getFullYear/index";
+
 /**
  * @name getDecade
  * @category Decade Helpers
@@ -26,7 +28,7 @@ export default function getDecade(dirtyDate: Date | number): number {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const year = date.getFullYear()
+  const year = coreGetFullYear(date)
   const decade = Math.floor(year / 10) * 10
   return decade
 }
