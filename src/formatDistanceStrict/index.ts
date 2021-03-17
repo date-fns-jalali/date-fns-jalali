@@ -2,7 +2,7 @@ import getTimezoneOffsetInMilliseconds from '../_lib/getTimezoneOffsetInMillisec
 import compareAsc from '../compareAsc/index'
 import toDate from '../toDate/index'
 import cloneObject from '../_lib/cloneObject/index'
-import defaultLocale from '../locale/en-US/index'
+import defaultLocale from '../locale/_default/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 import { LocaleOptions, Unit } from '../types'
 
