@@ -4,6 +4,9 @@ import toInteger from '../_lib/toInteger/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 import { DateValues } from '../types';
 
+import coreSetDate from "../_core/setDate/index";
+import coreSetFullYear from "../_core/setFullYear/index";
+
 /**
  * @name set
  * @category Common Helpers
@@ -58,7 +61,7 @@ export default function set(dirtyDate: Date | number, values: DateValues): Date 
   }
 
   if (values.year != null) {
-    date.setFullYear(values.year)
+    coreSetFullYear(date, values.year)
   }
 
   if (values.month != null) {
@@ -66,7 +69,7 @@ export default function set(dirtyDate: Date | number, values: DateValues): Date 
   }
 
   if (values.date != null) {
-    date.setDate(toInteger(values.date))
+    coreSetDate(date, toInteger(values.date))
   }
 
   if (values.hours != null) {

@@ -1,6 +1,9 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from "../_core/getMonth/index";
+import coreSetMonth from "../_core/setMonth/index";
+
 /**
  * @name startOfQuarter
  * @category Quarter Helpers
@@ -27,9 +30,9 @@ export default function startOfQuarter(dirtyDate: Date | number): Date {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const currentMonth = date.getMonth()
+  const currentMonth = coreGetMonth(date)
   const month = currentMonth - (currentMonth % 3)
-  date.setMonth(month, 1)
+  coreSetMonth(date, month, 1)
   date.setHours(0, 0, 0, 0)
   return date
 }

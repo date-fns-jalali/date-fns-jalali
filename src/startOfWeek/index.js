@@ -2,6 +2,9 @@ import toDate from '../toDate/index'
 import toInteger from '../_lib/toInteger/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
+
 /**
  * @name startOfWeek
  * @category Week Helpers
@@ -56,7 +59,7 @@ export default function startOfWeek(dirtyDate, dirtyOptions) {
   var day = date.getDay()
   var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
 
-  date.setDate(date.getDate() - diff)
+  coreSetDate(date, coreGetDate(date) - diff)
   date.setHours(0, 0, 0, 0)
   return date
 }
