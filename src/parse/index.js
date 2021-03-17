@@ -1,4 +1,4 @@
-import defaultLocale from '../locale/en-US/index'
+import defaultLocale from '../locale/_default/index'
 import subMilliseconds from '../subMilliseconds/index'
 import toDate from '../toDate/index'
 import assign from '../_lib/assign/index'
