@@ -1,4 +1,4 @@
-import defaultLocale from '../locale/en-US/index'
+import defaultLocale from '../locale/_default/index'
 
 const defaultFormat = [
   'years',

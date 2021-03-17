@@ -3,7 +3,7 @@
 
 import assert from 'power-assert'
 import isMatch from '.'
-import eo from '../locale/eo'
+import locale from '../locale/_default'
 
 describe('isMatch', function () {
   it('accepts a dd-MM-yyyy format against 22-02-1998', function () {
@@ -17,7 +17,7 @@ describe('isMatch', function () {
   it('accepts a date & format with locale', function () {
     assert(
       isMatch('28-a de februaro', "do 'de' MMMM", {
-        locale: eo,
+        locale,
       })
     )
   })
