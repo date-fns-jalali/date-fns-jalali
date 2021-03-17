@@ -1,5 +1,5 @@
 import isValid from '../isValid/index'
-import defaultLocale from '../locale/en-US/index'
+import defaultLocale from '../locale/_default/index'
 import subMilliseconds from '../subMilliseconds/index'
 import toDate from '../toDate/index'
 import formatters from '../_lib/format/formatters/index'
