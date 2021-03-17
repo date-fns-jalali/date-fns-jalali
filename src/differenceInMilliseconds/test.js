@@ -4,27 +4,27 @@
 import assert from 'power-assert'
 import differenceInMilliseconds from '.'
 
-describe('differenceInMilliseconds', function() {
-  it('returns the number of milliseconds between the given dates', function() {
+describe('differenceInMilliseconds', function () {
+  it('returns the number of milliseconds between the given dates', function () {
     var result = differenceInMilliseconds(
-      new Date(2014, 6 /* Jul */, 2, 12, 30, 20, 700),
-      new Date(2014, 6 /* Jul */, 2, 12, 30, 20, 600)
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 12, 30, 20, 700),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 12, 30, 20, 600)
     )
     assert(result === 100)
   })
 
-  it('returns a negative number if the time value of the first date is smaller', function() {
+  it('returns a negative number if the time value of the first date is smaller', function () {
     var result = differenceInMilliseconds(
-      new Date(2014, 6 /* Jul */, 2, 12, 30, 20, 600),
-      new Date(2014, 6 /* Jul */, 2, 12, 30, 20, 700)
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 12, 30, 20, 600),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 12, 30, 20, 700)
     )
     assert(result === -100)
   })
 
-  it('accepts timestamps', function() {
+  it('accepts timestamps', function () {
     var result = differenceInMilliseconds(
-      new Date(2014, 8 /* Sep */, 5, 18, 30, 45, 500).getTime(),
-      new Date(2014, 8 /* Sep */, 5, 18, 30, 45, 500).getTime()
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 18, 30, 45, 500).getTime(),
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 18, 30, 45, 500).getTime()
     )
     assert(result === 0)
   })
@@ -35,36 +35,36 @@ describe('differenceInMilliseconds', function() {
     }
 
     var result = differenceInMilliseconds(
-      new Date(2014, 8 /* Sep */, 5, 0, 0),
-      new Date(2014, 8 /* Sep */, 5, 0, 0)
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0)
     )
 
     var resultIsNegative = isNegativeZero(result)
     assert(resultIsNegative === false)
   })
 
-  it('returns NaN if the first date is `Invalid Date`', function() {
+  it('returns NaN if the first date is `Invalid Date`', function () {
     var result = differenceInMilliseconds(
       new Date(NaN),
-      new Date(2017, 0 /* Jan */, 1)
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1)
     )
     assert(isNaN(result))
   })
 
-  it('returns NaN if the second date is `Invalid Date`', function() {
+  it('returns NaN if the second date is `Invalid Date`', function () {
     var result = differenceInMilliseconds(
-      new Date(2017, 0 /* Jan */, 1),
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
       new Date(NaN)
     )
     assert(isNaN(result))
   })
 
-  it('returns NaN if the both dates are `Invalid Date`', function() {
+  it('returns NaN if the both dates are `Invalid Date`', function () {
     var result = differenceInMilliseconds(new Date(NaN), new Date(NaN))
     assert(isNaN(result))
   })
 
-  it('throws TypeError exception if passed less than 2 arguments', function() {
+  it('throws TypeError exception if passed less than 2 arguments', function () {
     assert.throws(differenceInMilliseconds.bind(null), TypeError)
     assert.throws(differenceInMilliseconds.bind(null, 1), TypeError)
   })

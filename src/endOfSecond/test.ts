@@ -6,20 +6,20 @@ import endOfSecond from '.'
 
 describe('endOfSecond', function() {
   it('returns the date with the time set to the last millisecond before a second ends', function() {
-    const date = new Date(2014, 11, 1, 22, 15, 30)
+    const date = /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 30)
     const result = endOfSecond(date)
-    assert.deepEqual(result, new Date(2014, 11, 1, 22, 15, 30, 999))
+    assert.deepEqual(result, /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 30, 999))
   })
 
   it('accepts a timestamp', function() {
-    const result = endOfSecond(new Date(2014, 11, 1, 22, 15, 45).getTime())
-    assert.deepEqual(result, new Date(2014, 11, 1, 22, 15, 45, 999))
+    const result = endOfSecond(/* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 45).getTime())
+    assert.deepEqual(result, /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 45, 999))
   })
 
   it('does not mutate the original date', function() {
-    const date = new Date(2014, 11, 1, 22, 15, 15, 300)
+    const date = /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 15, 300)
     endOfSecond(date)
-    assert.deepEqual(date, new Date(2014, 11, 1, 22, 15, 15, 300))
+    assert.deepEqual(date, /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 15, 300))
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {

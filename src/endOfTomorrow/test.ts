@@ -8,11 +8,11 @@ import endOfTomorrow from '.'
 describe('endOfTomorrow', function() {
   it('returns tomorrow with the time settled to 23:59:59.999', function() {
     const clock = sinon.useFakeTimers(
-      new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime()
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime()
     )
 
     const result = endOfTomorrow()
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 26, 23, 59, 59, 999))
+    assert.deepEqual(result, /* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26, 23, 59, 59, 999))
 
     clock.restore()
   })
