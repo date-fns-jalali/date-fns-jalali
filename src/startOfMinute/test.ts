@@ -6,21 +6,21 @@ import startOfMinute from '.'
 
 describe('startOfMinute', function() {
   it('returns the date with the time set to the first millisecond of a minute', function() {
-    const date = new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
+    const date = /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
     const result = startOfMinute(date)
-    assert.deepEqual(result, new Date(2014, 11 /* Dec */, 1, 22, 15))
+    assert.deepEqual(result, /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15))
   })
 
   it('accepts a timestamp', function() {
-    const date = new Date(2014, 11 /* Dec */, 1, 22, 15).getTime()
+    const date = /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15).getTime()
     const result = startOfMinute(date)
-    assert.deepEqual(result, new Date(2014, 11 /* Dec */, 1, 22, 15))
+    assert.deepEqual(result, /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15))
   })
 
   it('does not mutate the original date', function() {
-    const date = new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
+    const date = /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400)
     startOfMinute(date)
-    assert.deepEqual(date, new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400))
+    assert.deepEqual(date, /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 22, 15, 45, 400))
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {
