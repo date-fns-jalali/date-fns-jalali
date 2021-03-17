@@ -1,4 +1,4 @@
-import defaultLocale from '../locale/en-US/index'
+import defaultLocale from '../locale/_default/index'
 
 const defaultFormat = [
   'years',
@@ -7,7 +7,7 @@ const defaultFormat = [
   'days',
   'hours',
   'minutes',
-  'seconds'
+  'seconds',
 ]
 
 /**
@@ -87,7 +87,7 @@ export default function formatDuration(duration, options = {}) {
 
   const result = format
     .reduce((acc, unit) => {
-      const token = `x${unit.replace(/(^.)/, m => m.toUpperCase())}`
+      const token = `x${unit.replace(/(^.)/, (m) => m.toUpperCase())}`
       const addChunk =
         typeof duration[unit] === 'number' && (zero || duration[unit])
       return addChunk
