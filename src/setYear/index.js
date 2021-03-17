@@ -1,6 +1,8 @@
-import toInteger from '../_lib/toInteger/index.js'
-import toDate from '../toDate/index.js'
-import requiredArgs from '../_lib/requiredArgs/index.js'
+import toInteger from '../_lib/toInteger/index'
+import toDate from '../toDate/index'
+import requiredArgs from '../_lib/requiredArgs/index'
+
+import coreSetFullYear from '../_core/setFullYear/index'
 
 /**
  * @name setYear
@@ -35,6 +37,6 @@ export default function setYear(dirtyDate, dirtyYear) {
     return new Date(NaN)
   }
 
-  date.setFullYear(year)
+  coreSetFullYear(date, year)
   return date
 }

@@ -4,57 +4,75 @@
 import assert from 'power-assert'
 import setSeconds from '.'
 
-describe('setSeconds', function() {
-  it('sets the seconds', function() {
-    var result = setSeconds(new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500), 45)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 1, 11, 30, 45, 500))
-  })
-
-  it('accepts a timestamp', function() {
+describe('setSeconds', function () {
+  it('sets the seconds', function () {
     var result = setSeconds(
-      new Date(2014, 8 /* Sep */, 1, 11, 30, 15).getTime(),
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
       45
     )
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 1, 11, 30, 45))
+    assert.deepEqual(
+      result,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 45, 500)
+    )
   })
 
-  it('converts a fractional number to an integer', function() {
+  it('accepts a timestamp', function () {
     var result = setSeconds(
-      new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 15).getTime(),
+      45
+    )
+    assert.deepEqual(
+      result,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 45)
+    )
+  })
+
+  it('converts a fractional number to an integer', function () {
+    var result = setSeconds(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
       45.54
     )
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 1, 11, 30, 45, 500))
+    assert.deepEqual(
+      result,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 45, 500)
+    )
   })
 
-  it('implicitly converts number arguments', function() {
+  it('implicitly converts number arguments', function () {
     var result = setSeconds(
-      new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
       // $ExpectedMistake
       '45'
     )
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 1, 11, 30, 45, 500))
+    assert.deepEqual(
+      result,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 45, 500)
+    )
   })
 
-  it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 1, 11, 30, 40)
+  it('does not mutate the original date', function () {
+    var date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40)
     setSeconds(date, 15)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1, 11, 30, 40))
+    assert.deepEqual(
+      date,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40)
+    )
   })
 
-  it('returns `Invalid Date` if the given date is invalid', function() {
+  it('returns `Invalid Date` if the given date is invalid', function () {
     var result = setSeconds(new Date(NaN), 45)
     assert(result instanceof Date && isNaN(result))
   })
 
-  it('returns `Invalid Date` if the given amount is NaN', function() {
+  it('returns `Invalid Date` if the given amount is NaN', function () {
     var result = setSeconds(
-      new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
       NaN
     )
     assert(result instanceof Date && isNaN(result))
   })
 
-  it('throws TypeError exception if passed less than 2 arguments', function() {
+  it('throws TypeError exception if passed less than 2 arguments', function () {
     assert.throws(setSeconds.bind(null), TypeError)
     assert.throws(setSeconds.bind(null, 1), TypeError)
   })

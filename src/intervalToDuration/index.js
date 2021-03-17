@@ -1,14 +1,14 @@
-import compareAsc from '../compareAsc/index.js'
-import differenceInYears from '../differenceInYears/index.js'
-import differenceInMonths from '../differenceInMonths/index.js'
-import differenceInDays from '../differenceInDays/index.js'
-import differenceInHours from '../differenceInHours/index.js'
-import differenceInMinutes from '../differenceInMinutes/index.js'
-import differenceInSeconds from '../differenceInSeconds/index.js'
-import isValid from '../isValid/index.js'
-import requiredArgs from '../_lib/requiredArgs/index.js'
-import toDate from '../toDate/index.js'
-import sub from '../sub/index.js'
+import compareAsc from '../compareAsc/index'
+import differenceInYears from '../differenceInYears/index'
+import differenceInMonths from '../differenceInMonths/index'
+import differenceInDays from '../differenceInDays/index'
+import differenceInHours from '../differenceInHours/index'
+import differenceInMinutes from '../differenceInMinutes/index'
+import differenceInSeconds from '../differenceInSeconds/index'
+import isValid from '../isValid/index'
+import requiredArgs from '../_lib/requiredArgs/index'
+import toDate from '../toDate/index'
+import sub from '../sub/index'
 
 /**
  * @name intervalToDuration
@@ -53,7 +53,7 @@ export default function intervalToDuration({ start, end }) {
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   }
 
   const sign = compareAsc(dateLeft, dateRight)
@@ -73,7 +73,7 @@ export default function intervalToDuration({ start, end }) {
   duration.minutes = Math.abs(differenceInMinutes(remainingMinutes, dateRight))
 
   const remainingSeconds = sub(remainingMinutes, {
-    minutes: sign * duration.minutes
+    minutes: sign * duration.minutes,
   })
   duration.seconds = Math.abs(differenceInSeconds(remainingSeconds, dateRight))
 

@@ -1,17 +1,22 @@
-import defaultLocale from '../locale/en-US/index.js'
-import subMilliseconds from '../subMilliseconds/index.js'
-import toDate from '../toDate/index.js'
-import assign from '../_lib/assign/index.js'
-import longFormatters from '../_lib/format/longFormatters/index.js'
-import getTimezoneOffsetInMilliseconds from '../_lib/getTimezoneOffsetInMilliseconds/index.js'
+import defaultLocale from '../locale/_default/index'
+import subMilliseconds from '../subMilliseconds/index'
+import toDate from '../toDate/index'
+import assign from '../_lib/assign/index'
+import longFormatters from '../_lib/format/longFormatters/index'
+import getTimezoneOffsetInMilliseconds from '../_lib/getTimezoneOffsetInMilliseconds/index'
 import {
   isProtectedDayOfYearToken,
   isProtectedWeekYearToken,
-  throwProtectedError
-} from '../_lib/protectedTokens/index.js'
-import toInteger from '../_lib/toInteger/index.js'
-import parsers from './_lib/parsers/index.js'
-import requiredArgs from '../_lib/requiredArgs/index.js'
+  throwProtectedError,
+} from '../_lib/protectedTokens/index'
+import toInteger from '../_lib/toInteger/index'
+import parsers from './_lib/parsers/index'
+import requiredArgs from '../_lib/requiredArgs/index'
+
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreGetUTCMonth from '../_core/getUTCMonth/index'
+import coreGetUTCDate from '../_core/getUTCDate/index'
+import coreGetUTCFullYear from '../_core/getUTCFullYear/index'
 
 var TIMEZONE_UNIT_PRIORITY = 10
 
@@ -132,28 +137,28 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/
  * |                                 |     | DD      | 01, 02, ..., 365, 366             | 7     |
  * |                                 |     | DDD     | 001, 002, ..., 365, 366           |       |
  * |                                 |     | DDDD    | ...                               | 2     |
- * | Day of week (formatting)        |  90 | E..EEE  | Mon, Tue, Wed, ..., Su            |       |
+ * | Day of week (formatting)        |  90 | E..EEE  | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 |     | EEEE    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 |     | EEEEE   | M, T, W, T, F, S, S               |       |
  * |                                 |     | EEEEEE  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
  * | ISO day of week (formatting)    |  90 | i       | 1, 2, 3, ..., 7                   | 5     |
  * |                                 |     | io      | 1st, 2nd, ..., 7th                | 5     |
  * |                                 |     | ii      | 01, 02, ..., 07                   | 5     |
- * |                                 |     | iii     | Mon, Tue, Wed, ..., Su            | 5     |
+ * |                                 |     | iii     | Mon, Tue, Wed, ..., Sun           | 5     |
  * |                                 |     | iiii    | Monday, Tuesday, ..., Sunday      | 2,5   |
  * |                                 |     | iiiii   | M, T, W, T, F, S, S               | 5     |
  * |                                 |     | iiiiii  | Mo, Tu, We, Th, Fr, Su, Sa        | 5     |
  * | Local day of week (formatting)  |  90 | e       | 2, 3, 4, ..., 1                   |       |
  * |                                 |     | eo      | 2nd, 3rd, ..., 1st                | 5     |
  * |                                 |     | ee      | 02, 03, ..., 01                   |       |
- * |                                 |     | eee     | Mon, Tue, Wed, ..., Su            |       |
+ * |                                 |     | eee     | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 |     | eeee    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 |     | eeeee   | M, T, W, T, F, S, S               |       |
  * |                                 |     | eeeeee  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
  * | Local day of week (stand-alone) |  90 | c       | 2, 3, 4, ..., 1                   |       |
  * |                                 |     | co      | 2nd, 3rd, ..., 1st                | 5     |
  * |                                 |     | cc      | 02, 03, ..., 01                   |       |
- * |                                 |     | ccc     | Mon, Tue, Wed, ..., Su            |       |
+ * |                                 |     | ccc     | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 |     | cccc    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 |     | ccccc   | M, T, W, T, F, S, S               |       |
  * |                                 |     | cccccc  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
@@ -315,8 +320,9 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/
  *   // Before v2.0.0
  *   parse('2016-01-01')
  *
- *   // v2.0.0 onward
- *   toDate('2016-01-01')
+ *   // v2.0.0 onward (toDate no longer accepts a string)
+ *   toDate(1392098430000) // Unix to timestamp
+ *   toDate(new Date(2014, 1, 11, 11, 30, 30)) // Cloning the date
  *   parse('2016-01-01', 'yyyy-MM-dd', new Date())
  *   ```
  *
@@ -336,10 +342,10 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/
  * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
  * @throws {RangeError} `options.firstWeekContainsDate` must be between 1 and 7
  * @throws {RangeError} `options.locale` must contain `match` property
- * @throws {RangeError} use `yyyy` instead of `YYYY` for formatting years; see: https://git.io/fxCyr
- * @throws {RangeError} use `yy` instead of `YY` for formatting years; see: https://git.io/fxCyr
- * @throws {RangeError} use `d` instead of `D` for formatting days of the month; see: https://git.io/fxCyr
- * @throws {RangeError} use `dd` instead of `DD` for formatting days of the month; see: https://git.io/fxCyr
+ * @throws {RangeError} use `yyyy` instead of `YYYY` for formatting years using [format provided] to the input [input provided]; see: https://git.io/fxCyr
+ * @throws {RangeError} use `yy` instead of `YY` for formatting years using [format provided] to the input [input provided]; see: https://git.io/fxCyr
+ * @throws {RangeError} use `d` instead of `D` for formatting days of the month using [format provided] to the input [input provided]; see: https://git.io/fxCyr
+ * @throws {RangeError} use `dd` instead of `DD` for formatting days of the month using [format provided] to the input [input provided]; see: https://git.io/fxCyr
  * @throws {RangeError} format string contains an unescaped latin alphabet character
  *
  * @example
@@ -393,7 +399,7 @@ export default function parse(
 
   var localeWeekStartsOn = locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
@@ -415,23 +421,24 @@ export default function parse(
   var subFnOptions = {
     firstWeekContainsDate: firstWeekContainsDate,
     weekStartsOn: weekStartsOn,
-    locale: locale
+    locale: locale,
   }
 
   // If timezone isn't specified, it will be set to the system timezone
   var setters = [
     {
       priority: TIMEZONE_UNIT_PRIORITY,
+      subPriority: -1,
       set: dateToSystemTimezone,
-      index: 0
-    }
+      index: 0,
+    },
   ]
 
   var i
 
   var tokens = formatString
     .match(longFormattingTokensRegExp)
-    .map(function(substring) {
+    .map(function (substring) {
       var firstCharacter = substring[0]
       if (firstCharacter === 'p' || firstCharacter === 'P') {
         var longFormatter = longFormatters[firstCharacter]
@@ -451,13 +458,13 @@ export default function parse(
       !options.useAdditionalWeekYearTokens &&
       isProtectedWeekYearToken(token)
     ) {
-      throwProtectedError(token)
+      throwProtectedError(token, formatString, dirtyDateString)
     }
     if (
       !options.useAdditionalDayOfYearTokens &&
       isProtectedDayOfYearToken(token)
     ) {
-      throwProtectedError(token)
+      throwProtectedError(token, formatString, dirtyDateString)
     }
 
     var firstCharacter = token[0]
@@ -478,9 +485,7 @@ export default function parse(
         }
         if (incompatibleToken) {
           throw new RangeError(
-            `The format string mustn't contain \`${
-              incompatibleToken.fullToken
-            }\` and \`${token}\` at the same time`
+            `The format string mustn't contain \`${incompatibleToken.fullToken}\` and \`${token}\` at the same time`
           )
         }
       } else if (parser.incompatibleTokens === '*' && usedTokens.length) {
@@ -504,10 +509,11 @@ export default function parse(
 
       setters.push({
         priority: parser.priority,
+        subPriority: parser.subPriority || 0,
         set: parser.set,
         validate: parser.validate,
         value: parseResult.value,
-        index: setters.length
+        index: setters.length,
       })
 
       dateString = parseResult.rest
@@ -542,23 +548,25 @@ export default function parse(
   }
 
   var uniquePrioritySetters = setters
-    .map(function(setter) {
+    .map(function (setter) {
       return setter.priority
     })
-    .sort(function(a, b) {
+    .sort(function (a, b) {
       return b - a
     })
-    .filter(function(priority, index, array) {
+    .filter(function (priority, index, array) {
       return array.indexOf(priority) === index
     })
-    .map(function(priority) {
+    .map(function (priority) {
       return setters
-        .filter(function(setter) {
+        .filter(function (setter) {
           return setter.priority === priority
         })
-        .reverse()
+        .sort(function (a, b) {
+          return b.subPriority - a.subPriority
+        })
     })
-    .map(function(setterArray) {
+    .map(function (setterArray) {
       return setterArray[0]
     })
 
@@ -604,10 +612,11 @@ function dateToSystemTimezone(date, flags) {
   }
 
   var convertedDate = new Date(0)
-  convertedDate.setFullYear(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate()
+  coreSetFullYear(
+    convertedDate,
+    coreGetUTCFullYear(date),
+    coreGetUTCMonth(date),
+    coreGetUTCDate(date)
   )
   convertedDate.setHours(
     date.getUTCHours(),

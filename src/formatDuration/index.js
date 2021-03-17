@@ -1,4 +1,4 @@
-import defaultLocale from '../locale/en-US/index.js'
+import defaultLocale from '../locale/_default/index'
 
 const defaultFormat = [
   'years',
@@ -7,7 +7,7 @@ const defaultFormat = [
   'days',
   'hours',
   'minutes',
-  'seconds'
+  'seconds',
 ]
 
 /**
@@ -24,6 +24,7 @@ const defaultFormat = [
  * @param {string[]} [options.format=['years', 'months', 'weeks', 'days', 'hours', 'minutes', 'seconds']] - the array of units to format
  * @param {boolean} [options.zero=false] - should be zeros be included in the output?
  * @param {string} [options.delimiter=' '] - delimiter string
+ * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
  * @returns {string} the formatted date string
  * @throws {TypeError} 1 argument required
  *
@@ -86,7 +87,7 @@ export default function formatDuration(duration, options = {}) {
 
   const result = format
     .reduce((acc, unit) => {
-      const token = `x${unit.replace(/(^.)/, m => m.toUpperCase())}`
+      const token = `x${unit.replace(/(^.)/, (m) => m.toUpperCase())}`
       const addChunk =
         typeof duration[unit] === 'number' && (zero || duration[unit])
       return addChunk

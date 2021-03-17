@@ -1,6 +1,6 @@
-import toDate from '../toDate/index.js'
-import isValid from '../isValid/index.js'
-import addLeadingZeros from '../_lib/addLeadingZeros/index.js'
+import toDate from '../toDate/index'
+import isValid from '../isValid/index'
+import addLeadingZeros from '../_lib/addLeadingZeros/index'
 
 const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const months = [
@@ -15,7 +15,7 @@ const months = [
   'Sep',
   'Oct',
   'Nov',
-  'Dec'
+  'Dec',
 ]
 
 /**

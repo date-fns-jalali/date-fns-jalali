@@ -13,7 +13,7 @@ then
 fi
 
 # A pre-release is a version with a label i.e. v2.0.0-alpha.1
-if [[ "$TRAVIS_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-.+$ ]]
+if [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-.+$ ]]
 then
   IS_PRE_RELEASE=true
 else
@@ -25,7 +25,8 @@ PACKAGE_PATH="$(pwd)/../../tmp/package"
 
 env PACKAGE_OUTPUT_PATH="$PACKAGE_PATH" ./scripts/build/package.sh
 
-echo "//registry.npmjs.org/:_authToken=$NPM_KEY" > ~/.npmrc
+# Right now, we do releases manually, but when we move to GitHub Actions we'll need this line:
+# echo "//registry.npmjs.org/:_authToken=$NPM_KEY" > ~/.npmrc
 cd "$PACKAGE_PATH" || exit 1
 if [ "$IS_PRE_RELEASE" = true ]
 then

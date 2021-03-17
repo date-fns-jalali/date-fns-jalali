@@ -95,15 +95,17 @@ describe('parseISO', () => {
     describe('extended century representation', () => {
       it('parses century 101 BC - 2 BC', () => {
         const result = parseISO('-0001')
-        const date = new Date(-100, 0 /* Jan */, 1)
-        date.setFullYear(-100)
+        const date = new Date(0)
+        date.setFullYear(-100, 0 /* Jan */, 1)
+        date.setHours(0, 0, 0, 0)
         assert.deepEqual(result, date)
       })
 
       it('parses century 1 BC - 99 AD', () => {
         const result = parseISO('00')
-        const date = new Date(0, 0 /* Jan */, 1)
-        date.setFullYear(0)
+        const date = new Date(0)
+        date.setFullYear(0, 0 /* Jan */, 1)
+        date.setHours(0, 0, 0, 0)
         assert.deepEqual(result, date)
       })
 
@@ -114,8 +116,9 @@ describe('parseISO', () => {
 
       it('allows to specify the number of additional digits', () => {
         const result = parseISO('-20', { additionalDigits: 0 })
-        const date = new Date(-2000, 0 /* Jan */, 1)
-        date.setFullYear(-2000)
+        const date = new Date(0)
+        date.setFullYear(-2000, 0 /* Jan */, 1)
+        date.setHours(0, 0, 0, 0)
         assert.deepEqual(result, date)
       })
     })
@@ -123,8 +126,9 @@ describe('parseISO', () => {
     describe('extended year representation', () => {
       it('correctly parses years from 1 AD to 99 AD', () => {
         const result = parseISO('0095-07-02')
-        const date = new Date(0, 6 /* Jul */, 2)
-        date.setFullYear(95)
+        const date = new Date(0)
+        date.setFullYear(95, 6 /* Jul */, 2)
+        date.setHours(0, 0, 0, 0)
         assert.deepEqual(result, date)
       })
 
@@ -140,15 +144,17 @@ describe('parseISO', () => {
 
       it('parses year 1 BC', () => {
         const result = parseISO('0000-07-02')
-        const date = new Date(0, 6 /* Jul */, 2)
-        date.setFullYear(0)
+        const date = new Date(0)
+        date.setFullYear(0, 6 /* Jul */, 2)
+        date.setHours(0, 0, 0, 0)
         assert.deepEqual(result, date)
       })
 
       it('parses years less than 1 BC', () => {
         const result = parseISO('-000001-07-02')
-        const date = new Date(0, 6 /* Jul */, 2)
-        date.setFullYear(-1)
+        const date = new Date(0)
+        date.setFullYear(-1, 6 /* Jul */, 2)
+        date.setHours(0, 0, 0, 0)
         assert.deepEqual(result, date)
       })
     })
@@ -179,7 +185,7 @@ describe('parseISO', () => {
     })
 
     describe('timezones', () => {
-      context('when the date and the time are specified', () => {
+      describe('when the date and the time are specified', () => {
         it('parses Z', () => {
           const result = parseISO('2014-10-25T06:46:20Z')
           assert.deepEqual(result, new Date('2014-10-25T13:46:20+07:00'))
@@ -200,7 +206,7 @@ describe('parseISO', () => {
           assert.deepEqual(result, new Date('2014-10-25T13:46:20+07:00'))
         })
       })
-      context('when the year and the month are specified', () => {
+      describe('when the year and the month are specified', () => {
         it('sets timezone correctly on yyyy-MMZ format', () => {
           const result = parseISO('2012-01Z')
           assert.deepEqual(result, new Date('2012-01-01T00:00:00+00:00'))
@@ -286,6 +292,14 @@ describe('parseISO', () => {
       })
     })
 
+    describe('date', () => {
+      it('returns `Invalid Date` when it contains spaces after the date', () => {
+        const result = parseISO('2014-02-11  basketball')
+        assert(result instanceof Date)
+        assert(isNaN(result))
+      })
+    })
+
     describe('time', () => {
       it('parses 24:00 as midnight of the next day', () => {
         const result = parseISO('2014-02-11T24:00')
@@ -318,6 +332,12 @@ describe('parseISO', () => {
 
       it('returns `Invalid Date` for invalid time', () => {
         const result = parseISO('2014-02-11T21:basketball')
+        assert(result instanceof Date)
+        assert(isNaN(result))
+      })
+
+      it('returns `Invalid Date` when it contains spaces after the time', () => {
+        const result = parseISO('2014-02-11T21:59:00  basketball')
         assert(result instanceof Date)
         assert(isNaN(result))
       })

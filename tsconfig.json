@@ -15,14 +15,7 @@
     "baseUrl": ".",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "paths": {
-    }
+    "allowJs": true
   },
-  "include": [
-    "typings.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist", "tmp"]
 }

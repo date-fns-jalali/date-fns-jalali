@@ -1,7 +1,13 @@
-import toDate from '../toDate/index.js'
-import differenceInCalendarMonths from '../differenceInCalendarMonths/index.js'
-import compareAsc from '../compareAsc/index.js'
-import requiredArgs from '../_lib/requiredArgs/index.js'
+import toDate from '../toDate/index'
+import differenceInCalendarMonths from '../differenceInCalendarMonths/index'
+import compareAsc from '../compareAsc/index'
+import requiredArgs from '../_lib/requiredArgs/index'
+import isLastDayOfMonth from '../isLastDayOfMonth/index'
+
+import coreGetMonth from '../_core/getMonth/index'
+import coreSetMonth from '../_core/setMonth/index'
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
 
 /**
  * @name differenceInMonths
@@ -33,12 +39,36 @@ export default function differenceInMonths(dirtyDateLeft, dirtyDateRight) {
 
   var sign = compareAsc(dateLeft, dateRight)
   var difference = Math.abs(differenceInCalendarMonths(dateLeft, dateRight))
-  dateLeft.setMonth(dateLeft.getMonth() - sign * difference)
+  var result
 
-  // Math.abs(diff in full months - diff in calendar months) === 1 if last calendar month is not full
-  // If so, result must be decreased by 1 in absolute value
-  var isLastMonthNotFull = compareAsc(dateLeft, dateRight) === -sign
-  var result = sign * (difference - isLastMonthNotFull)
+  // Check for the difference of less than month
+  if (difference < 1) {
+    result = 0
+  } else {
+    if (coreGetMonth(dateLeft) === 11 && coreGetDate(dateLeft) > 28) {
+      // This will check if the date is end of Esfand and assign a higher end of month date
+      // to compare it with Farvardin
+      coreSetDate(dateLeft, 30)
+    }
+
+    coreSetMonth(dateLeft, coreGetMonth(dateLeft) - sign * difference)
+
+    // Math.abs(diff in full months - diff in calendar months) === 1 if last calendar month is not full
+    // If so, result must be decreased by 1 in absolute value
+    var isLastMonthNotFull = compareAsc(dateLeft, dateRight) === -sign
+
+    // Check for cases of one full calendar month
+    if (
+      isLastDayOfMonth(toDate(dirtyDateLeft)) &&
+      difference === 1 &&
+      compareAsc(dirtyDateLeft, dateRight) === 1
+    ) {
+      isLastMonthNotFull = false
+    }
+
+    result = sign * (difference - isLastMonthNotFull)
+  }
+
   // Prevent negative zero
   return result === 0 ? 0 : result
 }
