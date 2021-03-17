@@ -579,29 +579,6 @@ declare module 'date-fns' {
   function intervalToDuration(interval: Interval): Duration
   namespace intervalToDuration {}
 
-  function intlFormat(
-    argument: Date | number,
-    formatOptions?: {
-      localeMatcher?: 'lookup' | 'best fit'
-      weekday?: 'narrow' | 'short' | 'long'
-      era?: 'narrow' | 'short' | 'long'
-      year?: 'numeric' | '2-digit'
-      month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long'
-      day?: 'numeric' | '2-digit'
-      hour?: 'numeric' | '2-digit'
-      minute?: 'numeric' | '2-digit'
-      second?: 'numeric' | '2-digit'
-      timeZoneName?: 'short' | 'long'
-      formatMatcher?: 'basic' | 'best fit'
-      hour12?: boolean
-      timeZone?: string
-    },
-    localeOptions?: {
-      locale?: string | string[]
-    }
-  ): string
-  namespace intlFormat {}
-
   function isAfter(date: Date | number, dateToCompare: Date | number): boolean
   namespace isAfter {}
 
@@ -1514,11 +1491,6 @@ declare module 'date-fns/getYear' {
 declare module 'date-fns/intervalToDuration' {
   import { intervalToDuration } from 'date-fns'
   export default intervalToDuration
-}
-
-declare module 'date-fns/intlFormat' {
-  import { intlFormat } from 'date-fns'
-  export default intlFormat
 }
 
 declare module 'date-fns/isAfter' {
@@ -2506,11 +2478,6 @@ declare module 'date-fns/intervalToDuration/index' {
   export default intervalToDuration
 }
 
-declare module 'date-fns/intlFormat/index' {
-  import { intlFormat } from 'date-fns'
-  export default intlFormat
-}
-
 declare module 'date-fns/isAfter/index' {
   import { isAfter } from 'date-fns'
   export default isAfter
@@ -3494,11 +3461,6 @@ declare module 'date-fns/getYear/index.js' {
 declare module 'date-fns/intervalToDuration/index.js' {
   import { intervalToDuration } from 'date-fns'
   export default intervalToDuration
-}
-
-declare module 'date-fns/intlFormat/index.js' {
-  import { intlFormat } from 'date-fns'
-  export default intlFormat
 }
 
 declare module 'date-fns/isAfter/index.js' {
@@ -4523,30 +4485,6 @@ declare module 'date-fns/fp' {
   const intervalToDuration: CurriedFn1<Interval, Duration>
   namespace intervalToDuration {}
 
-  const intlFormat: CurriedFn3<
-    {
-      locale?: string | string[]
-    },
-    {
-      timeZone?: string
-      hour12?: boolean
-      formatMatcher?: 'basic' | 'best fit'
-      timeZoneName?: 'short' | 'long'
-      second?: 'numeric' | '2-digit'
-      minute?: 'numeric' | '2-digit'
-      hour?: 'numeric' | '2-digit'
-      day?: 'numeric' | '2-digit'
-      month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long'
-      year?: 'numeric' | '2-digit'
-      era?: 'narrow' | 'short' | 'long'
-      weekday?: 'narrow' | 'short' | 'long'
-      localeMatcher?: 'lookup' | 'best fit'
-    },
-    Date | number,
-    string
-  >
-  namespace intlFormat {}
-
   const isAfter: CurriedFn2<Date | number, Date | number, boolean>
   namespace isAfter {}
 
@@ -5500,11 +5438,6 @@ declare module 'date-fns/fp/getYear' {
 declare module 'date-fns/fp/intervalToDuration' {
   import { intervalToDuration } from 'date-fns/fp'
   export default intervalToDuration
-}
-
-declare module 'date-fns/fp/intlFormat' {
-  import { intlFormat } from 'date-fns/fp'
-  export default intlFormat
 }
 
 declare module 'date-fns/fp/isAfter' {
@@ -6542,11 +6475,6 @@ declare module 'date-fns/fp/intervalToDuration/index' {
   export default intervalToDuration
 }
 
-declare module 'date-fns/fp/intlFormat/index' {
-  import { intlFormat } from 'date-fns/fp'
-  export default intlFormat
-}
-
 declare module 'date-fns/fp/isAfter/index' {
   import { isAfter } from 'date-fns/fp'
   export default isAfter
@@ -7582,11 +7510,6 @@ declare module 'date-fns/fp/intervalToDuration/index.js' {
   export default intervalToDuration
 }
 
-declare module 'date-fns/fp/intlFormat/index.js' {
-  import { intlFormat } from 'date-fns/fp'
-  export default intlFormat
-}
-
 declare module 'date-fns/fp/isAfter/index.js' {
   import { isAfter } from 'date-fns/fp'
   export default isAfter
@@ -8566,29 +8489,6 @@ declare module 'date-fns/esm' {
   function intervalToDuration(interval: Interval): Duration
   namespace intervalToDuration {}
 
-  function intlFormat(
-    argument: Date | number,
-    formatOptions?: {
-      localeMatcher?: 'lookup' | 'best fit'
-      weekday?: 'narrow' | 'short' | 'long'
-      era?: 'narrow' | 'short' | 'long'
-      year?: 'numeric' | '2-digit'
-      month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long'
-      day?: 'numeric' | '2-digit'
-      hour?: 'numeric' | '2-digit'
-      minute?: 'numeric' | '2-digit'
-      second?: 'numeric' | '2-digit'
-      timeZoneName?: 'short' | 'long'
-      formatMatcher?: 'basic' | 'best fit'
-      hour12?: boolean
-      timeZone?: string
-    },
-    localeOptions?: {
-      locale?: string | string[]
-    }
-  ): string
-  namespace intlFormat {}
-
   function isAfter(date: Date | number, dateToCompare: Date | number): boolean
   namespace isAfter {}
 
@@ -9501,11 +9401,6 @@ declare module 'date-fns/esm/getYear' {
 declare module 'date-fns/esm/intervalToDuration' {
   import { intervalToDuration } from 'date-fns/esm'
   export default intervalToDuration
-}
-
-declare module 'date-fns/esm/intlFormat' {
-  import { intlFormat } from 'date-fns/esm'
-  export default intlFormat
 }
 
 declare module 'date-fns/esm/isAfter' {
@@ -10493,11 +10388,6 @@ declare module 'date-fns/esm/intervalToDuration/index' {
   export default intervalToDuration
 }
 
-declare module 'date-fns/esm/intlFormat/index' {
-  import { intlFormat } from 'date-fns/esm'
-  export default intlFormat
-}
-
 declare module 'date-fns/esm/isAfter/index' {
   import { isAfter } from 'date-fns/esm'
   export default isAfter
@@ -11481,11 +11371,6 @@ declare module 'date-fns/esm/getYear/index.js' {
 declare module 'date-fns/esm/intervalToDuration/index.js' {
   import { intervalToDuration } from 'date-fns/esm'
   export default intervalToDuration
-}
-
-declare module 'date-fns/esm/intlFormat/index.js' {
-  import { intlFormat } from 'date-fns/esm'
-  export default intlFormat
 }
 
 declare module 'date-fns/esm/isAfter/index.js' {
@@ -12510,30 +12395,6 @@ declare module 'date-fns/esm/fp' {
   const intervalToDuration: CurriedFn1<Interval, Duration>
   namespace intervalToDuration {}
 
-  const intlFormat: CurriedFn3<
-    {
-      locale?: string | string[]
-    },
-    {
-      timeZone?: string
-      hour12?: boolean
-      formatMatcher?: 'basic' | 'best fit'
-      timeZoneName?: 'short' | 'long'
-      second?: 'numeric' | '2-digit'
-      minute?: 'numeric' | '2-digit'
-      hour?: 'numeric' | '2-digit'
-      day?: 'numeric' | '2-digit'
-      month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long'
-      year?: 'numeric' | '2-digit'
-      era?: 'narrow' | 'short' | 'long'
-      weekday?: 'narrow' | 'short' | 'long'
-      localeMatcher?: 'lookup' | 'best fit'
-    },
-    Date | number,
-    string
-  >
-  namespace intlFormat {}
-
   const isAfter: CurriedFn2<Date | number, Date | number, boolean>
   namespace isAfter {}
 
@@ -13487,11 +13348,6 @@ declare module 'date-fns/esm/fp/getYear' {
 declare module 'date-fns/esm/fp/intervalToDuration' {
   import { intervalToDuration } from 'date-fns/esm/fp'
   export default intervalToDuration
-}
-
-declare module 'date-fns/esm/fp/intlFormat' {
-  import { intlFormat } from 'date-fns/esm/fp'
-  export default intlFormat
 }
 
 declare module 'date-fns/esm/fp/isAfter' {
@@ -14529,11 +14385,6 @@ declare module 'date-fns/esm/fp/intervalToDuration/index' {
   export default intervalToDuration
 }
 
-declare module 'date-fns/esm/fp/intlFormat/index' {
-  import { intlFormat } from 'date-fns/esm/fp'
-  export default intlFormat
-}
-
 declare module 'date-fns/esm/fp/isAfter/index' {
   import { isAfter } from 'date-fns/esm/fp'
   export default isAfter
@@ -15567,11 +15418,6 @@ declare module 'date-fns/esm/fp/getYear/index.js' {
 declare module 'date-fns/esm/fp/intervalToDuration/index.js' {
   import { intervalToDuration } from 'date-fns/esm/fp'
   export default intervalToDuration
-}
-
-declare module 'date-fns/esm/fp/intlFormat/index.js' {
-  import { intlFormat } from 'date-fns/esm/fp'
-  export default intlFormat
 }
 
 declare module 'date-fns/esm/fp/isAfter/index.js' {
@@ -19245,28 +19091,6 @@ interface dateFns {
   getYear(date: Date | number): number
 
   intervalToDuration(interval: Interval): Duration
-
-  intlFormat(
-    argument: Date | number,
-    formatOptions?: {
-      localeMatcher?: 'lookup' | 'best fit'
-      weekday?: 'narrow' | 'short' | 'long'
-      era?: 'narrow' | 'short' | 'long'
-      year?: 'numeric' | '2-digit'
-      month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long'
-      day?: 'numeric' | '2-digit'
-      hour?: 'numeric' | '2-digit'
-      minute?: 'numeric' | '2-digit'
-      second?: 'numeric' | '2-digit'
-      timeZoneName?: 'short' | 'long'
-      formatMatcher?: 'basic' | 'best fit'
-      hour12?: boolean
-      timeZone?: string
-    },
-    localeOptions?: {
-      locale?: string | string[]
-    }
-  ): string
 
   isAfter(date: Date | number, dateToCompare: Date | number): boolean
 
