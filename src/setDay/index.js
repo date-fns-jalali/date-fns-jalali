@@ -1,7 +1,7 @@
-import addDays from '../addDays/index.js'
-import toDate from '../toDate/index.js'
-import toInteger from '../_lib/toInteger/index.js'
-import requiredArgs from '../_lib/requiredArgs/index.js'
+import addDays from '../addDays/index'
+import toDate from '../toDate/index'
+import toInteger from '../_lib/toInteger/index'
+import requiredArgs from '../_lib/requiredArgs/index'
 
 /**
  * @name setDay
@@ -42,7 +42,7 @@ export default function setDay(dirtyDate, dirtyDay, dirtyOptions) {
   var localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn

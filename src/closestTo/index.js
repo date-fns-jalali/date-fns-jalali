@@ -1,5 +1,5 @@
-import toDate from '../toDate/index.js'
-import requiredArgs from '../_lib/requiredArgs/index.js'
+import toDate from '../toDate/index'
+import requiredArgs from '../_lib/requiredArgs/index'
 
 /**
  * @name closestTo
@@ -57,7 +57,7 @@ export default function closestTo(dirtyDateToCompare, dirtyDatesArray) {
 
   var result
   var minDistance
-  datesArray.forEach(function(dirtyDate) {
+  datesArray.forEach(function (dirtyDate) {
     var currentDate = toDate(dirtyDate)
 
     if (isNaN(currentDate)) {

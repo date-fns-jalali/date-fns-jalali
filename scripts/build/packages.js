@@ -18,14 +18,16 @@ const rootPath =
 
 const extraModules = [
   { fullPath: './src/fp/index.js' },
-  { fullPath: './src/locale/index.js' }
+  { fullPath: './src/locale/index.js' },
 ]
 
 const initialPackages = getInitialPackages()
 
-Promise.all([listAll().map(module => writePackage(module.fullPath))]).then(
-  'package.json files are generated'
-)
+listAll()
+  .then((modules) =>
+    Promise.all(modules.map((module) => writePackage(module.fullPath)))
+  )
+  .then('package.json files are generated')
 
 function writePackage(fullPath) {
   const dirPath = path.dirname(fullPath)
@@ -39,7 +41,7 @@ function writePackage(fullPath) {
     packagePath,
     JSON.stringify(
       Object.assign({ sideEffects: false }, initialPackages[fullPath] || {}, {
-        typings: typingsRelativePath
+        typings: typingsRelativePath,
       }),
       null,
       2
@@ -47,8 +49,9 @@ function writePackage(fullPath) {
   )
 }
 
-function getInitialPackages() {
-  return listFns()
+async function getInitialPackages() {
+  const fns = await listFns()
+  return fns
     .concat(listFPFns())
     .concat(listLocales())
     .concat(extraModules)
@@ -68,14 +71,15 @@ function getModulePackage(fullPath) {
   return { module: esmRelativePath }
 }
 
-function listAll() {
-  return listFns()
+async function listAll() {
+  const fns = await listFns()
+  return fns
     .concat(listFPFns())
     .concat(listLocales())
     .concat(extraModules)
     .reduce((acc, module) => {
       const esmModule = Object.assign({}, module, {
-        fullPath: module.fullPath.replace('./src/', './src/esm/')
+        fullPath: module.fullPath.replace('./src/', './src/esm/'),
       })
       return acc.concat([module, esmModule])
     }, [])

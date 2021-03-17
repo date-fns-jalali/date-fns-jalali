@@ -1,28 +1,43 @@
-# ![](https://cdn.rawgit.com/date-fns/date-fns/c5bcd92d04f14da194e6298101a6509b1c3b30f0/docs/logo.svg) date-fns
+[![date-fns-jalali](docs/logotype.svg)](https://date-fns.org/)
 
-🔥🔥🔥 **date-fns v2 is out!** 🔥🔥🔥
+<p align="center">
+  <b>date-fns-jalali</b> provides the most comprehensive, yet simple and consistent toolset
+  <br>
+  for manipulating <b>JavaScript dates</b> in <b>a browser</b> & <b>Node.js</b>.</b>
+  <br>
+  for <b>jalali calendar</b>
+</p>
 
-⭐️ **Upgrading from v1 to v2?**
+<div align="center">
+  
+[📖&nbsp; Documentation](https://date-fns.org/docs/)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[🧑‍💻&nbsp; JavaScript Jobs](https://jobs.date-fns.org/)
+  
+</div>
 
-- [See the changelog](https://github.com/date-fns/date-fns/blob/master/CHANGELOG.md)
-- Check out [@date-fns/upgrade](https://github.com/date-fns/date-fns-upgrade) and [@date-fns/upgrade-codemod](https://github.com/date-fns/date-fns-upgrade-codemod), they could help you with the upgrade!
+<hr>
 
-**date-fns** provides the most comprehensive, yet simple and consistent toolset
-for manipulating **JavaScript dates** in **a browser** & **Node.js**.
+# It's like [Lodash](https://lodash.com) for dates
 
-**date-fns** is like [lodash](https://lodash.com) for dates. It has
-[**180+ functions** for all occasions](https://date-fns.org/docs/).
+- It has [**180+ functions** for all occasions](https://date-fns.org/docs/).
+- **Modular**: Pick what you need. Works with webpack, Browserify, or Rollup and also supports tree-shaking.
+- **Native dates**: Uses existing native type. It doesn't extend core objects for safety's sake.
+- **Immutable & Pure**: Built using pure functions and always returns a new date instance.
+- **TypeScript & Flow**: Supports both Flow and TypeScript
+- **I18n**: Dozens of locales. Include only what you need.
+- [and many more benefits](https://date-fns.org/)
+
+**date-fns-jalali** provides **date-fns** toolset for [jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar)
 
 ```js
-import { compareAsc, format } from 'date-fns'
+import { compareAsc, format } from 'date-fns-jalali'
 
 format(new Date(2014, 1, 11), 'yyyy-MM-dd')
-//=> '2014-02-11'
+//=> '1392-11-22'
 
 const dates = [
   new Date(1995, 6, 2),
   new Date(1987, 1, 11),
-  new Date(1989, 6, 10)
+  new Date(1989, 6, 10),
 ]
 dates.sort(compareAsc)
 //=> [
@@ -32,13 +47,13 @@ dates.sort(compareAsc)
 // ]
 ```
 
-The library is available as an [npm package](https://www.npmjs.com/package/date-fns).
+The library is available as an [npm package](https://www.npmjs.com/package/date-fns-jalali).
 To install the package run:
 
 ```bash
-npm install date-fns --save
+npm install date-fns-jalali --save
 # or with yarn
-yarn add date-fns
+yarn add date-fns-jalali
 ```
 
 ## Docs
@@ -46,12 +61,9 @@ yarn add date-fns
 [See date-fns.org](https://date-fns.org/) for more details, API,
 and other docs.
 
-## JavaScript jobs by date-fns
-
-👋 Know someone who's looking for JavaScript devs? [Recommend us a job!](https://jobs.date-fns.org/#recommend)
-
-✉️ Get jobs worth sharing to your email! [Subscribe to the newsletter](https://jobs.date-fns.org).
+<br />
+<!-- END OF README-JOB SECTION -->
 
 ## License
 
-[MIT © Sasha Koss](https://kossnocorp.mit-license.org/)
+MIT

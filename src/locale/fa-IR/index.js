@@ -1,8 +1,8 @@
-import formatDistance from './_lib/formatDistance/index.js'
-import formatLong from './_lib/formatLong/index.js'
-import formatRelative from './_lib/formatRelative/index.js'
-import localize from './_lib/localize/index.js'
-import match from './_lib/match/index.js'
+import formatDistance from './_lib/formatDistance/index'
+import formatLong from './_lib/formatLong/index'
+import formatRelative from './_lib/formatRelative/index'
+import localize from './_lib/localize/index'
+import match from './_lib/match/index'
 
 /**
  * @type {Locale}
@@ -10,7 +10,7 @@ import match from './_lib/match/index.js'
  * @summary Persian/Farsi locale (Iran).
  * @language Persian
  * @iso-639-2 ira
- * @author Morteza Ziyae [@mort3za]{@link https://github.com/mort3za}
+ * @author Seyyed Morteza Moosavi [@smmoosavi]{@link https://github.com/smmoosavi}
  */
 var locale = {
   code: 'fa-IR',
@@ -20,9 +20,9 @@ var locale = {
   localize: localize,
   match: match,
   options: {
-    weekStartsOn: 0 /* Sunday */,
-    firstWeekContainsDate: 1
-  }
+    weekStartsOn: 6 /* Sat */,
+    firstWeekContainsDate: 1,
+  },
 }
 
 export default locale

@@ -1,15 +1,15 @@
-import buildLocalizeFn from '../../../_lib/buildLocalizeFn/index.js'
+import buildLocalizeFn from '../../../_lib/buildLocalizeFn/index'
 
 var eraValues = {
   narrow: ['ق', 'ب'],
-  abbreviated: ['ق.م.', 'ب.م.'],
-  wide: ['قبل از میلاد', 'بعد از میلاد']
+  abbreviated: ['ق.ه.', 'ب.ه.'],
+  wide: ['قبل از هجرت', 'بعد از هجرت'],
 }
 
 var quarterValues = {
   narrow: ['1', '2', '3', '4'],
   abbreviated: ['س‌م1', 'س‌م2', 'س‌م3', 'س‌م4'],
-  wide: ['سه‌ماهه 1', 'سه‌ماهه 2', 'سه‌ماهه 3', 'سه‌ماهه 4']
+  wide: ['سه‌ماهه 1', 'سه‌ماهه 2', 'سه‌ماهه 3', 'سه‌ماهه 4'],
 }
 
 // Note: in English, the names of days of the week and months are capitalized.
@@ -17,50 +17,71 @@ var quarterValues = {
 // Generally, formatted dates should look like they are in the middle of a sentence,
 // e.g. in Spanish language the weekdays and months should be in the lowercase.
 var monthValues = {
-  narrow: ['ژ', 'ف', 'م', 'آ', 'م', 'ج', 'ج', 'آ', 'س', 'ا', 'ن', 'د'],
+  narrow: [
+    'فر',
+    'ار',
+    'خر',
+    'تی',
+    'مر',
+    'شه',
+    'مه',
+    'آب',
+    'آذ',
+    'دی',
+    'به',
+    'اس',
+  ],
   abbreviated: [
-    'ژانـ',
-    'فور',
-    'مارس',
-    'آپر',
-    'می',
-    'جون',
-    'جولـ',
-    'آگو',
-    'سپتـ',
-    'اکتـ',
-    'نوامـ',
-    'دسامـ'
+    'فرو',
+    'ارد',
+    'خرد',
+    'تیر',
+    'مرد',
+    'شهر',
+    'مهر',
+    'آبا',
+    'آذر',
+    'دی',
+    'بهم',
+    'اسف',
   ],
   wide: [
-    'ژانویه',
-    'فوریه',
-    'مارس',
-    'آپریل',
-    'می',
-    'جون',
-    'جولای',
-    'آگوست',
-    'سپتامبر',
-    'اکتبر',
-    'نوامبر',
-    'دسامبر'
-  ]
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند',
+  ],
 }
 
 var dayValues = {
   narrow: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
   short: ['1ش', '2ش', '3ش', '4ش', '5ش', 'ج', 'ش'],
   abbreviated: [
-    'یکشنبه',
+    'یک‌شنبه',
     'دوشنبه',
     'سه‌شنبه',
     'چهارشنبه',
-    'پنجشنبه',
+    'پنج‌شنبه',
     'جمعه',
-    'شنبه'
+    'شنبه',
   ],
-  wide: ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه']
+  wide: [
+    'یک‌شنبه',
+    'دوشنبه',
+    'سه‌شنبه',
+    'چهارشنبه',
+    'پنج‌شنبه',
+    'جمعه',
+    'شنبه',
+  ],
 }
 
 var dayPeriodValues = {
@@ -72,7 +93,7 @@ var dayPeriodValues = {
     morning: 'ص',
     afternoon: 'ب.ظ.',
     evening: 'ع',
-    night: 'ش'
+    night: 'ش',
   },
   abbreviated: {
     am: 'ق.ظ.',
@@ -82,7 +103,7 @@ var dayPeriodValues = {
     morning: 'صبح',
     afternoon: 'بعدازظهر',
     evening: 'عصر',
-    night: 'شب'
+    night: 'شب',
   },
   wide: {
     am: 'قبل‌ازظهر',
@@ -92,8 +113,8 @@ var dayPeriodValues = {
     morning: 'صبح',
     afternoon: 'بعدازظهر',
     evening: 'عصر',
-    night: 'شب'
-  }
+    night: 'شب',
+  },
 }
 var formattingDayPeriodValues = {
   narrow: {
@@ -104,7 +125,7 @@ var formattingDayPeriodValues = {
     morning: 'ص',
     afternoon: 'ب.ظ.',
     evening: 'ع',
-    night: 'ش'
+    night: 'ش',
   },
   abbreviated: {
     am: 'ق.ظ.',
@@ -114,7 +135,7 @@ var formattingDayPeriodValues = {
     morning: 'صبح',
     afternoon: 'بعدازظهر',
     evening: 'عصر',
-    night: 'شب'
+    night: 'شب',
   },
   wide: {
     am: 'قبل‌ازظهر',
@@ -124,12 +145,13 @@ var formattingDayPeriodValues = {
     morning: 'صبح',
     afternoon: 'بعدازظهر',
     evening: 'عصر',
-    night: 'شب'
-  }
+    night: 'شب',
+  },
 }
 
 function ordinalNumber(dirtyNumber) {
-  return String(dirtyNumber)
+  var number = Number(dirtyNumber)
+  return number + '-ام'
 }
 
 var localize = {
@@ -137,33 +159,33 @@ var localize = {
 
   era: buildLocalizeFn({
     values: eraValues,
-    defaultWidth: 'wide'
+    defaultWidth: 'wide',
   }),
 
   quarter: buildLocalizeFn({
     values: quarterValues,
     defaultWidth: 'wide',
-    argumentCallback: function(quarter) {
+    argumentCallback: function (quarter) {
       return Number(quarter) - 1
-    }
+    },
   }),
 
   month: buildLocalizeFn({
     values: monthValues,
-    defaultWidth: 'wide'
+    defaultWidth: 'wide',
   }),
 
   day: buildLocalizeFn({
     values: dayValues,
-    defaultWidth: 'wide'
+    defaultWidth: 'wide',
   }),
 
   dayPeriod: buildLocalizeFn({
     values: dayPeriodValues,
     defaultWidth: 'wide',
     formattingValues: formattingDayPeriodValues,
-    defaultFormattingWidth: 'wide'
-  })
+    defaultFormattingWidth: 'wide',
+  }),
 }
 
 export default localize

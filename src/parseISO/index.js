@@ -1,5 +1,5 @@
-import toInteger from '../_lib/toInteger/index.js'
-import requiredArgs from '../_lib/requiredArgs/index.js'
+import toInteger from '../_lib/toInteger/index'
+import requiredArgs from '../_lib/requiredArgs/index'
 
 var MILLISECONDS_IN_HOUR = 3600000
 var MILLISECONDS_IN_MINUTE = 60000
@@ -8,7 +8,7 @@ var DEFAULT_ADDITIONAL_DIGITS = 2
 var patterns = {
   dateTimeDelimiter: /[T ]/,
   timeZoneDelimiter: /[Z ]/i,
-  timezone: /([Z+-].*)$/
+  timezone: /([Z+-].*)$/,
 }
 
 var dateRegex = /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/
@@ -133,16 +133,18 @@ export default function parseISO(argument, dirtyOptions) {
     // so we use utc values to build date in our timezone.
     // Year values from 0 to 99 map to the years 1900 to 1999
     // so set year explicitly with setFullYear.
-    var result = new Date(
+    var result = new Date(0)
+    result.setFullYear(
       dirtyDate.getUTCFullYear(),
       dirtyDate.getUTCMonth(),
-      dirtyDate.getUTCDate(),
+      dirtyDate.getUTCDate()
+    )
+    result.setHours(
       dirtyDate.getUTCHours(),
       dirtyDate.getUTCMinutes(),
       dirtyDate.getUTCSeconds(),
       dirtyDate.getUTCMilliseconds()
     )
-    result.setFullYear(dirtyDate.getUTCFullYear())
     return result
   }
 
@@ -153,6 +155,12 @@ function splitDateString(dateString) {
   var dateStrings = {}
   var array = dateString.split(patterns.dateTimeDelimiter)
   var timeString
+
+  // The regex match should only return at maximum two array elements.
+  // [date], [time], or [date, time].
+  if (array.length > 2) {
+    return dateStrings
+  }
 
   if (/:/.test(array[0])) {
     dateStrings.date = null
@@ -197,7 +205,7 @@ function parseYear(dateString, additionalDigits) {
 
   return {
     year: century == null ? year : century * 100,
-    restDateString: dateString.slice((captures[1] || captures[2]).length)
+    restDateString: dateString.slice((captures[1] || captures[2]).length),
   }
 }
 

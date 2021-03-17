@@ -1,9 +1,3 @@
-var MILLISECONDS_IN_MINUTE = 60000
-
-function getDateMillisecondsPart(date) {
-  return date.getTime() % MILLISECONDS_IN_MINUTE
-}
-
 /**
  * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
  * They usually appear for dates that denote time before the timezones were introduced
@@ -15,18 +9,24 @@ function getDateMillisecondsPart(date) {
  *
  * This function returns the timezone offset in milliseconds that takes seconds in account.
  */
-export default function getTimezoneOffsetInMilliseconds(dirtyDate) {
-  var date = new Date(dirtyDate.getTime())
-  var baseTimezoneOffset = Math.ceil(date.getTimezoneOffset())
-  date.setSeconds(0, 0)
-  var hasNegativeUTCOffset = baseTimezoneOffset > 0
-  var millisecondsPartOfTimezoneOffset = hasNegativeUTCOffset
-    ? (MILLISECONDS_IN_MINUTE + getDateMillisecondsPart(date)) %
-      MILLISECONDS_IN_MINUTE
-    : getDateMillisecondsPart(date)
+import coreGetMonth from '../../_core/getMonth/index'
 
-  return (
-    baseTimezoneOffset * MILLISECONDS_IN_MINUTE +
-    millisecondsPartOfTimezoneOffset
+import coreGetDate from '../../_core/getDate/index'
+import coreGetFullYear from '../../_core/getFullYear/index'
+import coreSetUTCFullYear from '../../_core/setUTCFullYear/index'
+import coreDateUTC from '../../_core/dateUTC/index'
+export default function getTimezoneOffsetInMilliseconds(date) {
+  const utcDate = new Date(
+    coreDateUTC(
+      coreGetFullYear(date),
+      coreGetMonth(date),
+      coreGetDate(date),
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds(),
+      date.getMilliseconds()
+    )
   )
+  coreSetUTCFullYear(utcDate, coreGetFullYear(date))
+  return date.getTime() - utcDate.getTime()
 }
