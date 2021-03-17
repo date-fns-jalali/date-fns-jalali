@@ -1,6 +1,9 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetFullYear from "../_core/getFullYear/index";
+import coreSetFullYear from "../_core/setFullYear/index";
+
 /**
  * @name endOfDecade
  * @category Decade Helpers
@@ -29,9 +32,9 @@ export default function endOfDecade(dirtyDate: Date | number): Date {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const year = date.getFullYear()
+  const year = coreGetFullYear(date)
   const decade = 9 + Math.floor(year / 10) * 10
-  date.setFullYear(decade, 11, 31)
+  coreSetFullYear(date, decade, 11, 31)
   date.setHours(23, 59, 59, 999)
   return date
 }

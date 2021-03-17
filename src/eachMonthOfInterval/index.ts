@@ -1,6 +1,10 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from "../_core/getMonth/index";
+import coreSetMonth from "../_core/setMonth/index";
+import coreSetDate from "../_core/setDate/index";
+
 /**
  * @name eachMonthOfInterval
  * @category Interval Helpers
@@ -48,11 +52,11 @@ export default function eachMonthOfInterval(dirtyInterval: Interval) {
 
   const currentDate = startDate
   currentDate.setHours(0, 0, 0, 0)
-  currentDate.setDate(1)
+  coreSetDate(currentDate, 1)
 
   while (currentDate.getTime() <= endTime) {
     dates.push(toDate(currentDate))
-    currentDate.setMonth(currentDate.getMonth() + 1)
+    coreSetMonth(currentDate, coreGetMonth(currentDate) + 1)
   }
 
   return dates

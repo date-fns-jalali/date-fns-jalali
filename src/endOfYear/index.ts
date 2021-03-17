@@ -1,6 +1,9 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetFullYear from "../_core/getFullYear/index";
+import coreSetFullYear from "../_core/setFullYear/index";
+
 /**
  * @name endOfYear
  * @category Year Helpers
@@ -27,8 +30,8 @@ export default function endOfYear(dirtyDate: Date | number): Date {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate)
-  var year = date.getFullYear()
-  date.setFullYear(year + 1, 0, 0)
+  var year = coreGetFullYear(date)
+  coreSetFullYear(date, year + 1, 0, 0)
   date.setHours(23, 59, 59, 999)
   return date
 }
