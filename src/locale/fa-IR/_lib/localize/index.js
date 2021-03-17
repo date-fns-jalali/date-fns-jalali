@@ -1,15 +1,15 @@
 import buildLocalizeFn from '../../../_lib/buildLocalizeFn/index'
 
 var eraValues = {
-  narrow: ['B', 'A'],
-  abbreviated: ['BC', 'AD'],
-  wide: ['Before Christ', 'Anno Domini'],
+  narrow: ['ق', 'ب'],
+  abbreviated: ['ق.ه.', 'ب.ه.'],
+  wide: ['قبل از هجرت', 'بعد از هجرت'],
 }
 
 var quarterValues = {
   narrow: ['1', '2', '3', '4'],
-  abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
-  wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter'],
+  abbreviated: ['س‌م1', 'س‌م2', 'س‌م3', 'س‌م4'],
+  wide: ['سه‌ماهه 1', 'سه‌ماهه 2', 'سه‌ماهه 3', 'سه‌ماهه 4'],
 }
 
 // Note: in English, the names of days of the week and months are capitalized.
@@ -17,142 +17,141 @@ var quarterValues = {
 // Generally, formatted dates should look like they are in the middle of a sentence,
 // e.g. in Spanish language the weekdays and months should be in the lowercase.
 var monthValues = {
-  narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+  narrow: [
+    'فر',
+    'ار',
+    'خر',
+    'تی',
+    'مر',
+    'شه',
+    'مه',
+    'آب',
+    'آذ',
+    'دی',
+    'به',
+    'اس',
+  ],
   abbreviated: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    'فرو',
+    'ارد',
+    'خرد',
+    'تیر',
+    'مرد',
+    'شهر',
+    'مهر',
+    'آبا',
+    'آذر',
+    'دی',
+    'بهم',
+    'اسف',
   ],
   wide: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند',
   ],
 }
 
 var dayValues = {
-  narrow: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-  short: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-  abbreviated: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  narrow: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
+  short: ['1ش', '2ش', '3ش', '4ش', '5ش', 'ج', 'ش'],
+  abbreviated: [
+    'یک‌شنبه',
+    'دوشنبه',
+    'سه‌شنبه',
+    'چهارشنبه',
+    'پنج‌شنبه',
+    'جمعه',
+    'شنبه',
+  ],
   wide: [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
+    'یک‌شنبه',
+    'دوشنبه',
+    'سه‌شنبه',
+    'چهارشنبه',
+    'پنج‌شنبه',
+    'جمعه',
+    'شنبه',
   ],
 }
 
 var dayPeriodValues = {
   narrow: {
-    am: 'a',
-    pm: 'p',
-    midnight: 'mi',
-    noon: 'n',
-    morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night',
+    am: 'ق',
+    pm: 'ب',
+    midnight: 'ن',
+    noon: 'ظ',
+    morning: 'ص',
+    afternoon: 'ب.ظ.',
+    evening: 'ع',
+    night: 'ش',
   },
   abbreviated: {
-    am: 'AM',
-    pm: 'PM',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night',
+    am: 'ق.ظ.',
+    pm: 'ب.ظ.',
+    midnight: 'نیمه‌شب',
+    noon: 'ظهر',
+    morning: 'صبح',
+    afternoon: 'بعدازظهر',
+    evening: 'عصر',
+    night: 'شب',
   },
   wide: {
-    am: 'a.m.',
-    pm: 'p.m.',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night',
+    am: 'قبل‌ازظهر',
+    pm: 'بعدازظهر',
+    midnight: 'نیمه‌شب',
+    noon: 'ظهر',
+    morning: 'صبح',
+    afternoon: 'بعدازظهر',
+    evening: 'عصر',
+    night: 'شب',
   },
 }
 var formattingDayPeriodValues = {
   narrow: {
-    am: 'a',
-    pm: 'p',
-    midnight: 'mi',
-    noon: 'n',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night',
+    am: 'ق',
+    pm: 'ب',
+    midnight: 'ن',
+    noon: 'ظ',
+    morning: 'ص',
+    afternoon: 'ب.ظ.',
+    evening: 'ع',
+    night: 'ش',
   },
   abbreviated: {
-    am: 'AM',
-    pm: 'PM',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night',
+    am: 'ق.ظ.',
+    pm: 'ب.ظ.',
+    midnight: 'نیمه‌شب',
+    noon: 'ظهر',
+    morning: 'صبح',
+    afternoon: 'بعدازظهر',
+    evening: 'عصر',
+    night: 'شب',
   },
   wide: {
-    am: 'a.m.',
-    pm: 'p.m.',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night',
+    am: 'قبل‌ازظهر',
+    pm: 'بعدازظهر',
+    midnight: 'نیمه‌شب',
+    noon: 'ظهر',
+    morning: 'صبح',
+    afternoon: 'بعدازظهر',
+    evening: 'عصر',
+    night: 'شب',
   },
 }
 
-function ordinalNumber(dirtyNumber, _dirtyOptions) {
+function ordinalNumber(dirtyNumber) {
   var number = Number(dirtyNumber)
-
-  // If ordinal numbers depend on context, for example,
-  // if they are different for different grammatical genders,
-  // use `options.unit`:
-  //
-  //   var options = dirtyOptions || {}
-  //   var unit = String(options.unit)
-  //
-  // where `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
-  // 'day', 'hour', 'minute', 'second'
-
-  var rem100 = number % 100
-  if (rem100 > 20 || rem100 < 10) {
-    switch (rem100 % 10) {
-      case 1:
-        return number + 'st'
-      case 2:
-        return number + 'nd'
-      case 3:
-        return number + 'rd'
-    }
-  }
-  return number + 'th'
+  return number + '-ام'
 }
 
 var localize = {

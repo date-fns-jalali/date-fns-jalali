@@ -1,10 +1,10 @@
-import buildFormatLongFn from '../../../_lib/buildFormatLongFn/index'
+import buildFormatLongFn from '../../../_lib/buildFormatLongFn/index.js'
 
 var dateFormats = {
-  full: 'EEEE, MMMM do, y',
-  long: 'MMMM do, y',
-  medium: 'MMM d, y',
-  short: 'MM/dd/yyyy',
+  full: 'EEEE do MMMM y',
+  long: 'do MMMM y',
+  medium: 'd MMM y',
+  short: 'yyyy/MM/dd',
 }
 
 var timeFormats = {
@@ -15,8 +15,8 @@ var timeFormats = {
 }
 
 var dateTimeFormats = {
-  full: "{{date}} 'at' {{time}}",
-  long: "{{date}} 'at' {{time}}",
+  full: "{{date}} 'در' {{time}}",
+  long: "{{date}} 'در' {{time}}",
   medium: '{{date}}, {{time}}',
   short: '{{date}}, {{time}}',
 }

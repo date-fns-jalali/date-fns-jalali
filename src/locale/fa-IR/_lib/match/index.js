@@ -1,88 +1,97 @@
 import buildMatchPatternFn from '../../../_lib/buildMatchPatternFn/index'
 import buildMatchFn from '../../../_lib/buildMatchFn/index'
 
-var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i
+var matchOrdinalNumberPattern = /^(\d+)(-?ام)?/i
 var parseOrdinalNumberPattern = /\d+/i
 
 var matchEraPatterns = {
-  narrow: /^(b|a)/i,
-  abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
-  wide: /^(before christ|before common era|anno domini|common era)/i,
+  narrow: /^(ق|ب)/i,
+  abbreviated: /^(ق\.?\s?ه\.?|ب\.?\s?ه\.?|ه\.?)/i,
+  wide: /^(قبل از هجرت|هجری شمسی|بعد از هجرت)/i,
 }
 var parseEraPatterns = {
-  any: [/^b/i, /^(a|c)/i],
+  any: [/^قبل/i, /^بعد/i],
 }
 
 var matchQuarterPatterns = {
   narrow: /^[1234]/i,
-  abbreviated: /^q[1234]/i,
-  wide: /^[1234](th|st|nd|rd)? quarter/i,
+  abbreviated: /^(ف|Q|س‌م)[1234]/i,
+  wide: /^(فصل|quarter|سه‌ماهه) [1234](-ام|ام)?/i,
 }
 var parseQuarterPatterns = {
   any: [/1/i, /2/i, /3/i, /4/i],
 }
 
 var matchMonthPatterns = {
-  narrow: /^[jfmasond]/i,
-  abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-  wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i,
+  narrow: /^(فر|ار|خر|تی|مر|شه|مه|آب|آذ|دی|به|اس)/i,
+  abbreviated: /^(فرو|ارد|خرد|تیر|مرد|شهر|مهر|آبا|آذر|دی|بهم|اسف)/i,
+  wide: /^(فروردین|اردیبهشت|خرداد|تیر|مرداد|شهریور|مهر|آبان|آذر|دی|بهمن|اسفند)/i,
 }
 var parseMonthPatterns = {
   narrow: [
-    /^j/i,
-    /^f/i,
-    /^m/i,
-    /^a/i,
-    /^m/i,
-    /^j/i,
-    /^j/i,
-    /^a/i,
-    /^s/i,
-    /^o/i,
-    /^n/i,
-    /^d/i,
+    /^فر/i,
+    /^ار/i,
+    /^خر/i,
+    /^تی/i,
+    /^مر/i,
+    /^شه/i,
+    /^مه/i,
+    /^آب/i,
+    /^آذ/i,
+    /^دی/i,
+    /^به/i,
+    /^اس/i,
   ],
   any: [
-    /^ja/i,
-    /^f/i,
-    /^mar/i,
-    /^ap/i,
-    /^may/i,
-    /^jun/i,
-    /^jul/i,
-    /^au/i,
-    /^s/i,
-    /^o/i,
-    /^n/i,
-    /^d/i,
+    /^فر/i,
+    /^ار/i,
+    /^خر/i,
+    /^تی/i,
+    /^مر/i,
+    /^شه/i,
+    /^مه/i,
+    /^آب/i,
+    /^آذ/i,
+    /^دی/i,
+    /^به/i,
+    /^اس/i,
   ],
 }
 
 var matchDayPatterns = {
-  narrow: /^[smtwf]/i,
-  short: /^(su|mo|tu|we|th|fr|sa)/i,
-  abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-  wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i,
+  narrow: /^[شیدسچپج]/i,
+  short: /^(ش|ج|1ش|2ش|3ش|4ش|5ش)/i,
+  abbreviated: /^(یکشنبه|دوشنبه|سه‌شنبه|چهارشنبه|پنج‌شنبه|جمعه|شنبه)/i,
+  wide: /^(یکشنبه|دوشنبه|سه‌شنبه|چهارشنبه|پنج‌شنبه|جمعه|شنبه)/i,
 }
 var parseDayPatterns = {
-  narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
-  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i],
+  narrow: [/^ی/i, /^دو/i, /^س/i, /^چ/i, /^پ/i, /^ج/i, /^ش/i],
+  any: [
+    /^(ی|1ش|یکشنبه)/i,
+    /^(د|2ش|دوشنبه)/i,
+    /^(س|3ش|سه‌شنبه)/i,
+    /^(چ|4ش|چهارشنبه)/i,
+    /^(پ|5ش|پنجشنبه)/i,
+    /^(ج|جمعه)/i,
+    /^(ش|شنبه)/i,
+  ],
 }
 
 var matchDayPeriodPatterns = {
-  narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
-  any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i,
+  narrow: /^(ب|ق|ن|ظ|ص|ب.ظ.|ع|ش)/i,
+  abbreviated: /^(ق.ظ.|ب.ظ.|نیمه‌شب|ظهر|صبح|بعدازظهر|عصر|شب)/i,
+  wide: /^(قبل‌ازظهر|نیمه‌شب|ظهر|صبح|بعدازظهر|عصر|شب)/i,
 }
 var parseDayPeriodPatterns = {
   any: {
-    am: /^a/i,
-    pm: /^p/i,
-    midnight: /^mi/i,
-    noon: /^no/i,
-    morning: /morning/i,
-    afternoon: /afternoon/i,
-    evening: /evening/i,
-    night: /night/i,
+    am: /^(ق|ق.ظ.|قبل‌ازظهر)/i,
+    pm: /^(ب|ب.ظ.|بعدازظهر)/i,
+    midnight: /^(‌نیمه‌شب|ن)/i,
+    noon: /^(ظ|ظهر)/i,
+    morning: /^(ص|صبح)/i,
+    afternoon: /^(ب|ب.ظ.|بعدازظهر)/i,
+    evening: /^(ع|عصر)/i,
+    night: /^(ش|شب)/i,
   },
 }
 
