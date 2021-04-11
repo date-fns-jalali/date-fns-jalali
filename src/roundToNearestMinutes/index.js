@@ -1,6 +1,11 @@
 import toDate from '../toDate/index'
 import toInteger from '../_lib/toInteger/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+import coreGetDate from '../_core/getDate/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import newDate from '../_core/newDate/index'
+
 /**
  * @name roundToNearestMinutes
  * @category Minute Helpers
@@ -51,10 +56,10 @@ export default function roundToNearestMinutes(dirtyDate, options) {
   var remainderMinutes = minutes % nearestTo
   var addedMinutes = Math.round(remainderMinutes / nearestTo) * nearestTo
 
-  return new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
+  return newDate(
+    coreGetFullYear(date),
+    coreGetMonth(date),
+    coreGetDate(date),
     date.getHours(),
     roundedMinutes + addedMinutes
   )
