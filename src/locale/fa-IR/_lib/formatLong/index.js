@@ -1,10 +1,10 @@
 import buildFormatLongFn from '../../../_lib/buildFormatLongFn/index'
 
 var dateFormats = {
-  full: 'EEEE do MMMM y',
-  long: 'do MMMM y',
-  medium: 'd MMM y',
-  short: 'yyyy/MM/dd',
+  full: 'EEEE, MMMM do, y',
+  long: 'MMMM do, y',
+  medium: 'MMM d, y',
+  short: 'MM/dd/yyyy',
 }
 
 var timeFormats = {
@@ -15,8 +15,8 @@ var timeFormats = {
 }
 
 var dateTimeFormats = {
-  full: "{{date}} 'در' {{time}}",
-  long: "{{date}} 'در' {{time}}",
+  full: "{{date}} 'at' {{time}}",
+  long: "{{date}} 'at' {{time}}",
   medium: '{{date}}, {{time}}',
   short: '{{date}}, {{time}}',
 }
