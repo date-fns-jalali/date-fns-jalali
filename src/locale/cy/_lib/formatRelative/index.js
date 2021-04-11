@@ -4,7 +4,7 @@ var formatRelativeLocale = {
   today: "'heddiw am' p",
   tomorrow: "'yfory am' p",
   nextWeek: "eeee 'am' p",
-  other: 'P'
+  other: 'P',
 }
 
 export default function formatRelative(token, _date, _baseDate, _options) {

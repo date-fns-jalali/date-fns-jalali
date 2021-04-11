@@ -13,7 +13,7 @@ describe('sub', () => {
       days: 7,
       hours: 5,
       minutes: 9,
-      seconds: 30
+      seconds: 30,
     })
     assert.deepEqual(result, new Date(2014, 8 /* Sep */, 1, 10, 19, 50))
   })
@@ -25,7 +25,7 @@ describe('sub', () => {
 
   it('accepts a timestamp', () => {
     const result = sub(new Date(2014, 8 /* Sep */, 1, 14).getTime(), {
-      hours: 4
+      hours: 4,
     })
     assert.deepEqual(result, new Date(2014, 8 /* Sep */, 1, 10))
   })
