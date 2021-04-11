@@ -60,7 +60,7 @@ function dateTimeLongFormatter(pattern, formatLong) {
 
 var longFormatters = {
   p: timeLongFormatter,
-  P: dateTimeLongFormatter
+  P: dateTimeLongFormatter,
 }
 
 export default longFormatters
