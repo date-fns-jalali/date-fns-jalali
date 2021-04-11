@@ -1,4 +1,4 @@
 // This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.
 
-import { formatISO9075WithOptions } from 'date-fns/fp'
+import { formatISO9075WithOptions } from 'date-fns-jalali/fp'
 export default formatISO9075WithOptions
