@@ -7,25 +7,25 @@ var parseOrdinalNumberPattern = /\d+/i
 var matchEraPatterns = {
   narrow: /^(pr\.n\.e\.|AD)/i,
   abbreviated: /^(pr\.\s?Kr\.|po\.\s?Kr\.)/i,
-  wide: /^(Prije Krista|prije nove ere|Poslije Krista|nova era)/i
+  wide: /^(Prije Krista|prije nove ere|Poslije Krista|nova era)/i,
 }
 var parseEraPatterns = {
-  any: [/^pr/i, /^(po|nova)/i]
+  any: [/^pr/i, /^(po|nova)/i],
 }
 
 var matchQuarterPatterns = {
   narrow: /^[1234]/i,
   abbreviated: /^[1234]\.\s?kv\.?/i,
-  wide: /^[1234]\. kvartal/i
+  wide: /^[1234]\. kvartal/i,
 }
 var parseQuarterPatterns = {
-  any: [/1/i, /2/i, /3/i, /4/i]
+  any: [/1/i, /2/i, /3/i, /4/i],
 }
 
 var matchMonthPatterns = {
   narrow: /^(10|11|12|[123456789])\./i,
   abbreviated: /^(sij|velj|(ožu|ozu)|tra|svi|lip|srp|kol|ruj|lis|stu|pro)/i,
-  wide: /^((siječanj|siječnja|sijecanj|sijecnja)|(veljača|veljače|veljaca|veljace)|(ožujak|ožujka|ozujak|ozujka)|(travanj|travnja)|(svibanj|svibnja)|(lipanj|lipnja)|(srpanj|srpnja)|(kolovoz|kolovoza)|(rujan|rujna)|(listopad|listopada)|(studeni|studenog)|(prosinac|prosinca))/i
+  wide: /^((siječanj|siječnja|sijecanj|sijecnja)|(veljača|veljače|veljaca|veljace)|(ožujak|ožujka|ozujak|ozujka)|(travanj|travnja)|(svibanj|svibnja)|(lipanj|lipnja)|(srpanj|srpnja)|(kolovoz|kolovoza)|(rujan|rujna)|(listopad|listopada)|(studeni|studenog)|(prosinac|prosinca))/i,
 }
 var parseMonthPatterns = {
   narrow: [/(10|11|12|[123456789])/i],
@@ -41,7 +41,7 @@ var parseMonthPatterns = {
     /^ruj/i,
     /^lis/i,
     /^stu/i,
-    /^pro/i
+    /^pro/i,
   ],
   wide: [
     /^sij/i,
@@ -55,23 +55,23 @@ var parseMonthPatterns = {
     /^ruj/i,
     /^lis/i,
     /^stu/i,
-    /^pro/i
-  ]
+    /^pro/i,
+  ],
 }
 
 var matchDayPatterns = {
   narrow: /^[npusčc]/i,
   short: /^(ned|pon|uto|sri|(čet|cet)|pet|sub)/i,
   abbreviated: /^(ned|pon|uto|sri|(čet|cet)|pet|sub)/i,
-  wide: /^(nedjelja|ponedjeljak|utorak|srijeda|(četvrtak|cetvrtak)|petak|subota)/i
+  wide: /^(nedjelja|ponedjeljak|utorak|srijeda|(četvrtak|cetvrtak)|petak|subota)/i,
 }
 var parseDayPatterns = {
   narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
-  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+  any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i],
 }
 
 var matchDayPeriodPatterns = {
-  any: /^(am|pm|ponoc|ponoć|(po)?podne|navecer|navečer|noću|poslije podne|ujutro)/i
+  any: /^(am|pm|ponoc|ponoć|(po)?podne|navecer|navečer|noću|poslije podne|ujutro)/i,
 }
 var parseDayPeriodPatterns = {
   any: {
@@ -82,51 +82,51 @@ var parseDayPeriodPatterns = {
     morning: /jutro/i,
     afternoon: /(poslije\s|po)+podne/i,
     evening: /(navece|naveče)/i,
-    night: /(nocu|noću)/i
-  }
+    night: /(nocu|noću)/i,
+  },
 }
 
 var match = {
   ordinalNumber: buildMatchPatternFn({
     matchPattern: matchOrdinalNumberPattern,
     parsePattern: parseOrdinalNumberPattern,
-    valueCallback: function(value) {
+    valueCallback: function (value) {
       return parseInt(value, 10)
-    }
+    },
   }),
   era: buildMatchFn({
     matchPatterns: matchEraPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseEraPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
   quarter: buildMatchFn({
     matchPatterns: matchQuarterPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseQuarterPatterns,
     defaultParseWidth: 'any',
-    valueCallback: function(index) {
+    valueCallback: function (index) {
       return index + 1
-    }
+    },
   }),
   month: buildMatchFn({
     matchPatterns: matchMonthPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseMonthPatterns,
-    defaultParseWidth: 'wide'
+    defaultParseWidth: 'wide',
   }),
   day: buildMatchFn({
     matchPatterns: matchDayPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseDayPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
   dayPeriod: buildMatchFn({
     matchPatterns: matchDayPeriodPatterns,
     defaultMatchWidth: 'any',
     parsePatterns: parseDayPeriodPatterns,
-    defaultParseWidth: 'any'
-  })
+    defaultParseWidth: 'any',
+  }),
 }
 
 export default match
