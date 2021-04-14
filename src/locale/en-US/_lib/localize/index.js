@@ -3,13 +3,13 @@ import buildLocalizeFn from '../../../_lib/buildLocalizeFn/index'
 var eraValues = {
   narrow: ['B', 'A'],
   abbreviated: ['BC', 'AD'],
-  wide: ['Before Christ', 'Anno Domini']
+  wide: ['Before Christ', 'Anno Domini'],
 }
 
 var quarterValues = {
   narrow: ['1', '2', '3', '4'],
   abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
-  wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter']
+  wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter'],
 }
 
 // Note: in English, the names of days of the week and months are capitalized.
@@ -17,35 +17,35 @@ var quarterValues = {
 // Generally, formatted dates should look like they are in the middle of a sentence,
 // e.g. in Spanish language the weekdays and months should be in the lowercase.
 var monthValues = {
-  narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+  narrow: ['F', 'O', 'K', 'T', 'M', 'S', 'M', 'A', 'A', 'D', 'B', 'E'],
   abbreviated: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
+    'Far',
+    'Ord',
+    'Kho',
+    'Tir',
+    'Mor',
+    'Sha',
+    'Meh',
+    'Aba',
+    'Aza',
+    'Day',
+    'Bah',
+    'Esf',
   ],
   wide: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ]
+    'Farvardin',
+    'Ordibehesht',
+    'Khordad',
+    'Tir',
+    'Mordad',
+    'Sharivar',
+    'Mehr',
+    'Aban',
+    'Azar',
+    'Day',
+    'Bahman',
+    'Esfand',
+  ],
 }
 
 var dayValues = {
@@ -59,8 +59,8 @@ var dayValues = {
     'Wednesday',
     'Thursday',
     'Friday',
-    'Saturday'
-  ]
+    'Saturday',
+  ],
 }
 
 var dayPeriodValues = {
@@ -72,7 +72,7 @@ var dayPeriodValues = {
     morning: 'morning',
     afternoon: 'afternoon',
     evening: 'evening',
-    night: 'night'
+    night: 'night',
   },
   abbreviated: {
     am: 'AM',
@@ -82,7 +82,7 @@ var dayPeriodValues = {
     morning: 'morning',
     afternoon: 'afternoon',
     evening: 'evening',
-    night: 'night'
+    night: 'night',
   },
   wide: {
     am: 'a.m.',
@@ -92,8 +92,8 @@ var dayPeriodValues = {
     morning: 'morning',
     afternoon: 'afternoon',
     evening: 'evening',
-    night: 'night'
-  }
+    night: 'night',
+  },
 }
 var formattingDayPeriodValues = {
   narrow: {
@@ -104,7 +104,7 @@ var formattingDayPeriodValues = {
     morning: 'in the morning',
     afternoon: 'in the afternoon',
     evening: 'in the evening',
-    night: 'at night'
+    night: 'at night',
   },
   abbreviated: {
     am: 'AM',
@@ -114,7 +114,7 @@ var formattingDayPeriodValues = {
     morning: 'in the morning',
     afternoon: 'in the afternoon',
     evening: 'in the evening',
-    night: 'at night'
+    night: 'at night',
   },
   wide: {
     am: 'a.m.',
@@ -124,8 +124,8 @@ var formattingDayPeriodValues = {
     morning: 'in the morning',
     afternoon: 'in the afternoon',
     evening: 'in the evening',
-    night: 'at night'
-  }
+    night: 'at night',
+  },
 }
 
 function ordinalNumber(dirtyNumber, _dirtyOptions) {
@@ -160,33 +160,33 @@ var localize = {
 
   era: buildLocalizeFn({
     values: eraValues,
-    defaultWidth: 'wide'
+    defaultWidth: 'wide',
   }),
 
   quarter: buildLocalizeFn({
     values: quarterValues,
     defaultWidth: 'wide',
-    argumentCallback: function(quarter) {
+    argumentCallback: function (quarter) {
       return Number(quarter) - 1
-    }
+    },
   }),
 
   month: buildLocalizeFn({
     values: monthValues,
-    defaultWidth: 'wide'
+    defaultWidth: 'wide',
   }),
 
   day: buildLocalizeFn({
     values: dayValues,
-    defaultWidth: 'wide'
+    defaultWidth: 'wide',
   }),
 
   dayPeriod: buildLocalizeFn({
     values: dayPeriodValues,
     defaultWidth: 'wide',
     formattingValues: formattingDayPeriodValues,
-    defaultFormattingWidth: 'wide'
-  })
+    defaultFormattingWidth: 'wide',
+  }),
 }
 
 export default localize

@@ -2,15 +2,20 @@ import toDate from '../toDate/index'
 import differenceInCalendarDays from '../differenceInCalendarDays/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+
 // Like `compareAsc` but uses local time not UTC, which is needed
 // for accurate equality comparisons of UTC timestamps that end up
 // having the same representation in local time, e.g. one hour before
 // DST ends vs. the instant that DST ends.
 function compareLocalAsc(dateLeft, dateRight) {
   var diff =
-    dateLeft.getFullYear() - dateRight.getFullYear() ||
-    dateLeft.getMonth() - dateRight.getMonth() ||
-    dateLeft.getDate() - dateRight.getDate() ||
+    coreGetFullYear(dateLeft) - coreGetFullYear(dateRight) ||
+    coreGetMonth(dateLeft) - coreGetMonth(dateRight) ||
+    coreGetDate(dateLeft) - coreGetDate(dateRight) ||
     dateLeft.getHours() - dateRight.getHours() ||
     dateLeft.getMinutes() - dateRight.getMinutes() ||
     dateLeft.getSeconds() - dateRight.getSeconds() ||
@@ -88,7 +93,7 @@ export default function differenceInDays(dirtyDateLeft, dirtyDateRight) {
   var sign = compareLocalAsc(dateLeft, dateRight)
   var difference = Math.abs(differenceInCalendarDays(dateLeft, dateRight))
 
-  dateLeft.setDate(dateLeft.getDate() - sign * difference)
+  coreSetDate(dateLeft, coreGetDate(dateLeft) - sign * difference)
 
   // Math.abs(diff in full days - diff in calendar days) === 1 if last calendar day is not full
   // If so, result must be decreased by 1 in absolute value

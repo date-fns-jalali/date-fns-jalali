@@ -7,11 +7,11 @@ import isWeekend from '../isWeekend'
 
 describe('eachWeekendOfYear', () => {
   it('returns all weekends of the given year', () => {
-    var result = eachWeekendOfYear(new Date(2020, 0, 1))
+    var result = eachWeekendOfYear(/* 1398/10/11 */ new Date(2020, 0, 1))
     assert(result.length === 104)
     assert(result.every(isWeekend))
-    assert.deepEqual(result[0], new Date(2020, 0, 4))
-    assert.deepEqual(result[103], new Date(2020, 11, 27))
+    assert.deepEqual(result[0], /* 1398/1/3 */ new Date(2019, 2, 23))
+    assert.deepEqual(result[103], /* 1398/12/25 */ new Date(2020, 2, 15))
   })
 
   it('throws TypeError exception when no argument is passed in', () => {

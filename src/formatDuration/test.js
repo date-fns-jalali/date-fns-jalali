@@ -14,13 +14,13 @@ describe('formatDuration', () => {
         days: 7,
         hours: 5,
         minutes: 9,
-        seconds: 30
-      }) === '2 years 9 months 1 week 7 days 5 hours 9 minutes 30 seconds'
+        seconds: 30,
+      }) === '2 سال 9 ماه 1 هفته 7 روز 5 ساعت 9 دقیقه 30 ثانیه'
     )
   })
 
   it('formats partial duration', () => {
-    assert(formatDuration({ months: 9, days: 2 }) === '9 months 2 days')
+    assert(formatDuration({ months: 9, days: 2 }) === '9 ماه 2 روز')
   })
 
   it('allows to customize the format', () => {
@@ -33,10 +33,10 @@ describe('formatDuration', () => {
           days: 7,
           hours: 5,
           minutes: 9,
-          seconds: 30
+          seconds: 30,
         },
         { format: ['months', 'weeks'] }
-      ) === '9 months 1 week'
+      ) === '9 ماه 1 هفته'
     )
   })
 
@@ -49,8 +49,8 @@ describe('formatDuration', () => {
         days: 0,
         hours: 0,
         minutes: 0,
-        seconds: 0
-      }) === '1 week'
+        seconds: 0,
+      }) === '1 هفته'
     )
   })
 
@@ -64,17 +64,17 @@ describe('formatDuration', () => {
           days: 0,
           hours: 0,
           minutes: 0,
-          seconds: 0
+          seconds: 0,
         },
         { zero: true }
-      ) === '0 years 0 months 1 week 0 days 0 hours 0 minutes 0 seconds'
+      ) === '0 سال 0 ماه 1 هفته 0 روز 0 ساعت 0 دقیقه 0 ثانیه'
     )
   })
 
   it('allows to customize the delimiter', () => {
     assert(
-      formatDuration({ months: 9, days: 2 }, { delimiter: ', ' }) ===
-        '9 months, 2 days'
+      formatDuration({ months: 9, days: 2 }, { delimiter: '، ' }) ===
+        '9 ماه، 2 روز'
     )
   })
 })
