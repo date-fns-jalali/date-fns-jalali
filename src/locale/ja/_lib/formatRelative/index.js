@@ -4,7 +4,7 @@ var formatRelativeLocale = {
   today: '今日のp',
   tomorrow: '明日のp',
   nextWeek: '翌週のeeeeのp',
-  other: 'P'
+  other: 'P',
 }
 
 export default function formatRelative(token, _date, _baseDate, _options) {

@@ -22,7 +22,7 @@ function declension(scheme, count) {
 }
 
 function buildLocalizeTokenFn(scheme) {
-  return function(count, options) {
+  return function (count, options) {
     if (options.addSuffix) {
       if (options.comparison > 0) {
         if (scheme.future) {
@@ -49,35 +49,35 @@ var formatDistanceLocale = {
       one: 'менш за секунду',
       singularNominative: 'менш за {{count}} секунду',
       singularGenitive: 'менш за {{count}} секунды',
-      pluralGenitive: 'менш за {{count}} секунд'
+      pluralGenitive: 'менш за {{count}} секунд',
     },
     future: {
       one: 'менш, чым праз секунду',
       singularNominative: 'менш, чым праз {{count}} секунду',
       singularGenitive: 'менш, чым праз {{count}} секунды',
-      pluralGenitive: 'менш, чым праз {{count}} секунд'
-    }
+      pluralGenitive: 'менш, чым праз {{count}} секунд',
+    },
   }),
 
   xSeconds: buildLocalizeTokenFn({
     regular: {
       singularNominative: '{{count}} секунда',
       singularGenitive: '{{count}} секунды',
-      pluralGenitive: '{{count}} секунд'
+      pluralGenitive: '{{count}} секунд',
     },
     past: {
       singularNominative: '{{count}} секунду таму',
       singularGenitive: '{{count}} секунды таму',
-      pluralGenitive: '{{count}} секунд таму'
+      pluralGenitive: '{{count}} секунд таму',
     },
     future: {
       singularNominative: 'праз {{count}} секунду',
       singularGenitive: 'праз {{count}} секунды',
-      pluralGenitive: 'праз {{count}} секунд'
-    }
+      pluralGenitive: 'праз {{count}} секунд',
+    },
   }),
 
-  halfAMinute: function(_, options) {
+  halfAMinute: function (_, options) {
     if (options.addSuffix) {
       if (options.comparison > 0) {
         return 'праз паўхвіліны'
@@ -94,161 +94,161 @@ var formatDistanceLocale = {
       one: 'менш за хвіліну',
       singularNominative: 'менш за {{count}} хвіліну',
       singularGenitive: 'менш за {{count}} хвіліны',
-      pluralGenitive: 'менш за {{count}} хвілін'
+      pluralGenitive: 'менш за {{count}} хвілін',
     },
     future: {
       one: 'менш, чым праз хвіліну',
       singularNominative: 'менш, чым праз {{count}} хвіліну',
       singularGenitive: 'менш, чым праз {{count}} хвіліны',
-      pluralGenitive: 'менш, чым праз {{count}} хвілін'
-    }
+      pluralGenitive: 'менш, чым праз {{count}} хвілін',
+    },
   }),
 
   xMinutes: buildLocalizeTokenFn({
     regular: {
       singularNominative: '{{count}} хвіліна',
       singularGenitive: '{{count}} хвіліны',
-      pluralGenitive: '{{count}} хвілін'
+      pluralGenitive: '{{count}} хвілін',
     },
     past: {
       singularNominative: '{{count}} хвіліну таму',
       singularGenitive: '{{count}} хвіліны таму',
-      pluralGenitive: '{{count}} хвілін таму'
+      pluralGenitive: '{{count}} хвілін таму',
     },
     future: {
       singularNominative: 'праз {{count}} хвіліну',
       singularGenitive: 'праз {{count}} хвіліны',
-      pluralGenitive: 'праз {{count}} хвілін'
-    }
+      pluralGenitive: 'праз {{count}} хвілін',
+    },
   }),
 
   aboutXHours: buildLocalizeTokenFn({
     regular: {
       singularNominative: 'каля {{count}} гадзіны',
       singularGenitive: 'каля {{count}} гадзін',
-      pluralGenitive: 'каля {{count}} гадзін'
+      pluralGenitive: 'каля {{count}} гадзін',
     },
     future: {
       singularNominative: 'прыблізна праз {{count}} гадзіну',
       singularGenitive: 'прыблізна праз {{count}} гадзіны',
-      pluralGenitive: 'прыблізна праз {{count}} гадзін'
-    }
+      pluralGenitive: 'прыблізна праз {{count}} гадзін',
+    },
   }),
 
   xHours: buildLocalizeTokenFn({
     regular: {
       singularNominative: '{{count}} гадзіна',
       singularGenitive: '{{count}} гадзіны',
-      pluralGenitive: '{{count}} гадзін'
+      pluralGenitive: '{{count}} гадзін',
     },
     past: {
       singularNominative: '{{count}} гадзіну таму',
       singularGenitive: '{{count}} гадзіны таму',
-      pluralGenitive: '{{count}} гадзін таму'
+      pluralGenitive: '{{count}} гадзін таму',
     },
     future: {
       singularNominative: 'праз {{count}} гадзіну',
       singularGenitive: 'праз {{count}} гадзіны',
-      pluralGenitive: 'праз {{count}} гадзін'
-    }
+      pluralGenitive: 'праз {{count}} гадзін',
+    },
   }),
 
   xDays: buildLocalizeTokenFn({
     regular: {
       singularNominative: '{{count}} дзень',
       singularGenitive: '{{count}} дні',
-      pluralGenitive: '{{count}} дзён'
-    }
+      pluralGenitive: '{{count}} дзён',
+    },
   }),
 
   aboutXWeeks: buildLocalizeTokenFn({
     regular: {
       singularNominative: 'каля {{count}} месяца', // TODO
       singularGenitive: 'каля {{count}} месяцаў', // TODO
-      pluralGenitive: 'каля {{count}} месяцаў' // TODO
+      pluralGenitive: 'каля {{count}} месяцаў', // TODO
     },
     future: {
       singularNominative: 'прыблізна праз {{count}} месяц', // TODO
       singularGenitive: 'прыблізна праз {{count}} месяцы', // TODO
-      pluralGenitive: 'прыблізна праз {{count}} месяцаў' // TODO
-    }
+      pluralGenitive: 'прыблізна праз {{count}} месяцаў', // TODO
+    },
   }),
 
   xWeeks: buildLocalizeTokenFn({
     regular: {
       singularNominative: '{{count}} месяц',
       singularGenitive: '{{count}} месяцы',
-      pluralGenitive: '{{count}} месяцаў'
-    }
+      pluralGenitive: '{{count}} месяцаў',
+    },
   }),
 
   aboutXMonths: buildLocalizeTokenFn({
     regular: {
       singularNominative: 'каля {{count}} месяца',
       singularGenitive: 'каля {{count}} месяцаў',
-      pluralGenitive: 'каля {{count}} месяцаў'
+      pluralGenitive: 'каля {{count}} месяцаў',
     },
     future: {
       singularNominative: 'прыблізна праз {{count}} месяц',
       singularGenitive: 'прыблізна праз {{count}} месяцы',
-      pluralGenitive: 'прыблізна праз {{count}} месяцаў'
-    }
+      pluralGenitive: 'прыблізна праз {{count}} месяцаў',
+    },
   }),
 
   xMonths: buildLocalizeTokenFn({
     regular: {
       singularNominative: '{{count}} месяц',
       singularGenitive: '{{count}} месяцы',
-      pluralGenitive: '{{count}} месяцаў'
-    }
+      pluralGenitive: '{{count}} месяцаў',
+    },
   }),
 
   aboutXYears: buildLocalizeTokenFn({
     regular: {
       singularNominative: 'каля {{count}} года',
       singularGenitive: 'каля {{count}} гадоў',
-      pluralGenitive: 'каля {{count}} гадоў'
+      pluralGenitive: 'каля {{count}} гадоў',
     },
     future: {
       singularNominative: 'прыблізна праз {{count}} год',
       singularGenitive: 'прыблізна праз {{count}} гады',
-      pluralGenitive: 'прыблізна праз {{count}} гадоў'
-    }
+      pluralGenitive: 'прыблізна праз {{count}} гадоў',
+    },
   }),
 
   xYears: buildLocalizeTokenFn({
     regular: {
       singularNominative: '{{count}} год',
       singularGenitive: '{{count}} гады',
-      pluralGenitive: '{{count}} гадоў'
-    }
+      pluralGenitive: '{{count}} гадоў',
+    },
   }),
 
   overXYears: buildLocalizeTokenFn({
     regular: {
       singularNominative: 'больш за {{count}} год',
       singularGenitive: 'больш за {{count}} гады',
-      pluralGenitive: 'больш за {{count}} гадоў'
+      pluralGenitive: 'больш за {{count}} гадоў',
     },
     future: {
       singularNominative: 'больш, чым праз {{count}} год',
       singularGenitive: 'больш, чым праз {{count}} гады',
-      pluralGenitive: 'больш, чым праз {{count}} гадоў'
-    }
+      pluralGenitive: 'больш, чым праз {{count}} гадоў',
+    },
   }),
 
   almostXYears: buildLocalizeTokenFn({
     regular: {
       singularNominative: 'амаль {{count}} год',
       singularGenitive: 'амаль {{count}} гады',
-      pluralGenitive: 'амаль {{count}} гадоў'
+      pluralGenitive: 'амаль {{count}} гадоў',
     },
     future: {
       singularNominative: 'амаль праз {{count}} год',
       singularGenitive: 'амаль праз {{count}} гады',
-      pluralGenitive: 'амаль праз {{count}} гадоў'
-    }
-  })
+      pluralGenitive: 'амаль праз {{count}} гадоў',
+    },
+  }),
 }
 
 export default function formatDistance(token, count, options) {
