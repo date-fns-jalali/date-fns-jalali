@@ -2,6 +2,8 @@ import toInteger from '../_lib/toInteger/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreSetFullYear from '../_core/setFullYear/index'
+
 /**
  * @name setYear
  * @category Year Helpers
@@ -38,6 +40,6 @@ export default function setYear(
     return new Date(NaN)
   }
 
-  date.setFullYear(year)
+  coreSetFullYear(date, year)
   return date
 }
