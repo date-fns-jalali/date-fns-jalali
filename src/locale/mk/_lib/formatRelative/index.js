@@ -7,7 +7,7 @@ var weekdays = [
   'среда',
   'четврток',
   'петок',
-  'сабота'
+  'сабота',
 ]
 
 function lastWeek(day) {
@@ -59,7 +59,7 @@ function nextWeek(day) {
 }
 
 var formatRelativeLocale = {
-  lastWeek: function(date, baseDate, options) {
+  lastWeek: function (date, baseDate, options) {
     var day = date.getUTCDay()
     if (isSameUTCWeek(date, baseDate, options)) {
       return thisWeek(day)
@@ -70,7 +70,7 @@ var formatRelativeLocale = {
   yesterday: "'вчера во' p",
   today: "'денес во' p",
   tomorrow: "'утре во' p",
-  nextWeek: function(date, baseDate, options) {
+  nextWeek: function (date, baseDate, options) {
     var day = date.getUTCDay()
     if (isSameUTCWeek(date, baseDate, options)) {
       return thisWeek(day)
@@ -78,7 +78,7 @@ var formatRelativeLocale = {
       return nextWeek(day)
     }
   },
-  other: 'P'
+  other: 'P',
 }
 
 export default function formatRelative(token, date, baseDate, options) {

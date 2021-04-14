@@ -15,7 +15,7 @@ var formatRelativeLocale = {
   today: "'今天' p",
   tomorrow: "'明天' p",
   nextWeek: checkWeek, // days after tomorrow, maybe in this week or next week
-  other: 'PP p'
+  other: 'PP p',
 }
 
 export default function formatRelative(token, _date, _baseDate, _options) {

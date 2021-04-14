@@ -53,7 +53,7 @@ export default function intervalToDuration({ start, end }) {
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   }
 
   const sign = compareAsc(dateLeft, dateRight)
@@ -73,7 +73,7 @@ export default function intervalToDuration({ start, end }) {
   duration.minutes = Math.abs(differenceInMinutes(remainingMinutes, dateRight))
 
   const remainingSeconds = sub(remainingMinutes, {
-    minutes: sign * duration.minutes
+    minutes: sign * duration.minutes,
   })
   duration.seconds = Math.abs(differenceInSeconds(remainingSeconds, dateRight))
 

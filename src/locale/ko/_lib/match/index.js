@@ -7,27 +7,27 @@ var parseOrdinalNumberPattern = /\d+/i
 var matchEraPatterns = {
   narrow: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
   abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
-  wide: /^(기원전|서기)/i
+  wide: /^(기원전|서기)/i,
 }
 
 var parseEraPatterns = {
-  any: [/^(bc|기원전)/i, /^(ad|서기)/i]
+  any: [/^(bc|기원전)/i, /^(ad|서기)/i],
 }
 
 var matchQuarterPatterns = {
   narrow: /^[1234]/i,
   abbreviated: /^q[1234]/i,
-  wide: /^[1234]사?분기/i
+  wide: /^[1234]사?분기/i,
 }
 
 var parseQuarterPatterns = {
-  any: [/1/i, /2/i, /3/i, /4/i]
+  any: [/1/i, /2/i, /3/i, /4/i],
 }
 
 var matchMonthPatterns = {
   narrow: /^(1[012]|[123456789])/,
   abbreviated: /^(1[012]|[123456789])월/i,
-  wide: /^(1[012]|[123456789])월/i
+  wide: /^(1[012]|[123456789])월/i,
 }
 
 var parseMonthPatterns = {
@@ -43,23 +43,23 @@ var parseMonthPatterns = {
     /^9/,
     /^10/,
     /^11/,
-    /^12/
-  ]
+    /^12/,
+  ],
 }
 
 var matchDayPatterns = {
   narrow: /^[일월화수목금토]/,
   short: /^[일월화수목금토]/,
   abbreviated: /^[일월화수목금토]/,
-  wide: /^[일월화수목금토]요일/
+  wide: /^[일월화수목금토]요일/,
 }
 
 var parseDayPatterns = {
-  any: [/^일/, /^월/, /^화/, /^수/, /^목/, /^금/, /^토/]
+  any: [/^일/, /^월/, /^화/, /^수/, /^목/, /^금/, /^토/],
 }
 
 var matchDayPeriodPatterns = {
-  any: /^(am|pm|오전|오후|자정|정오|아침|저녁|밤)/i
+  any: /^(am|pm|오전|오후|자정|정오|아침|저녁|밤)/i,
 }
 
 var parseDayPeriodPatterns = {
@@ -71,24 +71,24 @@ var parseDayPeriodPatterns = {
     morning: /^아침/i,
     afternoon: /^오후/i,
     evening: /^저녁/i,
-    night: /^밤/i
-  }
+    night: /^밤/i,
+  },
 }
 
 var match = {
   ordinalNumber: buildMatchPatternFn({
     matchPattern: matchOrdinalNumberPattern,
     parsePattern: parseOrdinalNumberPattern,
-    valueCallback: function(value) {
+    valueCallback: function (value) {
       return parseInt(value, 10)
-    }
+    },
   }),
 
   era: buildMatchFn({
     matchPatterns: matchEraPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseEraPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   quarter: buildMatchFn({
@@ -96,31 +96,31 @@ var match = {
     defaultMatchWidth: 'wide',
     parsePatterns: parseQuarterPatterns,
     defaultParseWidth: 'any',
-    valueCallback: function(index) {
+    valueCallback: function (index) {
       return index + 1
-    }
+    },
   }),
 
   month: buildMatchFn({
     matchPatterns: matchMonthPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseMonthPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   day: buildMatchFn({
     matchPatterns: matchDayPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseDayPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   dayPeriod: buildMatchFn({
     matchPatterns: matchDayPeriodPatterns,
     defaultMatchWidth: 'any',
     parsePatterns: parseDayPeriodPatterns,
-    defaultParseWidth: 'any'
-  })
+    defaultParseWidth: 'any',
+  }),
 }
 
 export default match
