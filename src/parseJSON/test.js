@@ -3,14 +3,12 @@
 
 import assert from 'power-assert'
 import parseJSON from '.'
-import format from '../format/index'
 
 describe('parseJSON', function () {
   it('parses a formatted new Date() back to UTC - issue 2149', () => {
-    const date = new Date()
-    const jsonFormat = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
+    const jsonFormat = '2021-03-07T15:13:58.172+03:30'
     const parsedDate = parseJSON(jsonFormat)
-    assert.equal(parsedDate.toISOString(), date.toISOString())
+    assert.equal(parsedDate.toISOString(), '2021-03-07T11:43:58.172Z')
   })
 
   it('parses a formatted date with an hour of offset back to UTC - issue 2149', () => {
@@ -125,14 +123,14 @@ describe('parseJSON', function () {
   })
 
   it('clones a date object', () => {
-    const date = new Date(2000, 2, 15, 5, 20, 10, 20)
+    const date = /* 1378/12/25 */ new Date(2000, 2, 15, 5, 20, 10, 20)
     const parsedDate = parseJSON(date)
     assert.deepEqual(parsedDate, date)
     assert.notEqual(parsedDate, date)
   })
 
   it('assumes a number is a timestamp', () => {
-    const date = new Date(2000, 2, 15, 5, 20, 10, 20)
+    const date = /* 1378/12/25 */ new Date(2000, 2, 15, 5, 20, 10, 20)
     const timestamp = date.getTime()
     const parsedDate = parseJSON(timestamp)
     assert.deepEqual(parsedDate, date)

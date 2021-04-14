@@ -47,8 +47,6 @@ export type Duration = {
   seconds?: number,
 }
 
-export type Day = 0 | 1 | 2 | 3 | 4 | 5 | 6
-
 type CurriedFn1<A, R> = <A>(a: A) => R
 
 type CurriedFn2<A, B, R> = <A>(
@@ -154,14 +152,6 @@ declare module.exports: {
   >,
   eachHourOfInterval: CurriedFn1<Interval, Date[]>,
   eachHourOfIntervalWithOptions: CurriedFn2<
-    {
-      step?: number,
-    },
-    Interval,
-    Date[]
-  >,
-  eachMinuteOfInterval: CurriedFn1<Interval, Date[]>,
-  eachMinuteOfIntervalWithOptions: CurriedFn2<
     {
       step?: number,
     },
@@ -354,28 +344,6 @@ declare module.exports: {
   >,
   getYear: CurriedFn1<Date | number, number>,
   intervalToDuration: CurriedFn1<Interval, Duration>,
-  intlFormat: CurriedFn3<
-    {
-      locale?: string | string[],
-    },
-    {
-      timeZone?: string,
-      hour12?: boolean,
-      formatMatcher?: 'basic' | 'best fit',
-      timeZoneName?: 'short' | 'long',
-      second?: 'numeric' | '2-digit',
-      minute?: 'numeric' | '2-digit',
-      hour?: 'numeric' | '2-digit',
-      day?: 'numeric' | '2-digit',
-      month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long',
-      year?: 'numeric' | '2-digit',
-      era?: 'narrow' | 'short' | 'long',
-      weekday?: 'narrow' | 'short' | 'long',
-      localeMatcher?: 'lookup' | 'best fit',
-    },
-    Date | number,
-    string
-  >,
   isAfter: CurriedFn2<Date | number, Date | number, boolean>,
   isBefore: CurriedFn2<Date | number, Date | number, boolean>,
   isDate: CurriedFn1<any, boolean>,
@@ -452,14 +420,6 @@ declare module.exports: {
   max: CurriedFn1<(Date | number)[], Date>,
   milliseconds: CurriedFn1<Duration, number>,
   min: CurriedFn1<(Date | number)[], Date>,
-  nextDay: CurriedFn2<Day, Date | number, Date>,
-  nextFriday: CurriedFn1<Date | number, Date>,
-  nextMonday: CurriedFn1<Date | number, Date>,
-  nextSaturday: CurriedFn1<Date | number, Date>,
-  nextSunday: CurriedFn1<Date | number, Date>,
-  nextThursday: CurriedFn1<Date | number, Date>,
-  nextTuesday: CurriedFn1<Date | number, Date>,
-  nextWednesday: CurriedFn1<Date | number, Date>,
   parse: CurriedFn3<Date | number, string, string, Date>,
   parseISO: CurriedFn1<string, Date>,
   parseISOWithOptions: CurriedFn2<
