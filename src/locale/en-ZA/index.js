@@ -21,8 +21,8 @@ var locale = {
   match: match,
   options: {
     weekStartsOn: 0, // Sunday is the first day of the week.
-    firstWeekContainsDate: 1 // The week that contains Jan 1st is the first week of the year.
-  }
+    firstWeekContainsDate: 1, // The week that contains Jan 1st is the first week of the year.
+  },
 }
 
 export default locale
