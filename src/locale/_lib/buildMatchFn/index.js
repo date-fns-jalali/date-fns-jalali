@@ -1,5 +1,5 @@
 export default function buildMatchFn(args) {
-  return function(dirtyString, dirtyOptions) {
+  return function (dirtyString, dirtyOptions) {
     var string = String(dirtyString)
     var options = dirtyOptions || {}
     var width = options.width
@@ -20,11 +20,11 @@ export default function buildMatchFn(args) {
 
     var value
     if (Object.prototype.toString.call(parsePatterns) === '[object Array]') {
-      value = findIndex(parsePatterns, function(pattern) {
+      value = findIndex(parsePatterns, function (pattern) {
         return pattern.test(matchedString)
       })
     } else {
-      value = findKey(parsePatterns, function(pattern) {
+      value = findKey(parsePatterns, function (pattern) {
         return pattern.test(matchedString)
       })
     }
@@ -34,7 +34,7 @@ export default function buildMatchFn(args) {
 
     return {
       value: value,
-      rest: string.slice(matchedString.length)
+      rest: string.slice(matchedString.length),
     }
   }
 }
