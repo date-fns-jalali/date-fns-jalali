@@ -11,8 +11,8 @@ var weekdayValues = {
     'Miyerkules',
     'Huwebes',
     'Biyernes',
-    'Sabado'
-  ]
+    'Sabado',
+  ],
 }
 
 var monthValues = {
@@ -28,7 +28,7 @@ var monthValues = {
     'Set',
     'Okt',
     'Nob',
-    'Dis'
+    'Dis',
   ],
   long: [
     'Enero',
@@ -42,14 +42,14 @@ var monthValues = {
     'Setyembre',
     'Oktubre',
     'Nobyembre',
-    'Disyembre'
-  ]
+    'Disyembre',
+  ],
 }
 
 var timeOfDayValues = {
   uppercase: ['NU', 'NT', 'NH', 'NG'],
   lowercase: ['nu', 'nt', 'nh', 'ng'],
-  long: ['ng umaga', 'ng tanghali', 'ng hapon', 'ng gabi']
+  long: ['ng umaga', 'ng tanghali', 'ng hapon', 'ng gabi'],
 }
 
 function ordinalNumber(dirtyNumber) {
@@ -63,7 +63,7 @@ var localize = {
   weekdays: buildLocalizeArrayFn(weekdayValues, 'long'),
   month: buildLocalizeFn(monthValues, 'long'),
   months: buildLocalizeArrayFn(monthValues, 'long'),
-  timeOfDay: buildLocalizeFn(timeOfDayValues, 'long', function(hours) {
+  timeOfDay: buildLocalizeFn(timeOfDayValues, 'long', function (hours) {
     if (hours > 12) {
       var modulo = hours % 12
       if (modulo < 6) {
@@ -77,7 +77,7 @@ var localize = {
       return 1
     }
   }),
-  timesOfDay: buildLocalizeArrayFn(timeOfDayValues, 'long')
+  timesOfDay: buildLocalizeArrayFn(timeOfDayValues, 'long'),
 }
 
 export default localize

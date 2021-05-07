@@ -21,7 +21,7 @@ function declension(scheme, count, time) {
 }
 
 function extractPreposition(token) {
-  var result = ['lessThan', 'about', 'over', 'almost'].filter(function(
+  var result = ['lessThan', 'about', 'over', 'almost'].filter(function (
     preposition
   ) {
     return !!token.match(new RegExp('^' + preposition))
@@ -67,135 +67,135 @@ var formatDistanceLocale = {
     one: {
       regular: 'sekunda',
       past: 'sekundou',
-      future: 'sekundu'
+      future: 'sekundu',
     },
     twoFour: {
       regular: '{{count}} sekundy',
       past: '{{count}} sekundami',
-      future: '{{count}} sekundy'
+      future: '{{count}} sekundy',
     },
     other: {
       regular: '{{count}} sekúnd',
       past: '{{count}} sekundami',
-      future: '{{count}} sekúnd'
-    }
+      future: '{{count}} sekúnd',
+    },
   },
 
   halfAMinute: {
     other: {
       regular: 'pol minúty',
       past: 'pol minútou',
-      future: 'pol minúty'
-    }
+      future: 'pol minúty',
+    },
   },
 
   xMinutes: {
     one: {
       regular: 'minúta',
       past: 'minútou',
-      future: 'minútu'
+      future: 'minútu',
     },
     twoFour: {
       regular: '{{count}} minúty',
       past: '{{count}} minútami',
-      future: '{{count}} minúty'
+      future: '{{count}} minúty',
     },
     other: {
       regular: '{{count}} minút',
       past: '{{count}} minútami',
-      future: '{{count}} minút'
-    }
+      future: '{{count}} minút',
+    },
   },
 
   xHours: {
     one: {
       regular: 'hodina',
       past: 'hodinou',
-      future: 'hodinu'
+      future: 'hodinu',
     },
     twoFour: {
       regular: '{{count}} hodiny',
       past: '{{count}} hodinami',
-      future: '{{count}} hodiny'
+      future: '{{count}} hodiny',
     },
     other: {
       regular: '{{count}} hodín',
       past: '{{count}} hodinami',
-      future: '{{count}} hodín'
-    }
+      future: '{{count}} hodín',
+    },
   },
 
   xDays: {
     one: {
       regular: 'deň',
       past: 'dňom',
-      future: 'deň'
+      future: 'deň',
     },
     twoFour: {
       regular: '{{count}} dni',
       past: '{{count}} dňami',
-      future: '{{count}} dni'
+      future: '{{count}} dni',
     },
     other: {
       regular: '{{count}} dní',
       past: '{{count}} dňami',
-      future: '{{count}} dní'
-    }
+      future: '{{count}} dní',
+    },
   },
 
   xWeeks: {
     one: {
       regular: 'mesiac', // TODO
       past: 'mesiacom', // TODO
-      future: 'mesiac' // TODO
+      future: 'mesiac', // TODO
     },
     twoFour: {
       regular: '{{count}} mesiace', // TODO
       past: '{{count}} mesiacmi', // TODO
-      future: '{{count}} mesiace' // TODO
+      future: '{{count}} mesiace', // TODO
     },
     other: {
       regular: '{{count}} mesiacov', // TODO
       past: '{{count}} mesiacmi', // TODO
-      future: '{{count}} mesiacov' // TODO
-    }
+      future: '{{count}} mesiacov', // TODO
+    },
   },
 
   xMonths: {
     one: {
       regular: 'mesiac',
       past: 'mesiacom',
-      future: 'mesiac'
+      future: 'mesiac',
     },
     twoFour: {
       regular: '{{count}} mesiace',
       past: '{{count}} mesiacmi',
-      future: '{{count}} mesiace'
+      future: '{{count}} mesiace',
     },
     other: {
       regular: '{{count}} mesiacov',
       past: '{{count}} mesiacmi',
-      future: '{{count}} mesiacov'
-    }
+      future: '{{count}} mesiacov',
+    },
   },
 
   xYears: {
     one: {
       regular: 'rok',
       past: 'rokom',
-      future: 'rok'
+      future: 'rok',
     },
     twoFour: {
       regular: '{{count}} roky',
       past: '{{count}} rokmi',
-      future: '{{count}} roky'
+      future: '{{count}} roky',
     },
     other: {
       regular: '{{count}} rokov',
       past: '{{count}} rokmi',
-      future: '{{count}} rokov'
-    }
-  }
+      future: '{{count}} rokov',
+    },
+  },
 }
 
 export default function formatDistance(token, count, options) {
