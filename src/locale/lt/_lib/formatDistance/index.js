@@ -1,80 +1,80 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
     one: translateSeconds,
-    other: translate
+    other: translate,
   },
 
   xSeconds: {
     one: translateSeconds,
-    other: translate
+    other: translate,
   },
 
   halfAMinute: 'pusė minutės',
 
   lessThanXMinutes: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   xMinutes: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   aboutXHours: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   xHours: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   xDays: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   aboutWeeks: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   xWeeks: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   aboutXMonths: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   xMonths: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   aboutXYears: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   xYears: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   overXYears: {
     one: translateSingular,
-    other: translate
+    other: translate,
   },
 
   almostXYears: {
     one: translateSingular,
-    other: translate
-  }
+    other: translate,
+  },
 }
 
 var translations = {
@@ -94,7 +94,7 @@ var translations = {
   about: 'apie',
   over: 'daugiau nei',
   almost: 'beveik',
-  lessthan: 'mažiau nei'
+  lessthan: 'mažiau nei',
 }
 function translateSeconds(number, addSuffix, key, isFuture) {
   if (!addSuffix) {
