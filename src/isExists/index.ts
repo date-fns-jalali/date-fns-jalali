@@ -22,17 +22,26 @@
  * var result = isExists(2018, 1, 31)
  * //=> false
  */
-export default function isExists(year: number, month: number, day: number): boolean {
+import coreGetMonth from '../_core/getMonth/index'
+
+import coreGetDate from '../_core/getDate/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import newDate from '../_core/newDate/index'
+export default function isExists(
+  year: number,
+  month: number,
+  day: number
+): boolean {
   if (arguments.length < 3) {
     throw new TypeError(
       '3 argument required, but only ' + arguments.length + ' present'
     )
   }
 
-  const date = new Date(year, month, day)
+  const date = newDate(year, month, day)
   return (
-    date.getFullYear() === year &&
-    date.getMonth() === month &&
-    date.getDate() === day
+    coreGetFullYear(date) === year &&
+    coreGetMonth(date) === month &&
+    coreGetDate(date) === day
   )
 }
