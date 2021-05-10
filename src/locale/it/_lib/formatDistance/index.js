@@ -1,80 +1,80 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
     one: 'meno di un secondo',
-    other: 'meno di {{count}} secondi'
+    other: 'meno di {{count}} secondi',
   },
 
   xSeconds: {
     one: 'un secondo',
-    other: '{{count}} secondi'
+    other: '{{count}} secondi',
   },
 
   halfAMinute: 'alcuni secondi',
 
   lessThanXMinutes: {
     one: 'meno di un minuto',
-    other: 'meno di {{count}} minuti'
+    other: 'meno di {{count}} minuti',
   },
 
   xMinutes: {
     one: 'un minuto',
-    other: '{{count}} minuti'
+    other: '{{count}} minuti',
   },
 
   aboutXHours: {
     one: "circa un'ora",
-    other: 'circa {{count}} ore'
+    other: 'circa {{count}} ore',
   },
 
   xHours: {
     one: "un'ora",
-    other: '{{count}} ore'
+    other: '{{count}} ore',
   },
 
   xDays: {
     one: 'un giorno',
-    other: '{{count}} giorni'
+    other: '{{count}} giorni',
   },
 
   aboutXWeeks: {
     one: 'circa una settimana',
-    other: 'circa {{count}} settimane'
+    other: 'circa {{count}} settimane',
   },
 
   xWeeks: {
     one: 'una settimana',
-    other: '{{count}} settimane'
+    other: '{{count}} settimane',
   },
 
   aboutXMonths: {
     one: 'circa un mese',
-    other: 'circa {{count}} mesi'
+    other: 'circa {{count}} mesi',
   },
 
   xMonths: {
     one: 'un mese',
-    other: '{{count}} mesi'
+    other: '{{count}} mesi',
   },
 
   aboutXYears: {
     one: 'circa un anno',
-    other: 'circa {{count}} anni'
+    other: 'circa {{count}} anni',
   },
 
   xYears: {
     one: 'un anno',
-    other: '{{count}} anni'
+    other: '{{count}} anni',
   },
 
   overXYears: {
     one: 'più di un anno',
-    other: 'più di {{count}} anni'
+    other: 'più di {{count}} anni',
   },
 
   almostXYears: {
     one: 'quasi un anno',
-    other: 'quasi {{count}} anni'
-  }
+    other: 'quasi {{count}} anni',
+  },
 }
 
 export default function formatDistance(token, count, options) {
