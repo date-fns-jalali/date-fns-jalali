@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetDate from '../_core/getDate/index'
+
 /**
  * @name min
  * @category Common Helpers
@@ -63,7 +65,7 @@ export default function min(dirtyDatesArray: Date[] | number[]): Date {
     if (
       result === undefined ||
       result > currentDate ||
-      isNaN(currentDate.getDate())
+      isNaN(coreGetDate(currentDate))
     ) {
       result = currentDate
     }
