@@ -102,6 +102,7 @@
     "moment": "^2.24.0",
     "mz": "^2.7.0",
     "node-fetch": "^1.7.3",
+    "p-limit": "^3.1.0",
     "power-assert": "^1.6.1",
     "prettier": "2",
     "rimraf": "^2.7.1",
