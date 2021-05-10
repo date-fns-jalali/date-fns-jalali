@@ -58,16 +58,16 @@ function useNewDate(ast, j, ctx) {
   let changed = false
   ast
     .find(j.NewExpression, (node) => {
-      return node.callee.name === 'Date' && node.arguments.length > 1
+      return node.callee.name === 'Date'
     })
     .forEach((path) => {
       changed = true
       const args = path.value.arguments
-      j(path).replaceWith(j.callExpression(j.identifier('newDate'), args))
+      j(path).replaceWith(j.callExpression(j.identifier('coreNewDate'), args))
     })
   if (changed) {
     ctx.imports.push({
-      variable: 'newDate',
+      variable: 'coreNewDate',
       filePath: `src/_core/newDate/index`,
     })
   }
