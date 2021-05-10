@@ -14,6 +14,8 @@ const cloneDeep = require('lodash.clonedeep')
 const jsDocParser = require('jsdoc-to-markdown')
 const listFns = require('../_lib/listFns')
 const docsConfig = require('../../docs/index.js')
+const pLimit = require('p-limit')
+const limit = pLimit(3)
 
 const docsPath = path.resolve(process.cwd(), 'tmp/docs.json')
 
@@ -368,6 +370,26 @@ function generateSyntaxString(name, args, isFPFn) {
   }
 }
 
-function asyncMap(array, fn) {
-  return Promise.all(array.map((item) => fn(item)))
+function printProgress(done, total) {
+  process.stdout.clearLine()
+  process.stdout.cursorTo(0)
+  process.stdout.write('progress: ' + done + ' of ' + total)
+}
+
+async function asyncMap(array, fn) {
+  let total = array.length
+  let done = 0
+  printProgress(done, total)
+  const ps = await Promise.all(
+    array.map((item) =>
+      limit(async () => {
+        const p = await fn(item)
+        done++
+        printProgress(done, total)
+        return p
+      })
+    )
+  )
+  console.log()
+  return ps
 }
