@@ -1,6 +1,9 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetDate from '../_core/getDate/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name min
  * @category Common Helpers
@@ -52,7 +55,7 @@ export default function min(dirtyDatesArray: Date[] | number[]): Date {
     datesArray = Array.prototype.slice.call(dirtyDatesArray)
   } else {
     // `dirtyDatesArray` is non-iterable, return Invalid Date
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   let result: Date | undefined
@@ -63,11 +66,11 @@ export default function min(dirtyDatesArray: Date[] | number[]): Date {
     if (
       result === undefined ||
       result > currentDate ||
-      isNaN(currentDate.getDate())
+      isNaN(coreGetDate(currentDate))
     ) {
       result = currentDate
     }
   })
 
-  return result || new Date(NaN)
+  return result || coreNewDate(NaN)
 }

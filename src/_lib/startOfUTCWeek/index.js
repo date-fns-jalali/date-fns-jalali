@@ -2,6 +2,9 @@ import toInteger from '../toInteger/index'
 import toDate from '../../toDate/index'
 import requiredArgs from '../requiredArgs/index'
 
+import coreGetUTCDate from '../../_core/getUTCDate/index'
+import coreSetUTCDate from '../../_core/setUTCDate/index'
+
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 export default function startOfUTCWeek(dirtyDate, dirtyOptions) {
@@ -27,7 +30,7 @@ export default function startOfUTCWeek(dirtyDate, dirtyOptions) {
   var day = date.getUTCDay()
   var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
 
-  date.setUTCDate(date.getUTCDate() - diff)
+  coreSetUTCDate(date, coreGetUTCDate(date) - diff)
   date.setUTCHours(0, 0, 0, 0)
   return date
 }
