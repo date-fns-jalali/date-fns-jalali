@@ -1,5 +1,5 @@
 var formatRelativeLocale = {
-  lastWeek: function(date) {
+  lastWeek: function (date) {
     var day = date.getUTCDay()
     var result = "'läschte"
     if (day === 2 || day === 4) {
@@ -13,7 +13,7 @@ var formatRelativeLocale = {
   today: "'haut um' p",
   tomorrow: "'moien um' p",
   nextWeek: "eeee 'um' p",
-  other: 'P'
+  other: 'P',
 }
 
 export default function formatRelative(token, date, _baseDate, _options) {

@@ -2,98 +2,98 @@ var formatDistanceLocale = {
   lessThanXSeconds: {
     past: '{{count}} წამზე ნაკლები ხნის წინ',
     present: '{{count}} წამზე ნაკლები',
-    future: '{{count}} წამზე ნაკლებში'
+    future: '{{count}} წამზე ნაკლებში',
   },
 
   xSeconds: {
     past: '{{count}} წამის წინ',
     present: '{{count}} წამი',
-    future: '{{count}} წამში'
+    future: '{{count}} წამში',
   },
 
   halfAMinute: {
     past: 'ნახევარი წუთის წინ',
     present: 'ნახევარი წუთი',
-    future: 'ნახევარი წუთში'
+    future: 'ნახევარი წუთში',
   },
 
   lessThanXMinutes: {
     past: '{{count}} წუთზე ნაკლები ხნის წინ',
     present: '{{count}} წუთზე ნაკლები',
-    future: '{{count}} წუთზე ნაკლებში'
+    future: '{{count}} წუთზე ნაკლებში',
   },
 
   xMinutes: {
     past: '{{count}} წუთის წინ',
     present: '{{count}} წუთი',
-    future: '{{count}} წუთში'
+    future: '{{count}} წუთში',
   },
 
   aboutXHours: {
     past: 'დაახლოებით {{count}} საათის წინ',
     present: 'დაახლოებით {{count}} საათი',
-    future: 'დაახლოებით {{count}} საათში'
+    future: 'დაახლოებით {{count}} საათში',
   },
 
   xHours: {
     past: '{{count}} საათის წინ',
     present: '{{count}} საათი',
-    future: '{{count}} საათში'
+    future: '{{count}} საათში',
   },
 
   xDays: {
     past: '{{count}} დღის წინ',
     present: '{{count}} დღე',
-    future: '{{count}} დღეში'
+    future: '{{count}} დღეში',
   },
 
   aboutXWeeks: {
     past: 'დაახლოებით {{count}} კვირას წინ',
     present: 'დაახლოებით {{count}} კვირა',
-    future: 'დაახლოებით {{count}} კვირაში'
+    future: 'დაახლოებით {{count}} კვირაში',
   },
 
   xWeeks: {
     past: '{{count}} კვირას კვირა',
     present: '{{count}} კვირა',
-    future: '{{count}} კვირაში'
+    future: '{{count}} კვირაში',
   },
 
   aboutXMonths: {
     past: 'დაახლოებით {{count}} თვის წინ',
     present: 'დაახლოებით {{count}} თვე',
-    future: 'დაახლოებით {{count}} თვეში'
+    future: 'დაახლოებით {{count}} თვეში',
   },
 
   xMonths: {
     past: '{{count}} თვის წინ',
     present: '{{count}} თვე',
-    future: '{{count}} თვეში'
+    future: '{{count}} თვეში',
   },
 
   aboutXYears: {
     past: 'დაახლოებით {{count}} წლის წინ',
     present: 'დაახლოებით {{count}} წელი',
-    future: 'დაახლოებით {{count}} წელში'
+    future: 'დაახლოებით {{count}} წელში',
   },
 
   xYears: {
     past: '{{count}} წლის წინ',
     present: '{{count}} წელი',
-    future: '{{count}} წელში'
+    future: '{{count}} წელში',
   },
 
   overXYears: {
     past: '{{count}} წელზე მეტი ხნის წინ',
     present: '{{count}} წელზე მეტი',
-    future: '{{count}} წელზე მეტი ხნის შემდეგ'
+    future: '{{count}} წელზე მეტი ხნის შემდეგ',
   },
 
   almostXYears: {
     past: 'თითქმის {{count}} წლის წინ',
     present: 'თითქმის {{count}} წელი',
-    future: 'თითქმის {{count}} წელში'
-  }
+    future: 'თითქმის {{count}} წელში',
+  },
 }
 
 export default function formatDistance(token, count, options) {
