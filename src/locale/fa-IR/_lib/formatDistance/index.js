@@ -1,79 +1,79 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
-    one: 'کمتر از یک ثانیه',
-    other: 'کمتر از {{count}} ثانیه',
+    one: 'less than a second',
+    other: 'less than {{count}} seconds',
   },
 
   xSeconds: {
-    one: '1 ثانیه',
-    other: '{{count}} ثانیه',
+    one: '1 second',
+    other: '{{count}} seconds',
   },
 
-  halfAMinute: 'نیم دقیقه',
+  halfAMinute: 'half a minute',
 
   lessThanXMinutes: {
-    one: 'کمتر از یک دقیقه',
-    other: 'کمتر از {{count}} دقیقه',
+    one: 'less than a minute',
+    other: 'less than {{count}} minutes',
   },
 
   xMinutes: {
-    one: '1 دقیقه',
-    other: '{{count}} دقیقه',
+    one: '1 minute',
+    other: '{{count}} minutes',
   },
 
   aboutXHours: {
-    one: 'حدود 1 ساعت',
-    other: 'حدود {{count}} ساعت',
+    one: 'about 1 hour',
+    other: 'about {{count}} hours',
   },
 
   xHours: {
-    one: '1 ساعت',
-    other: '{{count}} ساعت',
+    one: '1 hour',
+    other: '{{count}} hours',
   },
 
   xDays: {
-    one: '1 روز',
-    other: '{{count}} روز',
+    one: '1 day',
+    other: '{{count}} days',
   },
 
   aboutXWeeks: {
-    one: 'حدود 1 هفته',
-    other: 'حدود {{count}} هفته',
+    one: 'about 1 week',
+    other: 'about {{count}} weeks',
   },
 
   xWeeks: {
-    one: '1 هفته',
-    other: '{{count}} هفته',
+    one: '1 week',
+    other: '{{count}} weeks',
   },
 
   aboutXMonths: {
-    one: 'حدود 1 ماه',
-    other: 'حدود {{count}} ماه',
+    one: 'about 1 month',
+    other: 'about {{count}} months',
   },
 
   xMonths: {
-    one: '1 ماه',
-    other: '{{count}} ماه',
+    one: '1 month',
+    other: '{{count}} months',
   },
 
   aboutXYears: {
-    one: 'حدود 1 سال',
-    other: 'حدود {{count}} سال',
+    one: 'about 1 year',
+    other: 'about {{count}} years',
   },
 
   xYears: {
-    one: '1 سال',
-    other: '{{count}} سال',
+    one: '1 year',
+    other: '{{count}} years',
   },
 
   overXYears: {
-    one: 'بیشتر از 1 سال',
-    other: 'بیشتر از {{count}} سال',
+    one: 'over 1 year',
+    other: 'over {{count}} years',
   },
 
   almostXYears: {
-    one: 'نزدیک 1 سال',
-    other: 'نزدیک {{count}} سال',
+    one: 'almost 1 year',
+    other: 'almost {{count}} years',
   },
 }
 
@@ -91,9 +91,9 @@ export default function formatDistance(token, count, options) {
 
   if (options.addSuffix) {
     if (options.comparison > 0) {
-      return 'در ' + result
+      return 'in ' + result
     } else {
-      return result + ' قبل'
+      return result + ' ago'
     }
   }
 
