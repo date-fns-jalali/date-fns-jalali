@@ -452,6 +452,16 @@ declare module.exports: {
   max: CurriedFn1<(Date | number)[], Date>,
   milliseconds: CurriedFn1<Duration, number>,
   min: CurriedFn1<(Date | number)[], Date>,
+  newDate: CurriedFn7<
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    Date
+  >,
   nextDay: CurriedFn2<Day, Date | number, Date>,
   nextFriday: CurriedFn1<Date | number, Date>,
   nextMonday: CurriedFn1<Date | number, Date>,

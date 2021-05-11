@@ -614,6 +614,16 @@ declare module.exports: {
 
   min: (datesArray: (Date | number)[]) => Date,
 
+  newDate: (
+    year: number,
+    month: number,
+    date: number,
+    hours?: number,
+    minutes?: number,
+    seconds?: number,
+    ms?: number
+  ) => Date,
+
   nextDay: (date: Date | number, day: Day) => Date,
 
   nextFriday: (date: Date | number) => Date,

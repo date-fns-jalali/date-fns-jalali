@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name closestTo
  * @category Common Helpers
@@ -36,7 +38,7 @@ export default function closestTo(dirtyDateToCompare, dirtyDatesArray) {
   var dateToCompare = toDate(dirtyDateToCompare)
 
   if (isNaN(dateToCompare)) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   var timeToCompare = dateToCompare.getTime()
@@ -57,11 +59,11 @@ export default function closestTo(dirtyDateToCompare, dirtyDatesArray) {
 
   var result
   var minDistance
-  datesArray.forEach(function(dirtyDate) {
+  datesArray.forEach(function (dirtyDate) {
     var currentDate = toDate(dirtyDate)
 
     if (isNaN(currentDate)) {
-      result = new Date(NaN)
+      result = coreNewDate(NaN)
       minDistance = NaN
       return
     }

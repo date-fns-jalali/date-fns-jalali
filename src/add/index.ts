@@ -5,6 +5,8 @@ import requiredArgs from '../_lib/requiredArgs/index'
 import toInteger from '../_lib/toInteger/index'
 import { Duration } from '../types'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name add
  * @category Common Helpers
@@ -50,7 +52,7 @@ export default function add(
 ): Date {
   requiredArgs(2, arguments)
 
-  if (!duration || typeof duration !== 'object') return new Date(NaN)
+  if (!duration || typeof duration !== 'object') return coreNewDate(NaN)
 
   const years = 'years' in duration ? toInteger(duration.years) : 0
   const months = 'months' in duration ? toInteger(duration.months) : 0
@@ -73,7 +75,7 @@ export default function add(
   const minutesToAdd = minutes + hours * 60
   const secondsToAdd = seconds + minutesToAdd * 60
   const msToAdd = secondsToAdd * 1000
-  const finalDate = new Date(dateWithDays.getTime() + msToAdd)
+  const finalDate = coreNewDate(dateWithDays.getTime() + msToAdd)
 
   return finalDate
 }
