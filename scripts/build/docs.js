@@ -41,7 +41,6 @@ async function generateDocsFromSource() {
       jsDocParser
         .getTemplateData({
           files: fn.fullPath,
-          'no-cache': true,
           configure: configFile,
         })
         .then((result) => result[0])
