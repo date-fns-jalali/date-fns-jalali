@@ -2,6 +2,8 @@ import toInteger from '../_lib/toInteger/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name addMilliseconds
  * @category Millisecond Helpers
@@ -32,5 +34,5 @@ export default function addMilliseconds(
 
   const timestamp = toDate(dirtyDate).getTime()
   const amount = toInteger(dirtyAmount)
-  return new Date(timestamp + amount)
+  return coreNewDate(timestamp + amount)
 }

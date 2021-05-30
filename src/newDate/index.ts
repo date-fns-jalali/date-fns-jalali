@@ -1,5 +1,7 @@
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 type DArgs = [
   /* year:*/ number,
   /* month:*/ number,
@@ -44,5 +46,5 @@ export default function newDate(
 ): Date {
   requiredArgs(3, arguments)
 
-  return new Date(year, month, date, hours, minutes, seconds, ms)
+  return coreNewDate(year, month, date, hours, minutes, seconds, ms)
 }

@@ -1,6 +1,10 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+
 /**
  * @name lastDayOfMonth
  * @category Month Helpers
@@ -27,8 +31,8 @@ export default function lastDayOfMonth(dirtyDate: Date | number): Date {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const month = date.getMonth()
-  date.setFullYear(date.getFullYear(), month + 1, 0)
+  const month = coreGetMonth(date)
+  coreSetFullYear(date, coreGetFullYear(date), month + 1, 0)
   date.setHours(0, 0, 0, 0)
   return date
 }
