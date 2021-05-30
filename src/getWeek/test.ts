@@ -5,12 +5,14 @@ import getWeek from '.'
 
 describe('getWeek', function () {
   it('returns the local week of year of the given date', function () {
-    const result = getWeek(new Date(2005, 0 /* Jan */, 2))
+    const result = getWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2))
     assert(result === 2)
   })
 
   it('accepts a timestamp', function () {
-    const result = getWeek(new Date(2008, 11 /* Dec */, 29).getTime())
+    const result = getWeek(
+      /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29).getTime()
+    )
     assert(result === 1)
   })
 
@@ -28,7 +30,7 @@ describe('getWeek', function () {
   })
 
   it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale', function () {
-    const date = new Date(2005, 0 /* Jan */, 2)
+    const date = /* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2)
     // @ts-expect-error
     const result = getWeek(date, {
       locale: {
@@ -39,7 +41,7 @@ describe('getWeek', function () {
   })
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', function () {
-    const date = new Date(2005, 0 /* Jan */, 2)
+    const date = /* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2)
     const result = getWeek(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
@@ -53,17 +55,25 @@ describe('getWeek', function () {
 
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', function () {
     // @ts-expect-error
-    const block = getWeek.bind(null, new Date(2007, 11 /* Dec */, 31), {
-      weekStartsOn: NaN,
-    })
+    const block = getWeek.bind(
+      null,
+      /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
+      {
+        weekStartsOn: NaN,
+      }
+    )
     assert.throws(block, RangeError)
   })
 
   it('throws `RangeError` if `options.firstWeekContainsDate` is not convertable to 1, 2, ..., 7 or undefined', function () {
     // @ts-expect-error
-    const block = getWeek.bind(null, new Date(2007, 11 /* Dec */, 31), {
-      firstWeekContainsDate: NaN,
-    })
+    const block = getWeek.bind(
+      null,
+      /* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31),
+      {
+        firstWeekContainsDate: NaN,
+      }
+    )
     assert.throws(block, RangeError)
   })
 
