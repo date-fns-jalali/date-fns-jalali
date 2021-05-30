@@ -7,25 +7,25 @@ var parseOrdinalNumberPattern = /\d+/i
 var matchEraPatterns = {
   narrow: /^((б )?з\.?\s?д\.?)/i,
   abbreviated: /^((б )?з\.?\s?д\.?)/i,
-  wide: /^(біздің заманымызға дейін|біздің заманымыз|біздің заманымыздан)/i
+  wide: /^(біздің заманымызға дейін|біздің заманымыз|біздің заманымыздан)/i,
 }
 var parseEraPatterns = {
-  any: [/^б/i, /^з/i]
+  any: [/^б/i, /^з/i],
 }
 
 var matchQuarterPatterns = {
   narrow: /^[1234]/i,
   abbreviated: /^[1234](-?ші)? тоқ.?/i,
-  wide: /^[1234](-?ші)? тоқсан/i
+  wide: /^[1234](-?ші)? тоқсан/i,
 }
 var parseQuarterPatterns = {
-  any: [/1/i, /2/i, /3/i, /4/i]
+  any: [/1/i, /2/i, /3/i, /4/i],
 }
 
 var matchMonthPatterns = {
   narrow: /^(қ|а|н|с|м|мау|ш|т|қыр|қаз|қар|ж)/i,
   abbreviated: /^(қаң|ақп|нау|сәу|мам|мау|шіл|там|қыр|қаз|қар|жел)/i,
-  wide: /^(қаңтар|ақпан|наурыз|сәуір|мамыр|маусым|шілде|тамыз|қыркүйек|қазан|қараша|желтоқсан)/i
+  wide: /^(қаңтар|ақпан|наурыз|сәуір|мамыр|маусым|шілде|тамыз|қыркүйек|қазан|қараша|желтоқсан)/i,
 }
 var parseMonthPatterns = {
   narrow: [
@@ -40,7 +40,7 @@ var parseMonthPatterns = {
     /^қ/i,
     /^қ/i,
     /^қ/i,
-    /^ж/i
+    /^ж/i,
   ],
   abbreviated: [
     /^қаң/i,
@@ -54,7 +54,7 @@ var parseMonthPatterns = {
     /^қыр/i,
     /^қаз/i,
     /^қар/i,
-    /^жел/i
+    /^жел/i,
   ],
   any: [
     /^қ/i,
@@ -68,14 +68,14 @@ var parseMonthPatterns = {
     /^қ/i,
     /^қ/i,
     /^қ/i,
-    /^ж/i
-  ]
+    /^ж/i,
+  ],
 }
 
 var matchDayPatterns = {
   narrow: /^(ж|д|с|с|б|ж|с)/i,
   short: /^(жс|дс|сс|ср|бс|жм|сб)/i,
-  wide: /^(жексенбі|дүйсенбі|сейсенбі|сәрсенбі|бейсенбі|жұма|сенбі)/i
+  wide: /^(жексенбі|дүйсенбі|сейсенбі|сәрсенбі|бейсенбі|жұма|сенбі)/i,
 }
 var parseDayPatterns = {
   narrow: [/^ж/i, /^д/i, /^с/i, /^с/i, /^б/i, /^ж/i, /^с/i],
@@ -87,14 +87,14 @@ var parseDayPatterns = {
     /^сә[р]/i,
     /^б[ей]/i,
     /^ж[ұм]/i,
-    /^се[н]/i
-  ]
+    /^се[н]/i,
+  ],
 }
 
 var matchDayPeriodPatterns = {
   narrow: /^Т\.?\s?[ДК]\.?|түн ортасында|((түсте|таңертең|таңда|таңертең|таңмен|таң|күндіз|күн|кеште|кеш|түнде|түн)\.?)/i,
   wide: /^Т\.?\s?[ДК]\.?|түн ортасында|((түсте|таңертең|таңда|таңертең|таңмен|таң|күндіз|күн|кеште|кеш|түнде|түн)\.?)/i,
-  any: /^Т\.?\s?[ДК]\.?|түн ортасында|((түсте|таңертең|таңда|таңертең|таңмен|таң|күндіз|күн|кеште|кеш|түнде|түн)\.?)/i
+  any: /^Т\.?\s?[ДК]\.?|түн ортасында|((түсте|таңертең|таңда|таңертең|таңмен|таң|күндіз|күн|кеште|кеш|түнде|түн)\.?)/i,
 }
 var parseDayPeriodPatterns = {
   any: {
@@ -105,24 +105,24 @@ var parseDayPeriodPatterns = {
     morning: /таң/i,
     afternoon: /түс/i,
     evening: /кеш/i,
-    night: /түн/i
-  }
+    night: /түн/i,
+  },
 }
 
 var match = {
   ordinalNumber: buildMatchPatternFn({
     matchPattern: matchOrdinalNumberPattern,
     parsePattern: parseOrdinalNumberPattern,
-    valueCallback: function(value) {
+    valueCallback: function (value) {
       return parseInt(value, 10)
-    }
+    },
   }),
 
   era: buildMatchFn({
     matchPatterns: matchEraPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseEraPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   quarter: buildMatchFn({
@@ -130,31 +130,31 @@ var match = {
     defaultMatchWidth: 'wide',
     parsePatterns: parseQuarterPatterns,
     defaultParseWidth: 'any',
-    valueCallback: function(index) {
+    valueCallback: function (index) {
       return index + 1
-    }
+    },
   }),
 
   month: buildMatchFn({
     matchPatterns: matchMonthPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseMonthPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   day: buildMatchFn({
     matchPatterns: matchDayPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseDayPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   dayPeriod: buildMatchFn({
     matchPatterns: matchDayPeriodPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseDayPeriodPatterns,
-    defaultParseWidth: 'any'
-  })
+    defaultParseWidth: 'any',
+  }),
 }
 
 export default match

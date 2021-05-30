@@ -1,80 +1,80 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
     singular: 'mindre än en sekund',
-    plural: 'mindre än {{count}} sekunder'
+    plural: 'mindre än {{count}} sekunder',
   },
 
   xSeconds: {
     singular: 'en sekund',
-    plural: '{{count}} sekunder'
+    plural: '{{count}} sekunder',
   },
 
   halfAMinute: 'en halv minut',
 
   lessThanXMinutes: {
     singular: 'mindre än en minut',
-    plural: 'mindre än {{count}} minuter'
+    plural: 'mindre än {{count}} minuter',
   },
 
   xMinutes: {
     singular: 'en minut',
-    plural: '{{count}} minuter'
+    plural: '{{count}} minuter',
   },
 
   aboutXHours: {
     singular: 'ungefär en timme',
-    plural: 'ungefär {{count}} timmar'
+    plural: 'ungefär {{count}} timmar',
   },
 
   xHours: {
     singular: 'en timme',
-    plural: '{{count}} timmar'
+    plural: '{{count}} timmar',
   },
 
   xDays: {
     singular: 'en dag',
-    plural: '{{count}} dagar'
+    plural: '{{count}} dagar',
   },
 
   aboutXWeeks: {
     singular: 'ungefär en vecka',
-    plural: 'ungefär {{count}} vecka'
+    plural: 'ungefär {{count}} vecka',
   },
 
   xWeeks: {
     singular: 'en vecka',
-    plural: '{{count}} vecka'
+    plural: '{{count}} vecka',
   },
 
   aboutXMonths: {
     singular: 'ungefär en månad',
-    plural: 'ungefär {{count}} månader'
+    plural: 'ungefär {{count}} månader',
   },
 
   xMonths: {
     singular: 'en månad',
-    plural: '{{count}} månader'
+    plural: '{{count}} månader',
   },
 
   aboutXYears: {
     singular: 'ungefär ett år',
-    plural: 'ungefär {{count}} år'
+    plural: 'ungefär {{count}} år',
   },
 
   xYears: {
     singular: 'ett år',
-    plural: '{{count}} år'
+    plural: '{{count}} år',
   },
 
   overXYears: {
     singular: 'över ett år',
-    plural: 'över {{count}} år'
+    plural: 'över {{count}} år',
   },
 
   almostXYears: {
     singular: 'nästan ett år',
-    plural: 'nästan {{count}} år'
-  }
+    plural: 'nästan {{count}} år',
+  },
 }
 
 var wordMapping = [
@@ -90,12 +90,12 @@ var wordMapping = [
   'nio',
   'tio',
   'elva',
-  'tolv'
+  'tolv',
 ]
 
 export default function formatDistance(token, count, options) {
   options = options || {
-    onlyNumeric: false
+    onlyNumeric: false,
   }
 
   var translation = formatDistanceLocale[token]
