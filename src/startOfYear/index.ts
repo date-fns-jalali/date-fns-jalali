@@ -1,6 +1,10 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name startOfYear
  * @category Year Helpers
@@ -27,8 +31,8 @@ export default function startOfYear(dirtyDate: Date | number): Date {
   requiredArgs(1, arguments)
 
   const cleanDate = toDate(dirtyDate)
-  const date = new Date(0)
-  date.setFullYear(cleanDate.getFullYear(), 0, 1)
+  const date = coreNewDate(0)
+  coreSetFullYear(date, coreGetFullYear(cleanDate), 0, 1)
   date.setHours(0, 0, 0, 0)
   return date
 }

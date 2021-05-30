@@ -1,4 +1,4 @@
 // This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.
 
-import { monthsToYears } from 'date-fns/fp'
+import { monthsToYears } from 'date-fns-jalali/fp'
 export default monthsToYears

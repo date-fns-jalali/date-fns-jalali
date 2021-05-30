@@ -2,6 +2,8 @@ import parse from '../parse/index'
 import isValid from '../isValid/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name isMatch
  * @category Common Helpers
@@ -296,5 +298,5 @@ import requiredArgs from '../_lib/requiredArgs/index'
  */
 export default function isMatch(dateString, formatString, dirtyOptions) {
   requiredArgs(2, arguments)
-  return isValid(parse(dateString, formatString, new Date(), dirtyOptions))
+  return isValid(parse(dateString, formatString, coreNewDate(), dirtyOptions))
 }

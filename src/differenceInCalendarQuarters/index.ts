@@ -2,6 +2,8 @@ import getQuarter from '../getQuarter/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetFullYear from '../_core/getFullYear/index'
+
 /**
  * @name differenceInCalendarQuarters
  * @category Quarter Helpers
@@ -36,7 +38,7 @@ export default function differenceInCalendarQuarters(
   const dateLeft = toDate(dirtyDateLeft)
   const dateRight = toDate(dirtyDateRight)
 
-  const yearDiff = dateLeft.getFullYear() - dateRight.getFullYear()
+  const yearDiff = coreGetFullYear(dateLeft) - coreGetFullYear(dateRight)
   const quarterDiff = getQuarter(dateLeft) - getQuarter(dateRight)
 
   return yearDiff * 4 + quarterDiff

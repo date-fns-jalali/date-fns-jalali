@@ -4,6 +4,11 @@ import compareAsc from '../compareAsc/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 import isLastDayOfMonth from '../isLastDayOfMonth/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+import coreSetMonth from '../_core/setMonth/index'
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
+
 /**
  * @name differenceInMonths
  * @category Month Helpers
@@ -43,13 +48,13 @@ export default function differenceInMonths(
   if (difference < 1) {
     result = 0
   } else {
-    if (dateLeft.getMonth() === 1 && dateLeft.getDate() > 27) {
-      // This will check if the date is end of Feb and assign a higher end of month date
-      // to compare it with Jan
-      dateLeft.setDate(30)
+    if (coreGetMonth(dateLeft) === 11 && coreGetDate(dateLeft) > 28) {
+      // This will check if the date is end of Esfand and assign a higher end of month date
+      // to compare it with Farvardin
+      coreSetDate(dateLeft, 30)
     }
 
-    dateLeft.setMonth(dateLeft.getMonth() - sign * difference)
+    coreSetMonth(dateLeft, coreGetMonth(dateLeft) - sign * difference)
 
     // Math.abs(diff in full months - diff in calendar months) === 1 if last calendar month is not full
     // If so, result must be decreased by 1 in absolute value
