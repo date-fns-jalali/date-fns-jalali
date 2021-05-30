@@ -3,6 +3,8 @@ import toDate from '../toDate/index'
 import setMonth from '../setMonth/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+
 /**
  * @name setQuarter
  * @category Quarter Helpers
@@ -25,12 +27,15 @@ import requiredArgs from '../_lib/requiredArgs/index'
  * const result = setQuarter(new Date(2014, 6, 2), 2)
  * //=> Wed Apr 02 2014 00:00:00
  */
-export default function setQuarter(dirtyDate: Date | number, dirtyQuarter: number): Date {
+export default function setQuarter(
+  dirtyDate: Date | number,
+  dirtyQuarter: number
+): Date {
   requiredArgs(2, arguments)
 
   const date = toDate(dirtyDate)
   const quarter = toInteger(dirtyQuarter)
-  const oldQuarter = Math.floor(date.getMonth() / 3) + 1
+  const oldQuarter = Math.floor(coreGetMonth(date) / 3) + 1
   const diff = quarter - oldQuarter
-  return setMonth(date, date.getMonth() + diff * 3)
+  return setMonth(date, coreGetMonth(date) + diff * 3)
 }

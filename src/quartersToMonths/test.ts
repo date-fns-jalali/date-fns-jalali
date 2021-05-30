@@ -8,7 +8,7 @@ describe('quartersToMonths', function () {
     assert(quartersToMonths(1) === 3)
     assert(quartersToMonths(2) === 6)
   })
-  
+
   it('uses floor rounding', () => {
     assert(quartersToMonths(1.5) === 4)
     assert(quartersToMonths(0.3) === 0)
