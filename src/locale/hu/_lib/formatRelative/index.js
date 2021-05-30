@@ -5,11 +5,11 @@ var accusativeWeekdays = [
   'szerdán',
   'csütörtökön',
   'pénteken',
-  'szombaton'
+  'szombaton',
 ]
 
 function week(isFuture) {
-  return function(date, _baseDate, _options) {
+  return function (date, _baseDate, _options) {
     var day = date.getUTCDay()
     return (
       (isFuture ? '' : "'múlt' ") +
@@ -26,7 +26,7 @@ var formatRelativeLocale = {
   today: "'ma' p'-kor'",
   tomorrow: "'holnap' p'-kor'",
   nextWeek: week(true),
-  other: 'P'
+  other: 'P',
 }
 
 export default function formatRelative(token, date, baseDate, options) {

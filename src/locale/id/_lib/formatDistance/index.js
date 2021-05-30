@@ -1,80 +1,80 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
     one: 'kurang dari 1 detik',
-    other: 'kurang dari {{count}} detik'
+    other: 'kurang dari {{count}} detik',
   },
 
   xSeconds: {
     one: '1 detik',
-    other: '{{count}} detik'
+    other: '{{count}} detik',
   },
 
   halfAMinute: 'setengah menit',
 
   lessThanXMinutes: {
     one: 'kurang dari 1 menit',
-    other: 'kurang dari {{count}} menit'
+    other: 'kurang dari {{count}} menit',
   },
 
   xMinutes: {
     one: '1 menit',
-    other: '{{count}} menit'
+    other: '{{count}} menit',
   },
 
   aboutXHours: {
     one: 'sekitar 1 jam',
-    other: 'sekitar {{count}} jam'
+    other: 'sekitar {{count}} jam',
   },
 
   xHours: {
     one: '1 jam',
-    other: '{{count}} jam'
+    other: '{{count}} jam',
   },
 
   xDays: {
     one: '1 hari',
-    other: '{{count}} hari'
+    other: '{{count}} hari',
   },
 
   aboutXWeeks: {
     one: 'sekitar 1 minggu',
-    other: 'sekitar {{count}} minggu'
+    other: 'sekitar {{count}} minggu',
   },
 
   xWeeks: {
     one: '1 minggu',
-    other: '{{count}} minggu'
+    other: '{{count}} minggu',
   },
 
   aboutXMonths: {
     one: 'sekitar 1 bulan',
-    other: 'sekitar {{count}} bulan'
+    other: 'sekitar {{count}} bulan',
   },
 
   xMonths: {
     one: '1 bulan',
-    other: '{{count}} bulan'
+    other: '{{count}} bulan',
   },
 
   aboutXYears: {
     one: 'sekitar 1 tahun',
-    other: 'sekitar {{count}} tahun'
+    other: 'sekitar {{count}} tahun',
   },
 
   xYears: {
     one: '1 tahun',
-    other: '{{count}} tahun'
+    other: '{{count}} tahun',
   },
 
   overXYears: {
     one: 'lebih dari 1 tahun',
-    other: 'lebih dari {{count}} tahun'
+    other: 'lebih dari {{count}} tahun',
   },
 
   almostXYears: {
     one: 'hampir 1 tahun',
-    other: 'hampir {{count}} tahun'
-  }
+    other: 'hampir {{count}} tahun',
+  },
 }
 
 export default function formatDistance(token, count, options) {
