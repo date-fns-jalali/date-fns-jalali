@@ -464,6 +464,16 @@ declare module.exports: {
   minutesToSeconds: CurriedFn1<number, number>,
   monthsToQuarters: CurriedFn1<number, number>,
   monthsToYears: CurriedFn1<number, number>,
+  newDate: CurriedFn7<
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    Date
+  >,
   nextDay: CurriedFn2<Day, Date | number, Date>,
   nextFriday: CurriedFn1<Date | number, Date>,
   nextMonday: CurriedFn1<Date | number, Date>,
