@@ -21,14 +21,20 @@
  * const result = endOfTomorrow()
  * //=> Tue Oct 7 2014 23:59:59.999
  */
-export default function endOfTomorrow(): Date {
-  const now = new Date()
-  const year = now.getFullYear()
-  const month = now.getMonth()
-  const day = now.getDate()
+import coreGetMonth from '../_core/getMonth/index'
 
-  const date = new Date(0)
-  date.setFullYear(year, month, day + 1)
+import coreGetDate from '../_core/getDate/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+export default function endOfTomorrow(): Date {
+  const now = coreNewDate()
+  const year = coreGetFullYear(now)
+  const month = coreGetMonth(now)
+  const day = coreGetDate(now)
+
+  const date = coreNewDate(0)
+  coreSetFullYear(date, year, month, day + 1)
   date.setHours(23, 59, 59, 999)
   return date
 }

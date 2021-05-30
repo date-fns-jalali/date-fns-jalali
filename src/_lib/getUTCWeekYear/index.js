@@ -3,13 +3,17 @@ import toDate from '../../toDate/index'
 import startOfUTCWeek from '../startOfUTCWeek/index'
 import requiredArgs from '../requiredArgs/index'
 
+import coreGetUTCFullYear from '../../_core/getUTCFullYear/index'
+import coreSetUTCFullYear from '../../_core/setUTCFullYear/index'
+import coreNewDate from '../../_core/newDate/index'
+
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 export default function getUTCWeekYear(dirtyDate, dirtyOptions) {
   requiredArgs(1, arguments)
 
   var date = toDate(dirtyDate, dirtyOptions)
-  var year = date.getUTCFullYear()
+  var year = coreGetUTCFullYear(date)
 
   var options = dirtyOptions || {}
   var locale = options.locale
@@ -31,13 +35,13 @@ export default function getUTCWeekYear(dirtyDate, dirtyOptions) {
     )
   }
 
-  var firstWeekOfNextYear = new Date(0)
-  firstWeekOfNextYear.setUTCFullYear(year + 1, 0, firstWeekContainsDate)
+  var firstWeekOfNextYear = coreNewDate(0)
+  coreSetUTCFullYear(firstWeekOfNextYear, year + 1, 0, firstWeekContainsDate)
   firstWeekOfNextYear.setUTCHours(0, 0, 0, 0)
   var startOfNextYear = startOfUTCWeek(firstWeekOfNextYear, dirtyOptions)
 
-  var firstWeekOfThisYear = new Date(0)
-  firstWeekOfThisYear.setUTCFullYear(year, 0, firstWeekContainsDate)
+  var firstWeekOfThisYear = coreNewDate(0)
+  coreSetUTCFullYear(firstWeekOfThisYear, year, 0, firstWeekContainsDate)
   firstWeekOfThisYear.setUTCHours(0, 0, 0, 0)
   var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, dirtyOptions)
 
