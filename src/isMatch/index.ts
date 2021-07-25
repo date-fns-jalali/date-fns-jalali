@@ -7,6 +7,8 @@ import {
   FirstWeekContainsDateOptions,
 } from '../types'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name isMatch
  * @category Common Helpers
@@ -305,5 +307,5 @@ export default function isMatch(
   options?: LocaleOptions & WeekStartOptions & FirstWeekContainsDateOptions
 ): boolean {
   requiredArgs(2, arguments)
-  return isValid(parse(dateString, formatString, new Date(), options))
+  return isValid(parse(dateString, formatString, coreNewDate(), options))
 }

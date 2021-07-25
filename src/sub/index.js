@@ -4,6 +4,8 @@ import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 import toInteger from '../_lib/toInteger/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name sub
  * @category Common Helpers
@@ -46,7 +48,7 @@ import toInteger from '../_lib/toInteger/index'
 export default function sub(dirtyDate, duration) {
   requiredArgs(2, arguments)
 
-  if (!duration || typeof duration !== 'object') return new Date(NaN)
+  if (!duration || typeof duration !== 'object') return coreNewDate(NaN)
 
   const years = duration.years ? toInteger(duration.years) : 0
   const months = duration.months ? toInteger(duration.months) : 0
@@ -66,7 +68,7 @@ export default function sub(dirtyDate, duration) {
   const minutestoSub = minutes + hours * 60
   const secondstoSub = seconds + minutestoSub * 60
   const mstoSub = secondstoSub * 1000
-  const finalDate = new Date(dateWithoutDays.getTime() - mstoSub)
+  const finalDate = coreNewDate(dateWithoutDays.getTime() - mstoSub)
 
   return finalDate
 }
