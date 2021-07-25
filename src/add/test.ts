@@ -40,7 +40,7 @@ describe('add', function () {
     )
     assert.deepStrictEqual(
       result,
-      /* 1394/3/25 */ new Date(2015, 5 /* June */, 15, 15, 29, 20)
+      /* 1394/3/24 */ new Date(2015, 5 /* June */, 14, 15, 29, 20)
     )
   })
 
