@@ -6,7 +6,7 @@ var formatRelativeLocale = {
   today: "'ఈ రోజు' p", // CLDR #1394
   tomorrow: "'రేపు' p", // CLDR #1395
   nextWeek: "'తదుపరి' eeee p", // CLDR #1386
-  other: 'P'
+  other: 'P',
 }
 
 export default function formatRelative(token, _date, _baseDate, _options) {

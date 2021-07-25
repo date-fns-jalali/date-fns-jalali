@@ -2,17 +2,17 @@ import isSameUTCWeek from '../../../../_lib/isSameUTCWeek/index'
 
 var adjectivesLastWeek = {
   masculine: 'ostatni',
-  feminine: 'ostatnia'
+  feminine: 'ostatnia',
 }
 
 var adjectivesThisWeek = {
   masculine: 'ten',
-  feminine: 'ta'
+  feminine: 'ta',
 }
 
 var adjectivesNextWeek = {
   masculine: 'następny',
-  feminine: 'następna'
+  feminine: 'następna',
 }
 
 var dayGrammaticalGender = {
@@ -22,7 +22,7 @@ var dayGrammaticalGender = {
   3: 'feminine',
   4: 'masculine',
   5: 'masculine',
-  6: 'feminine'
+  6: 'feminine',
 }
 
 function getAdjectives(token, date, baseDate, options) {
@@ -56,7 +56,7 @@ var formatRelativeLocale = {
   today: "'dzisiaj o' p",
   tomorrow: "'jutro o' p",
   nextWeek: dayAndTimeWithAdjective,
-  other: 'P'
+  other: 'P',
 }
 
 export default function formatRelative(token, date, baseDate, options) {
