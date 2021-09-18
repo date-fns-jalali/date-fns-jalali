@@ -8,21 +8,20 @@ import type { Locale } from '../types'
 /**
  * @type {Locale}
  * @category Locales
- * @summary English locale (United States).
- * @language English
- * @iso-639-2 eng
- * @author Sasha Koss [@kossnocorp]{@link https://github.com/kossnocorp}
- * @author Lesha Koss [@leshakoss]{@link https://github.com/leshakoss}
+ * @summary Persian/Farsi locale (Iran).
+ * @language Persian
+ * @iso-639-2 ira
+ * @author Seyyed Morteza Moosavi [@smmoosavi]{@link https://github.com/smmoosavi}
  */
 const locale: Locale = {
-  code: 'en-US',
+  code: 'fa-IR',
   formatDistance: formatDistance,
   formatLong: formatLong,
   formatRelative: formatRelative,
   localize: localize,
   match: match,
   options: {
-    weekStartsOn: 0 /* Sunday */,
+    weekStartsOn: 6 /* Sat */,
     firstWeekContainsDate: 1,
   },
 }
