@@ -1,4 +1,4 @@
 // This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.
 
-import { weeksToDays } from 'date-fns'
+import { weeksToDays } from 'date-fns-jalali'
 export default weeksToDays
