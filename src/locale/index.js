@@ -2,3 +2,4 @@
 
 export { default as enUS } from './en-US/index'
 export { default as faIR } from './fa-IR/index'
+export { default as fajalaliIR } from './fa-jalali-IR/index'
