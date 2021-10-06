@@ -1,5 +1,5 @@
 var formatRelativeLocale = {
-  lastWeek: function(date) {
+  lastWeek: function (date) {
     var day = date.getUTCDay()
 
     switch (day) {
@@ -16,7 +16,7 @@ var formatRelativeLocale = {
   yesterday: "'včeraj ob' p",
   today: "'danes ob' p",
   tomorrow: "'jutri ob' p",
-  nextWeek: function(date) {
+  nextWeek: function (date) {
     var day = date.getUTCDay()
 
     switch (day) {
@@ -30,7 +30,7 @@ var formatRelativeLocale = {
         return "'naslednji' EEEE 'ob' p"
     }
   },
-  other: 'P'
+  other: 'P',
 }
 
 export default function formatRelative(token, date, _baseDate, _options) {

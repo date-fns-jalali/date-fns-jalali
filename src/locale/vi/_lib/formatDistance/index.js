@@ -1,80 +1,80 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
     one: 'dưới 1 giây',
-    other: 'dưới {{count}} giây'
+    other: 'dưới {{count}} giây',
   },
 
   xSeconds: {
     one: '1 giây',
-    other: '{{count}} giây'
+    other: '{{count}} giây',
   },
 
   halfAMinute: 'nửa phút',
 
   lessThanXMinutes: {
     one: 'dưới 1 phút',
-    other: 'dưới {{count}} phút'
+    other: 'dưới {{count}} phút',
   },
 
   xMinutes: {
     one: '1 phút',
-    other: '{{count}} phút'
+    other: '{{count}} phút',
   },
 
   aboutXHours: {
     one: 'khoảng 1 giờ',
-    other: 'khoảng {{count}} giờ'
+    other: 'khoảng {{count}} giờ',
   },
 
   xHours: {
     one: '1 giờ',
-    other: '{{count}} giờ'
+    other: '{{count}} giờ',
   },
 
   xDays: {
     one: '1 ngày',
-    other: '{{count}} ngày'
+    other: '{{count}} ngày',
   },
 
   aboutXWeeks: {
     one: 'khoảng 1 tuần',
-    other: 'khoảng {{count}} tuần'
+    other: 'khoảng {{count}} tuần',
   },
 
   xWeeks: {
     one: '1 tuần',
-    other: '{{count}} tuần'
+    other: '{{count}} tuần',
   },
 
   aboutXMonths: {
     one: 'khoảng 1 tháng',
-    other: 'khoảng {{count}} tháng'
+    other: 'khoảng {{count}} tháng',
   },
 
   xMonths: {
     one: '1 tháng',
-    other: '{{count}} tháng'
+    other: '{{count}} tháng',
   },
 
   aboutXYears: {
     one: 'khoảng 1 năm',
-    other: 'khoảng {{count}} năm'
+    other: 'khoảng {{count}} năm',
   },
 
   xYears: {
     one: '1 năm',
-    other: '{{count}} năm'
+    other: '{{count}} năm',
   },
 
   overXYears: {
     one: 'hơn 1 năm',
-    other: 'hơn {{count}} năm'
+    other: 'hơn {{count}} năm',
   },
 
   almostXYears: {
     one: 'gần 1 năm',
-    other: 'gần {{count}} năm'
-  }
+    other: 'gần {{count}} năm',
+  },
 }
 
 export default function formatDistance(token, count, options) {

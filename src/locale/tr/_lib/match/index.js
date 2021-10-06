@@ -7,16 +7,16 @@ var parseOrdinalNumberPattern = /\d+/i
 var matchEraPatterns = {
   narrow: /^(mö|ms)/i,
   abbreviated: /^(mö|ms)/i,
-  wide: /^(milattan önce|milattan sonra)/i
+  wide: /^(milattan önce|milattan sonra)/i,
 }
 var parseEraPatterns = {
-  any: [/(^mö|^milattan önce)/i, /(^ms|^milattan sonra)/i]
+  any: [/(^mö|^milattan önce)/i, /(^ms|^milattan sonra)/i],
 }
 
 var matchQuarterPatterns = {
   narrow: /^[1234]/i,
   abbreviated: /^[1234]ç/i,
-  wide: /^((i|İ)lk|(i|İ)kinci|üçüncü|son) çeyrek/i
+  wide: /^((i|İ)lk|(i|İ)kinci|üçüncü|son) çeyrek/i,
 }
 var parseQuarterPatterns = {
   any: [/1/i, /2/i, /3/i, /4/i],
@@ -25,14 +25,14 @@ var parseQuarterPatterns = {
     /^(i|İ)lk çeyrek/i,
     /(i|İ)kinci çeyrek/i,
     /üçüncü çeyrek/i,
-    /son çeyrek/i
-  ]
+    /son çeyrek/i,
+  ],
 }
 
 var matchMonthPatterns = {
   narrow: /^[oşmnhtaek]/i,
   abbreviated: /^(oca|şub|mar|nis|may|haz|tem|ağu|eyl|eki|kas|ara)/i,
-  wide: /^(ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)/i
+  wide: /^(ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)/i,
 }
 var parseMonthPatterns = {
   narrow: [
@@ -47,7 +47,7 @@ var parseMonthPatterns = {
     /^e/i,
     /^e/i,
     /^k/i,
-    /^a/i
+    /^a/i,
   ],
   any: [
     /^o/i,
@@ -61,15 +61,15 @@ var parseMonthPatterns = {
     /^ey/i,
     /^ek/i,
     /^k/i,
-    /^ar/i
-  ]
+    /^ar/i,
+  ],
 }
 
 var matchDayPatterns = {
   narrow: /^[psçc]/i,
   short: /^(pz|pt|sa|ça|pe|cu|ct)/i,
   abbreviated: /^(paz|pts|sal|çar|per|cum|cts)/i,
-  wide: /^(pazar|pazartesi|salı|çarşamba|perşembe|cuma|cumartesi)/i
+  wide: /^(pazar|pazartesi|salı|çarşamba|perşembe|cuma|cumartesi)/i,
 }
 var parseDayPatterns = {
   narrow: [/^p/i, /^p/i, /^s/i, /^ç/i, /^p/i, /^c/i, /^c/i],
@@ -81,13 +81,13 @@ var parseDayPatterns = {
     /^çarşamba/i,
     /^perşembe/i,
     /^cuma/i,
-    /cumartesi/i
-  ]
+    /cumartesi/i,
+  ],
 }
 
 var matchDayPeriodPatterns = {
   narrow: /^(öö|ös|gy|ö|sa|ös|ak|ge)/i,
-  any: /^(ö\.?\s?[ös]\.?|öğleden sonra|gece yarısı|öğle|(sabah|öğ|akşam|gece)(leyin))/i
+  any: /^(ö\.?\s?[ös]\.?|öğleden sonra|gece yarısı|öğle|(sabah|öğ|akşam|gece)(leyin))/i,
 }
 var parseDayPeriodPatterns = {
   any: {
@@ -98,24 +98,24 @@ var parseDayPeriodPatterns = {
     morning: /^sa/i,
     afternoon: /^öğleden sonra/i,
     evening: /^ak/i,
-    night: /^ge/i
-  }
+    night: /^ge/i,
+  },
 }
 
 var match = {
   ordinalNumber: buildMatchPatternFn({
     matchPattern: matchOrdinalNumberPattern,
     parsePattern: parseOrdinalNumberPattern,
-    valueCallback: function(value) {
+    valueCallback: function (value) {
       return parseInt(value, 10)
-    }
+    },
   }),
 
   era: buildMatchFn({
     matchPatterns: matchEraPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseEraPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   quarter: buildMatchFn({
@@ -123,31 +123,31 @@ var match = {
     defaultMatchWidth: 'wide',
     parsePatterns: parseQuarterPatterns,
     defaultParseWidth: 'any',
-    valueCallback: function(index) {
+    valueCallback: function (index) {
       return index + 1
-    }
+    },
   }),
 
   month: buildMatchFn({
     matchPatterns: matchMonthPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseMonthPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   day: buildMatchFn({
     matchPatterns: matchDayPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseDayPatterns,
-    defaultParseWidth: 'any'
+    defaultParseWidth: 'any',
   }),
 
   dayPeriod: buildMatchFn({
     matchPatterns: matchDayPeriodPatterns,
     defaultMatchWidth: 'any',
     parsePatterns: parseDayPeriodPatterns,
-    defaultParseWidth: 'any'
-  })
+    defaultParseWidth: 'any',
+  }),
 }
 
 export default match

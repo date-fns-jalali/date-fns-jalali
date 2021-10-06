@@ -41,12 +41,18 @@ describe('formatRelative', function () {
   })
 
   it('tomorrow', function () {
-    const result = formatRelative(new Date(1986, 3 /* Apr */, 5, 7, 30), baseDate)
+    const result = formatRelative(
+      new Date(1986, 3 /* Apr */, 5, 7, 30),
+      baseDate
+    )
     assert(result === 'tomorrow at 7:30 AM')
   })
 
   it('next week', function () {
-    const result = formatRelative(new Date(1986, 3 /* Apr */, 6, 12, 0), baseDate)
+    const result = formatRelative(
+      new Date(1986, 3 /* Apr */, 6, 12, 0),
+      baseDate
+    )
     assert(result === 'Sunday at 12:00 PM')
   })
 
@@ -98,16 +104,16 @@ describe('formatRelative', function () {
         localize: {
           month: function () {
             return 'works'
-          }
+          },
         },
         formatLong: {
           date: function () {
             return "'It' MMMM"
-          }
+          },
         },
         formatRelative: function () {
           return "P 'perfectly!'"
-        }
+        },
       }
       const result = formatRelative(
         new Date(1986, 2 /* Mar */, 28, 16, 50),
@@ -123,11 +129,11 @@ describe('formatRelative', function () {
         formatLong: {},
         formatRelative: function () {
           return ''
-        }
+        },
       }
       // @ts-expect-error
       const block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
+        locale: customLocale,
       })
       assert.throws(block, RangeError)
     })
@@ -137,11 +143,11 @@ describe('formatRelative', function () {
         localize: {},
         formatRelative: function () {
           return ''
-        }
+        },
       }
       // @ts-expect-error
       const block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
+        locale: customLocale,
       })
       assert.throws(block, RangeError)
     })
@@ -149,11 +155,11 @@ describe('formatRelative', function () {
     it("throws `RangeError` if `options.locale` doesn't have `formatRelative` property", function () {
       const customLocale = {
         localize: {},
-        formatLong: {}
+        formatLong: {},
       }
       // @ts-expect-error
       const block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
+        locale: customLocale,
       })
       assert.throws(block, RangeError)
     })
