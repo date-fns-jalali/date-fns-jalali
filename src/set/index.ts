@@ -2,7 +2,11 @@ import toDate from '../toDate/index'
 import setMonth from '../setMonth/index'
 import toInteger from '../_lib/toInteger/index'
 import requiredArgs from '../_lib/requiredArgs/index'
-import { DateValues } from '../types';
+import { DateValues } from '../types'
+
+import coreSetDate from '../_core/setDate/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreNewDate from '../_core/newDate/index'
 
 /**
  * @name set
@@ -43,7 +47,10 @@ import { DateValues } from '../types';
  * //=> Mon Sep 01 2014 12:23:45
  */
 
-export default function set(dirtyDate: Date | number, values: DateValues): Date {
+export default function set(
+  dirtyDate: Date | number,
+  values: DateValues
+): Date {
   requiredArgs(2, arguments)
 
   if (typeof values !== 'object' || values === null) {
@@ -54,11 +61,11 @@ export default function set(dirtyDate: Date | number, values: DateValues): Date 
 
   // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
   if (isNaN(date.getTime())) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   if (values.year != null) {
-    date.setFullYear(values.year)
+    coreSetFullYear(date, values.year)
   }
 
   if (values.month != null) {
@@ -66,7 +73,7 @@ export default function set(dirtyDate: Date | number, values: DateValues): Date 
   }
 
   if (values.date != null) {
-    date.setDate(toInteger(values.date))
+    coreSetDate(date, toInteger(values.date))
   }
 
   if (values.hours != null) {

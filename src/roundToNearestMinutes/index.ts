@@ -1,6 +1,11 @@
 import toDate from '../toDate/index'
 import toInteger from '../_lib/toInteger/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+import coreGetDate from '../_core/getDate/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name roundToNearestMinutes
  * @category Minute Helpers
@@ -33,10 +38,9 @@ import toInteger from '../_lib/toInteger/index'
  * //=> Thu Jul 10 2014 12:15:00
  */
 export default function roundToNearestMinutes(
-    dirtyDate: Date | number,
-    options?: { nearestTo: number }
-    ): Date
-{
+  dirtyDate: Date | number,
+  options?: { nearestTo: number }
+): Date {
   if (arguments.length < 1) {
     throw new TypeError('1 argument required, but only none provided present')
   }
@@ -55,10 +59,10 @@ export default function roundToNearestMinutes(
   const remainderMinutes = minutes % nearestTo
   const addedMinutes = Math.round(remainderMinutes / nearestTo) * nearestTo
 
-  return new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
+  return coreNewDate(
+    coreGetFullYear(date),
+    coreGetMonth(date),
+    coreGetDate(date),
     date.getHours(),
     roundedMinutes + addedMinutes
   )
