@@ -8,24 +8,24 @@ import isSameUTCWeek from '.'
 describe('isSameUTCWeek', function () {
   it('returns true if the given dates have the same week', function () {
     const result = isSameUTCWeek(
-      new Date(Date.UTC(2014, 7 /* Aug */, 31)),
-      new Date(Date.UTC(2014, 8 /* Sep */, 4))
+      new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31)),
+      new Date(/* 1393/6/13 */ Date.UTC(2014, 8 /* Sep */, 4))
     )
     assert(result === true)
   })
 
   it('returns false if the given dates have different weeks', function () {
     const result = isSameUTCWeek(
-      new Date(Date.UTC(2014, 7 /* Aug */, 30)),
-      new Date(Date.UTC(2014, 8 /* Sep */, 4))
+      new Date(/* 1393/6/8 */ Date.UTC(2014, 7 /* Aug */, 30)),
+      new Date(/* 1393/6/7 */ Date.UTC(2014, 7 /* Aug */, 29))
     )
     assert(result === false)
   })
 
   it('allows to specify which day is the first day of the week', function () {
     const result = isSameUTCWeek(
-      new Date(Date.UTC(2014, 7 /* Aug */, 31)),
-      new Date(Date.UTC(2014, 8 /* Sep */, 4)),
+      new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31)),
+      new Date(/* 1393/6/13 */ Date.UTC(2014, 8 /* Sep */, 4)),
       { weekStartsOn: 1 }
     )
     assert(result === false)
@@ -33,8 +33,8 @@ describe('isSameUTCWeek', function () {
 
   it('allows to specify which day is the first day of the week in locale', function () {
     const result = isSameUTCWeek(
-      new Date(Date.UTC(2014, 7 /* Aug */, 31)),
-      new Date(Date.UTC(2014, 8 /* Sep */, 4)),
+      new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31)),
+      new Date(/* 1393/6/13 */ Date.UTC(2014, 8 /* Sep */, 4)),
       {
         locale: {
           options: { weekStartsOn: 1 },
@@ -46,8 +46,8 @@ describe('isSameUTCWeek', function () {
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', function () {
     const result = isSameUTCWeek(
-      new Date(Date.UTC(2014, 7 /* Aug */, 31)),
-      new Date(Date.UTC(2014, 8 /* Sep */, 4)),
+      new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31)),
+      new Date(/* 1393/6/13 */ Date.UTC(2014, 8 /* Sep */, 4)),
       {
         weekStartsOn: 1,
         locale: {
@@ -60,8 +60,8 @@ describe('isSameUTCWeek', function () {
 
   it('implicitly converts options', function () {
     const result = isSameUTCWeek(
-      new Date(Date.UTC(2014, 7 /* Aug */, 31)),
-      new Date(Date.UTC(2014, 8 /* Sep */, 4)),
+      new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31)),
+      new Date(/* 1393/6/13 */ Date.UTC(2014, 8 /* Sep */, 4)),
       {
         // @ts-expect-error: Type 'string' is not assignable to type 'Day | undefined'.
         weekStartsOn: '1',
@@ -72,8 +72,8 @@ describe('isSameUTCWeek', function () {
 
   it('accepts a timestamp', function () {
     const result = isSameUTCWeek(
-      Date.UTC(2014, 7 /* Aug */, 31),
-      Date.UTC(2014, 8 /* Sep */, 4)
+      /* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31),
+      /* 1393/6/13 */ Date.UTC(2014, 8 /* Sep */, 4)
     )
     assert(result === true)
   })
@@ -81,14 +81,14 @@ describe('isSameUTCWeek', function () {
   it('returns false if the first date is `Invalid Date`', function () {
     const result = isSameUTCWeek(
       new Date(NaN),
-      new Date(Date.UTC(1989, 6 /* Jul */, 10))
+      new Date(/* 1368/4/19 */ Date.UTC(1989, 6 /* Jul */, 10))
     )
     assert(result === false)
   })
 
   it('returns false if the second date is `Invalid Date`', function () {
     const result = isSameUTCWeek(
-      new Date(Date.UTC(1987, 1 /* Feb */, 11)),
+      new Date(/* 1365/11/22 */ Date.UTC(1987, 1 /* Feb */, 11)),
       new Date(NaN)
     )
     assert(result === false)
@@ -102,8 +102,8 @@ describe('isSameUTCWeek', function () {
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', function () {
     const block = isSameUTCWeek.bind(
       null,
-      new Date(Date.UTC(2014, 7 /* Aug */, 31)),
-      new Date(Date.UTC(2014, 8 /* Sep */, 4)),
+      new Date(/* 1393/6/9 */ Date.UTC(2014, 7 /* Aug */, 31)),
+      new Date(/* 1393/6/13 */ Date.UTC(2014, 8 /* Sep */, 4)),
       { weekStartsOn: NaN as Day }
     )
     assert.throws(block, RangeError)
