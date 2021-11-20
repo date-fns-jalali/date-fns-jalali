@@ -35,4 +35,5 @@ export type Locale = {
 declare module.exports: {
   enUS: Locale,
   faIR: Locale,
+  fajalaliIR: Locale,
 }
