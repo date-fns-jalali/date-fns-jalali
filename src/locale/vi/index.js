@@ -22,8 +22,8 @@ var locale = {
   match: match,
   options: {
     weekStartsOn: 1 /* Monday */,
-    firstWeekContainsDate: 1 /* First week of new year contains Jan 1st  */
-  }
+    firstWeekContainsDate: 1 /* First week of new year contains Jan 1st  */,
+  },
 }
 
 export default locale

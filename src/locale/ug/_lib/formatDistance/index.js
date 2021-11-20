@@ -1,80 +1,80 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
     one: 'بىر سىكۇنت ئىچىدە',
-    other: 'سىكۇنت ئىچىدە {{count}}'
+    other: 'سىكۇنت ئىچىدە {{count}}',
   },
 
   xSeconds: {
     one: 'بىر سىكۇنت',
-    other: 'سىكۇنت {{count}}'
+    other: 'سىكۇنت {{count}}',
   },
 
   halfAMinute: 'يىرىم مىنۇت',
 
   lessThanXMinutes: {
     one: 'بىر مىنۇت ئىچىدە',
-    other: 'مىنۇت ئىچىدە {{count}}'
+    other: 'مىنۇت ئىچىدە {{count}}',
   },
 
   xMinutes: {
     one: 'بىر مىنۇت',
-    other: 'مىنۇت {{count}}'
+    other: 'مىنۇت {{count}}',
   },
 
   aboutXHours: {
     one: 'تەخمىنەن بىر سائەت',
-    other: 'سائەت {{count}} تەخمىنەن'
+    other: 'سائەت {{count}} تەخمىنەن',
   },
 
   xHours: {
     one: 'بىر سائەت',
-    other: 'سائەت {{count}}'
+    other: 'سائەت {{count}}',
   },
 
   xDays: {
     one: 'بىر كۈن',
-    other: 'كۈن {{count}}'
+    other: 'كۈن {{count}}',
   },
 
   aboutXWeeks: {
     one: 'تەخمىنەن بىرھەپتە',
-    other: 'ھەپتە {{count}} تەخمىنەن'
+    other: 'ھەپتە {{count}} تەخمىنەن',
   },
 
   xWeeks: {
     one: 'بىرھەپتە',
-    other: 'ھەپتە {{count}}'
+    other: 'ھەپتە {{count}}',
   },
 
   aboutXMonths: {
     one: 'تەخمىنەن بىر ئاي',
-    other: 'ئاي {{count}} تەخمىنەن'
+    other: 'ئاي {{count}} تەخمىنەن',
   },
 
   xMonths: {
     one: 'بىر ئاي',
-    other: 'ئاي {{count}}'
+    other: 'ئاي {{count}}',
   },
 
   aboutXYears: {
     one: 'تەخمىنەن بىر يىل',
-    other: 'يىل {{count}} تەخمىنەن'
+    other: 'يىل {{count}} تەخمىنەن',
   },
 
   xYears: {
     one: 'بىر يىل',
-    other: 'يىل {{count}}'
+    other: 'يىل {{count}}',
   },
 
   overXYears: {
     one: 'بىر يىلدىن ئارتۇق',
-    other: 'يىلدىن ئارتۇق {{count}}'
+    other: 'يىلدىن ئارتۇق {{count}}',
   },
 
   almostXYears: {
     one: 'ئاساسەن بىر يىل',
-    other: 'يىل {{count}} ئاساسەن'
-  }
+    other: 'يىل {{count}} ئاساسەن',
+  },
 }
 
 export default function formatDistance(token, count, options) {

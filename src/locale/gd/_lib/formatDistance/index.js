@@ -1,86 +1,86 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
     one: 'nas lugha na diog',
-    other: 'nas lugha na {{count}} diogan'
+    other: 'nas lugha na {{count}} diogan',
   },
 
   xSeconds: {
     one: '1 diog',
     two: '2 dhiog',
     twenty: '20 diog',
-    other: '{{count}} diogan'
+    other: '{{count}} diogan',
   },
 
   halfAMinute: 'leth mhionaid',
 
   lessThanXMinutes: {
     one: 'nas lugha na mionaid',
-    other: 'nas lugha na {{count}} mionaidean'
+    other: 'nas lugha na {{count}} mionaidean',
   },
 
   xMinutes: {
     one: '1 mionaid',
     two: '2 mhionaid',
     twenty: '20 mionaid',
-    other: '{{count}} mionaidean'
+    other: '{{count}} mionaidean',
   },
 
   aboutXHours: {
     one: 'mu uair de thìde',
-    other: 'mu {{count}} uairean de thìde'
+    other: 'mu {{count}} uairean de thìde',
   },
 
   xHours: {
     one: '1 uair de thìde',
     two: '2 uair de thìde',
     twenty: '20 uair de thìde',
-    other: '{{count}} uairean de thìde'
+    other: '{{count}} uairean de thìde',
   },
 
   xDays: {
     one: '1 là',
-    other: '{{count}} là'
+    other: '{{count}} là',
   },
 
   aboutXWeeks: {
     one: 'mu 1 seachdain',
-    other: 'mu {{count}} seachdainean'
+    other: 'mu {{count}} seachdainean',
   },
 
   xWeeks: {
     one: '1 seachdain',
-    other: '{{count}} seachdainean'
+    other: '{{count}} seachdainean',
   },
 
   aboutXMonths: {
     one: 'mu mhìos',
-    other: 'mu {{count}} mìosan'
+    other: 'mu {{count}} mìosan',
   },
 
   xMonths: {
     one: '1 mìos',
-    other: '{{count}} mìosan'
+    other: '{{count}} mìosan',
   },
 
   aboutXYears: {
     one: 'mu bhliadhna',
-    other: 'mu {{count}} bliadhnaichean'
+    other: 'mu {{count}} bliadhnaichean',
   },
 
   xYears: {
     one: '1 bhliadhna',
-    other: '{{count}} bliadhna'
+    other: '{{count}} bliadhna',
   },
 
   overXYears: {
     one: 'còrr is bliadhna',
-    other: 'còrr is {{count}} bliadhnaichean'
+    other: 'còrr is {{count}} bliadhnaichean',
   },
 
   almostXYears: {
     one: 'cha mhòr bliadhna',
-    other: 'cha mhòr {{count}} bliadhnaichean'
-  }
+    other: 'cha mhòr {{count}} bliadhnaichean',
+  },
 }
 
 export default function formatDistance(token, count, options) {

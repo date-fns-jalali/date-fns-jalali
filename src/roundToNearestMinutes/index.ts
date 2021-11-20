@@ -33,10 +33,9 @@ import toInteger from '../_lib/toInteger/index'
  * //=> Thu Jul 10 2014 12:15:00
  */
 export default function roundToNearestMinutes(
-    dirtyDate: Date | number,
-    options?: { nearestTo: number }
-    ): Date
-{
+  dirtyDate: Date | number,
+  options?: { nearestTo: number }
+): Date {
   if (arguments.length < 1) {
     throw new TypeError('1 argument required, but only none provided present')
   }
