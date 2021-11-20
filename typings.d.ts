@@ -24,6 +24,33 @@ interface CurriedFn4<A, B, C, D, R> {
   (a: A, b: B, c: C, d: D): R
 }
 
+interface CurriedFn5<A, B, C, D, E, R> {
+  (a: A): CurriedFn4<B, C, D, E, R>
+  (a: A, b: B): CurriedFn3<C, D, E, R>
+  (a: A, b: B, c: C): CurriedFn2<D, E, R>
+  (a: A, b: B, c: C, d: D): CurriedFn1<E, R>
+  (a: A, b: B, c: C, d: D, e: E): R
+}
+
+interface CurriedFn6<A, B, C, D, E, F, R> {
+  (a: A): CurriedFn5<B, C, D, E, F, R>
+  (a: A, b: B): CurriedFn4<C, D, E, F, R>
+  (a: A, b: B, c: C): CurriedFn3<D, E, F, R>
+  (a: A, b: B, c: C, d: D): CurriedFn2<E, F, R>
+  (a: A, b: B, c: C, d: D, e: E): CurriedFn1<F, R>
+  (a: A, b: B, c: C, d: D, e: E, f: F): R
+}
+
+interface CurriedFn7<A, B, C, D, E, F, G, R> {
+  (a: A): CurriedFn6<B, C, D, E, F, G, R>
+  (a: A, b: B): CurriedFn5<C, D, E, F, G, R>
+  (a: A, b: B, c: C): CurriedFn4<D, E, F, G, R>
+  (a: A, b: B, c: C, d: D): CurriedFn3<E, F, G, R>
+  (a: A, b: B, c: C, d: D, e: E): CurriedFn2<F, G, R>
+  (a: A, b: B, c: C, d: D, e: E, f: F): CurriedFn1<G, R>
+  (a: A, b: B, c: C, d: D, e: E, f: F, g: G): R
+}
+
 // Type Aliases
 
 type Interval = {
@@ -885,6 +912,17 @@ declare module 'date-fns' {
 
   function monthsToYears(months: number): number
   namespace monthsToYears {}
+
+  function newDate(
+    year: number,
+    month: number,
+    date: number,
+    hours?: number,
+    minutes?: number,
+    seconds?: number,
+    ms?: number
+  ): Date
+  namespace newDate {}
 
   function nextDay(date: Date | number, day: Day): Date
   namespace nextDay {}
@@ -2013,6 +2051,11 @@ declare module 'date-fns/monthsToQuarters' {
 declare module 'date-fns/monthsToYears' {
   import { monthsToYears } from 'date-fns'
   export default monthsToYears
+}
+
+declare module 'date-fns/newDate' {
+  import { newDate } from 'date-fns'
+  export default newDate
 }
 
 declare module 'date-fns/nextDay' {
@@ -3195,6 +3238,11 @@ declare module 'date-fns/monthsToYears/index' {
   export default monthsToYears
 }
 
+declare module 'date-fns/newDate/index' {
+  import { newDate } from 'date-fns'
+  export default newDate
+}
+
 declare module 'date-fns/nextDay/index' {
   import { nextDay } from 'date-fns'
   export default nextDay
@@ -4375,6 +4423,11 @@ declare module 'date-fns/monthsToYears/index.js' {
   export default monthsToYears
 }
 
+declare module 'date-fns/newDate/index.js' {
+  import { newDate } from 'date-fns'
+  export default newDate
+}
+
 declare module 'date-fns/nextDay/index.js' {
   import { nextDay } from 'date-fns'
   export default nextDay
@@ -5548,6 +5601,18 @@ declare module 'date-fns/fp' {
 
   const monthsToYears: CurriedFn1<number, number>
   namespace monthsToYears {}
+
+  const newDate: CurriedFn7<
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    Date
+  >
+  namespace newDate {}
 
   const nextDay: CurriedFn2<Day, Date | number, Date>
   namespace nextDay {}
@@ -6755,6 +6820,11 @@ declare module 'date-fns/fp/monthsToQuarters' {
 declare module 'date-fns/fp/monthsToYears' {
   import { monthsToYears } from 'date-fns/fp'
   export default monthsToYears
+}
+
+declare module 'date-fns/fp/newDate' {
+  import { newDate } from 'date-fns/fp'
+  export default newDate
 }
 
 declare module 'date-fns/fp/nextDay' {
@@ -8017,6 +8087,11 @@ declare module 'date-fns/fp/monthsToYears/index' {
   export default monthsToYears
 }
 
+declare module 'date-fns/fp/newDate/index' {
+  import { newDate } from 'date-fns/fp'
+  export default newDate
+}
+
 declare module 'date-fns/fp/nextDay/index' {
   import { nextDay } from 'date-fns/fp'
   export default nextDay
@@ -9277,6 +9352,11 @@ declare module 'date-fns/fp/monthsToYears/index.js' {
   export default monthsToYears
 }
 
+declare module 'date-fns/fp/newDate/index.js' {
+  import { newDate } from 'date-fns/fp'
+  export default newDate
+}
+
 declare module 'date-fns/fp/nextDay/index.js' {
   import { nextDay } from 'date-fns/fp'
   export default nextDay
@@ -10458,6 +10538,17 @@ declare module 'date-fns/esm' {
   function monthsToYears(months: number): number
   namespace monthsToYears {}
 
+  function newDate(
+    year: number,
+    month: number,
+    date: number,
+    hours?: number,
+    minutes?: number,
+    seconds?: number,
+    ms?: number
+  ): Date
+  namespace newDate {}
+
   function nextDay(date: Date | number, day: Day): Date
   namespace nextDay {}
 
@@ -11585,6 +11676,11 @@ declare module 'date-fns/esm/monthsToQuarters' {
 declare module 'date-fns/esm/monthsToYears' {
   import { monthsToYears } from 'date-fns/esm'
   export default monthsToYears
+}
+
+declare module 'date-fns/esm/newDate' {
+  import { newDate } from 'date-fns/esm'
+  export default newDate
 }
 
 declare module 'date-fns/esm/nextDay' {
@@ -12767,6 +12863,11 @@ declare module 'date-fns/esm/monthsToYears/index' {
   export default monthsToYears
 }
 
+declare module 'date-fns/esm/newDate/index' {
+  import { newDate } from 'date-fns/esm'
+  export default newDate
+}
+
 declare module 'date-fns/esm/nextDay/index' {
   import { nextDay } from 'date-fns/esm'
   export default nextDay
@@ -13947,6 +14048,11 @@ declare module 'date-fns/esm/monthsToYears/index.js' {
   export default monthsToYears
 }
 
+declare module 'date-fns/esm/newDate/index.js' {
+  import { newDate } from 'date-fns/esm'
+  export default newDate
+}
+
 declare module 'date-fns/esm/nextDay/index.js' {
   import { nextDay } from 'date-fns/esm'
   export default nextDay
@@ -15120,6 +15226,18 @@ declare module 'date-fns/esm/fp' {
 
   const monthsToYears: CurriedFn1<number, number>
   namespace monthsToYears {}
+
+  const newDate: CurriedFn7<
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    number,
+    Date
+  >
+  namespace newDate {}
 
   const nextDay: CurriedFn2<Day, Date | number, Date>
   namespace nextDay {}
@@ -16327,6 +16445,11 @@ declare module 'date-fns/esm/fp/monthsToQuarters' {
 declare module 'date-fns/esm/fp/monthsToYears' {
   import { monthsToYears } from 'date-fns/esm/fp'
   export default monthsToYears
+}
+
+declare module 'date-fns/esm/fp/newDate' {
+  import { newDate } from 'date-fns/esm/fp'
+  export default newDate
 }
 
 declare module 'date-fns/esm/fp/nextDay' {
@@ -17589,6 +17712,11 @@ declare module 'date-fns/esm/fp/monthsToYears/index' {
   export default monthsToYears
 }
 
+declare module 'date-fns/esm/fp/newDate/index' {
+  import { newDate } from 'date-fns/esm/fp'
+  export default newDate
+}
+
 declare module 'date-fns/esm/fp/nextDay/index' {
   import { nextDay } from 'date-fns/esm/fp'
   export default nextDay
@@ -18847,6 +18975,11 @@ declare module 'date-fns/esm/fp/monthsToQuarters/index.js' {
 declare module 'date-fns/esm/fp/monthsToYears/index.js' {
   import { monthsToYears } from 'date-fns/esm/fp'
   export default monthsToYears
+}
+
+declare module 'date-fns/esm/fp/newDate/index.js' {
+  import { newDate } from 'date-fns/esm/fp'
+  export default newDate
 }
 
 declare module 'date-fns/esm/fp/nextDay/index.js' {
@@ -23005,6 +23138,16 @@ interface dateFns {
   monthsToQuarters(months: number): number
 
   monthsToYears(months: number): number
+
+  newDate(
+    year: number,
+    month: number,
+    date: number,
+    hours?: number,
+    minutes?: number,
+    seconds?: number,
+    ms?: number
+  ): Date
 
   nextDay(date: Date | number, day: Day): Date
 
