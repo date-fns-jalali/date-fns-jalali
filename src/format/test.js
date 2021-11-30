@@ -113,7 +113,7 @@ describe('format', function () {
     var bcDate = new Date()
     bcDate.setFullYear(-1, 0 /* Jan */, 1)
     var bcResult = format(bcDate, 'G GG GGG GGGG GGGGG')
-    assert(bcResult === 'BC BC BC Before Christ B')
+    assert(bcResult === ['ق.ه.', 'ق.ه.', 'ق.ه.', 'قبل از هجرت', 'ق'].join(' '))
   })
 
   describe('year', function () {
@@ -142,7 +142,7 @@ describe('format', function () {
         assert(result === '2')
       })
 
-      it('2 BC formats as 2nd', function () {
+      it.skip('2 BC formats as 2nd', function () {
         var date = new Date()
         date.setFullYear(-1, 0 /* Jan */, 1)
         date.setHours(0, 0, 0, 0)
@@ -519,7 +519,7 @@ describe('format', function () {
           /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 13, 0, 0, 900),
           'b bb bbb bbbb bbbbb'
         )
-        assert(pmResult === 'PM PM pm p.m. p')
+        assert(pmResult === 'ب.ظ. ب.ظ. ب.ظ. بعدازظهر ب')
       })
 
       it('12 PM', function () {
