@@ -13,7 +13,7 @@ describe('fromUnixTime', function () {
     const result = fromUnixTime(NaN)
     assert(isNaN(result.getTime()))
   })
-  
+
   it('discards decimal values', function () {
     const result = fromUnixTime(1330515499.75)
     assert(result.getTime() === 1330515499000)
