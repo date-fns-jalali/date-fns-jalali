@@ -13,6 +13,12 @@ import toInteger from '../_lib/toInteger/index'
 import parsers from './_lib/parsers/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreGetUTCMonth from '../_core/getUTCMonth/index'
+import coreGetUTCDate from '../_core/getUTCDate/index'
+import coreGetUTCFullYear from '../_core/getUTCFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 var TIMEZONE_UNIT_PRIORITY = 10
 
 // This RegExp consists of three parts separated by `|`:
@@ -409,7 +415,7 @@ export default function parse(
     if (dateString === '') {
       return toDate(dirtyReferenceDate)
     } else {
-      return new Date(NaN)
+      return coreNewDate(NaN)
     }
   }
 
@@ -499,7 +505,7 @@ export default function parse(
       )
 
       if (!parseResult) {
-        return new Date(NaN)
+        return coreNewDate(NaN)
       }
 
       setters.push({
@@ -532,14 +538,14 @@ export default function parse(
       if (dateString.indexOf(token) === 0) {
         dateString = dateString.slice(token.length)
       } else {
-        return new Date(NaN)
+        return coreNewDate(NaN)
       }
     }
   }
 
   // Check if the remaining input contains something other than whitespace
   if (dateString.length > 0 && notWhitespaceRegExp.test(dateString)) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   var uniquePrioritySetters = setters
@@ -568,7 +574,7 @@ export default function parse(
   var date = toDate(dirtyReferenceDate)
 
   if (isNaN(date)) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   // Convert the date in system timezone to the same date in UTC+00:00 timezone.
@@ -584,7 +590,7 @@ export default function parse(
       setter.validate &&
       !setter.validate(utcDate, setter.value, subFnOptions)
     ) {
-      return new Date(NaN)
+      return coreNewDate(NaN)
     }
 
     var result = setter.set(utcDate, flags, setter.value, subFnOptions)
@@ -606,11 +612,12 @@ function dateToSystemTimezone(date, flags) {
     return date
   }
 
-  var convertedDate = new Date(0)
-  convertedDate.setFullYear(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate()
+  var convertedDate = coreNewDate(0)
+  coreSetFullYear(
+    convertedDate,
+    coreGetUTCFullYear(date),
+    coreGetUTCMonth(date),
+    coreGetUTCDate(date)
   )
   convertedDate.setHours(
     date.getUTCHours(),

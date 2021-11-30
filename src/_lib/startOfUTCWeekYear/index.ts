@@ -8,6 +8,9 @@ import requiredArgs from '../requiredArgs/index'
 import startOfUTCWeek from '../startOfUTCWeek/index'
 import toInteger from '../toInteger/index'
 
+import coreSetUTCFullYear from '../../_core/setUTCFullYear/index'
+import coreNewDate from '../../_core/newDate/index'
+
 // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 export default function startOfUTCWeekYear(
@@ -30,8 +33,8 @@ export default function startOfUTCWeekYear(
       : toInteger(options.firstWeekContainsDate)
 
   const year = getUTCWeekYear(dirtyDate, dirtyOptions)
-  const firstWeek = new Date(0)
-  firstWeek.setUTCFullYear(year, 0, firstWeekContainsDate)
+  const firstWeek = coreNewDate(0)
+  coreSetUTCFullYear(firstWeek, year, 0, firstWeekContainsDate)
   firstWeek.setUTCHours(0, 0, 0, 0)
   const date = startOfUTCWeek(firstWeek, dirtyOptions)
   return date
