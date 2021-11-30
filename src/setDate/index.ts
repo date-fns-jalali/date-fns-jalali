@@ -2,6 +2,8 @@ import toInteger from '../_lib/toInteger/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreSetDate from '../_core/setDate/index'
+
 /**
  * @name setDate
  * @category Day Helpers
@@ -24,11 +26,14 @@ import requiredArgs from '../_lib/requiredArgs/index'
  * var result = setDate(new Date(2014, 8, 1), 30)
  * //=> Tue Sep 30 2014 00:00:00
  */
-export default function setDate(dirtyDate: Date | number, dirtyDayOfMonth: number): Date {
+export default function setDate(
+  dirtyDate: Date | number,
+  dirtyDayOfMonth: number
+): Date {
   requiredArgs(2, arguments)
 
   const date = toDate(dirtyDate)
   const dayOfMonth = toInteger(dirtyDayOfMonth)
-  date.setDate(dayOfMonth)
+  coreSetDate(date, dayOfMonth)
   return date
 }

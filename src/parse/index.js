@@ -1,4 +1,4 @@
-import defaultLocale from '../locale/en-US/index'
+import defaultLocale from '../locale/_default/index'
 import subMilliseconds from '../subMilliseconds/index'
 import toDate from '../toDate/index'
 import assign from '../_lib/assign/index'
@@ -7,11 +7,17 @@ import getTimezoneOffsetInMilliseconds from '../_lib/getTimezoneOffsetInMillisec
 import {
   isProtectedDayOfYearToken,
   isProtectedWeekYearToken,
-  throwProtectedError
+  throwProtectedError,
 } from '../_lib/protectedTokens/index'
 import toInteger from '../_lib/toInteger/index'
 import parsers from './_lib/parsers/index'
 import requiredArgs from '../_lib/requiredArgs/index'
+
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreGetUTCMonth from '../_core/getUTCMonth/index'
+import coreGetUTCDate from '../_core/getUTCDate/index'
+import coreGetUTCFullYear from '../_core/getUTCFullYear/index'
+import coreNewDate from '../_core/newDate/index'
 
 var TIMEZONE_UNIT_PRIORITY = 10
 
@@ -394,7 +400,7 @@ export default function parse(
 
   var localeWeekStartsOn = locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
@@ -409,14 +415,14 @@ export default function parse(
     if (dateString === '') {
       return toDate(dirtyReferenceDate)
     } else {
-      return new Date(NaN)
+      return coreNewDate(NaN)
     }
   }
 
   var subFnOptions = {
     firstWeekContainsDate: firstWeekContainsDate,
     weekStartsOn: weekStartsOn,
-    locale: locale
+    locale: locale,
   }
 
   // If timezone isn't specified, it will be set to the system timezone
@@ -425,15 +431,15 @@ export default function parse(
       priority: TIMEZONE_UNIT_PRIORITY,
       subPriority: -1,
       set: dateToSystemTimezone,
-      index: 0
-    }
+      index: 0,
+    },
   ]
 
   var i
 
   var tokens = formatString
     .match(longFormattingTokensRegExp)
-    .map(function(substring) {
+    .map(function (substring) {
       var firstCharacter = substring[0]
       if (firstCharacter === 'p' || firstCharacter === 'P') {
         var longFormatter = longFormatters[firstCharacter]
@@ -499,7 +505,7 @@ export default function parse(
       )
 
       if (!parseResult) {
-        return new Date(NaN)
+        return coreNewDate(NaN)
       }
 
       setters.push({
@@ -508,7 +514,7 @@ export default function parse(
         set: parser.set,
         validate: parser.validate,
         value: parseResult.value,
-        index: setters.length
+        index: setters.length,
       })
 
       dateString = parseResult.rest
@@ -532,43 +538,43 @@ export default function parse(
       if (dateString.indexOf(token) === 0) {
         dateString = dateString.slice(token.length)
       } else {
-        return new Date(NaN)
+        return coreNewDate(NaN)
       }
     }
   }
 
   // Check if the remaining input contains something other than whitespace
   if (dateString.length > 0 && notWhitespaceRegExp.test(dateString)) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   var uniquePrioritySetters = setters
-    .map(function(setter) {
+    .map(function (setter) {
       return setter.priority
     })
-    .sort(function(a, b) {
+    .sort(function (a, b) {
       return b - a
     })
-    .filter(function(priority, index, array) {
+    .filter(function (priority, index, array) {
       return array.indexOf(priority) === index
     })
-    .map(function(priority) {
+    .map(function (priority) {
       return setters
-        .filter(function(setter) {
+        .filter(function (setter) {
           return setter.priority === priority
         })
-        .sort(function(a, b) {
+        .sort(function (a, b) {
           return b.subPriority - a.subPriority
         })
     })
-    .map(function(setterArray) {
+    .map(function (setterArray) {
       return setterArray[0]
     })
 
   var date = toDate(dirtyReferenceDate)
 
   if (isNaN(date)) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   // Convert the date in system timezone to the same date in UTC+00:00 timezone.
@@ -584,7 +590,7 @@ export default function parse(
       setter.validate &&
       !setter.validate(utcDate, setter.value, subFnOptions)
     ) {
-      return new Date(NaN)
+      return coreNewDate(NaN)
     }
 
     var result = setter.set(utcDate, flags, setter.value, subFnOptions)
@@ -606,11 +612,12 @@ function dateToSystemTimezone(date, flags) {
     return date
   }
 
-  var convertedDate = new Date(0)
-  convertedDate.setFullYear(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate()
+  var convertedDate = coreNewDate(0)
+  coreSetFullYear(
+    convertedDate,
+    coreGetUTCFullYear(date),
+    coreGetUTCMonth(date),
+    coreGetUTCDate(date)
   )
   convertedDate.setHours(
     date.getUTCHours(),
