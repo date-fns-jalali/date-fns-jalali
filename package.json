@@ -1,6 +1,6 @@
 {
   "name": "date-fns-jalali",
-  "version": "DON'T CHANGE; IT'S SET AUTOMATICALLY DURING DEPLOYMENT; ALSO, USE YARN FOR DEVELOPMENT",
+  "version": "2.27.0-0",
   "sideEffects": false,
   "license": "MIT",
   "description": "Modern JavaScript date utility library for jalali calendar",
