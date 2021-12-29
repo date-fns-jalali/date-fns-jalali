@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name max
  * @category Common Helpers
@@ -53,7 +55,7 @@ export default function max(dirtyDatesArray: Array<Date | number>): Date {
     datesArray = Array.prototype.slice.call(dirtyDatesArray)
   } else {
     // `dirtyDatesArray` is non-iterable, return Invalid Date
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   let result: Date | undefined
@@ -69,5 +71,5 @@ export default function max(dirtyDatesArray: Array<Date | number>): Date {
     }
   })
 
-  return result || new Date(NaN)
+  return result || coreNewDate(NaN)
 }
