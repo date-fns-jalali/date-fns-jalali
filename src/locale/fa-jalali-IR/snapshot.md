@@ -305,26 +305,26 @@ If now is January 1st, 2000, 00:00.
 
 ## `formatDuration`
 
-| Duration      | Result    |
-| ------------- | --------- |
-| {"years":0}   | 0 years   |
-| {"years":1}   | 1 year    |
-| {"years":2}   | 2 years   |
-| {"months":0}  | 0 months  |
-| {"months":1}  | 1 month   |
-| {"months":2}  | 2 months  |
-| {"weeks":0}   | 0 weeks   |
-| {"weeks":1}   | 1 week    |
-| {"weeks":2}   | 2 weeks   |
-| {"days":0}    | 0 days    |
-| {"days":1}    | 1 day     |
-| {"days":2}    | 2 days    |
-| {"hours":0}   | 0 hours   |
-| {"hours":1}   | 1 hour    |
-| {"hours":2}   | 2 hours   |
-| {"minutes":0} | 0 minutes |
-| {"minutes":1} | 1 minute  |
-| {"minutes":2} | 2 minutes |
-| {"seconds":0} | 0 seconds |
-| {"seconds":1} | 1 second  |
-| {"seconds":2} | 2 seconds |
+| Duration      | Result  |
+| ------------- | ------- |
+| {"years":0}   | 0 سال   |
+| {"years":1}   | 1 سال   |
+| {"years":2}   | 2 سال   |
+| {"months":0}  | 0 ماه   |
+| {"months":1}  | 1 ماه   |
+| {"months":2}  | 2 ماه   |
+| {"weeks":0}   | 0 هفته  |
+| {"weeks":1}   | 1 هفته  |
+| {"weeks":2}   | 2 هفته  |
+| {"days":0}    | 0 روز   |
+| {"days":1}    | 1 روز   |
+| {"days":2}    | 2 روز   |
+| {"hours":0}   | 0 ساعت  |
+| {"hours":1}   | 1 ساعت  |
+| {"hours":2}   | 2 ساعت  |
+| {"minutes":0} | 0 دقیقه |
+| {"minutes":1} | 1 دقیقه |
+| {"minutes":2} | 2 دقیقه |
+| {"seconds":0} | 0 ثانیه |
+| {"seconds":1} | 1 ثانیه |
+| {"seconds":2} | 2 ثانیه |
