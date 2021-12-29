@@ -35,7 +35,7 @@ import { WeekStartOptions, LocaleOptions } from '../types'
  *   weekStartsOn: 1
  * })
  * //=> false
- * 
+ *
  * @example
  * // Are 1 January 2014 and 1 January 2015 in the same week?
  * var result = isSameWeek(new Date(2014, 0, 1), new Date(2015, 0, 1))

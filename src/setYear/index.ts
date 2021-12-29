@@ -2,6 +2,9 @@ import toInteger from '../_lib/toInteger/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name setYear
  * @category Year Helpers
@@ -24,7 +27,10 @@ import requiredArgs from '../_lib/requiredArgs/index'
  * const result = setYear(new Date(2014, 8, 1), 2013)
  * //=> Sun Sep 01 2013 00:00:00
  */
-export default function setYear(dirtyDate: Date | number, dirtyYear: number): Date {
+export default function setYear(
+  dirtyDate: Date | number,
+  dirtyYear: number
+): Date {
   requiredArgs(2, arguments)
 
   const date = toDate(dirtyDate)
@@ -32,9 +38,9 @@ export default function setYear(dirtyDate: Date | number, dirtyYear: number): Da
 
   // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
   if (isNaN(date.getTime())) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
-  date.setFullYear(year)
+  coreSetFullYear(date, year)
   return date
 }
