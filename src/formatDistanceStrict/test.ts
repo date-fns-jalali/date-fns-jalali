@@ -419,7 +419,11 @@ describe('formatDistanceStrict', function () {
 
   describe('custom locale', function () {
     it('can be passed to the function', function () {
-      function localizeDistance(token: string, count: number, options: { addSuffix: boolean; comparison: number }) {
+      function localizeDistance(
+        token: string,
+        count: number,
+        options: { addSuffix: boolean; comparison: number }
+      ) {
         assert(token === 'xSeconds')
         assert(count === 25)
         assert(options.addSuffix === true)
@@ -496,22 +500,24 @@ describe('formatDistanceStrict', function () {
   })
 
   it("throws `RangeError` if `options.roundingMethod` is not 'floor', 'ceil', 'round' or undefined", function () {
-    const block = () => formatDistanceStrict(
-      new Date(1986, 3, 4, 10, 32, 0),
-      new Date(1986, 3, 4, 10, 33, 29),
-      // @ts-expect-error
-      { roundingMethod: 'foobar' }
-    )
+    const block = () =>
+      formatDistanceStrict(
+        new Date(1986, 3, 4, 10, 32, 0),
+        new Date(1986, 3, 4, 10, 33, 29),
+        // @ts-expect-error
+        { roundingMethod: 'foobar' }
+      )
     assert.throws(block, RangeError)
   })
 
   it("throws `RangeError` if `options.unit` is not 's', 'm', 'h', 'd', 'M', 'Y' or undefined", function () {
-    const block = () => formatDistanceStrict(
-      new Date(1986, 3, 4, 10, 32, 0),
-      new Date(1986, 3, 4, 10, 33, 29),
-      // @ts-expect-error
-      { unit: 'foobar' }
-    )
+    const block = () =>
+      formatDistanceStrict(
+        new Date(1986, 3, 4, 10, 32, 0),
+        new Date(1986, 3, 4, 10, 33, 29),
+        // @ts-expect-error
+        { unit: 'foobar' }
+      )
     assert.throws(block, RangeError)
   })
 
