@@ -1,0 +1,29 @@
+{
+  "name": "@date-fns/utc",
+  "version": "0.1.0",
+  "description": "UTC date utils",
+  "main": "index.js",
+  "scripts": {
+    "test": "env TZ=Asia/Kolkata vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/date-fns/utc.git"
+  },
+  "keywords": [
+    "date-fns",
+    "Date",
+    "UTC",
+    "Time zones"
+  ],
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/date-fns/utc/issues"
+  },
+  "homepage": "https://github.com/date-fns/utc#readme",
+  "devDependencies": {
+    "typescript": "^4.7.3",
+    "vitest": "^0.14.2"
+  }
+}
