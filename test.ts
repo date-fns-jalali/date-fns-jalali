@@ -8,6 +8,16 @@ describe("UTCDate", () => {
     );
   });
 
+  describe("constructor", () => {
+    it("allows to create current date", () => {
+      expect(new UTCDate().getTime() - Date.now()).toBeLessThan(100);
+    });
+
+    it("allows to create date using timestamp", () => {
+      expect(new UTCDate(540000000000).getTime()).toBe(540000000000);
+    });
+  });
+
   describe("getDate", () => {
     it("returns UTC date", () => {
       expect(new UTCDate(1987, 1, 11, 23).getDate()).toBe(11);

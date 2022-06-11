@@ -15,8 +15,11 @@ export class UTCDate extends Date {
 
   constructor() {
     super();
-    // @ts-ignore - how to type the arguments?!
-    this.setTime(Date.UTC(...arguments));
+    if (arguments.length)
+      this.setTime(
+        // @ts-ignore - how to type the arguments?!
+        arguments.length === 1 ? arguments[0] : Date.UTC(...arguments)
+      );
 
     for (const method of getMethods) {
       // @ts-ignore - how to type overload?
