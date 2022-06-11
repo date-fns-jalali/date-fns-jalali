@@ -4,8 +4,13 @@
   "description": "UTC date utils",
   "main": "index.js",
   "scripts": {
-    "test": "env TZ=Asia/Kolkata vitest"
+    "test": "env TZ=Asia/Kolkata vitest",
+    "build": "tsc index.ts"
   },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/date-fns/utc.git"
