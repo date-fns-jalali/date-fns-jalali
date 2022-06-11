@@ -1,11 +1,11 @@
 {
   "name": "@date-fns/utc",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "UTC date utils",
   "main": "index.js",
   "scripts": {
     "test": "env TZ=Asia/Kolkata vitest",
-    "build": "tsc index.ts --declaration --skipLibCheck"
+    "build": "tsc index.ts --target es2016 --module commonjs --declaration --skipLibCheck"
   },
   "files": [
     "index.js",
