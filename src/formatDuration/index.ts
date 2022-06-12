@@ -1,4 +1,4 @@
-import defaultLocale from '../locale/en-US/index'
+import defaultLocale from '../locale/_default/index'
 import type { Duration } from '../types'
 
 const defaultFormat: (keyof Duration)[] = [

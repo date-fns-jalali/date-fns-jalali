@@ -1,5 +1,5 @@
 import isValid from '../isValid/index'
-import defaultLocale from '../locale/en-US/index'
+import defaultLocale from '../locale/_default/index'
 import subMilliseconds from '../subMilliseconds/index'
 import toDate from '../toDate/index'
 import formatters from '../_lib/format/formatters/index'
@@ -373,7 +373,7 @@ export default function format(dirtyDate, dirtyFormatStr, dirtyOptions) {
 
   var localeWeekStartsOn = locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn

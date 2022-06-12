@@ -12,10 +12,10 @@ const {
 
 /**
  * Return curried function interfaces for a specific FP function arity.
- * @param {Number} [arity=4]
+ * @param {Number} [arity=7]
  * @returns {String[arity]} an array of code blocks
  */
-const getTypeScriptFPInterfaces = (arity = 4) =>
+const getTypeScriptFPInterfaces = (arity = 7) =>
   [
     formatBlock`
       interface CurriedFn1<A, R> {
@@ -46,32 +46,48 @@ const getTypeScriptFPInterfaces = (arity = 4) =>
         (a: A, b: B, c: C, d: D): R
       }
     `,
+
+    formatBlock`
+      interface CurriedFn5<A, B, C, D, E, R> {
+        (a: A): CurriedFn4<B, C, D, E, R>
+        (a: A, b: B): CurriedFn3<C, D, E, R>
+        (a: A, b: B, c: C): CurriedFn2<D, E, R>
+        (a: A, b: B, c: C, d: D): CurriedFn1<E, R>
+        (a: A, b: B, c: C, d: D, e: E): R
+      }
+    `,
+
+    formatBlock`
+      interface CurriedFn6<A, B, C, D, E, F, R> {
+        (a: A): CurriedFn5<B, C, D, E, F, R>
+        (a: A, b: B): CurriedFn4<C, D, E, F, R>
+        (a: A, b: B, c: C): CurriedFn3<D, E, F, R>
+        (a: A, b: B, c: C, d: D): CurriedFn2<E, F, R>
+        (a: A, b: B, c: C, d: D, e: E): CurriedFn1<F, R>
+        (a: A, b: B, c: C, d: D, e: E, f: F): R
+      }
+    `,
+
+    formatBlock`
+      interface CurriedFn7<A, B, C, D, E, F, G, R> {
+        (a: A): CurriedFn6<B, C, D, E, F, G, R>
+        (a: A, b: B): CurriedFn5<C, D, E, F, G, R>
+        (a: A, b: B, c: C): CurriedFn4<D, E, F, G, R>
+        (a: A, b: B, c: C, d: D): CurriedFn3<E, F, G, R>
+        (a: A, b: B, c: C, d: D, e: E): CurriedFn2<F, G, R>
+        (a: A, b: B, c: C, d: D, e: E, f: F): CurriedFn1<G, R>
+        (a: A, b: B, c: C, d: D, e: E, f: F, g: G): R
+      }
+    `,
   ].slice(0, arity)
 
 function getTypeScriptTypeAlias(type) {
   const { title, properties, content } = type
 
   return formatBlock`
-    type ${title} = ${
+    export type ${title} = ${
     properties ? getParams(properties) : content.type.names.join(' | ')
   }
-    type ${title}Aliased = ${title}
-  `
-}
-
-function getExportedTypeScriptTypeAlias(type) {
-  const { title } = type
-
-  return formatBlock`
-    export type ${title} = ${title}Aliased
-  `
-}
-
-function getExportedTypeScriptTypeAliases(aliases) {
-  return formatBlock`
-    declare module 'date-fns' {
-      ${addSeparator(aliases.map(getExportedTypeScriptTypeAlias), '\n')}
-    }
   `
 }
 
@@ -80,10 +96,16 @@ function getTypeScriptDateFnsModuleDefinition(
   fns,
   constantsDefinitions
 ) {
-  const moduleName = `date-fns${submodule}`
+  const moduleName = `date-fns-jalali${submodule}`
+
+  const importTypes =
+    submodule === ''
+      ? ''
+      : "import { Day, Duration, Interval, Locale } from 'date-fns-jalali'"
 
   const definition = formatBlock`
     declare module '${moduleName}' {
+      ${importTypes}
       ${addSeparator(
         fns.map(getTypeScriptFnDefinition).concat(constantsDefinitions),
         '\n'
@@ -102,12 +124,13 @@ function getTypeScriptDateFnsFPModuleDefinition(
   fns,
   constantsDefinitions
 ) {
-  const moduleName = `date-fns${submodule}/fp`
+  const moduleName = `date-fns-jalali${submodule}/fp`
 
   const fnDefinitions = fns.map(getTypeScriptFPFnDefinition)
 
   const definition = formatBlock`
     declare module '${moduleName}' {
+      import { CurriedFn1, CurriedFn2, CurriedFn3, CurriedFn4, CurriedFn7, Day, Duration, Interval, Locale } from 'date-fns-jalali'
       ${addSeparator(fnDefinitions.concat(constantsDefinitions), '\n')}
     }
   `
@@ -120,11 +143,11 @@ function getTypeScriptDateFnsFPModuleDefinition(
 
 function getTypeScriptFnModuleDefinition(submodule, fnSuffix, fn) {
   const name = fn.content.name
-  const moduleName = `date-fns${submodule}/${name}${fnSuffix}`
+  const moduleName = `date-fns-jalali${submodule}/${name}${fnSuffix}`
 
   const definition = formatBlock`
     declare module '${moduleName}' {
-      import {${name}} from 'date-fns${submodule}'
+      import {${name}} from 'date-fns-jalali${submodule}'
       export default ${name}
     }
   `
@@ -160,11 +183,11 @@ function getTypeScriptFPFnDefinition(fn) {
 
 function getTypeScriptFPFnModuleDefinition(submodule, fnSuffix, isDefault, fn) {
   const { title } = fn
-  const moduleName = `date-fns${submodule}/fp/${title}${fnSuffix}`
+  const moduleName = `date-fns-jalali${submodule}/fp/${title}${fnSuffix}`
 
   const definition = formatBlock`
     declare module '${moduleName}' {
-      import {${title}} from 'date-fns${submodule}/fp'
+      import {${title}} from 'date-fns-jalali${submodule}/fp'
       export default ${title}
     }
   `
@@ -176,12 +199,13 @@ function getTypeScriptFPFnModuleDefinition(submodule, fnSuffix, isDefault, fn) {
 }
 
 function getTypeScriptLocaleIndexModuleDefinition(submodule, locales) {
-  const moduleName = `date-fns${submodule}/locale`
+  const moduleName = `date-fns-jalali${submodule}/locale`
 
   const localesDefinitions = locales.map(getTypeScriptLocaleDefinition)
 
   const definition = formatBlock`
     declare module '${moduleName}' {
+      import { Locale } from 'date-fns-jalali'
       ${addSeparator(localesDefinitions, '\n')}
     }
   `
@@ -208,12 +232,12 @@ function getTypeScriptLocaleModuleDefinition(
   locale
 ) {
   const code = locale.code
-  const moduleName = `date-fns${submodule}/locale/${code}${localeSuffix}`
+  const moduleName = `date-fns-jalali${submodule}/locale/${code}${localeSuffix}`
   const { name } = locale
 
   const definition = formatBlock`
     declare module '${moduleName}' {
-      import {${name}} from 'date-fns${submodule}/locale'
+      import {${name}} from 'date-fns-jalali${submodule}/locale'
       export default ${name}
     }
   `
@@ -234,7 +258,7 @@ function getTypeScriptInterfaceDefinition(fn) {
 
 function generateTypescriptFnTyping(fn) {
   const typingFile = formatTypeScriptFile`
-    import {${fn.title}} from 'date-fns'
+    import {${fn.title}} from 'date-fns-jalali'
     export default ${fn.title}
   `
   writeFile(`./src/${fn.title}/index.d.ts`, typingFile)
@@ -242,7 +266,7 @@ function generateTypescriptFnTyping(fn) {
 
 function generateTypescriptFPFnTyping(fn) {
   const typingFile = formatTypeScriptFile`
-    import {${fn.title}} from 'date-fns/fp'
+    import {${fn.title}} from 'date-fns-jalali/fp'
     export default ${fn.title}
   `
   writeFile(`./src/fp/${fn.title}/index.d.ts`, typingFile)
@@ -250,7 +274,7 @@ function generateTypescriptFPFnTyping(fn) {
 
 function generateTypescriptLocaleTyping(locale) {
   const typingFile = formatTypeScriptFile`
-    import {${locale.name}} from 'date-fns/locale'
+    import {${locale.name}} from 'date-fns-jalali/locale'
     export default ${locale.name}
   `
   writeFile(`src/locale/${locale.code}/index.d.ts`, typingFile)
@@ -333,8 +357,6 @@ function generateTypeScriptTypings(fns, aliases, locales, constants) {
 
   const aliasDefinitions = aliases.map(getTypeScriptTypeAlias)
 
-  const exportedAliasDefinitions = [getExportedTypeScriptTypeAliases(aliases)]
-
   const localeModuleDefinitions = [
     getTypeScriptLocaleIndexModuleDefinition('', locales),
   ]
@@ -379,30 +401,29 @@ function generateTypeScriptTypings(fns, aliases, locales, constants) {
     .map((module) => module.definition)
 
   const globalInterfaceDefinition = formatBlock`
-    interface dateFns {
-      ${addSeparator(
-        nonFPFns
-          .map(getTypeScriptInterfaceDefinition)
-          .concat(
-            constants.map((c) => `${c.name}: ${c.type.names.join(' | ')}`)
-          ),
-        '\n'
-      )}
+    declare module 'date-fns-jalali' {
+      interface dateFns {
+        ${addSeparator(
+          nonFPFns
+            .map(getTypeScriptInterfaceDefinition)
+            .concat(
+              constants.map((c) => `${c.name}: ${c.type.names.join(' | ')}`)
+            ),
+          '\n'
+        )}
+      }
     }
   `
 
   const typingFile = formatTypeScriptFile`
     // FP Interfaces
+    declare module 'date-fns-jalali' {
+      ${addSeparator(getTypeScriptFPInterfaces(), '\n')}
+    }
 
-    ${addSeparator(getTypeScriptFPInterfaces(), '\n')}
-
-    // Type Aliases
-
-    ${addSeparator(aliasDefinitions, '\n')}
-
-    // Exported Type Aliases
-
-    ${addSeparator(exportedAliasDefinitions, '\n')}
+    declare module 'date-fns-jalali' {
+      ${addSeparator(aliasDefinitions, '\n')}
+    }
 
     // Regular Functions
 

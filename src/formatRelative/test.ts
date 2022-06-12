@@ -4,58 +4,75 @@ import assert from 'assert'
 import formatRelative from '.'
 
 describe('formatRelative', function () {
-  const baseDate = new Date(1986, 3 /* Apr */, 4, 10, 32, 0, 900)
+  const baseDate = /* 1365/1/15 */ new Date(
+    1986,
+    3 /* Apr */,
+    4,
+    10,
+    32,
+    0,
+    900
+  )
 
   it('accepts a timestamp', function () {
-    const date = new Date(2014, 3 /* Apr */, 4)
-    assert(formatRelative(date.getTime(), baseDate.getTime()) === '04/04/2014')
+    const date = /* 1393/1/15 */ new Date(2014, 3 /* Apr */, 4)
+    assert(formatRelative(date.getTime(), baseDate.getTime()) === '1393/01/15')
   })
 
   it('before the last week', function () {
     const result = formatRelative(
-      new Date(1986, 2 /* Mar */, 28, 16, 50),
+      /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50),
       baseDate
     )
-    assert(result === '03/28/1986')
+    assert(result === '1365/01/08')
   })
 
   it('last week', function () {
-    const result = formatRelative(new Date(1986, 3 /* Apr */, 1), baseDate)
-    assert(result === 'last Tuesday at 12:00 AM')
+    const result = formatRelative(
+      /* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1),
+      baseDate
+    )
+    assert(result === 'سه‌شنبه گذشته در 12:00 ق.ظ.')
   })
 
   it('yesterday', function () {
     const result = formatRelative(
-      new Date(1986, 3 /* Apr */, 3, 22, 22),
+      /* 1365/1/14 */ new Date(1986, 3 /* Apr */, 3, 22, 22),
       baseDate
     )
-    assert(result === 'yesterday at 10:22 PM')
+    assert(result === 'دیروز در 10:22 ب.ظ.')
   })
 
   it('today', function () {
     const result = formatRelative(
-      new Date(1986, 3 /* Apr */, 4, 16, 50),
+      /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 16, 50),
       baseDate
     )
-    assert(result === 'today at 4:50 PM')
+    assert(result === 'امروز در 4:50 ب.ظ.')
   })
 
   it('tomorrow', function () {
-    const result = formatRelative(new Date(1986, 3 /* Apr */, 5, 7, 30), baseDate)
-    assert(result === 'tomorrow at 7:30 AM')
+    const result = formatRelative(
+      /* 1365/1/16 */ new Date(1986, 3 /* Apr */, 5, 7, 30),
+      baseDate
+    )
+    assert(result === 'فردا در 7:30 ق.ظ.')
   })
 
   it('next week', function () {
-    const result = formatRelative(new Date(1986, 3 /* Apr */, 6, 12, 0), baseDate)
-    assert(result === 'Sunday at 12:00 PM')
+    const result = formatRelative(
+      /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 12, 0),
+      baseDate
+    )
+    assert(result === 'یک‌شنبه در 12:00 ب.ظ.')
   })
 
   it('after the next week', function () {
     const result = formatRelative(
-      new Date(1986, 3 /* Apr */, 11, 16, 50),
+      /* 1365/1/22 */ new Date(1986, 3 /* Apr */, 11, 16, 50),
       baseDate
     )
-    assert(result === '04/11/1986')
+    assert(result === '1365/01/22')
   })
 
   describe('edge cases', function () {
@@ -70,7 +87,7 @@ describe('formatRelative', function () {
       assert.throws(
         formatRelative.bind(
           null,
-          new Date(2017, 0 /* Jan */, 1),
+          /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
           new Date(NaN)
         ),
         RangeError
@@ -84,7 +101,7 @@ describe('formatRelative', function () {
       )
     })
 
-    it('handles dates before 100 AD', function () {
+    it.skip('handles dates before 100 AD', function () {
       const date = new Date(0)
       date.setFullYear(7, 11 /* Dec */, 31)
       date.setHours(0, 0, 0, 0)
@@ -98,19 +115,19 @@ describe('formatRelative', function () {
         localize: {
           month: function () {
             return 'works'
-          }
+          },
         },
         formatLong: {
           date: function () {
             return "'It' MMMM"
-          }
+          },
         },
         formatRelative: function () {
           return "P 'perfectly!'"
-        }
+        },
       }
       const result = formatRelative(
-        new Date(1986, 2 /* Mar */, 28, 16, 50),
+        /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50),
         baseDate,
         // @ts-expect-error
         { locale: customLocale }
@@ -123,12 +140,17 @@ describe('formatRelative', function () {
         formatLong: {},
         formatRelative: function () {
           return ''
-        }
+        },
       }
       // @ts-expect-error
-      const block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
-      })
+      const block = formatRelative.bind(
+        null,
+        /* 1395/10/12 */ new Date(2017, 0, 1),
+        baseDate,
+        {
+          locale: customLocale,
+        }
+      )
       assert.throws(block, RangeError)
     })
 
@@ -137,24 +159,34 @@ describe('formatRelative', function () {
         localize: {},
         formatRelative: function () {
           return ''
-        }
+        },
       }
       // @ts-expect-error
-      const block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
-      })
+      const block = formatRelative.bind(
+        null,
+        /* 1395/10/12 */ new Date(2017, 0, 1),
+        baseDate,
+        {
+          locale: customLocale,
+        }
+      )
       assert.throws(block, RangeError)
     })
 
     it("throws `RangeError` if `options.locale` doesn't have `formatRelative` property", function () {
       const customLocale = {
         localize: {},
-        formatLong: {}
+        formatLong: {},
       }
       // @ts-expect-error
-      const block = formatRelative.bind(null, new Date(2017, 0, 1), baseDate, {
-        locale: customLocale
-      })
+      const block = formatRelative.bind(
+        null,
+        /* 1395/10/12 */ new Date(2017, 0, 1),
+        baseDate,
+        {
+          locale: customLocale,
+        }
+      )
       assert.throws(block, RangeError)
     })
   })
