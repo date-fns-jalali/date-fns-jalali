@@ -1,93 +1,78 @@
 // This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.
 
 // FP Interfaces
-
-interface CurriedFn1<A, R> {
-  (a: A): R
-}
-
-interface CurriedFn2<A, B, R> {
-  (a: A): CurriedFn1<B, R>
-  (a: A, b: B): R
-}
-
-interface CurriedFn3<A, B, C, R> {
-  (a: A): CurriedFn2<B, C, R>
-  (a: A, b: B): CurriedFn1<C, R>
-  (a: A, b: B, c: C): R
-}
-
-interface CurriedFn4<A, B, C, D, R> {
-  (a: A): CurriedFn3<B, C, D, R>
-  (a: A, b: B): CurriedFn2<C, D, R>
-  (a: A, b: B, c: C): CurriedFn1<D, R>
-  (a: A, b: B, c: C, d: D): R
-}
-
-// Type Aliases
-
-type Interval = {
-  start: Date | number
-  end: Date | number
-}
-type IntervalAliased = Interval
-
-type Locale = {
-  code?: string
-  formatDistance?: (...args: Array<any>) => any
-  formatRelative?: (...args: Array<any>) => any
-  localize?: {
-    ordinalNumber: (...args: Array<any>) => any
-    era: (...args: Array<any>) => any
-    quarter: (...args: Array<any>) => any
-    month: (...args: Array<any>) => any
-    day: (...args: Array<any>) => any
-    dayPeriod: (...args: Array<any>) => any
+declare module 'date-fns' {
+  interface CurriedFn1<A, R> {
+    (a: A): R
   }
-  formatLong?: {
-    date: (...args: Array<any>) => any
-    time: (...args: Array<any>) => any
-    dateTime: (...args: Array<any>) => any
+
+  interface CurriedFn2<A, B, R> {
+    (a: A): CurriedFn1<B, R>
+    (a: A, b: B): R
   }
-  match?: {
-    ordinalNumber: (...args: Array<any>) => any
-    era: (...args: Array<any>) => any
-    quarter: (...args: Array<any>) => any
-    month: (...args: Array<any>) => any
-    day: (...args: Array<any>) => any
-    dayPeriod: (...args: Array<any>) => any
+
+  interface CurriedFn3<A, B, C, R> {
+    (a: A): CurriedFn2<B, C, R>
+    (a: A, b: B): CurriedFn1<C, R>
+    (a: A, b: B, c: C): R
   }
-  options?: {
-    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+
+  interface CurriedFn4<A, B, C, D, R> {
+    (a: A): CurriedFn3<B, C, D, R>
+    (a: A, b: B): CurriedFn2<C, D, R>
+    (a: A, b: B, c: C): CurriedFn1<D, R>
+    (a: A, b: B, c: C, d: D): R
   }
 }
-type LocaleAliased = Locale
-
-type Duration = {
-  years?: number
-  months?: number
-  weeks?: number
-  days?: number
-  hours?: number
-  minutes?: number
-  seconds?: number
-}
-type DurationAliased = Duration
-
-type Day = 0 | 1 | 2 | 3 | 4 | 5 | 6
-type DayAliased = Day
-
-// Exported Type Aliases
 
 declare module 'date-fns' {
-  export type Interval = IntervalAliased
+  export type Interval = {
+    start: Date | number
+    end: Date | number
+  }
 
-  export type Locale = LocaleAliased
+  export type Locale = {
+    code?: string
+    formatDistance?: (...args: Array<any>) => any
+    formatRelative?: (...args: Array<any>) => any
+    localize?: {
+      ordinalNumber: (...args: Array<any>) => any
+      era: (...args: Array<any>) => any
+      quarter: (...args: Array<any>) => any
+      month: (...args: Array<any>) => any
+      day: (...args: Array<any>) => any
+      dayPeriod: (...args: Array<any>) => any
+    }
+    formatLong?: {
+      date: (...args: Array<any>) => any
+      time: (...args: Array<any>) => any
+      dateTime: (...args: Array<any>) => any
+    }
+    match?: {
+      ordinalNumber: (...args: Array<any>) => any
+      era: (...args: Array<any>) => any
+      quarter: (...args: Array<any>) => any
+      month: (...args: Array<any>) => any
+      day: (...args: Array<any>) => any
+      dayPeriod: (...args: Array<any>) => any
+    }
+    options?: {
+      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+    }
+  }
 
-  export type Duration = DurationAliased
+  export type Duration = {
+    years?: number
+    months?: number
+    weeks?: number
+    days?: number
+    hours?: number
+    minutes?: number
+    seconds?: number
+  }
 
-  export type Day = DayAliased
+  export type Day = 0 | 1 | 2 | 3 | 4 | 5 | 6
 }
 
 // Regular Functions
@@ -4738,6 +4723,16 @@ declare module 'date-fns/yearsToQuarters/index.js' {
 // FP Functions
 
 declare module 'date-fns/fp' {
+  import {
+    CurriedFn1,
+    CurriedFn2,
+    CurriedFn3,
+    CurriedFn4,
+    Day,
+    Duration,
+    Interval,
+    Locale,
+  } from 'date-fns'
   const add: CurriedFn2<Duration, Date | number, Date>
   namespace add {}
 
@@ -9665,6 +9660,7 @@ declare module 'date-fns/fp/yearsToQuarters/index.js' {
 // ECMAScript Module Functions
 
 declare module 'date-fns/esm' {
+  import { Day, Duration, Interval, Locale } from 'date-fns'
   function add(date: Date | number, duration: Duration): Date
   namespace add {}
 
@@ -14310,6 +14306,16 @@ declare module 'date-fns/esm/yearsToQuarters/index.js' {
 // ECMAScript Module FP Functions
 
 declare module 'date-fns/esm/fp' {
+  import {
+    CurriedFn1,
+    CurriedFn2,
+    CurriedFn3,
+    CurriedFn4,
+    Day,
+    Duration,
+    Interval,
+    Locale,
+  } from 'date-fns'
   const add: CurriedFn2<Duration, Date | number, Date>
   namespace add {}
 
@@ -19237,6 +19243,7 @@ declare module 'date-fns/esm/fp/yearsToQuarters/index.js' {
 // Regular Locales
 
 declare module 'date-fns/locale' {
+  import { Locale } from 'date-fns'
   const af: Locale
   namespace af {}
 
@@ -20879,6 +20886,7 @@ declare module 'date-fns/locale/zh-TW/index.js' {
 // ECMAScript Module Locales
 
 declare module 'date-fns/esm/locale' {
+  import { Locale } from 'date-fns'
   const af: Locale
   namespace af {}
 
@@ -22520,833 +22528,841 @@ declare module 'date-fns/esm/locale/zh-TW/index.js' {
 
 // dateFns Global Interface
 
-interface dateFns {
-  add(date: Date | number, duration: Duration): Date
+declare module 'date-fns' {
+  interface dateFns {
+    add(date: Date | number, duration: Duration): Date
 
-  addBusinessDays(date: Date | number, amount: number): Date
+    addBusinessDays(date: Date | number, amount: number): Date
 
-  addDays(date: Date | number, amount: number): Date
+    addDays(date: Date | number, amount: number): Date
 
-  addHours(date: Date | number, amount: number): Date
+    addHours(date: Date | number, amount: number): Date
 
-  addISOWeekYears(date: Date | number, amount: number): Date
+    addISOWeekYears(date: Date | number, amount: number): Date
 
-  addMilliseconds(date: Date | number, amount: number): Date
+    addMilliseconds(date: Date | number, amount: number): Date
 
-  addMinutes(date: Date | number, amount: number): Date
+    addMinutes(date: Date | number, amount: number): Date
 
-  addMonths(date: Date | number, amount: number): Date
+    addMonths(date: Date | number, amount: number): Date
 
-  addQuarters(date: Date | number, amount: number): Date
+    addQuarters(date: Date | number, amount: number): Date
 
-  addSeconds(date: Date | number, amount: number): Date
+    addSeconds(date: Date | number, amount: number): Date
 
-  addWeeks(date: Date | number, amount: number): Date
+    addWeeks(date: Date | number, amount: number): Date
 
-  addYears(date: Date | number, amount: number): Date
+    addYears(date: Date | number, amount: number): Date
 
-  areIntervalsOverlapping(
-    intervalLeft: Interval,
-    intervalRight: Interval,
-    options?: {
-      inclusive?: boolean
-    }
-  ): boolean
+    areIntervalsOverlapping(
+      intervalLeft: Interval,
+      intervalRight: Interval,
+      options?: {
+        inclusive?: boolean
+      }
+    ): boolean
+
+    clamp(date: Date | number, interval: Interval): Date
+
+    closestIndexTo(
+      dateToCompare: Date | number,
+      datesArray: (Date | number)[]
+    ): number | undefined
+
+    closestTo(
+      dateToCompare: Date | number,
+      datesArray: (Date | number)[]
+    ): Date | undefined
+
+    compareAsc(dateLeft: Date | number, dateRight: Date | number): number
+
+    compareDesc(dateLeft: Date | number, dateRight: Date | number): number
+
+    daysToWeeks(days: number): number
+
+    differenceInBusinessDays(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInCalendarDays(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInCalendarISOWeeks(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInCalendarISOWeekYears(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInCalendarMonths(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInCalendarQuarters(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInCalendarWeeks(
+      dateLeft: Date | number,
+      dateRight: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): number
+
+    differenceInCalendarYears(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInDays(dateLeft: Date | number, dateRight: Date | number): number
+
+    differenceInHours(
+      dateLeft: Date | number,
+      dateRight: Date | number,
+      options?: {
+        roundingMethod?: string
+      }
+    ): number
+
+    differenceInISOWeekYears(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInMilliseconds(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInMinutes(
+      dateLeft: Date | number,
+      dateRight: Date | number,
+      options?: {
+        roundingMethod?: string
+      }
+    ): number
+
+    differenceInMonths(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): number
+
+    differenceInQuarters(
+      dateLeft: Date | number,
+      dateRight: Date | number,
+      options?: {
+        roundingMethod?: string
+      }
+    ): number
+
+    differenceInSeconds(
+      dateLeft: Date | number,
+      dateRight: Date | number,
+      options?: {
+        roundingMethod?: string
+      }
+    ): number
+
+    differenceInWeeks(
+      dateLeft: Date | number,
+      dateRight: Date | number,
+      options?: {
+        roundingMethod?: string
+      }
+    ): number
+
+    differenceInYears(dateLeft: Date | number, dateRight: Date | number): number
+
+    eachDayOfInterval(
+      interval: Interval,
+      options?: {
+        step?: number
+      }
+    ): Date[]
+
+    eachHourOfInterval(
+      interval: Interval,
+      options?: {
+        step?: number
+      }
+    ): Date[]
+
+    eachMinuteOfInterval(
+      interval: Interval,
+      options?: {
+        step?: number
+      }
+    ): Date[]
+
+    eachMonthOfInterval(interval: Interval): Date[]
+
+    eachQuarterOfInterval(interval: Interval): Date[]
+
+    eachWeekendOfInterval(interval: Interval): Date[]
+
+    eachWeekendOfMonth(date: Date | number): Date[]
+
+    eachWeekendOfYear(date: Date | number): Date[]
+
+    eachWeekOfInterval(
+      interval: Interval,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): Date[]
+
+    eachYearOfInterval(interval: Interval): Date[]
+
+    endOfDay(date: Date | number): Date
+
+    endOfDecade(
+      date: Date | number,
+      options?: {
+        additionalDigits?: 0 | 1 | 2
+      }
+    ): Date
+
+    endOfHour(date: Date | number): Date
+
+    endOfISOWeek(date: Date | number): Date
+
+    endOfISOWeekYear(date: Date | number): Date
+
+    endOfMinute(date: Date | number): Date
+
+    endOfMonth(date: Date | number): Date
+
+    endOfQuarter(date: Date | number): Date
+
+    endOfSecond(date: Date | number): Date
+
+    endOfToday(): Date
+
+    endOfTomorrow(): Date
+
+    endOfWeek(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): Date
+
+    endOfYear(date: Date | number): Date
+
+    endOfYesterday(): Date
+
+    format(
+      date: Date | number,
+      format: string,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+        firstWeekContainsDate?: number
+        useAdditionalWeekYearTokens?: boolean
+        useAdditionalDayOfYearTokens?: boolean
+      }
+    ): string
+
+    formatDistance(
+      date: Date | number,
+      baseDate: Date | number,
+      options?: {
+        includeSeconds?: boolean
+        addSuffix?: boolean
+        locale?: Locale
+      }
+    ): string
+
+    formatDistanceStrict(
+      date: Date | number,
+      baseDate: Date | number,
+      options?: {
+        addSuffix?: boolean
+        unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
+        roundingMethod?: 'floor' | 'ceil' | 'round'
+        locale?: Locale
+      }
+    ): string
+
+    formatDistanceToNow(
+      date: Date | number,
+      options?: {
+        includeSeconds?: boolean
+        addSuffix?: boolean
+        locale?: Locale
+      }
+    ): string
+
+    formatDistanceToNowStrict(
+      date: Date | number,
+      options?: {
+        addSuffix?: boolean
+        unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
+        roundingMethod?: 'floor' | 'ceil' | 'round'
+        locale?: Locale
+      }
+    ): string
+
+    formatDuration(
+      duration: Duration,
+      options?: {
+        format?: string[]
+        zero?: boolean
+        delimiter?: string
+        locale?: Locale
+      }
+    ): string
+
+    formatISO(
+      date: Date | number,
+      options?: {
+        format?: 'extended' | 'basic'
+        representation?: 'complete' | 'date' | 'time'
+      }
+    ): string
+
+    formatISO9075(
+      date: Date | number,
+      options?: {
+        format?: 'extended' | 'basic'
+        representation?: 'complete' | 'date' | 'time'
+      }
+    ): string
+
+    formatISODuration(duration: Duration): string
+
+    formatRelative(
+      date: Date | number,
+      baseDate: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): string
+
+    formatRFC3339(
+      date: Date | number,
+      options?: {
+        fractionDigits?: 0 | 1 | 2 | 3
+      }
+    ): string
+
+    formatRFC7231(date: Date | number): string
+
+    fromUnixTime(unixTime: number): Date
+
+    getDate(date: Date | number): number
+
+    getDay(date: Date | number): 0 | 1 | 2 | 3 | 4 | 5 | 6
+
+    getDayOfYear(date: Date | number): number
+
+    getDaysInMonth(date: Date | number): number
+
+    getDaysInYear(date: Date | number): number
+
+    getDecade(date: Date | number): number
+
+    getHours(date: Date | number): number
+
+    getISODay(date: Date | number): number
+
+    getISOWeek(date: Date | number): number
+
+    getISOWeeksInYear(date: Date | number): number
+
+    getISOWeekYear(date: Date | number): number
+
+    getMilliseconds(date: Date | number): number
+
+    getMinutes(date: Date | number): number
+
+    getMonth(date: Date | number): number
+
+    getOverlappingDaysInIntervals(
+      intervalLeft: Interval,
+      intervalRight: Interval
+    ): number
+
+    getQuarter(date: Date | number): number
+
+    getSeconds(date: Date | number): number
+
+    getTime(date: Date | number): number
+
+    getUnixTime(date: Date | number): number
+
+    getWeek(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+        firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+      }
+    ): number
+
+    getWeekOfMonth(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): number
+
+    getWeeksInMonth(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): number
+
+    getWeekYear(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+        firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+      }
+    ): number
+
+    getYear(date: Date | number): number
+
+    hoursToMilliseconds(hours: number): number
+
+    hoursToMinutes(hours: number): number
+
+    hoursToSeconds(hours: number): number
+
+    intervalToDuration(interval: Interval): Duration
+
+    intlFormat(
+      argument: Date | number,
+      formatOptions?: {
+        localeMatcher?: 'lookup' | 'best fit'
+        weekday?: 'narrow' | 'short' | 'long'
+        era?: 'narrow' | 'short' | 'long'
+        year?: 'numeric' | '2-digit'
+        month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long'
+        day?: 'numeric' | '2-digit'
+        hour?: 'numeric' | '2-digit'
+        minute?: 'numeric' | '2-digit'
+        second?: 'numeric' | '2-digit'
+        timeZoneName?: 'short' | 'long'
+        formatMatcher?: 'basic' | 'best fit'
+        hour12?: boolean
+        timeZone?: string
+      },
+      localeOptions?: {
+        locale?: string | string[]
+      }
+    ): string
 
-  clamp(date: Date | number, interval: Interval): Date
+    isAfter(date: Date | number, dateToCompare: Date | number): boolean
 
-  closestIndexTo(
-    dateToCompare: Date | number,
-    datesArray: (Date | number)[]
-  ): number | undefined
-
-  closestTo(
-    dateToCompare: Date | number,
-    datesArray: (Date | number)[]
-  ): Date | undefined
-
-  compareAsc(dateLeft: Date | number, dateRight: Date | number): number
-
-  compareDesc(dateLeft: Date | number, dateRight: Date | number): number
-
-  daysToWeeks(days: number): number
-
-  differenceInBusinessDays(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInCalendarDays(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInCalendarISOWeeks(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInCalendarISOWeekYears(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInCalendarMonths(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInCalendarQuarters(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInCalendarWeeks(
-    dateLeft: Date | number,
-    dateRight: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): number
-
-  differenceInCalendarYears(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInDays(dateLeft: Date | number, dateRight: Date | number): number
-
-  differenceInHours(
-    dateLeft: Date | number,
-    dateRight: Date | number,
-    options?: {
-      roundingMethod?: string
-    }
-  ): number
-
-  differenceInISOWeekYears(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInMilliseconds(
-    dateLeft: Date | number,
-    dateRight: Date | number
-  ): number
-
-  differenceInMinutes(
-    dateLeft: Date | number,
-    dateRight: Date | number,
-    options?: {
-      roundingMethod?: string
-    }
-  ): number
-
-  differenceInMonths(dateLeft: Date | number, dateRight: Date | number): number
-
-  differenceInQuarters(
-    dateLeft: Date | number,
-    dateRight: Date | number,
-    options?: {
-      roundingMethod?: string
-    }
-  ): number
+    isBefore(date: Date | number, dateToCompare: Date | number): boolean
 
-  differenceInSeconds(
-    dateLeft: Date | number,
-    dateRight: Date | number,
-    options?: {
-      roundingMethod?: string
-    }
-  ): number
-
-  differenceInWeeks(
-    dateLeft: Date | number,
-    dateRight: Date | number,
-    options?: {
-      roundingMethod?: string
-    }
-  ): number
-
-  differenceInYears(dateLeft: Date | number, dateRight: Date | number): number
-
-  eachDayOfInterval(
-    interval: Interval,
-    options?: {
-      step?: number
-    }
-  ): Date[]
-
-  eachHourOfInterval(
-    interval: Interval,
-    options?: {
-      step?: number
-    }
-  ): Date[]
-
-  eachMinuteOfInterval(
-    interval: Interval,
-    options?: {
-      step?: number
-    }
-  ): Date[]
-
-  eachMonthOfInterval(interval: Interval): Date[]
-
-  eachQuarterOfInterval(interval: Interval): Date[]
-
-  eachWeekendOfInterval(interval: Interval): Date[]
-
-  eachWeekendOfMonth(date: Date | number): Date[]
-
-  eachWeekendOfYear(date: Date | number): Date[]
-
-  eachWeekOfInterval(
-    interval: Interval,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): Date[]
-
-  eachYearOfInterval(interval: Interval): Date[]
-
-  endOfDay(date: Date | number): Date
-
-  endOfDecade(
-    date: Date | number,
-    options?: {
-      additionalDigits?: 0 | 1 | 2
-    }
-  ): Date
-
-  endOfHour(date: Date | number): Date
-
-  endOfISOWeek(date: Date | number): Date
-
-  endOfISOWeekYear(date: Date | number): Date
-
-  endOfMinute(date: Date | number): Date
-
-  endOfMonth(date: Date | number): Date
-
-  endOfQuarter(date: Date | number): Date
-
-  endOfSecond(date: Date | number): Date
-
-  endOfToday(): Date
-
-  endOfTomorrow(): Date
-
-  endOfWeek(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): Date
-
-  endOfYear(date: Date | number): Date
-
-  endOfYesterday(): Date
-
-  format(
-    date: Date | number,
-    format: string,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-      firstWeekContainsDate?: number
-      useAdditionalWeekYearTokens?: boolean
-      useAdditionalDayOfYearTokens?: boolean
-    }
-  ): string
-
-  formatDistance(
-    date: Date | number,
-    baseDate: Date | number,
-    options?: {
-      includeSeconds?: boolean
-      addSuffix?: boolean
-      locale?: Locale
-    }
-  ): string
-
-  formatDistanceStrict(
-    date: Date | number,
-    baseDate: Date | number,
-    options?: {
-      addSuffix?: boolean
-      unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
-      roundingMethod?: 'floor' | 'ceil' | 'round'
-      locale?: Locale
-    }
-  ): string
-
-  formatDistanceToNow(
-    date: Date | number,
-    options?: {
-      includeSeconds?: boolean
-      addSuffix?: boolean
-      locale?: Locale
-    }
-  ): string
-
-  formatDistanceToNowStrict(
-    date: Date | number,
-    options?: {
-      addSuffix?: boolean
-      unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
-      roundingMethod?: 'floor' | 'ceil' | 'round'
-      locale?: Locale
-    }
-  ): string
-
-  formatDuration(
-    duration: Duration,
-    options?: {
-      format?: string[]
-      zero?: boolean
-      delimiter?: string
-      locale?: Locale
-    }
-  ): string
-
-  formatISO(
-    date: Date | number,
-    options?: {
-      format?: 'extended' | 'basic'
-      representation?: 'complete' | 'date' | 'time'
-    }
-  ): string
-
-  formatISO9075(
-    date: Date | number,
-    options?: {
-      format?: 'extended' | 'basic'
-      representation?: 'complete' | 'date' | 'time'
-    }
-  ): string
-
-  formatISODuration(duration: Duration): string
-
-  formatRelative(
-    date: Date | number,
-    baseDate: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): string
-
-  formatRFC3339(
-    date: Date | number,
-    options?: {
-      fractionDigits?: 0 | 1 | 2 | 3
-    }
-  ): string
-
-  formatRFC7231(date: Date | number): string
-
-  fromUnixTime(unixTime: number): Date
-
-  getDate(date: Date | number): number
-
-  getDay(date: Date | number): 0 | 1 | 2 | 3 | 4 | 5 | 6
-
-  getDayOfYear(date: Date | number): number
-
-  getDaysInMonth(date: Date | number): number
-
-  getDaysInYear(date: Date | number): number
-
-  getDecade(date: Date | number): number
-
-  getHours(date: Date | number): number
-
-  getISODay(date: Date | number): number
-
-  getISOWeek(date: Date | number): number
-
-  getISOWeeksInYear(date: Date | number): number
-
-  getISOWeekYear(date: Date | number): number
-
-  getMilliseconds(date: Date | number): number
-
-  getMinutes(date: Date | number): number
-
-  getMonth(date: Date | number): number
-
-  getOverlappingDaysInIntervals(
-    intervalLeft: Interval,
-    intervalRight: Interval
-  ): number
-
-  getQuarter(date: Date | number): number
-
-  getSeconds(date: Date | number): number
-
-  getTime(date: Date | number): number
-
-  getUnixTime(date: Date | number): number
-
-  getWeek(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-      firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
-    }
-  ): number
-
-  getWeekOfMonth(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): number
-
-  getWeeksInMonth(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): number
-
-  getWeekYear(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-      firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
-    }
-  ): number
-
-  getYear(date: Date | number): number
-
-  hoursToMilliseconds(hours: number): number
-
-  hoursToMinutes(hours: number): number
+    isDate(value: any): boolean
 
-  hoursToSeconds(hours: number): number
+    isEqual(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  intervalToDuration(interval: Interval): Duration
+    isExists(year: number, month: number, day: number): boolean
 
-  intlFormat(
-    argument: Date | number,
-    formatOptions?: {
-      localeMatcher?: 'lookup' | 'best fit'
-      weekday?: 'narrow' | 'short' | 'long'
-      era?: 'narrow' | 'short' | 'long'
-      year?: 'numeric' | '2-digit'
-      month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long'
-      day?: 'numeric' | '2-digit'
-      hour?: 'numeric' | '2-digit'
-      minute?: 'numeric' | '2-digit'
-      second?: 'numeric' | '2-digit'
-      timeZoneName?: 'short' | 'long'
-      formatMatcher?: 'basic' | 'best fit'
-      hour12?: boolean
-      timeZone?: string
-    },
-    localeOptions?: {
-      locale?: string | string[]
-    }
-  ): string
+    isFirstDayOfMonth(date: Date | number): boolean
 
-  isAfter(date: Date | number, dateToCompare: Date | number): boolean
+    isFriday(date: Date | number): boolean
 
-  isBefore(date: Date | number, dateToCompare: Date | number): boolean
+    isFuture(date: Date | number): boolean
 
-  isDate(value: any): boolean
+    isLastDayOfMonth(date: Date | number): boolean
 
-  isEqual(dateLeft: Date | number, dateRight: Date | number): boolean
+    isLeapYear(date: Date | number): boolean
 
-  isExists(year: number, month: number, day: number): boolean
+    isMatch(
+      dateString: string,
+      formatString: string,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+        firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+        useAdditionalWeekYearTokens?: boolean
+        useAdditionalDayOfYearTokens?: boolean
+      }
+    ): boolean
 
-  isFirstDayOfMonth(date: Date | number): boolean
+    isMonday(date: Date | number): boolean
 
-  isFriday(date: Date | number): boolean
+    isPast(date: Date | number): boolean
 
-  isFuture(date: Date | number): boolean
+    isSameDay(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  isLastDayOfMonth(date: Date | number): boolean
+    isSameHour(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  isLeapYear(date: Date | number): boolean
+    isSameISOWeek(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  isMatch(
-    dateString: string,
-    formatString: string,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-      firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
-      useAdditionalWeekYearTokens?: boolean
-      useAdditionalDayOfYearTokens?: boolean
-    }
-  ): boolean
+    isSameISOWeekYear(
+      dateLeft: Date | number,
+      dateRight: Date | number
+    ): boolean
 
-  isMonday(date: Date | number): boolean
+    isSameMinute(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  isPast(date: Date | number): boolean
+    isSameMonth(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  isSameDay(dateLeft: Date | number, dateRight: Date | number): boolean
+    isSameQuarter(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  isSameHour(dateLeft: Date | number, dateRight: Date | number): boolean
+    isSameSecond(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  isSameISOWeek(dateLeft: Date | number, dateRight: Date | number): boolean
+    isSameWeek(
+      dateLeft: Date | number,
+      dateRight: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): boolean
 
-  isSameISOWeekYear(dateLeft: Date | number, dateRight: Date | number): boolean
+    isSameYear(dateLeft: Date | number, dateRight: Date | number): boolean
 
-  isSameMinute(dateLeft: Date | number, dateRight: Date | number): boolean
+    isSaturday(date: Date | number): boolean
 
-  isSameMonth(dateLeft: Date | number, dateRight: Date | number): boolean
+    isSunday(date: Date | number): boolean
 
-  isSameQuarter(dateLeft: Date | number, dateRight: Date | number): boolean
+    isThisHour(date: Date | number): boolean
 
-  isSameSecond(dateLeft: Date | number, dateRight: Date | number): boolean
+    isThisISOWeek(date: Date | number): boolean
 
-  isSameWeek(
-    dateLeft: Date | number,
-    dateRight: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): boolean
+    isThisMinute(date: Date | number): boolean
 
-  isSameYear(dateLeft: Date | number, dateRight: Date | number): boolean
+    isThisMonth(date: Date | number): boolean
 
-  isSaturday(date: Date | number): boolean
+    isThisQuarter(date: Date | number): boolean
 
-  isSunday(date: Date | number): boolean
+    isThisSecond(date: Date | number): boolean
 
-  isThisHour(date: Date | number): boolean
+    isThisWeek(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): boolean
 
-  isThisISOWeek(date: Date | number): boolean
+    isThisYear(date: Date | number): boolean
 
-  isThisMinute(date: Date | number): boolean
+    isThursday(date: Date | number): boolean
 
-  isThisMonth(date: Date | number): boolean
+    isToday(date: Date | number): boolean
 
-  isThisQuarter(date: Date | number): boolean
+    isTomorrow(date: Date | number): boolean
 
-  isThisSecond(date: Date | number): boolean
+    isTuesday(date: Date | number): boolean
 
-  isThisWeek(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): boolean
+    isValid(date: any): boolean
 
-  isThisYear(date: Date | number): boolean
+    isWednesday(date: Date | number): boolean
 
-  isThursday(date: Date | number): boolean
+    isWeekend(date: Date | number): boolean
 
-  isToday(date: Date | number): boolean
+    isWithinInterval(date: Date | number, interval: Interval): boolean
 
-  isTomorrow(date: Date | number): boolean
+    isYesterday(date: Date | number): boolean
 
-  isTuesday(date: Date | number): boolean
+    lastDayOfDecade(date: Date | number): Date
 
-  isValid(date: any): boolean
+    lastDayOfISOWeek(date: Date | number): Date
 
-  isWednesday(date: Date | number): boolean
+    lastDayOfISOWeekYear(date: Date | number): Date
 
-  isWeekend(date: Date | number): boolean
+    lastDayOfMonth(date: Date | number): Date
 
-  isWithinInterval(date: Date | number, interval: Interval): boolean
+    lastDayOfQuarter(
+      date: Date | number,
+      options?: {
+        additionalDigits?: 0 | 1 | 2
+      }
+    ): Date
 
-  isYesterday(date: Date | number): boolean
+    lastDayOfWeek(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): Date
 
-  lastDayOfDecade(date: Date | number): Date
+    lastDayOfYear(date: Date | number): Date
 
-  lastDayOfISOWeek(date: Date | number): Date
+    lightFormat(date: Date | number, format: string): string
 
-  lastDayOfISOWeekYear(date: Date | number): Date
+    max(datesArray: (Date | number)[]): Date
 
-  lastDayOfMonth(date: Date | number): Date
+    milliseconds(duration: Duration): number
 
-  lastDayOfQuarter(
-    date: Date | number,
-    options?: {
-      additionalDigits?: 0 | 1 | 2
-    }
-  ): Date
+    millisecondsToHours(milliseconds: number): number
 
-  lastDayOfWeek(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): Date
+    millisecondsToMinutes(milliseconds: number): number
 
-  lastDayOfYear(date: Date | number): Date
+    millisecondsToSeconds(milliseconds: number): number
 
-  lightFormat(date: Date | number, format: string): string
+    min(datesArray: (Date | number)[]): Date
 
-  max(datesArray: (Date | number)[]): Date
+    minutesToHours(minutes: number): number
 
-  milliseconds(duration: Duration): number
+    minutesToMilliseconds(minutes: number): number
 
-  millisecondsToHours(milliseconds: number): number
+    minutesToSeconds(minutes: number): number
 
-  millisecondsToMinutes(milliseconds: number): number
+    monthsToQuarters(months: number): number
 
-  millisecondsToSeconds(milliseconds: number): number
+    monthsToYears(months: number): number
 
-  min(datesArray: (Date | number)[]): Date
+    nextDay(date: Date | number, day: Day): Date
 
-  minutesToHours(minutes: number): number
+    nextFriday(date: Date | number): Date
 
-  minutesToMilliseconds(minutes: number): number
+    nextMonday(date: Date | number): Date
 
-  minutesToSeconds(minutes: number): number
+    nextSaturday(date: Date | number): Date
 
-  monthsToQuarters(months: number): number
+    nextSunday(date: Date | number): Date
 
-  monthsToYears(months: number): number
+    nextThursday(date: Date | number): Date
 
-  nextDay(date: Date | number, day: Day): Date
+    nextTuesday(date: Date | number): Date
 
-  nextFriday(date: Date | number): Date
+    nextWednesday(date: Date | number): Date
 
-  nextMonday(date: Date | number): Date
+    parse(
+      dateString: string,
+      formatString: string,
+      referenceDate: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+        firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+        useAdditionalWeekYearTokens?: boolean
+        useAdditionalDayOfYearTokens?: boolean
+      }
+    ): Date
 
-  nextSaturday(date: Date | number): Date
+    parseISO(
+      argument: string,
+      options?: {
+        additionalDigits?: 0 | 1 | 2
+      }
+    ): Date
 
-  nextSunday(date: Date | number): Date
+    parseJSON(argument: string | number | Date): Date
 
-  nextThursday(date: Date | number): Date
+    previousDay(date: Date | number, day: number): Date
 
-  nextTuesday(date: Date | number): Date
+    previousFriday(date: Date | number): Date
 
-  nextWednesday(date: Date | number): Date
+    previousMonday(date: Date | number): Date
 
-  parse(
-    dateString: string,
-    formatString: string,
-    referenceDate: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-      firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
-      useAdditionalWeekYearTokens?: boolean
-      useAdditionalDayOfYearTokens?: boolean
-    }
-  ): Date
+    previousSaturday(date: Date | number): Date
 
-  parseISO(
-    argument: string,
-    options?: {
-      additionalDigits?: 0 | 1 | 2
-    }
-  ): Date
+    previousSunday(date: Date | number): Date
 
-  parseJSON(argument: string | number | Date): Date
+    previousThursday(date: Date | number): Date
 
-  previousDay(date: Date | number, day: number): Date
+    previousTuesday(date: Date | number): Date
 
-  previousFriday(date: Date | number): Date
+    previousWednesday(date: Date | number): Date
 
-  previousMonday(date: Date | number): Date
+    quartersToMonths(quarters: number): number
 
-  previousSaturday(date: Date | number): Date
+    quartersToYears(quarters: number): number
 
-  previousSunday(date: Date | number): Date
+    roundToNearestMinutes(
+      date: Date | number,
+      options?: {
+        nearestTo?: number
+      }
+    ): Date
 
-  previousThursday(date: Date | number): Date
+    secondsToHours(seconds: number): number
 
-  previousTuesday(date: Date | number): Date
+    secondsToMilliseconds(seconds: number): number
 
-  previousWednesday(date: Date | number): Date
+    secondsToMinutes(seconds: number): number
 
-  quartersToMonths(quarters: number): number
+    set(
+      date: Date | number,
+      values: {
+        year?: number
+        month?: number
+        date?: number
+        hours?: number
+        minutes?: number
+        seconds?: number
+        milliseconds?: number
+      }
+    ): Date
 
-  quartersToYears(quarters: number): number
+    setDate(date: Date | number, dayOfMonth: number): Date
 
-  roundToNearestMinutes(
-    date: Date | number,
-    options?: {
-      nearestTo?: number
-    }
-  ): Date
+    setDay(
+      date: Date | number,
+      day: number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): Date
 
-  secondsToHours(seconds: number): number
+    setDayOfYear(date: Date | number, dayOfYear: number): Date
 
-  secondsToMilliseconds(seconds: number): number
+    setHours(date: Date | number, hours: number): Date
 
-  secondsToMinutes(seconds: number): number
+    setISODay(date: Date | number, day: number): Date
 
-  set(
-    date: Date | number,
-    values: {
-      year?: number
-      month?: number
-      date?: number
-      hours?: number
-      minutes?: number
-      seconds?: number
-      milliseconds?: number
-    }
-  ): Date
+    setISOWeek(date: Date | number, isoWeek: number): Date
 
-  setDate(date: Date | number, dayOfMonth: number): Date
+    setISOWeekYear(date: Date | number, isoWeekYear: number): Date
 
-  setDay(
-    date: Date | number,
-    day: number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): Date
+    setMilliseconds(date: Date | number, milliseconds: number): Date
 
-  setDayOfYear(date: Date | number, dayOfYear: number): Date
+    setMinutes(date: Date | number, minutes: number): Date
 
-  setHours(date: Date | number, hours: number): Date
+    setMonth(date: Date | number, month: number): Date
 
-  setISODay(date: Date | number, day: number): Date
+    setQuarter(date: Date | number, quarter: number): Date
 
-  setISOWeek(date: Date | number, isoWeek: number): Date
+    setSeconds(date: Date | number, seconds: number): Date
 
-  setISOWeekYear(date: Date | number, isoWeekYear: number): Date
+    setWeek(
+      date: Date | number,
+      week: number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+        firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+      }
+    ): Date
 
-  setMilliseconds(date: Date | number, milliseconds: number): Date
+    setWeekYear(
+      date: Date | number,
+      weekYear: number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+        firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+      }
+    ): Date
 
-  setMinutes(date: Date | number, minutes: number): Date
+    setYear(date: Date | number, year: number): Date
 
-  setMonth(date: Date | number, month: number): Date
+    startOfDay(date: Date | number): Date
 
-  setQuarter(date: Date | number, quarter: number): Date
+    startOfDecade(date: Date | number): Date
 
-  setSeconds(date: Date | number, seconds: number): Date
+    startOfHour(date: Date | number): Date
 
-  setWeek(
-    date: Date | number,
-    week: number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-      firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
-    }
-  ): Date
+    startOfISOWeek(date: Date | number): Date
 
-  setWeekYear(
-    date: Date | number,
-    weekYear: number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-      firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
-    }
-  ): Date
+    startOfISOWeekYear(date: Date | number): Date
 
-  setYear(date: Date | number, year: number): Date
+    startOfMinute(date: Date | number): Date
 
-  startOfDay(date: Date | number): Date
+    startOfMonth(date: Date | number): Date
 
-  startOfDecade(date: Date | number): Date
+    startOfQuarter(date: Date | number): Date
 
-  startOfHour(date: Date | number): Date
+    startOfSecond(date: Date | number): Date
 
-  startOfISOWeek(date: Date | number): Date
+    startOfToday(): Date
 
-  startOfISOWeekYear(date: Date | number): Date
+    startOfTomorrow(): Date
 
-  startOfMinute(date: Date | number): Date
+    startOfWeek(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+      }
+    ): Date
 
-  startOfMonth(date: Date | number): Date
+    startOfWeekYear(
+      date: Date | number,
+      options?: {
+        locale?: Locale
+        weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+        firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
+      }
+    ): Date
 
-  startOfQuarter(date: Date | number): Date
+    startOfYear(date: Date | number): Date
 
-  startOfSecond(date: Date | number): Date
+    startOfYesterday(): Date
 
-  startOfToday(): Date
+    sub(date: Date | number, duration: Duration): Date
 
-  startOfTomorrow(): Date
+    subBusinessDays(date: Date | number, amount: number): Date
 
-  startOfWeek(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    }
-  ): Date
+    subDays(date: Date | number, amount: number): Date
 
-  startOfWeekYear(
-    date: Date | number,
-    options?: {
-      locale?: Locale
-      weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-      firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
-    }
-  ): Date
+    subHours(date: Date | number, amount: number): Date
 
-  startOfYear(date: Date | number): Date
+    subISOWeekYears(date: Date | number, amount: number): Date
 
-  startOfYesterday(): Date
+    subMilliseconds(date: Date | number, amount: number): Date
 
-  sub(date: Date | number, duration: Duration): Date
+    subMinutes(date: Date | number, amount: number): Date
 
-  subBusinessDays(date: Date | number, amount: number): Date
+    subMonths(date: Date | number, amount: number): Date
 
-  subDays(date: Date | number, amount: number): Date
+    subQuarters(date: Date | number, amount: number): Date
 
-  subHours(date: Date | number, amount: number): Date
+    subSeconds(date: Date | number, amount: number): Date
 
-  subISOWeekYears(date: Date | number, amount: number): Date
+    subWeeks(date: Date | number, amount: number): Date
 
-  subMilliseconds(date: Date | number, amount: number): Date
+    subYears(date: Date | number, amount: number): Date
 
-  subMinutes(date: Date | number, amount: number): Date
+    toDate(argument: Date | number): Date
 
-  subMonths(date: Date | number, amount: number): Date
+    weeksToDays(weeks: number): number
 
-  subQuarters(date: Date | number, amount: number): Date
+    yearsToMonths(years: number): number
 
-  subSeconds(date: Date | number, amount: number): Date
+    yearsToQuarters(years: number): number
 
-  subWeeks(date: Date | number, amount: number): Date
+    daysInWeek: number
 
-  subYears(date: Date | number, amount: number): Date
+    maxTime: number
 
-  toDate(argument: Date | number): Date
+    millisecondsInMinute: number
 
-  weeksToDays(weeks: number): number
+    millisecondsInHour: number
 
-  yearsToMonths(years: number): number
+    millisecondsInSecond: number
 
-  yearsToQuarters(years: number): number
+    minTime: number
 
-  daysInWeek: number
+    minutesInHour: number
 
-  maxTime: number
+    monthsInQuarter: number
 
-  millisecondsInMinute: number
+    monthsInYear: number
 
-  millisecondsInHour: number
+    quartersInYear: number
 
-  millisecondsInSecond: number
+    secondsInHour: number
 
-  minTime: number
-
-  minutesInHour: number
-
-  monthsInQuarter: number
-
-  monthsInYear: number
-
-  quartersInYear: number
-
-  secondsInHour: number
-
-  secondsInMinute: number
+    secondsInMinute: number
+  }
 }
