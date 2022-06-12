@@ -6,6 +6,13 @@ import setUTCWeek from '../../../_lib/setUTCWeek/index'
 import startOfUTCISOWeek from '../../../_lib/startOfUTCISOWeek/index'
 import startOfUTCWeek from '../../../_lib/startOfUTCWeek/index'
 
+import coreGetUTCMonth from '../../../_core/getUTCMonth/index'
+import coreSetUTCMonth from '../../../_core/setUTCMonth/index'
+import coreSetUTCDate from '../../../_core/setUTCDate/index'
+import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index'
+import coreSetUTCFullYear from '../../../_core/setUTCFullYear/index'
+import coreNewDate from '../../../_core/newDate/index'
+
 var MILLISECONDS_IN_HOUR = 3600000
 var MILLISECONDS_IN_MINUTE = 60000
 var MILLISECONDS_IN_SECOND = 1000
@@ -286,7 +293,7 @@ var parsers = {
 
     set: function (date, flags, value, _options) {
       flags.era = value
-      date.setUTCFullYear(value, 0, 1)
+      coreSetUTCFullYear(date, value, 0, 1)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -333,21 +340,21 @@ var parsers = {
     },
 
     set: function (date, flags, value, _options) {
-      var currentYear = date.getUTCFullYear()
+      var currentYear = coreGetUTCFullYear(date)
 
       if (value.isTwoDigitYear) {
         var normalizedTwoDigitYear = normalizeTwoDigitYear(
           value.year,
           currentYear
         )
-        date.setUTCFullYear(normalizedTwoDigitYear, 0, 1)
+        coreSetUTCFullYear(date, normalizedTwoDigitYear, 0, 1)
         date.setUTCHours(0, 0, 0, 0)
         return date
       }
 
       var year =
         !('era' in flags) || flags.era === 1 ? value.year : 1 - value.year
-      date.setUTCFullYear(year, 0, 1)
+      coreSetUTCFullYear(date, year, 0, 1)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -392,7 +399,8 @@ var parsers = {
           value.year,
           currentYear
         )
-        date.setUTCFullYear(
+        coreSetUTCFullYear(
+          date,
           normalizedTwoDigitYear,
           0,
           options.firstWeekContainsDate
@@ -403,7 +411,7 @@ var parsers = {
 
       var year =
         !('era' in flags) || flags.era === 1 ? value.year : 1 - value.year
-      date.setUTCFullYear(year, 0, options.firstWeekContainsDate)
+      coreSetUTCFullYear(date, year, 0, options.firstWeekContainsDate)
       date.setUTCHours(0, 0, 0, 0)
       return startOfUTCWeek(date, options)
     },
@@ -438,8 +446,8 @@ var parsers = {
     },
 
     set: function (_date, _flags, value, _options) {
-      var firstWeekOfYear = new Date(0)
-      firstWeekOfYear.setUTCFullYear(value, 0, 4)
+      var firstWeekOfYear = coreNewDate(0)
+      coreSetUTCFullYear(firstWeekOfYear, value, 0, 4)
       firstWeekOfYear.setUTCHours(0, 0, 0, 0)
       return startOfUTCISOWeek(firstWeekOfYear)
     },
@@ -476,7 +484,7 @@ var parsers = {
     },
 
     set: function (date, _flags, value, _options) {
-      date.setUTCFullYear(value, 0, 1)
+      coreSetUTCFullYear(date, value, 0, 1)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -531,7 +539,7 @@ var parsers = {
     },
 
     set: function (date, _flags, value, _options) {
-      date.setUTCMonth((value - 1) * 3, 1)
+      coreSetUTCMonth(date, (value - 1) * 3, 1)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -601,7 +609,7 @@ var parsers = {
     },
 
     set: function (date, _flags, value, _options) {
-      date.setUTCMonth((value - 1) * 3, 1)
+      coreSetUTCMonth(date, (value - 1) * 3, 1)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -681,7 +689,7 @@ var parsers = {
     },
 
     set: function (date, _flags, value, _options) {
-      date.setUTCMonth(value, 1)
+      coreSetUTCMonth(date, value, 1)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -760,7 +768,7 @@ var parsers = {
     },
 
     set: function (date, _flags, value, _options) {
-      date.setUTCMonth(value, 1)
+      coreSetUTCMonth(date, value, 1)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -881,9 +889,9 @@ var parsers = {
     },
 
     validate: function (date, value, _options) {
-      var year = date.getUTCFullYear()
+      var year = coreGetUTCFullYear(date)
       var isLeapYear = isLeapYearIndex(year)
-      var month = date.getUTCMonth()
+      var month = coreGetUTCMonth(date)
       if (isLeapYear) {
         return value >= 1 && value <= DAYS_IN_MONTH_LEAP_YEAR[month]
       } else {
@@ -892,7 +900,7 @@ var parsers = {
     },
 
     set: function (date, _flags, value, _options) {
-      date.setUTCDate(value)
+      coreSetUTCDate(date, value)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -932,7 +940,7 @@ var parsers = {
     },
 
     validate: function (date, value, _options) {
-      var year = date.getUTCFullYear()
+      var year = coreGetUTCFullYear(date)
       var isLeapYear = isLeapYearIndex(year)
       if (isLeapYear) {
         return value >= 1 && value <= 366
@@ -942,7 +950,7 @@ var parsers = {
     },
 
     set: function (date, _flags, value, _options) {
-      date.setUTCMonth(0, value)
+      coreSetUTCMonth(date, 0, value)
       date.setUTCHours(0, 0, 0, 0)
       return date
     },
@@ -1656,7 +1664,7 @@ var parsers = {
       if (flags.timestampIsSet) {
         return date
       }
-      return new Date(date.getTime() - value)
+      return coreNewDate(date.getTime() - value)
     },
 
     incompatibleTokens: ['t', 'T', 'x'],
@@ -1695,7 +1703,7 @@ var parsers = {
       if (flags.timestampIsSet) {
         return date
       }
-      return new Date(date.getTime() - value)
+      return coreNewDate(date.getTime() - value)
     },
 
     incompatibleTokens: ['t', 'T', 'X'],
@@ -1710,7 +1718,7 @@ var parsers = {
     },
 
     set: function (_date, _flags, value, _options) {
-      return [new Date(value * 1000), { timestampIsSet: true }]
+      return [coreNewDate(value * 1000), { timestampIsSet: true }]
     },
 
     incompatibleTokens: '*',
@@ -1725,7 +1733,7 @@ var parsers = {
     },
 
     set: function (_date, _flags, value, _options) {
-      return [new Date(value), { timestampIsSet: true }]
+      return [coreNewDate(value), { timestampIsSet: true }]
     },
 
     incompatibleTokens: '*',
