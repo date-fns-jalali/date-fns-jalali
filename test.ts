@@ -62,6 +62,12 @@ describe("UTCDate", () => {
     it.todo("returns UTC seconds");
   });
 
+  describe("getTimezoneOffset", () => {
+    it("returns 0", () => {
+      expect(new UTCDate(1999, 11, 31, 23).getTimezoneOffset()).toBe(0);
+    });
+  });
+
   describe("setDate", () => {
     it("sets UTC date", () => {
       const date = new UTCDate(1987, 1, 11, 23);
@@ -116,6 +122,24 @@ describe("UTCDate", () => {
         "Wed Feb 11 1987 12:13:14 GMT+0000 (Coordinated Universal Time)"
       );
     });
+
+    it("works with Symbol.toPrimitive", () => {
+      expect(
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15)[Symbol.toPrimitive]("string")
+      ).toBe("Wed Feb 11 1987 12:13:14 GMT+0000 (Coordinated Universal Time)");
+
+      expect(
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15)[Symbol.toPrimitive]("default")
+      ).toBe("Wed Feb 11 1987 12:13:14 GMT+0000 (Coordinated Universal Time)");
+    });
+  });
+
+  describe("toDateString", () => {
+    it("returns string representing the given date in UTC timezone", () => {
+      expect(new UTCDate(1987, 1, 11, 12, 13, 14, 15).toDateString()).toBe(
+        "Wed Feb 11 1987"
+      );
+    });
   });
 
   describe("toTimeString", () => {
@@ -123,6 +147,78 @@ describe("UTCDate", () => {
       expect(new UTCDate(1987, 1, 11, 12, 13, 14, 15).toTimeString()).toBe(
         "12:13:14 GMT+0000 (Coordinated Universal Time)"
       );
+    });
+  });
+
+  describe("toLocaleString", () => {
+    it("returns localized date time string", () => {
+      expect(
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleString("en-GB")
+      ).toBe("11/02/1987, 12:13:14");
+    });
+
+    it("allows to pass options", () => {
+      expect(
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleString("en-GB", {
+          month: "long",
+        })
+      ).toBe("February");
+    });
+
+    it("allows to override the timezone", () => {
+      expect(
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleString("en-GB", {
+          timeZone: "Asia/Kolkata",
+        })
+      ).toBe("11/02/1987, 17:43:14");
+    });
+  });
+
+  describe("toLocaleDateString", () => {
+    it("returns localized date string", () => {
+      expect(
+        new UTCDate(1999, 11, 31, 23, 59, 59).toLocaleDateString("en-GB")
+      ).toBe("31/12/1999");
+    });
+
+    it("allows to pass options", () => {
+      expect(
+        new UTCDate(1999, 11, 31, 23, 59, 59).toLocaleString("en-GB", {
+          month: "long",
+        })
+      ).toBe("December");
+    });
+
+    it("allows to override the timezone", () => {
+      expect(
+        new UTCDate(1999, 11, 31, 23, 59, 59).toLocaleDateString("en-GB", {
+          timeZone: "Asia/Kolkata",
+        })
+      ).toBe("01/01/2000");
+    });
+  });
+
+  describe("toLocaleTimeString", () => {
+    it("returns localized time string", () => {
+      expect(
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleTimeString("en-GB")
+      ).toBe("12:13:14");
+    });
+
+    it("allows to pass options", () => {
+      expect(
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleTimeString("en-GB", {
+          hour: "numeric",
+        })
+      ).toBe("12");
+    });
+
+    it("allows to override the timezone", () => {
+      expect(
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleTimeString("en-GB", {
+          timeZone: "Asia/Kolkata",
+        })
+      ).toBe("17:43:14");
     });
   });
 });

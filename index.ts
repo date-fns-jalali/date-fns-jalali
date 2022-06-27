@@ -44,17 +44,56 @@ export class UTCDate extends Date {
     }
   }
 
+  getTimezoneOffset() {
+    return 0;
+  }
+
   toString(): string {
+    const date = this.toDateString();
+    const time = this.toTimeString();
+    return `${date} ${time}`;
+  }
+
+  toDateString(): string {
     const weekday = weekdayFormat.format(this);
     const date = dateFormat.format(this);
     const year = this.getFullYear();
-    const time = this.toTimeString();
-    return `${weekday} ${date} ${year} ${time}`;
+    return `${weekday} ${date} ${year}`;
   }
 
   toTimeString(): string {
     const time = timeFormat.format(this);
     return `${time} GMT+0000 (Coordinated Universal Time)`;
+  }
+
+  toLocaleString(
+    locales?: string | string[],
+    options?: Intl.DateTimeFormatOptions
+  ): string {
+    return Date.prototype.toLocaleString.call(this, locales, {
+      timeZone: "UTC",
+      ...options,
+    });
+  }
+
+  toLocaleDateString(
+    locales?: string | string[],
+    options?: Intl.DateTimeFormatOptions
+  ): string {
+    return Date.prototype.toLocaleDateString.call(this, locales, {
+      timeZone: "UTC",
+      ...options,
+    });
+  }
+
+  toLocaleTimeString(
+    locales?: string | string[],
+    options?: Intl.DateTimeFormatOptions
+  ): string {
+    return Date.prototype.toLocaleTimeString.call(this, locales, {
+      timeZone: "UTC",
+      ...options,
+    });
   }
 }
 
