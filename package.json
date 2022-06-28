@@ -1,17 +1,22 @@
 {
   "name": "@date-fns/utc",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "UTC date utils",
-  "main": "index.js",
   "scripts": {
     "test": "env TZ=Asia/Kolkata vitest",
-    "build": "tsc index.ts --target es2016 --module commonjs --declaration --skipLibCheck"
+    "build": "make build"
   },
   "files": [
-    "index.js",
-    "index.d.ts",
+    "lib",
     "README.md"
   ],
+  "main": "./lib/index.js",
+  "module": "./lib/index.mjs",
+  "exports": {
+    "import": "./lib/index.mjs",
+    "require": "./lib/index.js"
+  },
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/date-fns/utc.git"
@@ -29,6 +34,10 @@
   },
   "homepage": "https://github.com/date-fns/utc#readme",
   "devDependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.18.6",
+    "babel-plugin-add-import-extension": "^1.6.0",
     "typescript": "^4.7.3",
     "vitest": "^0.14.2"
   }

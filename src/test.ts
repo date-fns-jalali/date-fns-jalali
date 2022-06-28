@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { UTCDate } from ".";
+import { UTCDate } from "./date";
 
 describe("UTCDate", () => {
   it("creates date in UTC", () => {
