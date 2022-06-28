@@ -1,6 +1,6 @@
 {
   "name": "@date-fns/utc",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "UTC date utils",
   "scripts": {
     "test": "env TZ=Asia/Kolkata vitest",
