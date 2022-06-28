@@ -1,6 +1,6 @@
 {
   "name": "@date-fns/utc",
-  "version": "0.5.3",
+  "version": "0.5.5",
   "description": "UTC date utils",
   "scripts": {
     "test": "env TZ=Asia/Kolkata vitest",
@@ -9,8 +9,18 @@
   "main": "./index.js",
   "module": "./index.mjs",
   "exports": {
-    "import": "./index.mjs",
-    "require": "./index.js"
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    },
+    "./date": {
+      "import": "./date/index.mjs",
+      "require": "./date/index.js"
+    },
+    "./date/mini": {
+      "import": "./date/mini.mjs",
+      "require": "./date/mini.js"
+    }
   },
   "sideEffects": false,
   "repository": {
