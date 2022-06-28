@@ -1,20 +1,16 @@
 {
   "name": "@date-fns/utc",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "description": "UTC date utils",
   "scripts": {
     "test": "env TZ=Asia/Kolkata vitest",
     "build": "make build"
   },
-  "files": [
-    "lib",
-    "README.md"
-  ],
-  "main": "./lib/index.js",
-  "module": "./lib/index.mjs",
+  "main": "./index.js",
+  "module": "./index.mjs",
   "exports": {
-    "import": "./lib/index.mjs",
-    "require": "./lib/index.js"
+    "import": "./index.mjs",
+    "require": "./index.js"
   },
   "sideEffects": false,
   "repository": {
