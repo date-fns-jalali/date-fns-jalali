@@ -3,7 +3,7 @@
 The package provides `Date` extensions `UTCDate` and `UTCDateMini` that perform
 all calculations in UTC rather than the system time zone.
 
-Using it makes [date-fns] operate in UTC but can be also used without it.
+Using it makes [date-fns](https://date-fns.org) operate in UTC but can be also used without it.
 
 ## Installation
 
