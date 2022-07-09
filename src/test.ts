@@ -123,6 +123,12 @@ describe("UTCDate", () => {
       );
     });
 
+    it("formats midnight as 00:00", () => {
+      expect(new UTCDate(1987, 1, 11).toString()).toBe(
+        "Wed Feb 11 1987 00:00:00 GMT+0000 (Coordinated Universal Time)"
+      );
+    });
+
     it("works with Symbol.toPrimitive", () => {
       expect(
         new UTCDate(1987, 1, 11, 12, 13, 14, 15)[Symbol.toPrimitive]("string")
@@ -146,6 +152,12 @@ describe("UTCDate", () => {
     it("returns string representing the given time in UTC timezone", () => {
       expect(new UTCDate(1987, 1, 11, 12, 13, 14, 15).toTimeString()).toBe(
         "12:13:14 GMT+0000 (Coordinated Universal Time)"
+      );
+    });
+
+    it("formats midnight as 00:00", () => {
+      expect(new UTCDate(1987, 1, 11).toTimeString()).toBe(
+        "00:00:00 GMT+0000 (Coordinated Universal Time)"
       );
     });
   });

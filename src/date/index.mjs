@@ -65,7 +65,7 @@ var dateFormat = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 });
 
-var timeFormat = new Intl.DateTimeFormat("en-US", {
+var timeFormat = new Intl.DateTimeFormat("en-GB", {
   hour12: false,
   hour: "numeric",
   minute: "numeric",
