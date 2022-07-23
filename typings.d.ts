@@ -19648,6 +19648,9 @@ declare module 'date-fns/locale' {
 
   const faIR: Locale
   namespace faIR {}
+
+  const faJalaliIR: Locale
+  namespace faJalaliIR {}
 }
 
 declare module 'date-fns/locale/en-US' {
@@ -19660,6 +19663,11 @@ declare module 'date-fns/locale/fa-IR' {
   export default faIR
 }
 
+declare module 'date-fns/locale/fa-jalali-IR' {
+  import { faJalaliIR } from 'date-fns/locale'
+  export default faJalaliIR
+}
+
 declare module 'date-fns/locale/en-US/index' {
   import { enUS } from 'date-fns/locale'
   export default enUS
@@ -19668,6 +19676,11 @@ declare module 'date-fns/locale/en-US/index' {
 declare module 'date-fns/locale/fa-IR/index' {
   import { faIR } from 'date-fns/locale'
   export default faIR
+}
+
+declare module 'date-fns/locale/fa-jalali-IR/index' {
+  import { faJalaliIR } from 'date-fns/locale'
+  export default faJalaliIR
 }
 
 declare module 'date-fns/locale/en-US/index.js' {
@@ -19680,6 +19693,11 @@ declare module 'date-fns/locale/fa-IR/index.js' {
   export default faIR
 }
 
+declare module 'date-fns/locale/fa-jalali-IR/index.js' {
+  import { faJalaliIR } from 'date-fns/locale'
+  export default faJalaliIR
+}
+
 // ECMAScript Module Locales
 
 declare module 'date-fns/esm/locale' {
@@ -19689,6 +19707,9 @@ declare module 'date-fns/esm/locale' {
 
   const faIR: Locale
   namespace faIR {}
+
+  const faJalaliIR: Locale
+  namespace faJalaliIR {}
 }
 
 declare module 'date-fns/esm/locale/en-US' {
@@ -19701,6 +19722,11 @@ declare module 'date-fns/esm/locale/fa-IR' {
   export default faIR
 }
 
+declare module 'date-fns/esm/locale/fa-jalali-IR' {
+  import { faJalaliIR } from 'date-fns/esm/locale'
+  export default faJalaliIR
+}
+
 declare module 'date-fns/esm/locale/en-US/index' {
   import { enUS } from 'date-fns/esm/locale'
   export default enUS
@@ -19711,6 +19737,11 @@ declare module 'date-fns/esm/locale/fa-IR/index' {
   export default faIR
 }
 
+declare module 'date-fns/esm/locale/fa-jalali-IR/index' {
+  import { faJalaliIR } from 'date-fns/esm/locale'
+  export default faJalaliIR
+}
+
 declare module 'date-fns/esm/locale/en-US/index.js' {
   import { enUS } from 'date-fns/esm/locale'
   export default enUS
@@ -19719,6 +19750,11 @@ declare module 'date-fns/esm/locale/en-US/index.js' {
 declare module 'date-fns/esm/locale/fa-IR/index.js' {
   import { faIR } from 'date-fns/esm/locale'
   export default faIR
+}
+
+declare module 'date-fns/esm/locale/fa-jalali-IR/index.js' {
+  import { faJalaliIR } from 'date-fns/esm/locale'
+  export default faJalaliIR
 }
 
 // dateFns Global Interface
