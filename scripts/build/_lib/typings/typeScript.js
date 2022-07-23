@@ -12,10 +12,10 @@ const {
 
 /**
  * Return curried function interfaces for a specific FP function arity.
- * @param {Number} [arity=7]
+ * @param {Number} [arity=4]
  * @returns {String[arity]} an array of code blocks
  */
-const getTypeScriptFPInterfaces = (arity = 7) =>
+const getTypeScriptFPInterfaces = (arity = 4) =>
   [
     formatBlock`
       interface CurriedFn1<A, R> {
@@ -44,39 +44,6 @@ const getTypeScriptFPInterfaces = (arity = 7) =>
         (a: A, b: B): CurriedFn2<C, D, R>
         (a: A, b: B, c: C): CurriedFn1<D, R>
         (a: A, b: B, c: C, d: D): R
-      }
-    `,
-
-    formatBlock`
-      interface CurriedFn5<A, B, C, D, E, R> {
-        (a: A): CurriedFn4<B, C, D, E, R>
-        (a: A, b: B): CurriedFn3<C, D, E, R>
-        (a: A, b: B, c: C): CurriedFn2<D, E, R>
-        (a: A, b: B, c: C, d: D): CurriedFn1<E, R>
-        (a: A, b: B, c: C, d: D, e: E): R
-      }
-    `,
-
-    formatBlock`
-      interface CurriedFn6<A, B, C, D, E, F, R> {
-        (a: A): CurriedFn5<B, C, D, E, F, R>
-        (a: A, b: B): CurriedFn4<C, D, E, F, R>
-        (a: A, b: B, c: C): CurriedFn3<D, E, F, R>
-        (a: A, b: B, c: C, d: D): CurriedFn2<E, F, R>
-        (a: A, b: B, c: C, d: D, e: E): CurriedFn1<F, R>
-        (a: A, b: B, c: C, d: D, e: E, f: F): R
-      }
-    `,
-
-    formatBlock`
-      interface CurriedFn7<A, B, C, D, E, F, G, R> {
-        (a: A): CurriedFn6<B, C, D, E, F, G, R>
-        (a: A, b: B): CurriedFn5<C, D, E, F, G, R>
-        (a: A, b: B, c: C): CurriedFn4<D, E, F, G, R>
-        (a: A, b: B, c: C, d: D): CurriedFn3<E, F, G, R>
-        (a: A, b: B, c: C, d: D, e: E): CurriedFn2<F, G, R>
-        (a: A, b: B, c: C, d: D, e: E, f: F): CurriedFn1<G, R>
-        (a: A, b: B, c: C, d: D, e: E, f: F, g: G): R
       }
     `,
   ].slice(0, arity)
@@ -130,7 +97,7 @@ function getTypeScriptDateFnsFPModuleDefinition(
 
   const definition = formatBlock`
     declare module '${moduleName}' {
-      import { CurriedFn1, CurriedFn2, CurriedFn3, CurriedFn4, CurriedFn7, Day, Duration, Interval, Locale } from 'date-fns'
+      import { CurriedFn1, CurriedFn2, CurriedFn3, CurriedFn4, Day, Duration, Interval, Locale } from 'date-fns'
       ${addSeparator(fnDefinitions.concat(constantsDefinitions), '\n')}
     }
   `

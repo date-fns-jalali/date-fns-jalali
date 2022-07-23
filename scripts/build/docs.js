@@ -70,7 +70,7 @@ async function generateDocsFromSource() {
         array
           .concat(generateFnDoc(doc))
           .concat(
-            doc.pure
+            doc.pure && doc.title !== 'newDate'
               ? [generateFPFnDoc(doc)].concat(
                   generateFPFnWithOptionsDoc(doc) || []
                 )
