@@ -189,7 +189,7 @@ function getTypeScriptLocaleIndexModuleDefinition(submodule, locales) {
 }
 
 function getTypeScriptConstantsModuleDefinition(constants, fnSuffix) {
-  const moduleName = `date-fns/constants${fnSuffix}`
+  const moduleName = `date-fns-jalali/constants${fnSuffix}`
 
   const definition = formatBlock`
     declare module '${moduleName}' {
