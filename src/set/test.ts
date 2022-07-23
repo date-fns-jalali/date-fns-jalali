@@ -5,7 +5,7 @@ import set from '.'
 
 describe('set', () => {
   it('sets all values', () => {
-    const result = set(new Date(2013, 0 /* Jan */), {
+    const result = set(/* 1391/10/12 */ new Date(2013, 0 /* Jan */), {
       year: 2014,
       month: 8, // Sep
       date: 20,
@@ -16,112 +16,185 @@ describe('set', () => {
     })
     assert.deepStrictEqual(
       result.toString(),
-      new Date(2014, 8 /* Sep */, 20, 12, 12, 12, 12).toString()
+      /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20, 12, 12, 12, 12).toString()
     )
   })
 
   it('sets year', () => {
-    const result = set(new Date(2013, 8 /* Sep */), { year: 2014 })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */))
+    const result = set(/* 1392/6/10 */ new Date(2013, 8 /* Sep */), {
+      year: 2014,
+    })
+    assert.deepStrictEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */))
   })
 
   it('sets month', () => {
-    const result = set(new Date(2014, 8 /* Sep */), { month: 9 /* Oct */ })
-    assert.deepStrictEqual(result, new Date(2014, 9 /* Oct */))
+    const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
+      month: 9 /* Oct */,
+    })
+    assert.deepStrictEqual(result, /* 1393/7/9 */ new Date(2014, 9 /* Oct */))
   })
 
   it('sets day of month', () => {
-    const result = set(new Date(2014, 8 /* Sep */), { date: 20 })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 20))
+    const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
+      date: 20,
+    })
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20)
+    )
   })
 
   it('sets hours', () => {
-    const result = set(new Date(2014, 8 /* Sep */, 1), { hours: 12 })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 1, 12))
+    const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), {
+      hours: 12,
+    })
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 12)
+    )
   })
 
   it('sets minutes', () => {
-    const result = set(new Date(2014, 8 /* Sep */, 1, 1), { minutes: 12 })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 1, 1, 12))
+    const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 1), {
+      minutes: 12,
+    })
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 1, 12)
+    )
   })
 
   it('sets seconds', () => {
-    const result = set(new Date(2014, 8 /* Sep */, 1, 1, 1), { seconds: 12 })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 1, 1, 1, 12))
+    const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 1, 1), {
+      seconds: 12,
+    })
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 1, 1, 12)
+    )
   })
 
   it('sets milliseconds', () => {
-    const result = set(new Date(2014, 8 /* Sep */, 1, 1, 1, 1), {
-      milliseconds: 500,
-    })
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 1, 1, 1, 1, 500))
+    const result = set(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 1, 1, 1),
+      {
+        milliseconds: 500,
+      }
+    )
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 1, 1, 1, 500)
+    )
   })
 
   describe('value overflow', () => {
     it('months overflow into years', () => {
-      const result = set(new Date(2014, 8 /* Sep */, 1), {
+      const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), {
         month: 12 /* 13th month */,
-      })
-      assert.deepStrictEqual(result, new Date(2015, 0 /* Jan */, 1))
-    })
-
-    it('days of months overflow into months', () => {
-      const result = set(new Date(2014, 8 /* Sep */, 1), { date: 31 })
-      assert.deepStrictEqual(result, new Date(2014, 9 /* Oct */, 1))
-    })
-
-    it('hours overflow into days', () => {
-      const result = set(new Date(2014, 8 /* Sep */, 19), { hours: 24 })
-      assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 20))
-    })
-
-    it('minutes overflow into hours', () => {
-      const result = set(new Date(2014, 8 /* Sep */, 20, 11), { minutes: 60 })
-      assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 20, 12))
-    })
-
-    it('seconds overflow into minutes', () => {
-      const result = set(new Date(2014, 8 /* Sep */, 20, 12, 58), {
-        seconds: 60,
-      })
-      assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 20, 12, 59))
-    })
-
-    it('milliseconds overflow into seconds', () => {
-      const result = set(new Date(2014, 8 /* Sep */, 20, 12, 58, 30), {
-        milliseconds: 1000,
       })
       assert.deepStrictEqual(
         result,
-        new Date(2014, 8 /* Sep */, 20, 12, 58, 31)
+        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1)
+      )
+    })
+
+    it('days of months overflow into months', () => {
+      const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), {
+        date: 31,
+      })
+      assert.deepStrictEqual(
+        result,
+        /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1)
+      )
+    })
+
+    it('hours overflow into days', () => {
+      const result = set(/* 1393/6/28 */ new Date(2014, 8 /* Sep */, 19), {
+        hours: 24,
+      })
+      assert.deepStrictEqual(
+        result,
+        /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20)
+      )
+    })
+
+    it('minutes overflow into hours', () => {
+      const result = set(/* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20, 11), {
+        minutes: 60,
+      })
+      assert.deepStrictEqual(
+        result,
+        /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20, 12)
+      )
+    })
+
+    it('seconds overflow into minutes', () => {
+      const result = set(
+        /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20, 12, 58),
+        {
+          seconds: 60,
+        }
+      )
+      assert.deepStrictEqual(
+        result,
+        /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20, 12, 59)
+      )
+    })
+
+    it('milliseconds overflow into seconds', () => {
+      const result = set(
+        /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20, 12, 58, 30),
+        {
+          milliseconds: 1000,
+        }
+      )
+      assert.deepStrictEqual(
+        result,
+        /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20, 12, 58, 31)
       )
     })
   })
 
   describe('edge cases', () => {
     it('sets January', () => {
-      const result = set(new Date(2014, 8 /* Sep */), { month: 0 /* Jan */ })
-      assert.deepStrictEqual(result, new Date(2014, 0 /* Jan */))
+      const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
+        month: 0 /* Jan */,
+      })
+      assert.deepStrictEqual(
+        result,
+        /* 1392/10/11 */ new Date(2014, 0 /* Jan */)
+      )
     })
 
     it('sets the last day of new month if the initial date was the last day of a longer month', () => {
-      const result = set(new Date(2014, 7 /* Aug */, 31), {
+      const result = set(/* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31), {
         month: 8 /* Sep */,
       })
-      assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 30))
+      assert.deepStrictEqual(
+        result,
+        /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30)
+      )
     })
 
     it('ignores undefined values', () => {
-      const result = set(new Date(2014, 8 /* Sep */), { year: undefined })
-      assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */))
+      const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
+        year: undefined,
+      })
+      assert.deepStrictEqual(
+        result,
+        /* 1393/6/10 */ new Date(2014, 8 /* Sep */)
+      )
     })
 
     it('ignores null values', () => {
-      const result = set(new Date(2014, 8 /* Sep */), {
+      const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
         // @ts-expect-error
         year: null,
       })
-      assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */))
+      assert.deepStrictEqual(
+        result,
+        /* 1393/6/10 */ new Date(2014, 8 /* Sep */)
+      )
     })
 
     it('throws TypeError exception if passed less than 2 arguments', () => {
@@ -130,7 +203,9 @@ describe('set', () => {
     })
 
     it('returns Invalid Date if any value in values is NaN', () => {
-      const result = set(new Date(2014, 8 /* Sep */), { year: NaN })
+      const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
+        year: NaN,
+      })
       assert(isNaN(result.getTime()))
     })
 

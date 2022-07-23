@@ -8,7 +8,7 @@ describe('startOfToday', () => {
   let clock: sinon.SinonFakeTimers
   beforeEach(() => {
     clock = sinon.useFakeTimers(
-      new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime()
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime()
     )
   })
 
@@ -18,6 +18,9 @@ describe('startOfToday', () => {
 
   it('returns the current date with the time setted to 00:00:00', () => {
     const result = startOfToday()
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 25))
+    assert.deepStrictEqual(
+      result,
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25)
+    )
   })
 })
