@@ -4,6 +4,9 @@ import requiredArgs from '../requiredArgs/index'
 import toInteger from '../toInteger/index'
 import { getDefaultOptions } from '../defaultOptions/index'
 
+import coreGetUTCDate from '../../_core/getUTCDate/index'
+import coreSetUTCDate from '../../_core/setUTCDate/index'
+
 export default function setUTCDay(
   dirtyDate: Date | number,
   dirtyDay: Date | number,
@@ -35,6 +38,6 @@ export default function setUTCDay(
 
   const diff = (dayIndex < weekStartsOn ? 7 : 0) + day - currentDay
 
-  date.setUTCDate(date.getUTCDate() + diff)
+  coreSetUTCDate(date, coreGetUTCDate(date) + diff)
   return date
 }

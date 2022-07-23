@@ -16,6 +16,10 @@ import getUTCWeekYear from '../../../_lib/getUTCWeekYear/index'
 import addLeadingZeros from '../../addLeadingZeros/index'
 import lightFormatters from '../lightFormatters/index'
 
+import coreGetUTCMonth from '../../../_core/getUTCMonth/index'
+import coreGetUTCDate from '../../../_core/getUTCDate/index'
+import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index'
+
 const dayPeriodEnum = {
   am: 'am',
   pm: 'pm',
@@ -87,7 +91,7 @@ type Formatter = (
 const formatters: { [token: string]: Formatter } = {
   // Era
   G: function (date, token, localize) {
-    const era: Era = date.getUTCFullYear() > 0 ? 1 : 0
+    const era: Era = coreGetUTCFullYear(date) > 0 ? 1 : 0
     switch (token) {
       // AD, BC
       case 'G':
@@ -108,7 +112,7 @@ const formatters: { [token: string]: Formatter } = {
   y: function (date, token, localize) {
     // Ordinal number
     if (token === 'yo') {
-      const signedYear = date.getUTCFullYear()
+      const signedYear = coreGetUTCFullYear(date)
       // Returns 1 for 1 BC (which is year 0 in JavaScript)
       const year = signedYear > 0 ? signedYear : 1 - signedYear
       return localize.ordinalNumber(year, { unit: 'year' })
@@ -156,13 +160,13 @@ const formatters: { [token: string]: Formatter } = {
   // Also `yy` always returns the last two digits of a year,
   // while `uu` pads single digit years to 2 characters and returns other years unchanged.
   u: function (date, token) {
-    const year = date.getUTCFullYear()
+    const year = coreGetUTCFullYear(date)
     return addLeadingZeros(year, token.length)
   },
 
   // Quarter
   Q: function (date, token, localize) {
-    const quarter = Math.ceil((date.getUTCMonth() + 1) / 3) as Quarter
+    const quarter = Math.ceil((coreGetUTCMonth(date) + 1) / 3) as Quarter
     switch (token) {
       // 1, 2, 3, 4
       case 'Q':
@@ -197,7 +201,7 @@ const formatters: { [token: string]: Formatter } = {
 
   // Stand-alone quarter
   q: function (date, token, localize) {
-    const quarter = Math.ceil((date.getUTCMonth() + 1) / 3) as Quarter
+    const quarter = Math.ceil((coreGetUTCMonth(date) + 1) / 3) as Quarter
     switch (token) {
       // 1, 2, 3, 4
       case 'q':
@@ -232,7 +236,7 @@ const formatters: { [token: string]: Formatter } = {
 
   // Month
   M: function (date, token, localize) {
-    const month = date.getUTCMonth() as Month
+    const month = coreGetUTCMonth(date) as Month
     switch (token) {
       case 'M':
       case 'MM':
@@ -258,7 +262,7 @@ const formatters: { [token: string]: Formatter } = {
 
   // Stand-alone month
   L: function (date, token, localize) {
-    const month = date.getUTCMonth() as Month
+    const month = coreGetUTCMonth(date) as Month
     switch (token) {
       // 1, 2, ..., 12
       case 'L':
@@ -310,7 +314,7 @@ const formatters: { [token: string]: Formatter } = {
   // Day of the month
   d: function (date, token, localize) {
     if (token === 'do') {
-      return localize.ordinalNumber(date.getUTCDate(), { unit: 'date' })
+      return localize.ordinalNumber(coreGetUTCDate(date), { unit: 'date' })
     }
 
     return lightFormatters.d(date, token)

@@ -9,6 +9,10 @@ import type {
 } from '../types'
 import { getDefaultOptions } from '../_lib/defaultOptions/index'
 
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name getWeekYear
  * @category Week-Numbering Year Helpers
@@ -55,7 +59,7 @@ export default function getWeekYear(
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const year = date.getFullYear()
+  const year = coreGetFullYear(date)
 
   const defaultOptions = getDefaultOptions()
   const firstWeekContainsDate = toInteger(
@@ -73,13 +77,13 @@ export default function getWeekYear(
     )
   }
 
-  const firstWeekOfNextYear = new Date(0)
-  firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate)
+  const firstWeekOfNextYear = coreNewDate(0)
+  coreSetFullYear(firstWeekOfNextYear, year + 1, 0, firstWeekContainsDate)
   firstWeekOfNextYear.setHours(0, 0, 0, 0)
   const startOfNextYear = startOfWeek(firstWeekOfNextYear, options)
 
-  const firstWeekOfThisYear = new Date(0)
-  firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate)
+  const firstWeekOfThisYear = coreNewDate(0)
+  coreSetFullYear(firstWeekOfThisYear, year, 0, firstWeekContainsDate)
   firstWeekOfThisYear.setHours(0, 0, 0, 0)
   const startOfThisYear = startOfWeek(firstWeekOfThisYear, options)
 
