@@ -116,7 +116,11 @@ export default function transformer(file, api) {
     file.path.includes('ISO') ||
     file.path.includes('RFC') ||
     file.path.includes('parseJSON') ||
-    !(file.path.endsWith('index.js') || file.path.endsWith('index.ts')) ||
+    !(
+      file.path.endsWith('index.js') ||
+      file.path.endsWith('index.ts') ||
+      file.path.startsWith('src/parse/_lib/')
+    ) ||
     file.path.startsWith('src/locale/')
   ) {
     console.log('ignore:', file.path)
