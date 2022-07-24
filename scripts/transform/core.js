@@ -112,16 +112,13 @@ function useCoreIsLeapYear(ast, j, ctx) {
 
 export default function transformer(file, api) {
   if (
-    file.path.startsWith('src/_core/') ||
-    file.path.includes('ISO') ||
-    file.path.includes('RFC') ||
-    file.path.includes('parseJSON') ||
-    !(
-      file.path.endsWith('index.js') ||
-      file.path.endsWith('index.ts') ||
-      file.path.startsWith('src/parse/_lib/')
-    ) ||
-    file.path.startsWith('src/locale/')
+    !file.path.startsWith('src/parse/_lib/') &&
+    (file.path.startsWith('src/_core/') ||
+      file.path.includes('ISO') ||
+      file.path.includes('RFC') ||
+      file.path.includes('parseJSON') ||
+      !(file.path.endsWith('index.js') || file.path.endsWith('index.ts')) ||
+      file.path.startsWith('src/locale/'))
   ) {
     console.log('ignore:', file.path)
     return
