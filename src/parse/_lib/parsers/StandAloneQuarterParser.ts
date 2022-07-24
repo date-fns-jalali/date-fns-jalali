@@ -3,6 +3,8 @@ import type { ParseResult, ParseFlags } from '../types'
 import { Parser } from '../Parser'
 import { parseNDigits } from '../utils'
 
+import coreSetUTCMonth from '../../../_core/setUTCMonth/index'
+
 export class StandAloneQuarterParser extends Parser<number> {
   priority = 120
 
@@ -58,7 +60,7 @@ export class StandAloneQuarterParser extends Parser<number> {
   }
 
   set(date: Date, _flags: ParseFlags, value: number): Date {
-    date.setUTCMonth((value - 1) * 3, 1)
+    coreSetUTCMonth(date, (value - 1) * 3, 1)
     date.setUTCHours(0, 0, 0, 0)
     return date
   }

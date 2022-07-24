@@ -3,6 +3,8 @@ import type { ParseResult, ParseFlags } from '../types'
 import type { Era } from '../../../types'
 import { Parser } from '../Parser'
 
+import coreSetUTCFullYear from '../../../_core/setUTCFullYear/index'
+
 export class EraParser extends Parser<number> {
   priority = 140
 
@@ -32,7 +34,7 @@ export class EraParser extends Parser<number> {
 
   set(date: Date, flags: ParseFlags, value: number): Date {
     flags.era = value
-    date.setUTCFullYear(value, 0, 1)
+    coreSetUTCFullYear(date, value, 0, 1)
     date.setUTCHours(0, 0, 0, 0)
     return date
   }
