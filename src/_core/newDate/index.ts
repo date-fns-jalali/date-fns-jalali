@@ -4,11 +4,11 @@ type VArgs = [/* value: */ number | string]
 type DArgs = [
   /* year:*/ number,
   /* month:*/ number,
-  /* date?:*/ number | undefined,
-  /* hours?:*/ number | undefined,
-  /* minutes?:*/ number | undefined,
-  /* seconds?:*/ number | undefined,
-  /* ms?:*/ number | undefined
+  /* date?:*/ number?,
+  /* hours?:*/ number?,
+  /* minutes?:*/ number?,
+  /* seconds?:*/ number?,
+  /* ms?:*/ number?
 ]
 type Args = [] | VArgs | DArgs
 
