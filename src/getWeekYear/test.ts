@@ -5,12 +5,14 @@ import getWeekYear from '.'
 
 describe('getWeekYear', () => {
   it('returns the local week-numbering year of the given date', () => {
-    const result = getWeekYear(new Date(2004, 11 /* Dec */, 26))
+    const result = getWeekYear(/* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26))
     assert(result === 2005)
   })
 
   it('accepts a timestamp', () => {
-    const result = getWeekYear(new Date(2000, 11 /* Dec */, 30).getTime())
+    const result = getWeekYear(
+      /* 1379/10/10 */ new Date(2000, 11 /* Dec */, 30).getTime()
+    )
     assert(result === 2000)
   })
 
@@ -28,7 +30,7 @@ describe('getWeekYear', () => {
   })
 
   it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale', () => {
-    const date = new Date(2004, 11 /* Dec */, 26)
+    const date = /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26)
     const result = getWeekYear(date, {
       // @ts-expect-error
       locale: {
@@ -39,7 +41,7 @@ describe('getWeekYear', () => {
   })
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', () => {
-    const date = new Date(2004, 11 /* Dec */, 26)
+    const date = /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26)
     const result = getWeekYear(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
@@ -53,7 +55,7 @@ describe('getWeekYear', () => {
 
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', () => {
     const block = () =>
-      getWeekYear(new Date(2007, 11 /* Dec */, 31), {
+      getWeekYear(/* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31), {
         // @ts-expect-error
         weekStartsOn: NaN,
       })
@@ -62,7 +64,7 @@ describe('getWeekYear', () => {
 
   it('throws `RangeError` if `options.firstWeekContainsDate` is not convertable to 1, 2, ..., 7 or undefined', () => {
     const block = () =>
-      getWeekYear(new Date(2007, 11 /* Dec */, 31), {
+      getWeekYear(/* 1386/10/10 */ new Date(2007, 11 /* Dec */, 31), {
         // @ts-expect-error
         firstWeekContainsDate: NaN,
       })
