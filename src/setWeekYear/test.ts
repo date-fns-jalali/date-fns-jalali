@@ -5,37 +5,61 @@ import setWeekYear from '.'
 
 describe('setWeekYear', () => {
   it('sets the local week-numbering year, saving the week and the day of the week', () => {
-    const result = setWeekYear(new Date(2010, 0 /* Jan */, 2), 2004)
-    assert.deepStrictEqual(result, new Date(2004, 0 /* Jan */, 3))
+    const result = setWeekYear(
+      /* 1388/1/2 */ new Date(2009, 2 /* Mar */, 22),
+      1382
+    )
+    assert.deepStrictEqual(
+      result,
+      /* 1381/12/25 */ new Date(2003, 2 /* Mar */, 16)
+    )
   })
 
   it('accepts a timestamp', () => {
-    const result = setWeekYear(new Date(2008, 11 /* Dec */, 29).getTime(), 2007)
-    assert.deepStrictEqual(result, new Date(2007, 0 /* Jan */, 1))
+    const result = setWeekYear(
+      /* 1387/12/29 */ new Date(2009, 2 /* Mar */, 19).getTime(),
+      1380
+    )
+    assert.deepStrictEqual(
+      result,
+      /* 1381/1/1 */ new Date(2002, 2 /* Mar */, 21)
+    )
   })
 
   it('converts a fractional number to an integer', () => {
-    const result = setWeekYear(new Date(2010, 0 /* Jan */, 2), 2004.2004)
-    assert.deepStrictEqual(result, new Date(2004, 0 /* Jan */, 3))
+    const result = setWeekYear(
+      /* 1388/1/2 */ new Date(2009, 2 /* Mar */, 22),
+      1382.2004
+    )
+    assert.deepStrictEqual(
+      result,
+      /* 1381/12/25 */ new Date(2003, 2 /* Mar */, 16)
+    )
   })
 
   it('implicitly converts number arguments', () => {
     const result = setWeekYear(
-      new Date(2008, 11 /* Dec */, 29),
+      /* 1388/1/2 */ new Date(2009, 2 /* Mar */, 22),
       // @ts-expect-error
-      '2007'
+      '1382'
     )
-    assert.deepStrictEqual(result, new Date(2007, 0 /* Jan */, 1))
+    assert.deepStrictEqual(
+      result,
+      /* 1381/12/25 */ new Date(2003, 2 /* Mar */, 16)
+    )
   })
 
   it('does not mutate the original date', () => {
-    const date = new Date(2008, 11 /* Dec */, 29)
+    const date = /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29)
     setWeekYear(date, 2000)
-    assert.deepStrictEqual(date, new Date(2008, 11 /* Dec */, 29))
+    assert.deepStrictEqual(
+      date,
+      /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29)
+    )
   })
 
-  it('sets local week-numbering years less than 100', () => {
-    const initialDate = new Date(2008, 11 /* Dec */, 29)
+  it.skip('sets local week-numbering years less than 100', () => {
+    const initialDate = /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29)
     const expectedResult = new Date(0)
     expectedResult.setFullYear(7, 0 /* Jan */, 1)
     expectedResult.setHours(0, 0, 0, 0)
@@ -43,7 +67,7 @@ describe('setWeekYear', () => {
     assert.deepStrictEqual(result, expectedResult)
   })
 
-  it('handles dates before 100 AD', () => {
+  it.skip('handles dates before 100 AD', () => {
     const initialDate = new Date(0)
     initialDate.setFullYear(8, 11 /* Dec */, 29)
     initialDate.setHours(0, 0, 0, 0)
@@ -60,24 +84,30 @@ describe('setWeekYear', () => {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', () => {
-    const result = setWeekYear(new Date(2008, 11 /* Dec */, 29), NaN)
+    const result = setWeekYear(
+      /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29),
+      NaN
+    )
     assert(result instanceof Date && isNaN(result.getDate()))
   })
 
   it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale', () => {
-    const date = new Date(2010, 0 /* Jan */, 2)
-    const result = setWeekYear(date, 2004, {
+    const date = /* 1388/1/6 */ new Date(2009, 2 /* Mar */, 26)
+    const result = setWeekYear(date, 1382, {
       // @ts-expect-error
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 },
       },
     })
-    assert.deepStrictEqual(result, new Date(2005, 0 /* Jan */, 1))
+    assert.deepStrictEqual(
+      result,
+      /* 1382/1/7 */ new Date(2003, 2 /* Mar */, 27)
+    )
   })
 
   it('`options.weekStartsOn` overwrites the first day of the week specified in locale', () => {
-    const date = new Date(2010, 0 /* Jan */, 2)
-    const result = setWeekYear(date, 2004, {
+    const date = /* 1388/1/6 */ new Date(2009, 2 /* Mar */, 26)
+    const result = setWeekYear(date, 1382, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
       // @ts-expect-error
@@ -85,12 +115,15 @@ describe('setWeekYear', () => {
         options: { weekStartsOn: 0, firstWeekContainsDate: 1 },
       },
     })
-    assert.deepStrictEqual(result, new Date(2005, 0 /* Jan */, 1))
+    assert.deepStrictEqual(
+      result,
+      /* 1382/1/7 */ new Date(2003, 2 /* Mar */, 27)
+    )
   })
 
   it('throws `RangeError` if `options.weekStartsOn` is not convertable to 0, 1, ..., 6 or undefined', () => {
     const block = () =>
-      setWeekYear(new Date(2004, 7 /* Aug */, 7), 2018, {
+      setWeekYear(/* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7), 2018, {
         // @ts-expect-error
         weekStartsOn: NaN,
       })
@@ -99,7 +132,7 @@ describe('setWeekYear', () => {
 
   it('throws `RangeError` if `options.firstWeekContainsDate` is not convertable to 1, 2, ..., 7 or undefined', () => {
     const block = () =>
-      setWeekYear(new Date(2004, 7 /* Aug */, 7), 2018, {
+      setWeekYear(/* 1383/5/17 */ new Date(2004, 7 /* Aug */, 7), 2018, {
         // @ts-expect-error
         firstWeekContainsDate: NaN,
       })

@@ -2,6 +2,10 @@ import toDate from '../toDate/index'
 import type { Interval } from '../types'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreSetMonth from '../_core/setMonth/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+
 /**
  * @name eachYearOfInterval
  * @category Interval Helpers
@@ -47,11 +51,11 @@ export default function eachYearOfInterval(dirtyInterval: Interval): Date[] {
 
   const currentDate = startDate
   currentDate.setHours(0, 0, 0, 0)
-  currentDate.setMonth(0, 1)
+  coreSetMonth(currentDate, 0, 1)
 
   while (currentDate.getTime() <= endTime) {
     dates.push(toDate(currentDate))
-    currentDate.setFullYear(currentDate.getFullYear() + 1)
+    coreSetFullYear(currentDate, coreGetFullYear(currentDate) + 1)
   }
 
   return dates

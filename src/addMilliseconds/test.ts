@@ -6,53 +6,56 @@ import addMilliseconds from '.'
 describe('addMilliseconds', () => {
   it('adds the given number of milliseconds', () => {
     const result = addMilliseconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
       750
     )
     assert.deepStrictEqual(
       result,
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 750)
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 750)
     )
   })
 
   it('accepts a timestamp', () => {
     const result = addMilliseconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0).getTime(),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0).getTime(),
       500
     )
     assert.deepStrictEqual(
       result,
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 500)
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 500)
     )
   })
 
   it('converts a fractional number to an integer', () => {
     const result = addMilliseconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
       750.75
     )
     assert.deepStrictEqual(
       result,
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 750)
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 750)
     )
   })
 
   it('implicitly converts number arguments', () => {
     const result = addMilliseconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 5),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 5),
       // @ts-expect-error
       '750'
     )
     assert.deepStrictEqual(
       result,
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 755)
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 755)
     )
   })
 
   it('does not mutate the original date', () => {
-    const date = new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0)
+    const date = /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0)
     addMilliseconds(date, 250)
-    assert.deepStrictEqual(date, new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0))
+    assert.deepStrictEqual(
+      date,
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0)
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', () => {
@@ -62,7 +65,7 @@ describe('addMilliseconds', () => {
 
   it('returns `Invalid Date` if the given amount is NaN', () => {
     const result = addMilliseconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
       NaN
     )
     assert(result instanceof Date && isNaN(result.getTime()))

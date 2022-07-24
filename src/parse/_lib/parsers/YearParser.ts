@@ -3,6 +3,9 @@ import type { ParseResult, ParseFlags } from '../types'
 import { Parser } from '../Parser'
 import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils'
 
+import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index'
+import coreSetUTCFullYear from '../../../_core/setUTCFullYear/index'
+
 export interface YearParserValue {
   year: number
   isTwoDigitYear: boolean
@@ -50,21 +53,21 @@ export class YearParser extends Parser<YearParserValue> {
   }
 
   set(date: Date, flags: ParseFlags, value: YearParserValue): Date {
-    const currentYear = date.getUTCFullYear()
+    const currentYear = coreGetUTCFullYear(date)
 
     if (value.isTwoDigitYear) {
       const normalizedTwoDigitYear = normalizeTwoDigitYear(
         value.year,
         currentYear
       )
-      date.setUTCFullYear(normalizedTwoDigitYear, 0, 1)
+      coreSetUTCFullYear(date, normalizedTwoDigitYear, 0, 1)
       date.setUTCHours(0, 0, 0, 0)
       return date
     }
 
     const year =
       !('era' in flags) || flags.era === 1 ? value.year : 1 - value.year
-    date.setUTCFullYear(year, 0, 1)
+    coreSetUTCFullYear(date, year, 0, 1)
     date.setUTCHours(0, 0, 0, 0)
     return date
   }

@@ -4,8 +4,12 @@ import { Parser } from '../Parser'
 import { numericPatterns } from '../constants'
 import type { ParseResult, ParseFlags } from '../types'
 
-const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-const DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+import coreGetUTCMonth from '../../../_core/getUTCMonth/index'
+import coreSetUTCDate from '../../../_core/setUTCDate/index'
+import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index'
+
+const DAYS_IN_MONTH = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
+const DAYS_IN_MONTH_LEAP_YEAR = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30]
 
 // Day of the month
 export class DateParser extends Parser<number> {
@@ -24,9 +28,9 @@ export class DateParser extends Parser<number> {
   }
 
   validate(date: Date, value: number): boolean {
-    const year = date.getUTCFullYear()
+    const year = coreGetUTCFullYear(date)
     const isLeapYear = isLeapYearIndex(year)
-    const month = date.getUTCMonth()
+    const month = coreGetUTCMonth(date)
     if (isLeapYear) {
       return value >= 1 && value <= DAYS_IN_MONTH_LEAP_YEAR[month]
     } else {
@@ -35,7 +39,7 @@ export class DateParser extends Parser<number> {
   }
 
   set(date: Date, _flags: ParseFlags, value: number): Date {
-    date.setUTCDate(value)
+    coreSetUTCDate(date, value)
     date.setUTCHours(0, 0, 0, 0)
     return date
   }
