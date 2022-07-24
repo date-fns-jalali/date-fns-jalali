@@ -5,24 +5,40 @@ import startOfYear from '.'
 
 describe('startOfYear', () => {
   it('returns the date with the time set to 00:00:00 and the date set to the first day of a year', () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     const result = startOfYear(date)
-    assert.deepStrictEqual(result, new Date(2014, 0 /* Jan */, 1, 0, 0, 0, 0))
+    assert.deepStrictEqual(
+      result,
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21, 0, 0, 0, 0)
+    )
   })
 
   it('accepts a timestamp', () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime()
+    const date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+      0
+    ).getTime()
     const result = startOfYear(date)
-    assert.deepStrictEqual(result, new Date(2014, 0 /* Dec */, 1, 0, 0, 0, 0))
+    assert.deepStrictEqual(
+      result,
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21, 0, 0, 0, 0)
+    )
   })
 
   it('does not mutate the original date', () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
     startOfYear(date)
-    assert.deepStrictEqual(date, new Date(2014, 8 /* Sep */, 2, 11, 55, 0))
+    assert.deepStrictEqual(
+      date,
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    )
   })
 
-  it('handles dates before 100 AD', () => {
+  it.skip('handles dates before 100 AD', () => {
     const initialDate = new Date(0)
     initialDate.setFullYear(9, 0 /* Jan */, 5)
     initialDate.setHours(0, 0, 0, 0)

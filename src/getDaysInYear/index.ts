@@ -2,6 +2,8 @@ import toDate from '../toDate/index'
 import isLeapYear from '../isLeapYear/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name getDaysInYear
  * @category Year Helpers
@@ -24,7 +26,7 @@ export default function getDaysInYear(dirtyDate: Date | number): number {
 
   const date = toDate(dirtyDate)
 
-  if (String(new Date(date)) === 'Invalid Date') {
+  if (String(coreNewDate(date)) === 'Invalid Date') {
     return NaN
   }
 

@@ -9,18 +9,25 @@
  *
  * This function returns the timezone offset in milliseconds that takes seconds in account.
  */
+import coreGetMonth from '../../_core/getMonth/index'
+
+import coreGetDate from '../../_core/getDate/index'
+import coreGetFullYear from '../../_core/getFullYear/index'
+import coreSetUTCFullYear from '../../_core/setUTCFullYear/index'
+import coreNewDate from '../../_core/newDate/index'
+import coreDateUTC from '../../_core/dateUTC/index'
 export default function getTimezoneOffsetInMilliseconds(date: Date): number {
-  const utcDate = new Date(
-    Date.UTC(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate(),
+  const utcDate = coreNewDate(
+    coreDateUTC(
+      coreGetFullYear(date),
+      coreGetMonth(date),
+      coreGetDate(date),
       date.getHours(),
       date.getMinutes(),
       date.getSeconds(),
       date.getMilliseconds()
     )
   )
-  utcDate.setUTCFullYear(date.getFullYear())
+  coreSetUTCFullYear(utcDate, coreGetFullYear(date))
   return date.getTime() - utcDate.getTime()
 }

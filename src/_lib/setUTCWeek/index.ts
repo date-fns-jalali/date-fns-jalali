@@ -8,6 +8,9 @@ import type {
   FirstWeekContainsDateOptions,
 } from '../../types'
 
+import coreGetUTCDate from '../../_core/getUTCDate/index'
+import coreSetUTCDate from '../../_core/setUTCDate/index'
+
 export default function setUTCWeek(
   dirtyDate: Date | number,
   dirtyWeek: number,
@@ -18,6 +21,6 @@ export default function setUTCWeek(
   const date = toDate(dirtyDate)
   const week = toInteger(dirtyWeek)
   const diff = getUTCWeek(date, options) - week
-  date.setUTCDate(date.getUTCDate() - diff * 7)
+  coreSetUTCDate(date, coreGetUTCDate(date) - diff * 7)
   return date
 }

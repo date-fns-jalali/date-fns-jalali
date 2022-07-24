@@ -1,5 +1,11 @@
 import type { ParserOptions, ParseFlags } from './types'
 
+import coreSetFullYear from '../../_core/setFullYear/index'
+import coreGetUTCMonth from '../../_core/getUTCMonth/index'
+import coreGetUTCDate from '../../_core/getUTCDate/index'
+import coreGetUTCFullYear from '../../_core/getUTCFullYear/index'
+import coreNewDate from '../../_core/newDate/index'
+
 const TIMEZONE_UNIT_PRIORITY = 10
 
 export abstract class Setter {
@@ -61,11 +67,12 @@ export class DateToSystemTimezoneSetter extends Setter {
       return date
     }
 
-    const convertedDate = new Date(0)
-    convertedDate.setFullYear(
-      date.getUTCFullYear(),
-      date.getUTCMonth(),
-      date.getUTCDate()
+    const convertedDate = coreNewDate(0)
+    coreSetFullYear(
+      convertedDate,
+      coreGetUTCFullYear(date),
+      coreGetUTCMonth(date),
+      coreGetUTCDate(date)
     )
     convertedDate.setHours(
       date.getUTCHours(),
