@@ -1,4 +1,4 @@
-# English (en-US) locale
+# English (fa-IR) locale
 
 ## `format` and `parse`
 
