@@ -6,6 +6,8 @@ import getUTCWeekYear from '../../../_lib/getUTCWeekYear'
 import startOfUTCWeek from '../../../_lib/startOfUTCWeek'
 import type { YearParserValue } from './YearParser'
 
+import coreSetUTCFullYear from '../../../_core/setUTCFullYear/index'
+
 // Local week-numbering year
 export class LocalWeekYearParser extends Parser<YearParserValue> {
   priority = 130
@@ -52,7 +54,8 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
         value.year,
         currentYear
       )
-      date.setUTCFullYear(
+      coreSetUTCFullYear(
+        date,
         normalizedTwoDigitYear,
         0,
         options.firstWeekContainsDate
@@ -63,7 +66,7 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
 
     const year =
       !('era' in flags) || flags.era === 1 ? value.year : 1 - value.year
-    date.setUTCFullYear(year, 0, options.firstWeekContainsDate)
+    coreSetUTCFullYear(date, year, 0, options.firstWeekContainsDate)
     date.setUTCHours(0, 0, 0, 0)
     return startOfUTCWeek(date, options)
   }

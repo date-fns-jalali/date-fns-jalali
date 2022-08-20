@@ -1,6 +1,9 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+
 /**
  * @name lastDayOfYear
  * @category Year Helpers
@@ -23,8 +26,8 @@ export default function lastDayOfYear(dirtyDate: Date | number): Date {
   requiredArgs(1, arguments)
 
   const date = toDate(dirtyDate)
-  const year = date.getFullYear()
-  date.setFullYear(year + 1, 0, 0)
+  const year = coreGetFullYear(date)
+  coreSetFullYear(date, year + 1, 0, 0)
   date.setHours(0, 0, 0, 0)
   return date
 }

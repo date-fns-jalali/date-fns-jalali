@@ -2,6 +2,8 @@ import type { ParseResult, ParseFlags } from '../types'
 import { Parser } from '../Parser'
 import { parseNDigitsSigned } from '../utils'
 
+import coreSetUTCFullYear from '../../../_core/setUTCFullYear/index'
+
 export class ExtendedYearParser extends Parser<number> {
   priority = 130
 
@@ -14,7 +16,7 @@ export class ExtendedYearParser extends Parser<number> {
   }
 
   set(date: Date, _flags: ParseFlags, value: number): Date {
-    date.setUTCFullYear(value, 0, 1)
+    coreSetUTCFullYear(date, value, 0, 1)
     date.setUTCHours(0, 0, 0, 0)
     return date
   }

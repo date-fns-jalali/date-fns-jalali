@@ -22,6 +22,8 @@ import type {
 } from '../types'
 import { getDefaultOptions } from '../_lib/defaultOptions/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 // This RegExp consists of three parts separated by `|`:
 // - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token
 //   (one of the certain letters followed by `o`)
@@ -387,7 +389,7 @@ export default function parse(
       options?.locale?.options?.weekStartsOn ??
       defaultOptions.weekStartsOn ??
       defaultOptions.locale?.options?.weekStartsOn ??
-      0
+      6
   )
 
   // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
@@ -399,7 +401,7 @@ export default function parse(
     if (dateString === '') {
       return toDate(dirtyReferenceDate)
     } else {
-      return new Date(NaN)
+      return coreNewDate(NaN)
     }
   }
 
@@ -472,7 +474,7 @@ export default function parse(
       )
 
       if (!parseResult) {
-        return new Date(NaN)
+        return coreNewDate(NaN)
       }
 
       setters.push(parseResult.setter)
@@ -498,14 +500,14 @@ export default function parse(
       if (dateString.indexOf(token) === 0) {
         dateString = dateString.slice(token.length)
       } else {
-        return new Date(NaN)
+        return coreNewDate(NaN)
       }
     }
   }
 
   // Check if the remaining input contains something other than whitespace
   if (dateString.length > 0 && notWhitespaceRegExp.test(dateString)) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   const uniquePrioritySetters = setters
@@ -522,7 +524,7 @@ export default function parse(
   const date = toDate(dirtyReferenceDate)
 
   if (isNaN(date.getTime())) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   // Convert the date in system timezone to the same date in UTC+00:00 timezone.
@@ -531,7 +533,7 @@ export default function parse(
   const flags: ParseFlags = {}
   for (const setter of uniquePrioritySetters) {
     if (!setter.validate(utcDate, subFnOptions)) {
-      return new Date(NaN)
+      return coreNewDate(NaN)
     }
 
     const result = setter.set(utcDate, flags, subFnOptions)

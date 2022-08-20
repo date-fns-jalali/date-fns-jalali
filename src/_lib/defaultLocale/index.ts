@@ -1,2 +1,2 @@
-import defaultLocale from '../../locale/en-US/index'
+import defaultLocale from '../../locale/fa-IR/index'
 export default defaultLocale

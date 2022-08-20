@@ -1,6 +1,9 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+
 /**
  * @name isSameMonth
  * @category Month Helpers
@@ -33,7 +36,7 @@ export default function isSameMonth(
   const dateLeft = toDate(dirtyDateLeft)
   const dateRight = toDate(dirtyDateRight)
   return (
-    dateLeft.getFullYear() === dateRight.getFullYear() &&
-    dateLeft.getMonth() === dateRight.getMonth()
+    coreGetFullYear(dateLeft) === coreGetFullYear(dateRight) &&
+    coreGetMonth(dateLeft) === coreGetMonth(dateRight)
   )
 }
