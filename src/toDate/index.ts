@@ -1,5 +1,7 @@
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name toDate
  * @category Common Helpers
@@ -41,9 +43,9 @@ export default function toDate(argument: Date | number): Date {
     (typeof argument === 'object' && argStr === '[object Date]')
   ) {
     // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    return new Date(argument.getTime())
+    return coreNewDate(argument.getTime())
   } else if (typeof argument === 'number' || argStr === '[object Number]') {
-    return new Date(argument)
+    return coreNewDate(argument)
   } else {
     if (
       (typeof argument === 'string' || argStr === '[object String]') &&
@@ -56,6 +58,6 @@ export default function toDate(argument: Date | number): Date {
       // eslint-disable-next-line no-console
       console.warn(new Error().stack)
     }
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 }

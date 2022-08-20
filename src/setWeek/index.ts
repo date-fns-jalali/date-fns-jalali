@@ -8,6 +8,9 @@ import type {
 import requiredArgs from '../_lib/requiredArgs/index'
 import toInteger from '../_lib/toInteger/index'
 
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
+
 /**
  * @name setWeek
  * @category Week Helpers
@@ -58,6 +61,6 @@ export default function setWeek(
   const date = toDate(dirtyDate)
   const week = toInteger(dirtyWeek)
   const diff = getWeek(date, options) - week
-  date.setDate(date.getDate() - diff * 7)
+  coreSetDate(date, coreGetDate(date) - diff * 7)
   return date
 }

@@ -9,6 +9,9 @@ import startOfUTCWeek from '../startOfUTCWeek/index'
 import toInteger from '../toInteger/index'
 import { getDefaultOptions } from '../defaultOptions/index'
 
+import coreSetUTCFullYear from '../../_core/setUTCFullYear/index'
+import coreNewDate from '../../_core/newDate/index'
+
 export default function startOfUTCWeekYear(
   dirtyDate: Date | number,
   options?: LocaleOptions & FirstWeekContainsDateOptions & WeekStartOptions
@@ -25,8 +28,8 @@ export default function startOfUTCWeekYear(
   )
 
   const year = getUTCWeekYear(dirtyDate, options)
-  const firstWeek = new Date(0)
-  firstWeek.setUTCFullYear(year, 0, firstWeekContainsDate)
+  const firstWeek = coreNewDate(0)
+  coreSetUTCFullYear(firstWeek, year, 0, firstWeekContainsDate)
   firstWeek.setUTCHours(0, 0, 0, 0)
   const date = startOfUTCWeek(firstWeek, options)
   return date
