@@ -5,13 +5,15 @@ import getUTCDayOfYear from '.'
 
 describe('getUTCDayOfYear', () => {
   it('returns the day of the year of the given date', () => {
-    const result = getUTCDayOfYear(new Date(Date.UTC(2014, 6 /* Jul */, 2)))
+    const result = getUTCDayOfYear(
+      new Date(/* 1393/4/11 */ Date.UTC(2014, 6 /* Jul */, 2))
+    )
     assert(result === 183)
   })
 
   it('accepts a timestamp', () => {
     const result = getUTCDayOfYear(
-      new Date(Date.UTC(2014, 0 /* Jan */, 2)).getTime()
+      new Date(/* 1392/10/12 */ Date.UTC(2014, 0 /* Jan */, 2)).getTime()
     )
     assert(result === 2)
   })
