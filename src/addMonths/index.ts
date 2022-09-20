@@ -2,6 +2,13 @@ import toInteger from '../_lib/toInteger/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+import coreSetMonth from '../_core/setMonth/index'
+import coreGetDate from '../_core/getDate/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name addMonths
  * @category Month Helpers
@@ -29,13 +36,13 @@ export default function addMonths(
   const date = toDate(dirtyDate)
   const amount = toInteger(dirtyAmount)
   if (isNaN(amount)) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
   if (!amount) {
     // If 0 months, no-op to avoid changing times in the hour before end of DST
     return date
   }
-  const dayOfMonth = date.getDate()
+  const dayOfMonth = coreGetDate(date)
 
   // The JS Date object supports date math by accepting out-of-bounds values for
   // month, day, etc. For example, new Date(2020, 0, 0) returns 31 Dec 2019 and
@@ -45,9 +52,9 @@ export default function addMonths(
   // we'll default to the end of the desired month by adding 1 to the desired
   // month and using a date of 0 to back up one day to the end of the desired
   // month.
-  const endOfDesiredMonth = new Date(date.getTime())
-  endOfDesiredMonth.setMonth(date.getMonth() + amount + 1, 0)
-  const daysInMonth = endOfDesiredMonth.getDate()
+  const endOfDesiredMonth = coreNewDate(date.getTime())
+  coreSetMonth(endOfDesiredMonth, coreGetMonth(date) + amount + 1, 0)
+  const daysInMonth = coreGetDate(endOfDesiredMonth)
   if (dayOfMonth >= daysInMonth) {
     // If we're already at the end of the month, then this is the correct date
     // and we're done.
@@ -60,9 +67,10 @@ export default function addMonths(
     // the last day of the month and its local time was in the hour skipped or
     // repeated next to a DST transition.  So we use `date` instead which is
     // guaranteed to still have the original time.
-    date.setFullYear(
-      endOfDesiredMonth.getFullYear(),
-      endOfDesiredMonth.getMonth(),
+    coreSetFullYear(
+      date,
+      coreGetFullYear(endOfDesiredMonth),
+      coreGetMonth(endOfDesiredMonth),
       dayOfMonth
     )
     return date

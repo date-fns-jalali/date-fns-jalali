@@ -10,6 +10,11 @@ import type {
 } from '../types'
 import { getDefaultOptions } from '../_lib/defaultOptions/index'
 
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name setWeekYear
  * @category Week-Numbering Year Helpers
@@ -70,10 +75,10 @@ export default function setWeekYear(
   let date = toDate(dirtyDate)
   const weekYear = toInteger(dirtyWeekYear)
   const diff = differenceInCalendarDays(date, startOfWeekYear(date, options))
-  const firstWeek = new Date(0)
-  firstWeek.setFullYear(weekYear, 0, firstWeekContainsDate)
+  const firstWeek = coreNewDate(0)
+  coreSetFullYear(firstWeek, weekYear, 0, firstWeekContainsDate)
   firstWeek.setHours(0, 0, 0, 0)
   date = startOfWeekYear(firstWeek, options)
-  date.setDate(date.getDate() + diff)
+  coreSetDate(date, coreGetDate(date) + diff)
   return date
 }

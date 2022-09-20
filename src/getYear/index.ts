@@ -1,6 +1,8 @@
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetFullYear from '../_core/getFullYear/index'
+
 /**
  * @name getYear
  * @category Year Helpers
@@ -21,5 +23,5 @@ import requiredArgs from '../_lib/requiredArgs/index'
 export default function getYear(dirtyDate: Date | number): number {
   requiredArgs(1, arguments)
 
-  return toDate(dirtyDate).getFullYear()
+  return coreGetFullYear(toDate(dirtyDate))
 }

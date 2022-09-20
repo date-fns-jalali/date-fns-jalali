@@ -3,6 +3,9 @@ import { Parser } from '../Parser'
 import { parseNDigitsSigned } from '../utils'
 import startOfUTCISOWeek from '../../../_lib/startOfUTCISOWeek'
 
+import coreSetUTCFullYear from '../../../_core/setUTCFullYear/index'
+import coreNewDate from '../../../_core/newDate/index'
+
 // ISO week-numbering year
 export class ISOWeekYearParser extends Parser<number> {
   priority = 130
@@ -16,8 +19,8 @@ export class ISOWeekYearParser extends Parser<number> {
   }
 
   set(_date: Date, _flags: ParseFlags, value: number): Date {
-    const firstWeekOfYear = new Date(0)
-    firstWeekOfYear.setUTCFullYear(value, 0, 4)
+    const firstWeekOfYear = coreNewDate(0)
+    coreSetUTCFullYear(firstWeekOfYear, value, 0, 4)
     firstWeekOfYear.setUTCHours(0, 0, 0, 0)
     return startOfUTCISOWeek(firstWeekOfYear)
   }
