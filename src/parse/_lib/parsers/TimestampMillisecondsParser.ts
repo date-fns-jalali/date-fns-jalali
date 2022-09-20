@@ -2,6 +2,8 @@ import type { ParseResult, ParseFlags } from '../types'
 import { Parser } from '../Parser'
 import { parseAnyDigitsSigned } from '../utils'
 
+import coreNewDate from '../../../_core/newDate/index'
+
 export class TimestampMillisecondsParser extends Parser<number> {
   priority = 20
 
@@ -10,7 +12,7 @@ export class TimestampMillisecondsParser extends Parser<number> {
   }
 
   set(_date: Date, _flags: ParseFlags, value: number): [Date, ParseFlags] {
-    return [new Date(value), { timestampIsSet: true }]
+    return [coreNewDate(value), { timestampIsSet: true }]
   }
 
   incompatibleTokens = '*' as const

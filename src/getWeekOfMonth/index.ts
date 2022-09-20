@@ -39,7 +39,7 @@ export default function getWeekOfMonth(
       options?.locale?.options?.weekStartsOn ??
       defaultOptions.weekStartsOn ??
       defaultOptions.locale?.options?.weekStartsOn ??
-      0
+      6
   )
 
   if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {

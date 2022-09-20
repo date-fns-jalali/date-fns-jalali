@@ -4,6 +4,9 @@ import { Parser } from '../Parser'
 import { numericPatterns } from '../constants'
 import { parseNumericPattern, parseNDigits, isLeapYearIndex } from '../utils'
 
+import coreSetUTCMonth from '../../../_core/setUTCMonth/index'
+import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index'
+
 export class DayOfYearParser extends Parser<number> {
   priority = 90
 
@@ -22,7 +25,7 @@ export class DayOfYearParser extends Parser<number> {
   }
 
   validate(date: Date, value: number): boolean {
-    const year = date.getUTCFullYear()
+    const year = coreGetUTCFullYear(date)
     const isLeapYear = isLeapYearIndex(year)
     if (isLeapYear) {
       return value >= 1 && value <= 366
@@ -32,7 +35,7 @@ export class DayOfYearParser extends Parser<number> {
   }
 
   set(date: Date, _flags: ParseFlags, value: number): Date {
-    date.setUTCMonth(0, value)
+    coreSetUTCMonth(date, 0, value)
     date.setUTCHours(0, 0, 0, 0)
     return date
   }

@@ -4,6 +4,9 @@ import toInteger from '../_lib/toInteger/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 import type { LocaleOptions, WeekStartOptions } from '../types'
 
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
+
 /**
  * @name endOfWeek
  * @category Week Helpers
@@ -43,7 +46,7 @@ export default function endOfWeek(
       options?.locale?.options?.weekStartsOn ??
       defaultOptions.weekStartsOn ??
       defaultOptions.locale?.options?.weekStartsOn ??
-      0
+      6
   )
 
   // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
@@ -55,7 +58,7 @@ export default function endOfWeek(
   const day = date.getDay()
   const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn)
 
-  date.setDate(date.getDate() + diff)
+  coreSetDate(date, coreGetDate(date) + diff)
   date.setHours(23, 59, 59, 999)
   return date
 }

@@ -1,4 +1,4 @@
 // This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.
 
-import { nextSaturday } from 'date-fns/fp'
+import { nextSaturday } from 'date-fns-jalali/fp'
 export default nextSaturday

@@ -4,6 +4,9 @@ import toInteger from '../_lib/toInteger/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 import { getDefaultOptions } from '../_lib/defaultOptions/index'
 
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
+
 /**
  * @name startOfWeek
  * @category Week Helpers
@@ -43,7 +46,7 @@ export default function startOfWeek(
       options?.locale?.options?.weekStartsOn ??
       defaultOptions.weekStartsOn ??
       defaultOptions.locale?.options?.weekStartsOn ??
-      0
+      6
   )
 
   // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
@@ -55,7 +58,7 @@ export default function startOfWeek(
   const day = date.getDay()
   const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
 
-  date.setDate(date.getDate() - diff)
+  coreSetDate(date, coreGetDate(date) - diff)
   date.setHours(0, 0, 0, 0)
   return date
 }

@@ -1,5 +1,9 @@
 import addLeadingZeros from '../../addLeadingZeros/index'
 
+import coreGetUTCMonth from '../../../_core/getUTCMonth/index'
+import coreGetUTCDate from '../../../_core/getUTCDate/index'
+import coreGetUTCFullYear from '../../../_core/getUTCFullYear/index'
+
 /*
  * |     | Unit                           |     | Unit                           |
  * |-----|--------------------------------|-----|--------------------------------|
@@ -25,7 +29,7 @@ const formatters = {
     // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
     // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
 
-    const signedYear = date.getUTCFullYear()
+    const signedYear = coreGetUTCFullYear(date)
     // Returns 1 for 1 BC (which is year 0 in JavaScript)
     const year = signedYear > 0 ? signedYear : 1 - signedYear
     return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length)
@@ -33,13 +37,13 @@ const formatters = {
 
   // Month
   M(date: Date, token: string): string {
-    const month = date.getUTCMonth()
+    const month = coreGetUTCMonth(date)
     return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2)
   },
 
   // Day of the month
   d(date: Date, token: string): string {
-    return addLeadingZeros(date.getUTCDate(), token.length)
+    return addLeadingZeros(coreGetUTCDate(date), token.length)
   },
 
   // AM or PM
