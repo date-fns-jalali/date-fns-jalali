@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "date-fns documentation utilities & types",
   "main": "index.js",
+  "bin": {
+    "date-fns-docs": "./bin.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
