@@ -1,0 +1,33 @@
+{
+  "name": "@date-fns/docs",
+  "version": "0.1.0",
+  "description": "date-fns documentation utilities & types",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/date-fns/docs.git"
+  },
+  "keywords": [
+    "date-fns"
+  ],
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/date-fns/docs/issues"
+  },
+  "homepage": "https://github.com/date-fns/docs#readme",
+  "dependencies": {
+    "firebase-admin": "^11.4.1",
+    "js-fns": "^2.5.2",
+    "json-bond": "^1.0.0",
+    "typedoc": "^0.23.23",
+    "typesaurus": "^10.0.0-alpha.39"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "typescript": "^4.9.4"
+  }
+}
