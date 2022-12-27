@@ -10,34 +10,71 @@ export const db = schema(($) => ({
 
 export type Schema = Typesaurus.Schema<typeof db>;
 
-// export const sub
+/**
+ * The submodules options.
+ */
+export const submodules = ["default", "fp"] as const;
 
+/**
+ * The submodule type.
+ */
+export type Submodule = typeof submodules[number];
+
+/**
+ * Default submodule.
+ */
+export const defaultSubmodule = "default";
+
+/**
+ * The package model.
+ */
 export interface Package {
   name: string;
   versions: VersionPreview[];
 }
 
+/**
+ * Package version preview - a minimal version of {@link Version} for rendering
+ * version picker.
+ */
 export interface VersionPreview {
   version: string;
   preRelease: boolean;
+  // TODO: Migrate to Date (or remove - it's unused in the website!)
+  createdAt: number;
+  submodules: Submodule[];
 }
 
+/**
+ * The package version model.
+ */
 export interface Version {
   package: string;
   version: string;
   preRelease: boolean;
   pages: PagePreview[];
+  // TODO: Migrate to Date (or remove - it's unused in the website!)
+  createdAt: number;
+  categories: string[];
+  submodules: Submodule[];
 }
 
-export interface PagePreview {
-  slug: string;
-  category: string;
-  title: string;
-  summary: string;
-}
+/**
+ * Page preview - a minimal version of {@link Page} for rendering pages index.
+ */
+export type PagePreview = Pick<
+  PageBase,
+  "slug" | "category" | "title" | "summary" | "submodules"
+>;
 
+/**
+ * The page model.
+ */
 export type Page = MarkdownPage | TSDocPage | JSDocPage;
 
+/**
+ * Base page model.
+ */
 export interface PageBase {
   package: string;
   version: string;
@@ -45,6 +82,7 @@ export interface PageBase {
   category: string;
   title: string;
   summary: string;
+  submodules: Submodule[];
 }
 
 /**
@@ -67,7 +105,7 @@ export interface TSDocPage extends PageBase {
 /**
  * JSDoc function page (used for v1 and v2 documentation).
  */
-export interface JSDocPage {
+export interface JSDocPage extends PageBase {
   type: "jsdoc";
   name: string;
   doc: JSONBond<JSDocFunction>;
