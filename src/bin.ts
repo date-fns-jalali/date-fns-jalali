@@ -9,7 +9,7 @@ import {
   DeclarationReflection,
   ReflectionKind,
 } from "typedoc";
-import { Page } from "./db";
+import { packageName, Page } from "./db";
 
 const version = process.env.VERSION;
 const versionRegExp = /^v\d+\.\d+\.\d+(-(alpha|beta|rc)(\.\d+)?)?$/;
@@ -27,8 +27,6 @@ const docsJSON = readFileSync(jsonPath, "utf8");
 const docs = JSON.parse(docsJSON) as ContainerReflection;
 
 // admin.initializeApp();
-
-const packageName = "date-fns";
 
 // const xxx = [];
 

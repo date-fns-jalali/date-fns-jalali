@@ -11,6 +11,11 @@ export const db = schema(($) => ({
 export type Schema = Typesaurus.Schema<typeof db>;
 
 /**
+ * The package name.
+ */
+export const packageName = "date-fns";
+
+/**
  * The submodules options.
  */
 export const submodules = ["default", "fp"] as const;
