@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
-import admin from "firebase-admin";
 import { readFileSync, writeFileSync } from "fs";
 import { pick } from "js-fns";
 import { stringify } from "json-bond";
 import path from "path";
-import { ReflectionKind } from "typedoc";
-import { Page, TypeDocFunction, TypeDocLibrary } from "./db";
+import {
+  ContainerReflection,
+  DeclarationReflection,
+  ReflectionKind,
+} from "typedoc";
+import { Page } from "./db";
 
 const version = process.env.VERSION;
 const versionRegExp = /^v\d+\.\d+\.\d+(-(alpha|beta|rc)(\.\d+)?)?$/;
@@ -20,37 +23,36 @@ if (!version || !versionRegExp.test(version)) {
 const preRelease = preReleaseRegExp.test(version);
 
 const jsonPath = path.resolve(process.cwd(), process.argv[2]);
-const libraryJSON = readFileSync(jsonPath, "utf8");
-const library = JSON.parse(libraryJSON) as TypeDocLibrary;
+const docsJSON = readFileSync(jsonPath, "utf8");
+const docs = JSON.parse(docsJSON) as ContainerReflection;
 
-admin.initializeApp();
+// admin.initializeApp();
 
-const packageName = library.name;
+const packageName = "date-fns";
 
-const fnPages: Page[] = library.children
-  .map((tsdoc: TypeDocFunction) => {
-    const { name, kind } = tsdoc;
+// const xxx = [];
 
-    if (kind !== ReflectionKind.Function) {
-      console.log("non function kind", { kind });
-      return null;
-    }
-
-    const category = findCategory(tsdoc) || "Common";
-    const summary = findSummary(tsdoc) || "";
-    return {
-      type: "tsdoc",
-      package: packageName,
-      version,
-      slug: name,
-      category,
-      title: name,
-      summary,
-      name,
-      tsdoc: stringify(tsdoc),
-    };
-  })
-  .filter((t) => t !== null) as Page[];
+const fnPages: Page[] =
+  (docs.children
+    ?.map((ref) => {
+      const fn = findFn(ref);
+      if (!fn) return;
+      const name = ref.name;
+      const category = findCategory(ref, fn) || "Common";
+      const summary = findSummary(fn) || "";
+      return {
+        type: "tsdoc",
+        package: packageName,
+        version,
+        slug: name,
+        category,
+        title: name,
+        summary,
+        name,
+        tsdoc: stringify(ref),
+      };
+    })
+    .filter((t) => !!t) as Page[] | undefined) || [];
 
 writeFileSync(
   "tmp/package.json",
@@ -116,21 +118,49 @@ writeFileSync("tmp/pages.json", JSON.stringify(fnPages, null, 2));
 //   process.exit(0)
 // })
 
-function findCategory(tsdoc: TypeDocFunction) {
-  const group = library.groups.find((group) =>
-    group.children.includes(tsdoc.id)
+/**
+ * Find default function in a reflection container.
+ * @param ref - the reflection to look for a function in
+ * @returns the function reflection
+ */
+function findFn(ref: ContainerReflection): DeclarationReflection | undefined {
+  return ref.children?.find(
+    (ref) => ref.kind === ReflectionKind.Function && ref.name === "default"
+  );
+}
+
+/**
+ * Find function category in a reflection container.
+ * @param ref - the reflection to look for a function category in
+ * @param fn - the function reflection
+ * @returns the function category string if found
+ */
+function findCategory(ref: ContainerReflection, fn: DeclarationReflection) {
+  const group = ref.groups?.find((group) =>
+    // TODO: Fix the type error if TypeDoc becomes more eloborate
+    (group.children as unknown as number[]).includes(fn.id)
   );
   if (!group) return;
 
   const category = group.categories?.find((category) =>
-    category.children.includes(tsdoc.id)
+    // TODO: Fix the type error if TypeDoc becomes more eloborate
+    (category.children as unknown as number[]).includes(fn.id)
   );
   return category?.title;
 }
 
-function findSummary(tsdoc: TypeDocFunction) {
-  for (const signature of tsdoc.signatures) {
-    const summary = signature.comment?.shortText;
-    if (summary) return summary;
+/**
+ * Find function summary in the reflection.
+ * @param fn - the function reflection
+ * @returns the function summary string if found
+ */
+function findSummary(fn: DeclarationReflection) {
+  if (!fn.signatures) return;
+  for (const signature of fn.signatures) {
+    const block = signature.comment?.blockTags.find(
+      (b) => b.tag === "@summary"
+    );
+    if (!block) continue;
+    return block.content.map((c) => c.text).join("");
   }
 }
