@@ -9,79 +9,135 @@ import {
   DeclarationReflection,
   ReflectionKind,
 } from "typedoc";
-import { packageName, Page } from "./db";
+import { packageName, submodules } from "./consts";
+import { DateFnsDocs } from "./types";
+import { readFile, writeFile } from "fs/promises";
 
-const version = process.env.VERSION;
-const versionRegExp = /^v\d+\.\d+\.\d+(-(alpha|beta|rc)(\.\d+)?)?$/;
-const preReleaseRegExp = /-(alpha|beta|rc)(\.\d+)?$/;
-
-if (!version || !versionRegExp.test(version)) {
-  console.error(`(•̀o•́)ง VERSION is invalid "${version}"`);
-  process.exit(1);
+interface ConfigModule {
+  config: DateFnsDocs.Config;
 }
 
-const preRelease = preReleaseRegExp.test(version);
+const configPath = path.resolve(process.cwd(), process.argv[2]);
+const configDir = path.dirname(configPath);
 
-const jsonPath = path.resolve(process.cwd(), process.argv[2]);
-const docsJSON = readFileSync(jsonPath, "utf8");
-const docs = JSON.parse(docsJSON) as ContainerReflection;
+import(configPath)
+  .then(async ({ config }: ConfigModule) => {
+    const { version, preRelease } = await getVersion(config);
+    const [fnPages, markdownPages] = await Promise.all([
+      getFnPages(config, version),
+      getMarkdownPages(config, version),
+    ]);
+    const pages = [...fnPages, ...markdownPages];
 
-// admin.initializeApp();
+    return Promise.all([
+      writeFile(
+        "tmp/package.json",
+        JSON.stringify(
+          {
+            name: packageName,
+            versions: [{ version, preRelease }],
+          },
+          null,
+          2
+        )
+      ),
 
-// const xxx = [];
+      writeFile(
+        "tmp/version.json",
+        JSON.stringify(
+          {
+            package: packageName,
+            version,
+            preRelease,
+            pages: pages.map((page) =>
+              pick(page, ["slug", "category", "title", "summary", "submodules"])
+            ),
+            groups: config.groups,
+          },
+          null,
+          2
+        )
+      ),
 
-const fnPages: Page[] =
-  (docs.children
-    ?.map((ref) => {
-      const fn = findFn(ref);
-      if (!fn) return;
-      const name = ref.name;
-      const category = findCategory(ref, fn) || "Common";
-      const summary = findSummary(fn) || "";
+      writeFileSync("tmp/pages.json", JSON.stringify(pages, null, 2)),
+    ]);
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+
+const versionRegExp = /^\d+\.\d+\.\d+(-(alpha|beta|rc)(\.\d+)?)?$/;
+const preReleaseRegExp = /-(alpha|beta|rc)(\.\d+)?$/;
+
+async function getVersion(config: DateFnsDocs.Config) {
+  const packagePath = path.resolve(configDir, config.package, "package.json");
+  const packageStr = await readFile(packagePath, "utf8");
+  const packageJSON = JSON.parse(packageStr);
+  const version = packageJSON.version;
+
+  if (!version || !versionRegExp.test(version))
+    throw Error(`(•̀o•́)ง version is invalid "${version}"`);
+
+  const preRelease = preReleaseRegExp.test(version);
+
+  return { version: "v" + version, preRelease };
+}
+
+async function getFnPages(
+  config: DateFnsDocs.Config,
+  version: string
+): Promise<DateFnsDocs.TSDocPage[]> {
+  const docsJSON = readFileSync(path.resolve(configDir, config.json), "utf8");
+  const docs = JSON.parse(docsJSON) as ContainerReflection;
+
+  return (
+    (docs.children
+      ?.map((ref) => {
+        const fn = findFn(ref);
+        if (!fn) return;
+        const name = ref.name;
+        const category = findCategory(ref, fn) || "Common";
+        const summary = findSummary(fn) || "";
+        const page: DateFnsDocs.TSDocPage = {
+          type: "tsdoc",
+          package: packageName,
+          version,
+          slug: name,
+          category,
+          title: name,
+          summary,
+          name,
+          tsdoc: stringify(ref),
+          submodules,
+        };
+        return page;
+      })
+      .filter((t) => !!t) as DateFnsDocs.TSDocPage[] | undefined) || []
+  );
+}
+
+async function getMarkdownPages(
+  config: DateFnsDocs.Config,
+  version: string
+): Promise<DateFnsDocs.MarkdownPage[]> {
+  return Promise.all(
+    config.files.map(async (file) => {
+      const markdown = await readFile(
+        path.resolve(configDir, file.path),
+        "utf8"
+      );
       return {
-        type: "tsdoc",
-        package: packageName,
+        ...pick(file, ["slug", "category", "title", "summary"]),
+        type: "markdown",
         version,
-        slug: name,
-        category,
-        title: name,
-        summary,
-        name,
-        tsdoc: stringify(ref),
+        markdown,
+        package: packageName,
+        submodules,
       };
     })
-    .filter((t) => !!t) as Page[] | undefined) || [];
-
-writeFileSync(
-  "tmp/package.json",
-  JSON.stringify(
-    {
-      name: packageName,
-      versions: [{ version, preRelease }],
-    },
-    null,
-    2
-  )
-);
-
-writeFileSync(
-  "tmp/version.json",
-  JSON.stringify(
-    {
-      package: packageName,
-      version,
-      preRelease,
-      pages: fnPages.map((page) =>
-        pick(page, ["slug", "category", "title", "summary", "submodules"])
-      ),
-    },
-    null,
-    2
-  )
-);
-
-writeFileSync("tmp/pages.json", JSON.stringify(fnPages, null, 2));
-
+  );
+}
 // const pagesBatch = batch()
 // const packageRef = ref(db.packages, packageName)
 
