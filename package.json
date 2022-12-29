@@ -1,6 +1,6 @@
 {
   "name": "@date-fns/docs",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "date-fns documentation utilities & types",
   "main": "index.js",
   "bin": {
@@ -25,8 +25,8 @@
   "dependencies": {
     "firebase-admin": "^11.4.1",
     "js-fns": "^2.5.2",
-    "json-bond": "^1.0.0",
     "typedoc": "^0.23.23",
+    "typeroo": "^0.9.0",
     "typesaurus": "^10.0.0-alpha.39"
   },
   "devDependencies": {

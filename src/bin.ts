@@ -2,7 +2,7 @@
 
 import { readFileSync, writeFileSync } from "fs";
 import { pick } from "js-fns";
-import { stringify } from "json-bond";
+import { stringify } from "typeroo/json";
 import path from "path";
 import {
   ContainerReflection,

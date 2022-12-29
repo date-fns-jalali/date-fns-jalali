@@ -1,4 +1,4 @@
-import { JSONBond } from "json-bond";
+import { StringifiedJSON } from "typeroo/json";
 import type { ContainerReflection } from "typedoc";
 import { schema, Typesaurus } from "typesaurus";
 
@@ -104,7 +104,7 @@ export interface MarkdownPage extends PageBase {
 export interface TSDocPage extends PageBase {
   type: "tsdoc";
   name: string;
-  tsdoc: JSONBond<ContainerReflection>;
+  tsdoc: StringifiedJSON<ContainerReflection>;
 }
 
 /**
@@ -113,7 +113,7 @@ export interface TSDocPage extends PageBase {
 export interface JSDocPage extends PageBase {
   type: "jsdoc";
   name: string;
-  doc: JSONBond<JSDocFunction>;
+  doc: StringifiedJSON<JSDocFunction>;
 }
 
 /**
