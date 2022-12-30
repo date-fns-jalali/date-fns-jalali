@@ -82,7 +82,7 @@ import(configPath)
           version,
           preRelease,
           pages: fnPages.map((page) =>
-            pick(page, ["slug", "category", "title", "summary"])
+            pick(page, ["slug", "category", "title", "summary", "submodules"])
           ),
           createdAt,
           categories: config.categories,
