@@ -1,10 +1,11 @@
 {
   "name": "@date-fns/docs",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "date-fns documentation utilities & types",
   "main": "index.js",
   "bin": {
-    "date-fns-docs": "./bin.js"
+    "date-fns-docs": "./bin.js",
+    "date-fns-docs-rollback": "./rollback.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

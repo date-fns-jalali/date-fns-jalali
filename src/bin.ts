@@ -23,51 +23,81 @@ const configDir = path.dirname(configPath);
 import(configPath)
   .then(async ({ config }: ConfigModule) => {
     const { version, preRelease } = await getVersion(config);
-    const [fnPages, markdownPages] = await Promise.all([
-      getFnPages(config, version),
-      getMarkdownPages(config, version),
-    ]);
-    const pages = [...fnPages, ...markdownPages];
 
-    const pagesBatch = batch(db);
-    const packageRef = db.packages.ref(db.packages.id(packageName));
-    const createdAt = Date.now();
-
-    Promise.all([
-      packageRef.get().then((packageDoc) =>
-        packageDoc
-          ? packageRef.update(($) =>
+    if (process.argv.find((a) => a === "--rollback")) {
+      return Promise.all([
+        db.packages
+          .get(db.packages.id(packageName))
+          .then((doc) =>
+            doc?.update(($) =>
               $.field("versions").set(
-                $.arrayUnion([{ version, preRelease, submodules, createdAt }])
+                doc.data.versions.filter((v) => v.version !== version)
               )
             )
-          : packageRef.set({
-              name: packageName,
-              versions: [{ version, preRelease, submodules, createdAt }],
-            })
-      ),
+          ),
 
-      db.versions.add({
-        package: packageName,
-        version,
-        preRelease,
-        pages: fnPages.map((page) =>
-          pick(page, ["slug", "category", "title", "summary"])
+        db.versions
+          .query(($) => [
+            $.field("package").equal(packageName),
+            $.field("version").equal(version),
+          ])
+          .then((versions) => versions.map((version) => version.ref.remove())),
+
+        db.pages
+          .query(($) => [
+            $.field("package").equal(packageName),
+            $.field("version").equal(version),
+          ])
+          .then((pages) => pages.map((page) => page.ref.remove())),
+      ]);
+    } else {
+      const [fnPages, markdownPages] = await Promise.all([
+        getFnPages(config, version),
+        getMarkdownPages(config, version),
+      ]);
+      const pages = [...fnPages, ...markdownPages];
+
+      const pagesBatch = batch(db);
+      const packageRef = db.packages.ref(db.packages.id(packageName));
+      const createdAt = Date.now();
+
+      Promise.all([
+        packageRef.get().then((packageDoc) =>
+          packageDoc
+            ? packageRef.update(($) =>
+                $.field("versions").set(
+                  $.arrayUnion([{ version, preRelease, submodules, createdAt }])
+                )
+              )
+            : packageRef.set({
+                name: packageName,
+                versions: [{ version, preRelease, submodules, createdAt }],
+              })
         ),
-        createdAt,
-        categories: config.categories,
-        submodules,
-      }),
 
-      Promise.all(
-        pages.map((page) =>
-          db.pages.id().then((pageId) => pagesBatch.pages.set(pageId, page))
-        )
-      ).then(pagesBatch),
-    ]).then(() => {
-      console.log("(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Done!");
-      process.exit(0);
-    });
+        db.versions.add({
+          package: packageName,
+          version,
+          preRelease,
+          pages: fnPages.map((page) =>
+            pick(page, ["slug", "category", "title", "summary"])
+          ),
+          createdAt,
+          categories: config.categories,
+          submodules,
+        }),
+
+        Promise.all(
+          pages.map((page) =>
+            db.pages.id().then((pageId) => pagesBatch.pages.set(pageId, page))
+          )
+        ).then(pagesBatch),
+      ]);
+    }
+  })
+  .then(() => {
+    console.log("(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Done!");
+    process.exit(0);
   })
   .catch((error) => {
     console.error(error);
