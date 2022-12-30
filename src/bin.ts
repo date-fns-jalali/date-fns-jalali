@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import * as admin from "firebase-admin";
 import { readFile } from "fs/promises";
 import { pick } from "js-fns";
 import path from "path";
@@ -9,6 +10,8 @@ import { packageName, submodules } from "./consts";
 import { db } from "./db";
 import { findCategory, findSummary, readFnsFromJSON } from "./json";
 import { DateFnsDocs } from "./types";
+
+admin.initializeApp();
 
 interface ConfigModule {
   config: DateFnsDocs.Config;
