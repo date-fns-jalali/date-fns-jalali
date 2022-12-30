@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-import { writeFileSync } from "fs";
-import { readFile, writeFile } from "fs/promises";
+import { readFile } from "fs/promises";
 import { pick } from "js-fns";
 import path from "path";
 import { stringify } from "typeroo/json";
+import { batch } from "typesaurus";
 import { packageName, submodules } from "./consts";
+import { db } from "./db";
 import { findCategory, findSummary, readFnsFromJSON } from "./json";
 import { DateFnsDocs } from "./types";
 
@@ -25,38 +26,45 @@ import(configPath)
     ]);
     const pages = [...fnPages, ...markdownPages];
 
-    return Promise.all([
-      writeFile(
-        "tmp/package.json",
-        JSON.stringify(
-          {
-            name: packageName,
-            versions: [{ version, preRelease }],
-          },
-          null,
-          2
-        )
+    const pagesBatch = batch(db);
+    const packageRef = db.packages.ref(db.packages.id(packageName));
+    const createdAt = Date.now();
+
+    Promise.all([
+      packageRef.get().then((packageDoc) =>
+        packageDoc
+          ? packageRef.update(($) =>
+              $.field("versions").set(
+                $.arrayUnion([{ version, preRelease, submodules, createdAt }])
+              )
+            )
+          : packageRef.set({
+              name: packageName,
+              versions: [{ version, preRelease, submodules, createdAt }],
+            })
       ),
 
-      writeFile(
-        "tmp/version.json",
-        JSON.stringify(
-          {
-            package: packageName,
-            version,
-            preRelease,
-            pages: pages.map((page) =>
-              pick(page, ["slug", "category", "title", "summary", "submodules"])
-            ),
-            groups: config.groups,
-          },
-          null,
-          2
-        )
-      ),
+      db.versions.add({
+        package: packageName,
+        version,
+        preRelease,
+        pages: fnPages.map((page) =>
+          pick(page, ["slug", "category", "title", "summary"])
+        ),
+        createdAt,
+        categories: config.categories,
+        submodules,
+      }),
 
-      writeFileSync("tmp/pages.json", JSON.stringify(pages, null, 2)),
-    ]);
+      Promise.all(
+        pages.map((page) =>
+          db.pages.id().then((pageId) => pagesBatch.pages.set(pageId, page))
+        )
+      ).then(pagesBatch),
+    ]).then(() => {
+      console.log("(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Done!");
+      process.exit(0);
+    });
   })
   .catch((error) => {
     console.error(error);
@@ -128,36 +136,3 @@ async function getMarkdownPages(
     })
   );
 }
-// const pagesBatch = batch()
-// const packageRef = ref(db.packages, packageName)
-
-// Promise.all([
-//   get(packageRef).then((packageDoc) =>
-//     packageDoc
-//       ? update(packageRef, {
-//           versions: value('arrayUnion', [{ version, preRelease }]),
-//         })
-//       : set(packageRef, {
-//           name: packageName,
-//           versions: [{ version, preRelease }],
-//         })
-//   ),
-
-//   add(db.versions, {
-//     package: packageName,
-//     version,
-//     preRelease,
-//     pages: fnPages.map((page) =>
-//       pick(page, ['slug', 'category', 'title', 'summary'])
-//     ),
-//   }),
-
-//   Promise.all(
-//     fnPages.map((page) =>
-//       id().then((pageId) => pagesBatch.set(db.pages, pageId, page))
-//     )
-//   ).then(() => pagesBatch.commit()),
-// ]).then(() => {
-//   console.log('(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Done!')
-//   process.exit(0)
-// })

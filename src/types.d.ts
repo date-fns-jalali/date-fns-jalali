@@ -10,8 +10,8 @@ export namespace DateFnsDocs {
     package: string;
     /** The path to TypeDoc JSON. */
     json: string;
-    /** The documentation groups in order. */
-    groups: string[];
+    /** The documentation categories in order. */
+    categories: string[];
     /** The static documentation files. */
     files: StaticDoc[];
   }
@@ -72,7 +72,6 @@ export namespace DateFnsDocs {
     createdAt: number;
     categories: string[];
     submodules: Submodule[];
-    groups: string[];
   }
 
   /**
@@ -115,7 +114,7 @@ export namespace DateFnsDocs {
   export interface TSDocPage extends PageBase {
     type: "tsdoc";
     name: string;
-    tsdoc: StringifiedJSON<ContainerReflection>;
+    tsdoc: StringifiedJSON<DeclarationReflection>;
   }
 
   /**
