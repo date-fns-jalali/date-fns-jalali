@@ -4,8 +4,7 @@
   "description": "date-fns documentation utilities & types",
   "main": "index.js",
   "bin": {
-    "date-fns-docs": "./bin.js",
-    "date-fns-docs-rollback": "./rollback.js"
+    "date-fns-docs": "./bin.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
