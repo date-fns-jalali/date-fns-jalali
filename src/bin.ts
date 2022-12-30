@@ -41,14 +41,16 @@ import(configPath)
             $.field("package").equal(packageName),
             $.field("version").equal(version),
           ])
-          .then((versions) => versions.map((version) => version.ref.remove())),
+          .then((versions) =>
+            Promise.all(versions.map((version) => version.ref.remove()))
+          ),
 
         db.pages
           .query(($) => [
             $.field("package").equal(packageName),
             $.field("version").equal(version),
           ])
-          .then((pages) => pages.map((page) => page.ref.remove())),
+          .then((pages) => Promise.all(pages.map((page) => page.ref.remove()))),
       ]);
     } else {
       const [fnPages, markdownPages] = await Promise.all([
