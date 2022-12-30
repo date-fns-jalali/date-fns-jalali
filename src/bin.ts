@@ -61,7 +61,7 @@ import(configPath)
       const packageRef = db.packages.ref(db.packages.id(packageName));
       const createdAt = Date.now();
 
-      Promise.all([
+      return Promise.all([
         packageRef.get().then((packageDoc) =>
           packageDoc
             ? packageRef.update(($) =>
