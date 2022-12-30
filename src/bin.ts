@@ -1,17 +1,13 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync } from "fs";
-import { pick } from "js-fns";
-import { stringify } from "typeroo/json";
-import path from "path";
-import {
-  ContainerReflection,
-  DeclarationReflection,
-  ReflectionKind,
-} from "typedoc";
-import { packageName, submodules } from "./consts";
-import { DateFnsDocs } from "./types";
+import { writeFileSync } from "fs";
 import { readFile, writeFile } from "fs/promises";
+import { pick } from "js-fns";
+import path from "path";
+import { stringify } from "typeroo/json";
+import { packageName, submodules } from "./consts";
+import { findCategory, findSummary, readFnsFromJSON } from "./json";
+import { DateFnsDocs } from "./types";
 
 interface ConfigModule {
   config: DateFnsDocs.Config;
@@ -88,33 +84,27 @@ async function getFnPages(
   config: DateFnsDocs.Config,
   version: string
 ): Promise<DateFnsDocs.TSDocPage[]> {
-  const docsJSON = readFileSync(path.resolve(configDir, config.json), "utf8");
-  const docs = JSON.parse(docsJSON) as ContainerReflection;
+  const jsonPath = path.resolve(configDir, config.json);
+  const fns = await readFnsFromJSON(jsonPath);
 
-  return (
-    (docs.children
-      ?.map((ref) => {
-        const fn = findFn(ref);
-        if (!fn) return;
-        const name = ref.name;
-        const category = findCategory(ref, fn) || "Common";
-        const summary = findSummary(fn) || "";
-        const page: DateFnsDocs.TSDocPage = {
-          type: "tsdoc",
-          package: packageName,
-          version,
-          slug: name,
-          category,
-          title: name,
-          summary,
-          name,
-          tsdoc: stringify(ref),
-          submodules,
-        };
-        return page;
-      })
-      .filter((t) => !!t) as DateFnsDocs.TSDocPage[] | undefined) || []
-  );
+  return fns.map(({ ref, fn }) => {
+    const name = ref.name;
+    const category = findCategory(ref, fn) || "Common";
+    const summary = findSummary(fn) || "";
+    const page: DateFnsDocs.TSDocPage = {
+      type: "tsdoc",
+      package: packageName,
+      version,
+      slug: name,
+      category,
+      title: name,
+      summary,
+      name,
+      tsdoc: stringify(ref)!,
+      submodules,
+    };
+    return page;
+  });
 }
 
 async function getMarkdownPages(
@@ -171,50 +161,3 @@ async function getMarkdownPages(
 //   console.log('(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Done!')
 //   process.exit(0)
 // })
-
-/**
- * Find default function in a reflection container.
- * @param ref - the reflection to look for a function in
- * @returns the function reflection
- */
-function findFn(ref: ContainerReflection): DeclarationReflection | undefined {
-  return ref.children?.find(
-    (ref) => ref.kind === ReflectionKind.Function && ref.name === "default"
-  );
-}
-
-/**
- * Find function category in a reflection container.
- * @param ref - the reflection to look for a function category in
- * @param fn - the function reflection
- * @returns the function category string if found
- */
-function findCategory(ref: ContainerReflection, fn: DeclarationReflection) {
-  const group = ref.groups?.find((group) =>
-    // TODO: Fix the type error if TypeDoc becomes more eloborate
-    (group.children as unknown as number[]).includes(fn.id)
-  );
-  if (!group) return;
-
-  const category = group.categories?.find((category) =>
-    // TODO: Fix the type error if TypeDoc becomes more eloborate
-    (category.children as unknown as number[]).includes(fn.id)
-  );
-  return category?.title;
-}
-
-/**
- * Find function summary in the reflection.
- * @param fn - the function reflection
- * @returns the function summary string if found
- */
-function findSummary(fn: DeclarationReflection) {
-  if (!fn.signatures) return;
-  for (const signature of fn.signatures) {
-    const block = signature.comment?.blockTags.find(
-      (b) => b.tag === "@summary"
-    );
-    if (!block) continue;
-    return block.content.map((c) => c.text).join("");
-  }
-}

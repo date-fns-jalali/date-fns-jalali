@@ -26,6 +26,16 @@ export namespace DateFnsDocs {
   }
 
   /**
+   * Function reflection container.
+   */
+  export interface FnReflection {
+    /** The module reflection. */
+    ref: DeclarationReflection;
+    /** The function reflection. */
+    fn: DeclarationReflection;
+  }
+
+  /**
    * The submodule type.
    */
   export type Submodule = typeof import("./consts").submodules[number];
