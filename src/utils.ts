@@ -3,8 +3,6 @@ import type {
   ContainerReflection,
   DeclarationReflection,
 } from "typedoc";
-// We need to import it directly to avoid importing random shit when rendering on the web
-import { ReflectionKind } from "typedoc/dist/lib/models/reflections/kind";
 
 /**
  * Find default function in a reflection container.
@@ -15,7 +13,8 @@ export function findFn(
   ref: ContainerReflection
 ): DeclarationReflection | undefined {
   return ref.children?.find(
-    (ref) => ref.kind === ReflectionKind.Function && ref.name === "default"
+    (ref) =>
+      ref.kind === 64 /* ReflectionKind.Function */ && ref.name === "default"
   );
 }
 
