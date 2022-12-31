@@ -166,7 +166,7 @@ export namespace DateFnsDocs {
     title: string;
     type: "jsdoc";
     urlId: string;
-    usage?: JSDocUsage;
+    usage?: FnUsage;
     usageTabs?: string[];
   }
 
@@ -197,9 +197,9 @@ export namespace DateFnsDocs {
   }
 
   /**
-   * JSDoc usage map.
+   * Usage map, was a part of the doc, now is generated on the fly.
    */
-  export interface JSDocUsage {
+  export interface FnUsage {
     [usageTab: string]: {
       code: string;
       title: string;
