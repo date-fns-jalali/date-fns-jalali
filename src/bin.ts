@@ -8,8 +8,9 @@ import { stringify } from "typeroo/json";
 import { batch } from "typesaurus";
 import { packageName, submodules } from "./consts";
 import { db } from "./db";
-import { findCategory, findSummary, readFnsFromJSON } from "./json";
-import { DateFnsDocs } from "./types";
+import { readFnsFromJSON } from "./json";
+import { findCategory, findSummary } from "./utils";
+import type { DateFnsDocs } from "./types";
 
 admin.initializeApp();
 
