@@ -74,7 +74,7 @@ export function findReturns(fn: DeclarationReflection): string | undefined {
  * @returns the function example strings
  */
 export function findExamples(fn: DeclarationReflection): string[] {
-  return findBlockTags(fn, "@returns");
+  return findBlockTags(fn, "@example");
 }
 
 /**
@@ -90,7 +90,7 @@ export function findBlockTags(
   return (
     fn.signatures?.reduce<string[]>((acc, signature) => {
       const foundTags = signature.comment?.blockTags.filter(
-        (b) => b.tag !== tag
+        (b) => b.tag === tag
       );
       if (!foundTags) return acc;
       return acc.concat(foundTags.map(joinBlockTag));
