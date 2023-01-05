@@ -1,4 +1,5 @@
 import type {
+  CommentDisplayPart,
   CommentTag,
   ContainerReflection,
   DeclarationReflection,
@@ -199,5 +200,14 @@ export function findSignatureTag(
  * @returns joined tag content as string
  */
 export function joinReflectionTag(tag: CommentTag): string {
-  return tag.content.map((c) => c.text).join("");
+  return joinCommentParts(tag.content);
+}
+
+/**
+ * Joins comment parts into a string.
+ * @param parts - the parts, which should be joined
+ * @returns joined parts as string
+ */
+export function joinCommentParts(parts: CommentDisplayPart[]): string {
+  return parts.map((c) => c.text).join("");
 }
