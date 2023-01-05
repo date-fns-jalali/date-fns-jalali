@@ -9,7 +9,7 @@ import { batch } from "typesaurus";
 import { packageName, submodules } from "./consts";
 import { db } from "./db";
 import { readFnsFromJSON } from "./json";
-import { findCategory, findSummary } from "./utils";
+import { findCategory, findFnSummary } from "./utils";
 import type { DateFnsDocs } from "./types";
 
 admin.initializeApp();
@@ -134,7 +134,7 @@ async function getFnPages(
   return fns.map(({ ref, fn }) => {
     const name = ref.name;
     const category = findCategory(ref, fn) || "Common";
-    const summary = findSummary(fn) || "";
+    const summary = findFnSummary(fn) || "";
     const page: DateFnsDocs.TSDocPage = {
       type: "tsdoc",
       package: packageName,
