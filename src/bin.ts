@@ -83,7 +83,14 @@ import(configPath)
           version,
           preRelease,
           pages: pages.map((page) =>
-            pick(page, ["slug", "category", "title", "summary", "submodules"])
+            pick(page, [
+              "type",
+              "slug",
+              "category",
+              "title",
+              "summary",
+              "submodules",
+            ])
           ),
           createdAt,
           categories: config.categories,
