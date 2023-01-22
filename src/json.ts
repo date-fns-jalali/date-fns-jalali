@@ -21,15 +21,16 @@ export async function readFnsFromJSON(
   const map = typesMap(docs);
 
   return (
-    docs.children?.reduce<DateFnsDocs.FnReflection[]>((acc, ref) => {
-      const fn = findFn(ref);
+    docs.children?.reduce<DateFnsDocs.FnReflection[]>((acc, reflection) => {
+      const fn = findFn(reflection);
       if (!fn) return acc;
 
-      const recoveredRefs: DeclarationReflection[] = [];
-      const fnMap = typesMap(ref);
+      // Use set to avoid duplicates
+      const recoveredRefs = new Set<DeclarationReflection>();
+      const fnMap = typesMap(reflection);
 
-      function recoverRefs(r: DeclarationReflection) {
-        const fnRefs = typeRefs(r);
+      function recoverRefs(ref: DeclarationReflection) {
+        const fnRefs = typeRefs(ref);
 
         const missingRefs = new Set<number>();
         fnRefs.forEach((id) => {
@@ -41,20 +42,22 @@ export async function readFnsFromJSON(
           const missingRef = map[id];
           if (!missingRef) return;
 
-          recoveredRefs.push(missingRef);
+          recoveredRefs.add(missingRef);
 
+          // Update map, to avoid adding types included with the missing ref
           fnMap[id] = missingRef;
           Object.assign(fnMap, typesMap(missingRef));
 
-          recoverRefs(r);
+          // Recursively recover missing refs
+          recoverRefs(missingRef);
         });
       }
 
-      recoverRefs(ref);
+      recoverRefs(reflection);
 
       const completedRef = {
-        ...ref,
-        children: [...(ref.children || []), ...recoveredRefs],
+        ...reflection,
+        children: [...(reflection.children || []), ...recoveredRefs],
       };
 
       return acc.concat({ ref: completedRef, fn });
