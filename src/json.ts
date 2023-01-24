@@ -1,3 +1,4 @@
+import path from "path";
 import { readFile } from "fs/promises";
 import type {
   ContainerReflection,
@@ -16,8 +17,9 @@ import { findFn } from "./utils";
  */
 export async function readRefsFromJSON(
   config: DateFnsDocs.Config,
-  jsonPath: string
+  configDir: string
 ): Promise<DateFnsDocs.Reflection[]> {
+  const jsonPath = path.resolve(configDir, config.json);
   const docs = await readDocsJSON(jsonPath);
   const map = typesMap(docs);
 

@@ -58,7 +58,6 @@ import(configPath)
         getFnPages(config, version),
         getMarkdownPages(config, version),
       ]);
-      throw new Error("Hello world");
       const pages = [...fnPages, ...markdownPages];
 
       const pagesBatch = batch(db);
@@ -136,8 +135,7 @@ async function getFnPages(
   config: DateFnsDocs.Config,
   version: string
 ): Promise<DateFnsDocs.TypeDocPage[]> {
-  const jsonPath = path.resolve(configDir, config.json);
-  const refs = await readRefsFromJSON(config, jsonPath);
+  const refs = await readRefsFromJSON(config, configDir);
 
   return refs.map((ref) => {
     const name = ref.ref.name;
