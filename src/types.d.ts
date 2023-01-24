@@ -89,7 +89,7 @@ export namespace DateFnsDocs {
   /**
    * The page model.
    */
-  export type Page = MarkdownPage | TSDocPage | JSDocPage;
+  export type Page = MarkdownPage | TypeDocPage | JSDocPage;
 
   /**
    * Base page model.
@@ -113,12 +113,13 @@ export namespace DateFnsDocs {
   }
 
   /**
-   * TSDoc function page (v3).
+   * TypeDoc function page (v3).
    */
-  export interface TSDocPage extends PageBase {
-    type: "tsdoc";
+  export interface TypeDocPage extends PageBase {
+    type: "typedoc";
     name: string;
-    tsdoc: StringifiedJSON<DeclarationReflection>;
+    doc: StringifiedJSON<DeclarationReflection>;
+    kind: "function" | "constants";
   }
 
   /**

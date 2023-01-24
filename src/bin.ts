@@ -134,7 +134,7 @@ async function getVersion(config: DateFnsDocs.Config) {
 async function getFnPages(
   config: DateFnsDocs.Config,
   version: string
-): Promise<DateFnsDocs.TSDocPage[]> {
+): Promise<DateFnsDocs.TypeDocPage[]> {
   const jsonPath = path.resolve(configDir, config.json);
   const fns = await readFnsFromJSON(jsonPath);
 
@@ -142,8 +142,9 @@ async function getFnPages(
     const name = ref.name;
     const category = findCategory(ref, fn) || "Common";
     const summary = findFnSummary(fn) || "";
-    const page: DateFnsDocs.TSDocPage = {
-      type: "tsdoc",
+    const page: DateFnsDocs.TypeDocPage = {
+      type: "typedoc",
+      kind: "function",
       package: packageName,
       version,
       slug: name,
@@ -151,7 +152,7 @@ async function getFnPages(
       title: name,
       summary,
       name,
-      tsdoc: stringify(ref)!,
+      doc: stringify(ref)!,
       submodules,
     };
     return page;
