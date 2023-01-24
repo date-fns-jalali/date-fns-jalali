@@ -8,8 +8,8 @@ import { stringify } from "typeroo/json";
 import { batch } from "typesaurus";
 import { packageName, submodules } from "./consts";
 import { db } from "./db";
-import { readFnsFromJSON } from "./json";
-import { findCategory, findFnSummary } from "./utils";
+import { readRefsFromJSON } from "./json";
+import { findCategory, findFnSummary, findSummary } from "./utils";
 import type { DateFnsDocs } from "./types";
 
 admin.initializeApp();
@@ -58,6 +58,7 @@ import(configPath)
         getFnPages(config, version),
         getMarkdownPages(config, version),
       ]);
+      throw new Error("Hello world");
       const pages = [...fnPages, ...markdownPages];
 
       const pagesBatch = batch(db);
@@ -136,15 +137,27 @@ async function getFnPages(
   version: string
 ): Promise<DateFnsDocs.TypeDocPage[]> {
   const jsonPath = path.resolve(configDir, config.json);
-  const fns = await readFnsFromJSON(jsonPath);
+  const refs = await readRefsFromJSON(config, jsonPath);
 
-  return fns.map(({ ref, fn }) => {
-    const name = ref.name;
-    const category = findCategory(ref, fn) || "Common";
-    const summary = findFnSummary(fn) || "";
+  return refs.map((ref) => {
+    const name = ref.ref.name;
+
+    const { category, summary } =
+      ref.kind === "function"
+        ? {
+            category:
+              ref.category || findCategory(ref.ref, ref.fn.id) || "Common",
+            summary: findFnSummary(ref.fn) || "",
+          }
+        : {
+            category:
+              ref.category || findCategory(ref.ref, ref.ref.id) || "Common",
+            summary: findSummary(ref.ref) || "",
+          };
+
     const page: DateFnsDocs.TypeDocPage = {
       type: "typedoc",
-      kind: "function",
+      kind: ref.kind,
       package: packageName,
       version,
       slug: name,

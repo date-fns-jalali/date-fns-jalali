@@ -10,31 +10,29 @@ import type { DateFnsDocs } from "./types";
 import { findFn } from "./utils";
 
 /**
- * Reads and parses TypeDoc JSOn and extracts function reflections.
+ * Reads and parses TypeDoc JSON and extracts reflections.
  * @param jsonPath - the path to the docs JSON
  * @returns parsed function reflections
  */
-export async function readFnsFromJSON(
+export async function readRefsFromJSON(
+  config: DateFnsDocs.Config,
   jsonPath: string
-): Promise<DateFnsDocs.FnReflection[]> {
+): Promise<DateFnsDocs.Reflection[]> {
   const docs = await readDocsJSON(jsonPath);
   const map = typesMap(docs);
 
   return (
-    docs.children?.reduce<DateFnsDocs.FnReflection[]>((acc, reflection) => {
-      const fn = findFn(reflection);
-      if (!fn) return acc;
-
+    docs.children?.reduce<DateFnsDocs.Reflection[]>((acc, reflection) => {
       // Use set to avoid duplicates
       const recoveredRefs = new Set<DeclarationReflection>();
-      const fnMap = typesMap(reflection);
+      const refMap = typesMap(reflection);
 
       function recoverRefs(ref: DeclarationReflection) {
-        const fnRefs = typeRefs(ref);
+        const refs = typeRefs(ref);
 
         const missingRefs = new Set<number>();
-        fnRefs.forEach((id) => {
-          if (fnMap[id]) return;
+        refs.forEach((id) => {
+          if (refMap[id]) return;
           missingRefs.add(id);
         });
 
@@ -45,8 +43,8 @@ export async function readFnsFromJSON(
           recoveredRefs.add(missingRef);
 
           // Update map, to avoid adding types included with the missing ref
-          fnMap[id] = missingRef;
-          Object.assign(fnMap, typesMap(missingRef));
+          refMap[id] = missingRef;
+          Object.assign(refMap, typesMap(missingRef));
 
           // Recursively recover missing refs
           recoverRefs(missingRef);
@@ -60,7 +58,26 @@ export async function readFnsFromJSON(
         children: [...(reflection.children || []), ...recoveredRefs],
       };
 
-      return acc.concat({ ref: completedRef, fn });
+      const fileName = completedRef.sources?.[0].fileName;
+      const refOverrides = (fileName && config.kindsMap[fileName]) || undefined;
+
+      if (refOverrides?.kind === "constants") {
+        return acc.concat({
+          kind: "constants",
+          ref: completedRef,
+          category: refOverrides?.category,
+        });
+      } else {
+        const fn = findFn(reflection);
+        if (!fn) return acc;
+
+        return acc.concat({
+          kind: "function",
+          ref: completedRef,
+          fn,
+          category: refOverrides?.category,
+        });
+      }
     }, []) || []
   );
 }

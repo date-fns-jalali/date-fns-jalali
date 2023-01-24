@@ -7,6 +7,62 @@ import type {
 } from "typedoc";
 
 /**
+ * Find reflection category in a reflection container.
+ * @param ref - the reflection to look for a function category in
+ * @param id - the reflection id
+ * @returns the reflection category string if found
+ */
+export function findCategory(ref: ContainerReflection, id: number) {
+  const group = ref.groups?.find((group) =>
+    // TODO: Fix the type error if TypeDoc becomes more eloborate
+    (group.children as unknown as number[]).includes(id)
+  );
+  if (!group) return;
+
+  const category = group.categories?.find((category) =>
+    // TODO: Fix the type error if TypeDoc becomes more eloborate
+    (category.children as unknown as number[]).includes(id)
+  );
+  return category?.title;
+}
+
+/**
+ * Find reflection summary.
+ * @param ref - the reflection
+ * @returns the reflection summary string if found
+ */
+export function findSummary(
+  ref: DeclarationReflection | SignatureReflection
+): string | undefined {
+  return findTag(ref, "@summary");
+}
+
+/**
+ * Find reflection description.
+ * @param ref - the reflection
+ * @returns the function description string if found
+ */
+export function findDescription(
+  ref: DeclarationReflection | SignatureReflection
+): string | undefined {
+  return findTag(ref, "@description");
+}
+
+/**
+ * Find and join block tag content of the given type in a reflection.
+ * @param ref - the reflection
+ * @param tag - the tag to find
+ * @returns joint tag content or undefined if not found
+ */
+export function findTag(
+  ref: DeclarationReflection | SignatureReflection,
+  tag: `@${string}`
+): string | undefined {
+  const foundTag = ref.comment?.blockTags.find((b) => b.tag === tag);
+  return foundTag && joinTag(foundTag);
+}
+
+/**
  * Find default function in a reflection container.
  * @param ref - the reflection to look for a function in
  * @returns the function reflection
@@ -18,29 +74,6 @@ export function findFn(
     (ref) =>
       ref.kind === 64 /* ReflectionKind.Function */ && ref.name === "default"
   );
-}
-
-/**
- * Find function category in a reflection container.
- * @param ref - the reflection to look for a function category in
- * @param fn - the function reflection
- * @returns the function category string if found
- */
-export function findCategory(
-  ref: ContainerReflection,
-  fn: DeclarationReflection
-) {
-  const group = ref.groups?.find((group) =>
-    // TODO: Fix the type error if TypeDoc becomes more eloborate
-    (group.children as unknown as number[]).includes(fn.id)
-  );
-  if (!group) return;
-
-  const category = group.categories?.find((category) =>
-    // TODO: Fix the type error if TypeDoc becomes more eloborate
-    (category.children as unknown as number[]).includes(fn.id)
-  );
-  return category?.title;
 }
 
 /**
@@ -92,13 +125,10 @@ export function findFnTags(
   tag: `@${string}`
 ): string[] {
   return (
-    fn.signatures?.reduce<string[]>((acc, signature) => {
-      const foundTags = signature.comment?.blockTags.filter(
-        (b) => b.tag === tag
-      );
-      if (!foundTags) return acc;
-      return acc.concat(foundTags.map(joinReflectionTag));
-    }, []) || []
+    fn.signatures?.reduce<string[]>(
+      (acc, signature) => acc.concat(findSignatureTags(signature, tag)),
+      []
+    ) || []
   );
 }
 
@@ -114,32 +144,10 @@ export function findFnTag(
 ): string | undefined {
   if (!fn.signatures) return;
   for (const signature of fn.signatures) {
-    const foundTag = signature.comment?.blockTags.find((b) => b.tag === tag);
+    const foundTag = findTag(signature, tag);
     if (!foundTag) continue;
-    return joinReflectionTag(foundTag);
+    return foundTag;
   }
-}
-
-/**
- * Find function summary in a signature.
- * @param signature - the function reflection
- * @returns the function summary string if found
- */
-export function findSignatureSummary(
-  signature: SignatureReflection
-): string | undefined {
-  return findSignatureTag(signature, "@summary");
-}
-
-/**
- * Find function description in a signature.
- * @param signature - the function reflection
- * @returns the function description string if found
- */
-export function findSignatureDescription(
-  signature: SignatureReflection
-): string | undefined {
-  return findSignatureTag(signature, "@description");
 }
 
 /**
@@ -150,7 +158,7 @@ export function findSignatureDescription(
 export function findSignatureReturns(
   signature: SignatureReflection
 ): string | undefined {
-  return findSignatureTag(signature, "@returns");
+  return findTag(signature, "@returns");
 }
 
 /**
@@ -176,22 +184,7 @@ export function findSignatureTags(
 ): string[] {
   const foundTags = signature.comment?.blockTags.filter((b) => b.tag === tag);
   if (!foundTags) return [];
-  return foundTags.map(joinReflectionTag);
-}
-
-/**
- * Find and join block tag content of the given type in a signature.
- * @param signature - the function reflection
- * @param tag - the tag to find
- * @returns joint tag content or undefined if not found
- */
-export function findSignatureTag(
-  signature: SignatureReflection,
-  tag: `@${string}`
-): string | undefined {
-  const foundTag = signature.comment?.blockTags.find((b) => b.tag === tag);
-  if (!foundTag) return;
-  return joinReflectionTag(foundTag);
+  return foundTags.map(joinTag);
 }
 
 /**
@@ -199,7 +192,7 @@ export function findSignatureTag(
  * @param tag - the tag, which content should be joined
  * @returns joined tag content as string
  */
-export function joinReflectionTag(tag: CommentTag): string {
+export function joinTag(tag: CommentTag): string {
   return joinCommentParts(tag.content);
 }
 

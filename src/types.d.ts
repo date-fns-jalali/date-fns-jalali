@@ -14,6 +14,14 @@ export namespace DateFnsDocs {
     categories: string[];
     /** The static documentation files. */
     files: StaticDoc[];
+    /** Maps files to docs categories and kinds: constants, function (default type). */
+    kindsMap: Record<
+      string,
+      {
+        kind: TypeDocPage["kind"];
+        category?: string;
+      }
+    >;
   }
 
   export interface StaticDoc {
@@ -25,15 +33,29 @@ export namespace DateFnsDocs {
     path: string;
   }
 
+  export type Reflection = FnReflection | ConstantsReflection;
+
+  export interface ReflectionBase<Kind extends string> {
+    /** The kind string. */
+    kind: Kind;
+    /** The module reflection. */
+    ref: DeclarationReflection;
+    /** Overriden category. */
+    category: string | undefined;
+  }
+
   /**
    * Function reflection container.
    */
-  export interface FnReflection {
-    /** The module reflection. */
-    ref: DeclarationReflection;
+  export interface FnReflection extends ReflectionBase<"function"> {
     /** The function reflection. */
     fn: DeclarationReflection;
   }
+
+  /**
+   * Constants reflection container.
+   */
+  export interface ConstantsReflection extends ReflectionBase<"constants"> {}
 
   /**
    * The submodule type.
