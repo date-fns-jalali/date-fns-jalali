@@ -49,6 +49,32 @@ export function findDescription(
 }
 
 /**
+ * Find reflection examples.
+ * @param ref - the reflection
+ * @returns the reflection example strings
+ */
+export function findExamples(
+  ref: DeclarationReflection | SignatureReflection
+): string[] {
+  return findTags(ref, "@example");
+}
+
+/**
+ * Find and join block tags content of the given type in a function.
+ * @param ref - the function reflection
+ * @param tag - the tags to find
+ * @returns joint tags content
+ */
+export function findTags(
+  ref: DeclarationReflection | SignatureReflection,
+  tag: `@${string}`
+): string[] {
+  const foundTags = ref.comment?.blockTags.filter((b) => b.tag === tag);
+  if (!foundTags) return [];
+  return foundTags.map(joinTag);
+}
+
+/**
  * Find and join block tag content of the given type in a reflection.
  * @param ref - the reflection
  * @param tag - the tag to find
@@ -126,7 +152,7 @@ export function findFnTags(
 ): string[] {
   return (
     fn.signatures?.reduce<string[]>(
-      (acc, signature) => acc.concat(findSignatureTags(signature, tag)),
+      (acc, signature) => acc.concat(findTags(signature, tag)),
       []
     ) || []
   );
@@ -159,32 +185,6 @@ export function findSignatureReturns(
   signature: SignatureReflection
 ): string | undefined {
   return findTag(signature, "@returns");
-}
-
-/**
- * Find function examples in a signature.
- * @param signature - the function reflection
- * @returns the function example strings
- */
-export function findSignatureExamples(
-  signature: SignatureReflection
-): string[] {
-  return findSignatureTags(signature, "@example");
-}
-
-/**
- * Find and join block tags content of the given type in a signature.
- * @param signature - the signature reflection
- * @param tag - the tags to find
- * @returns joint tags content
- */
-export function findSignatureTags(
-  signature: SignatureReflection,
-  tag: `@${string}`
-): string[] {
-  const foundTags = signature.comment?.blockTags.filter((b) => b.tag === tag);
-  if (!foundTags) return [];
-  return foundTags.map(joinTag);
 }
 
 /**
