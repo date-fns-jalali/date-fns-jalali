@@ -163,7 +163,7 @@ async function getFnPages(
       title: name,
       summary,
       name,
-      doc: stringify(ref)!,
+      doc: stringify(ref.ref)!,
       submodules,
     };
     return page;
