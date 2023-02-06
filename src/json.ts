@@ -8,7 +8,7 @@ import type {
   TypeParameterReflection,
 } from "typedoc";
 import type { DateFnsDocs } from "./types";
-import { findFn } from "./utils";
+import { findFn, traverseType } from "./utils";
 
 /**
  * Reads and parses TypeDoc JSON and extracts reflections.
@@ -29,8 +29,8 @@ export async function readRefsFromJSON(
       const recoveredRefs = new Set<DeclarationReflection>();
       const refMap = typesMap(reflection);
 
-      function recoverRefs(ref: DeclarationReflection) {
-        const refs = typeRefs(ref);
+      function recoverRefs(refl: DeclarationReflection) {
+        const refs = extractRefs(refl);
 
         const missingRefs = new Set<number>();
         refs.forEach((id) => {
@@ -84,13 +84,15 @@ export async function readRefsFromJSON(
   );
 }
 
-function typeRefs(ref: DeclarationReflection) {
+function extractRefs(refl: DeclarationReflection) {
   const refs = new Set<number>();
-  traverseRefs(ref, (r) => {
+
+  traverseRefs(refl, (ref) => {
     // id might be undefined for some reason
-    if (r.id === undefined) return;
-    refs.add(r.id);
+    if (ref.id === undefined) return;
+    refs.add(ref.id);
   });
+
   return refs;
 }
 
@@ -98,32 +100,28 @@ interface RefType extends ReferenceType {
   id?: number;
 }
 
-function traverseRefs(ref: DeclarationReflection, cb: (ref: RefType) => void) {
-  function extractRef(type: SomeType) {
+function traverseRefs(refl: DeclarationReflection, cb: (ref: RefType) => void) {
+  function extractRefFromType(type: SomeType) {
     if (type.type === "reference") cb(type);
-    "elementType" in type && extractRef(type.elementType);
-    "typeArguments" in type && type.typeArguments?.forEach(extractRef);
   }
 
-  ref.inheritedFrom && cb(ref.inheritedFrom);
+  refl.inheritedFrom && cb(refl.inheritedFrom);
 
-  ref.type && extractRef(ref.type);
+  refl.type && traverseType(refl.type, extractRefFromType);
 
-  ref.extendedTypes?.forEach(extractRef);
+  refl.extendedTypes?.forEach(extractRefFromType);
 
-  ref.children?.forEach((r) => {
-    traverseRefs(r, cb);
-  });
+  refl.children?.forEach((rfl) => traverseRefs(rfl, cb));
 
-  "signatures" in ref &&
-    ref.signatures?.forEach((signature) => {
+  "signatures" in refl &&
+    refl.signatures?.forEach((signature) => {
       // @ts-ignore: TypeDoc don't have typeParameters but typeParameter
-      (signature.typeParameter as TypeParameterReflection[])?.forEach((r) => {
-        r.type && extractRef(r.type);
+      (signature.typeParameter as TypeParameterReflection[])?.forEach((rfl) => {
+        rfl.type && traverseType(rfl.type, extractRefFromType);
       });
 
-      signature.parameters?.forEach((r) => {
-        r.type && extractRef(r.type);
+      signature.parameters?.forEach((rfl) => {
+        rfl.type && traverseType(rfl.type, extractRefFromType);
       });
     });
 }

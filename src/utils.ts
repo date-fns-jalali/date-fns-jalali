@@ -4,6 +4,7 @@ import type {
   ContainerReflection,
   DeclarationReflection,
   SignatureReflection,
+  SomeType,
 } from "typedoc";
 
 /**
@@ -203,4 +204,73 @@ export function joinTag(tag: CommentTag): string {
  */
 export function joinCommentParts(parts: CommentDisplayPart[]): string {
   return parts.map((c) => c.text).join("");
+}
+
+/**
+ * Deeply traverses a type and calls the callback for each type.
+ * @param type - the type to traverse
+ * @param cb - the callback to call for each type
+ */
+export function traverseType(
+  type: SomeType,
+  cb: (ref: SomeType) => void
+): void {
+  cb(type);
+
+  // TODO: Join with switch?
+  "typeArguments" in type &&
+    type.typeArguments?.forEach((t) => traverseType(t, cb));
+
+  switch (type.type) {
+    // Nothing deep to traverse
+    case "intrinsic":
+    case "reference":
+    case "literal":
+    case "reflection":
+      return;
+
+    case "array":
+      return traverseType(type.elementType, cb);
+
+    case "union":
+    case "intersection":
+      return type.types.forEach((t) => traverseType(t, cb));
+
+    case "typeOperator":
+      return traverseType(type.target, cb);
+
+    case "tuple":
+      return type.elements.forEach((t) => traverseType(t, cb));
+
+    case "conditional":
+      traverseType(type.checkType, cb);
+      traverseType(type.extendsType, cb);
+      traverseType(type.trueType, cb);
+      traverseType(type.falseType, cb);
+      return;
+
+    case "mapped":
+      traverseType(type.parameterType, cb);
+      traverseType(type.templateType, cb);
+      return;
+
+    case "indexedAccess":
+      traverseType(type.objectType, cb);
+      traverseType(type.indexType, cb);
+      return;
+
+    case "query":
+    case "predicate":
+    case "inferred":
+    case "unknown":
+    case "template-literal":
+    case "named-tuple-member":
+    case "optional":
+    case "rest":
+    default:
+      console.error("Not supported type:");
+      console.error(type);
+
+      throw new Error("Not supported type: " + type.type);
+  }
 }
