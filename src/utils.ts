@@ -85,7 +85,10 @@ export function findTag(
   ref: DeclarationReflection | SignatureReflection,
   tag: `@${string}`
 ): string | undefined {
-  const foundTag = ref.comment?.blockTags.find((b) => b.tag === tag);
+  if (tag === "@summary" && ref.comment?.summary.length)
+    return joinCommentParts(ref.comment.summary);
+
+  const foundTag = ref.comment?.blockTags?.find((b) => b.tag === tag);
   return foundTag && joinTag(foundTag);
 }
 
