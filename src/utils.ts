@@ -226,7 +226,32 @@ export function traverseType(
     case "intrinsic":
     case "reference":
     case "literal":
+      return;
+
     case "reflection":
+      if ("signatures" in type.declaration) {
+        type.declaration.signatures?.forEach((s) => {
+          s.typeParameters?.forEach((t) => {
+            t.type && traverseType(t.type, cb);
+            t.default && traverseType(t.default, cb);
+          });
+
+          s.parameters?.forEach((p) => {
+            p.type && traverseType(p.type, cb);
+          });
+
+          s.type && traverseType(s.type, cb);
+        });
+      } else {
+        type.declaration.children?.forEach((r) => {
+          r.typeParameters?.forEach((t) => {
+            t.type && traverseType(t.type, cb);
+            t.default && traverseType(t.default, cb);
+          });
+
+          r.type && traverseType(r.type, cb);
+        });
+      }
       return;
 
     case "array":
