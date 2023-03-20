@@ -6,10 +6,10 @@ import { pick } from "js-fns";
 import path from "path";
 import { stringify } from "typeroo/json";
 import { batch } from "typesaurus";
-import { packageName, submodules } from "./consts";
+import { packageName, allSubmodules } from "./consts";
 import { db } from "./db";
 import { readRefsFromJSON } from "./json";
-import { findCategory, findFnSummary, findSummary } from "./utils";
+import { findCategory, findFnSummary, findFnTag, findSummary } from "./utils";
 import type { DateFnsDocs } from "./types";
 
 admin.initializeApp();
@@ -69,12 +69,21 @@ import(configPath)
           packageDoc
             ? packageRef.update(($) =>
                 $.field("versions").set(
-                  $.arrayUnion([{ version, preRelease, submodules, createdAt }])
+                  $.arrayUnion([
+                    {
+                      version,
+                      preRelease,
+                      submodules: allSubmodules,
+                      createdAt,
+                    },
+                  ])
                 )
               )
             : packageRef.set({
                 name: packageName,
-                versions: [{ version, preRelease, submodules, createdAt }],
+                versions: [
+                  { version, preRelease, submodules: allSubmodules, createdAt },
+                ],
               })
         ),
 
@@ -94,7 +103,7 @@ import(configPath)
           ),
           createdAt,
           categories: config.categories,
-          submodules,
+          submodules: allSubmodules,
         }),
 
         Promise.all(
@@ -140,18 +149,25 @@ async function getFnPages(
   return refs.map((ref) => {
     const name = ref.ref.name;
 
-    const { category, summary } =
+    const { category, summary, pureStr } =
       ref.kind === "function"
         ? {
             category:
               ref.category || findCategory(ref.ref, ref.fn.id) || "Common",
             summary: findFnSummary(ref.fn) || "",
+            pureStr: findFnTag(ref.fn, "@pure"),
           }
         : {
             category:
               ref.category || findCategory(ref.ref, ref.ref.id) || "Common",
             summary: findSummary(ref.ref) || "",
+            pureStr: undefined,
           };
+
+    const pure = pureStr !== "false";
+    const submodules: DateFnsDocs.Submodule[] = pure
+      ? allSubmodules
+      : ["default"];
 
     const page: DateFnsDocs.TypeDocPage = {
       type: "typedoc",
@@ -165,6 +181,7 @@ async function getFnPages(
       name,
       doc: stringify(ref.ref)!,
       submodules,
+      pure,
     };
     return page;
   });
@@ -186,7 +203,7 @@ async function getMarkdownPages(
         version,
         markdown,
         package: packageName,
-        submodules,
+        submodules: allSubmodules,
       };
     })
   );

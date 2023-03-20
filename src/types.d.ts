@@ -60,7 +60,7 @@ export namespace DateFnsDocs {
   /**
    * The submodule type.
    */
-  export type Submodule = typeof import("./consts").submodules[number];
+  export type Submodule = typeof import("./consts").allSubmodules[number];
 
   /**
    * The package model.
@@ -141,6 +141,7 @@ export namespace DateFnsDocs {
     type: "typedoc";
     name: string;
     doc: StringifiedJSON<DeclarationReflection>;
+    pure?: boolean;
     kind: "function" | "constants";
   }
 

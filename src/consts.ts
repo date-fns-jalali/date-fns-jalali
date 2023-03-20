@@ -6,7 +6,7 @@ export const packageName = "date-fns";
 /**
  * The submodules options.
  */
-export const submodules = ["default" as const, "fp" as const];
+export const allSubmodules = ["default" as const, "fp" as const];
 
 /**
  * Default submodule.
