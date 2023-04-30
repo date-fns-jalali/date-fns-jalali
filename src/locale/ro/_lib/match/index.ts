@@ -8,7 +8,8 @@ const parseOrdinalNumberPattern = /\d+/i
 
 const matchEraPatterns = {
   narrow: /^(Î|D)/i,
-  abbreviated: /^(Î\.?\s?d\.?\s?C\.?|Î\.?\s?e\.?\s?n\.?|D\.?\s?C\.?|e\.?\s?n\.?)/i,
+  abbreviated:
+    /^(Î\.?\s?d\.?\s?C\.?|Î\.?\s?e\.?\s?n\.?|D\.?\s?C\.?|e\.?\s?n\.?)/i,
   wide: /^(Înainte de Cristos|Înaintea erei noastre|După Cristos|Era noastră)/i,
 }
 const parseEraPatterns = {

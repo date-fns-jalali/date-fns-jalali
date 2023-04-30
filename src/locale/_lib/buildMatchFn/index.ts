@@ -30,11 +30,11 @@ export default function buildMatchFn<
       (width && args.parsePatterns[width]) ||
       args.parsePatterns[args.defaultParseWidth]
 
-    const key = (Array.isArray(parsePatterns)
-      ? findIndex(parsePatterns, (pattern) => pattern.test(matchedString))
-      : findKey(parsePatterns, (pattern: any) =>
-          pattern.test(matchedString)
-        )) as Result extends LocaleDayPeriod ? string : number
+    const key = (
+      Array.isArray(parsePatterns)
+        ? findIndex(parsePatterns, (pattern) => pattern.test(matchedString))
+        : findKey(parsePatterns, (pattern: any) => pattern.test(matchedString))
+    ) as Result extends LocaleDayPeriod ? string : number
 
     let value: Result
 

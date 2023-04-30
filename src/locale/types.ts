@@ -101,11 +101,10 @@ export type FormatRelativeFn = (
 // TODO: You're real champion if you're actually get back to it. Proud of you!
 // Try to get rid of this and (especially) ArgCallback types because the only
 // case when it's helpful is when using quarter. Maybe.
-export type LocalizeUnitIndex<
-  Unit extends LocaleUnit | number
-> = Unit extends LocaleUnit
-  ? LocalizeUnitValuesIndex<LocalizeUnitValues<Unit>>
-  : number
+export type LocalizeUnitIndex<Unit extends LocaleUnit | number> =
+  Unit extends LocaleUnit
+    ? LocalizeUnitValuesIndex<LocalizeUnitValues<Unit>>
+    : number
 
 export type LocalizeFn<
   Result extends LocaleUnit | number,
@@ -152,43 +151,40 @@ export interface BuildMatchFnArgs<
 
 export type MatchPatterns<DefaultWidth extends LocalePatternWidth> = {
   [pattern in LocalePatternWidth]?: RegExp
-} &
-  { [key in DefaultWidth]: RegExp }
+} & { [key in DefaultWidth]: RegExp }
 
 export type ParsePatterns<
   Result extends LocaleUnit,
   DefaultWidth extends LocalePatternWidth
 > = {
   [pattern in LocalePatternWidth]?: ParsePattern<Result>
-} &
-  { [key in DefaultWidth]: ParsePattern<Result> }
+} & { [key in DefaultWidth]: ParsePattern<Result> }
 
-export type ParsePattern<
-  Result extends LocaleUnit
-> = Result extends LocaleDayPeriod
-  ? Record<LocaleDayPeriod, RegExp>
-  : Result extends Quarter
-  ? readonly [RegExp, RegExp, RegExp, RegExp]
-  : Result extends Era
-  ? readonly [RegExp, RegExp]
-  : Result extends Day
-  ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
-  : Result extends Month
-  ? readonly [
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp,
-      RegExp
-    ]
-  : never
+export type ParsePattern<Result extends LocaleUnit> =
+  Result extends LocaleDayPeriod
+    ? Record<LocaleDayPeriod, RegExp>
+    : Result extends Quarter
+    ? readonly [RegExp, RegExp, RegExp, RegExp]
+    : Result extends Era
+    ? readonly [RegExp, RegExp]
+    : Result extends Day
+    ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
+    : Result extends Month
+    ? readonly [
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp,
+        RegExp
+      ]
+    : never
 
 export type BuildMatchFn<
   Result extends LocaleUnit,

@@ -36,33 +36,31 @@ type LocalizeMonthValues = readonly [
   string
 ]
 
-export type LocalizeUnitValuesIndex<
-  Values extends LocalizeUnitValues<any>
-> = Values extends Record<LocaleDayPeriod, string>
-  ? string
-  : Values extends LocalizeEraValues
-  ? Era
-  : Values extends LocalizeQuarterValues
-  ? Quarter
-  : Values extends LocalizeDayValues
-  ? Day
-  : Values extends LocalizeMonthValues
-  ? Month
-  : never
+export type LocalizeUnitValuesIndex<Values extends LocalizeUnitValues<any>> =
+  Values extends Record<LocaleDayPeriod, string>
+    ? string
+    : Values extends LocalizeEraValues
+    ? Era
+    : Values extends LocalizeQuarterValues
+    ? Quarter
+    : Values extends LocalizeDayValues
+    ? Day
+    : Values extends LocalizeMonthValues
+    ? Month
+    : never
 
-export type LocalizeUnitValues<
-  Unit extends LocaleUnit
-> = Unit extends LocaleDayPeriod
-  ? Record<LocaleDayPeriod, string>
-  : Unit extends Era
-  ? LocalizeEraValues
-  : Unit extends Quarter
-  ? LocalizeQuarterValues
-  : Unit extends Day
-  ? LocalizeDayValues
-  : Unit extends Month
-  ? LocalizeMonthValues
-  : never
+export type LocalizeUnitValues<Unit extends LocaleUnit> =
+  Unit extends LocaleDayPeriod
+    ? Record<LocaleDayPeriod, string>
+    : Unit extends Era
+    ? LocalizeEraValues
+    : Unit extends Quarter
+    ? LocalizeQuarterValues
+    : Unit extends Day
+    ? LocalizeDayValues
+    : Unit extends Month
+    ? LocalizeMonthValues
+    : never
 
 export type LocalizePeriodValuesMap<Unit extends LocaleUnit> = {
   [pattern in LocalePatternWidth]?: LocalizeUnitValues<Unit>
@@ -96,24 +94,24 @@ export default function buildLocalizeFn<
     let valuesArray: LocalizeUnitValues<Result>
     if (context === 'formatting' && args.formattingValues) {
       const defaultWidth = args.defaultFormattingWidth || args.defaultWidth
-      const width = (options?.width
-        ? String(options.width)
-        : defaultWidth) as LocalePatternWidth
+      const width = (
+        options?.width ? String(options.width) : defaultWidth
+      ) as LocalePatternWidth
       valuesArray = (args.formattingValues[width] ||
         args.formattingValues[defaultWidth]) as LocalizeUnitValues<Result>
     } else {
       const defaultWidth = args.defaultWidth
-      const width = (options?.width
-        ? String(options.width)
-        : args.defaultWidth) as LocalePatternWidth
+      const width = (
+        options?.width ? String(options.width) : args.defaultWidth
+      ) as LocalePatternWidth
       valuesArray = (args.values[width] ||
         args.values[defaultWidth]) as LocalizeUnitValues<Result>
     }
-    const index = (args.argumentCallback
-      ? args.argumentCallback(dirtyIndex as Result)
-      : ((dirtyIndex as LocalizeUnitIndex<Result>) as unknown)) as LocalizeUnitValuesIndex<
-      typeof valuesArray
-    >
+    const index = (
+      args.argumentCallback
+        ? args.argumentCallback(dirtyIndex as Result)
+        : (dirtyIndex as LocalizeUnitIndex<Result> as unknown)
+    ) as LocalizeUnitValuesIndex<typeof valuesArray>
     // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
     return valuesArray[index]
   }

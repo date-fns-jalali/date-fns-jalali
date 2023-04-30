@@ -3,7 +3,8 @@ import type { Match } from '../../../types'
 import buildMatchFn from '../../../_lib/buildMatchFn/index'
 import buildMatchPatternFn from '../../../_lib/buildMatchPatternFn/index'
 
-const matchOrdinalNumberPattern = /^(\d+)(-?[врмт][аи]|-?т?(ен|на)|-?(ев|ева))?/i
+const matchOrdinalNumberPattern =
+  /^(\d+)(-?[врмт][аи]|-?т?(ен|на)|-?(ев|ева))?/i
 const parseOrdinalNumberPattern = /\d+/i
 
 const matchEraPatterns = {
