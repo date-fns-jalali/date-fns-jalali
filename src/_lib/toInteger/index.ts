@@ -11,7 +11,7 @@ export default function toInteger<T extends unknown>(
     return number as T extends number ? T : number
   }
 
-  return (number < 0
-    ? Math.ceil(number)
-    : Math.floor(number)) as T extends number ? T : number
+  return (
+    number < 0 ? Math.ceil(number) : Math.floor(number)
+  ) as T extends number ? T : number
 }

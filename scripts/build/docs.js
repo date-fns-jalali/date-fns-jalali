@@ -41,7 +41,6 @@ async function generateDocsFromSource() {
       jsDocParser
         .getTemplateData({
           files: fn.fullPath,
-          'no-cache': true,
           configure: configFile,
         })
         .then((result) => result[0])
@@ -71,7 +70,7 @@ async function generateDocsFromSource() {
         array
           .concat(generateFnDoc(doc))
           .concat(
-            doc.pure
+            doc.pure && doc.title !== 'newDate'
               ? [generateFPFnDoc(doc)].concat(
                   generateFPFnWithOptionsDoc(doc) || []
                 )
@@ -322,8 +321,7 @@ function generateUsage(name, isFPFn) {
       code: `import { ${name} } from 'date-fns${
         submodule && `/esm/${submodule}`
       }'`,
-      text:
-        'See [ECMAScript Modules guide](https://date-fns.org/docs/ECMAScript-Modules) for more information',
+      text: 'See [ECMAScript Modules guide](https://date-fns.org/docs/ECMAScript-Modules) for more information',
     },
   }
 
