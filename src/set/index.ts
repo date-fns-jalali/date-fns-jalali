@@ -4,6 +4,10 @@ import toInteger from '../_lib/toInteger/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 import type { DateValues } from '../types'
 
+import coreSetDate from '../_core/setDate/index'
+import coreSetFullYear from '../_core/setFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name set
  * @category Common Helpers
@@ -56,11 +60,11 @@ export default function set(
 
   // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
   if (isNaN(date.getTime())) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
 
   if (values.year != null) {
-    date.setFullYear(values.year)
+    coreSetFullYear(date, values.year)
   }
 
   if (values.month != null) {
@@ -68,7 +72,7 @@ export default function set(
   }
 
   if (values.date != null) {
-    date.setDate(toInteger(values.date))
+    coreSetDate(date, toInteger(values.date))
   }
 
   if (values.hours != null) {

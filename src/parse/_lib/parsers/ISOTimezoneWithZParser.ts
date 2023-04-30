@@ -3,6 +3,8 @@ import { Parser } from '../Parser'
 import { timezonePatterns } from '../constants'
 import { parseTimezonePattern } from '../utils'
 
+import coreNewDate from '../../../_core/newDate/index'
+
 // Timezone (ISO-8601. +00:00 is `'Z'`)
 export class ISOTimezoneWithZParser extends Parser<number> {
   priority = 10
@@ -36,7 +38,7 @@ export class ISOTimezoneWithZParser extends Parser<number> {
     if (flags.timestampIsSet) {
       return date
     }
-    return new Date(date.getTime() - value)
+    return coreNewDate(date.getTime() - value)
   }
 
   incompatibleTokens = ['t', 'T', 'x']

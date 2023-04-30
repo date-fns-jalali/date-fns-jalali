@@ -2,6 +2,10 @@ import toInteger from '../_lib/toInteger/index'
 import toDate from '../toDate/index'
 import requiredArgs from '../_lib/requiredArgs/index'
 
+import coreGetDate from '../_core/getDate/index'
+import coreSetDate from '../_core/setDate/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name addDays
  * @category Day Helpers
@@ -29,12 +33,12 @@ export default function addDays(
   const date = toDate(dirtyDate)
   const amount = toInteger(dirtyAmount)
   if (isNaN(amount)) {
-    return new Date(NaN)
+    return coreNewDate(NaN)
   }
   if (!amount) {
     // If 0 days, no-op to avoid changing times in the hour before end of DST
     return date
   }
-  date.setDate(date.getDate() + amount)
+  coreSetDate(date, coreGetDate(date) + amount)
   return date
 }

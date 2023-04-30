@@ -3,6 +3,11 @@ import toDate from '../toDate/index'
 import { getRoundingMethod } from '../_lib/roundingMethods'
 import toInteger from '../_lib/toInteger/index'
 
+import coreGetMonth from '../_core/getMonth/index'
+import coreGetDate from '../_core/getDate/index'
+import coreGetFullYear from '../_core/getFullYear/index'
+import coreNewDate from '../_core/newDate/index'
+
 /**
  * @name roundToNearestMinutes
  * @category Minute Helpers
@@ -53,10 +58,10 @@ export default function roundToNearestMinutes(
   const remainderMinutes = minutes % nearestTo
   const addedMinutes = Math.round(remainderMinutes / nearestTo) * nearestTo
 
-  return new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
+  return coreNewDate(
+    coreGetFullYear(date),
+    coreGetMonth(date),
+    coreGetDate(date),
     date.getHours(),
     roundedMinutes + addedMinutes
   )
