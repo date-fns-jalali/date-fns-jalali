@@ -4,7 +4,11 @@ export class UTCDateMini extends Date {
 
     if (arguments.length)
       this.setTime(
-        arguments.length === 1 ? arguments[0] : Date.UTC(...arguments)
+        arguments.length === 1
+          ? typeof arguments[0] === "string"
+            ? +new Date(arguments[0])
+            : arguments[0]
+          : Date.UTC(...arguments)
       );
   }
 

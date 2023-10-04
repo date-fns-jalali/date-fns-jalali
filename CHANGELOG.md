@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v1.1.0 - 2023-04-10
+
+### Added
+
+- Added support for string parsing.
+
 ## v1.0.0 - 2022-07-10
 
 Initial version

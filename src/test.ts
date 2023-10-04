@@ -14,7 +14,16 @@ describe("UTCDate", () => {
     });
 
     it("allows to create date using timestamp", () => {
-      expect(new UTCDate(540000000000).getTime()).toBe(540000000000);
+      expect(+new UTCDate(540000000000)).toBe(540000000000);
+    });
+
+    it("allows to parse the string", () => {
+      expect(+new UTCDate("2023-05-03")).toBe(+new Date("2023-05-03"));
+    });
+
+    it("allows to create date from another date", () => {
+      const date = new Date();
+      expect(+new UTCDate(date)).toBe(+date);
     });
   });
 
