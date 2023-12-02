@@ -101,8 +101,8 @@ export function findFn(
   ref: ContainerReflection
 ): DeclarationReflection | undefined {
   return ref.children?.find(
-    (ref) =>
-      ref.kind === 64 /* ReflectionKind.Function */ && ref.name === "default"
+    (child) =>
+      child.kind === 64 /* ReflectionKind.Function */ && child.name === ref.name
   );
 }
 
