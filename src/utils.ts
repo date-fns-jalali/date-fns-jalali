@@ -6,6 +6,7 @@ import type {
   SignatureReflection,
   SomeType,
 } from "typedoc";
+import { DateFnsDocs } from "./types";
 
 /**
  * Find reflection category in a reflection container.
@@ -96,7 +97,8 @@ export function findFn(
 ): DeclarationReflection | undefined {
   return ref.children?.find(
     (child) =>
-      child.kind === 64 /* ReflectionKind.Function */ && child.name === ref.name
+      child.kind === DateFnsDocs.ReflectionKind.Function &&
+      child.name === ref.name
   );
 }
 
