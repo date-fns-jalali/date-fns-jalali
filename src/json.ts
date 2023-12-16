@@ -58,7 +58,7 @@ export async function readRefsFromJSON(
       const completedRef = {
         ...reflection,
         children: [...(reflection.children || []), ...recoveredRefs],
-      };
+      } as DeclarationReflection;
 
       const fileName = completedRef.sources?.[0].fileName;
       const refOverrides = (fileName && config.kindsMap[fileName]) || undefined;

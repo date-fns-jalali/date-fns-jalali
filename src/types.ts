@@ -1,5 +1,5 @@
 import type { StringifiedJSON } from "typeroo/json";
-import type { ContainerReflection } from "typedoc";
+import type { DeclarationReflection } from "typedoc";
 
 export namespace DateFnsDocs {
   /**
@@ -239,7 +239,7 @@ export namespace DateFnsDocs {
    * The copy of TypeDoc ReflectionKind enum. We copy it here to avoid importing
    * typedoc.
    */
-  export declare enum ReflectionKind {
+  export enum ReflectionKind {
     Project = 1,
     Module = 2,
     Namespace = 4,
