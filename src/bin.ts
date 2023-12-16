@@ -153,13 +153,13 @@ async function getFnPages(
       ref.kind === "function"
         ? {
             category:
-              ref.category || findCategory(ref.ref, ref.fn.id) || "Common",
+              ref.category || findCategory(ref.ref, ref.fn.id) || "Misc",
             summary: findFnSummary(ref.fn) || "",
             pureStr: findFnTag(ref.fn, "@pure"),
           }
         : {
             category:
-              ref.category || findCategory(ref.ref, ref.ref.id) || "Common",
+              ref.category || findCategory(ref.ref, ref.ref.id) || "Misc",
             summary: findSummary(ref.ref) || "",
             pureStr: undefined,
           };

@@ -14,13 +14,7 @@ import type {
  * @returns the reflection category string if found
  */
 export function findCategory(ref: ContainerReflection, id: number) {
-  const group = ref.groups?.find((group) =>
-    // TODO: Fix the type error if TypeDoc becomes more eloborate
-    (group.children as unknown as number[]).includes(id)
-  );
-  if (!group) return;
-
-  const category = group.categories?.find((category) =>
+  const category = ref.categories?.find((category) =>
     // TODO: Fix the type error if TypeDoc becomes more eloborate
     (category.children as unknown as number[]).includes(id)
   );
