@@ -89,15 +89,15 @@ function extractRefs(refl: DeclarationReflection) {
 
   traverseRefs(refl, (ref) => {
     // id might be undefined for some reason
-    if (ref.id === undefined) return;
-    refs.add(ref.id);
+    if (ref.target === undefined) return;
+    refs.add(ref.target);
   });
 
   return refs;
 }
 
 interface RefType extends ReferenceType {
-  id?: number;
+  target?: number;
 }
 
 function traverseRefs(refl: DeclarationReflection, cb: (ref: RefType) => void) {

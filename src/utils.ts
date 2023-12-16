@@ -287,8 +287,6 @@ export function traverseType(
     case "predicate":
     case "inferred":
     case "unknown":
-    case "template-literal":
-    case "named-tuple-member":
     case "optional":
     case "rest":
     default:
