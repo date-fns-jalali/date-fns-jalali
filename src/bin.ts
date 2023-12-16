@@ -39,8 +39,8 @@ import(configPath)
 
         db.versions
           .query(($) => [
-            $.field("package").equal(packageName),
-            $.field("version").equal(version),
+            $.field("package").eq(packageName),
+            $.field("version").eq(version),
           ])
           .then((versions) =>
             Promise.all(versions.map((version) => version.ref.remove()))
@@ -48,8 +48,8 @@ import(configPath)
 
         db.pages
           .query(($) => [
-            $.field("package").equal(packageName),
-            $.field("version").equal(version),
+            $.field("package").eq(packageName),
+            $.field("version").eq(version),
           ])
           .then((pages) => Promise.all(pages.map((page) => page.ref.remove()))),
       ]);
