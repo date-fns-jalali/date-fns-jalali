@@ -9,19 +9,19 @@ The package is integrated into the date-fns build and release scripts, but if yo
 1. To generate the date-fns docs, start by installing the latest version:
 
 ```sh
-yarn add --dev @date-fns/docs@latest
+npm i -D @date-fns/docs@latest
 ```
 
 2. Then generate TypeDoc JSON file (`tmp/docs.json`):
 
 ```sh
-yarn typedoc
+npx typedoc
 ```
 
 3. Then, upload the docs to the Firebase with the path to the service key:
 
 ```sh
-env GOOGLE_APPLICATION_CREDENTIALS="secrets/$APP_ENV/key.json" yarn date-fns-docs docs/config.js
+env GOOGLE_APPLICATION_CREDENTIALS="secrets/$APP_ENV/key.json" npx date-fns-docs docs/config.js
 ```
 
 Replace `$APP_ENV` with either `staging` or `production`.
@@ -33,7 +33,7 @@ When working locally, to upload the docs follow the instructions:
 1. In the date-fns library source directory generate TypeDoc JSON file (`tmp/docs.json`):
 
 ```sh
-yarn typedoc
+npx typedoc
 ```
 
 2. Rollback the docs for the current version for 1+n run to avoid having duplicates:
