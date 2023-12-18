@@ -111,6 +111,10 @@ function traverseRefs(refl: DeclarationReflection, cb: (ref: RefType) => void) {
 
   refl.extendedTypes?.forEach(extractRefFromType);
 
+  refl.typeParameters?.forEach(
+    (rfl) => rfl.type && traverseType(rfl.type, extractRefFromType)
+  );
+
   refl.children?.forEach((rfl) => traverseRefs(rfl, cb));
 
   "signatures" in refl &&
