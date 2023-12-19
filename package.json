@@ -8,16 +8,20 @@
   },
   "main": "./index.js",
   "module": "./index.mjs",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
+      "types": "./index.d.ts",
       "import": "./index.mjs",
       "require": "./index.js"
     },
     "./date": {
+      "types": "./date/index.d.ts",
       "import": "./date/index.mjs",
       "require": "./date/index.js"
     },
     "./date/mini": {
+      "types": "./date/mini.d.ts",
       "import": "./date/mini.mjs",
       "require": "./date/mini.js"
     }
