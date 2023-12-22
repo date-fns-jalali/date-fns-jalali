@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v1.1.1 - 2023-12-22
+
+### Fixed
+
+- Made the package compatible with a wide variety of environments by updating the `exports` in the package.
+
 ## v1.1.0 - 2023-04-10
 
 ### Added
