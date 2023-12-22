@@ -6,27 +6,43 @@
     "test": "env TZ=Asia/Kolkata vitest",
     "build": "make build"
   },
+  "sideEffects": false,
+  "browser": "./index",
   "main": "./index.js",
   "module": "./index.mjs",
-  "types": "./index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
-      "types": "./index.d.ts",
-      "import": "./index.mjs",
-      "require": "./index.js"
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      },
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./index.mjs"
+      }
     },
     "./date": {
-      "types": "./date/index.d.ts",
-      "import": "./date/index.mjs",
-      "require": "./date/index.js"
+      "require": {
+        "types": "./date/index.d.ts",
+        "default": "./date/index.js"
+      },
+      "import": {
+        "types": "./date/index.d.mts",
+        "default": "./date/index.mjs"
+      }
     },
     "./date/mini": {
-      "types": "./date/mini.d.ts",
-      "import": "./date/mini.mjs",
-      "require": "./date/mini.js"
+      "require": {
+        "types": "./date/mini.d.ts",
+        "default": "./date/mini.js"
+      },
+      "import": {
+        "types": "./date/mini.d.mts",
+        "default": "./date/mini.mjs"
+      }
     }
   },
-  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/date-fns/utc.git"
@@ -48,7 +64,7 @@
     "@babel/core": "^7.18.6",
     "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "babel-plugin-add-import-extension": "^1.6.0",
-    "typescript": "^4.7.3",
-    "vitest": "^0.14.2"
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
   }
 }
