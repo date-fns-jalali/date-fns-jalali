@@ -1,2 +1,2 @@
-export { UTCDate } from "./date";
-export { UTCDateMini } from "./date/mini";
+export { UTCDate } from "./date/index.js";
+export { UTCDateMini } from "./date/mini.js";
