@@ -6,7 +6,7 @@ import { setDefaultOptions } from "./index.js";
 import type { DefaultOptions } from "../_lib/defaultOptions/index.js";
 import { getDefaultOptions as getInternalDefaultOptions } from "../_lib/defaultOptions/index.js";
 import { defaultLocale } from "../_lib/defaultLocale/index.js";
-import { eo as otherLocale } from "../locale/eo/index.js";
+import { enUS as otherLocale } from "../locale/en-US/index.js";
 import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index.js";
 import { eachWeekOfInterval } from "../eachWeekOfInterval/index.js";
 import { endOfWeek } from "../endOfWeek/index.js";
@@ -76,14 +76,14 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.deepStrictEqual(
         format(/* 1392/10/11 */ new Date(2014, 0, 1), "PPPpp"),
-        "January 1st, 2014 at 12:00:00 AM",
+        "11-ام دی 1392 در 12:00:00 ق.ظ.",
       );
 
       setDefaultOptions({ locale: otherLocale });
 
       assert.deepStrictEqual(
         format(/* 1392/10/11 */ new Date(2014, 0, 1), "PPPpp"),
-        "2014-januaro-01 00:00:00",
+        "Day 11th, 1392 at 12:00:00 AM",
       );
 
       // Manually set `locale` take priority over `defaultOptions.locale`
@@ -91,7 +91,7 @@ describe("setDefaultOptions", () => {
         format(/* 1392/10/11 */ new Date(2014, 0, 1), "PPPpp", {
           locale: defaultLocale,
         }),
-        "January 1st, 2014 at 12:00:00 AM",
+        "11-ام دی 1392 در 12:00:00 ق.ظ.",
       );
     });
 
@@ -102,7 +102,7 @@ describe("setDefaultOptions", () => {
           /* 1392/10/11 */ new Date(2014, 0, 1),
           /* 1393/10/11 */ new Date(2015, 0, 1),
         ),
-        "about 1 year",
+        "حدود 1 سال",
       );
 
       setDefaultOptions({ locale: otherLocale });
@@ -112,7 +112,7 @@ describe("setDefaultOptions", () => {
           /* 1392/10/11 */ new Date(2014, 0, 1),
           /* 1393/10/11 */ new Date(2015, 0, 1),
         ),
-        "proksimume 1 jaro",
+        "about 1 year",
       );
 
       // Manually set `locale` take priority over `defaultOptions.locale`
@@ -124,7 +124,7 @@ describe("setDefaultOptions", () => {
             locale: defaultLocale,
           },
         ),
-        "about 1 year",
+        "حدود 1 سال",
       );
     });
 
@@ -135,7 +135,7 @@ describe("setDefaultOptions", () => {
           /* 1392/10/11 */ new Date(2014, 0, 1),
           /* 1393/10/11 */ new Date(2015, 0, 1),
         ),
-        "1 year",
+        "1 سال",
       );
 
       setDefaultOptions({ locale: otherLocale });
@@ -145,7 +145,7 @@ describe("setDefaultOptions", () => {
           /* 1392/10/11 */ new Date(2014, 0, 1),
           /* 1393/10/11 */ new Date(2015, 0, 1),
         ),
-        "1 jaro",
+        "1 year",
       );
 
       // Manually set `locale` take priority over `defaultOptions.locale`
@@ -157,22 +157,22 @@ describe("setDefaultOptions", () => {
             locale: defaultLocale,
           },
         ),
-        "1 year",
+        "1 سال",
       );
     });
 
     it("formatDuration", () => {
       // For reference: not setting any options
-      assert.deepStrictEqual(formatDuration({ years: 1 }), "1 year");
+      assert.deepStrictEqual(formatDuration({ years: 1 }), "1 سال");
 
       setDefaultOptions({ locale: otherLocale });
 
-      assert.deepStrictEqual(formatDuration({ years: 1 }), "1 jaro");
+      assert.deepStrictEqual(formatDuration({ years: 1 }), "1 year");
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert.deepStrictEqual(
         formatDuration({ years: 1 }, { locale: defaultLocale }),
-        "1 year",
+        "1 سال",
       );
     });
 
@@ -183,7 +183,7 @@ describe("setDefaultOptions", () => {
           /* 1392/10/11 */ new Date(2014, 0, 1),
           /* 1392/10/12 */ new Date(2014, 0, 2),
         ),
-        "yesterday at 12:00 AM",
+        "دیروز در 12:00 ق.ظ.",
       );
 
       setDefaultOptions({ locale: otherLocale });
@@ -193,7 +193,7 @@ describe("setDefaultOptions", () => {
           /* 1392/10/11 */ new Date(2014, 0, 1),
           /* 1392/10/12 */ new Date(2014, 0, 2),
         ),
-        "hieraŭ je 00:00",
+        "yesterday at 12:00 AM",
       );
 
       // Manually set `locale` take priority over `defaultOptions.locale`
@@ -205,21 +205,21 @@ describe("setDefaultOptions", () => {
             locale: defaultLocale,
           },
         ),
-        "yesterday at 12:00 AM",
+        "دیروز در 12:00 ق.ظ.",
       );
     });
 
     it("isMatch", () => {
       // For reference: not setting any options
-      assert(isMatch("January 1st, 2014 at 12:00:00 AM", "PPPpp"));
+      assert(isMatch("11 دی 1392 در 12:00:00 ق.ظ.", "PPPpp"));
 
       setDefaultOptions({ locale: otherLocale });
 
-      assert(isMatch("2014-januaro-01 00:00:00", "PPPpp"));
+      assert(isMatch("Day 11th, 1392 at 12:00:00 AM", "PPPpp"));
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert(
-        isMatch("January 1st, 2014 at 12:00:00 AM", "PPPpp", {
+        isMatch("11 دی 1392 در 12:00:00 ق.ظ.", "PPPpp", {
           locale: defaultLocale,
         }),
       );
@@ -228,20 +228,20 @@ describe("setDefaultOptions", () => {
     it("parse", () => {
       // For reference: not setting any options
       assert.deepStrictEqual(
-        parse("January 1st, 2014 at 12:00:00 AM", "PPPpp", new Date()),
+        parse("11 دی 1392 در 12:00:00 ق.ظ.", "PPPpp", new Date()),
         /* 1392/10/11 */ new Date(2014, 0, 1),
       );
 
       setDefaultOptions({ locale: otherLocale });
 
       assert.deepStrictEqual(
-        parse("2014-januaro-01 00:00:00", "PPPpp", new Date()),
+        parse("Day 11th, 1392 at 12:00:00 AM", "PPPpp", new Date()),
         /* 1392/10/11 */ new Date(2014, 0, 1),
       );
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert.deepStrictEqual(
-        parse("January 1st, 2014 at 12:00:00 AM", "PPPpp", new Date(), {
+        parse("11 دی 1392 در 12:00:00 ق.ظ.", "PPPpp", new Date(), {
           locale: defaultLocale,
         }),
         /* 1392/10/11 */ new Date(2014, 0, 1),
@@ -291,14 +291,14 @@ describe("setDefaultOptions", () => {
           end: /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23),
         }),
         [
-          /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-          /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-          /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-          /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-          /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-          /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-          /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-          /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23),
+          /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+          /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+          /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+          /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+          /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+          /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+          /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+          /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22),
         ],
       );
 
@@ -349,7 +349,7 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.deepStrictEqual(
         endOfWeek(/* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)),
-        /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6, 23, 59, 59, 999),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 23, 59, 59, 999),
       );
 
       setDefaultOptions({ weekStartsOn: 1 });
@@ -372,14 +372,14 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.strictEqual(
         getWeekOfMonth(/* 1396/8/24 */ new Date(2017, 10 /* Nov */, 15)),
-        3,
+        4,
       );
 
       setDefaultOptions({ weekStartsOn: 1 });
 
       assert.strictEqual(
         getWeekOfMonth(/* 1396/8/9 */ new Date(2017, 9 /* Oct */, 31)),
-        6,
+        2,
       );
 
       // Manually set `weekStartsOn` take priority over `defaultOptions.weekStartsOn`
@@ -387,7 +387,7 @@ describe("setDefaultOptions", () => {
         getWeekOfMonth(/* 1396/8/24 */ new Date(2017, 10 /* Nov */, 15), {
           weekStartsOn: 0,
         }),
-        3,
+        4,
       );
     });
 
@@ -395,7 +395,7 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.strictEqual(
         getWeeksInMonth(/* 1393/11/19 */ new Date(2015, 1 /* Feb */, 8, 18, 0)),
-        4,
+        5,
       );
 
       setDefaultOptions({ weekStartsOn: 1 });
@@ -413,7 +413,7 @@ describe("setDefaultOptions", () => {
             weekStartsOn: 0,
           },
         ),
-        4,
+        5,
       );
     });
 
@@ -456,7 +456,7 @@ describe("setDefaultOptions", () => {
         lastDayOfWeek(
           /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
         ),
-        /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5),
       );
 
       setDefaultOptions({ weekStartsOn: 1 });
@@ -507,7 +507,7 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.deepStrictEqual(
         startOfWeek(/* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0)),
-        /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31),
+        /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30),
       );
 
       setDefaultOptions({ weekStartsOn: 1 });
@@ -532,14 +532,14 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.strictEqual(
         format(/* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6), "w wo ww"),
-        "15 15th 15",
+        "4 4-ام 04",
       );
 
       setDefaultOptions({ weekStartsOn: 1, firstWeekContainsDate: 4 });
 
       assert.strictEqual(
         format(/* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6), "w wo ww"),
-        "14 14th 14",
+        "2 2-ام 02",
       );
 
       // Manually set `firstWeekContainsDate` take priority over `defaultOptions.firstWeekContainsDate`
@@ -548,7 +548,7 @@ describe("setDefaultOptions", () => {
           weekStartsOn: 0,
           firstWeekContainsDate: 1,
         }),
-        "15 15th 15",
+        "4 4-ام 04",
       );
     });
 
@@ -556,14 +556,14 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.strictEqual(
         getWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2)),
-        2,
+        42,
       );
 
       setDefaultOptions({ weekStartsOn: 1, firstWeekContainsDate: 4 });
 
       assert.strictEqual(
         getWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2)),
-        53,
+        41,
       );
 
       // Manually set `firstWeekContainsDate` take priority over `defaultOptions.firstWeekContainsDate`
@@ -572,7 +572,7 @@ describe("setDefaultOptions", () => {
           weekStartsOn: 0,
           firstWeekContainsDate: 1,
         }),
-        2,
+        43,
       );
     });
 
@@ -580,14 +580,14 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.strictEqual(
         getWeekYear(/* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26)),
-        2005,
+        1383,
       );
 
       setDefaultOptions({ weekStartsOn: 1, firstWeekContainsDate: 4 });
 
       assert.strictEqual(
         getWeekYear(/* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26)),
-        2004,
+        1383,
       );
 
       // Manually set `firstWeekContainsDate` take priority over `defaultOptions.firstWeekContainsDate`
@@ -596,7 +596,7 @@ describe("setDefaultOptions", () => {
           weekStartsOn: 0,
           firstWeekContainsDate: 1,
         }),
-        2005,
+        1383,
       );
     });
 
@@ -612,24 +612,24 @@ describe("setDefaultOptions", () => {
       );
       // For reference: not setting any options
       assert.deepStrictEqual(
-        parse("2018", "Y", referenceDate),
-        /* 1396/10/10 */ new Date(2017, 11 /* Dec */, 31),
+        parse("1396", "Y", referenceDate),
+        /* 1395/12/28 */ new Date(2017, 2 /* Mar */, 18),
       );
 
       setDefaultOptions({ weekStartsOn: 1, firstWeekContainsDate: 4 });
 
       assert.deepStrictEqual(
-        parse("2018", "Y", referenceDate),
-        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1),
+        parse("1396", "Y", referenceDate),
+        /* 1395/12/30 */ new Date(2017, 2 /* Mar */, 20),
       );
 
       // Manually set `firstWeekContainsDate` take priority over `defaultOptions.firstWeekContainsDate`
       assert.deepStrictEqual(
-        parse("2018", "Y", referenceDate, {
+        parse("1396", "Y", referenceDate, {
           weekStartsOn: 0,
           firstWeekContainsDate: 1,
         }),
-        /* 1396/10/10 */ new Date(2017, 11 /* Dec */, 31),
+        /* 1395/12/29 */ new Date(2017, 2 /* Mar */, 19),
       );
     });
 
@@ -637,14 +637,14 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.deepStrictEqual(
         setWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2), 1),
-        /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26),
+        /* 1383/1/2 */ new Date(2004, 2 /* Mar */, 21),
       );
 
       setDefaultOptions({ weekStartsOn: 1, firstWeekContainsDate: 4 });
 
       assert.deepStrictEqual(
         setWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2), 1),
-        /* 1382/10/14 */ new Date(2004, 0 /* Jan */, 4),
+        /* 1383/1/9 */ new Date(2004, 2 /* Mar */, 28),
       );
 
       // Manually set `firstWeekContainsDate` take priority over `defaultOptions.firstWeekContainsDate`
@@ -653,27 +653,27 @@ describe("setDefaultOptions", () => {
           weekStartsOn: 0,
           firstWeekContainsDate: 1,
         }),
-        /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26),
+        /* 1382/12/24 */ new Date(2004, 2 /* Mar */, 14),
       );
     });
 
     it("setWeekYear", () => {
       // For reference: not setting any options
       assert.deepStrictEqual(
-        setWeekYear(/* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2), 2004),
-        /* 1382/10/13 */ new Date(2004, 0 /* Jan */, 3),
+        setWeekYear(/* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2), 1382),
+        /* 1382/10/6 */ new Date(2003, 11 /* Dec */, 27),
       );
 
       setDefaultOptions({ weekStartsOn: 1, firstWeekContainsDate: 4 });
 
       assert.deepStrictEqual(
-        setWeekYear(/* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2), 2004),
-        /* 1383/10/12 */ new Date(2005, 0 /* Jan */, 1),
+        setWeekYear(/* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2), 1382),
+        /* 1382/10/13 */ new Date(2004, 0 /* Jan */, 3),
       );
 
       // Manually set `firstWeekContainsDate` take priority over `defaultOptions.firstWeekContainsDate`
       assert.deepStrictEqual(
-        setWeekYear(/* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2), 2004, {
+        setWeekYear(/* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2), 1382, {
           weekStartsOn: 0,
           firstWeekContainsDate: 1,
         }),
@@ -685,14 +685,14 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert.deepStrictEqual(
         startOfWeekYear(/* 1384/4/11 */ new Date(2005, 6 /* Jul */, 2)),
-        /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26, 0, 0, 0, 0),
+        /* 1383/12/29 */ new Date(2005, 2 /* Mar */, 19, 0, 0, 0, 0),
       );
 
       setDefaultOptions({ weekStartsOn: 1, firstWeekContainsDate: 4 });
 
       assert.deepStrictEqual(
         startOfWeekYear(/* 1384/4/11 */ new Date(2005, 6 /* Jul */, 2)),
-        /* 1383/10/14 */ new Date(2005, 0 /* Jan */, 3, 0, 0, 0, 0),
+        /* 1384/1/1 */ new Date(2005, 2 /* Mar */, 21, 0, 0, 0, 0),
       );
 
       // Manually set `firstWeekContainsDate` take priority over `defaultOptions.firstWeekContainsDate`
@@ -701,7 +701,7 @@ describe("setDefaultOptions", () => {
           weekStartsOn: 0,
           firstWeekContainsDate: 1,
         }),
-        /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26, 0, 0, 0, 0),
+        /* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20, 0, 0, 0, 0),
       );
     });
   });

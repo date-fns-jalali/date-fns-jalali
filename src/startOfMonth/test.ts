@@ -10,7 +10,7 @@ describe("startOfMonth", () => {
     const result = startOfMonth(date);
     assert.deepStrictEqual(
       result,
-      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      /* 1393/6/1 */ new Date(2014, 7 /* Aug */, 23),
     );
   });
 
@@ -26,7 +26,7 @@ describe("startOfMonth", () => {
     const result = startOfMonth(date);
     assert.deepStrictEqual(
       result,
-      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      /* 1393/6/1 */ new Date(2014, 7 /* Aug */, 23),
     );
   });
 

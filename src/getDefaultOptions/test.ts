@@ -9,7 +9,7 @@ import {
   getDefaultOptions as getInternalDefaultOptions,
   setDefaultOptions as setInternalDefaultOptions,
 } from "../_lib/defaultOptions/index.js";
-import { eo } from "../locale/eo/index.js";
+import { enUS } from "../locale/en-US/index.js";
 import { resetDefaultOptions } from "../_lib/test/index.js";
 
 describe("getDefaultOptions", () => {
@@ -34,7 +34,7 @@ describe("getDefaultOptions", () => {
     );
     assert.deepStrictEqual(
       result,
-      /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31),
+      /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30),
     );
 
     // Mutating the original object does affect `startOfWeek`
@@ -53,13 +53,13 @@ describe("getDefaultOptions", () => {
     setDefaultOptions({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: enUS,
     });
     const result = getDefaultOptions();
     assert.deepStrictEqual(result, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: enUS,
     });
   });
 });

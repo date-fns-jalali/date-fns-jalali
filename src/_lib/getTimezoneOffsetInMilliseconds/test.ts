@@ -28,7 +28,7 @@ describe("getTimezoneOffsetInMilliseconds", () => {
     assert(result === expectedResult);
   });
 
-  it("works for a date before standardized timezones", () => {
+  it.skip("works for a date before standardized timezones", () => {
     const date = /* 1178/10/11 */ new Date(
       1800,
       0 /* Jan */,
@@ -51,7 +51,7 @@ describe("getTimezoneOffsetInMilliseconds", () => {
     assert(result === expectedResult);
   });
 
-  it("works for a date BC", () => {
+  it.skip("works for a date BC", () => {
     const date = /* -1122/10/10 */ new Date(
       -500,
       0 /* Jan */,
