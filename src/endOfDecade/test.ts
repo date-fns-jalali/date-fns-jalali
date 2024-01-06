@@ -7,7 +7,7 @@ describe("endOfDecade", () => {
     const result = endOfDecade(date);
     assert.deepStrictEqual(
       result,
-      /* 1398/10/10 */ new Date(2019, 11 /* Dec */, 31, 23, 59, 59, 999),
+      /* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20, 23, 59, 59, 999),
     );
   });
 
@@ -23,7 +23,7 @@ describe("endOfDecade", () => {
     const result = endOfDecade(date);
     assert.deepStrictEqual(
       result,
-      /* 1388/10/10 */ new Date(2009, 11 /* Dec */, 31, 23, 59, 59, 999),
+      /* 1389/12/29 */ new Date(2011, 2 /* Mar */, 20, 23, 59, 59, 999),
     );
   });
 
@@ -42,10 +42,10 @@ describe("endOfDecade", () => {
 
   it("properly works with negative numbers", () => {
     expect(endOfDecade(/* 1379/10/12 */ new Date(2001, 0, 1))).toEqual(
-      /* 1388/10/10 */ new Date(2009, 11, 31, 23, 59, 59, 999),
+      /* 1379/12/30 */ new Date(2001, 2, 20, 23, 59, 59, 999),
     );
     expect(endOfDecade(/* -2631/10/10 */ new Date(-2009, 0, 1))).toEqual(
-      /* -2622/10/9 */ new Date(-2001, 11, 31, 23, 59, 59, 999),
+      /* -2631/12/30 */ new Date(-2009, 2, 22, 23, 59, 59, 999),
     );
   });
 });

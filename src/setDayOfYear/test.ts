@@ -7,7 +7,7 @@ describe("setDayOfYear", () => {
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2),
       2,
     );
-    expect(result).toEqual(/* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2));
+    expect(result).toEqual(/* 1393/1/2 */ new Date(2014, 2 /* Mar */, 22));
   });
 
   it("accepts a timestamp", () => {
@@ -15,7 +15,7 @@ describe("setDayOfYear", () => {
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(),
       60,
     );
-    expect(result).toEqual(/* 1392/12/10 */ new Date(2014, 2 /* Mar */, 1));
+    expect(result).toEqual(/* 1393/2/29 */ new Date(2014, 4 /* May */, 19));
   });
 
   it("does not mutate the original date", () => {

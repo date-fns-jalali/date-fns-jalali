@@ -5,7 +5,7 @@ describe("lastDayOfMonth", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the last day of a month", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = lastDayOfMonth(date);
-    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22));
   });
 
   it("accepts a timestamp", () => {
@@ -18,7 +18,7 @@ describe("lastDayOfMonth", () => {
       0,
     ).getTime();
     const result = lastDayOfMonth(date);
-    expect(result).toEqual(/* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31));
+    expect(result).toEqual(/* 1393/5/31 */ new Date(2014, 7 /* Aug */, 22));
   });
 
   it("does not mutate the original date", () => {
@@ -30,16 +30,16 @@ describe("lastDayOfMonth", () => {
   });
 
   describe("edge cases", () => {
-    it("works for the February of a leap year", () => {
-      const date = /* 1390/11/22 */ new Date(2012, 1 /* Feb */, 11, 11, 55, 0);
+    it("works for the Esfand of a leap year", () => {
+      const date = /* 1399/12/22 */ new Date(2021, 2 /* Mar */, 12, 11, 55, 0);
       const result = lastDayOfMonth(date);
-      expect(result).toEqual(/* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29));
+      expect(result).toEqual(/* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20));
     });
 
-    it("works for the February of a non-leap year", () => {
-      const date = /* 1392/11/22 */ new Date(2014, 1 /* Feb */, 11, 11, 55, 0);
+    it("works for the Esfand of a non-leap year", () => {
+      const date = /* 1398/12/22 */ new Date(2020, 2 /* Mar */, 12, 11, 55, 0);
       const result = lastDayOfMonth(date);
-      expect(result).toEqual(/* 1392/12/9 */ new Date(2014, 1 /* Feb */, 28));
+      expect(result).toEqual(/* 1398/12/29 */ new Date(2020, 2 /* Mar */, 19));
     });
   });
 

@@ -1,4 +1,4 @@
-import { millisecondsInWeek } from "../constants/index.js";
+import { millisecondsInHour, millisecondsInWeek } from "../constants/index.js";
 import { startOfWeek } from "../startOfWeek/index.js";
 import { startOfWeekYear } from "../startOfWeekYear/index.js";
 import { toDate } from "../toDate/index.js";
@@ -58,7 +58,11 @@ export function getWeek<DateType extends Date>(
   options?: GetWeekOptions,
 ): number {
   const _date = toDate(date);
-  const diff = +startOfWeek(_date, options) - +startOfWeekYear(_date, options);
+  // add 1 hour to skip the daylight saving switch
+  const diff =
+    +startOfWeek(_date, options) -
+    +startOfWeekYear(_date, options) +
+    millisecondsInHour;
 
   // Round the number of weeks to the nearest integer because the number of
   // milliseconds in a week is not constant (e.g. it's different in the week of

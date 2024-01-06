@@ -374,7 +374,7 @@ export function parse<DateType extends Date>(
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   if (formatStr === "") {
     if (dateStr === "") {
