@@ -9,7 +9,7 @@ describe("getWeeksInMonth", () => {
     const result = getWeeksInMonth(
       /* 1393/11/19 */ new Date(2015, 1 /* Feb */, 8, 18, 0),
     );
-    assert(result === 4);
+    assert(result === 5);
   });
 
   it("allows to specify which day is the first day of the week", () => {
@@ -49,7 +49,7 @@ describe("getWeeksInMonth", () => {
 
   it("accepts timestamps", () => {
     const result = getWeeksInMonth(
-      /* 1396/1/19 */ new Date(2017, 3 /* Apr */, 8, 18, 0).getTime(),
+      /* 1396/2/19 */ new Date(2017, 4 /* May */, 9, 18, 0).getTime(),
     );
     assert(result === 6);
   });

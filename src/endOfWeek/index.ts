@@ -48,7 +48,7 @@ export function endOfWeek<DateType extends Date>(
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   const _date = toDate(date);
   const day = _date.getDay();
