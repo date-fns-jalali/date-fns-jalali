@@ -1,1 +1,1 @@
-export { enUS as defaultLocale } from "../../locale/en-US/index.ts";
+export { faIR as defaultLocale } from "../../locale/fa-IR/index.ts";
