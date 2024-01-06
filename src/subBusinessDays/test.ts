@@ -18,7 +18,7 @@ describe("subBusinessDays", () => {
 
   it("handles negative amount", () => {
     const result = subBusinessDays(
-      /* 1393/5/27 */ new Date(2014, 7 /* Sep */, 18),
+      /* 1393/5/27 */ new Date(2014, 7 /* Aug */, 18),
       -10,
     );
     assert.deepStrictEqual(

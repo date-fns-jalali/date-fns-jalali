@@ -11,12 +11,12 @@ describe("eachYearOfInterval", () => {
       end: /* 1396/7/20 */ new Date(2017, 9 /* Oct */, 12),
     });
     assert.deepStrictEqual(result, [
-      /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-      /* 1391/10/12 */ new Date(2013, 0 /* Jan */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-      /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
-      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
+      /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+      /* 1392/1/1 */ new Date(2013, 2 /* Mar */, 21),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+      /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20),
+      /* 1396/1/1 */ new Date(2017, 2 /* Mar */, 21),
     ]);
   });
 
@@ -26,12 +26,12 @@ describe("eachYearOfInterval", () => {
       end: /* 1396/7/20 */ new Date(2017, 9 /* Oct */, 12).getTime(),
     });
     assert.deepStrictEqual(result, [
-      /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-      /* 1391/10/12 */ new Date(2013, 0 /* Jan */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-      /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
-      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
+      /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+      /* 1392/1/1 */ new Date(2013, 2 /* Mar */, 21),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+      /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20),
+      /* 1396/1/1 */ new Date(2017, 2 /* Mar */, 21),
     ]);
   });
 
@@ -41,12 +41,12 @@ describe("eachYearOfInterval", () => {
       end: /* 1396/7/20 */ new Date(2017, 9 /* Oct */, 12, 22, 15),
     });
     assert.deepStrictEqual(result, [
-      /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-      /* 1391/10/12 */ new Date(2013, 0 /* Jan */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-      /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
-      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
+      /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+      /* 1392/1/1 */ new Date(2013, 2 /* Mar */, 21),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+      /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20),
+      /* 1396/1/1 */ new Date(2017, 2 /* Mar */, 21),
     ]);
   });
 
@@ -56,7 +56,7 @@ describe("eachYearOfInterval", () => {
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 15),
     });
     assert.deepStrictEqual(result, [
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
     ]);
   });
 
@@ -66,7 +66,7 @@ describe("eachYearOfInterval", () => {
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
     });
     assert.deepStrictEqual(result, [
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
     ]);
   });
 
@@ -76,12 +76,12 @@ describe("eachYearOfInterval", () => {
       end: /* 1391/7/15 */ new Date(2012, 9 /* Oct */, 6),
     });
     assert.deepStrictEqual(result, [
-      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
-      /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
-      /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1391/10/12 */ new Date(2013, 0 /* Jan */, 1),
-      /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
+      /* 1396/1/1 */ new Date(2017, 2 /* Mar */, 21),
+      /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20),
+      /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1392/1/1 */ new Date(2013, 2 /* Mar */, 21),
+      /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
     ]);
   });
 
@@ -118,16 +118,16 @@ describe("eachYearOfInterval", () => {
     it("returns an array with starts of days from the day of the start date to the day of the end date with the given step", () => {
       const result = eachYearOfInterval(interval, { step: 3 });
       assert.deepStrictEqual(result, [
-        /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
+        /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
       ]);
     });
 
     it("returns reversed array if `options.step` is negative", () => {
       const result = eachYearOfInterval(interval, { step: -3 });
       assert.deepStrictEqual(result, [
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-        /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+        /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
       ]);
     });
 
@@ -137,8 +137,8 @@ describe("eachYearOfInterval", () => {
         { step: -3 },
       );
       assert.deepStrictEqual(result, [
-        /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
+        /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
       ]);
     });
 

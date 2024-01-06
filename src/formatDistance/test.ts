@@ -14,7 +14,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 3),
           { includeSeconds: true },
         );
-        assert(result === "less than 5 seconds");
+        assert(result === "کمتر از 5 ثانیه");
       });
 
       it("less than 10 seconds", () => {
@@ -23,7 +23,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 7),
           { includeSeconds: true },
         );
-        assert(result === "less than 10 seconds");
+        assert(result === "کمتر از 10 ثانیه");
       });
 
       it("less than 20 seconds", () => {
@@ -32,7 +32,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 15),
           { includeSeconds: true },
         );
-        assert(result === "less than 20 seconds");
+        assert(result === "کمتر از 20 ثانیه");
       });
 
       it("half a minute", () => {
@@ -41,7 +41,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
           { includeSeconds: true },
         );
-        assert(result === "half a minute");
+        assert(result === "نیم دقیقه");
       });
 
       it("less than a minute", () => {
@@ -50,7 +50,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 45),
           { includeSeconds: true },
         );
-        assert(result === "less than a minute");
+        assert(result === "کمتر از یک دقیقه");
       });
 
       it("1 minute", () => {
@@ -59,7 +59,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 0),
           { includeSeconds: true },
         );
-        assert(result === "1 minute");
+        assert(result === "1 دقیقه");
       });
     });
   });
@@ -70,7 +70,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 20),
       );
-      assert(result === "less than a minute");
+      assert(result === "کمتر از یک دقیقه");
     });
 
     it("1 minute", () => {
@@ -78,7 +78,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 50),
       );
-      assert(result === "1 minute");
+      assert(result === "1 دقیقه");
     });
 
     it("n minutes", () => {
@@ -86,7 +86,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 34, 50),
       );
-      assert(result === "3 minutes");
+      assert(result === "3 دقیقه");
     });
   });
 
@@ -96,7 +96,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
       );
-      assert(result === "about 1 hour");
+      assert(result === "حدود 1 ساعت");
     });
 
     it("about n hours", () => {
@@ -104,7 +104,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 13, 32, 0),
       );
-      assert(result === "about 3 hours");
+      assert(result === "حدود 3 ساعت");
     });
   });
 
@@ -114,7 +114,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/16 */ new Date(1986, 3, 5, 10, 32, 0),
       );
-      assert(result === "1 day");
+      assert(result === "1 روز");
     });
 
     it("n days", () => {
@@ -122,7 +122,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0),
       );
-      assert(result === "3 days");
+      assert(result === "3 روز");
     });
   });
 
@@ -132,7 +132,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/2/14 */ new Date(1986, 4, 4, 10, 32, 0),
       );
-      assert(result === "about 1 month");
+      assert(result === "حدود 1 ماه");
     });
 
     it("n months", () => {
@@ -140,7 +140,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/4/13 */ new Date(1986, 6, 4, 10, 32, 0),
       );
-      assert(result === "3 months");
+      assert(result === "3 ماه");
     });
   });
 
@@ -150,7 +150,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1366/1/15 */ new Date(1987, 3, 4, 10, 32, 0),
       );
-      assert(result === "about 1 year");
+      assert(result === "حدود 1 سال");
     });
 
     it("over 1 year", () => {
@@ -158,7 +158,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1366/7/12 */ new Date(1987, 9, 4, 10, 32, 0),
       );
-      assert(result === "over 1 year");
+      assert(result === "بیشتر از 1 سال");
     });
 
     it("almost n years", () => {
@@ -166,7 +166,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1367/12/13 */ new Date(1989, 2, 4, 10, 32, 0),
       );
-      assert(result === "almost 3 years");
+      assert(result === "نزدیک 3 سال");
     });
 
     it("about n years", () => {
@@ -174,7 +174,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1368/1/15 */ new Date(1989, 3, 4, 10, 32, 0),
       );
-      assert(result === "about 3 years");
+      assert(result === "حدود 3 سال");
     });
 
     it("over n years", () => {
@@ -182,7 +182,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1368/7/12 */ new Date(1989, 9, 4, 10, 32, 0),
       );
-      assert(result === "over 3 years");
+      assert(result === "بیشتر از 3 سال");
     });
   });
 
@@ -191,7 +191,7 @@ describe("formatDistance", () => {
       /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0).getTime(),
       /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0).getTime(),
     );
-    assert(result === "about 1 hour");
+    assert(result === "حدود 1 ساعت");
   });
 
   describe("when the addSuffix option is true", () => {
@@ -201,7 +201,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
         { includeSeconds: true, addSuffix: true },
       );
-      assert(result === "half a minute ago");
+      assert(result === "نیم دقیقه قبل");
     });
 
     it("adds a future suffix", () => {
@@ -210,7 +210,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         { addSuffix: true },
       );
-      assert(result === "in about 1 hour");
+      assert(result === "در حدود 1 ساعت");
     });
   });
 

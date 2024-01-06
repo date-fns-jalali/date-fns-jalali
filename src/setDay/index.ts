@@ -47,7 +47,7 @@ export function setDay<DateType extends Date>(
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   const _date = toDate(date);
   const currentDay = _date.getDay();
