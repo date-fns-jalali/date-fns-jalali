@@ -4,7 +4,7 @@ import { setDate } from "./index.js";
 describe("setDate", () => {
   it("sets the day of the month", () => {
     const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 30);
-    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/6/30 */ new Date(2014, 8 /* Sep */, 21));
   });
 
   it("accepts a timestamp", () => {
@@ -12,7 +12,7 @@ describe("setDate", () => {
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
       25,
     );
-    expect(result).toEqual(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
+    expect(result).toEqual(/* 1393/6/25 */ new Date(2014, 8 /* Sep */, 16));
   });
 
   it("does not mutate the original date", () => {

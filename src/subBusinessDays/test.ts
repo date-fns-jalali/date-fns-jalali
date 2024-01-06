@@ -12,7 +12,7 @@ describe("subBusinessDays", () => {
 
   it("handles negative amount", () => {
     const result = subBusinessDays(
-      /* 1393/5/27 */ new Date(2014, 7 /* Sep */, 18),
+      /* 1393/5/27 */ new Date(2014, 7 /* Aug */, 18),
       -10,
     );
     expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));

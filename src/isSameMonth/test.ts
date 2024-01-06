@@ -5,7 +5,7 @@ describe("isSameMonth", () => {
   it("returns true if the given dates have the same month (and year)", () => {
     const result = isSameMonth(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25),
+      /* 1393/6/3 */ new Date(2014, 7 /* Aug */, 25),
     );
     expect(result).toBe(true);
   });
@@ -21,7 +21,7 @@ describe("isSameMonth", () => {
   it("accepts a timestamp", () => {
     const result = isSameMonth(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2).getTime(),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime(),
+      /* 1393/6/3 */ new Date(2014, 7 /* Sep */, 25).getTime(),
     );
     expect(result).toBe(true);
   });

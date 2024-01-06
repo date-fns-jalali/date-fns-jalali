@@ -13,11 +13,11 @@ describe("formatDuration", () => {
         minutes: 9,
         seconds: 30,
       }),
-    ).toBe("2 years 9 months 1 week 7 days 5 hours 9 minutes 30 seconds");
+    ).toBe("2 سال 9 ماه 1 هفته 7 روز 5 ساعت 9 دقیقه 30 ثانیه");
   });
 
   it("formats partial duration", () => {
-    expect(formatDuration({ months: 9, days: 2 })).toBe("9 months 2 days");
+    expect(formatDuration({ months: 9, days: 2 })).toBe("9 ماه 2 روز");
   });
 
   it("allows to customize the format", () => {
@@ -34,7 +34,7 @@ describe("formatDuration", () => {
         },
         { format: ["months", "weeks"] },
       ),
-    ).toBe("9 months 1 week");
+    ).toBe("9 ماه 1 هفته");
   });
 
   it("does not include zeros by default", () => {
@@ -48,7 +48,7 @@ describe("formatDuration", () => {
         minutes: 0,
         seconds: 0,
       }),
-    ).toBe("1 week");
+    ).toBe("1 هفته");
   });
 
   it("allows to include zeros", () => {
@@ -65,12 +65,12 @@ describe("formatDuration", () => {
         },
         { zero: true },
       ),
-    ).toBe("0 years 0 months 1 week 0 days 0 hours 0 minutes 0 seconds");
+    ).toBe("0 سال 0 ماه 1 هفته 0 روز 0 ساعت 0 دقیقه 0 ثانیه");
   });
 
   it("allows to customize the delimiter", () => {
-    expect(formatDuration({ months: 9, days: 2 }, { delimiter: ", " })).toBe(
-      "9 months, 2 days",
+    expect(formatDuration({ months: 9, days: 2 }, { delimiter: "، " })).toBe(
+      "9 ماه، 2 روز",
     );
   });
 });

@@ -4,7 +4,7 @@ import { isFirstDayOfMonth } from "./index.js";
 describe("isFirstDayOfMonth", () => {
   it("returns true if the given date is in the last day of month", () => {
     const result = isFirstDayOfMonth(
-      /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1),
+      /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23),
     );
     expect(result).toBe(true);
   });
@@ -17,7 +17,7 @@ describe("isFirstDayOfMonth", () => {
   });
 
   it("accepts a timestamp", () => {
-    const date = /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1).getTime();
+    const date = /* 1393/7/1 */ new Date(2014, 8 /* Oct */, 23).getTime();
     const result = isFirstDayOfMonth(date);
     expect(result).toBe(true);
   });

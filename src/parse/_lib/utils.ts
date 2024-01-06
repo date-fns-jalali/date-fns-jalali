@@ -6,6 +6,8 @@ import {
 } from "../../constants/index.js";
 import type { ParseResult } from "./types.js";
 import { numericPatterns } from "./constants.js";
+import { isLeapYear } from "../../isLeapYear/index";
+import { newDate as coreNewDate } from "../../_core/newDate/index";
 
 export function mapValue<TInput, TResult>(
   parseFnResult: ParseResult<TInput>,
@@ -153,5 +155,5 @@ export function normalizeTwoDigitYear(
 }
 
 export function isLeapYearIndex(year: number): boolean {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+  return isLeapYear(coreNewDate(year, 0));
 }
