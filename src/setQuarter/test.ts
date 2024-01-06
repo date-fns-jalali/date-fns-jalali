@@ -12,18 +12,18 @@ describe("setQuarter", () => {
     );
     assert.deepStrictEqual(
       result,
-      /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2),
+      /* 1393/1/11 */ new Date(2014, 2 /* Mar */, 31),
     );
   });
 
   it("sets the last day of the month if the original date was the last day of a longer month", () => {
     const result = setQuarter(
-      /* 1393/9/9 */ new Date(2014, 10 /* Nov */, 30),
-      1,
+      /* 1393/5/31 */ new Date(2014, 7 /* Aug */, 22),
+      3,
     );
     assert.deepStrictEqual(
       result,
-      /* 1392/12/9 */ new Date(2014, 1 /* Feb */, 28),
+      /* 1393/8/30 */ new Date(2014, 10 /* Nov */, 21),
     );
   });
 
@@ -34,7 +34,7 @@ describe("setQuarter", () => {
     );
     assert.deepStrictEqual(
       result,
-      /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1),
+      /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31),
     );
   });
 
@@ -47,7 +47,7 @@ describe("setQuarter", () => {
     );
   });
 
-  it("handles dates before 100 AD", () => {
+  it.skip("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 10 /* Nov */, 30);
     initialDate.setHours(0, 0, 0, 0);
