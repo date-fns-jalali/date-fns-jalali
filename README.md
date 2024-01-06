@@ -1,8 +1,6 @@
-🎉️ **NEW**: [date-fns v3 is out!](https://blog.date-fns.org/v3-is-out/)
+[![date-fns-jalali](docs/logotype.svg)](https://date-fns.org/)
 
-<img alt="date-fns" title="date-fns" src="https://raw.githubusercontent.com/date-fns/date-fns/master/docs/logotype.svg" width="150" />
-
-date-fns provides the most comprehensive, yet simple and consistent toolset for manipulating JavaScript dates in a browser & Node.js
+date-fns-jalali provides the most comprehensive, yet simple and consistent toolset for manipulating JavaScript dates in a browser & Node.js for jalali calendar.
 
 👉 [Documentation](https://date-fns.org/)
 
@@ -20,11 +18,19 @@ It's like [Lodash](https://lodash.com) for dates
 - **I18n**: Dozens of locales. Include only what you need.
 - [and many more benefits](https://date-fns.org/)
 
+**date-fns-jalali** provides **date-fns** toolset for [jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar)
+
 ```js
-import { compareAsc, format } from "date-fns";
+import { compareAsc, format, newDate } from "date-fns-jalali";
 
 format(new Date(2014, 1, 11), "yyyy-MM-dd");
-//=> '2014-02-11'
+//=> '1392-11-22'
+
+newDate(1392, 10, 22);
+// => Tue Feb 11 2014 00:00:00
+
+format(newDate(1392, 10, 22), "yyyy MMMM d");
+// 1392 بهمن 22
 
 const dates = [
   new Date(1995, 6, 2),
@@ -39,11 +45,11 @@ dates.sort(compareAsc);
 // ]
 ```
 
-The library is available as an [npm package](https://www.npmjs.com/package/date-fns).
+The library is available as an [npm package](https://www.npmjs.com/package/date-fns-jalali).
 To install the package run:
 
 ```bash
-npm install date-fns --save
+npm install date-fns-jalali --save
 ```
 
 ## Docs
@@ -56,4 +62,4 @@ and other docs.
 
 ## License
 
-[MIT © Sasha Koss](https://kossnocorp.mit-license.org/)
+MIT
