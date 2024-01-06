@@ -10,7 +10,7 @@ describe("startOfQuarter", () => {
     const result = startOfQuarter(date);
     assert.deepStrictEqual(
       result,
-      /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+      /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
     );
   });
 
@@ -26,7 +26,7 @@ describe("startOfQuarter", () => {
     const result = startOfQuarter(date);
     assert.deepStrictEqual(
       result,
-      /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+      /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
     );
   });
 

@@ -10,7 +10,7 @@ describe("lastDayOfWeek", () => {
     const result = lastDayOfWeek(date);
     assert.deepStrictEqual(
       result,
-      /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6),
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5),
     );
   });
 
@@ -62,7 +62,7 @@ describe("lastDayOfWeek", () => {
     const result = lastDayOfWeek(date);
     assert.deepStrictEqual(
       result,
-      /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6),
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5),
     );
   });
 

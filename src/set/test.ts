@@ -7,9 +7,9 @@ import { set } from "./index.js";
 describe("set", () => {
   it("sets all values", () => {
     const result = set(/* 1391/10/12 */ new Date(2013, 0 /* Jan */), {
-      year: 2014,
-      month: 8, // Sep
-      date: 20,
+      year: 1393,
+      month: 5, // Shahrivar
+      date: 29,
       hours: 12,
       minutes: 12,
       seconds: 12,
@@ -31,16 +31,19 @@ describe("set", () => {
 
   it("sets year", () => {
     const result = set(/* 1392/6/10 */ new Date(2013, 8 /* Sep */), {
-      year: 2014,
+      year: 1393,
     });
     assert.deepStrictEqual(result, /* 1393/6/10 */ new Date(2014, 8 /* Sep */));
   });
 
   it("sets month", () => {
     const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
-      month: 9 /* Oct */,
+      month: 6 /* Mehr */,
     });
-    assert.deepStrictEqual(result, /* 1393/7/9 */ new Date(2014, 9 /* Oct */));
+    assert.deepStrictEqual(
+      result,
+      /* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2),
+    );
   });
 
   it("sets day of month", () => {
@@ -49,7 +52,7 @@ describe("set", () => {
     });
     assert.deepStrictEqual(
       result,
-      /* 1393/6/29 */ new Date(2014, 8 /* Sep */, 20),
+      /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11),
     );
   });
 
@@ -103,17 +106,17 @@ describe("set", () => {
       });
       assert.deepStrictEqual(
         result,
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
+        /* 1394/1/10 */ new Date(2015, 2 /* Mar */, 30),
       );
     });
 
     it("days of months overflow into months", () => {
-      const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), {
+      const result = set(/* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2), {
         date: 31,
       });
       assert.deepStrictEqual(
         result,
-        /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1),
+        /* 1393/8/1 */ new Date(2014, 9 /* Oct */, 23),
       );
     });
 
@@ -165,23 +168,23 @@ describe("set", () => {
   });
 
   describe("edge cases", () => {
-    it("sets January", () => {
+    it("sets Farvardin", () => {
       const result = set(/* 1393/6/10 */ new Date(2014, 8 /* Sep */), {
         month: 0 /* Jan */,
       });
       assert.deepStrictEqual(
         result,
-        /* 1392/10/11 */ new Date(2014, 0 /* Jan */),
+        /* 1393/1/10 */ new Date(2014, 2 /* Mar */, 30),
       );
     });
 
     it("sets the last day of new month if the initial date was the last day of a longer month", () => {
-      const result = set(/* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31), {
-        month: 8 /* Sep */,
+      const result = set(/* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22), {
+        month: 8 /* Azar */,
       });
       assert.deepStrictEqual(
         result,
-        /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30),
+        /* 1393/9/30 */ new Date(2014, 11 /* Dec */, 21),
       );
     });
 

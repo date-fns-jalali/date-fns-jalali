@@ -10,7 +10,7 @@ describe("lastDayOfDecade", () => {
     const result = lastDayOfDecade(date);
     assert.deepStrictEqual(
       result,
-      /* 1368/10/10 */ new Date(1989, 11 /* Dec */, 31),
+      /* 1369/12/29 */ new Date(1991, 2 /* Mar */, 20),
     );
   });
 
@@ -19,7 +19,7 @@ describe("lastDayOfDecade", () => {
     const result = lastDayOfDecade(date);
     assert.deepStrictEqual(
       result,
-      /* 1358/10/10 */ new Date(1979, 11 /* Dec */, 31),
+      /* 1359/12/29 */ new Date(1981, 2 /* Mar */, 20),
     );
   });
 
@@ -39,10 +39,10 @@ describe("lastDayOfDecade", () => {
 
   it("properly works with negative numbers", () => {
     expect(lastDayOfDecade(/* 1379/10/12 */ new Date(2001, 0, 1))).toEqual(
-      /* 1388/10/10 */ new Date(2009, 11, 31),
+      /* 1379/12/30 */ new Date(2001, 2, 20),
     );
     expect(lastDayOfDecade(/* -2631/10/10 */ new Date(-2009, 0, 1))).toEqual(
-      /* -2622/10/9 */ new Date(-2001, 11, 31),
+      /* -2631/12/30 */ new Date(-2009, 2, 22),
     );
   });
 });
