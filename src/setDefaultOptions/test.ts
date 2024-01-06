@@ -2,8 +2,8 @@ import { expect, assert, afterEach, describe, it } from "vitest";
 import { setDefaultOptions } from "./index.js";
 import type { DefaultOptions } from "../_lib/defaultOptions/index.js";
 import { getDefaultOptions as getInternalDefaultOptions } from "../_lib/defaultOptions/index.js";
-import { enUS } from "../locale/en-US/index.js";
-import { eo } from "../locale/eo/index.js";
+import { defaultLocale } from "../_lib/defaultLocale/index.js";
+import { eo as otherLocale } from "../locale/eo/index.js";
 import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index.js";
 import { eachWeekOfInterval } from "../eachWeekOfInterval/index.js";
 import { endOfWeek } from "../endOfWeek/index.js";
@@ -34,23 +34,23 @@ describe("setDefaultOptions", () => {
     setDefaultOptions({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: otherLocale,
     });
     expect(getInternalDefaultOptions()).toEqual({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: otherLocale,
     });
   });
 
   it("merges with previous `defaultOptions` calls", () => {
     setDefaultOptions({ weekStartsOn: 1 });
     setDefaultOptions({ firstWeekContainsDate: 4 });
-    setDefaultOptions({ locale: eo });
+    setDefaultOptions({ locale: otherLocale });
     expect(getInternalDefaultOptions()).toEqual({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: otherLocale,
     });
   });
 
@@ -76,7 +76,7 @@ describe("setDefaultOptions", () => {
         "January 1st, 2014 at 12:00:00 AM",
       );
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       assert.deepStrictEqual(
         format(new Date(2014, 0, 1), "PPPpp"),
@@ -85,7 +85,7 @@ describe("setDefaultOptions", () => {
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert.deepStrictEqual(
-        format(new Date(2014, 0, 1), "PPPpp", { locale: enUS }),
+        format(new Date(2014, 0, 1), "PPPpp", { locale: defaultLocale }),
         "January 1st, 2014 at 12:00:00 AM",
       );
     });
@@ -97,7 +97,7 @@ describe("setDefaultOptions", () => {
         "about 1 year",
       );
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       assert.deepStrictEqual(
         formatDistance(new Date(2014, 0, 1), new Date(2015, 0, 1)),
@@ -107,7 +107,7 @@ describe("setDefaultOptions", () => {
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert.deepStrictEqual(
         formatDistance(new Date(2014, 0, 1), new Date(2015, 0, 1), {
-          locale: enUS,
+          locale: defaultLocale,
         }),
         "about 1 year",
       );
@@ -120,7 +120,7 @@ describe("setDefaultOptions", () => {
         "1 year",
       );
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       assert.deepStrictEqual(
         formatDistanceStrict(new Date(2014, 0, 1), new Date(2015, 0, 1)),
@@ -130,7 +130,7 @@ describe("setDefaultOptions", () => {
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert.deepStrictEqual(
         formatDistanceStrict(new Date(2014, 0, 1), new Date(2015, 0, 1), {
-          locale: enUS,
+          locale: defaultLocale,
         }),
         "1 year",
       );
@@ -140,13 +140,13 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       expect(formatDuration({ years: 1 })).toEqual("1 year");
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       expect(formatDuration({ years: 1 })).toEqual("1 jaro");
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert.deepStrictEqual(
-        formatDuration({ years: 1 }, { locale: enUS }),
+        formatDuration({ years: 1 }, { locale: defaultLocale }),
         "1 year",
       );
     });
@@ -158,7 +158,7 @@ describe("setDefaultOptions", () => {
         "yesterday at 12:00 AM",
       );
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       assert.deepStrictEqual(
         formatRelative(new Date(2014, 0, 1), new Date(2014, 0, 2)),
@@ -168,7 +168,7 @@ describe("setDefaultOptions", () => {
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert.deepStrictEqual(
         formatRelative(new Date(2014, 0, 1), new Date(2014, 0, 2), {
-          locale: enUS,
+          locale: defaultLocale,
         }),
         "yesterday at 12:00 AM",
       );
@@ -178,13 +178,15 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       assert(isMatch("January 1st, 2014 at 12:00:00 AM", "PPPpp"));
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       assert(isMatch("2014-januaro-01 00:00:00", "PPPpp"));
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert(
-        isMatch("January 1st, 2014 at 12:00:00 AM", "PPPpp", { locale: enUS }),
+        isMatch("January 1st, 2014 at 12:00:00 AM", "PPPpp", {
+          locale: defaultLocale,
+        }),
       );
     });
 
@@ -195,7 +197,7 @@ describe("setDefaultOptions", () => {
         new Date(2014, 0, 1),
       );
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       assert.deepStrictEqual(
         parse("2014-januaro-01 00:00:00", "PPPpp", new Date()),
@@ -205,7 +207,7 @@ describe("setDefaultOptions", () => {
       // Manually set `locale` take priority over `defaultOptions.locale`
       assert.deepStrictEqual(
         parse("January 1st, 2014 at 12:00:00 AM", "PPPpp", new Date(), {
-          locale: enUS,
+          locale: defaultLocale,
         }),
         new Date(2014, 0, 1),
       );
