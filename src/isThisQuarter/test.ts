@@ -16,7 +16,7 @@ describe("isThisQuarter", () => {
   });
 
   it("returns true if the given date and the current date have the same quarter (and year)", () => {
-    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2);
+    const date = /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2);
     expect(isThisQuarter(date)).toBe(true);
   });
 
@@ -26,7 +26,7 @@ describe("isThisQuarter", () => {
   });
 
   it("accepts a timestamp", () => {
-    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime();
+    const date = /* 1393/8/11 */ new Date(2014, 10 /* Jul */, 2).getTime();
     expect(isThisQuarter(date)).toBe(true);
   });
 
