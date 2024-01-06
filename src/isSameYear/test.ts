@@ -53,8 +53,8 @@ describe("isSameYear", () => {
     it("allows to specify the context", () => {
       expect(
         isSameYear(
-          /* 1402/10/10 */ "2023-12-31T15:00:00Z",
-          /* 1402/10/10 */ "2023-12-31T21:00:00Z",
+          /* 1402/12/29 */ "2024-03-19T15:00:00Z",
+          /* 1402/12/29 */ "2024-03-19T21:00:00Z",
           {
             in: tz("Asia/Singapore"),
           },
@@ -62,7 +62,7 @@ describe("isSameYear", () => {
       ).toBe(false);
       expect(
         isSameYear(
-          /* 1402/10/10 */ "2023-12-31T16:00:00Z",
+          /* 1402/12/29 */ "2024-03-19T16:00:00Z",
           /* 1403/6/2 */ "2024-08-23T00:00:00Z",
           {
             in: tz("Asia/Singapore"),
