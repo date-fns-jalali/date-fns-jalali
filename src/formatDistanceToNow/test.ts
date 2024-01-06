@@ -25,7 +25,7 @@ describe("formatDistanceToNow", () => {
             includeSeconds: true,
           },
         );
-        expect(result).toBe("less than 5 seconds");
+        expect(result).toBe("کمتر از 5 ثانیه");
       });
 
       it("less than 10 seconds", () => {
@@ -35,7 +35,7 @@ describe("formatDistanceToNow", () => {
             includeSeconds: true,
           },
         );
-        expect(result).toBe("less than 10 seconds");
+        expect(result).toBe("کمتر از 10 ثانیه");
       });
 
       it("less than 20 seconds", () => {
@@ -45,7 +45,7 @@ describe("formatDistanceToNow", () => {
             includeSeconds: true,
           },
         );
-        expect(result).toBe("less than 20 seconds");
+        expect(result).toBe("کمتر از 20 ثانیه");
       });
 
       it("half a minute", () => {
@@ -55,7 +55,7 @@ describe("formatDistanceToNow", () => {
             includeSeconds: true,
           },
         );
-        expect(result).toBe("half a minute");
+        expect(result).toBe("نیم دقیقه");
       });
 
       it("less than a minute", () => {
@@ -65,7 +65,7 @@ describe("formatDistanceToNow", () => {
             includeSeconds: true,
           },
         );
-        expect(result).toBe("less than a minute");
+        expect(result).toBe("کمتر از یک دقیقه");
       });
 
       it("1 minute", () => {
@@ -75,7 +75,7 @@ describe("formatDistanceToNow", () => {
             includeSeconds: true,
           },
         );
-        expect(result).toBe("1 minute");
+        expect(result).toBe("1 دقیقه");
       });
     });
   });
@@ -85,21 +85,21 @@ describe("formatDistanceToNow", () => {
       const result = formatDistanceToNow(
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 40),
       );
-      expect(result).toBe("less than a minute");
+      expect(result).toBe("کمتر از یک دقیقه");
     });
 
     it("1 minute", () => {
       const result = formatDistanceToNow(
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 10),
       );
-      expect(result).toBe("1 minute");
+      expect(result).toBe("1 دقیقه");
     });
 
     it("n minutes", () => {
       const result = formatDistanceToNow(
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 29, 10),
       );
-      expect(result).toBe("3 minutes");
+      expect(result).toBe("3 دقیقه");
     });
   });
 
@@ -108,14 +108,14 @@ describe("formatDistanceToNow", () => {
       const result = formatDistanceToNow(
         /* 1365/1/15 */ new Date(1986, 3, 4, 9, 32, 0),
       );
-      expect(result).toBe("about 1 hour");
+      expect(result).toBe("حدود 1 ساعت");
     });
 
     it("about n hours", () => {
       const result = formatDistanceToNow(
         /* 1365/1/15 */ new Date(1986, 3, 4, 7, 32, 0),
       );
-      expect(result).toBe("about 3 hours");
+      expect(result).toBe("حدود 3 ساعت");
     });
   });
 
@@ -124,14 +124,14 @@ describe("formatDistanceToNow", () => {
       const result = formatDistanceToNow(
         /* 1365/1/14 */ new Date(1986, 3, 3, 10, 32, 0),
       );
-      expect(result).toBe("1 day");
+      expect(result).toBe("1 روز");
     });
 
     it("n days", () => {
       const result = formatDistanceToNow(
         /* 1365/1/12 */ new Date(1986, 3, 1, 10, 32, 0),
       );
-      expect(result).toBe("3 days");
+      expect(result).toBe("3 روز");
     });
   });
 
@@ -140,14 +140,14 @@ describe("formatDistanceToNow", () => {
       const result = formatDistanceToNow(
         /* 1364/12/13 */ new Date(1986, 2, 4, 10, 32, 0),
       );
-      expect(result).toBe("about 1 month");
+      expect(result).toBe("حدود 1 ماه");
     });
 
     it("n months", () => {
       const result = formatDistanceToNow(
         /* 1364/10/14 */ new Date(1986, 0, 4, 10, 32, 0),
       );
-      expect(result).toBe("3 months");
+      expect(result).toBe("3 ماه");
     });
   });
 
@@ -156,35 +156,35 @@ describe("formatDistanceToNow", () => {
       const result = formatDistanceToNow(
         /* 1364/1/15 */ new Date(1985, 3, 4, 10, 32, 0),
       );
-      expect(result).toBe("about 1 year");
+      expect(result).toBe("حدود 1 سال");
     });
 
     it("over 1 year", () => {
       const result = formatDistanceToNow(
         /* 1363/8/13 */ new Date(1984, 10, 4, 10, 32, 0),
       );
-      expect(result).toBe("over 1 year");
+      expect(result).toBe("بیشتر از 1 سال");
     });
 
     it("almost n years", () => {
       const result = formatDistanceToNow(
         /* 1362/2/14 */ new Date(1983, 4, 4, 10, 32, 0),
       );
-      expect(result).toBe("almost 3 years");
+      expect(result).toBe("نزدیک 3 سال");
     });
 
     it("about n years", () => {
       const result = formatDistanceToNow(
         /* 1362/1/15 */ new Date(1983, 3, 4, 10, 32, 0),
       );
-      expect(result).toBe("about 3 years");
+      expect(result).toBe("حدود 3 سال");
     });
 
     it("over n years", () => {
       const result = formatDistanceToNow(
         /* 1361/8/13 */ new Date(1982, 10, 4, 10, 32, 0),
       );
-      expect(result).toBe("over 3 years");
+      expect(result).toBe("بیشتر از 3 سال");
     });
   });
 
@@ -192,7 +192,7 @@ describe("formatDistanceToNow", () => {
     const result = formatDistanceToNow(
       /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 40).getTime(),
     );
-    expect(result).toBe("less than a minute");
+    expect(result).toBe("کمتر از یک دقیقه");
   });
 
   describe("when the addSuffix option is true", () => {
@@ -204,7 +204,7 @@ describe("formatDistanceToNow", () => {
           addSuffix: true,
         },
       );
-      expect(result).toBe("half a minute ago");
+      expect(result).toBe("نیم دقیقه قبل");
     });
 
     it("adds a future suffix", () => {
@@ -214,7 +214,7 @@ describe("formatDistanceToNow", () => {
           addSuffix: true,
         },
       );
-      expect(result).toBe("in about 1 hour");
+      expect(result).toBe("در حدود 1 ساعت");
     });
   });
 
@@ -252,6 +252,6 @@ describe("formatDistanceToNow", () => {
     const result = formatDistanceToNow(
       new UTCDate(+(/* 1365/1/15 */ new Date(1986, 3, 4, 9, 32, 0))),
     );
-    expect(result).toBe("about 1 hour");
+    expect(result).toBe("حدود 1 ساعت");
   });
 });

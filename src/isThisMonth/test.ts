@@ -26,7 +26,7 @@ describe("isThisMonth", () => {
   });
 
   it("accepts a timestamp", () => {
-    const date = /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30).getTime();
+    const date = /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15).getTime();
     expect(isThisMonth(date)).toBe(true);
   });
 
