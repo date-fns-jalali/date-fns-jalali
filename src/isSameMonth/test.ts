@@ -7,7 +7,7 @@ describe("isSameMonth", () => {
   it("returns true if the given dates have the same month (and year)", () => {
     const result = isSameMonth(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25),
+      /* 1393/6/3 */ new Date(2014, 7 /* Aug */, 25),
     );
     expect(result).toBe(true);
   });
@@ -23,7 +23,7 @@ describe("isSameMonth", () => {
   it("accepts a timestamp", () => {
     const result = isSameMonth(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2).getTime(),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime(),
+      /* 1393/6/3 */ new Date(2014, 7 /* Sep */, 25).getTime(),
     );
     expect(result).toBe(true);
   });
@@ -50,17 +50,17 @@ describe("isSameMonth", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1402/10/10 */ new TZDate(
-      2023,
-      11,
-      31,
+    const dateLeft = /* 1402/10/30 */ new TZDate(
+      2024,
+      0,
+      20,
       23,
       "Asia/Singapore",
     );
-    const dateRight = /* 1402/10/10 */ new TZDate(
-      2023,
-      11,
-      31,
+    const dateRight = /* 1402/10/30 */ new TZDate(
+      2024,
+      0,
+      20,
       12,
       "America/New_York",
     );
@@ -81,8 +81,8 @@ describe("isSameMonth", () => {
     it("allows to specify the context", () => {
       expect(
         isSameMonth(
-          /* 1393/6/11 */ "2014-09-02T15:00:00Z",
-          /* 1393/7/3 */ "2014-09-25T16:00:00Z",
+          /* 1393/7/3 */ "2014-09-25T15:00:00Z",
+          /* 1393/7/13 */ "2014-10-05T16:00:00Z",
           {
             in: tz("Asia/Singapore"),
           },
@@ -90,8 +90,8 @@ describe("isSameMonth", () => {
       ).toBe(true);
       expect(
         isSameMonth(
-          /* 1393/6/11 */ "2014-09-02T15:00:00Z",
-          /* 1394/6/11 */ "2015-09-02T16:00:00Z",
+          /* 1393/6/31 */ "2014-09-22T15:00:00Z",
+          /* 1394/6/31 */ "2015-09-22T16:00:00Z",
           {
             in: tz("Asia/Singapore"),
           },

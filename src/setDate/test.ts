@@ -7,7 +7,7 @@ import { setDate } from "./index.js";
 describe("setDate", () => {
   it("sets the day of the month", () => {
     const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 30);
-    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/6/30 */ new Date(2014, 8 /* Sep */, 21));
   });
 
   it("accepts a timestamp", () => {
@@ -15,7 +15,7 @@ describe("setDate", () => {
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
       25,
     );
-    expect(result).toEqual(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
+    expect(result).toEqual(/* 1393/6/25 */ new Date(2014, 8 /* Sep */, 16));
   });
 
   it("does not mutate the original date", () => {
@@ -52,12 +52,12 @@ describe("setDate", () => {
         setDate(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 15, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/1/27 */ "2024-04-15T15:00:00.000+08:00");
+      ).toBe(/* 1403/1/15 */ "2024-04-03T15:00:00.000+08:00");
       expect(
         setDate(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 20, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1403/2/1 */ "2024-04-20T00:00:00.000-07:00");
+      ).toBe(/* 1403/1/20 */ "2024-04-08T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {

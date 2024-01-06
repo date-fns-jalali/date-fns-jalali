@@ -9,7 +9,7 @@ describe("endOfYear", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = endOfYear(date);
     expect(result).toEqual(
-      /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999),
+      /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20, 23, 59, 59, 999),
     );
   });
 
@@ -24,7 +24,7 @@ describe("endOfYear", () => {
     ).getTime();
     const result = endOfYear(date);
     expect(result).toEqual(
-      /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999),
+      /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20, 23, 59, 59, 999),
     );
   });
 
@@ -58,12 +58,12 @@ describe("endOfYear", () => {
       const result = endOfYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
         in: tz("Asia/Singapore"),
       }).toISOString();
-      expect(result).toBe(/* 1402/10/10 */ "2023-12-31T23:59:59.999+08:00");
+      expect(result).toBe(/* 1402/12/29 */ "2024-03-19T23:59:59.999+08:00");
 
       const resultLA = endOfYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
         in: tz("America/Los_Angeles"),
       }).toISOString();
-      expect(resultLA).toBe(/* 1402/10/10 */ "2023-12-31T23:59:59.999-08:00");
+      expect(resultLA).toBe(/* 1402/12/29 */ "2024-03-19T23:59:59.999-07:00");
     });
 
     it("resolves the context date type", () => {

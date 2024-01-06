@@ -5,7 +5,7 @@ import { isWeekend } from "./index.js";
 
 describe("isWeekend", () => {
   it("returns true if the given date is in a weekend", () => {
-    const result = isWeekend(/* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5));
+    const result = isWeekend(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26));
     expect(result).toBe(true);
   });
 
@@ -16,7 +16,7 @@ describe("isWeekend", () => {
 
   it("accepts a timestamp", () => {
     const result = isWeekend(
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5).getTime(),
+      /* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26).getTime(),
     );
     expect(result).toBe(true);
   });
@@ -29,22 +29,22 @@ describe("isWeekend", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isWeekend(/* 1403/5/28 */ "2024-08-18T15:00:00Z", {
+        isWeekend(/* 1403/5/26 */ "2024-08-16T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(true);
       expect(
-        isWeekend(/* 1403/5/29 */ "2024-08-19T01:00:00Z", {
+        isWeekend(/* 1403/5/27 */ "2024-08-17T01:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(false);
       expect(
-        isWeekend(/* 1403/5/27 */ "2024-08-17T03:00:00Z", {
+        isWeekend(/* 1403/5/26 */ "2024-08-16T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isWeekend(/* 1403/5/27 */ "2024-08-17T04:00:00Z", {
+        isWeekend(/* 1403/5/26 */ "2024-08-16T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

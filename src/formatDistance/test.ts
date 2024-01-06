@@ -12,7 +12,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 3),
           { includeSeconds: true },
         );
-        expect(result).toBe("less than 5 seconds");
+        expect(result).toBe("کمتر از 5 ثانیه");
       });
 
       it("less than 10 seconds", () => {
@@ -21,7 +21,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 7),
           { includeSeconds: true },
         );
-        expect(result).toBe("less than 10 seconds");
+        expect(result).toBe("کمتر از 10 ثانیه");
       });
 
       it("less than 20 seconds", () => {
@@ -30,7 +30,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 15),
           { includeSeconds: true },
         );
-        expect(result).toBe("less than 20 seconds");
+        expect(result).toBe("کمتر از 20 ثانیه");
       });
 
       it("half a minute", () => {
@@ -39,7 +39,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
           { includeSeconds: true },
         );
-        expect(result).toBe("half a minute");
+        expect(result).toBe("نیم دقیقه");
       });
 
       it("less than a minute", () => {
@@ -48,7 +48,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 45),
           { includeSeconds: true },
         );
-        expect(result).toBe("less than a minute");
+        expect(result).toBe("کمتر از یک دقیقه");
       });
 
       it("1 minute", () => {
@@ -57,7 +57,7 @@ describe("formatDistance", () => {
           /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 0),
           { includeSeconds: true },
         );
-        expect(result).toBe("1 minute");
+        expect(result).toBe("1 دقیقه");
       });
     });
   });
@@ -68,7 +68,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 20),
       );
-      expect(result).toBe("less than a minute");
+      expect(result).toBe("کمتر از یک دقیقه");
     });
 
     it("1 minute", () => {
@@ -76,7 +76,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 50),
       );
-      expect(result).toBe("1 minute");
+      expect(result).toBe("1 دقیقه");
     });
 
     it("n minutes", () => {
@@ -84,7 +84,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 34, 50),
       );
-      expect(result).toBe("3 minutes");
+      expect(result).toBe("3 دقیقه");
     });
   });
 
@@ -94,7 +94,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
       );
-      expect(result).toBe("about 1 hour");
+      expect(result).toBe("حدود 1 ساعت");
     });
 
     it("about n hours", () => {
@@ -102,7 +102,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/15 */ new Date(1986, 3, 4, 13, 32, 0),
       );
-      expect(result).toBe("about 3 hours");
+      expect(result).toBe("حدود 3 ساعت");
     });
   });
 
@@ -112,7 +112,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/16 */ new Date(1986, 3, 5, 10, 32, 0),
       );
-      expect(result).toBe("1 day");
+      expect(result).toBe("1 روز");
     });
 
     it("n days", () => {
@@ -120,7 +120,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0),
       );
-      expect(result).toBe("3 days");
+      expect(result).toBe("3 روز");
     });
   });
 
@@ -130,7 +130,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/2/14 */ new Date(1986, 4, 4, 10, 32, 0),
       );
-      expect(result).toBe("about 1 month");
+      expect(result).toBe("حدود 1 ماه");
     });
 
     it("n months", () => {
@@ -138,7 +138,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1365/4/13 */ new Date(1986, 6, 4, 10, 32, 0),
       );
-      expect(result).toBe("3 months");
+      expect(result).toBe("3 ماه");
     });
   });
 
@@ -148,7 +148,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1366/1/15 */ new Date(1987, 3, 4, 10, 32, 0),
       );
-      expect(result).toBe("about 1 year");
+      expect(result).toBe("حدود 1 سال");
     });
 
     it("over 1 year", () => {
@@ -156,7 +156,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1366/7/12 */ new Date(1987, 9, 4, 10, 32, 0),
       );
-      expect(result).toBe("over 1 year");
+      expect(result).toBe("بیشتر از 1 سال");
     });
 
     it("almost n years", () => {
@@ -164,7 +164,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1367/12/13 */ new Date(1989, 2, 4, 10, 32, 0),
       );
-      expect(result).toBe("almost 3 years");
+      expect(result).toBe("نزدیک 3 سال");
     });
 
     it("about n years", () => {
@@ -172,7 +172,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1368/1/15 */ new Date(1989, 3, 4, 10, 32, 0),
       );
-      expect(result).toBe("about 3 years");
+      expect(result).toBe("حدود 3 سال");
     });
 
     it("over n years", () => {
@@ -180,7 +180,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         /* 1368/7/12 */ new Date(1989, 9, 4, 10, 32, 0),
       );
-      expect(result).toBe("over 3 years");
+      expect(result).toBe("بیشتر از 3 سال");
     });
   });
 
@@ -189,7 +189,7 @@ describe("formatDistance", () => {
       /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0).getTime(),
       /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0).getTime(),
     );
-    expect(result).toBe("about 1 hour");
+    expect(result).toBe("حدود 1 ساعت");
   });
 
   describe("when the addSuffix option is true", () => {
@@ -199,7 +199,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
         { includeSeconds: true, addSuffix: true },
       );
-      expect(result).toBe("half a minute ago");
+      expect(result).toBe("نیم دقیقه قبل");
     });
 
     it("adds a future suffix", () => {
@@ -208,7 +208,7 @@ describe("formatDistance", () => {
         /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         { addSuffix: true },
       );
-      expect(result).toBe("in about 1 hour");
+      expect(result).toBe("در حدود 1 ساعت");
     });
   });
 
@@ -274,8 +274,8 @@ describe("formatDistance", () => {
       1,
       "America/New_York",
     );
-    expect(formatDistance(dateLeft, dateRight)).toEqual("6 months");
-    expect(formatDistance(dateRight, dateLeft)).toBe("6 months");
+    expect(formatDistance(dateLeft, dateRight)).toEqual("6 ماه");
+    expect(formatDistance(dateRight, dateLeft)).toBe("6 ماه");
   });
 
   it("allows dates to be of different types", () => {
@@ -297,7 +297,7 @@ describe("formatDistance", () => {
             in: tz("America/Los_Angeles"),
           },
         ),
-      ).toEqual("2 days");
+      ).toEqual("2 روز");
       expect(
         formatDistance(
           /* 1403/1/22 */ "2024-04-10T07:00:00Z",
@@ -306,7 +306,7 @@ describe("formatDistance", () => {
             in: tz("Asia/Singapore"),
           },
         ),
-      ).toEqual("2 days");
+      ).toEqual("2 روز");
     });
   });
 });

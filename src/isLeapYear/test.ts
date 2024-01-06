@@ -38,12 +38,12 @@ describe("isLeapYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isLeapYear(/* 1390/10/11 */ "2012-01-01T00:00:00Z", {
+        isLeapYear(/* 1399/1/1 */ "2020-03-20T00:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(true);
       expect(
-        isLeapYear(/* 1390/10/11 */ "2012-01-01T00:00:00Z", {
+        isLeapYear(/* 1399/1/1 */ "2020-03-20T00:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);

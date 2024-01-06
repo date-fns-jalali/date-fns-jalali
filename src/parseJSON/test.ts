@@ -1,15 +1,13 @@
 import { TZDate, tz } from "@date-fns/tz";
 import { describe, expect, it } from "vitest";
 import { assertType } from "../_lib/test/index.js";
-import { format } from "../format/index.js";
 import { parseJSON } from "./index.js";
 
 describe("parseJSON", () => {
   it("parses a formatted new Date() back to UTC - issue 2149", () => {
-    const date = new Date();
-    const jsonFormat = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+    const jsonFormat = "2021-03-07T15:13:58.172+03:30";
     const parsedDate = parseJSON(jsonFormat);
-    expect(parsedDate.toISOString()).toBe(date.toISOString());
+    expect(parsedDate.toISOString()).toBe("2021-03-07T11:43:58.172Z");
   });
 
   it("parses a formatted date with an hour of offset back to UTC - issue 2149", () => {

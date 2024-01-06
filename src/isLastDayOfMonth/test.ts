@@ -6,7 +6,7 @@ import { isLastDayOfMonth } from "./index.js";
 describe("isLastDayOfMonth", () => {
   it("returns true if the given date is in the last day of month", () => {
     const result = isLastDayOfMonth(
-      /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31),
+      /* 1393/8/30 */ new Date(2014, 10 /* Nov */, 21),
     );
     expect(result).toBe(true);
   });
@@ -19,7 +19,7 @@ describe("isLastDayOfMonth", () => {
   });
 
   it("accepts a timestamp", () => {
-    const date = /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31).getTime();
+    const date = /* 1393/8/30 */ new Date(2014, 10 /* Oct */, 21).getTime();
     const result = isLastDayOfMonth(date);
     expect(result).toBe(true);
   });
@@ -32,22 +32,22 @@ describe("isLastDayOfMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isLastDayOfMonth(/* 1403/7/8 */ "2024-09-29T15:00:00Z", {
+        isLastDayOfMonth(/* 1403/7/29 */ "2024-10-20T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(false);
       expect(
-        isLastDayOfMonth(/* 1403/7/8 */ "2024-09-29T16:00:00Z", {
+        isLastDayOfMonth(/* 1403/7/29 */ "2024-10-20T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(true);
       expect(
-        isLastDayOfMonth(/* 1403/6/10 */ "2024-08-31T03:00:00Z", {
+        isLastDayOfMonth(/* 1403/6/31 */ "2024-09-21T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isLastDayOfMonth(/* 1403/6/10 */ "2024-08-31T04:00:00Z", {
+        isLastDayOfMonth(/* 1403/6/31 */ "2024-09-21T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);
