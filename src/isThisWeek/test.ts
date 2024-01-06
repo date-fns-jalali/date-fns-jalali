@@ -38,12 +38,12 @@ describe("isThisWeek", () => {
     it("allows specifying the context", () => {
       fakeNow(new Date(/* 1403/5/30 */ "2024-08-20T00:00:00Z"));
       expect(
-        isThisWeek(/* 1403/5/28 */ "2024-08-18T03:00:00Z", {
+        isThisWeek(/* 1403/5/27 */ "2024-08-17T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isThisWeek(/* 1403/5/28 */ "2024-08-18T04:00:00Z", {
+        isThisWeek(/* 1403/5/27 */ "2024-08-17T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

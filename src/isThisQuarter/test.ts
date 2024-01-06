@@ -9,7 +9,7 @@ describe("isThisQuarter", () => {
   const { fakeNow } = fakeDate(/* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1));
 
   it("returns true if the given date and the current date have the same quarter (and year)", () => {
-    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2);
     expect(isThisQuarter(date)).toBe(true);
   });
 
@@ -19,7 +19,7 @@ describe("isThisQuarter", () => {
   });
 
   it("accepts a timestamp", () => {
-    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime();
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2).getTime();
     expect(isThisQuarter(date)).toBe(true);
   });
 
@@ -35,12 +35,12 @@ describe("isThisQuarter", () => {
     it("allows to specify the context", () => {
       fakeNow(new Date(/* 1402/10/12 */ "2024-01-02T00:00:00Z"));
       expect(
-        isThisQuarter(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
+        isThisQuarter(/* 1402/10/1 */ "2023-12-22T05:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);
       expect(
-        isThisQuarter(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
+        isThisQuarter(/* 1402/10/1 */ "2023-12-22T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);

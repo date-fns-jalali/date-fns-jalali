@@ -31,16 +31,16 @@ describe("differenceInCalendarQuarters", () => {
   describe("edge cases", () => {
     it("the difference is less than a quarter, but the given dates are in different calendar quarters", () => {
       const result = differenceInCalendarQuarters(
-        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
-        /* 1393/4/9 */ new Date(2014, 5 /* Jun */, 30),
+        /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23),
+        /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22),
       );
       expect(result).toBe(1);
     });
 
     it("the same for the swapped dates", () => {
       const result = differenceInCalendarQuarters(
-        /* 1393/4/9 */ new Date(2014, 5 /* Jun */, 30),
-        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+        /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22),
+        /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23),
       );
       expect(result).toBe(-1);
     });
@@ -107,11 +107,11 @@ describe("differenceInCalendarQuarters", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/1/13 */ new TZDate(2024, 3, 1, "Asia/Singapore");
-    const dateRight = /* 1402/9/10 */ new TZDate(
-      2023,
-      11,
+    const dateLeft = /* 1403/4/1 */ new TZDate(2024, 5, 21, "Asia/Singapore");
+    const dateRight = /* 1402/12/1 */ new TZDate(
+      2024,
       1,
+      20,
       "America/New_York",
     );
     expect(differenceInCalendarQuarters(dateLeft, dateRight)).toBe(2);
@@ -129,8 +129,8 @@ describe("differenceInCalendarQuarters", () => {
       ).toBe(1);
       expect(
         differenceInCalendarQuarters(
-          /* 1403/1/13 */ "2024-04-01T04:00:00Z",
-          /* 1402/10/11 */ "2024-01-01T00:00:00Z",
+          /* 1403/4/1 */ "2024-06-21T04:00:00Z",
+          /* 1403/1/1 */ "2024-03-20T00:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(2);
