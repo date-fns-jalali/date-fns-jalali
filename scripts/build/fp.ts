@@ -43,6 +43,7 @@ async function main() {
           ),
       );
       if (!pure) return;
+      if (ref.fn.name === "newDate") return;
 
       async function writeFn(
         arity: number,
