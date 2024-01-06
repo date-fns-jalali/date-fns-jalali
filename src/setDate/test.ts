@@ -9,7 +9,7 @@ describe("setDate", () => {
     const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 30);
     assert.deepStrictEqual(
       result,
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30),
+      /* 1393/6/30 */ new Date(2014, 8 /* Sep */, 21),
     );
   });
 
@@ -20,7 +20,7 @@ describe("setDate", () => {
     );
     assert.deepStrictEqual(
       result,
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25),
+      /* 1393/6/25 */ new Date(2014, 8 /* Sep */, 16),
     );
   });
 

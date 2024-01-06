@@ -10,7 +10,7 @@ describe("lastDayOfDecade", () => {
     const result = lastDayOfDecade(date);
     assert.deepStrictEqual(
       result,
-      /* 1368/10/10 */ new Date(1989, 11 /* Dec */, 31),
+      /* 1369/12/29 */ new Date(1991, 2 /* Mar */, 20),
     );
   });
 
@@ -19,7 +19,7 @@ describe("lastDayOfDecade", () => {
     const result = lastDayOfDecade(date);
     assert.deepStrictEqual(
       result,
-      /* 1358/10/10 */ new Date(1979, 11 /* Dec */, 31),
+      /* 1359/12/29 */ new Date(1981, 2 /* Mar */, 20),
     );
   });
 
