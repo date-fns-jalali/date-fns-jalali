@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { isMatch } from "./index.js";
-import { eo } from "../locale/eo/index.js";
+import { enUS } from "../locale/en-US/index.js";
 
 describe("isMatch", () => {
   it("accepts a dd-MM-yyyy format against 22-02-1998", () => {
@@ -14,7 +14,7 @@ describe("isMatch", () => {
   it("accepts a date & format with locale", () => {
     expect(
       isMatch("28-a de februaro", "do 'de' MMMM", {
-        locale: eo,
+        locale: enUS,
       }),
     ).toBe(true);
   });

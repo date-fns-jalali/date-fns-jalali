@@ -2,8 +2,8 @@ import { afterEach, describe, expect, it } from "vitest";
 import { setDefaultOptions } from "./index.js";
 import type { DefaultOptions } from "../_lib/defaultOptions/index.js";
 import { getDefaultOptions as getInternalDefaultOptions } from "../_lib/defaultOptions/index.js";
-import { enUS } from "../locale/en-US/index.js";
-import { eo } from "../locale/eo/index.js";
+import { defaultLocale } from "../_lib/defaultLocale/index.js";
+import { enUS as otherLocale } from "../locale/en-US/index.js";
 import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index.js";
 import { eachWeekOfInterval } from "../eachWeekOfInterval/index.js";
 import { endOfWeek } from "../endOfWeek/index.js";
@@ -34,23 +34,23 @@ describe("setDefaultOptions", () => {
     setDefaultOptions({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: otherLocale,
     });
     expect(getInternalDefaultOptions()).toEqual({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: otherLocale,
     });
   });
 
   it("merges with previous `defaultOptions` calls", () => {
     setDefaultOptions({ weekStartsOn: 1 });
     setDefaultOptions({ firstWeekContainsDate: 4 });
-    setDefaultOptions({ locale: eo });
+    setDefaultOptions({ locale: otherLocale });
     expect(getInternalDefaultOptions()).toEqual({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: otherLocale,
     });
   });
 
@@ -75,14 +75,14 @@ describe("setDefaultOptions", () => {
         "January 1st, 2014 at 12:00:00 AM",
       );
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       expect(format(new Date(2014, 0, 1), "PPPpp")).toEqual(
         "2014-januaro-01 00:00:00",
       );
 
       // Manually set `locale` take priority over `defaultOptions.locale`
-      expect(format(new Date(2014, 0, 1), "PPPpp", { locale: enUS })).toEqual(
+      expect(format(new Date(2014, 0, 1), "PPPpp", { locale: defaultLocale })).toEqual(
         "January 1st, 2014 at 12:00:00 AM",
       );
     });
@@ -93,7 +93,7 @@ describe("setDefaultOptions", () => {
         formatDistance(new Date(2014, 0, 1), new Date(2015, 0, 1)),
       ).toEqual("about 1 year");
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       expect(
         formatDistance(new Date(2014, 0, 1), new Date(2015, 0, 1)),
@@ -102,7 +102,7 @@ describe("setDefaultOptions", () => {
       // Manually set `locale` take priority over `defaultOptions.locale`
       expect(
         formatDistance(new Date(2014, 0, 1), new Date(2015, 0, 1), {
-          locale: enUS,
+          locale: defaultLocale,
         }),
       ).toEqual("about 1 year");
     });
@@ -113,7 +113,7 @@ describe("setDefaultOptions", () => {
         formatDistanceStrict(new Date(2014, 0, 1), new Date(2015, 0, 1)),
       ).toEqual("1 year");
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       expect(
         formatDistanceStrict(new Date(2014, 0, 1), new Date(2015, 0, 1)),
@@ -122,7 +122,7 @@ describe("setDefaultOptions", () => {
       // Manually set `locale` take priority over `defaultOptions.locale`
       expect(
         formatDistanceStrict(new Date(2014, 0, 1), new Date(2015, 0, 1), {
-          locale: enUS,
+          locale: defaultLocale,
         }),
       ).toEqual("1 year");
     });
@@ -131,12 +131,12 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       expect(formatDuration({ years: 1 })).toEqual("1 year");
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       expect(formatDuration({ years: 1 })).toEqual("1 jaro");
 
       // Manually set `locale` take priority over `defaultOptions.locale`
-      expect(formatDuration({ years: 1 }, { locale: enUS })).toEqual("1 year");
+      expect(formatDuration({ years: 1 }, { locale: defaultLocale })).toEqual("1 year");
     });
 
     it("formatRelative", () => {
@@ -145,7 +145,7 @@ describe("setDefaultOptions", () => {
         formatRelative(new Date(2014, 0, 1), new Date(2014, 0, 2)),
       ).toEqual("yesterday at 12:00 AM");
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       expect(
         formatRelative(new Date(2014, 0, 1), new Date(2014, 0, 2)),
@@ -154,7 +154,7 @@ describe("setDefaultOptions", () => {
       // Manually set `locale` take priority over `defaultOptions.locale`
       expect(
         formatRelative(new Date(2014, 0, 1), new Date(2014, 0, 2), {
-          locale: enUS,
+          locale: defaultLocale,
         }),
       ).toEqual("yesterday at 12:00 AM");
     });
@@ -163,13 +163,15 @@ describe("setDefaultOptions", () => {
       // For reference: not setting any options
       expect(isMatch("January 1st, 2014 at 12:00:00 AM", "PPPpp")).toBe(true);
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       expect(isMatch("2014-januaro-01 00:00:00", "PPPpp")).toBe(true);
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       expect(
-        isMatch("January 1st, 2014 at 12:00:00 AM", "PPPpp", { locale: enUS }),
+        isMatch("January 1st, 2014 at 12:00:00 AM", "PPPpp", {
+          locale: defaultLocale,
+        }),
       ).toBe(true);
     });
 
@@ -179,7 +181,7 @@ describe("setDefaultOptions", () => {
         parse("January 1st, 2014 at 12:00:00 AM", "PPPpp", new Date()),
       ).toEqual(new Date(2014, 0, 1));
 
-      setDefaultOptions({ locale: eo });
+      setDefaultOptions({ locale: otherLocale });
 
       expect(parse("2014-januaro-01 00:00:00", "PPPpp", new Date())).toEqual(
         new Date(2014, 0, 1),
@@ -188,7 +190,7 @@ describe("setDefaultOptions", () => {
       // Manually set `locale` take priority over `defaultOptions.locale`
       expect(
         parse("January 1st, 2014 at 12:00:00 AM", "PPPpp", new Date(), {
-          locale: enUS,
+          locale: defaultLocale,
         }),
       ).toEqual(new Date(2014, 0, 1));
     });

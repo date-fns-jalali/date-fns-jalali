@@ -6,7 +6,7 @@ import {
   getDefaultOptions as getInternalDefaultOptions,
   setDefaultOptions as setInternalDefaultOptions,
 } from "../_lib/defaultOptions/index.js";
-import { eo } from "../locale/eo/index.js";
+import { enUS } from "../locale/en-US/index.js";
 import { resetDefaultOptions } from "../_lib/test/index.js";
 
 describe("getDefaultOptions", () => {
@@ -40,13 +40,13 @@ describe("getDefaultOptions", () => {
     setDefaultOptions({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: enUS,
     });
     const result = getDefaultOptions();
     expect(result).toEqual({
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
-      locale: eo,
+      locale: enUS,
     });
   });
 });
