@@ -11,9 +11,9 @@ describe("eachQuarterOfInterval", () => {
       end: /* 1393/5/21 */ new Date(2014, 7 /* Aug */, 12),
     });
     expect(result).toEqual([
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Apr */, 1),
-      /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+      /* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
     ]);
   });
 
@@ -23,9 +23,9 @@ describe("eachQuarterOfInterval", () => {
       end: /* 1393/5/21 */ new Date(2014, 7 /* Aug */, 12).getTime(),
     });
     expect(result).toEqual([
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Apr */, 1),
-      /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+      /* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
     ]);
   });
 
@@ -35,9 +35,9 @@ describe("eachQuarterOfInterval", () => {
       end: /* 1393/5/21 */ new Date(2014, 7 /* Aug */, 12, 22, 15),
     });
     expect(result).toEqual([
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Apr */, 1),
-      /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+      /* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
     ]);
   });
 
@@ -47,9 +47,9 @@ describe("eachQuarterOfInterval", () => {
       end: /* 1393/5/10 */ new Date(2014, 7 /* Oct */),
     });
     expect(result).toEqual([
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Apr */, 1),
-      /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+      /* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
     ]);
   });
 
@@ -58,7 +58,7 @@ describe("eachQuarterOfInterval", () => {
       start: /* 1392/10/16 */ new Date(2014, 0 /* Jan */, 6, 14),
       end: /* 1392/12/18 */ new Date(2014, 2 /* Feb */, 9, 15),
     });
-    expect(result).toEqual([/* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1)]);
+    expect(result).toEqual([/* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22)]);
   });
 
   it("returns one quarter if the both arguments are the same", () => {
@@ -66,7 +66,7 @@ describe("eachQuarterOfInterval", () => {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
     });
-    expect(result).toEqual([/* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1)]);
+    expect(result).toEqual([/* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23)]);
   });
 
   it("returns reversed array if the start date is after the end date", () => {
@@ -75,9 +75,9 @@ describe("eachQuarterOfInterval", () => {
       end: /* 1392/12/15 */ new Date(2014, 2 /* Mar */, 6),
     });
     expect(result).toEqual([
-      /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
-      /* 1393/1/12 */ new Date(2014, 3 /* Apr */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
+      /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22),
     ]);
   });
 
@@ -218,16 +218,16 @@ describe("eachQuarterOfInterval", () => {
     it("returns an array with starts of days from the day of the start date to the day of the end date with the given step", () => {
       const result = eachQuarterOfInterval(interval, { step: 2 });
       expect(result).toEqual([
-        /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+        /* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22),
+        /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
       ]);
     });
 
     it("returns reversed array if `options.step` is negative", () => {
       const result = eachQuarterOfInterval(interval, { step: -2 });
       expect(result).toEqual([
-        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
-        /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
+        /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
+        /* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22),
       ]);
     });
 
@@ -237,8 +237,8 @@ describe("eachQuarterOfInterval", () => {
         { step: -2 },
       );
       expect(result).toEqual([
-        /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+        /* 1392/10/1 */ new Date(2013, 11 /* Dec */, 22),
+        /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
       ]);
     });
 

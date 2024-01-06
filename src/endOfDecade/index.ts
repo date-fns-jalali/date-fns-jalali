@@ -44,7 +44,7 @@ export function endOfDecade<
   const _date = toDate(date, options?.in);
   const year = coreGetFullYear(_date);
   const decade = 9 + Math.floor(year / 10) * 10;
-  coreSetFullYear(_date, decade, 11, 31);
+  coreSetFullYear(_date, decade + 1, 0, 0);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }

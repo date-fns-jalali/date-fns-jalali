@@ -9,7 +9,7 @@ describe("endOfWeek", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = endOfWeek(date);
     expect(result).toEqual(
-      /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6, 23, 59, 59, 999),
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 23, 59, 59, 999),
     );
   });
 
@@ -57,7 +57,7 @@ describe("endOfWeek", () => {
     ).getTime();
     const result = endOfWeek(date);
     expect(result).toEqual(
-      /* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6, 23, 59, 59, 999),
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 23, 59, 59, 999),
     );
   });
 

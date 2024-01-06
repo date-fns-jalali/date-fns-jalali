@@ -10,8 +10,8 @@ describe("eachWeekendOfYear", () => {
     const result = eachWeekendOfYear(/* 1398/10/11 */ new Date(2020, 0, 1));
     expect(result.length).toBe(104);
     expect(result.every((date) => isWeekend(date))).toBe(true);
-    expect(result[0]).toEqual(/* 1398/10/14 */ new Date(2020, 0, 4));
-    expect(result[103]).toEqual(/* 1399/10/7 */ new Date(2020, 11, 27));
+    expect(result[0]).toEqual(/* 1398/1/3 */ new Date(2019, 2, 23));
+    expect(result[103]).toEqual(/* 1398/12/25 */ new Date(2020, 2, 15));
   });
 
   it("returns an empty array when the given date is `Invalid Date`", () => {

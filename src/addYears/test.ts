@@ -2,6 +2,7 @@ import { TZDate, tz } from "@date-fns/tz";
 import { UTCDate } from "@date-fns/utc";
 import { describe, expect, it } from "vitest";
 import { assertType } from "../_lib/test/index.js";
+import { setFullYear } from "../_core/setFullYear";
 import { addYears } from "./index.js";
 
 describe("addYears", () => {
@@ -34,10 +35,10 @@ describe("addYears", () => {
 
   it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
-    initialDate.setFullYear(0, 1 /* Feb */, 29);
+    setFullYear(initialDate, 0, 1 /* Feb */, 29);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(1, 1 /* Feb */, 28);
+    setFullYear(expectedResult, 1, 1 /* Feb */, 29);
     expectedResult.setHours(0, 0, 0, 0);
     const result = addYears(initialDate, 1);
     expect(result).toEqual(expectedResult);

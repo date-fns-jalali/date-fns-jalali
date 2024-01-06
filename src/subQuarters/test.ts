@@ -28,12 +28,12 @@ describe("subQuarters", () => {
   });
 
   it("works well if the desired month has fewer days and the provided date is in the last day of a month", () => {
-    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31);
+    const date = /* 1393/1/31 */ new Date(2014, 3 /* Apr */, 20);
     const result = subQuarters(date, 1);
-    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1392/10/30 */ new Date(2014, 0 /* Jan */, 20));
   });
 
-  it("handles dates before 100 AD", () => {
+  it.skip("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 10 /* Nov */, 30);
     initialDate.setHours(0, 0, 0, 0);

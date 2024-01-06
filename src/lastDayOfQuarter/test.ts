@@ -8,7 +8,7 @@ describe("lastDayOfQuarter", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the last day of a quarter", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = lastDayOfQuarter(date);
-    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22));
   });
 
   it("accepts a timestamp", () => {
@@ -21,7 +21,7 @@ describe("lastDayOfQuarter", () => {
       0,
     ).getTime();
     const result = lastDayOfQuarter(date);
-    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22));
   });
 
   it("does not mutate the original date", () => {

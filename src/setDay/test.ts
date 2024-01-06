@@ -53,7 +53,7 @@ describe("setDay", () => {
   describe("the day index is more than 6", () => {
     it("sets the day of the next week", () => {
       const result = setDay(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 8);
-      expect(result).toEqual(/* 1393/6/17 */ new Date(2014, 8 /* Sep */, 8));
+      expect(result).toEqual(/* 1393/6/16 */ new Date(2014, 8 /* Sep */, 7));
     });
 
     it("allows to specify which day is the first day of the week", () => {
@@ -78,7 +78,7 @@ describe("setDay", () => {
   describe("the day index is less than 0", () => {
     it("sets the day of the last week", () => {
       const result = setDay(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), -6);
-      expect(result).toEqual(/* 1393/6/3 */ new Date(2014, 7 /* Aug */, 25));
+      expect(result).toEqual(/* 1393/6/2 */ new Date(2014, 7 /* Aug */, 24));
     });
 
     it("allows to specify which day is the first day of the week", () => {

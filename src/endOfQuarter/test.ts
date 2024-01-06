@@ -9,7 +9,7 @@ describe("endOfQuarter", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = endOfQuarter(date);
     expect(result).toEqual(
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999),
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999),
     );
   });
 
@@ -24,7 +24,7 @@ describe("endOfQuarter", () => {
     ).getTime();
     const result = endOfQuarter(date);
     expect(result).toEqual(
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999),
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999),
     );
   });
 

@@ -9,7 +9,7 @@ describe("endOfYear", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = endOfYear(date);
     expect(result).toEqual(
-      /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999),
+      /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20, 23, 59, 59, 999),
     );
   });
 
@@ -24,7 +24,7 @@ describe("endOfYear", () => {
     ).getTime();
     const result = endOfYear(date);
     expect(result).toEqual(
-      /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999),
+      /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20, 23, 59, 59, 999),
     );
   });
 

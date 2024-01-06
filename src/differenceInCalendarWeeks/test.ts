@@ -72,22 +72,22 @@ describe("differenceInCalendarWeeks", () => {
       /* 1393/4/21 */ new Date(2014, 6 /* Jul */, 12).getTime(),
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(),
     );
-    expect(result).toBe(1);
+    expect(result).toBe(2);
   });
 
   describe("edge cases", () => {
     it("the difference is less than a week, but the given dates are in different calendar weeks", () => {
       const result = differenceInCalendarWeeks(
-        /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6),
         /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5),
+        /* 1393/4/13 */ new Date(2014, 6 /* Jul */, 4),
       );
       expect(result).toBe(1);
     });
 
     it("the same for the swapped dates", () => {
       const result = differenceInCalendarWeeks(
+        /* 1393/4/13 */ new Date(2014, 6 /* Jul */, 4),
         /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5),
-        /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6),
       );
       expect(result).toBe(-1);
     });
@@ -123,8 +123,8 @@ describe("differenceInCalendarWeeks", () => {
     });
 
     it("properly works with negative numbers", () => {
-      const a = /* 1393/4/18 */ new Date(2014, 6 /* Jul */, 9);
-      const b = /* 1393/4/28 */ new Date(2014, 6 /* Jul */, 19);
+      const a = /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6);
+      const b = /* 1393/4/25 */ new Date(2014, 6 /* Jul */, 16);
       expect(differenceInCalendarWeeks(b, a)).toBe(1);
       expect(differenceInCalendarWeeks(a, b)).toBe(-1);
     });

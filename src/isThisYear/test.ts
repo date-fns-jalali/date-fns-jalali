@@ -9,7 +9,7 @@ describe("isThisYear", () => {
   const { fakeNow } = fakeDate(/* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1));
 
   it("returns true if the given date and the current date have the same year", () => {
-    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2);
+    const date = /* 1392/4/11 */ new Date(2013, 6 /* Jul */, 2);
     expect(isThisYear(date)).toBe(true);
   });
 
@@ -19,7 +19,7 @@ describe("isThisYear", () => {
   });
 
   it("accepts a timestamp", () => {
-    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime();
+    const date = /* 1392/4/11 */ new Date(2013, 6 /* Jul */, 2).getTime();
     expect(isThisYear(date)).toBe(true);
   });
 

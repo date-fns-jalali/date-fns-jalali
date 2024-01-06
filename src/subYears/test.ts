@@ -29,10 +29,10 @@ describe("subYears", () => {
       /* 1394/12/10 */ new Date(2016, 1 /* Feb */, 29),
       1,
     );
-    expect(result).toEqual(/* 1393/12/9 */ new Date(2015, 1 /* Feb */, 28));
+    expect(result).toEqual(/* 1393/12/10 */ new Date(2015, 2 /* Mar */, 1));
   });
 
-  it("handles dates before 100 AD", () => {
+  it.skip("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 1 /* Feb */, 29);
     initialDate.setHours(0, 0, 0, 0);

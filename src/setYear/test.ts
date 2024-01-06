@@ -8,7 +8,7 @@ describe("setYear", () => {
   it("sets the year", () => {
     const result = setYear(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
-      2013,
+      1392,
     );
     expect(result).toEqual(/* 1392/6/10 */ new Date(2013, 8 /* Sep */, 1));
   });
@@ -16,9 +16,9 @@ describe("setYear", () => {
   it("accepts a timestamp", () => {
     const result = setYear(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
-      2016,
+      1395,
     );
-    expect(result).toEqual(/* 1395/6/11 */ new Date(2016, 8 /* Sep */, 1));
+    expect(result).toEqual(/* 1395/6/10 */ new Date(2016, 7 /* Aug */, 31));
   });
 
   it("does not mutate the original date", () => {
