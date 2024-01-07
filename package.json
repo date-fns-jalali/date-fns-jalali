@@ -5147,6 +5147,7 @@
     "eslint": "^8.55.0",
     "firebase": "^3.7.1",
     "js-fns": "^2.5.1",
+    "jscodeshift": "^0.15.1",
     "playwright": "^1.40.1",
     "prettier": "^3.1.0",
     "simple-git": "^2.35.2",
