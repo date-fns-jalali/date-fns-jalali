@@ -6,12 +6,14 @@ import { getWeek } from "./index.js";
 
 describe("getWeek", () => {
   it("returns the local week of year of the given date", () => {
-    const result = getWeek(new Date(2005, 0 /* Jan */, 2));
+    const result = getWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2));
     assert(result === 2);
   });
 
   it("accepts a timestamp", () => {
-    const result = getWeek(new Date(2008, 11 /* Dec */, 29).getTime());
+    const result = getWeek(
+      /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29).getTime(),
+    );
     assert(result === 1);
   });
 
@@ -29,7 +31,7 @@ describe("getWeek", () => {
   });
 
   it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale", () => {
-    const date = new Date(2005, 0 /* Jan */, 2);
+    const date = /* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2);
     const result = getWeek(date, {
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 },
@@ -39,7 +41,7 @@ describe("getWeek", () => {
   });
 
   it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
-    const date = new Date(2005, 0 /* Jan */, 2);
+    const date = /* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2);
     const result = getWeek(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,

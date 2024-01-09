@@ -7,33 +7,33 @@ import { previousTuesday } from "./index.js";
 describe("previousTuesday", () => {
   it("returns the previous Tuesday given various dates after the same", () => {
     assert.deepStrictEqual(
-      previousTuesday(new Date(2021, 5 /* Jun */, 5)),
-      new Date(2021, 5 /* Jun */, 1),
+      previousTuesday(/* 1400/3/15 */ new Date(2021, 5 /* Jun */, 5)),
+      /* 1400/3/11 */ new Date(2021, 5 /* Jun */, 1),
     );
 
     assert.deepStrictEqual(
-      previousTuesday(new Date(2021, 5 /* Jun */, 6)),
-      new Date(2021, 5 /* Jun */, 1),
+      previousTuesday(/* 1400/3/16 */ new Date(2021, 5 /* Jun */, 6)),
+      /* 1400/3/11 */ new Date(2021, 5 /* Jun */, 1),
     );
 
     assert.deepStrictEqual(
-      previousTuesday(new Date(2021, 5 /* Jun */, 8)),
-      new Date(2021, 5 /* Jun */, 1),
+      previousTuesday(/* 1400/3/18 */ new Date(2021, 5 /* Jun */, 8)),
+      /* 1400/3/11 */ new Date(2021, 5 /* Jun */, 1),
     );
 
     assert.deepStrictEqual(
-      previousTuesday(new Date(2021, 5 /* Jun */, 15)),
-      new Date(2021, 5 /* Jun */, 8),
+      previousTuesday(/* 1400/3/25 */ new Date(2021, 5 /* Jun */, 15)),
+      /* 1400/3/18 */ new Date(2021, 5 /* Jun */, 8),
     );
 
     assert.deepStrictEqual(
-      previousTuesday(new Date(2021, 5 /* Jun */, 17)),
-      new Date(2021, 5 /* Jun */, 15),
+      previousTuesday(/* 1400/3/27 */ new Date(2021, 5 /* Jun */, 17)),
+      /* 1400/3/25 */ new Date(2021, 5 /* Jun */, 15),
     );
 
     assert.deepStrictEqual(
-      previousTuesday(new Date(2021, 5 /* Jun */, 18)),
-      new Date(2021, 5 /* Jun */, 15),
+      previousTuesday(/* 1400/3/28 */ new Date(2021, 5 /* Jun */, 18)),
+      /* 1400/3/25 */ new Date(2021, 5 /* Jun */, 15),
     );
   });
 
