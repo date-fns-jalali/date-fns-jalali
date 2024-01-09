@@ -151,7 +151,9 @@ export default function transformer(file, api) {
     ast,
     imports.map((i) => {
       const rPath = path.relative(file.path, i.filePath).substr(3);
-      return statement([`import { ${i.method} as ${i.variable} } from "${rPath}";\n`]);
+      return statement([
+        `import { ${i.method} as ${i.variable} } from "${rPath}";\n`,
+      ]);
     }),
   );
 

@@ -6,10 +6,7 @@ import { toGregorian, toJalali } from "../../_lib/jalali/index";
  * @param args
  * @returns {number}
  */
-export function setDate(
-  cleanDate: Date,
-  ...args: Parameters<Date["setDate"]>
-) {
+export function setDate(cleanDate: Date, ...args: Parameters<Date["setDate"]>) {
   const gd = cleanDate.getDate();
   const gm = cleanDate.getMonth() + 1;
   const gy = cleanDate.getFullYear();
