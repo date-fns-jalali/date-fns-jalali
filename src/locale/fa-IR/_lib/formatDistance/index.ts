@@ -95,7 +95,7 @@ export const formatDistance: FormatDistanceFn = (token, count, options) => {
   } else if (count === 1) {
     result = tokenValue.one;
   } else {
-    result = tokenValue.other.replace("{{count}}", String(count));
+    result = tokenValue.other.replace("{{count}}", count.toString());
   }
 
   if (options?.addSuffix) {

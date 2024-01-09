@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+
 /**
  * @name isSameYear
  * @category Year Helpers
@@ -26,5 +28,5 @@ export function isSameYear<DateType extends Date>(
 ): boolean {
   const _dateLeft = toDate(dateLeft);
   const _dateRight = toDate(dateRight);
-  return _dateLeft.getFullYear() === _dateRight.getFullYear();
+  return coreGetFullYear(_dateLeft) === coreGetFullYear(_dateRight);
 }

@@ -3,8 +3,8 @@ import { buildLocalizeFn } from "../../../_lib/buildLocalizeFn/index.js";
 
 const eraValues = {
   narrow: ["ق", "ب"] as const,
-  abbreviated: ["ق.م.", "ب.م."] as const,
-  wide: ["قبل از میلاد", "بعد از میلاد"] as const,
+  abbreviated: ["ق.ه.", "ب.ه."] as const,
+  wide: ["قبل از هجرت", "بعد از هجرت"] as const,
 };
 
 const quarterValues = {
@@ -18,34 +18,47 @@ const quarterValues = {
 // Generally, formatted dates should look like they are in the middle of a sentence,
 // e.g. in Spanish language the weekdays and months should be in the lowercase.
 const monthValues = {
-  narrow: ["ژ", "ف", "م", "آ", "م", "ج", "ج", "آ", "س", "ا", "ن", "د"] as const,
+  narrow: [
+    "فر",
+    "ار",
+    "خر",
+    "تی",
+    "مر",
+    "شه",
+    "مه",
+    "آب",
+    "آذ",
+    "دی",
+    "به",
+    "اس",
+  ] as const,
   abbreviated: [
-    "ژانـ",
-    "فور",
-    "مارس",
-    "آپر",
-    "می",
-    "جون",
-    "جولـ",
-    "آگو",
-    "سپتـ",
-    "اکتـ",
-    "نوامـ",
-    "دسامـ",
+    "فرو",
+    "ارد",
+    "خرد",
+    "تیر",
+    "مرد",
+    "شهر",
+    "مهر",
+    "آبا",
+    "آذر",
+    "دی",
+    "بهم",
+    "اسف",
   ] as const,
   wide: [
-    "ژانویه",
-    "فوریه",
-    "مارس",
-    "آپریل",
-    "می",
-    "جون",
-    "جولای",
-    "آگوست",
-    "سپتامبر",
-    "اکتبر",
-    "نوامبر",
-    "دسامبر",
+    "فروردین",
+    "اردیبهشت",
+    "خرداد",
+    "تیر",
+    "مرداد",
+    "شهریور",
+    "مهر",
+    "آبان",
+    "آذر",
+    "دی",
+    "بهمن",
+    "اسفند",
   ] as const,
 };
 
@@ -53,20 +66,20 @@ const dayValues = {
   narrow: ["ی", "د", "س", "چ", "پ", "ج", "ش"] as const,
   short: ["1ش", "2ش", "3ش", "4ش", "5ش", "ج", "ش"] as const,
   abbreviated: [
-    "یکشنبه",
+    "یک‌شنبه",
     "دوشنبه",
     "سه‌شنبه",
     "چهارشنبه",
-    "پنجشنبه",
+    "پنج‌شنبه",
     "جمعه",
     "شنبه",
   ] as const,
   wide: [
-    "یکشنبه",
+    "یک‌شنبه",
     "دوشنبه",
     "سه‌شنبه",
     "چهارشنبه",
-    "پنجشنبه",
+    "پنج‌شنبه",
     "جمعه",
     "شنبه",
   ] as const,
@@ -139,7 +152,9 @@ const formattingDayPeriodValues = {
 };
 
 const ordinalNumber: LocalizeFn<number> = (dirtyNumber, _options) => {
-  return String(dirtyNumber);
+  const number = Number(dirtyNumber);
+
+  return number + "-ام";
 };
 
 export const localize: Localize = {
