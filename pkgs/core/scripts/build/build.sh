@@ -9,3 +9,4 @@ set -ex
 node ./scripts/build/indices.ts
 ./scripts/build/docs.sh
 node ./scripts/build/fp.ts
+pnpx prettier --write package.json typedoc.json
