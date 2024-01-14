@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 async function main() {
   const fns = await readRefsFromJSON(
     config,
-    path.resolve(__dirname, "../../docs/"),
+    path.resolve(import.meta.dirname, "../../docs/"),
   );
 
   await Promise.all(
