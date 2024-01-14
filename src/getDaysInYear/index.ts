@@ -1,6 +1,8 @@
 import { isLeapYear } from "../isLeapYear/index.js";
 import { toDate } from "../toDate/index.js";
 
+import { newDate as coreNewDate } from "../_core/newDate/index";
+
 /**
  * @name getDaysInYear
  * @category Year Helpers
@@ -25,7 +27,7 @@ export function getDaysInYear<DateType extends Date>(
 ): number {
   const _date = toDate(date);
 
-  if (String(new Date(_date)) === "Invalid Date") {
+  if (String(coreNewDate(_date)) === "Invalid Date") {
     return NaN;
   }
 
