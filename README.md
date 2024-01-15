@@ -1,18 +1,10 @@
 [![date-fns-jalali](docs/logotype.svg)](https://date-fns.org/)
 
-<p align="center">
-  <b>date-fns-jalali</b> provides the most comprehensive, yet simple and consistent toolset
-  <br>
-  for manipulating <b>JavaScript dates</b> in <b>a browser</b> & <b>Node.js</b>.</b>
-  <br>
-  for <b>jalali calendar</b>
-</p>
+date-fns-jalali provides the most comprehensive, yet simple and consistent toolset for manipulating JavaScript dates in a browser & Node.js for jalali calendar.
 
-<div align="center">
+👉 [Documentation](https://date-fns.org/)
 
-[📖&nbsp; Documentation](https://date-fns.org/docs/Getting-Started/)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[🧑‍💻&nbsp; JavaScript Jobs](https://jobs.date-fns.org/)
-
-</div>
+👉 [Blog](https://blog.date-fns.org/)
 
 <hr>
 
