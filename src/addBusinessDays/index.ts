@@ -4,6 +4,9 @@ import { isSunday } from "../isSunday/index.js";
 import { isWeekend } from "../isWeekend/index.js";
 import { toDate } from "../toDate/index.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * @name addBusinessDays
  * @category Date Extension Helpers
@@ -37,14 +40,14 @@ export function addBusinessDays<DateType extends Date>(
   const sign = amount < 0 ? -1 : 1;
   const fullWeeks = Math.trunc(amount / 5);
 
-  _date.setDate(_date.getDate() + fullWeeks * 7);
+  coreSetDate(_date, coreGetDate(_date) + fullWeeks * 7);
 
   // Get remaining days not part of a full week
   let restDays = Math.abs(amount % 5);
 
   // Loops over remaining days
   while (restDays > 0) {
-    _date.setDate(_date.getDate() + sign);
+    coreSetDate(_date, coreGetDate(_date) + sign);
     if (!isWeekend(_date)) restDays -= 1;
   }
 
@@ -54,8 +57,10 @@ export function addBusinessDays<DateType extends Date>(
   if (startedOnWeekend && isWeekend(_date) && amount !== 0) {
     // If we're reducing days, we want to add days until we land on a weekday
     // If we're adding days we want to reduce days until we land on a weekday
-    if (isSaturday(_date)) _date.setDate(_date.getDate() + (sign < 0 ? 2 : -1));
-    if (isSunday(_date)) _date.setDate(_date.getDate() + (sign < 0 ? 1 : -2));
+    if (isSaturday(_date))
+      coreSetDate(_date, coreGetDate(_date) + (sign < 0 ? 2 : -1));
+    if (isSunday(_date))
+      coreSetDate(_date, coreGetDate(_date) + (sign < 0 ? 1 : -2));
   }
 
   // Restore hours to avoid DST lag

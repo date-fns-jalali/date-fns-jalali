@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+
 /**
  * @name differenceInCalendarYears
  * @category Year Helpers
@@ -30,5 +32,5 @@ export function differenceInCalendarYears<DateType extends Date>(
   const _dateLeft = toDate(dateLeft);
   const _dateRight = toDate(dateRight);
 
-  return _dateLeft.getFullYear() - _dateRight.getFullYear();
+  return coreGetFullYear(_dateLeft) - coreGetFullYear(_dateRight);
 }

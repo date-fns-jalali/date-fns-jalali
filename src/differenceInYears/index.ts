@@ -2,6 +2,8 @@ import { compareAsc } from "../compareAsc/index.js";
 import { differenceInCalendarYears } from "../differenceInCalendarYears/index.js";
 import { toDate } from "../toDate/index.js";
 
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name differenceInYears
  * @category Year Helpers
@@ -34,8 +36,8 @@ export function differenceInYears<DateType extends Date>(
 
   // Set both dates to a valid leap year for accurate comparison when dealing
   // with leap days
-  _dateLeft.setFullYear(1584);
-  _dateRight.setFullYear(1584);
+  coreSetFullYear(_dateLeft, 1399);
+  coreSetFullYear(_dateRight, 1399);
 
   // Math.abs(diff in full years - diff in calendar years) === 1 if last calendar year is not full
   // If so, result must be decreased by 1 in absolute value

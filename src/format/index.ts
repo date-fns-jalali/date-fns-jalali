@@ -354,7 +354,7 @@ export function format<DateType extends Date>(
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   const originalDate = toDate(date);
 

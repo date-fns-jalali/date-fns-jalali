@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import type { Interval, StepOptions } from "../types.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * The {@link eachDayOfInterval} function options.
  */
@@ -58,7 +61,7 @@ export function eachDayOfInterval<DateType extends Date>(
 
   while (+currentDate <= endTime) {
     dates.push(toDate(currentDate));
-    currentDate.setDate(currentDate.getDate() + step);
+    coreSetDate(currentDate, coreGetDate(currentDate) + step);
     currentDate.setHours(0, 0, 0, 0);
   }
 
