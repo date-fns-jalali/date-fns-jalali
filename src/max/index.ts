@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { newDate as coreNewDate } from "../_core/newDate/index";
+
 /**
  * @name max
  * @category Common Helpers
@@ -40,5 +42,5 @@ export function max<DateType extends Date>(
     }
   });
 
-  return result || new Date(NaN);
+  return result || coreNewDate(NaN);
 }
