@@ -170,6 +170,7 @@
     "./src/minutesToSeconds/index.ts",
     "./src/monthsToQuarters/index.ts",
     "./src/monthsToYears/index.ts",
+    "./src/newDate/index.ts",
     "./src/nextDay/index.ts",
     "./src/nextFriday/index.ts",
     "./src/nextMonday/index.ts",
@@ -247,7 +248,5 @@
     "./src/constants/index.ts"
   ],
   "json": "./tmp/docs.json",
-  "plugin": [
-    "typedoc-plugin-missing-exports"
-  ]
+  "plugin": ["typedoc-plugin-missing-exports"]
 }

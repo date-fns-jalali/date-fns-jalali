@@ -1,5 +1,8 @@
 import { toDate } from "../toDate/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+
 /**
  * @name differenceInCalendarMonths
  * @category Month Helpers
@@ -30,8 +33,8 @@ export function differenceInCalendarMonths<DateType extends Date>(
   const _dateLeft = toDate(dateLeft);
   const _dateRight = toDate(dateRight);
 
-  const yearDiff = _dateLeft.getFullYear() - _dateRight.getFullYear();
-  const monthDiff = _dateLeft.getMonth() - _dateRight.getMonth();
+  const yearDiff = coreGetFullYear(_dateLeft) - coreGetFullYear(_dateRight);
+  const monthDiff = coreGetMonth(_dateLeft) - coreGetMonth(_dateRight);
 
   return yearDiff * 12 + monthDiff;
 }
