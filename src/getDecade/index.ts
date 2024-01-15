@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+
 /**
  * @name getDecade
  * @category Decade Helpers
@@ -23,7 +25,7 @@ export function getDecade<DateType extends Date>(
   date: DateType | number | string,
 ): number {
   const _date = toDate(date);
-  const year = _date.getFullYear();
+  const year = coreGetFullYear(_date);
   const decade = Math.floor(year / 10) * 10;
   return decade;
 }
