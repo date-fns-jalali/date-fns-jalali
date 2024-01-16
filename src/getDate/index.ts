@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index";
+
 /**
  * @name getDate
  * @category Day Helpers
@@ -23,6 +25,6 @@ export function getDate<DateType extends Date>(
   date: DateType | number | string,
 ): number {
   const _date = toDate(date);
-  const dayOfMonth = _date.getDate();
+  const dayOfMonth = coreGetDate(_date);
   return dayOfMonth;
 }
