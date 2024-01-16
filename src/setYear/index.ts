@@ -1,6 +1,8 @@
 import { constructFrom } from "../constructFrom/index.js";
 import { toDate } from "../toDate/index.js";
 
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name setYear
  * @category Year Helpers
@@ -32,6 +34,6 @@ export function setYear<DateType extends Date>(
     return constructFrom(date, NaN);
   }
 
-  _date.setFullYear(year);
+  coreSetFullYear(_date, year);
   return _date;
 }
