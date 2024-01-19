@@ -29,7 +29,7 @@ export function testScript(props) {
     scripts,
     run,
     beforeParse,
-    pkg = process.env.DATE_FNS_CDN_TEST_PKG || "@date-fns/cdn",
+    pkg = process.env.DATE_FNS_CDN_TEST_PKG || "@date-fns-jalali/cdn",
   } = props;
 
   const dom = new JSDOM(
