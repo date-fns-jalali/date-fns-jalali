@@ -12,5 +12,5 @@ assert.strictEqual(
     parseISO("2020-04-05T01:00:00+11:00"),
     parseISO("2020-04-05T03:00:00+10:00"),
   ),
-  "3 hours",
+  "3 ساعت",
 );
