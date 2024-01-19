@@ -5,7 +5,7 @@ testScript({
 
   run: (dom) => {
     const result = dom.window.eval(
-      `window.dateFns.addDays(new Date(1987, 1, 11), 1).getDate()`,
+      `window.dateFnsJalali.addDays(new Date(1987, 1, 11), 1).getDate()`,
     );
     console.log(result === 12);
   },
