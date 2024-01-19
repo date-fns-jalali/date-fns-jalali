@@ -1,6 +1,11 @@
 import { toDate } from "../toDate/index.js";
 import { constructFrom } from "../constructFrom/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name getDaysInMonth
  * @category Month Helpers
@@ -24,10 +29,10 @@ export function getDaysInMonth<DateType extends Date>(
   date: DateType | number | string,
 ): number {
   const _date = toDate(date);
-  const year = _date.getFullYear();
-  const monthIndex = _date.getMonth();
+  const year = coreGetFullYear(_date);
+  const monthIndex = coreGetMonth(_date);
   const lastDayOfMonth = constructFrom(date, 0);
-  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
+  coreSetFullYear(lastDayOfMonth, year, monthIndex + 1, 0);
   lastDayOfMonth.setHours(0, 0, 0, 0);
-  return lastDayOfMonth.getDate();
+  return coreGetDate(lastDayOfMonth);
 }
