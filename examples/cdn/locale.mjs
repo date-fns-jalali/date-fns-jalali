@@ -1,8 +1,8 @@
 import { testScript } from "./dom.mjs";
 
-testScript(["cdn.min.js", "locale/es/cdn.min.js"], (dom) => {
+testScript(["cdn.min.js", "locale/en-US/cdn.min.js"], (dom) => {
   const result = dom.window.eval(
-    `window.dateFns.formatRelative(window.dateFns.subDays(new Date(1987, 1, 11), 3), new Date(1987, 1, 11), { locale: window.dateFns.locale.es })`,
+    `window.dateFnsJalali.formatRelative(window.dateFnsJalali.subDays(new Date(1987, 1, 11), 3), new Date(1987, 1, 11), { locale: window.dateFnsJalali.locale.enUS })`,
   );
-  console.log(result === "el domingo pasado a las 00:00");
+  console.log(result === "last Sunday at 12:00 AM");
 });
