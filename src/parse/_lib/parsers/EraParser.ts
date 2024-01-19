@@ -3,6 +3,8 @@ import type { Era } from "../../../types.js";
 import { Parser } from "../Parser.js";
 import type { ParseFlags, ParseResult } from "../types.js";
 
+import { setFullYear as coreSetFullYear } from "../../../_core/setFullYear/index";
+
 export class EraParser extends Parser<number> {
   priority = 140;
 
@@ -36,7 +38,7 @@ export class EraParser extends Parser<number> {
     value: number,
   ): DateType {
     flags.era = value;
-    date.setFullYear(value, 0, 1);
+    coreSetFullYear(date, value, 0, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }

@@ -2,6 +2,9 @@ import { toDate } from "../toDate/index.js";
 import type { LocalizedOptions, WeekOptions } from "../types.js";
 import { getDefaultOptions } from "../_lib/defaultOptions/index.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * The {@link endOfWeek} function options.
  */
@@ -45,13 +48,13 @@ export function endOfWeek<DateType extends Date>(
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   const _date = toDate(date);
   const day = _date.getDay();
   const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
 
-  _date.setDate(_date.getDate() + diff);
+  coreSetDate(_date, coreGetDate(_date) + diff);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }

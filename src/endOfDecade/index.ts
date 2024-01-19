@@ -1,5 +1,8 @@
 import { toDate } from "../toDate/index.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name endOfDecade
  * @category Decade Helpers
@@ -23,9 +26,9 @@ export function endOfDecade<DateType extends Date>(
   date: DateType | number | string,
 ): DateType {
   const _date = toDate(date);
-  const year = _date.getFullYear();
+  const year = coreGetFullYear(_date);
   const decade = 9 + Math.floor(year / 10) * 10;
-  _date.setFullYear(decade, 11, 31);
+  coreSetFullYear(_date, decade + 1, 0, 0);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }
