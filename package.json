@@ -5058,6 +5058,16 @@
         "default": "./fp/weeksToDays.mjs"
       }
     },
+    "./fp/yearsToDays": {
+      "require": {
+        "types": "./fp/yearsToDays.d.ts",
+        "default": "./fp/yearsToDays.js"
+      },
+      "import": {
+        "types": "./fp/yearsToDays.d.mts",
+        "default": "./fp/yearsToDays.mjs"
+      }
+    },
     "./fp/yearsToMonths": {
       "require": {
         "types": "./fp/yearsToMonths.d.ts",
