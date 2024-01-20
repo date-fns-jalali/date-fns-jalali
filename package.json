@@ -1738,6 +1738,16 @@
         "default": "./monthsToYears.mjs"
       }
     },
+    "./newDate": {
+      "require": {
+        "types": "./newDate.d.ts",
+        "default": "./newDate.js"
+      },
+      "import": {
+        "types": "./newDate.d.mts",
+        "default": "./newDate.mjs"
+      }
+    },
     "./nextDay": {
       "require": {
         "types": "./nextDay.d.ts",
@@ -5056,6 +5066,16 @@
       "import": {
         "types": "./fp/weeksToDays.d.mts",
         "default": "./fp/weeksToDays.mjs"
+      }
+    },
+    "./fp/yearsToDays": {
+      "require": {
+        "types": "./fp/yearsToDays.d.ts",
+        "default": "./fp/yearsToDays.js"
+      },
+      "import": {
+        "types": "./fp/yearsToDays.d.mts",
+        "default": "./fp/yearsToDays.mjs"
       }
     },
     "./fp/yearsToMonths": {
