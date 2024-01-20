@@ -14,7 +14,7 @@ import sinon from "sinon";
 import { format } from "./index.js";
 
 describe("format", () => {
-  const date = new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123);
+  const date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123);
 
   const offset = date.getTimezoneOffset();
   const absoluteOffset = Math.abs(offset);
@@ -45,7 +45,7 @@ describe("format", () => {
   const secondsTimestamp = Math.floor(date.getTime() / 1000).toString();
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 3, 4).getTime();
+    const date = /* 1393/1/15 */ new Date(2014, 3, 4).getTime();
     assert(format(date, "yyyy-MM-dd") === "2014-04-04");
   });
 
@@ -55,12 +55,12 @@ describe("format", () => {
   });
 
   it('two single quote characters are transformed into a "real" single quote', () => {
-    const date = new Date(2014, 3, 4, 5);
+    const date = /* 1393/1/15 */ new Date(2014, 3, 4, 5);
     assert(format(date, "''h 'o''clock'''") === "'5 o'clock'");
   });
 
   it("accepts new line charactor", () => {
-    const date = new Date(2014, 3, 4, 5);
+    const date = /* 1393/1/15 */ new Date(2014, 3, 4, 5);
     assert.strictEqual(
       format(date, "yyyy-MM-dd'\n'HH:mm:ss"),
       "2014-04-04\n05:00:00",
@@ -166,25 +166,37 @@ describe("format", () => {
       });
 
       it("the first week of the next year", () => {
-        const result = format(new Date(2013, 11 /* Dec */, 29), "YYYY", {
-          useAdditionalWeekYearTokens: true,
-        });
+        const result = format(
+          /* 1392/10/8 */ new Date(2013, 11 /* Dec */, 29),
+          "YYYY",
+          {
+            useAdditionalWeekYearTokens: true,
+          },
+        );
         assert(result === "2014");
       });
 
       it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in options", () => {
-        const result = format(new Date(2013, 11 /* Dec */, 29), "YYYY", {
-          weekStartsOn: 1,
-          firstWeekContainsDate: 4,
-          useAdditionalWeekYearTokens: true,
-        });
+        const result = format(
+          /* 1392/10/8 */ new Date(2013, 11 /* Dec */, 29),
+          "YYYY",
+          {
+            weekStartsOn: 1,
+            firstWeekContainsDate: 4,
+            useAdditionalWeekYearTokens: true,
+          },
+        );
         assert(result === "2013");
       });
 
       it("the first week of year", () => {
-        const result = format(new Date(2016, 0 /* Jan */, 1), "YYYY", {
-          useAdditionalWeekYearTokens: true,
-        });
+        const result = format(
+          /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
+          "YYYY",
+          {
+            useAdditionalWeekYearTokens: true,
+          },
+        );
         assert(result === "2016");
       });
 
@@ -212,12 +224,18 @@ describe("format", () => {
       });
 
       it("the first week of the next year", () => {
-        const result = format(new Date(2013, 11 /* Dec */, 30), "RRRR");
+        const result = format(
+          /* 1392/10/9 */ new Date(2013, 11 /* Dec */, 30),
+          "RRRR",
+        );
         assert(result === "2014");
       });
 
       it("the last week of the previous year", () => {
-        const result = format(new Date(2016, 0 /* Jan */, 1), "RRRR");
+        const result = format(
+          /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
+          "RRRR",
+        );
         assert(result === "2015");
       });
 
@@ -311,13 +329,13 @@ describe("format", () => {
   describe("week", () => {
     describe("local week of year", () => {
       it("works as expected", () => {
-        const date = new Date(1986, 3 /* Apr */, 6);
+        const date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6);
         const result = format(date, "w wo ww");
         assert(result === "15 15th 15");
       });
 
       it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in options", () => {
-        const date = new Date(1986, 3 /* Apr */, 6);
+        const date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6);
         const result = format(date, "w wo ww", {
           weekStartsOn: 1,
           firstWeekContainsDate: 4,
@@ -327,7 +345,7 @@ describe("format", () => {
     });
 
     it("ISO week of year", () => {
-      const date = new Date(1986, 3 /* Apr */, 6);
+      const date = /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6);
       const result = format(date, "I Io II");
       assert(result === "14 14th 14");
     });
@@ -349,7 +367,7 @@ describe("format", () => {
 
       it("returns a correct day number for the last day of a leap year", () => {
         const result = format(
-          new Date(1992, 11 /* Dec */, 31, 23, 59, 59, 999),
+          /* 1371/10/10 */ new Date(1992, 11 /* Dec */, 31, 23, 59, 59, 999),
           "D",
           { useAdditionalDayOfYearTokens: true },
         );
@@ -440,7 +458,7 @@ describe("format", () => {
   describe("day period and hour", () => {
     it("hour [1-12]", () => {
       const result = format(
-        new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         "h ho hh",
       );
       assert(result === "12 12th 12");
@@ -448,7 +466,7 @@ describe("format", () => {
 
     it("hour [0-23]", () => {
       const result = format(
-        new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         "H Ho HH",
       );
       assert(result === "0 0th 00");
@@ -456,7 +474,7 @@ describe("format", () => {
 
     it("hour [0-11]", () => {
       const result = format(
-        new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         "K Ko KK",
       );
       assert(result === "0 0th 00");
@@ -464,7 +482,7 @@ describe("format", () => {
 
     it("hour [1-24]", () => {
       const result = format(
-        new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         "k ko kk",
       );
       assert(result === "24 24th 24");
@@ -473,19 +491,35 @@ describe("format", () => {
     describe("AM, PM", () => {
       it("works as expected", () => {
         const result = format(
-          new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+          /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
           "a aa aaa aaaa aaaaa",
         );
         assert(result === "AM AM am a.m. a");
       });
 
       it("12 PM", () => {
-        const date = new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900);
+        const date = /* 1365/1/15 */ new Date(
+          1986,
+          3 /* Apr */,
+          4,
+          12,
+          0,
+          0,
+          900,
+        );
         assert(format(date, "h H K k a") === "12 12 0 12 PM");
       });
 
       it("12 AM", () => {
-        const date = new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900);
+        const date = /* 1365/1/17 */ new Date(
+          1986,
+          3 /* Apr */,
+          6,
+          0,
+          0,
+          0,
+          900,
+        );
         assert(format(date, "h H K k a") === "12 0 0 24 AM");
       });
     });
@@ -493,25 +527,41 @@ describe("format", () => {
     describe("AM, PM, noon, midnight", () => {
       it("works as expected", () => {
         const result = format(
-          new Date(1986, 3 /* Apr */, 6, 2, 0, 0, 900),
+          /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 2, 0, 0, 900),
           "b bb bbb bbbb bbbbb",
         );
         assert(result === "AM AM am a.m. a");
 
         const pmResult = format(
-          new Date(1986, 3 /* Apr */, 6, 13, 0, 0, 900),
+          /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 13, 0, 0, 900),
           "b bb bbb bbbb bbbbb",
         );
         assert(pmResult === "PM PM pm p.m. p");
       });
 
       it("12 PM", () => {
-        const date = new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900);
+        const date = /* 1365/1/15 */ new Date(
+          1986,
+          3 /* Apr */,
+          4,
+          12,
+          0,
+          0,
+          900,
+        );
         assert(format(date, "b bb bbb bbbb bbbbb") === "noon noon noon noon n");
       });
 
       it("12 AM", () => {
-        const date = new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900);
+        const date = /* 1365/1/17 */ new Date(
+          1986,
+          3 /* Apr */,
+          6,
+          0,
+          0,
+          0,
+          900,
+        );
         assert(
           format(date, "b bb bbb bbbb bbbbb") ===
             "midnight midnight midnight midnight mi",
@@ -529,22 +579,54 @@ describe("format", () => {
       });
 
       it("12 PM", () => {
-        const date = new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900);
+        const date = /* 1365/1/15 */ new Date(
+          1986,
+          3 /* Apr */,
+          4,
+          12,
+          0,
+          0,
+          900,
+        );
         assert(format(date, "h B") === "12 in the afternoon");
       });
 
       it("5 PM", () => {
-        const date = new Date(1986, 3 /* Apr */, 6, 17, 0, 0, 900);
+        const date = /* 1365/1/17 */ new Date(
+          1986,
+          3 /* Apr */,
+          6,
+          17,
+          0,
+          0,
+          900,
+        );
         assert(format(date, "h B") === "5 in the evening");
       });
 
       it("12 AM", () => {
-        const date = new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900);
+        const date = /* 1365/1/17 */ new Date(
+          1986,
+          3 /* Apr */,
+          6,
+          0,
+          0,
+          0,
+          900,
+        );
         assert(format(date, "h B") === "12 at night");
       });
 
       it("4 AM", () => {
-        const date = new Date(1986, 3 /* Apr */, 6, 4, 0, 0, 900);
+        const date = /* 1365/1/17 */ new Date(
+          1986,
+          3 /* Apr */,
+          6,
+          4,
+          0,
+          0,
+          900,
+        );
         assert(format(date, "h B") === "4 in the morning");
       });
     });
