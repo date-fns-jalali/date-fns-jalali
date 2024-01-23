@@ -26,10 +26,10 @@ describe("getWeek", () => {
   });
 
   it("properly works with negative numbers", () => {
-    expect(getWeek(/* 1383/10/15 */ new Date(2005, 0 /* Jan */, 4))).toBe(2);
+    expect(getWeek(/* 1383/1/9 */ new Date(2004, 2 /* Mar */, 28))).toBe(2);
     // Calendars repeat every 400 years
-    expect(getWeek(/* -227/10/13 */ new Date(395, 0 /* Jan */, 4))).toBe(1);
-    expect(getWeek(/* -2627/10/13 */ new Date(-2005, 0 /* Jan */, 4))).toBe(1);
+    expect(getWeek(/* -227/1/4 */ new Date(394, 2 /* Mar */, 25))).toBe(1);
+    expect(getWeek(/* -2627/1/4 */ new Date(-2006, 2 /* Mar */, 25))).toBe(1);
   });
 
   it("returns NaN if the given date is invalid", () => {

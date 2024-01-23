@@ -39,10 +39,10 @@ describe("startOfDecade", () => {
 
   it("properly works with negative numbers", () => {
     expect(startOfDecade(/* 1387/10/12 */ new Date(2009, 0, 1))).toEqual(
-      /* 1378/10/11 */ new Date(2000, 0, 1),
+      /* 1380/1/1 */ new Date(2001, 2, 21),
     );
     expect(startOfDecade(/* -2623/10/10 */ new Date(-2001, 0, 1))).toEqual(
-      /* -2632/10/10 */ new Date(-2010, 0, 1),
+      /* -2630/1/1 */ new Date(-2009, 2, 23),
     );
   });
 });

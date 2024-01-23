@@ -124,8 +124,8 @@ describe("differenceInCalendarWeeks", () => {
     });
 
     it("properly works with negative numbers", () => {
-      const a = /* 1393/4/18 */ new Date(2014, 6 /* Jul */, 9);
-      const b = /* 1393/4/28 */ new Date(2014, 6 /* Jul */, 19);
+      const a = /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6);
+      const b = /* 1393/4/25 */ new Date(2014, 6 /* Jul */, 16);
       expect(differenceInCalendarWeeks(b, a)).toBe(1);
       expect(differenceInCalendarWeeks(a, b)).toBe(-1);
     });

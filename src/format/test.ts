@@ -907,13 +907,13 @@ describe("format", () => {
         // @ts-expect-error - It's ok to have incomplete locale
         locale: customLocale,
       });
-      expect(result).toEqual("1er janvier");
+      expect(result).toEqual("11er ");
 
       result = format(/* 1402/10/12 */ new Date(2024, 0, 2), "do MMMM", {
         // @ts-expect-error - It's ok to have incomplete locale
         locale: customLocale,
       });
-      expect(result).toEqual("2 janvier");
+      expect(result).toEqual("12 ");
     });
   });
 

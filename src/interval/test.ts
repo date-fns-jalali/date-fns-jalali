@@ -16,7 +16,7 @@ describe("Interval", () => {
 
   it("normalizes the dates", () => {
     const result = interval(
-      +(/* 1378/10/11 */ new Date(2000, 0)),
+      +(/* 1378/10/11 */ (new Date(2000, 0))),
       /* 1401/10/11 */ new Date(2023, 0).toISOString(),
     );
     assert.deepStrictEqual(result.start, /* 1378/10/11 */ new Date(2000, 0));

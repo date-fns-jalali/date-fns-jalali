@@ -6,10 +6,10 @@ import { setWeek } from "./index.js";
 
 describe("setWeek", () => {
   it("sets the local week", () => {
-    const result = setWeek(/* 1384/1/7 */ new Date(2005, 2 /* Mar */, 27), 1);
+    const result = setWeek(/* 1384/2/27 */ new Date(2005, 4 /* May */, 17), 1);
     assert.deepStrictEqual(
       result,
-      /* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20),
+      /* 1384/1/2 */ new Date(2005, 2 /* Mar */, 22),
     );
   });
 
