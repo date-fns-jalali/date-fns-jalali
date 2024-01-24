@@ -168,6 +168,7 @@ export * from "./minutesToMilliseconds/index.js";
 export * from "./minutesToSeconds/index.js";
 export * from "./monthsToQuarters/index.js";
 export * from "./monthsToYears/index.js";
+export * from "./newDate/index.js";
 export * from "./nextDay/index.js";
 export * from "./nextFriday/index.js";
 export * from "./nextMonday/index.js";

@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { newDate as coreNewDate } from "../_core/newDate/index";
+
 /**
  * @name min
  * @category Common Helpers
@@ -36,5 +38,5 @@ export function min<DateType extends Date>(
     }
   });
 
-  return result || new Date(NaN);
+  return result || coreNewDate(NaN);
 }

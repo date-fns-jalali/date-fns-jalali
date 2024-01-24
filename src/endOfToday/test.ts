@@ -6,7 +6,7 @@ describe("endOfToday", () => {
   let clock: sinon.SinonFakeTimers;
   beforeEach(() => {
     clock = sinon.useFakeTimers(
-      new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime(),
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime(),
     );
   });
 
@@ -18,7 +18,7 @@ describe("endOfToday", () => {
     const result = endOfToday();
     assert.deepStrictEqual(
       result,
-      new Date(2014, 8 /* Sep */, 25, 23, 59, 59, 999),
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 23, 59, 59, 999),
     );
   });
 });

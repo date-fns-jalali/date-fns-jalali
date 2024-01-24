@@ -4,33 +4,33 @@ import { previousSunday } from "./index.js";
 describe("previousSunday", () => {
   it("returns the previous Sunday given various dates after the same", () => {
     assert.deepStrictEqual(
-      previousSunday(new Date(2021, 5 /* Jun */, 7)),
-      new Date(2021, 5 /* Jun */, 6),
+      previousSunday(/* 1400/3/17 */ new Date(2021, 5 /* Jun */, 7)),
+      /* 1400/3/16 */ new Date(2021, 5 /* Jun */, 6),
     );
 
     assert.deepStrictEqual(
-      previousSunday(new Date(2021, 5 /* Jun */, 8)),
-      new Date(2021, 5 /* Jun */, 6),
+      previousSunday(/* 1400/3/18 */ new Date(2021, 5 /* Jun */, 8)),
+      /* 1400/3/16 */ new Date(2021, 5 /* Jun */, 6),
     );
 
     assert.deepStrictEqual(
-      previousSunday(new Date(2021, 5 /* Jun */, 13)),
-      new Date(2021, 5 /* Jun */, 6),
+      previousSunday(/* 1400/3/23 */ new Date(2021, 5 /* Jun */, 13)),
+      /* 1400/3/16 */ new Date(2021, 5 /* Jun */, 6),
     );
 
     assert.deepStrictEqual(
-      previousSunday(new Date(2021, 5 /* Jun */, 16)),
-      new Date(2021, 5 /* Jun */, 13),
+      previousSunday(/* 1400/3/26 */ new Date(2021, 5 /* Jun */, 16)),
+      /* 1400/3/23 */ new Date(2021, 5 /* Jun */, 13),
     );
 
     assert.deepStrictEqual(
-      previousSunday(new Date(2021, 5 /* Jun */, 17)),
-      new Date(2021, 5 /* Jun */, 13),
+      previousSunday(/* 1400/3/27 */ new Date(2021, 5 /* Jun */, 17)),
+      /* 1400/3/23 */ new Date(2021, 5 /* Jun */, 13),
     );
 
     assert.deepStrictEqual(
-      previousSunday(new Date(2021, 5 /* Jun */, 24)),
-      new Date(2021, 5 /* Jun */, 20),
+      previousSunday(/* 1400/4/3 */ new Date(2021, 5 /* Jun */, 24)),
+      /* 1400/3/30 */ new Date(2021, 5 /* Jun */, 20),
     );
   });
 

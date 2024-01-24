@@ -240,8 +240,10 @@ describe("roundToNearestMinutes", () => {
   describe("edge cases", () => {
     it("rounds up to the next day", () => {
       assert.deepStrictEqual(
-        roundToNearestMinutes(new Date(2014, 6, 10, 23, 59, 59)),
-        new Date(2014, 6, 11),
+        roundToNearestMinutes(
+          /* 1393/4/19 */ new Date(2014, 6, 10, 23, 59, 59),
+        ),
+        /* 1393/4/20 */ new Date(2014, 6, 11),
       );
     });
 
@@ -260,30 +262,41 @@ describe("roundToNearestMinutes", () => {
 
   describe("examples", () => {
     it("example 1", () => {
-      const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34));
-      expect(result).toEqual(new Date(2014, 6, 10, 12, 13));
+      const result = roundToNearestMinutes(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 12, 34),
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12, 13));
     });
 
     it("example 2", () => {
-      const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), {
-        nearestTo: 15,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 12, 15));
+      const result = roundToNearestMinutes(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 12, 34),
+        {
+          nearestTo: 15,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12, 15));
     });
 
     it("example 3", () => {
-      const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), {
-        roundingMethod: "floor",
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 12, 12));
+      const result = roundToNearestMinutes(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 12, 34),
+        {
+          roundingMethod: "floor",
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12, 12));
     });
 
     it("example 4", () => {
-      const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), {
-        roundingMethod: "ceil",
-        nearestTo: 30,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 12, 30));
+      const result = roundToNearestMinutes(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 12, 34),
+        {
+          roundingMethod: "ceil",
+          nearestTo: 30,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12, 30));
     });
   });
 

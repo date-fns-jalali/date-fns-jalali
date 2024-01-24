@@ -3,19 +3,22 @@ import { subDays } from "./index.js";
 
 describe("subDays", () => {
   it("subtracts the given number of days", () => {
-    const result = subDays(new Date(2014, 8 /* Sep */, 1), 10);
-    expect(result).toEqual(new Date(2014, 7 /* Aug */, 22));
+    const result = subDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 10);
+    expect(result).toEqual(/* 1393/5/31 */ new Date(2014, 7 /* Aug */, 22));
   });
 
   it("accepts a timestamp", () => {
-    const result = subDays(new Date(2014, 8 /* Sep */, 1).getTime(), 10);
-    expect(result).toEqual(new Date(2014, 7 /* Aug */, 22));
+    const result = subDays(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      10,
+    );
+    expect(result).toEqual(/* 1393/5/31 */ new Date(2014, 7 /* Aug */, 22));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     subDays(date, 11);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -24,7 +27,7 @@ describe("subDays", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = subDays(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = subDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN);
     assert(result instanceof Date && isNaN(result.getTime()));
   });
 });

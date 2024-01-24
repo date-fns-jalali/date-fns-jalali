@@ -3,16 +3,17 @@ import { eachWeekendOfMonth } from "./index.js";
 
 describe("eachWeekendOfMonth", () => {
   it("returns all weekends of the given month", () => {
-    const result = eachWeekendOfMonth(new Date(2022, 1, 20));
+    const result = eachWeekendOfMonth(/* 1400/11/20 */ new Date(2022, 1, 9));
     expect(result).toEqual([
-      new Date(2022, 1, 5),
-      new Date(2022, 1, 6),
-      new Date(2022, 1, 12),
-      new Date(2022, 1, 13),
-      new Date(2022, 1, 19),
-      new Date(2022, 1, 20),
-      new Date(2022, 1, 26),
-      new Date(2022, 1, 27),
+      /* 1400/11/2 */ new Date(2022, 0, 22),
+      /* 1400/11/3 */ new Date(2022, 0, 23),
+      /* 1400/11/9 */ new Date(2022, 0, 29),
+      /* 1400/11/10 */ new Date(2022, 0, 30),
+      /* 1400/11/16 */ new Date(2022, 1, 5),
+      /* 1400/11/17 */ new Date(2022, 1, 6),
+      /* 1400/11/23 */ new Date(2022, 1, 12),
+      /* 1400/11/24 */ new Date(2022, 1, 13),
+      /* 1400/11/30 */ new Date(2022, 1, 19),
     ]);
   });
 
