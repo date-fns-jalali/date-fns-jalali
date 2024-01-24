@@ -4,38 +4,38 @@ import { nextSaturday } from "./index.js";
 describe("nextSaturday", () => {
   it("returns the following Saturday given various dates before the same", () => {
     assert.deepStrictEqual(
-      nextSaturday(new Date(2020, 4 /* May */, 23)),
-      new Date(2020, 4 /* May */, 30),
+      nextSaturday(/* 1399/3/3 */ new Date(2020, 4 /* May */, 23)),
+      /* 1399/3/10 */ new Date(2020, 4 /* May */, 30),
     );
 
     assert.deepStrictEqual(
-      nextSaturday(new Date(2020, 4 /* May */, 22)),
-      new Date(2020, 4 /* May */, 23),
+      nextSaturday(/* 1399/3/2 */ new Date(2020, 4 /* May */, 22)),
+      /* 1399/3/3 */ new Date(2020, 4 /* May */, 23),
     );
 
     assert.deepStrictEqual(
-      nextSaturday(new Date(2020, 4 /* May */, 21)),
-      new Date(2020, 4 /* May */, 23),
+      nextSaturday(/* 1399/3/1 */ new Date(2020, 4 /* May */, 21)),
+      /* 1399/3/3 */ new Date(2020, 4 /* May */, 23),
     );
 
     assert.deepStrictEqual(
-      nextSaturday(new Date(2020, 4 /* May */, 20)),
-      new Date(2020, 4 /* May */, 23),
+      nextSaturday(/* 1399/2/31 */ new Date(2020, 4 /* May */, 20)),
+      /* 1399/3/3 */ new Date(2020, 4 /* May */, 23),
     );
 
     assert.deepStrictEqual(
-      nextSaturday(new Date(2020, 4 /* May */, 19)),
-      new Date(2020, 4 /* May */, 23),
+      nextSaturday(/* 1399/2/30 */ new Date(2020, 4 /* May */, 19)),
+      /* 1399/3/3 */ new Date(2020, 4 /* May */, 23),
     );
 
     assert.deepStrictEqual(
-      nextSaturday(new Date(2020, 4 /* May */, 18)),
-      new Date(2020, 4 /* May */, 23),
+      nextSaturday(/* 1399/2/29 */ new Date(2020, 4 /* May */, 18)),
+      /* 1399/3/3 */ new Date(2020, 4 /* May */, 23),
     );
 
     assert.deepStrictEqual(
-      nextSaturday(new Date(2020, 4 /* May */, 17)),
-      new Date(2020, 4 /* May */, 23),
+      nextSaturday(/* 1399/2/28 */ new Date(2020, 4 /* May */, 17)),
+      /* 1399/3/3 */ new Date(2020, 4 /* May */, 23),
     );
   });
 

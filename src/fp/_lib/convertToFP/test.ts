@@ -85,7 +85,7 @@ describe("convertToFP", () => {
     it("resolves proper types", () => {
       const fn1 = addDays();
       const fn2 = fn1(1);
-      const result = fn2(new Date(1987, 1));
+      const result = fn2(/* 1365/11/12 */ new Date(1987, 1));
       assert(result.getFullYear() === 1987);
     });
   });
@@ -93,17 +93,17 @@ describe("convertToFP", () => {
   describe("Lodash", () => {
     it("works with flow", () => {
       const fn = lodashFlow(addDays(1), addHours(1));
-      const result = fn(new Date(1987, 1, 11));
+      const result = fn(/* 1365/11/22 */ new Date(1987, 1, 11));
       assert(result.getFullYear() === 1987);
-      expect(result).toEqual(new Date(1987, 1, 12, 1));
+      expect(result).toEqual(/* 1365/11/23 */ new Date(1987, 1, 12, 1));
     });
   });
 
   describe("fp-ts", () => {
     it("works with pipe", () => {
       const result = pipe(
-        new Date(1987, 1, 11),
-        isEqual(new Date(1987, 1, 11)),
+        /* 1365/11/22 */ new Date(1987, 1, 11),
+        isEqual(/* 1365/11/22 */ new Date(1987, 1, 11)),
       );
       const _assign: boolean = result;
       assert(result);
@@ -113,9 +113,9 @@ describe("convertToFP", () => {
   describe("js-fns", () => {
     it("works with flow", () => {
       const fn = jsFnsFlow(addDays(1), addHours(1));
-      const result = fn(new Date(1987, 1, 11));
+      const result = fn(/* 1365/11/22 */ new Date(1987, 1, 11));
       assert(result.getFullYear() === 1987);
-      expect(result).toEqual(new Date(1987, 1, 12, 1));
+      expect(result).toEqual(/* 1365/11/23 */ new Date(1987, 1, 12, 1));
     });
   });
 });
