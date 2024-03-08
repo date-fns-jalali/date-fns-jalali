@@ -1,5 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { UTCDate } from "./date";
+import FakeTimers from "@sinonjs/fake-timers";
 
 describe("UTCDate", () => {
   it("creates date in UTC", () => {
@@ -240,6 +241,25 @@ describe("UTCDate", () => {
           timeZone: "Asia/Kolkata",
         })
       ).toBe("17:43:14");
+    });
+  });
+
+  describe("Sinon fake timers", () => {
+    let timers: FakeTimers.InstalledClock;
+    beforeEach(() => {
+      timers = FakeTimers.install({
+        now: new Date(1987, 1, 11, 12, 13, 14, 15),
+      });
+    });
+
+    afterEach(() => {
+      timers.uninstall();
+    });
+
+    it("mocks the date", () => {
+      const expected = +new Date(1987, 1, 11, 12, 13, 14, 15);
+      expect(+new Date()).toBe(expected);
+      expect(+new UTCDate()).toBe(expected);
     });
   });
 });

@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v1.2.0 - 2024-03-09
+
+### Added
+
+- Added support for [Sinon's fake timers](https://github.com/sinonjs/fake-timers), frameworks that rely on it (Jest), and other time manipulation libraries that override the `Date.now` and the `Date` constructor.
+
 ## v1.1.1 - 2023-12-22
 
 ### Fixed

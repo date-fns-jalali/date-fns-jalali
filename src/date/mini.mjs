@@ -2,14 +2,16 @@ export class UTCDateMini extends Date {
   constructor() {
     super();
 
-    if (arguments.length)
-      this.setTime(
-        arguments.length === 1
-          ? typeof arguments[0] === "string"
-            ? +new Date(arguments[0])
-            : arguments[0]
-          : Date.UTC(...arguments)
-      );
+    this.setTime(
+      arguments.length === 0
+        ? // Enables Sinon's fake timers that override the constructor
+          Date.now()
+        : arguments.length === 1
+        ? typeof arguments[0] === "string"
+          ? +new Date(arguments[0])
+          : arguments[0]
+        : Date.UTC(...arguments)
+    );
   }
 
   getTimezoneOffset() {
