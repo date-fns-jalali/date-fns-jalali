@@ -6,19 +6,31 @@ import { setDate } from "./index.js";
 
 describe("setDate", () => {
   it("sets the day of the month", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1), 30);
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 30));
+    const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 30);
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/30 */ new Date(2014, 8 /* Sep */, 21),
+    );
   });
 
   it("accepts a timestamp", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1).getTime(), 25);
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 25));
+    const result = setDate(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      25,
+    );
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/25 */ new Date(2014, 8 /* Sep */, 16),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     setDate(date, 20);
-    assert.deepStrictEqual(date, new Date(2014, 8 /* Sep */, 1));
+    assert.deepStrictEqual(
+      date,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -27,7 +39,7 @@ describe("setDate", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN);
     assert(result instanceof Date && isNaN(result.getTime()));
   });
 });

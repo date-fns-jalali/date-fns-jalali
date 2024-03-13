@@ -41,7 +41,7 @@ export function getWeekOfMonth<DateType extends Date>(
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   const currentDayOfMonth = getDate(date);
   if (isNaN(currentDayOfMonth)) return NaN;

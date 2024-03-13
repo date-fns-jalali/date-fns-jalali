@@ -7,19 +7,31 @@ import { getDstTransitions } from "../../test/dst/tzOffsetTransitions.js";
 
 describe("addDays", () => {
   it("adds the given number of days", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), 10);
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 11));
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 10);
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11),
+    );
   });
 
   it("accepts a timestamp", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1).getTime(), 10);
-    assert.deepStrictEqual(result, new Date(2014, 8 /* Sep */, 11));
+    const result = addDays(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      10,
+    );
+    assert.deepStrictEqual(
+      result,
+      /* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     addDays(date, 11);
-    assert.deepStrictEqual(date, new Date(2014, 8 /* Sep */, 1));
+    assert.deepStrictEqual(
+      date,
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -28,7 +40,7 @@ describe("addDays", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN);
     assert(result instanceof Date && isNaN(result.getTime()));
   });
 
