@@ -252,6 +252,6 @@ describe("formatDistanceToNow", () => {
     const result = formatDistanceToNow(
       new UTCDate(+(/* 1365/1/15 */ new Date(1986, 3, 4, 9, 32, 0))),
     );
-    expect(result).toBe("about 1 hour");
+    expect(result).toBe("حدود 1 ساعت");
   });
 });

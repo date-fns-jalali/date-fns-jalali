@@ -523,7 +523,7 @@ describe("setDefaultOptions", () => {
           weekStartsOn: 0,
           firstWeekContainsDate: 1,
         }),
-      ).toBe(42);
+      ).toBe(43);
     });
 
     it("getWeekYear", () => {

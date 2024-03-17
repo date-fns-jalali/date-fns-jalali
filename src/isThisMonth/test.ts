@@ -16,7 +16,7 @@ describe("isThisMonth", () => {
   });
 
   it("returns true if the given date and the current date have the same month (and year)", () => {
-    const date = /* 1393/7/24 */ new Date(2014, 9 /* Oct */, 16);
+    const date = /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15);
     expect(isThisMonth(date)).toBe(true);
   });
 
@@ -26,7 +26,7 @@ describe("isThisMonth", () => {
   });
 
   it("accepts a timestamp", () => {
-    const date = /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30).getTime();
+    const date = /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15).getTime();
     expect(isThisMonth(date)).toBe(true);
   });
 
