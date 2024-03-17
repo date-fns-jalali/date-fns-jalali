@@ -7,7 +7,9 @@ import { formatDistanceToNow } from "./index.js";
 describe("formatDistanceToNow", () => {
   let clock: sinon.SinonFakeTimers;
   beforeEach(() => {
-    clock = sinon.useFakeTimers(new Date(1986, 3, 4, 10, 32, 0).getTime());
+    clock = sinon.useFakeTimers(
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0).getTime(),
+    );
   });
 
   afterEach(() => {
@@ -17,44 +19,62 @@ describe("formatDistanceToNow", () => {
   describe("seconds", () => {
     describe("when the includeSeconds option is true", () => {
       it("less than 5 seconds", () => {
-        const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 58), {
-          includeSeconds: true,
-        });
+        const result = formatDistanceToNow(
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 58),
+          {
+            includeSeconds: true,
+          },
+        );
         expect(result).toBe("less than 5 seconds");
       });
 
       it("less than 10 seconds", () => {
-        const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 52), {
-          includeSeconds: true,
-        });
+        const result = formatDistanceToNow(
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 52),
+          {
+            includeSeconds: true,
+          },
+        );
         expect(result).toBe("less than 10 seconds");
       });
 
       it("less than 20 seconds", () => {
-        const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 45), {
-          includeSeconds: true,
-        });
+        const result = formatDistanceToNow(
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 45),
+          {
+            includeSeconds: true,
+          },
+        );
         expect(result).toBe("less than 20 seconds");
       });
 
       it("half a minute", () => {
-        const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 35), {
-          includeSeconds: true,
-        });
+        const result = formatDistanceToNow(
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 35),
+          {
+            includeSeconds: true,
+          },
+        );
         expect(result).toBe("half a minute");
       });
 
       it("less than a minute", () => {
-        const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 15), {
-          includeSeconds: true,
-        });
+        const result = formatDistanceToNow(
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 15),
+          {
+            includeSeconds: true,
+          },
+        );
         expect(result).toBe("less than a minute");
       });
 
       it("1 minute", () => {
-        const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 0), {
-          includeSeconds: true,
-        });
+        const result = formatDistanceToNow(
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 0),
+          {
+            includeSeconds: true,
+          },
+        );
         expect(result).toBe("1 minute");
       });
     });
@@ -62,104 +82,138 @@ describe("formatDistanceToNow", () => {
 
   describe("minutes", () => {
     it("less than a minute", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 40));
+      const result = formatDistanceToNow(
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 40),
+      );
       expect(result).toBe("less than a minute");
     });
 
     it("1 minute", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 10));
+      const result = formatDistanceToNow(
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 10),
+      );
       expect(result).toBe("1 minute");
     });
 
     it("n minutes", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 29, 10));
+      const result = formatDistanceToNow(
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 29, 10),
+      );
       expect(result).toBe("3 minutes");
     });
   });
 
   describe("hours", () => {
     it("about 1 hour", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 4, 9, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1365/1/15 */ new Date(1986, 3, 4, 9, 32, 0),
+      );
       expect(result).toBe("about 1 hour");
     });
 
     it("about n hours", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 4, 7, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1365/1/15 */ new Date(1986, 3, 4, 7, 32, 0),
+      );
       expect(result).toBe("about 3 hours");
     });
   });
 
   describe("days", () => {
     it("1 day", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 3, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1365/1/14 */ new Date(1986, 3, 3, 10, 32, 0),
+      );
       expect(result).toBe("1 day");
     });
 
     it("n days", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 1, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1365/1/12 */ new Date(1986, 3, 1, 10, 32, 0),
+      );
       expect(result).toBe("3 days");
     });
   });
 
   describe("months", () => {
     it("about 1 month", () => {
-      const result = formatDistanceToNow(new Date(1986, 2, 4, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1364/12/13 */ new Date(1986, 2, 4, 10, 32, 0),
+      );
       expect(result).toBe("about 1 month");
     });
 
     it("n months", () => {
-      const result = formatDistanceToNow(new Date(1986, 0, 4, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1364/10/14 */ new Date(1986, 0, 4, 10, 32, 0),
+      );
       expect(result).toBe("3 months");
     });
   });
 
   describe("years", () => {
     it("about 1 year", () => {
-      const result = formatDistanceToNow(new Date(1985, 3, 4, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1364/1/15 */ new Date(1985, 3, 4, 10, 32, 0),
+      );
       expect(result).toBe("about 1 year");
     });
 
     it("over 1 year", () => {
-      const result = formatDistanceToNow(new Date(1984, 10, 4, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1363/8/13 */ new Date(1984, 10, 4, 10, 32, 0),
+      );
       expect(result).toBe("over 1 year");
     });
 
     it("almost n years", () => {
-      const result = formatDistanceToNow(new Date(1983, 4, 4, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1362/2/14 */ new Date(1983, 4, 4, 10, 32, 0),
+      );
       expect(result).toBe("almost 3 years");
     });
 
     it("about n years", () => {
-      const result = formatDistanceToNow(new Date(1983, 3, 4, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1362/1/15 */ new Date(1983, 3, 4, 10, 32, 0),
+      );
       expect(result).toBe("about 3 years");
     });
 
     it("over n years", () => {
-      const result = formatDistanceToNow(new Date(1982, 10, 4, 10, 32, 0));
+      const result = formatDistanceToNow(
+        /* 1361/8/13 */ new Date(1982, 10, 4, 10, 32, 0),
+      );
       expect(result).toBe("over 3 years");
     });
   });
 
   it("accepts a timestamp", () => {
     const result = formatDistanceToNow(
-      new Date(1986, 3, 4, 10, 31, 40).getTime(),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 40).getTime(),
     );
     expect(result).toBe("less than a minute");
   });
 
   describe("when the addSuffix option is true", () => {
     it("adds a past suffix", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 4, 10, 31, 35), {
-        includeSeconds: true,
-        addSuffix: true,
-      });
+      const result = formatDistanceToNow(
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 31, 35),
+        {
+          includeSeconds: true,
+          addSuffix: true,
+        },
+      );
       expect(result).toBe("half a minute ago");
     });
 
     it("adds a future suffix", () => {
-      const result = formatDistanceToNow(new Date(1986, 3, 4, 11, 32, 0), {
-        addSuffix: true,
-      });
+      const result = formatDistanceToNow(
+        /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
+        {
+          addSuffix: true,
+        },
+      );
       expect(result).toBe("in about 1 hour");
     });
   });
@@ -178,10 +232,13 @@ describe("formatDistanceToNow", () => {
         formatDistance: localizeDistance,
       };
 
-      const result = formatDistanceToNow(new Date(1986, 3, 4, 11, 32, 0), {
-        addSuffix: true,
-        locale: customLocale,
-      });
+      const result = formatDistanceToNow(
+        /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
+        {
+          addSuffix: true,
+          locale: customLocale,
+        },
+      );
 
       expect(result).toBe("It works!");
     });
@@ -193,7 +250,7 @@ describe("formatDistanceToNow", () => {
 
   it("respects date extensions", () => {
     const result = formatDistanceToNow(
-      new UTCDate(+new Date(1986, 3, 4, 9, 32, 0)),
+      new UTCDate(+(/* 1365/1/15 */ new Date(1986, 3, 4, 9, 32, 0))),
     );
     expect(result).toBe("about 1 hour");
   });
