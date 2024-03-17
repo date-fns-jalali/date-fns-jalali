@@ -5,11 +5,13 @@ import { endOfTomorrow } from "./index.js";
 describe("endOfTomorrow", () => {
   it("returns tomorrow with the time settled to 23:59:59.999", () => {
     const clock = sinon.useFakeTimers(
-      new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime(),
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime(),
     );
 
     const result = endOfTomorrow();
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 26, 23, 59, 59, 999));
+    expect(result).toEqual(
+      /* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26, 23, 59, 59, 999),
+    );
 
     clock.restore();
   });
