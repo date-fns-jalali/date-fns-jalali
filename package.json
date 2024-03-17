@@ -1,6 +1,6 @@
 {
   "name": "date-fns-jalali",
-  "version": "3.5.0",
+  "version": "3.5.0-0",
   "license": "MIT",
   "description": "Modern JavaScript date utility library for jalali calendar",
   "repository": "https://github.com/date-fns-jalali/date-fns-jalali",
