@@ -20,13 +20,17 @@ describe("roundToNearestMinutes", () => {
     const options: RoundToNearestMinutesOptions = { nearestTo: 4 };
 
     // low
-    expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(makeDate(8));
+    expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(
+      makeDate(8),
+    );
 
     // mid-point
     expect(roundToNearestMinutes(makeDate(10), options)).toEqual(makeDate(12));
 
     // high
-    expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(makeDate(12));
+    expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(
+      makeDate(12),
+    );
   });
 
   describe("roundingMethod", () => {
@@ -34,13 +38,19 @@ describe("roundToNearestMinutes", () => {
       const options: RoundToNearestMinutesOptions = { roundingMethod: "trunc" };
 
       // low
-      expect(roundToNearestMinutes(makeDate(15, 10), options)).toEqual(makeDate(15));
+      expect(roundToNearestMinutes(makeDate(15, 10), options)).toEqual(
+        makeDate(15),
+      );
 
       // mid-point
-      expect(roundToNearestMinutes(makeDate(15, 30), options)).toEqual(makeDate(15));
+      expect(roundToNearestMinutes(makeDate(15, 30), options)).toEqual(
+        makeDate(15),
+      );
 
       // high
-      expect(roundToNearestMinutes(makeDate(15, 59), options)).toEqual(makeDate(15));
+      expect(roundToNearestMinutes(makeDate(15, 59), options)).toEqual(
+        makeDate(15),
+      );
     });
 
     it("trunc, nearestTo === 4", () => {
@@ -50,26 +60,36 @@ describe("roundToNearestMinutes", () => {
       };
 
       // low
-      expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(makeDate(8));
+      expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(
+        makeDate(8),
+      );
 
       // mid-point
       expect(roundToNearestMinutes(makeDate(10), options)).toEqual(makeDate(8));
 
       // high
-      expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(makeDate(8));
+      expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(
+        makeDate(8),
+      );
     });
 
     it("floor, nearestTo === 1 (default)", () => {
       const options: RoundToNearestMinutesOptions = { roundingMethod: "floor" };
 
       // low
-      expect(roundToNearestMinutes(makeDate(15, 10), options)).toEqual(makeDate(15));
+      expect(roundToNearestMinutes(makeDate(15, 10), options)).toEqual(
+        makeDate(15),
+      );
 
       // mid-point
-      expect(roundToNearestMinutes(makeDate(15, 30), options)).toEqual(makeDate(15));
+      expect(roundToNearestMinutes(makeDate(15, 30), options)).toEqual(
+        makeDate(15),
+      );
 
       // high
-      expect(roundToNearestMinutes(makeDate(15, 59), options)).toEqual(makeDate(15));
+      expect(roundToNearestMinutes(makeDate(15, 59), options)).toEqual(
+        makeDate(15),
+      );
     });
 
     it("floor, nearestTo === 4", () => {
@@ -79,26 +99,36 @@ describe("roundToNearestMinutes", () => {
       };
 
       // low
-      expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(makeDate(8));
+      expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(
+        makeDate(8),
+      );
 
       // mid-point
       expect(roundToNearestMinutes(makeDate(10), options)).toEqual(makeDate(8));
 
       // high
-      expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(makeDate(8));
+      expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(
+        makeDate(8),
+      );
     });
 
     it("ceil, nearestTo === 1 (default)", () => {
       const options: RoundToNearestMinutesOptions = { roundingMethod: "ceil" };
 
       // low
-      expect(roundToNearestMinutes(makeDate(15, 10), options)).toEqual(makeDate(16));
+      expect(roundToNearestMinutes(makeDate(15, 10), options)).toEqual(
+        makeDate(16),
+      );
 
       // mid-point
-      expect(roundToNearestMinutes(makeDate(15, 30), options)).toEqual(makeDate(16));
+      expect(roundToNearestMinutes(makeDate(15, 30), options)).toEqual(
+        makeDate(16),
+      );
 
       // high
-      expect(roundToNearestMinutes(makeDate(15, 59), options)).toEqual(makeDate(16));
+      expect(roundToNearestMinutes(makeDate(15, 59), options)).toEqual(
+        makeDate(16),
+      );
     });
 
     it("ceil, nearestTo === 4", () => {
@@ -108,26 +138,38 @@ describe("roundToNearestMinutes", () => {
       };
 
       // low
-      expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(makeDate(12));
+      expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(
+        makeDate(12),
+      );
 
       // mid-point
-      expect(roundToNearestMinutes(makeDate(10), options)).toEqual(makeDate(12));
+      expect(roundToNearestMinutes(makeDate(10), options)).toEqual(
+        makeDate(12),
+      );
 
       // high
-      expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(makeDate(12));
+      expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(
+        makeDate(12),
+      );
     });
 
     it("round, nearestTo === 1 (default)", () => {
       const options: RoundToNearestMinutesOptions = { roundingMethod: "round" };
 
       // low
-      expect(roundToNearestMinutes(makeDate(15, 10), options)).toEqual(makeDate(15));
+      expect(roundToNearestMinutes(makeDate(15, 10), options)).toEqual(
+        makeDate(15),
+      );
 
       // mid-point
-      expect(roundToNearestMinutes(makeDate(15, 30), options)).toEqual(makeDate(16));
+      expect(roundToNearestMinutes(makeDate(15, 30), options)).toEqual(
+        makeDate(16),
+      );
 
       // high
-      expect(roundToNearestMinutes(makeDate(15, 59), options)).toEqual(makeDate(16));
+      expect(roundToNearestMinutes(makeDate(15, 59), options)).toEqual(
+        makeDate(16),
+      );
     });
 
     it("round, nearestTo === 4", () => {
@@ -137,25 +179,37 @@ describe("roundToNearestMinutes", () => {
       };
 
       // low
-      expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(makeDate(8));
+      expect(roundToNearestMinutes(makeDate(9, 59), options)).toEqual(
+        makeDate(8),
+      );
 
       // mid-point
-      expect(roundToNearestMinutes(makeDate(10), options)).toEqual(makeDate(12));
+      expect(roundToNearestMinutes(makeDate(10), options)).toEqual(
+        makeDate(12),
+      );
 
       // high
-      expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(makeDate(12));
+      expect(roundToNearestMinutes(makeDate(10, 30), options)).toEqual(
+        makeDate(12),
+      );
     });
   });
 
   describe("edge cases", () => {
     it("rounds up to the next day", () => {
-      expect(roundToNearestMinutes(new Date(2014, 6, 10, 23, 59, 59))).toEqual(new Date(2014, 6, 11));
+      expect(roundToNearestMinutes(new Date(2014, 6, 10, 23, 59, 59))).toEqual(
+        new Date(2014, 6, 11),
+      );
     });
 
     it("ceils correctly with 0 seconds and 1 millisecond", () => {
-      expect(roundToNearestMinutes(makeDate(15, 0, 0), { roundingMethod: "ceil" })).toEqual(makeDate(15));
+      expect(
+        roundToNearestMinutes(makeDate(15, 0, 0), { roundingMethod: "ceil" }),
+      ).toEqual(makeDate(15));
 
-      expect(roundToNearestMinutes(makeDate(15, 0, 1), { roundingMethod: "ceil" })).toEqual(makeDate(16));
+      expect(
+        roundToNearestMinutes(makeDate(15, 0, 1), { roundingMethod: "ceil" }),
+      ).toEqual(makeDate(16));
     });
   });
 

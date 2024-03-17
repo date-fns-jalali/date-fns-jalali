@@ -13,21 +13,27 @@ describe("addBusinessDays", () => {
   });
 
   it("returns the Monday when 1 day is added on the Friday", () => {
-    expect(addBusinessDays(new Date(2020, 0 /* Jan */, 10), 1)).toEqual(// Friday
-    // Monday
-    new Date(2020, 0 /* Jan */, 13));
+    expect(addBusinessDays(new Date(2020, 0 /* Jan */, 10), 1)).toEqual(
+      // Friday
+      // Monday
+      new Date(2020, 0 /* Jan */, 13),
+    );
   });
 
   it("returns the Monday when 1 day is added on the Satuday", () => {
-    expect(addBusinessDays(new Date(2020, 0 /* Jan */, 11), 1)).toEqual(// Saturday
-    // Monday
-    new Date(2020, 0 /* Jan */, 13));
+    expect(addBusinessDays(new Date(2020, 0 /* Jan */, 11), 1)).toEqual(
+      // Saturday
+      // Monday
+      new Date(2020, 0 /* Jan */, 13),
+    );
   });
 
   it("returns the Monday when 1 day is added on the Sunday", () => {
-    expect(addBusinessDays(new Date(2020, 0 /* Jan */, 12), 1)).toEqual(// Sunday
-    // Monday
-    new Date(2020, 0 /* Jan */, 13));
+    expect(addBusinessDays(new Date(2020, 0 /* Jan */, 12), 1)).toEqual(
+      // Sunday
+      // Monday
+      new Date(2020, 0 /* Jan */, 13),
+    );
   });
 
   it("can handle a large number of business days", () => {

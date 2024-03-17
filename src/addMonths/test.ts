@@ -64,7 +64,9 @@ describe("addMonths", () => {
     () => {
       const date = dstTransitions.start;
       const result = addMonths(date!, 2);
-      expect(result).toEqual(override(date!, date!.getFullYear(), date!.getMonth() + 2));
+      expect(result).toEqual(
+        override(date!, date!.getFullYear(), date!.getMonth() + 2),
+      );
     },
   );
 
@@ -93,11 +95,13 @@ describe("addMonths", () => {
     () => {
       const date = dstTransitions.end;
       const result = addMonths(date!, 2);
-      expect(result).toEqual(override(
-        date!,
-        date!.getFullYear() + (date!.getMonth() >= 10 ? 1 : 0),
-        (date!.getMonth() + 2) % 12, // protect against wrap for Nov.
-      ));
+      expect(result).toEqual(
+        override(
+          date!,
+          date!.getFullYear() + (date!.getMonth() >= 10 ? 1 : 0),
+          (date!.getMonth() + 2) % 12, // protect against wrap for Nov.
+        ),
+      );
     },
   );
 
@@ -106,11 +110,13 @@ describe("addMonths", () => {
     () => {
       const date = new Date(dstTransitions.end!.getTime() - 0.5 * HOUR);
       const result = addMonths(date, 2);
-      expect(result).toEqual(override(
-        date,
-        date.getFullYear() + (date.getMonth() >= 10 ? 1 : 0),
-        (date.getMonth() + 2) % 12, // protect against wrap for Nov.
-      ));
+      expect(result).toEqual(
+        override(
+          date,
+          date.getFullYear() + (date.getMonth() >= 10 ? 1 : 0),
+          (date.getMonth() + 2) % 12, // protect against wrap for Nov.
+        ),
+      );
     },
   );
 
@@ -119,11 +125,13 @@ describe("addMonths", () => {
     () => {
       const date = new Date(dstTransitions.end!.getTime() - 1 * HOUR);
       const result = addMonths(date, 2);
-      expect(result).toEqual(override(
-        date,
-        date.getFullYear() + (date.getMonth() >= 10 ? 1 : 0),
-        (date.getMonth() + 2) % 12, // protect against wrap for Nov.
-      ));
+      expect(result).toEqual(
+        override(
+          date,
+          date.getFullYear() + (date.getMonth() >= 10 ? 1 : 0),
+          (date.getMonth() + 2) % 12, // protect against wrap for Nov.
+        ),
+      );
     },
   );
 

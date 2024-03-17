@@ -12,7 +12,9 @@ describe("set", () => {
       seconds: 12,
       milliseconds: 12,
     });
-    expect(result.toString()).toEqual(new Date(2014, 8 /* Sep */, 20, 12, 12, 12, 12).toString());
+    expect(result.toString()).toEqual(
+      new Date(2014, 8 /* Sep */, 20, 12, 12, 12, 12).toString(),
+    );
   });
 
   it("sets year", () => {

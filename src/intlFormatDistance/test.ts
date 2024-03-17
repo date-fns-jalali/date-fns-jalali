@@ -722,72 +722,88 @@ describe("intlFormatDistance", () => {
 
     describe("errors", () => {
       it("checks the first date", () => {
-        expect(intlFormatDistance.bind(
-          null,
-          new Date(NaN),
-          new Date(1986, 3, 4, 10, 30, 0),
-        )).toThrow(RangeError);
+        expect(
+          intlFormatDistance.bind(
+            null,
+            new Date(NaN),
+            new Date(1986, 3, 4, 10, 30, 0),
+          ),
+        ).toThrow(RangeError);
       });
 
       it("checks the second date", () => {
-        expect(intlFormatDistance.bind(
-          null,
-          new Date(1986, 3, 4, 10, 30, 0),
-          new Date(NaN),
-        )).toThrow(RangeError);
+        expect(
+          intlFormatDistance.bind(
+            null,
+            new Date(1986, 3, 4, 10, 30, 0),
+            new Date(NaN),
+          ),
+        ).toThrow(RangeError);
       });
 
       it("checks both dates", () => {
-        expect(intlFormatDistance.bind(null, new Date(NaN), new Date(NaN))).toThrow(RangeError);
+        expect(
+          intlFormatDistance.bind(null, new Date(NaN), new Date(NaN)),
+        ).toThrow(RangeError);
       });
 
       it("checks unit", () => {
-        expect(intlFormatDistance.bind(
-          null,
-          new Date(1986, 3, 4, 10, 30, 0),
-          new Date(1986, 3, 4, 10, 30, 0),
-          // @ts-expect-error - We're testing wrong value
-          { unit: "wrongValue" },
-        )).toThrow(RangeError);
+        expect(
+          intlFormatDistance.bind(
+            null,
+            new Date(1986, 3, 4, 10, 30, 0),
+            new Date(1986, 3, 4, 10, 30, 0),
+            // @ts-expect-error - We're testing wrong value
+            { unit: "wrongValue" },
+          ),
+        ).toThrow(RangeError);
       });
 
       it("checks locale", () => {
-        expect(intlFormatDistance.bind(
-          null,
-          new Date(1986, 3, 4, 10, 30, 0),
-          new Date(1986, 3, 4, 10, 30, 0),
-          { locale: "wrongValue" },
-        )).toThrow(RangeError);
+        expect(
+          intlFormatDistance.bind(
+            null,
+            new Date(1986, 3, 4, 10, 30, 0),
+            new Date(1986, 3, 4, 10, 30, 0),
+            { locale: "wrongValue" },
+          ),
+        ).toThrow(RangeError);
       });
 
       it("checks localeMatcher", () => {
-        expect(intlFormatDistance.bind(
-          null,
-          new Date(1986, 3, 4, 10, 30, 0),
-          new Date(1986, 3, 4, 10, 30, 0),
-          // @ts-expect-error - We're testing wrong value
-          { localeMatcher: "wrongValue" },
-        )).toThrow(RangeError);
+        expect(
+          intlFormatDistance.bind(
+            null,
+            new Date(1986, 3, 4, 10, 30, 0),
+            new Date(1986, 3, 4, 10, 30, 0),
+            // @ts-expect-error - We're testing wrong value
+            { localeMatcher: "wrongValue" },
+          ),
+        ).toThrow(RangeError);
       });
 
       it("checks numeric", () => {
-        expect(intlFormatDistance.bind(
-          null,
-          new Date(1986, 3, 4, 10, 30, 0),
-          new Date(1986, 3, 4, 10, 30, 0),
-          // @ts-expect-error - We're testing wrong value
-          { numeric: "wrongValue" },
-        )).toThrow(RangeError);
+        expect(
+          intlFormatDistance.bind(
+            null,
+            new Date(1986, 3, 4, 10, 30, 0),
+            new Date(1986, 3, 4, 10, 30, 0),
+            // @ts-expect-error - We're testing wrong value
+            { numeric: "wrongValue" },
+          ),
+        ).toThrow(RangeError);
       });
 
       it("checks style", () => {
-        expect(intlFormatDistance.bind(
-          null,
-          new Date(1986, 3, 4, 10, 30, 0),
-          new Date(1986, 3, 4, 10, 30, 0),
-          // @ts-expect-error - We're testing wrong value
-          { style: "wrongValue" },
-        )).toThrow(RangeError);
+        expect(
+          intlFormatDistance.bind(
+            null,
+            new Date(1986, 3, 4, 10, 30, 0),
+            new Date(1986, 3, 4, 10, 30, 0),
+            // @ts-expect-error - We're testing wrong value
+            { style: "wrongValue" },
+          ),
+        ).toThrow(RangeError);
       });
     });
   });

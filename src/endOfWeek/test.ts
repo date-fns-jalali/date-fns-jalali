@@ -60,7 +60,9 @@ describe("endOfWeek", () => {
       it("it returns the end of a week", () => {
         const date = new Date(2014, 9 /* Oct */, 8);
         const result = endOfWeek(date, { weekStartsOn: 3 });
-        expect(result).toEqual(new Date(2014, 9 /* Oct */, 14, 23, 59, 59, 999));
+        expect(result).toEqual(
+          new Date(2014, 9 /* Oct */, 14, 23, 59, 59, 999),
+        );
       });
     });
 
@@ -68,7 +70,9 @@ describe("endOfWeek", () => {
       it("it returns the end of a week", () => {
         const date = new Date(2014, 9 /* Oct */, 10);
         const result = endOfWeek(date, { weekStartsOn: 3 });
-        expect(result).toEqual(new Date(2014, 9 /* Oct */, 14, 23, 59, 59, 999));
+        expect(result).toEqual(
+          new Date(2014, 9 /* Oct */, 14, 23, 59, 59, 999),
+        );
       });
     });
 

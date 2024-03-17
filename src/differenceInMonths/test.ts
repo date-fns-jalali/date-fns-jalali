@@ -145,27 +145,37 @@ describe("differenceInMonths", () => {
 
   describe("edge cases", () => {
     it("returns the number of full months between the given dates - end of Feb", () => {
-      expect(differenceInMonths(
-        new Date(2012, 1 /* Feb */, 29, 9, 0, 0),
-        new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
-      )).toBe(0);
-      expect(differenceInMonths(
-        new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
-        new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
-      )).toBe(0);
-      expect(differenceInMonths(
-        new Date(2012, 1 /* Feb */, 27, 9, 0, 0),
-        new Date(2012, 1 /* Feb */, 27, 10, 0, 0),
-      )).toBe(0);
-      expect(differenceInMonths(
-        new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
-        new Date(2012, 1 /* Feb */, 28, 10, 0, 0),
-      )).toBe(0);
+      expect(
+        differenceInMonths(
+          new Date(2012, 1 /* Feb */, 29, 9, 0, 0),
+          new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
+        ),
+      ).toBe(0);
+      expect(
+        differenceInMonths(
+          new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
+          new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
+        ),
+      ).toBe(0);
+      expect(
+        differenceInMonths(
+          new Date(2012, 1 /* Feb */, 27, 9, 0, 0),
+          new Date(2012, 1 /* Feb */, 27, 10, 0, 0),
+        ),
+      ).toBe(0);
+      expect(
+        differenceInMonths(
+          new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
+          new Date(2012, 1 /* Feb */, 28, 10, 0, 0),
+        ),
+      ).toBe(0);
     });
 
-    expect(differenceInMonths(
-      new Date(2021, 1 /* Feb */, 28, 7, 23, 7),
-      new Date(2021, 1 /* Feb */, 28, 7, 38, 18),
-    )).toBe(0);
+    expect(
+      differenceInMonths(
+        new Date(2021, 1 /* Feb */, 28, 7, 23, 7),
+        new Date(2021, 1 /* Feb */, 28, 7, 38, 18),
+      ),
+    ).toBe(0);
   });
 });
