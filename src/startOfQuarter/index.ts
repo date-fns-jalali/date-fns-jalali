@@ -1,5 +1,8 @@
 import { toDate } from "../toDate/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index";
+
 /**
  * @name startOfQuarter
  * @category Quarter Helpers
@@ -24,9 +27,9 @@ export function startOfQuarter<DateType extends Date>(
   date: DateType | number | string,
 ): DateType {
   const _date = toDate(date);
-  const currentMonth = _date.getMonth();
+  const currentMonth = coreGetMonth(_date);
   const month = currentMonth - (currentMonth % 3);
-  _date.setMonth(month, 1);
+  coreSetMonth(_date, month, 1);
   _date.setHours(0, 0, 0, 0);
   return _date;
 }
