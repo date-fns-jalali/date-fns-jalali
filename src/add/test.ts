@@ -4,66 +4,85 @@ import { getDstTransitions } from "../../test/dst/tzOffsetTransitions.js";
 
 describe("add", () => {
   it("adds the values from the given object", () => {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10, 19, 50), {
-      years: 2,
-      months: 9,
-      weeks: 1,
-      days: 7,
-      hours: 5,
-      minutes: 9,
-      seconds: 30,
-    });
-    expect(result).toEqual(new Date(2017, 5 /* June */, 15, 15, 29, 20));
+    const result = add(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10, 19, 50),
+      {
+        years: 2,
+        months: 9,
+        weeks: 1,
+        days: 7,
+        hours: 5,
+        minutes: 9,
+        seconds: 30,
+      },
+    );
+    expect(result).toEqual(
+      /* 1396/3/25 */ new Date(2017, 5 /* June */, 15, 15, 29, 20),
+    );
   });
 
   it("supports an undefined value in the duration object", () => {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10, 19, 50), {
-      years: undefined,
-      months: 9,
-      weeks: 1,
-      days: 7,
-      hours: 5,
-      minutes: 9,
-      seconds: 30,
-    });
-    expect(result).toEqual(new Date(2015, 5 /* June */, 15, 15, 29, 20));
+    const result = add(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10, 19, 50),
+      {
+        years: undefined,
+        months: 9,
+        weeks: 1,
+        days: 7,
+        hours: 5,
+        minutes: 9,
+        seconds: 30,
+      },
+    );
+    expect(result).toEqual(
+      /* 1394/3/25 */ new Date(2015, 5 /* June */, 15, 15, 29, 20),
+    );
   });
 
   it("returns same date object when passed empty duration values", () => {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {
-      years: undefined,
-      months: undefined,
-      weeks: undefined,
-      days: undefined,
-      hours: undefined,
-      minutes: undefined,
-      seconds: undefined,
-    });
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
+    const result = add(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10).getTime(),
+      {
+        years: undefined,
+        months: undefined,
+        weeks: undefined,
+        days: undefined,
+        hours: undefined,
+        minutes: undefined,
+        seconds: undefined,
+      },
+    );
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10));
   });
 
   it("returns same date object when passed undefined duration values", () => {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {});
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
+    const result = add(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10).getTime(),
+      {},
+    );
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10));
   });
 
   it("accepts a timestamp", () => {
-    const result = add(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {
-      hours: 4,
-    });
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 14));
+    const result = add(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10).getTime(),
+      {
+        hours: 4,
+      },
+    );
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 14));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1, 10);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10);
     add(date, { hours: 4 });
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10));
   });
 
   it("works well if the desired month has fewer days and the provided date is in the last day of a month", () => {
-    const date = new Date(2014, 11 /* Dec */, 31);
+    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31);
     const result = add(date, { months: 9 });
-    expect(result).toEqual(new Date(2015, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1394/7/8 */ new Date(2015, 8 /* Sep */, 30));
   });
 
   const dstTransitions = getDstTransitions(2017);

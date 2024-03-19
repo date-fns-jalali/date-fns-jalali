@@ -6,7 +6,9 @@ import { isYesterday } from "./index.js";
 describe("isYesterday", () => {
   let clock: sinon.SinonFakeTimers;
   beforeEach(() => {
-    clock = sinon.useFakeTimers(new Date(2014, 8 /* Aug */, 25).getTime());
+    clock = sinon.useFakeTimers(
+      /* 1393/7/3 */ new Date(2014, 8 /* Aug */, 25).getTime(),
+    );
   });
 
   afterEach(() => {
@@ -14,23 +16,27 @@ describe("isYesterday", () => {
   });
 
   it("returns true if the given date is yesterday", () => {
-    const result = isYesterday(new Date(2014, 8 /* Sep */, 24));
+    const result = isYesterday(/* 1393/7/2 */ new Date(2014, 8 /* Sep */, 24));
     expect(result).toBe(true);
   });
 
   it("returns false if the given date is not yesterday", () => {
-    const result = isYesterday(new Date(2014, 8 /* Sep */, 25));
+    const result = isYesterday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const result = isYesterday(new Date(2014, 8 /* Sep */, 24).getTime());
+    const result = isYesterday(
+      /* 1393/7/2 */ new Date(2014, 8 /* Sep */, 24).getTime(),
+    );
     expect(result).toBe(true);
   });
 
   it("respects date extensions", () => {
-    expect(isYesterday(new UTCDate(+new Date(2014, 8 /* Aug */, 24)))).toBe(
-      true,
-    );
+    expect(
+      isYesterday(
+        new UTCDate(+(/* 1393/7/2 */ new Date(2014, 8 /* Aug */, 24))),
+      ),
+    ).toBe(true);
   });
 });
