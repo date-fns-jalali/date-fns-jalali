@@ -3,25 +3,31 @@ import { subQuarters } from "./index.js";
 
 describe("subQuarters", () => {
   it("subtracts the given number of quarters", () => {
-    const result = subQuarters(new Date(2014, 8 /* Sep */, 1), 3);
-    expect(result).toEqual(new Date(2013, 11 /* Dec */, 1));
+    const result = subQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      3,
+    );
+    expect(result).toEqual(/* 1392/9/10 */ new Date(2013, 11 /* Dec */, 1));
   });
 
   it("accepts a timestamp", () => {
-    const result = subQuarters(new Date(2014, 8 /* Sep */, 1).getTime(), 4);
-    expect(result).toEqual(new Date(2013, 8 /* Sep */, 1));
+    const result = subQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      4,
+    );
+    expect(result).toEqual(/* 1392/6/10 */ new Date(2013, 8 /* Sep */, 1));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     subQuarters(date, 3);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("works well if the desired month has fewer days and the provided date is in the last day of a month", () => {
-    const date = new Date(2014, 11 /* Dec */, 31);
+    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31);
     const result = subQuarters(date, 1);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
   });
 
   it("handles dates before 100 AD", () => {
@@ -41,7 +47,10 @@ describe("subQuarters", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = subQuarters(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = subQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 });

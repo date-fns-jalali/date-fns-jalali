@@ -3,19 +3,22 @@ import { setDate } from "./index.js";
 
 describe("setDate", () => {
   it("sets the day of the month", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1), 30);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 30));
+    const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 30);
+    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
   });
 
   it("accepts a timestamp", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1).getTime(), 25);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 25));
+    const result = setDate(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      25,
+    );
+    expect(result).toEqual(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     setDate(date, 20);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -24,7 +27,7 @@ describe("setDate", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN);
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 });

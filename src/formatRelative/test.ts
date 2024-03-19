@@ -2,10 +2,18 @@ import { describe, expect, it } from "vitest";
 import { formatRelative } from "./index.js";
 
 describe("formatRelative", () => {
-  const baseDate = new Date(1986, 3 /* Apr */, 4, 10, 32, 0, 900);
+  const baseDate = /* 1365/1/15 */ new Date(
+    1986,
+    3 /* Apr */,
+    4,
+    10,
+    32,
+    0,
+    900,
+  );
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 3 /* Apr */, 4);
+    const date = /* 1393/1/15 */ new Date(2014, 3 /* Apr */, 4);
     expect(formatRelative(date.getTime(), baseDate.getTime())).toBe(
       "04/04/2014",
     );
@@ -13,20 +21,23 @@ describe("formatRelative", () => {
 
   it("before the last week", () => {
     const result = formatRelative(
-      new Date(1986, 2 /* Mar */, 28, 16, 50),
+      /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50),
       baseDate,
     );
     expect(result).toBe("03/28/1986");
   });
 
   it("last week", () => {
-    const result = formatRelative(new Date(1986, 3 /* Apr */, 1), baseDate);
+    const result = formatRelative(
+      /* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1),
+      baseDate,
+    );
     expect(result).toBe("last Tuesday at 12:00 AM");
   });
 
   it("yesterday", () => {
     const result = formatRelative(
-      new Date(1986, 3 /* Apr */, 3, 22, 22),
+      /* 1365/1/14 */ new Date(1986, 3 /* Apr */, 3, 22, 22),
       baseDate,
     );
     expect(result).toBe("yesterday at 10:22 PM");
@@ -34,7 +45,7 @@ describe("formatRelative", () => {
 
   it("today", () => {
     const result = formatRelative(
-      new Date(1986, 3 /* Apr */, 4, 16, 50),
+      /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 16, 50),
       baseDate,
     );
     expect(result).toBe("today at 4:50 PM");
@@ -42,7 +53,7 @@ describe("formatRelative", () => {
 
   it("tomorrow", () => {
     const result = formatRelative(
-      new Date(1986, 3 /* Apr */, 5, 7, 30),
+      /* 1365/1/16 */ new Date(1986, 3 /* Apr */, 5, 7, 30),
       baseDate,
     );
     expect(result).toBe("tomorrow at 7:30 AM");
@@ -50,7 +61,7 @@ describe("formatRelative", () => {
 
   it("next week", () => {
     const result = formatRelative(
-      new Date(1986, 3 /* Apr */, 6, 12, 0),
+      /* 1365/1/17 */ new Date(1986, 3 /* Apr */, 6, 12, 0),
       baseDate,
     );
     expect(result).toBe("Sunday at 12:00 PM");
@@ -58,7 +69,7 @@ describe("formatRelative", () => {
 
   it("after the next week", () => {
     const result = formatRelative(
-      new Date(1986, 3 /* Apr */, 11, 16, 50),
+      /* 1365/1/22 */ new Date(1986, 3 /* Apr */, 11, 16, 50),
       baseDate,
     );
     expect(result).toBe("04/11/1986");
@@ -75,7 +86,7 @@ describe("formatRelative", () => {
       expect(
         formatRelative.bind(
           null,
-          new Date(2017, 0 /* Jan */, 1),
+          /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
           new Date(NaN),
         ),
       ).toThrow(RangeError);
@@ -113,7 +124,7 @@ describe("formatRelative", () => {
         },
       };
       const result = formatRelative(
-        new Date(1986, 2 /* Mar */, 28, 16, 50),
+        /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50),
         baseDate,
         {
           // @ts-expect-error - It's ok to have incomplete locale

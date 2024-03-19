@@ -13,7 +13,9 @@ describe("isValid", () => {
   });
 
   it("accepts a timestamp", () => {
-    expect(isValid(new Date(2014, 1 /* Feb */, 11).getTime())).toBe(true);
+    expect(
+      isValid(/* 1392/11/22 */ new Date(2014, 1 /* Feb */, 11).getTime()),
+    ).toBe(true);
     expect(isValid(NaN)).toBe(false);
   });
 

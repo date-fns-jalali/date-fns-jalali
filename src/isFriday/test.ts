@@ -3,17 +3,19 @@ import { isFriday } from "./index.js";
 
 describe("isFriday", () => {
   it("returns true if the given date is Friday", () => {
-    const result = isFriday(new Date(2014, 8 /* Sep */, 26));
+    const result = isFriday(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26));
     expect(result).toBe(true);
   });
 
   it("returns false if the given date is not Friday", () => {
-    const result = isFriday(new Date(2014, 8 /* Sep */, 25));
+    const result = isFriday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const result = isFriday(new Date(2014, 1 /* Feb */, 14).getTime());
+    const result = isFriday(
+      /* 1392/11/25 */ new Date(2014, 1 /* Feb */, 14).getTime(),
+    );
     expect(result).toBe(true);
   });
 

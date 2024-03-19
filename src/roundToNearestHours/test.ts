@@ -192,8 +192,10 @@ describe("roundToNearestHours", () => {
   describe("edge cases", () => {
     it("rounds up to the next day", () => {
       expect(
-        roundToNearestHours(new Date(2014, 6, 10, 23, 59, 59, 999)),
-      ).toEqual(new Date(2014, 6, 11));
+        roundToNearestHours(
+          /* 1393/4/19 */ new Date(2014, 6, 10, 23, 59, 59, 999),
+        ),
+      ).toEqual(/* 1393/4/20 */ new Date(2014, 6, 11));
     });
 
     it("ceils correctly with 0 seconds and 1 millisecond", () => {
@@ -210,37 +212,51 @@ describe("roundToNearestHours", () => {
 
   describe("examples", () => {
     it("example 1", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56));
-      expect(result).toEqual(new Date(2014, 6, 10, 13));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 34, 56),
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 13));
     });
 
     it("example 2", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
-        nearestTo: 6,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 12));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 34, 56),
+        {
+          nearestTo: 6,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12));
     });
 
     it("example 3", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
-        nearestTo: 8,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 16));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 34, 56),
+        {
+          nearestTo: 8,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 16));
     });
 
     it("example 4", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 1, 23, 45), {
-        roundingMethod: "ceil",
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 2));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 1, 23, 45),
+        {
+          roundingMethod: "ceil",
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 2));
     });
 
     it("example 5", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
-        roundingMethod: "floor",
-        nearestTo: 8,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 8));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 34, 56),
+        {
+          roundingMethod: "floor",
+          nearestTo: 8,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 8));
     });
   });
 });

@@ -3,12 +3,14 @@ import { getDayOfYear } from "./index.js";
 
 describe("getDayOfYear", () => {
   it("returns the day of the year of the given date", () => {
-    const result = getDayOfYear(new Date(2014, 6 /* Jul */, 2));
+    const result = getDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
     expect(result).toBe(183);
   });
 
   it("accepts a timestamp", () => {
-    const result = getDayOfYear(new Date(2014, 0 /* Jan */, 2).getTime());
+    const result = getDayOfYear(
+      /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2).getTime(),
+    );
     expect(result).toBe(2);
   });
 

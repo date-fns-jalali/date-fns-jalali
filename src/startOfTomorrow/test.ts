@@ -5,11 +5,11 @@ import { startOfTomorrow } from "./index.js";
 describe("startOfTomorrow", () => {
   it("returns the start of tomorrow", () => {
     const clock = sinon.useFakeTimers(
-      new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime(),
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500).getTime(),
     );
 
     const result = startOfTomorrow();
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 26));
+    expect(result).toEqual(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26));
 
     clock.restore();
   });

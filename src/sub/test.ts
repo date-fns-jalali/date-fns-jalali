@@ -3,66 +3,85 @@ import { sub } from "./index.js";
 
 describe("sub", () => {
   it("subtracts the duration from the given date", () => {
-    const result = sub(new Date(2017, 5 /* June */, 15, 15, 29, 20), {
-      years: 2,
-      months: 9,
-      weeks: 1,
-      days: 7,
-      hours: 5,
-      minutes: 9,
-      seconds: 30,
-    });
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 10, 19, 50));
+    const result = sub(
+      /* 1396/3/25 */ new Date(2017, 5 /* June */, 15, 15, 29, 20),
+      {
+        years: 2,
+        months: 9,
+        weeks: 1,
+        days: 7,
+        hours: 5,
+        minutes: 9,
+        seconds: 30,
+      },
+    );
+    expect(result).toEqual(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10, 19, 50),
+    );
   });
 
   it("supports an undefined value in the duration object", () => {
-    const result = sub(new Date(2017, 5 /* June */, 15, 15, 29, 20), {
-      years: undefined,
-      months: 9,
-      weeks: 1,
-      days: 7,
-      hours: 5,
-      minutes: 9,
-      seconds: 30,
-    });
-    expect(result).toEqual(new Date(2016, 8 /* Sep */, 1, 10, 19, 50));
+    const result = sub(
+      /* 1396/3/25 */ new Date(2017, 5 /* June */, 15, 15, 29, 20),
+      {
+        years: undefined,
+        months: 9,
+        weeks: 1,
+        days: 7,
+        hours: 5,
+        minutes: 9,
+        seconds: 30,
+      },
+    );
+    expect(result).toEqual(
+      /* 1395/6/11 */ new Date(2016, 8 /* Sep */, 1, 10, 19, 50),
+    );
   });
 
   it("returns same date object when passed empty duration values", () => {
-    const result = sub(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {
-      years: undefined,
-      months: undefined,
-      weeks: undefined,
-      days: undefined,
-      hours: undefined,
-      minutes: undefined,
-      seconds: undefined,
-    });
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
+    const result = sub(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10).getTime(),
+      {
+        years: undefined,
+        months: undefined,
+        weeks: undefined,
+        days: undefined,
+        hours: undefined,
+        minutes: undefined,
+        seconds: undefined,
+      },
+    );
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10));
   });
 
   it("returns same date object when passed empty duration", () => {
-    const result = sub(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {});
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
+    const result = sub(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10).getTime(),
+      {},
+    );
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10));
   });
 
   it("accepts a timestamp", () => {
-    const result = sub(new Date(2014, 8 /* Sep */, 1, 14).getTime(), {
-      hours: 4,
-    });
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
+    const result = sub(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 14).getTime(),
+      {
+        hours: 4,
+      },
+    );
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1, 10);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10);
     sub(date, { hours: 4 });
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 10));
   });
 
   it("works well if the desired month has fewer days and the provided date is in the last day of a month", () => {
-    const date = new Date(2014, 11 /* Dec */, 31);
+    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31);
     const result = sub(date, { months: 3 });
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
   });
 
   it("handles dates before 100 AD", () => {

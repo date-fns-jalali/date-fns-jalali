@@ -3,24 +3,30 @@ import { addYears } from "./index.js";
 
 describe("addYears", () => {
   it("adds the given number of years", () => {
-    const result = addYears(new Date(2014, 8 /* Sep */, 1), 5);
-    expect(result).toEqual(new Date(2019, 8 /* Sep */, 1));
+    const result = addYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5);
+    expect(result).toEqual(/* 1398/6/10 */ new Date(2019, 8 /* Sep */, 1));
   });
 
   it("accepts a timestamp", () => {
-    const result = addYears(new Date(2014, 8 /* Sep */, 1).getTime(), 12);
-    expect(result).toEqual(new Date(2026, 8 /* Sep */, 1));
+    const result = addYears(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      12,
+    );
+    expect(result).toEqual(/* 1405/6/10 */ new Date(2026, 8 /* Sep */, 1));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     addYears(date, 12);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("handles the leap years properly", () => {
-    const result = addYears(new Date(2016, 1 /* Feb */, 29), 1);
-    expect(result).toEqual(new Date(2017, 1 /* Feb */, 28));
+    const result = addYears(
+      /* 1394/12/10 */ new Date(2016, 1 /* Feb */, 29),
+      1,
+    );
+    expect(result).toEqual(/* 1395/12/10 */ new Date(2017, 1 /* Feb */, 28));
   });
 
   it("handles dates before 100 AD", () => {
@@ -40,7 +46,10 @@ describe("addYears", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addYears(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = addYears(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 });

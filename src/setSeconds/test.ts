@@ -4,24 +4,30 @@ import { setSeconds } from "./index.js";
 describe("setSeconds", () => {
   it("sets the seconds", () => {
     const result = setSeconds(
-      new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
       45,
     );
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 11, 30, 45, 500));
+    expect(result).toEqual(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 45, 500),
+    );
   });
 
   it("accepts a timestamp", () => {
     const result = setSeconds(
-      new Date(2014, 8 /* Sep */, 1, 11, 30, 15).getTime(),
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 15).getTime(),
       45,
     );
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 11, 30, 45));
+    expect(result).toEqual(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 45),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1, 11, 30, 40);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40);
     setSeconds(date, 15);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1, 11, 30, 40));
+    expect(date).toEqual(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -31,7 +37,7 @@ describe("setSeconds", () => {
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
     const result = setSeconds(
-      new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30, 40, 500),
       NaN,
     );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);

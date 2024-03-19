@@ -2,10 +2,10 @@ import { describe, expect, it } from "vitest";
 import { lightFormat } from "./index.js";
 
 describe("lightFormat", () => {
-  const date = new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123);
+  const date = /* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123);
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 3, 4).getTime();
+    const date = /* 1393/1/15 */ new Date(2014, 3, 4).getTime();
     expect(lightFormat(date, "yyyy-MM-dd")).toBe("2014-04-04");
   });
 
@@ -15,12 +15,12 @@ describe("lightFormat", () => {
   });
 
   it('two single quote characters are transformed into a "real" single quote', () => {
-    const date = new Date(2014, 3, 4, 5);
+    const date = /* 1393/1/15 */ new Date(2014, 3, 4, 5);
     expect(lightFormat(date, "''h 'o''clock'''")).toBe("'5 o'clock'");
   });
 
   it("accepts new line charactor", () => {
-    const date = new Date(2014, 3, 4, 5);
+    const date = /* 1393/1/15 */ new Date(2014, 3, 4, 5);
     expect(lightFormat(date, "yyyy-MM-dd'\n'HH:mm:ss")).toBe(
       "2014-04-04\n05:00:00",
     );
@@ -68,7 +68,7 @@ describe("lightFormat", () => {
   describe("hour", () => {
     it("hour [1-12]", () => {
       const result = lightFormat(
-        new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         "h hh",
       );
       expect(result).toBe("12 12");
@@ -76,7 +76,7 @@ describe("lightFormat", () => {
 
     it("hour [0-23]", () => {
       const result = lightFormat(
-        new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+        /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
         "H HH",
       );
       expect(result).toBe("0 00");
@@ -85,25 +85,41 @@ describe("lightFormat", () => {
     describe("AM, PM", () => {
       it("works as expected", () => {
         const result = lightFormat(
-          new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
+          /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 0, 0, 0, 0),
           "a aa aaa aaaa aaaaa",
         );
         expect(result).toBe("AM AM am a.m. a");
 
         const pmResult = lightFormat(
-          new Date(2018, 0 /* Jan */, 1, 13, 0, 0, 0),
+          /* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1, 13, 0, 0, 0),
           "a aa aaa aaaa aaaaa",
         );
         expect(pmResult).toBe("PM PM pm p.m. p");
       });
 
       it("12 PM", () => {
-        const date = new Date(1986, 3 /* Apr */, 4, 12, 0, 0, 900);
+        const date = /* 1365/1/15 */ new Date(
+          1986,
+          3 /* Apr */,
+          4,
+          12,
+          0,
+          0,
+          900,
+        );
         expect(lightFormat(date, "h H a")).toBe("12 12 PM");
       });
 
       it("12 AM", () => {
-        const date = new Date(1986, 3 /* Apr */, 6, 0, 0, 0, 900);
+        const date = /* 1365/1/17 */ new Date(
+          1986,
+          3 /* Apr */,
+          6,
+          0,
+          0,
+          0,
+          900,
+        );
         expect(lightFormat(date, "h H a")).toBe("12 0 AM");
       });
     });

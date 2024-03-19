@@ -3,12 +3,14 @@ import { getQuarter } from "./index.js";
 
 describe("getQuarter", () => {
   it("returns the quarter of the given date", () => {
-    const result = getQuarter(new Date(2014, 6 /* Jul */, 2));
+    const result = getQuarter(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
     expect(result).toBe(3);
   });
 
   it("accepts a timestamp", () => {
-    const result = getQuarter(new Date(2014, 3 /* Apr */, 2).getTime());
+    const result = getQuarter(
+      /* 1393/1/13 */ new Date(2014, 3 /* Apr */, 2).getTime(),
+    );
     expect(result).toBe(2);
   });
 

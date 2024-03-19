@@ -4,18 +4,28 @@ import { toDate } from "./index.js";
 describe("toDate", () => {
   describe("date argument", () => {
     it("returns a clone of the given date", () => {
-      const date = new Date(2016, 0, 1);
+      const date = /* 1394/10/11 */ new Date(2016, 0, 1);
       const dateClone = toDate(date);
       dateClone.setFullYear(2015);
-      expect(date).toEqual(new Date(2016, 0, 1));
+      expect(date).toEqual(/* 1394/10/11 */ new Date(2016, 0, 1));
     });
   });
 
   describe("timestamp argument", () => {
     it("creates a date from the timestamp", () => {
-      const timestamp = new Date(2016, 0, 1, 23, 30, 45, 123).getTime();
+      const timestamp = /* 1394/10/11 */ new Date(
+        2016,
+        0,
+        1,
+        23,
+        30,
+        45,
+        123,
+      ).getTime();
       const result = toDate(timestamp);
-      expect(result).toEqual(new Date(2016, 0, 1, 23, 30, 45, 123));
+      expect(result).toEqual(
+        /* 1394/10/11 */ new Date(2016, 0, 1, 23, 30, 45, 123),
+      );
     });
   });
 

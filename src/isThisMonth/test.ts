@@ -6,7 +6,9 @@ import { isThisMonth } from "./index.js";
 describe("isThisMonth", () => {
   let clock: sinon.SinonFakeTimers;
   beforeEach(() => {
-    clock = sinon.useFakeTimers(new Date(2014, 8 /* Sep */, 1).getTime());
+    clock = sinon.useFakeTimers(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+    );
   });
 
   afterEach(() => {
@@ -14,23 +16,25 @@ describe("isThisMonth", () => {
   });
 
   it("returns true if the given date and the current date have the same month (and year)", () => {
-    const date = new Date(2014, 8 /* Sep */, 15);
+    const date = /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15);
     expect(isThisMonth(date)).toBe(true);
   });
 
   it("returns false if the given date and the current date have different months", () => {
-    const date = new Date(2013, 7 /* Aug */, 31);
+    const date = /* 1392/6/9 */ new Date(2013, 7 /* Aug */, 31);
     expect(isThisMonth(date)).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 8 /* Sep */, 30).getTime();
+    const date = /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30).getTime();
     expect(isThisMonth(date)).toBe(true);
   });
 
   it("respects date extensions", () => {
-    expect(isThisMonth(new UTCDate(+new Date(2014, 8 /* Sep */, 1)))).toBe(
-      true,
-    );
+    expect(
+      isThisMonth(
+        new UTCDate(+(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1))),
+      ),
+    ).toBe(true);
   });
 });

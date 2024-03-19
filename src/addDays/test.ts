@@ -4,19 +4,22 @@ import { getDstTransitions } from "../../test/dst/tzOffsetTransitions.js";
 
 describe("addDays", () => {
   it("adds the given number of days", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), 10);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 11));
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 10);
+    expect(result).toEqual(/* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11));
   });
 
   it("accepts a timestamp", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1).getTime(), 10);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 11));
+    const result = addDays(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      10,
+    );
+    expect(result).toEqual(/* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     addDays(date, 11);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -25,7 +28,7 @@ describe("addDays", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN);
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 

@@ -3,22 +3,31 @@ import { addSeconds } from "./index.js";
 
 describe("addSeconds", () => {
   it("adds the given number of seconds", () => {
-    const result = addSeconds(new Date(2014, 6 /* Jul */, 10, 12, 45, 0), 30);
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 30));
+    const result = addSeconds(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0),
+      30,
+    );
+    expect(result).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30),
+    );
   });
 
   it("accepts a timestamp", () => {
     const result = addSeconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 0).getTime(),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0).getTime(),
       20,
     );
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 20));
+    expect(result).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 20),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 6 /* Jul */, 10, 12, 45, 0);
+    const date = /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0);
     addSeconds(date, 15);
-    expect(date).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 0));
+    expect(date).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -27,7 +36,10 @@ describe("addSeconds", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addSeconds(new Date(2014, 6 /* Jul */, 10, 12, 45, 0), NaN);
+    const result = addSeconds(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 });
