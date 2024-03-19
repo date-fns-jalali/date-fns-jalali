@@ -1749,6 +1749,16 @@
         "default": "./monthsToYears.mjs"
       }
     },
+    "./newDate": {
+      "require": {
+        "types": "./newDate.d.ts",
+        "default": "./newDate.js"
+      },
+      "import": {
+        "types": "./newDate.d.mts",
+        "default": "./newDate.mjs"
+      }
+    },
     "./nextDay": {
       "require": {
         "types": "./nextDay.d.ts",
