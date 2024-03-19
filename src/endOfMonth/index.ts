@@ -1,5 +1,9 @@
 import { toDate } from "../toDate/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name endOfMonth
  * @category Month Helpers
@@ -24,8 +28,8 @@ export function endOfMonth<DateType extends Date>(
   date: DateType | number | string,
 ): DateType {
   const _date = toDate(date);
-  const month = _date.getMonth();
-  _date.setFullYear(_date.getFullYear(), month + 1, 0);
+  const month = coreGetMonth(_date);
+  coreSetFullYear(_date, coreGetFullYear(_date), month + 1, 0);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }

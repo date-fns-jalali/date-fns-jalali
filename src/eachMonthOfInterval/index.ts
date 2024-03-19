@@ -1,6 +1,10 @@
 import { toDate } from "../toDate/index.js";
 import type { Interval, StepOptions } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * The {@link eachMonthOfInterval} function options.
  */
@@ -47,7 +51,7 @@ export function eachMonthOfInterval<DateType extends Date>(
   const endTime = reversed ? +startDate : +endDate;
   const currentDate = reversed ? endDate : startDate;
   currentDate.setHours(0, 0, 0, 0);
-  currentDate.setDate(1);
+  coreSetDate(currentDate, 1);
 
   let step = options?.step ?? 1;
   if (!step) return [];
@@ -60,7 +64,7 @@ export function eachMonthOfInterval<DateType extends Date>(
 
   while (+currentDate <= endTime) {
     dates.push(toDate(currentDate));
-    currentDate.setMonth(currentDate.getMonth() + step);
+    coreSetMonth(currentDate, coreGetMonth(currentDate) + step);
   }
 
   return reversed ? dates.reverse() : dates;

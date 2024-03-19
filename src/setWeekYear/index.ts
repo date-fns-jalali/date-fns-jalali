@@ -9,6 +9,10 @@ import type {
 } from "../types.js";
 import { getDefaultOptions } from "../_lib/defaultOptions/index.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * The {@link setWeekYear} function options.
  */
@@ -71,9 +75,9 @@ export function setWeekYear<DateType extends Date>(
   let _date = toDate(date);
   const diff = differenceInCalendarDays(_date, startOfWeekYear(_date, options));
   const firstWeek = constructFrom(date, 0);
-  firstWeek.setFullYear(weekYear, 0, firstWeekContainsDate);
+  coreSetFullYear(firstWeek, weekYear, 0, firstWeekContainsDate);
   firstWeek.setHours(0, 0, 0, 0);
   _date = startOfWeekYear(firstWeek, options);
-  _date.setDate(_date.getDate() + diff);
+  coreSetDate(_date, coreGetDate(_date) + diff);
   return _date;
 }

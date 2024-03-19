@@ -1,5 +1,9 @@
 import { addLeadingZeros } from "../../addLeadingZeros/index.js";
 
+import { getMonth as coreGetMonth } from "../../../_core/getMonth/index";
+import { getDate as coreGetDate } from "../../../_core/getDate/index";
+import { getFullYear as coreGetFullYear } from "../../../_core/getFullYear/index";
+
 /*
  * |     | Unit                           |     | Unit                           |
  * |-----|--------------------------------|-----|--------------------------------|
@@ -25,7 +29,7 @@ export const lightFormatters = {
     // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
     // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
 
-    const signedYear = date.getFullYear();
+    const signedYear = coreGetFullYear(date);
     // Returns 1 for 1 BC (which is year 0 in JavaScript)
     const year = signedYear > 0 ? signedYear : 1 - signedYear;
     return addLeadingZeros(token === "yy" ? year % 100 : year, token.length);
@@ -33,13 +37,13 @@ export const lightFormatters = {
 
   // Month
   M(date: Date, token: string): string {
-    const month = date.getMonth();
+    const month = coreGetMonth(date);
     return token === "M" ? String(month + 1) : addLeadingZeros(month + 1, 2);
   },
 
   // Day of the month
   d(date: Date, token: string): string {
-    return addLeadingZeros(date.getDate(), token.length);
+    return addLeadingZeros(coreGetDate(date), token.length);
   },
 
   // AM or PM

@@ -1,6 +1,10 @@
 import { toDate } from "../toDate/index.js";
 import type { Interval, StepOptions } from "../types.js";
 
+import { setMonth as coreSetMonth } from "../_core/setMonth/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * The {@link eachYearOfInterval} function options.
  */
@@ -44,7 +48,7 @@ export function eachYearOfInterval<DateType extends Date>(
   const endTime = reversed ? +startDate : +endDate;
   const currentDate = reversed ? endDate : startDate;
   currentDate.setHours(0, 0, 0, 0);
-  currentDate.setMonth(0, 1);
+  coreSetMonth(currentDate, 0, 1);
 
   let step = options?.step ?? 1;
   if (!step) return [];
@@ -57,7 +61,7 @@ export function eachYearOfInterval<DateType extends Date>(
 
   while (+currentDate <= endTime) {
     dates.push(toDate(currentDate));
-    currentDate.setFullYear(currentDate.getFullYear() + step);
+    coreSetFullYear(currentDate, coreGetFullYear(currentDate) + step);
   }
 
   return reversed ? dates.reverse() : dates;

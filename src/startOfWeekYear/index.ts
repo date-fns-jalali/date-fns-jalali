@@ -8,6 +8,8 @@ import type {
 } from "../types.js";
 import { getDefaultOptions } from "../_lib/defaultOptions/index.js";
 
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * The {@link startOfWeekYear} function options.
  */
@@ -66,7 +68,7 @@ export function startOfWeekYear<DateType extends Date>(
 
   const year = getWeekYear(date, options);
   const firstWeek = constructFrom(date, 0);
-  firstWeek.setFullYear(year, 0, firstWeekContainsDate);
+  coreSetFullYear(firstWeek, year, 0, firstWeekContainsDate);
   firstWeek.setHours(0, 0, 0, 0);
   const _date = startOfWeek(firstWeek, options);
   return _date;

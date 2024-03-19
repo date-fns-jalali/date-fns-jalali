@@ -1,6 +1,11 @@
 import { differenceInCalendarDays } from "../differenceInCalendarDays/index.js";
 import { toDate } from "../toDate/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+
 /**
  * @name differenceInDays
  * @category Day Helpers
@@ -65,7 +70,7 @@ export function differenceInDays<DateType extends Date>(
   const sign = compareLocalAsc(_dateLeft, _dateRight);
   const difference = Math.abs(differenceInCalendarDays(_dateLeft, _dateRight));
 
-  _dateLeft.setDate(_dateLeft.getDate() - sign * difference);
+  coreSetDate(_dateLeft, coreGetDate(_dateLeft) - sign * difference);
 
   // Math.abs(diff in full days - diff in calendar days) === 1 if last calendar day is not full
   // If so, result must be decreased by 1 in absolute value
@@ -86,9 +91,9 @@ function compareLocalAsc<DateType extends Date>(
   dateRight: DateType,
 ): number {
   const diff =
-    dateLeft.getFullYear() - dateRight.getFullYear() ||
-    dateLeft.getMonth() - dateRight.getMonth() ||
-    dateLeft.getDate() - dateRight.getDate() ||
+    coreGetFullYear(dateLeft) - coreGetFullYear(dateRight) ||
+    coreGetMonth(dateLeft) - coreGetMonth(dateRight) ||
+    coreGetDate(dateLeft) - coreGetDate(dateRight) ||
     dateLeft.getHours() - dateRight.getHours() ||
     dateLeft.getMinutes() - dateRight.getMinutes() ||
     dateLeft.getSeconds() - dateRight.getSeconds() ||

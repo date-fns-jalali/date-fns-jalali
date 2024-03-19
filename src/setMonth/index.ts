@@ -2,6 +2,11 @@ import { constructFrom } from "../constructFrom/index.js";
 import { getDaysInMonth } from "../getDaysInMonth/index.js";
 import { toDate } from "../toDate/index.js";
 
+import { setMonth as coreSetMonth } from "../_core/setMonth/index";
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name setMonth
  * @category Month Helpers
@@ -27,15 +32,15 @@ export function setMonth<DateType extends Date>(
   month: number,
 ): DateType {
   const _date = toDate(date);
-  const year = _date.getFullYear();
-  const day = _date.getDate();
+  const year = coreGetFullYear(_date);
+  const day = coreGetDate(_date);
 
   const dateWithDesiredMonth = constructFrom(date, 0);
-  dateWithDesiredMonth.setFullYear(year, month, 15);
+  coreSetFullYear(dateWithDesiredMonth, year, month, 15);
   dateWithDesiredMonth.setHours(0, 0, 0, 0);
   const daysInMonth = getDaysInMonth(dateWithDesiredMonth);
   // Set the last day of the new month
   // if the original date was the last day of the longer month
-  _date.setMonth(month, Math.min(day, daysInMonth));
+  coreSetMonth(_date, month, Math.min(day, daysInMonth));
   return _date;
 }

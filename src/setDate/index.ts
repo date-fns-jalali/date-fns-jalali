@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * @name setDate
  * @category Day Helpers
@@ -25,6 +27,6 @@ export function setDate<DateType extends Date>(
   dayOfMonth: number,
 ): DateType {
   const _date = toDate(date);
-  _date.setDate(dayOfMonth);
+  coreSetDate(_date, dayOfMonth);
   return _date;
 }

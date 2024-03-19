@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+
 /**
  * @name getQuarter
  * @category Quarter Helpers
@@ -23,6 +25,6 @@ export function getQuarter<DateType extends Date>(
   date: DateType | number | string,
 ): number {
   const _date = toDate(date);
-  const quarter = Math.trunc(_date.getMonth() / 3) + 1;
+  const quarter = Math.trunc(coreGetMonth(_date) / 3) + 1;
   return quarter;
 }

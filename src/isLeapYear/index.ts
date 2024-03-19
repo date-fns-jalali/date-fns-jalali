@@ -1,5 +1,8 @@
 import { toDate } from "../toDate/index.js";
 
+import { isLeapYear as coreIsLeapYear } from "../_core/isLeapYear/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+
 /**
  * @name isLeapYear
  * @category Year Helpers
@@ -23,6 +26,6 @@ export function isLeapYear<DateType extends Date>(
   date: DateType | number | string,
 ): boolean {
   const _date = toDate(date);
-  const year = _date.getFullYear();
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+  const year = coreGetFullYear(_date);
+  return coreIsLeapYear(year);
 }

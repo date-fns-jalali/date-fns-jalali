@@ -6,6 +6,9 @@ import type {
   WeekOptions,
 } from "../types.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * The {@link setWeek} function options.
  */
@@ -58,6 +61,6 @@ export function setWeek<DateType extends Date>(
 ): DateType {
   const _date = toDate(date);
   const diff = getWeek(_date, options) - week;
-  _date.setDate(_date.getDate() - diff * 7);
+  coreSetDate(_date, coreGetDate(_date) - diff * 7);
   return _date;
 }

@@ -1,5 +1,8 @@
 import { toDate } from "../toDate/index.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name lastDayOfYear
  * @category Year Helpers
@@ -24,8 +27,8 @@ export function lastDayOfYear<DateType extends Date>(
   date: DateType | number | string,
 ): DateType {
   const _date = toDate(date);
-  const year = _date.getFullYear();
-  _date.setFullYear(year + 1, 0, 0);
+  const year = coreGetFullYear(_date);
+  coreSetFullYear(_date, year + 1, 0, 0);
   _date.setHours(0, 0, 0, 0);
   return _date;
 }

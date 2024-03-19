@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index";
+
 /**
  * @name isFirstDayOfMonth
  * @category Month Helpers
@@ -22,5 +24,5 @@ import { toDate } from "../toDate/index.js";
 export function isFirstDayOfMonth<DateType extends Date>(
   date: DateType | number | string,
 ): boolean {
-  return toDate(date).getDate() === 1;
+  return coreGetDate(toDate(date)) === 1;
 }

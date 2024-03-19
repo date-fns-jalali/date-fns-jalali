@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import { constructFrom } from "../constructFrom/index.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * @name addDays
  * @category Day Helpers
@@ -31,6 +34,6 @@ export function addDays<DateType extends Date>(
     // If 0 days, no-op to avoid changing times in the hour before end of DST
     return _date;
   }
-  _date.setDate(_date.getDate() + amount);
+  coreSetDate(_date, coreGetDate(_date) + amount);
   return _date;
 }

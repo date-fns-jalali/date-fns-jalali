@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+
 /**
  * @name getMonth
  * @category Month Helpers
@@ -23,6 +25,6 @@ export function getMonth<DateType extends Date>(
   date: DateType | number | string,
 ): number {
   const _date = toDate(date);
-  const month = _date.getMonth();
+  const month = coreGetMonth(_date);
   return month;
 }

@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import { constructFrom } from "../constructFrom/index.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name startOfYear
  * @category Year Helpers
@@ -26,7 +29,7 @@ export function startOfYear<DateType extends Date>(
 ): DateType {
   const cleanDate = toDate(date);
   const _date = constructFrom(date, 0);
-  _date.setFullYear(cleanDate.getFullYear(), 0, 1);
+  coreSetFullYear(_date, coreGetFullYear(cleanDate), 0, 1);
   _date.setHours(0, 0, 0, 0);
   return _date;
 }

@@ -1,6 +1,8 @@
 import { getQuarter } from "../getQuarter/index.js";
 import { toDate } from "../toDate/index.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+
 /**
  * @name differenceInCalendarQuarters
  * @category Quarter Helpers
@@ -31,7 +33,7 @@ export function differenceInCalendarQuarters<DateType extends Date>(
   const _dateLeft = toDate(dateLeft);
   const _dateRight = toDate(dateRight);
 
-  const yearDiff = _dateLeft.getFullYear() - _dateRight.getFullYear();
+  const yearDiff = coreGetFullYear(_dateLeft) - coreGetFullYear(_dateRight);
   const quarterDiff = getQuarter(_dateLeft) - getQuarter(_dateRight);
 
   return yearDiff * 4 + quarterDiff;

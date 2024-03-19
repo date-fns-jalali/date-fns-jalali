@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * @name startOfMonth
  * @category Month Helpers
@@ -24,7 +26,7 @@ export function startOfMonth<DateType extends Date>(
   date: DateType | number | string,
 ): DateType {
   const _date = toDate(date);
-  _date.setDate(1);
+  coreSetDate(_date, 1);
   _date.setHours(0, 0, 0, 0);
   return _date;
 }

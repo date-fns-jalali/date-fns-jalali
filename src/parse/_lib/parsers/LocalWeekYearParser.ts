@@ -6,6 +6,8 @@ import type { ParseFlags, ParseResult, ParserOptions } from "../types.js";
 import { mapValue, normalizeTwoDigitYear, parseNDigits } from "../utils.js";
 import type { YearParserValue } from "./YearParser.js";
 
+import { setFullYear as coreSetFullYear } from "../../../_core/setFullYear/index";
+
 // Local week-numbering year
 export class LocalWeekYearParser extends Parser<YearParserValue> {
   priority = 130;
@@ -55,7 +57,8 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
         value.year,
         currentYear,
       );
-      date.setFullYear(
+      coreSetFullYear(
+        date,
         normalizedTwoDigitYear,
         0,
         options.firstWeekContainsDate,
@@ -66,7 +69,7 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
 
     const year =
       !("era" in flags) || flags.era === 1 ? value.year : 1 - value.year;
-    date.setFullYear(year, 0, options.firstWeekContainsDate);
+    coreSetFullYear(date, year, 0, options.firstWeekContainsDate);
     date.setHours(0, 0, 0, 0);
     return startOfWeek(date, options);
   }

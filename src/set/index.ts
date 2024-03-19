@@ -3,6 +3,9 @@ import { setMonth } from "../setMonth/index.js";
 import { toDate } from "../toDate/index.js";
 import type { DateValues } from "../types.js";
 
+import { setDate as coreSetDate } from "../_core/setDate/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name set
  * @category Common Helpers
@@ -48,7 +51,7 @@ export function set<DateType extends Date>(
   }
 
   if (values.year != null) {
-    _date.setFullYear(values.year);
+    coreSetFullYear(_date, values.year);
   }
 
   if (values.month != null) {
@@ -56,7 +59,7 @@ export function set<DateType extends Date>(
   }
 
   if (values.date != null) {
-    _date.setDate(values.date);
+    coreSetDate(_date, values.date);
   }
 
   if (values.hours != null) {

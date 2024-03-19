@@ -1,6 +1,12 @@
 import { toDate } from "../toDate/index.js";
 import { constructFrom } from "../constructFrom/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index";
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name addMonths
  * @category Month Helpers
@@ -35,7 +41,7 @@ export function addMonths<DateType extends Date>(
     // If 0 months, no-op to avoid changing times in the hour before end of DST
     return _date;
   }
-  const dayOfMonth = _date.getDate();
+  const dayOfMonth = coreGetDate(_date);
 
   // The JS Date object supports date math by accepting out-of-bounds values for
   // month, day, etc. For example, new Date(2020, 0, 0) returns 31 Dec 2019 and
@@ -46,8 +52,8 @@ export function addMonths<DateType extends Date>(
   // month and using a date of 0 to back up one day to the end of the desired
   // month.
   const endOfDesiredMonth = constructFrom(date, _date.getTime());
-  endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
-  const daysInMonth = endOfDesiredMonth.getDate();
+  coreSetMonth(endOfDesiredMonth, coreGetMonth(_date) + amount + 1, 0);
+  const daysInMonth = coreGetDate(endOfDesiredMonth);
   if (dayOfMonth >= daysInMonth) {
     // If we're already at the end of the month, then this is the correct date
     // and we're done.
@@ -60,9 +66,10 @@ export function addMonths<DateType extends Date>(
     // the last day of the month and its local time was in the hour skipped or
     // repeated next to a DST transition.  So we use `date` instead which is
     // guaranteed to still have the original time.
-    _date.setFullYear(
-      endOfDesiredMonth.getFullYear(),
-      endOfDesiredMonth.getMonth(),
+    coreSetFullYear(
+      _date,
+      coreGetFullYear(endOfDesiredMonth),
+      coreGetMonth(endOfDesiredMonth),
       dayOfMonth,
     );
     return _date;

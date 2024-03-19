@@ -1,6 +1,11 @@
 import type { GenericDateConstructor } from "../types.js";
 import { constructFrom } from "../constructFrom/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index";
+
 /**
  * @name transpose
  * @category Generic Helpers
@@ -40,10 +45,11 @@ export function transpose<
     constructor instanceof Date
       ? constructFrom(constructor, 0)
       : new constructor(0);
-  date.setFullYear(
-    fromDate.getFullYear(),
-    fromDate.getMonth(),
-    fromDate.getDate(),
+  coreSetFullYear(
+    date,
+    coreGetFullYear(fromDate),
+    coreGetMonth(fromDate),
+    coreGetDate(fromDate),
   );
   date.setHours(
     fromDate.getHours(),

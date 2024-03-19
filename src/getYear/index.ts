@@ -1,5 +1,7 @@
 import { toDate } from "../toDate/index.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+
 /**
  * @name getYear
  * @category Year Helpers
@@ -22,5 +24,5 @@ import { toDate } from "../toDate/index.js";
 export function getYear<DateType extends Date>(
   date: DateType | number | string,
 ): number {
-  return toDate(date).getFullYear();
+  return coreGetFullYear(toDate(date));
 }

@@ -3,6 +3,11 @@ import { differenceInCalendarMonths } from "../differenceInCalendarMonths/index.
 import { isLastDayOfMonth } from "../isLastDayOfMonth/index.js";
 import { toDate } from "../toDate/index.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index";
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { setDate as coreSetDate } from "../_core/setDate/index";
+
 /**
  * @name differenceInMonths
  * @category Month Helpers
@@ -40,13 +45,13 @@ export function differenceInMonths<DateType extends Date>(
   if (difference < 1) {
     result = 0;
   } else {
-    if (_dateLeft.getMonth() === 1 && _dateLeft.getDate() > 27) {
+    if (coreGetMonth(_dateLeft) === 1 && coreGetDate(_dateLeft) > 27) {
       // This will check if the date is end of Feb and assign a higher end of month date
       // to compare it with Jan
-      _dateLeft.setDate(30);
+      coreSetDate(_dateLeft, 30);
     }
 
-    _dateLeft.setMonth(_dateLeft.getMonth() - sign * difference);
+    coreSetMonth(_dateLeft, coreGetMonth(_dateLeft) - sign * difference);
 
     // Math.abs(diff in full months - diff in calendar months) === 1 if last calendar month is not full
     // If so, result must be decreased by 1 in absolute value
