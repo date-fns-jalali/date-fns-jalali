@@ -183,8 +183,8 @@ export interface FormatPart {
   /** If the part is a format token. */
   isToken: boolean;
   /** The format part value (i.e. `"do"`). */
-  value: string
-};
+  value: string;
+}
 
 /// Localize types
 

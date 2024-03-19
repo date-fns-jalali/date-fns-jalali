@@ -19,14 +19,22 @@ describe("formatISO9075", () => {
 
   it("formats only date", () => {
     const date = new Date(2019, 11 /* Dec */, 11, 1, 0, 0, 789);
-    expect(formatISO9075(date, { representation: "date", format: "extended" })).toBe("2019-12-11");
-    expect(formatISO9075(date, { representation: "date", format: "basic" })).toBe("20191211");
+    expect(
+      formatISO9075(date, { representation: "date", format: "extended" }),
+    ).toBe("2019-12-11");
+    expect(
+      formatISO9075(date, { representation: "date", format: "basic" }),
+    ).toBe("20191211");
   });
 
   it("formats only time", () => {
     const date = new Date(2019, 2 /* Mar */, 3, 19, 0, 52, 123);
-    expect(formatISO9075(date, { representation: "time", format: "extended" })).toBe("19:00:52");
-    expect(formatISO9075(date, { representation: "time", format: "basic" })).toBe("190052");
+    expect(
+      formatISO9075(date, { representation: "time", format: "extended" }),
+    ).toBe("19:00:52");
+    expect(
+      formatISO9075(date, { representation: "time", format: "basic" }),
+    ).toBe("190052");
   });
 
   it("throws RangeError if the time value is invalid", () => {

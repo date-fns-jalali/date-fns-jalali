@@ -72,33 +72,41 @@ describe("intervalToDuration", () => {
 
   describe("edge cases", () => {
     it("returns correct duration for dates in the end of Feb - issue 2255", () => {
-      expect(intervalToDuration({
-        start: new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
-        end: new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
-      })).toEqual({
+      expect(
+        intervalToDuration({
+          start: new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
+          end: new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
+        }),
+      ).toEqual({
         days: 1,
         hours: 1,
       });
 
-      expect(intervalToDuration({
-        start: new Date(2012, 1 /* Feb */, 29, 9, 0, 0),
-        end: new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
-      })).toEqual({
+      expect(
+        intervalToDuration({
+          start: new Date(2012, 1 /* Feb */, 29, 9, 0, 0),
+          end: new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
+        }),
+      ).toEqual({
         hours: 1,
       });
 
-      expect(intervalToDuration({
-        start: new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
-        end: new Date(2012, 1 /* Feb */, 28, 10, 0, 0),
-      })).toEqual({
+      expect(
+        intervalToDuration({
+          start: new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
+          end: new Date(2012, 1 /* Feb */, 28, 10, 0, 0),
+        }),
+      ).toEqual({
         hours: 1,
       });
 
       // Issue 2261
-      expect(intervalToDuration({
-        start: new Date(2021, 1 /* Feb */, 28, 7, 23, 7),
-        end: new Date(2021, 1 /* Feb */, 28, 7, 38, 18),
-      })).toEqual({
+      expect(
+        intervalToDuration({
+          start: new Date(2021, 1 /* Feb */, 28, 7, 23, 7),
+          end: new Date(2021, 1 /* Feb */, 28, 7, 38, 18),
+        }),
+      ).toEqual({
         minutes: 15,
         seconds: 11,
       });

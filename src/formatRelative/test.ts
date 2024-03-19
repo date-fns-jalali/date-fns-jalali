@@ -6,7 +6,9 @@ describe("formatRelative", () => {
 
   it("accepts a timestamp", () => {
     const date = new Date(2014, 3 /* Apr */, 4);
-    expect(formatRelative(date.getTime(), baseDate.getTime())).toBe("04/04/2014");
+    expect(formatRelative(date.getTime(), baseDate.getTime())).toBe(
+      "04/04/2014",
+    );
   });
 
   it("before the last week", () => {
@@ -64,19 +66,25 @@ describe("formatRelative", () => {
 
   describe("edge cases", () => {
     it("throws RangeError if the date isn't valid", () => {
-      expect(formatRelative.bind(null, new Date(NaN), baseDate)).toThrow(RangeError);
+      expect(formatRelative.bind(null, new Date(NaN), baseDate)).toThrow(
+        RangeError,
+      );
     });
 
     it("throws RangeError if the base date isn't valid", () => {
-      expect(formatRelative.bind(
-        null,
-        new Date(2017, 0 /* Jan */, 1),
-        new Date(NaN),
-      )).toThrow(RangeError);
+      expect(
+        formatRelative.bind(
+          null,
+          new Date(2017, 0 /* Jan */, 1),
+          new Date(NaN),
+        ),
+      ).toThrow(RangeError);
     });
 
     it("throws RangeError if both dates aren't valid", () => {
-      expect(formatRelative.bind(null, new Date(NaN), new Date(NaN))).toThrow(RangeError);
+      expect(formatRelative.bind(null, new Date(NaN), new Date(NaN))).toThrow(
+        RangeError,
+      );
     });
 
     it("handles dates before 100 AD", () => {
