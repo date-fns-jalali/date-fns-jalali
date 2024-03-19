@@ -7,16 +7,16 @@ describe("formatDistanceStrict", () => {
     describe("when no unit is set", () => {
       it("0 seconds", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 5),
-          new Date(1986, 3, 4, 10, 32, 5),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5),
         );
         expect(result).toBe("0 seconds");
       });
 
       it("5 seconds", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 5),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5),
         );
         expect(result).toBe("5 seconds");
       });
@@ -26,16 +26,16 @@ describe("formatDistanceStrict", () => {
   describe("minutes", () => {
     it("1 minute", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 0),
       );
       expect(result).toBe("1 minute");
     });
 
     it("n minutes", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 35, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 35, 0),
       );
       expect(result).toBe("3 minutes");
     });
@@ -44,16 +44,16 @@ describe("formatDistanceStrict", () => {
   describe("hours", () => {
     it("1 hour", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 11, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
       );
       expect(result).toBe("1 hour");
     });
 
     it("n hours", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 13, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 13, 32, 0),
       );
       expect(result).toBe("3 hours");
     });
@@ -62,16 +62,16 @@ describe("formatDistanceStrict", () => {
   describe("days", () => {
     it("1 day", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 5, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/16 */ new Date(1986, 3, 5, 10, 32, 0),
       );
       expect(result).toBe("1 day");
     });
 
     it("n days", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 7, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0),
       );
       expect(result).toBe("3 days");
     });
@@ -80,16 +80,16 @@ describe("formatDistanceStrict", () => {
   describe("months", () => {
     it("1 month", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 4, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/2/14 */ new Date(1986, 4, 4, 10, 32, 0),
       );
       expect(result).toBe("1 month");
     });
 
     it("n months", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 6, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/4/13 */ new Date(1986, 6, 4, 10, 32, 0),
       );
       expect(result).toBe("3 months");
     });
@@ -98,32 +98,32 @@ describe("formatDistanceStrict", () => {
   describe("years", () => {
     it("returns `1 year` - see issue 2388", () => {
       const result = formatDistanceStrict(
-        new Date(2015, 0, 2),
-        new Date(2016, 0, 1),
+        /* 1393/10/12 */ new Date(2015, 0, 2),
+        /* 1394/10/11 */ new Date(2016, 0, 1),
       );
       expect(result).toBe("1 year");
     });
 
     it("returns `2 years` - see issue 2388", () => {
       const result = formatDistanceStrict(
-        new Date(2014, 0, 2),
-        new Date(2016, 0, 1),
+        /* 1392/10/12 */ new Date(2014, 0, 2),
+        /* 1394/10/11 */ new Date(2016, 0, 1),
       );
       expect(result).toBe("2 years");
     });
 
     it("1 year", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1987, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1366/1/15 */ new Date(1987, 3, 4, 10, 32, 0),
       );
       expect(result).toBe("1 year");
     });
 
     it("n years", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1991, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1370/1/15 */ new Date(1991, 3, 4, 10, 32, 0),
       );
       expect(result).toBe("5 years");
     });
@@ -133,8 +133,8 @@ describe("formatDistanceStrict", () => {
     describe("second", () => {
       it("0 seconds", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: "second" },
         );
         expect(result).toBe("0 seconds");
@@ -142,8 +142,8 @@ describe("formatDistanceStrict", () => {
 
       it("5 seconds", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 5),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 5),
           { unit: "second" },
         );
         expect(result).toBe("5 seconds");
@@ -151,8 +151,8 @@ describe("formatDistanceStrict", () => {
 
       it("120 seconds", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 34, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 34, 0),
           { unit: "second" },
         );
         expect(result).toBe("120 seconds");
@@ -162,8 +162,8 @@ describe("formatDistanceStrict", () => {
     describe("minute", () => {
       it("0 minutes", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: "minute" },
         );
         expect(result).toBe("0 minutes");
@@ -171,8 +171,8 @@ describe("formatDistanceStrict", () => {
 
       it("5 minutes", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 37, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 37, 0),
           { unit: "minute" },
         );
         expect(result).toBe("5 minutes");
@@ -180,8 +180,8 @@ describe("formatDistanceStrict", () => {
 
       it("120 minutes", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 12, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 12, 32, 0),
           { unit: "minute" },
         );
         expect(result).toBe("120 minutes");
@@ -191,8 +191,8 @@ describe("formatDistanceStrict", () => {
     describe("hour", () => {
       it("0 hours", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: "hour" },
         );
         expect(result).toBe("0 hours");
@@ -200,8 +200,8 @@ describe("formatDistanceStrict", () => {
 
       it("5 hours", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 15, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 15, 32, 0),
           { unit: "hour" },
         );
         expect(result).toBe("5 hours");
@@ -209,8 +209,8 @@ describe("formatDistanceStrict", () => {
 
       it("48 hours", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 6, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/17 */ new Date(1986, 3, 6, 10, 32, 0),
           { unit: "hour" },
         );
         expect(result).toBe("48 hours");
@@ -220,8 +220,8 @@ describe("formatDistanceStrict", () => {
     describe("day", () => {
       it("0 days", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: "day" },
         );
         expect(result).toBe("0 days");
@@ -229,8 +229,8 @@ describe("formatDistanceStrict", () => {
 
       it("5 days", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 9, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/20 */ new Date(1986, 3, 9, 10, 32, 0),
           { unit: "day" },
         );
         expect(result).toBe("5 days");
@@ -238,8 +238,8 @@ describe("formatDistanceStrict", () => {
 
       it("60 days", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 5, 3, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/3/13 */ new Date(1986, 5, 3, 10, 32, 0),
           { unit: "day" },
         );
         expect(result).toBe("60 days");
@@ -248,8 +248,8 @@ describe("formatDistanceStrict", () => {
     describe("month", () => {
       it("0 months", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: "month" },
         );
         expect(result).toBe("0 months");
@@ -257,8 +257,8 @@ describe("formatDistanceStrict", () => {
 
       it("5 months", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 7, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/5/13 */ new Date(1986, 7, 4, 10, 32, 0),
           { unit: "month" },
         );
         expect(result).toBe("4 months");
@@ -266,8 +266,8 @@ describe("formatDistanceStrict", () => {
 
       it("12 months - see issue 2388", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 7, 4, 10, 32, 0),
-          new Date(1985, 7, 4, 10, 32, 0),
+          /* 1365/5/13 */ new Date(1986, 7, 4, 10, 32, 0),
+          /* 1364/5/13 */ new Date(1985, 7, 4, 10, 32, 0),
           { unit: "month" },
         );
         expect(result).toBe("12 months");
@@ -275,8 +275,8 @@ describe("formatDistanceStrict", () => {
 
       it("24 months", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1988, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1367/1/15 */ new Date(1988, 3, 4, 10, 32, 0),
           { unit: "month" },
         );
         expect(result).toBe("24 months");
@@ -286,8 +286,8 @@ describe("formatDistanceStrict", () => {
     describe("year", () => {
       it("0 years", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
           { unit: "year" },
         );
         expect(result).toBe("0 years");
@@ -295,8 +295,8 @@ describe("formatDistanceStrict", () => {
 
       it("5 years", () => {
         const result = formatDistanceStrict(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1991, 3, 4, 15, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1370/1/15 */ new Date(1991, 3, 4, 15, 32, 0),
           { unit: "year" },
         );
         expect(result).toBe("5 years");
@@ -306,8 +306,8 @@ describe("formatDistanceStrict", () => {
 
   it("accepts timestamps", () => {
     const result = formatDistanceStrict(
-      new Date(1986, 3, 4, 10, 32, 0).getTime(),
-      new Date(1986, 3, 4, 11, 32, 0).getTime(),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0).getTime(),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0).getTime(),
     );
     expect(result).toBe("1 hour");
   });
@@ -315,8 +315,8 @@ describe("formatDistanceStrict", () => {
   describe("when the addSuffix option is true", () => {
     it("adds a past suffix", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 25),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
         { addSuffix: true },
       );
       expect(result).toBe("25 seconds ago");
@@ -324,8 +324,8 @@ describe("formatDistanceStrict", () => {
 
     it("adds a future suffix", () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 11, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         { addSuffix: true },
       );
       expect(result).toBe("in 1 hour");
@@ -335,16 +335,16 @@ describe("formatDistanceStrict", () => {
   describe("when the roundingMethod option is supplied", () => {
     it('default is "round"', () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 59),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 59),
       );
       expect(result).toBe("2 minutes");
     });
 
     it('"floor"', () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 59),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 59),
         { roundingMethod: "floor" },
       );
       expect(result).toBe("1 minute");
@@ -352,8 +352,8 @@ describe("formatDistanceStrict", () => {
 
     it('"ceil"', () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 1),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 1),
         { roundingMethod: "ceil" },
       );
       expect(result).toBe("2 minutes");
@@ -361,8 +361,8 @@ describe("formatDistanceStrict", () => {
 
     it('"round" (down)', () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 29),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 29),
         { roundingMethod: "round" },
       );
       expect(result).toBe("1 minute");
@@ -370,8 +370,8 @@ describe("formatDistanceStrict", () => {
 
     it('"round" (up)', () => {
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 33, 30),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 30),
         { roundingMethod: "round" },
       );
       expect(result).toBe("2 minutes");
@@ -393,8 +393,8 @@ describe("formatDistanceStrict", () => {
       };
 
       const result = formatDistanceStrict(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 25),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
         {
           addSuffix: true,
           locale: customLocale,
@@ -408,8 +408,8 @@ describe("formatDistanceStrict", () => {
   describe("edge cases", () => {
     it("detects unit correctly for short months", () => {
       const result = formatDistanceStrict(
-        new Date(2018, 1 /* Feb */, 1),
-        new Date(2018, 2 /* Mar */, 1),
+        /* 1396/11/12 */ new Date(2018, 1 /* Feb */, 1),
+        /* 1396/12/10 */ new Date(2018, 2 /* Mar */, 1),
       );
       expect(result).toBe("28 days");
     });
@@ -420,7 +420,7 @@ describe("formatDistanceStrict", () => {
       formatDistanceStrict.bind(
         null,
         new Date(NaN),
-        new Date(1986, 3, 7, 10, 32, 0),
+        /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0),
       ),
     ).toThrow(RangeError);
   });
@@ -429,7 +429,7 @@ describe("formatDistanceStrict", () => {
     expect(
       formatDistanceStrict.bind(
         null,
-        new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         new Date(NaN),
       ),
     ).toThrow(RangeError);

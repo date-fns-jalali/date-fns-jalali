@@ -3,24 +3,30 @@ import { setMonth } from "./index.js";
 
 describe("setMonth", () => {
   it("sets the month", () => {
-    const result = setMonth(new Date(2014, 8 /* Sep */, 1), 1);
-    expect(result).toEqual(new Date(2014, 1 /* Feb */, 1));
+    const result = setMonth(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 1);
+    expect(result).toEqual(/* 1392/11/12 */ new Date(2014, 1 /* Feb */, 1));
   });
 
   it("sets the last day of the month if the original date was the last day of a longer month", () => {
-    const result = setMonth(new Date(2014, 11 /* Dec */, 31), 1);
-    expect(result).toEqual(new Date(2014, 1 /* Feb */, 28));
+    const result = setMonth(
+      /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31),
+      1,
+    );
+    expect(result).toEqual(/* 1392/12/9 */ new Date(2014, 1 /* Feb */, 28));
   });
 
   it("accepts a timestamp", () => {
-    const result = setMonth(new Date(2014, 8 /* Sep */, 1).getTime(), 11);
-    expect(result).toEqual(new Date(2014, 11 /* Dec */, 1));
+    const result = setMonth(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      11,
+    );
+    expect(result).toEqual(/* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     setMonth(date, 5);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("handles dates before 100 AD", () => {
@@ -40,7 +46,10 @@ describe("setMonth", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = setMonth(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = setMonth(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 });

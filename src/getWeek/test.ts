@@ -3,12 +3,14 @@ import { getWeek } from "./index.js";
 
 describe("getWeek", () => {
   it("returns the local week of year of the given date", () => {
-    const result = getWeek(new Date(2005, 0 /* Jan */, 2));
+    const result = getWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2));
     expect(result).toBe(2);
   });
 
   it("accepts a timestamp", () => {
-    const result = getWeek(new Date(2008, 11 /* Dec */, 29).getTime());
+    const result = getWeek(
+      /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29).getTime(),
+    );
     expect(result).toBe(1);
   });
 
@@ -21,10 +23,10 @@ describe("getWeek", () => {
   });
 
   it("properly works with negative numbers", () => {
-    expect(getWeek(new Date(2005, 0 /* Jan */, 4))).toBe(2);
+    expect(getWeek(/* 1383/10/15 */ new Date(2005, 0 /* Jan */, 4))).toBe(2);
     // Calendars repeat every 400 years
-    expect(getWeek(new Date(395, 0 /* Jan */, 4))).toBe(1);
-    expect(getWeek(new Date(-2005, 0 /* Jan */, 4))).toBe(1);
+    expect(getWeek(/* -227/10/13 */ new Date(395, 0 /* Jan */, 4))).toBe(1);
+    expect(getWeek(/* -2627/10/13 */ new Date(-2005, 0 /* Jan */, 4))).toBe(1);
   });
 
   it("returns NaN if the given date is invalid", () => {
@@ -33,7 +35,7 @@ describe("getWeek", () => {
   });
 
   it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale", () => {
-    const date = new Date(2005, 0 /* Jan */, 2);
+    const date = /* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2);
     const result = getWeek(date, {
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 },
@@ -43,7 +45,7 @@ describe("getWeek", () => {
   });
 
   it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
-    const date = new Date(2005, 0 /* Jan */, 2);
+    const date = /* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2);
     const result = getWeek(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
