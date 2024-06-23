@@ -53,11 +53,50 @@ Promise.all([
     // Make it compatible with older browser
     await promiseQueue(
       paths.map((path) => async () => {
+          console.log(path, "start")
         // Wrap into IIFE, to avoid polluting global scope
         const content = await readFile(path, "utf-8");
+          console.log(path, "content")
         await writeFile(path, `(() => { ${content} })();`);
+            console.log(path, "write")
         // Use Babel to transpile
-        await $`env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`;
+
+          try {
+              const lib_path = "lib/locale/fa-IR/cdn.js";
+              console.log(path, "try", [`ls -l ${lib_path}`]);
+              const ls = await $`ls`;
+              console.log(path, "ls", ls.stdout.toString())
+
+          } catch (err) {
+              console.log(path, "--- err ---")
+              console.log(`Failed with code ${err.exitCode}`);
+              console.log("--- stdout ---")
+              console.log(err.stdout.toString())
+              console.log("--- stderr ---")
+              console.log(err.stderr.toString())
+              console.log("--------------")
+          }
+
+          //
+          // try {
+          //       console.log(path, "try");
+          //
+          //     // console.log(path, "try", `env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`)
+          //     // const output = await $`env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`;
+          //     // console.log(path, "output", output.exitCode)
+          //     // console.log(path, "babel stdout", output.stdout.toString())
+          //     // console.log(path, "babel stderr", output.stderr.toString())
+          // } catch (err) {
+          //   console.log(path, "--- err ---")
+          //   console.log(`Failed with code ${err.exitCode}`);
+          //   console.log("--- stdout ---")
+          //   console.log(err.stdout.toString())
+          //   console.log("--- stderr ---")
+          //   console.log(err.stderr.toString())
+          //   console.log(path, "babel")
+          // } finally {
+          //   console.log(path, "finally")
+          // }
       }),
       availableParallelism(),
     );
@@ -71,27 +110,27 @@ Promise.all([
   });
 
 function indexTemplate() {
-  return `import * as dateFns from "./index.mjs";
-window.dateFns = {
-  ...window.dateFns,
-  ...dateFns
+  return `import * as dateFnsJalali from "./index.mjs";
+window.dateFnsJalali = {
+  ...window.dateFnsJalali,
+  ...dateFnsJalali
 };`;
 }
 
 function fpIndexTemplate() {
   return `import * as fp from "../fp.mjs";
-window.dateFns = {
-  ...window.dateFns,
+window.dateFnsJalali = {
+  ...window.dateFnsJalali,
   fp
 };`;
 }
 
 function localesIndexTemplate() {
   return `import * as locales from "../locale.mjs";
-window.dateFns = {
-  ...window.dateFns,
+window.dateFnsJalali = {
+  ...window.dateFnsJalali,
   locale: {
-    ...window.dateFns?.locale,
+    ...window.dateFnsJalali?.locale,
     ...locales
   }
 };`;
@@ -99,10 +138,10 @@ window.dateFns = {
 
 function localeTemplate({ name, code }: LocaleFile) {
   return `import { ${name} } from "../${code}.mjs";
-window.dateFns = {
-  ...window.dateFns,
+window.dateFnsJalali = {
+  ...window.dateFnsJalali,
   locale: {
-    ...window.dateFns?.locale,
+    ...window.dateFnsJalali?.locale,
     ${name}
   }
 };`;
