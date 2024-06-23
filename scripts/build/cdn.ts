@@ -63,9 +63,9 @@ Promise.all([
 
           try {
               const lib_path = "lib/locale/fa-IR/cdn.js";
-              console.log(path, "try", [`ls -l ${lib_path}`]);
-              const ls = await $`ls`;
-              console.log(path, "ls", ls.stdout.toString())
+              // console.log(path, "try", [`ls -l ${lib_path}`]);
+              const ls = await $`head ${path}`;
+              console.log(path, "\n", ls.stdout.toString())
 
           } catch (err) {
               console.log(path, "--- err ---")
@@ -82,8 +82,8 @@ Promise.all([
           //       console.log(path, "try");
           //
           //     // console.log(path, "try", `env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`)
-          //     // const output = await $`env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`;
-          //     // console.log(path, "output", output.exitCode)
+          //     const output = await $`env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`;
+          //     console.log(path, "output", output.exitCode)
           //     // console.log(path, "babel stdout", output.stdout.toString())
           //     // console.log(path, "babel stderr", output.stderr.toString())
           // } catch (err) {
