@@ -57,7 +57,11 @@ Promise.all([
         const content = await readFile(path, "utf-8");
         await writeFile(path, `(() => { ${content} })();`);
         // Use Babel to transpile
-        await $`env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`;
+        const env = { ...process.env, BABEL_ENV: "cdn" };
+        await Bun.spawn(
+          ["npx", "babel", path, "--out-file", path, "--source-maps"],
+          { env },
+        ).exited;
       }),
       availableParallelism(),
     );
