@@ -50,6 +50,9 @@ Promise.all([
     // First bundle code
     await Bun.build(buildOptions);
 
+    console.log(buildOptions)
+    console.log(paths)
+      // exit here
     // Make it compatible with older browser
     await promiseQueue(
       paths.map((path) => async () => {
@@ -61,21 +64,21 @@ Promise.all([
             console.log(path, "write")
         // Use Babel to transpile
 
-          try {
-              const lib_path = "lib/locale/fa-IR/cdn.js";
-              // console.log(path, "try", [`ls -l ${lib_path}`]);
-              const ls = await $`head ${path}`;
-              console.log(path, "\n", ls.stdout.toString())
-
-          } catch (err) {
-              console.log(path, "--- err ---")
-              console.log(`Failed with code ${err.exitCode}`);
-              console.log("--- stdout ---")
-              console.log(err.stdout.toString())
-              console.log("--- stderr ---")
-              console.log(err.stderr.toString())
-              console.log("--------------")
-          }
+          // try {
+          //     const lib_path = "lib/locale/fa-IR/cdn.js";
+          //     // console.log(path, "try", [`ls -l ${lib_path}`]);
+          //     const ls = await $`head ${path}`.quiet();
+          //     console.log(path, "\n", ls.stdout.toString())
+          //
+          // } catch (err) {
+          //     console.log(path, "--- err ---")
+          //     console.log(`Failed with code ${err.exitCode}`);
+          //     console.log("--- stdout ---")
+          //     console.log(err.stdout.toString())
+          //     console.log("--- stderr ---")
+          //     console.log(err.stderr.toString())
+          //     console.log("--------------")
+          // }
 
           //
           // try {
