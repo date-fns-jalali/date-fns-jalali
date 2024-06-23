@@ -50,56 +50,14 @@ Promise.all([
     // First bundle code
     await Bun.build(buildOptions);
 
-    console.log(buildOptions)
-    console.log(paths)
-      // exit here
     // Make it compatible with older browser
     await promiseQueue(
       paths.map((path) => async () => {
-          console.log(path, "start")
         // Wrap into IIFE, to avoid polluting global scope
         const content = await readFile(path, "utf-8");
-          console.log(path, "content")
         await writeFile(path, `(() => { ${content} })();`);
-            console.log(path, "write")
         // Use Babel to transpile
-
-          // try {
-          //     const lib_path = "lib/locale/fa-IR/cdn.js";
-          //     // console.log(path, "try", [`ls -l ${lib_path}`]);
-          //     const ls = await $`head ${path}`.quiet();
-          //     console.log(path, "\n", ls.stdout.toString())
-          //
-          // } catch (err) {
-          //     console.log(path, "--- err ---")
-          //     console.log(`Failed with code ${err.exitCode}`);
-          //     console.log("--- stdout ---")
-          //     console.log(err.stdout.toString())
-          //     console.log("--- stderr ---")
-          //     console.log(err.stderr.toString())
-          //     console.log("--------------")
-          // }
-
-          //
-          // try {
-          //       console.log(path, "try");
-          //
-          //     // console.log(path, "try", `env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`)
-          //     const output = await $`env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`;
-          //     console.log(path, "output", output.exitCode)
-          //     // console.log(path, "babel stdout", output.stdout.toString())
-          //     // console.log(path, "babel stderr", output.stderr.toString())
-          // } catch (err) {
-          //   console.log(path, "--- err ---")
-          //   console.log(`Failed with code ${err.exitCode}`);
-          //   console.log("--- stdout ---")
-          //   console.log(err.stdout.toString())
-          //   console.log("--- stderr ---")
-          //   console.log(err.stderr.toString())
-          //   console.log(path, "babel")
-          // } finally {
-          //   console.log(path, "finally")
-          // }
+        await $`env BABEL_ENV=cdn npx babel ${path} --out-file ${path} --source-maps`;
       }),
       availableParallelism(),
     );
