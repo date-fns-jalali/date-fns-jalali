@@ -1,22 +1,14 @@
 {
-  "name": "date-fns",
+  "name": "date-fns-jalali",
   "version": "4.2.1",
-  "description": "Modern JavaScript date utility library",
   "license": "MIT",
-  "contributors": [
-    "Sasha Koss <koss@nocorp.me>",
-    "Lesha Koss <regiusprod@gmail.com>"
-  ],
-  "repository": "https://github.com/date-fns/date-fns",
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/kossnocorp"
-  },
-  "type": "module",
+  "description": "Modern JavaScript date utility library for jalali calendar",
+  "repository": "https://github.com/date-fns-jalali/date-fns-jalali",
   "sideEffects": false,
+  "browser": "./index",
+  "type": "module",
   "main": "index.cjs",
   "module": "index.js",
-  "browser": "./index",
   "jsdelivr": "./cdn.min.js",
   "exports": {
     "./package.json": "./package.json",
