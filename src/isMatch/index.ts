@@ -7,6 +7,8 @@ import type {
   WeekOptions,
 } from "../types.js";
 
+import { newDate as coreNewDate } from "../_core/newDate/index";
+
 /**
  * The {@link isMatch} function options.
  */
@@ -307,5 +309,5 @@ export function isMatch(
   formatStr: string,
   options?: IsMatchOptions,
 ): boolean {
-  return isValid(parse(dateStr, formatStr, new Date(), options));
+  return isValid(parse(dateStr, formatStr, coreNewDate(), options));
 }

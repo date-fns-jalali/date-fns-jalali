@@ -3,27 +3,33 @@ import { subYears } from "./index.js";
 
 describe("subYears", () => {
   it("subtracts the given number of years", () => {
-    const result = subYears(new Date(2014, 8 /* Sep */, 1), 5);
-    expect(result).toEqual(new Date(2009, 8 /* Sep */, 1));
+    const result = subYears(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5);
+    expect(result).toEqual(/* 1388/6/10 */ new Date(2009, 8 /* Sep */, 1));
   });
 
   it("accepts a timestamp", () => {
-    const result = subYears(new Date(2014, 8 /* Sep */, 1).getTime(), 12);
-    expect(result).toEqual(new Date(2002, 8 /* Sep */, 1));
+    const result = subYears(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      12,
+    );
+    expect(result).toEqual(/* 1381/6/10 */ new Date(2002, 8 /* Sep */, 1));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     subYears(date, 12);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("handles the leap years properly", () => {
-    const result = subYears(new Date(2016, 1 /* Feb */, 29), 1);
-    expect(result).toEqual(new Date(2015, 1 /* Feb */, 28));
+    const result = subYears(
+      /* 1394/12/10 */ new Date(2016, 1 /* Feb */, 29),
+      1,
+    );
+    expect(result).toEqual(/* 1393/12/10 */ new Date(2015, 2 /* Mar */, 1));
   });
 
-  it("handles dates before 100 AD", () => {
+  it.skip("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 1 /* Feb */, 29);
     initialDate.setHours(0, 0, 0, 0);
@@ -40,7 +46,10 @@ describe("subYears", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = subYears(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = subYears(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 });

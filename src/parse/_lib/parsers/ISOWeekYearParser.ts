@@ -4,6 +4,8 @@ import { Parser } from "../Parser.js";
 import type { ParseFlags, ParseResult } from "../types.js";
 import { parseNDigitsSigned } from "../utils.js";
 
+import { setFullYear as coreSetFullYear } from "../../../_core/setFullYear/index";
+
 // ISO week-numbering year
 export class ISOWeekYearParser extends Parser<number> {
   priority = 130;
@@ -22,7 +24,7 @@ export class ISOWeekYearParser extends Parser<number> {
     value: number,
   ): DateType {
     const firstWeekOfYear = constructFrom(date, 0);
-    firstWeekOfYear.setFullYear(value, 0, 4);
+    coreSetFullYear(firstWeekOfYear, value, 0, 4);
     firstWeekOfYear.setHours(0, 0, 0, 0);
     return startOfISOWeek(firstWeekOfYear);
   }

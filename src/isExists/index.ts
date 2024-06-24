@@ -1,3 +1,7 @@
+import { getMonth as coreGetMonth } from "../_core/getMonth/index";
+import { getDate as coreGetDate } from "../_core/getDate/index";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
+import { newDate as coreNewDate } from "../_core/newDate/index";
 /**
  * @name isExists
  * @category Common Helpers
@@ -23,10 +27,10 @@
  * //=> false
  */
 export function isExists(year: number, month: number, day: number): boolean {
-  const date = new Date(year, month, day);
+  const date = coreNewDate(year, month, day);
   return (
-    date.getFullYear() === year &&
-    date.getMonth() === month &&
-    date.getDate() === day
+    coreGetFullYear(date) === year &&
+    coreGetMonth(date) === month &&
+    coreGetDate(date) === day
   );
 }
