@@ -16,7 +16,7 @@ importers:
         version: 2.5.2
       typedoc:
         specifier: ^0.25.4
-        version: 0.25.13(typescript@4.9.5)
+        version: 0.25.13(typescript@5.6.2)
       typeroo:
         specifier: ^0.9.0
         version: 0.9.0
@@ -25,11 +25,11 @@ importers:
         version: 10.7.0
     devDependencies:
       '@types/node':
-        specifier: ^18.11.17
-        version: 18.19.50
+        specifier: ^20.16.5
+        version: 20.16.5
       typescript:
-        specifier: ^4.9.4
-        version: 4.9.5
+        specifier: ^5.6.2
+        version: 5.6.2
 
 packages:
 
@@ -184,8 +184,8 @@ packages:
   '@types/minimatch@5.1.2':
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
 
-  '@types/node@18.19.50':
-    resolution: {integrity: sha512-xonK+NRrMBRtkL1hVCc3G+uXtjh1Al4opBLjqVmipe5ZAaBYWW6cNAiBVZ1BvmkBhep698rP3UM3aRAdSALuhg==}
+  '@types/node@20.16.5':
+    resolution: {integrity: sha512-VwYCweNo3ERajwy0IUlqqcyZ8/A7Zwa9ZP3MnENWcB11AejO+tLy3pu850goUW2FC/IJMdZUfKpX/yxL1gymCA==}
 
   '@types/qs@6.9.15':
     resolution: {integrity: sha512-uXHQKES6DQKKCLh441Xv/dwxOq1TVS3JPUMlEqoEglvlhR6Mxnlew/Xq/LRVHpLyk7iK3zODe1qYHIMltO7XGg==}
@@ -769,9 +769,9 @@ packages:
   typesaurus@10.7.0:
     resolution: {integrity: sha512-1kPF9jIAbgi8ahk/KSI+r/AYs5mC50usGacBHSJbTqaMk4d5zGHyqqm3WFIgvn8W+g4nVw5QUGIlAnyLHFzKcw==}
 
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
+  typescript@5.6.2:
+    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
+    engines: {node: '>=14.17'}
     hasBin: true
 
   uc.micro@2.1.0:
@@ -785,8 +785,8 @@ packages:
   underscore@1.13.7:
     resolution: {integrity: sha512-GMXzWtsc57XAtguZgaQViUOzs0KTkk8ojr3/xAxXLITqf/3EMwxC0inyETfDFjH/Krbhuep0HNbbjI9i/q3F3g==}
 
-  undici-types@5.26.5:
-    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+  undici-types@6.19.8:
+    resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -967,7 +967,7 @@ snapshots:
   '@grpc/grpc-js@1.8.22':
     dependencies:
       '@grpc/proto-loader': 0.7.13
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
     optional: true
 
   '@grpc/proto-loader@0.7.13':
@@ -1022,15 +1022,15 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
 
   '@types/express-serve-static-core@4.19.5':
     dependencies:
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
       '@types/qs': 6.9.15
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -1045,14 +1045,14 @@ snapshots:
   '@types/glob@8.1.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
     optional: true
 
   '@types/http-errors@2.0.4': {}
 
   '@types/jsonwebtoken@9.0.6':
     dependencies:
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
 
   '@types/linkify-it@5.0.0':
     optional: true
@@ -1074,9 +1074,9 @@ snapshots:
   '@types/minimatch@5.1.2':
     optional: true
 
-  '@types/node@18.19.50':
+  '@types/node@20.16.5':
     dependencies:
-      undici-types: 5.26.5
+      undici-types: 6.19.8
 
   '@types/qs@6.9.15': {}
 
@@ -1085,18 +1085,18 @@ snapshots:
   '@types/rimraf@3.0.2':
     dependencies:
       '@types/glob': 8.1.0
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
     optional: true
 
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
       '@types/send': 0.17.4
 
   abort-controller@3.0.0:
@@ -1290,7 +1290,7 @@ snapshots:
       '@fastify/busboy': 1.2.1
       '@firebase/database-compat': 0.3.4
       '@firebase/database-types': 0.10.4
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
       jsonwebtoken: 9.0.2
       jwks-rsa: 3.1.0
       node-forge: 1.3.1
@@ -1690,7 +1690,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
       long: 5.2.3
     optional: true
 
@@ -1706,7 +1706,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.19.50
+      '@types/node': 20.16.5
       long: 5.2.3
     optional: true
 
@@ -1825,19 +1825,19 @@ snapshots:
       prelude-ls: 1.1.2
     optional: true
 
-  typedoc@0.25.13(typescript@4.9.5):
+  typedoc@0.25.13(typescript@5.6.2):
     dependencies:
       lunr: 2.3.9
       marked: 4.3.0
       minimatch: 9.0.5
       shiki: 0.14.7
-      typescript: 4.9.5
+      typescript: 5.6.2
 
   typeroo@0.9.0: {}
 
   typesaurus@10.7.0: {}
 
-  typescript@4.9.5: {}
+  typescript@5.6.2: {}
 
   uc.micro@2.1.0:
     optional: true
@@ -1848,7 +1848,7 @@ snapshots:
   underscore@1.13.7:
     optional: true
 
-  undici-types@5.26.5: {}
+  undici-types@6.19.8: {}
 
   util-deprecate@1.0.2:
     optional: true

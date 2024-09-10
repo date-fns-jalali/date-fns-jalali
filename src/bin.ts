@@ -108,8 +108,6 @@ import(configPath)
 
         Promise.all(
           pages.map((page) =>
-            // @ts-expect-error: Got this error after upgrading TypeDoc, but
-            // I don't really bother to fix it
             db.pages.id().then((pageId) => pagesBatch.pages.set(pageId, page))
           )
         ).then(pagesBatch),
