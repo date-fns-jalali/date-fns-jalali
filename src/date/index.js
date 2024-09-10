@@ -1,4 +1,4 @@
-import { UTCDateMini } from "./mini.mjs";
+import { UTCDateMini } from "./mini.js";
 
 /**
  * UTC date class. It maps getters and setters to corresponding UTC methods,

@@ -1,11 +1,18 @@
 {
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
-    "target": "es2016",
+    "outDir": "lib",
+    "target": "ESNext",
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "exactOptionalPropertyTypes": true,
     "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "allowJs": true
+  },
+  "exclude": []
 }

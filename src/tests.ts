@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { UTCDate } from "./date";
+import { UTCDate } from "./date/index.js";
 import FakeTimers from "@sinonjs/fake-timers";
 
 describe("UTCDate", () => {

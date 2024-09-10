@@ -1,34 +1,41 @@
 test:
-	@env TZ=Asia/Kolkata npx vitest run
+	@env TZ=Asia/Kolkata pnpm exec vitest run
 
 test-watch:
-	@env TZ=Asia/Kolkata npx vitest
+	@env TZ=Asia/Kolkata pnpm exec vitest
 
-test-types: install-attw build 
-	@cd lib && attw --pack
+types:
+	@pnpm exec tsc --noEmit
 
-.PHONY: build
-build:
-	@rm -rf lib
-	@env npx babel src --source-root src --out-dir lib --extensions .mjs --out-file-extension .js --ignore "src/**/test.ts" --quiet
-	@rsync --archive --prune-empty-dirs --exclude 'test.ts' --relative src/./ lib
-	@make build-mts
-	@cp package.json lib
-	@cp *.md lib
+types-watch:
+	@pnpm exec tsc --noEmit --watch
 
-build-mts:
+test-types: build 
+	@pnpm exec attw --pack lib
+
+build: prepare-build
+	@pnpm exec tsc -p tsconfig.lib.json 
+	@env BABEL_ENV=esm pnpm exec babel src --config-file ./babel.config.json --source-root src --out-dir lib --extensions .js,.ts --out-file-extension .js --quiet
+	@env BABEL_ENV=cjs pnpm exec babel src --config-file ./babel.config.json --source-root src --out-dir lib --extensions .js,.ts --out-file-extension .cjs --quiet
+	@node copy.mjs
+	# @rm -rf lib/types.*js
+	@make build-cts
+	
+build-cts:
 	@find lib -name '*.d.ts' | while read file; do \
-		new_file=$${file%.d.ts}.d.mts; \
+		new_file=$${file%.d.ts}.d.cts; \
 		cp $$file $$new_file; \
 	done
 
+prepare-build:
+	@rm -rf lib
+	@mkdir -p lib
+
 publish: build
-	@cd lib && npm publish --access public
+	cd lib && npm publish --access public
 
 publish-next: build
-	@cd lib && npm publish --access public --tag next
+	cd lib && npm publish --access public --tag next
 
-install-attw:
-	@if ! command -v attw >/dev/null 2>&1; then \
-		npm i -g @arethetypeswrong/cli; \
-	fi
+link:
+	@cd lib && npm link
