@@ -1,5 +1,3 @@
-import { type UTCDateMini } from "./mini.js";
-
 /**
  * UTC date class. It maps getters and setters to corresponding UTC methods,
  * forcing all calculations in the UTC time zone.
@@ -11,27 +9,9 @@ import { type UTCDateMini } from "./mini.js";
  * and `getTimezoneOffset`, but also the formatter functions, mirroring
  * all original `Date` functionality. Use this version when you need to format
  * a string or in an environment you don't fully control (a library).
+ *
  * For a minimal version, see `UTCDateMini`.
  */
-export class UTCDate extends UTCDateMini {
-  toString(): string;
-
-  toDateString(): string;
-
-  toTimeString(): string;
-
-  toLocaleString(
-    locales?: string | string[],
-    options?: Intl.DateTimeFormatOptions
-  ): string;
-
-  toLocaleDateString(
-    locales?: string | string[],
-    options?: Intl.DateTimeFormatOptions
-  ): string;
-
-  toLocaleTimeString(
-    locales?: string | string[],
-    options?: Intl.DateTimeFormatOptions
-  ): string;
+export class UTCDate extends Date {
+  getTimezoneOffset(): 0;
 }

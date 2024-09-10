@@ -1,6 +1,6 @@
 {
   "name": "@date-fns/utc",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "UTC date utils",
   "scripts": {
     "test": "env TZ=Asia/Kolkata vitest",
@@ -38,6 +38,16 @@
       "import": {
         "types": "./date/mini.d.ts",
         "default": "./date/mini.js"
+      }
+    },
+    "./utc": {
+      "require": {
+        "types": "./utc/index.d.cts",
+        "default": "./utc/index.cjs"
+      },
+      "import": {
+        "types": "./utc/index.d.ts",
+        "default": "./utc/index.js"
       }
     }
   },

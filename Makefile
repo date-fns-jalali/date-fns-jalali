@@ -18,7 +18,6 @@ build: prepare-build
 	@env BABEL_ENV=esm pnpm exec babel src --config-file ./babel.config.json --source-root src --out-dir lib --extensions .js,.ts --out-file-extension .js --quiet
 	@env BABEL_ENV=cjs pnpm exec babel src --config-file ./babel.config.json --source-root src --out-dir lib --extensions .js,.ts --out-file-extension .cjs --quiet
 	@node copy.mjs
-	# @rm -rf lib/types.*js
 	@make build-cts
 	
 build-cts:
@@ -32,10 +31,10 @@ prepare-build:
 	@mkdir -p lib
 
 publish: build
-	cd lib && npm publish --access public
+	@cd lib && pnpm publish --access public
 
 publish-next: build
-	cd lib && npm publish --access public --tag next
+	@cd lib && pnpm publish --access public --tag next
 
 link:
-	@cd lib && npm link
+	@cd lib && pnpm link
