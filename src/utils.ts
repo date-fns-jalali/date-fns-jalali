@@ -225,6 +225,7 @@ export function traverseType(
     case "intrinsic":
     case "reference":
     case "literal":
+    case "inferred":
       return;
 
     case "reflection":
@@ -284,8 +285,10 @@ export function traverseType(
       return;
 
     case "query":
+      traverseType(type.queryType, cb);
+      return;
+
     case "predicate":
-    case "inferred":
     case "unknown":
     case "optional":
     case "rest":
