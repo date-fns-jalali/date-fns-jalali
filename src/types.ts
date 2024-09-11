@@ -263,5 +263,6 @@ export namespace DateFnsDocs {
     SetSignature = 1048576,
     TypeAlias = 2097152,
     Reference = 4194304,
+    Document = 8388608,
   }
 }
