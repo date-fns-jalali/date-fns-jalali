@@ -12,4 +12,4 @@ import { type UTCDate } from "./index.ts";
  *
  * For the complete version, see `UTCDate`.
  */
-export const UTCDateMini: UTCDate;
+export const UTCDateMini: typeof UTCDate;
