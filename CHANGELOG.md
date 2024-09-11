@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v2.0.1 - 2024-09-11
+
+### Fixed
+
+- [Fixed `UTCDateMini` type definition](https://github.com/date-fns/utc/pull/11) [@fabon-f1](https://github.com/fabon-f1).
+
 ## v2.0.0 - 2024-09-10
 
 ### Added
