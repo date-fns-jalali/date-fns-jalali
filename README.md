@@ -4,6 +4,8 @@ The package provides `Date` extensions `UTCDate` and `UTCDateMini` that perform 
 
 Using it makes [date-fns] operate in UTC but can be also used without it.
 
+Like everything else in the date-fns ecosystem, the library is build-size aware. The smallest component, `UTCDateMini,` is only `239 B`.
+
 **Need more than just UTC?** See [@date-fns/tz](https://github.com/date-fns/tz) that provides full time zone support.
 
 ## Installation
@@ -35,6 +37,8 @@ addHours(utcDate, 2).toString();
 ```
 
 ### Difference between `UTCDate` and `UTCDateMini`
+
+The main difference between `UTCDate` and `UTCDateMini` is the build footprint. The `UTCDateMini` is `239 B`, and the `UTCDate` is `504 B`. While the difference is slight, and `504 B` is not significant by any means, it might be essential in some environments and use cases.
 
 Unlike `UTCDateMini` which implements only getters, setters, and `getTimezoneOffset`, `UTCDate` also provides formatter functions, mirroring all original `Date` functionality:
 
