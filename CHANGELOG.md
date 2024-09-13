@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v2.1.0 - 2024-09-14
+
+### Added
+
+- Added more documentation to the `README.md` file and JSDoc.
+
 ## v2.0.1 - 2024-09-11
 
 ### Fixed
