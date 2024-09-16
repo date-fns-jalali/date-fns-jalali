@@ -15,7 +15,7 @@ import {
   toJalali,
   toGregorian,
   normalizeMonth,
-} from "./index";
+} from "./index.js";
 
 const START = g2d(-1000, 1, 1);
 const END = g2d(10000, 1, 1);
