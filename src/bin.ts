@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { initializeApp } from "firebase-admin";
+import firebaseAdmin from "firebase-admin";
 import { readFile } from "fs/promises";
 // @ts-expect-error: [TODO] Fix js-fns
 import { pick } from "js-fns";
@@ -18,7 +18,7 @@ import {
   findSummary,
 } from "./utils.js";
 
-initializeApp();
+firebaseAdmin.initializeApp();
 
 interface ConfigModule {
   config: DateFnsDocs.Config;
