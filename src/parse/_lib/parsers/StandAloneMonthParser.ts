@@ -4,6 +4,8 @@ import { Parser } from "../Parser.js";
 import type { ParseFlags, ParseResult } from "../types.js";
 import { mapValue, parseNDigits, parseNumericPattern } from "../utils.js";
 
+import { setMonth as coreSetMonth } from "../../../_core/setMonth/index.js";
+
 export class StandAloneMonthParser extends Parser<number> {
   priority = 110;
 
@@ -66,7 +68,7 @@ export class StandAloneMonthParser extends Parser<number> {
     _flags: ParseFlags,
     value: number,
   ): DateType {
-    date.setMonth(value, 1);
+    coreSetMonth(date, value, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }

@@ -6,6 +6,8 @@ import type {
   GenericDateConstructor,
 } from "../types.js";
 
+import { newDate as coreNewDate } from "../_core/newDate/index.js";
+
 /**
  * @name toDate
  * @category Common Helpers
@@ -74,9 +76,9 @@ export function toDate<
     argStr === "[object String]"
   ) {
     // TODO: Can we get rid of as?
-    return new Date(argument) as ResultDate;
+    return coreNewDate(argument) as ResultDate;
   } else {
     // TODO: Can we get rid of as?
-    return new Date(NaN) as ResultDate;
+    return coreNewDate(NaN) as ResultDate;
   }
 }

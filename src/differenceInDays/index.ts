@@ -2,6 +2,11 @@ import { normalizeDates } from "../_lib/normalizeDates/index.js";
 import { differenceInCalendarDays } from "../differenceInCalendarDays/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { getDate as coreGetDate } from "../_core/getDate/index.js";
+import { setDate as coreSetDate } from "../_core/setDate/index.js";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+
 /**
  * The {@link differenceInDays} function options.
  */
@@ -76,7 +81,7 @@ export function differenceInDays(
     differenceInCalendarDays(laterDate_, earlierDate_),
   );
 
-  laterDate_.setDate(laterDate_.getDate() - sign * difference);
+  coreSetDate(laterDate_, coreGetDate(laterDate_) - sign * difference);
 
   // Math.abs(diff in full days - diff in calendar days) === 1 if last calendar day is not full
   // If so, result must be decreased by 1 in absolute value
@@ -95,9 +100,9 @@ export function differenceInDays(
 // DST ends vs. the instant that DST ends.
 function compareLocalAsc(laterDate: Date, earlierDate: Date): number {
   const diff =
-    laterDate.getFullYear() - earlierDate.getFullYear() ||
-    laterDate.getMonth() - earlierDate.getMonth() ||
-    laterDate.getDate() - earlierDate.getDate() ||
+    coreGetFullYear(laterDate) - coreGetFullYear(earlierDate) ||
+    coreGetMonth(laterDate) - coreGetMonth(earlierDate) ||
+    coreGetDate(laterDate) - coreGetDate(earlierDate) ||
     laterDate.getHours() - earlierDate.getHours() ||
     laterDate.getMinutes() - earlierDate.getMinutes() ||
     laterDate.getSeconds() - earlierDate.getSeconds() ||

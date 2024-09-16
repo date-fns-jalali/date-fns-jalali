@@ -1,6 +1,9 @@
 import { normalizeDates } from "../_lib/normalizeDates/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+
 /**
  * The {@link isSameMonth} function options.
  */
@@ -41,7 +44,7 @@ export function isSameMonth(
     earlierDate,
   );
   return (
-    laterDate_.getFullYear() === earlierDate_.getFullYear() &&
-    laterDate_.getMonth() === earlierDate_.getMonth()
+    coreGetFullYear(laterDate_) === coreGetFullYear(earlierDate_) &&
+    coreGetMonth(laterDate_) === coreGetMonth(earlierDate_)
   );
 }

@@ -6,6 +6,8 @@ import type {
   GenericDateConstructor,
 } from "../types.js";
 
+import { newDate as coreNewDate } from "../_core/newDate/index.js";
+
 /**
  * @name constructFrom
  * @category Generic Helpers
@@ -56,5 +58,5 @@ export function constructFrom<
   if (date instanceof Date)
     return new (date.constructor as GenericDateConstructor<ResultDate>)(value);
 
-  return new Date(value) as ResultDate;
+  return coreNewDate(value) as ResultDate;
 }

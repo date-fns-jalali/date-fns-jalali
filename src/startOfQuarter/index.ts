@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.js";
+
 /**
  * The {@link startOfQuarter} function options.
  */
@@ -37,9 +40,9 @@ export function startOfQuarter<
   options?: StartOfQuarterOptions<ResultDate> | undefined,
 ): ResultDate {
   const _date = toDate(date, options?.in);
-  const currentMonth = _date.getMonth();
+  const currentMonth = coreGetMonth(_date);
   const month = currentMonth - (currentMonth % 3);
-  _date.setMonth(month, 1);
+  coreSetMonth(_date, month, 1);
   _date.setHours(0, 0, 0, 0);
   return _date;
 }

@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.js";
+
 /**
  * The {@link lastDayOfDecade} function options.
  */
@@ -36,9 +39,9 @@ export function lastDayOfDecade<
   options?: LastDayOfDecadeOptions<ResultDate> | undefined,
 ): ResultDate {
   const _date = toDate(date, options?.in);
-  const year = _date.getFullYear();
+  const year = coreGetFullYear(_date);
   const decade = 9 + Math.floor(year / 10) * 10;
-  _date.setFullYear(decade + 1, 0, 0);
+  coreSetFullYear(_date, decade + 1, 0, 0);
   _date.setHours(0, 0, 0, 0);
   return toDate(_date, options?.in);
 }

@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.js";
+
 /**
  * The {@link lastDayOfQuarter} function options.
  */
@@ -37,9 +40,9 @@ export function lastDayOfQuarter<
   options?: LastDayOfQuarterOptions<ResultDate> | undefined,
 ): ResultDate {
   const date_ = toDate(date, options?.in);
-  const currentMonth = date_.getMonth();
+  const currentMonth = coreGetMonth(date_);
   const month = currentMonth - (currentMonth % 3) + 3;
-  date_.setMonth(month, 0);
+  coreSetMonth(date_, month, 0);
   date_.setHours(0, 0, 0, 0);
   return date_;
 }

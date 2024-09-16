@@ -1,6 +1,9 @@
 import { normalizeDates } from "../_lib/normalizeDates/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+
 /**
  * The {@link differenceInCalendarMonths} function options.
  */
@@ -40,8 +43,8 @@ export function differenceInCalendarMonths(
     earlierDate,
   );
 
-  const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
-  const monthsDiff = laterDate_.getMonth() - earlierDate_.getMonth();
+  const yearsDiff = coreGetFullYear(laterDate_) - coreGetFullYear(earlierDate_);
+  const monthsDiff = coreGetMonth(laterDate_) - coreGetMonth(earlierDate_);
 
   return yearsDiff * 12 + monthsDiff;
 }

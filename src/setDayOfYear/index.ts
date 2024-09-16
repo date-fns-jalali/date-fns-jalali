@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.js";
+import { setDate as coreSetDate } from "../_core/setDate/index.js";
+
 /**
  * The {@link setDayOfYear} function options.
  */
@@ -38,7 +41,7 @@ export function setDayOfYear<
   options?: SetDayOfYearOptions<ResultDate> | undefined,
 ): ResultDate {
   const date_ = toDate(date, options?.in);
-  date_.setMonth(0);
-  date_.setDate(dayOfYear);
+  coreSetMonth(date_, 0);
+  coreSetDate(date_, dayOfYear);
   return date_;
 }

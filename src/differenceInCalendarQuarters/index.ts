@@ -2,6 +2,8 @@ import { normalizeDates } from "../_lib/normalizeDates/index.js";
 import { getQuarter } from "../getQuarter/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+
 /**
  * The {@link differenceInCalendarQuarters} function options.
  */
@@ -41,7 +43,7 @@ export function differenceInCalendarQuarters(
     earlierDate,
   );
 
-  const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
+  const yearsDiff = coreGetFullYear(laterDate_) - coreGetFullYear(earlierDate_);
   const quartersDiff = getQuarter(laterDate_) - getQuarter(earlierDate_);
 
   return yearsDiff * 4 + quartersDiff;

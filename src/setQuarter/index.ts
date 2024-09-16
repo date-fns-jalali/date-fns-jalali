@@ -2,6 +2,8 @@ import { setMonth } from "../setMonth/index.js";
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+
 /**
  * The {@link setQuarter} function options.
  */
@@ -39,7 +41,7 @@ export function setQuarter<
   options?: SetQuarterOptions<ResultDate>,
 ): ResultDate {
   const date_ = toDate(date, options?.in);
-  const oldQuarter = Math.trunc(date_.getMonth() / 3) + 1;
+  const oldQuarter = Math.trunc(coreGetMonth(date_) / 3) + 1;
   const diff = quarter - oldQuarter;
-  return setMonth(date_, date_.getMonth() + diff * 3);
+  return setMonth(date_, coreGetMonth(date_) + diff * 3);
 }

@@ -8,6 +8,10 @@ import {
   parseNumericPattern,
 } from "../utils.js";
 
+import { getMonth as coreGetMonth } from "../../../_core/getMonth/index.js";
+import { setDate as coreSetDate } from "../../../_core/setDate/index.js";
+import { getFullYear as coreGetFullYear } from "../../../_core/getFullYear/index.js";
+
 const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const DAYS_IN_MONTH_LEAP_YEAR = [
   31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
@@ -30,9 +34,9 @@ export class DateParser extends Parser<number> {
   }
 
   validate<DateType extends Date>(date: DateType, value: number): boolean {
-    const year = date.getFullYear();
+    const year = coreGetFullYear(date);
     const isLeapYear = isLeapYearIndex(year);
-    const month = date.getMonth();
+    const month = coreGetMonth(date);
     if (isLeapYear) {
       return value >= 1 && value <= DAYS_IN_MONTH_LEAP_YEAR[month];
     } else {
@@ -45,7 +49,7 @@ export class DateParser extends Parser<number> {
     _flags: ParseFlags,
     value: number,
   ): DateType {
-    date.setDate(value);
+    coreSetDate(date, value);
     date.setHours(0, 0, 0, 0);
     return date;
   }

@@ -2,6 +2,10 @@ import { normalizeInterval } from "../_lib/normalizeInterval/index.js";
 import { constructFrom } from "../constructFrom/index.js";
 import type { ContextOptions, Interval, StepOptions } from "../types.js";
 
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.js";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.js";
+
 /**
  * The {@link eachYearOfInterval} function options.
  */
@@ -70,7 +74,7 @@ export function eachYearOfInterval<
   const endTime = reversed ? +start : +end;
   const date = reversed ? end : start;
   date.setHours(0, 0, 0, 0);
-  date.setMonth(0, 1);
+  coreSetMonth(date, 0, 1);
 
   let step = options?.step ?? 1;
   if (!step) return [];
@@ -83,7 +87,7 @@ export function eachYearOfInterval<
 
   while (+date <= endTime) {
     dates.push(constructFrom(start, date));
-    date.setFullYear(date.getFullYear() + step);
+    coreSetFullYear(date, coreGetFullYear(date) + step);
   }
 
   return reversed ? dates.reverse() : dates;

@@ -1,6 +1,8 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+
 /**
  * The {@link getQuarter} function options.
  */
@@ -29,6 +31,6 @@ export function getQuarter(
   options?: GetQuarterOptions | undefined,
 ): number {
   const _date = toDate(date, options?.in);
-  const quarter = Math.trunc(_date.getMonth() / 3) + 1;
+  const quarter = Math.trunc(coreGetMonth(_date) / 3) + 1;
   return quarter;
 }

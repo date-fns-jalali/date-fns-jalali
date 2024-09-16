@@ -1,6 +1,8 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.js";
+
 /**
  * The {@link getDate} function options.
  */
@@ -28,5 +30,5 @@ export function getDate(
   date: DateArg<Date> & {},
   options?: GetDateOptions | undefined,
 ): number {
-  return toDate(date, options?.in).getDate();
+  return coreGetDate(toDate(date, options?.in));
 }
