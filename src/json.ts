@@ -7,8 +7,8 @@ import type {
   SomeType,
   TypeParameterReflection,
 } from "typedoc";
-import type { DateFnsDocs } from "./types";
-import { findFn, traverseType } from "./utils";
+import type { DateFnsDocs } from "./types.js";
+import { findFn, traverseType } from "./utils.js";
 
 /**
  * Reads and parses TypeDoc JSON and extracts reflections.

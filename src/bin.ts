@@ -2,15 +2,21 @@
 
 import * as admin from "firebase-admin";
 import { readFile } from "fs/promises";
+// @ts-expect-error: [TODO] Fix js-fns
 import { pick } from "js-fns";
 import path from "path";
 import { stringify } from "typeroo/json";
 import { batch } from "typesaurus";
-import { packageName, allSubmodules } from "./consts";
-import { db } from "./db";
-import { readRefsFromJSON } from "./json";
-import { findCategory, findFnSummary, findFnTag, findSummary } from "./utils";
-import type { DateFnsDocs } from "./types";
+import { packageName, allSubmodules } from "./consts.js";
+import { db } from "./db.js";
+import { readRefsFromJSON } from "./json.js";
+import {
+  findCategory,
+  findFnSummary,
+  findFnTag,
+  findSummary,
+} from "./utils.js";
+import type { DateFnsDocs } from "./types.js";
 
 admin.initializeApp();
 

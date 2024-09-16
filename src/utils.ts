@@ -6,7 +6,7 @@ import type {
   SignatureReflection,
   SomeType,
 } from "typedoc";
-import { DateFnsDocs } from "./types";
+import { DateFnsDocs } from "./types.js";
 
 /**
  * Find reflection category in a reflection container.

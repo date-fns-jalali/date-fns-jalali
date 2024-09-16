@@ -60,7 +60,7 @@ export namespace DateFnsDocs {
   /**
    * The submodule type.
    */
-  export type Submodule = typeof import("./consts").allSubmodules[number];
+  export type Submodule = typeof import("./consts.js").allSubmodules[number];
 
   /**
    * The package model.
