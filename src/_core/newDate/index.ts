@@ -1,4 +1,4 @@
-import { toGregorian } from "../../_lib/jalali/index";
+import { toGregorian } from "../../_lib/jalali/index.js";
 
 type VArgs = [/* value: */ number | string | Date];
 type DArgs = [

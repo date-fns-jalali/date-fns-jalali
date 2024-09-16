@@ -1,4 +1,4 @@
-import { toGregorian, toJalali } from "../../_lib/jalali/index";
+import { toGregorian, toJalali } from "../../_lib/jalali/index.js";
 
 /**
  *
