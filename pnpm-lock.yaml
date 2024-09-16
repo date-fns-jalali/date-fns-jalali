@@ -18,8 +18,8 @@ importers:
         specifier: ^0.26.7
         version: 0.26.7(typescript@5.6.2)
       typeroo:
-        specifier: ^0.9.0
-        version: 0.9.0
+        specifier: ^0.16.0
+        version: 0.16.0
       typesaurus:
         specifier: ^10.7.0
         version: 10.7.0
@@ -589,8 +589,8 @@ packages:
     peerDependencies:
       typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x
 
-  typeroo@0.9.0:
-    resolution: {integrity: sha512-dVYoqIFk1OeKuDU3pwdQEsUuTosrf3oIHzXBm+/YaemahBe6iDUZl08MStcyVBPplOfK8Hp4CY1nHZEClqNsuw==}
+  typeroo@0.16.0:
+    resolution: {integrity: sha512-cJfJ4+DkoFaz2XeV0dxbYSKM7ZcWa4WNCwhkGkQ+iAIsyyWlGmxUrJkqimsRafqwZ/ByIemPK1KcJjt54RcCOA==}
 
   typesaurus@10.7.0:
     resolution: {integrity: sha512-1kPF9jIAbgi8ahk/KSI+r/AYs5mC50usGacBHSJbTqaMk4d5zGHyqqm3WFIgvn8W+g4nVw5QUGIlAnyLHFzKcw==}
@@ -1420,7 +1420,7 @@ snapshots:
       typescript: 5.6.2
       yaml: 2.5.1
 
-  typeroo@0.9.0: {}
+  typeroo@0.16.0: {}
 
   typesaurus@10.7.0: {}
 

@@ -5,18 +5,18 @@ import { readFile } from "fs/promises";
 // @ts-expect-error: [TODO] Fix js-fns
 import { pick } from "js-fns";
 import path from "path";
-import { stringify } from "typeroo/json";
+import { stringifyJSON } from "typeroo/json";
 import { batch } from "typesaurus";
-import { packageName, allSubmodules } from "./consts.js";
+import { allSubmodules, packageName } from "./consts.js";
 import { db } from "./db.js";
 import { readRefsFromJSON } from "./json.js";
+import type { DateFnsDocs } from "./types.js";
 import {
   findCategory,
   findFnSummary,
   findFnTag,
   findSummary,
 } from "./utils.js";
-import type { DateFnsDocs } from "./types.js";
 
 admin.initializeApp();
 
@@ -185,7 +185,7 @@ async function getFnPages(
       title: name,
       summary,
       name,
-      doc: stringify(ref.ref)!,
+      doc: stringifyJSON(ref.ref)!,
       submodules,
       pure,
     };
