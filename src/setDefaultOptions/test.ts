@@ -3,7 +3,7 @@ import { setDefaultOptions } from "./index.js";
 import type { DefaultOptions } from "../_lib/defaultOptions/index.js";
 import { getDefaultOptions as getInternalDefaultOptions } from "../_lib/defaultOptions/index.js";
 import { defaultLocale } from "../_lib/defaultLocale/index.js";
-import { eo as otherLocale } from "../locale/eo/index.js";
+import { enUS as otherLocale } from "../locale/en-US/index.js";
 import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index.js";
 import { eachWeekOfInterval } from "../eachWeekOfInterval/index.js";
 import { endOfWeek } from "../endOfWeek/index.js";
