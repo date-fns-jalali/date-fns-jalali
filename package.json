@@ -1,7 +1,8 @@
 {
   "name": "@date-fns/docs",
-  "version": "0.33.0",
+  "version": "0.34.0",
   "description": "date-fns documentation utilities & types",
+  "type": "module",
   "main": "index.js",
   "bin": {
     "date-fns-docs": "./bin.js"
