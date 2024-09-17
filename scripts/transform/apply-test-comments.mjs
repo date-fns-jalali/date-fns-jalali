@@ -1,6 +1,6 @@
 import {
   findCommentInPath, generateDateCommentText,
-  isUTCDate,
+ isNewDate, isUTCDate,
 } from "./utils";
 import { toGregorian } from "../../src/_lib/jalali/index";
 
@@ -33,7 +33,7 @@ function setValue(j, node, args) {
 function applyComments(ast, j) {
   return ast
     .find(j.NewExpression, (node) => {
-      return node.callee.name === "Date" && node.arguments.length > 1;
+      return isNewDate(node);
     })
     .forEach((path) => {
       const jText = generateDateCommentText(path.value);

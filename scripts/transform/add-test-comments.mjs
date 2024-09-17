@@ -1,12 +1,12 @@
 import {
   addCommentToPath, generateDateCommentText,
-  isUTCDate,
+ isNewDate, isUTCDate,
 } from "./utils";
 
 function addComments(ast, j) {
   return ast
     .find(j.NewExpression, (node) => {
-      return node.callee.name === "Date" && node.arguments.length > 1;
+      return isNewDate(node);
     })
     .forEach((path) => {
       const text = generateDateCommentText(path.value);

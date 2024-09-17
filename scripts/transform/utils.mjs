@@ -1,4 +1,14 @@
 import { toJalali } from "../../src/_lib/jalali/index";
+
+export function isNewDate(node) {
+  if (node.callee.name !== "Date") {
+    return false;
+  }
+  if (node.arguments.length > 1) {
+    return true;
+  }
+  return false;
+}
 export function isUTCDate(node) {
   return (
     node.type === "CallExpression" &&
@@ -10,7 +20,7 @@ export function isUTCDate(node) {
   );
 }
 
-export function generateDateCommentText(node) {
+function getArguments(node) {
   let allIsNumber = true;
   let args = node.arguments.map((arg) => {
     if (arg.type === "NumericLiteral") {
@@ -27,6 +37,14 @@ export function generateDateCommentText(node) {
     return null;
   });
   if (!allIsNumber) {
+    return null;
+  }
+  return args;
+}
+
+export function generateDateCommentText(node) {
+  let args = getArguments(node);
+  if (args === null) {
     return null;
   }
   const [y, m, d = 1] = args;
