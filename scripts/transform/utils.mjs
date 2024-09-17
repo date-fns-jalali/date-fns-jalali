@@ -46,6 +46,35 @@ export function addImports(ast, imports) {
   body.splice(lastImportDeclarationIndex + 1, 0, ...imports);
 }
 
+export function addCommentToPath(text, path, j) {
+  let node = path.node;
+  let parent = path.parent;
+  if (
+    parent.value.type === "UnaryExpression" &&
+    parent.value.operator === "+"
+  ) {
+    node = parent.value;
+  }
+  const comments = (node.comments = node.comments || []);
+  const comment = j.commentBlock(` ${text} G2J`, true, false);
+  comments.push(comment);
+}
+
+export function findCommentInPath(path) {
+  let node = path.node;
+  let parent = path.parent;
+  if (
+    parent.value.type === "UnaryExpression" &&
+    parent.value.operator === "+"
+  ) {
+    node = parent.value;
+  }
+  if (node.comments && node.comments[node.comments.length - 1]) {
+    return node.comments[node.comments.length - 1].value;
+  }
+  return null;
+}
+
 /**
  *
  * @param imports {Array<{variable: string, filePath: string}>}

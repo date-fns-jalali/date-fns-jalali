@@ -1,4 +1,7 @@
-import { generateDateCommentText, isUTCDate } from "./utils";
+import {
+  findCommentInPath, generateDateCommentText,
+  isUTCDate,
+} from "./utils";
 import { toGregorian } from "../../src/_lib/jalali/index";
 
 const months = [
@@ -38,23 +41,21 @@ function applyComments(ast, j) {
         return;
       }
 
-      if (
-        path.node.comments &&
-        path.node.comments[path.node.comments.length - 1]
-      ) {
-        const text = path.node.comments[path.node.comments.length - 1].value;
-
-        if (jText === text.trim()) {
-          return;
-        }
-        const args = text
-          .trim()
-          .split("/")
-          .map((n) => +n);
-        const g = toGregorian(...args);
-        const gArgs = [g.gy, g.gm - 1, g.gd];
-        setValue(j, path.node, gArgs);
+      const text = findCommentInPath(path);
+      if (text === null) {
+        return;
       }
+
+      if (jText === text.trim()) {
+        return;
+      }
+      const args = text
+        .trim()
+        .split("/")
+        .map((n) => +n);
+      const g = toGregorian(...args);
+      const gArgs = [g.gy, g.gm - 1, g.gd];
+      setValue(j, path.node, gArgs);
     });
 }
 
@@ -69,23 +70,21 @@ function applyUTCComment(ast, j) {
         return;
       }
 
-      if (
-        path.node.comments &&
-        path.node.comments[path.node.comments.length - 1]
-      ) {
-        const text = path.node.comments[path.node.comments.length - 1].value;
-
-        if (jText === text.trim()) {
-          return;
-        }
-        const args = text
-          .trim()
-          .split("/")
-          .map((n) => +n);
-        const g = toGregorian(...args);
-        const gArgs = [g.gy, g.gm - 1, g.gd];
-        setValue(j, path.node, gArgs);
+      const text = findCommentInPath(path);
+      if (text === null) {
+        return;
       }
+
+      if (jText === text.trim()) {
+        return;
+      }
+      const args = text
+        .trim()
+        .split("/")
+        .map((n) => +n);
+      const g = toGregorian(...args);
+      const gArgs = [g.gy, g.gm - 1, g.gd];
+      setValue(j, path.node, gArgs);
     });
 }
 

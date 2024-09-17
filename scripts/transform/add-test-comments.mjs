@@ -1,4 +1,7 @@
-import { generateDateCommentText, isUTCDate } from "./utils";
+import {
+  addCommentToPath, generateDateCommentText,
+  isUTCDate,
+} from "./utils";
 
 function addComments(ast, j) {
   return ast
@@ -10,9 +13,7 @@ function addComments(ast, j) {
       if (text === null) {
         return;
       }
-      const comments = (path.node.comments = path.node.comments || []);
-      const comment = j.commentBlock(` ${text} G2J`, true, false);
-      comments.push(comment);
+      addCommentToPath(text, path, j);
     });
 }
 
@@ -26,9 +27,7 @@ function addUTCComment(ast, j) {
       if (text === null) {
         return;
       }
-      const comments = (path.node.comments = path.node.comments || []);
-      const comment = j.commentBlock(` ${text} G2J`, true, false);
-      comments.push(comment);
+      addCommentToPath(text, path, j);
     });
 }
 
