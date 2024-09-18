@@ -12,7 +12,7 @@ export function isStringDate(node) {
 }
 
 export function isNewDate(node) {
-  if (node.callee.name !== "Date") {
+  if (node.callee.name !== "Date" && node.callee.name !== "TZDate") {
     return false;
   }
   if (node.arguments.length > 1) {
@@ -33,7 +33,7 @@ export function isUTCDate(node) {
 
 function getArguments(node) {
   let allIsNumber = true;
-  let args = node.arguments.map((arg) => {
+  let args = node.arguments.slice(0, 3).map((arg) => {
     if (arg.type === "NumericLiteral") {
       return arg.value;
     }
