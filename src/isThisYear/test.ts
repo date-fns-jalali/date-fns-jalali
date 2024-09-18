@@ -33,12 +33,12 @@ describe("isThisYear", () => {
     it("allows to specify the context", () => {
       fakeNow(new Date(/* 1402/10/12 */ "2024-01-02T00:00:00Z"));
       expect(
-        isThisYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
+        isThisYear(/* 1402/1/1 */ "2023-03-21T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isThisYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
+        isThisYear(/* 1402/1/1 */ "2023-03-21T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

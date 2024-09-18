@@ -74,7 +74,7 @@ describe("subYears", () => {
         subYears(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 5, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1398/1/21 */ "2019-04-10T00:00:00.000-07:00");
+      ).toBe(/* 1398/1/22 */ "2019-04-11T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {

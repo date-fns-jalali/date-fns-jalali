@@ -68,12 +68,12 @@ describe("endOfDecade", () => {
         endOfDecade(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1408/10/11 */ "2029-12-31T23:59:59.999+08:00");
+      ).toBe(/* 1409/12/29 */ "2031-03-20T23:59:59.999+08:00");
       expect(
         endOfDecade(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1408/10/11 */ "2029-12-31T23:59:59.999-08:00");
+      ).toBe(/* 1409/12/29 */ "2031-03-20T23:59:59.999-07:00");
     });
 
     it("resolves the context date type", () => {

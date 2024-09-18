@@ -132,12 +132,12 @@ describe("endOfWeek", () => {
         endOfWeek(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/1/25 */ "2024-04-13T23:59:59.999+08:00");
+      ).toBe(/* 1403/1/24 */ "2024-04-12T23:59:59.999+08:00");
       expect(
         endOfWeek(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1403/1/25 */ "2024-04-13T23:59:59.999-04:00");
+      ).toBe(/* 1403/1/24 */ "2024-04-12T23:59:59.999-04:00");
     });
 
     it("resolves the context date type", () => {

@@ -98,11 +98,11 @@ describe("differenceInCalendarMonths", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/10/12 */ new TZDate(2025, 0, 1, "Asia/Singapore");
-    const dateRight = /* 1402/10/11 */ new TZDate(
-      2024,
-      0,
-      1,
+    const dateLeft = /* 1403/10/1 */ new TZDate(2024, 11, 21, "Asia/Singapore");
+    const dateRight = /* 1402/10/1 */ new TZDate(
+      2023,
+      11,
+      22,
       "America/New_York",
     );
     expect(differenceInCalendarMonths(dateLeft, dateRight)).toBe(12);
@@ -129,8 +129,8 @@ describe("differenceInCalendarMonths", () => {
       ).toBe(1);
       expect(
         differenceInCalendarMonths(
-          /* 1404/6/9 */ "2025-08-31T00:00:00Z",
-          /* 1404/5/10 */ "2025-08-01T04:00:00Z",
+          /* 1404/6/31 */ "2025-09-22T00:00:00Z",
+          /* 1404/6/1 */ "2025-08-23T04:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(0);

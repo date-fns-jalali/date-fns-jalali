@@ -56,29 +56,29 @@ describe("getWeekYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getWeekYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
+        getWeekYear(/* 1401/12/28 */ "2023-03-19T15:00:00Z", {
           in: tz("Asia/Singapore"),
           weekStartsOn: 1,
         }),
-      ).toBe(2023);
+      ).toBe(1401);
       expect(
-        getWeekYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
+        getWeekYear(/* 1401/12/28 */ "2023-03-19T16:00:00Z", {
           in: tz("Asia/Singapore"),
           weekStartsOn: 1,
         }),
-      ).toBe(2024);
+      ).toBe(1402);
       expect(
-        getWeekYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
+        getWeekYear(/* 1401/12/29 */ "2023-03-20T03:00:00Z", {
           in: tz("America/New_York"),
           weekStartsOn: 1,
         }),
-      ).toBe(2023);
+      ).toBe(1401);
       expect(
-        getWeekYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
+        getWeekYear(/* 1401/12/29 */ "2023-03-20T04:00:00Z", {
           in: tz("America/New_York"),
           weekStartsOn: 1,
         }),
-      ).toBe(2024);
+      ).toBe(1402);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

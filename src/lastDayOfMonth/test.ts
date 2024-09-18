@@ -68,7 +68,7 @@ describe("lastDayOfMonth", () => {
       const date = /* 1402/5/27 */ "2023-08-18T15:00:00Z";
       const result = lastDayOfMonth(date, { in: tz("Asia/Singapore") });
       expect(result.toISOString()).toBe(
-        /* 1402/6/9 */ "2023-08-31T00:00:00.000+08:00",
+        /* 1402/5/31 */ "2023-08-22T00:00:00.000+08:00",
       );
     });
 

@@ -24,25 +24,25 @@ describe("getYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
+        getYear(/* 1402/12/29 */ "2024-03-19T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(2023);
+      ).toBe(1402);
       expect(
-        getYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
+        getYear(/* 1402/12/29 */ "2024-03-19T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(2024);
+      ).toBe(1403);
       expect(
-        getYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
+        getYear(/* 1403/1/1 */ "2024-03-20T03:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(2023);
+      ).toBe(1402);
       expect(
-        getYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
+        getYear(/* 1403/1/1 */ "2024-03-20T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(2024);
+      ).toBe(1403);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

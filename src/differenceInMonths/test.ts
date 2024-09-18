@@ -146,11 +146,11 @@ describe("differenceInMonths", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/10/12 */ new TZDate(2025, 0, 1, "Asia/Singapore");
-    const dateRight = /* 1402/10/11 */ new TZDate(
-      2024,
-      0,
-      1,
+    const dateLeft = /* 1403/1/1 */ new TZDate(2024, 2, 20, "Asia/Singapore");
+    const dateRight = /* 1402/1/1 */ new TZDate(
+      2023,
+      2,
+      21,
       "America/New_York",
     );
     expect(differenceInMonths(dateLeft, dateRight)).toBe(11);

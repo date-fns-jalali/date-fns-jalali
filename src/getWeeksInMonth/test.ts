@@ -69,22 +69,22 @@ describe("getWeeksInMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getWeeksInMonth(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
+        getWeeksInMonth(/* 1402/2/31 */ "2023-05-21T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(6);
       expect(
-        getWeeksInMonth(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
+        getWeeksInMonth(/* 1402/2/31 */ "2023-05-21T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(5);
       expect(
-        getWeeksInMonth(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
+        getWeeksInMonth(/* 1402/3/1 */ "2023-05-22T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(6);
       expect(
-        getWeeksInMonth(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
+        getWeeksInMonth(/* 1402/3/1 */ "2023-05-22T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(5);

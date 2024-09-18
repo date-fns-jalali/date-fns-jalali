@@ -35,12 +35,12 @@ describe("isThisQuarter", () => {
     it("allows to specify the context", () => {
       fakeNow(new Date(/* 1402/10/12 */ "2024-01-02T00:00:00Z"));
       expect(
-        isThisQuarter(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
+        isThisQuarter(/* 1402/10/1 */ "2023-12-22T05:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);
       expect(
-        isThisQuarter(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
+        isThisQuarter(/* 1402/10/1 */ "2023-12-22T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);

@@ -274,8 +274,8 @@ describe("formatDistance", () => {
       1,
       "America/New_York",
     );
-    expect(formatDistance(dateLeft, dateRight)).toEqual("6 months");
-    expect(formatDistance(dateRight, dateLeft)).toBe("6 months");
+    expect(formatDistance(dateLeft, dateRight)).toEqual("6 ماه");
+    expect(formatDistance(dateRight, dateLeft)).toBe("6 ماه");
   });
 
   it("allows dates to be of different types", () => {
@@ -297,7 +297,7 @@ describe("formatDistance", () => {
             in: tz("America/Los_Angeles"),
           },
         ),
-      ).toEqual("2 days");
+      ).toEqual("2 روز");
       expect(
         formatDistance(
           /* 1403/1/22 */ "2024-04-10T07:00:00Z",
@@ -306,7 +306,7 @@ describe("formatDistance", () => {
             in: tz("Asia/Singapore"),
           },
         ),
-      ).toEqual("2 days");
+      ).toEqual("2 روز");
     });
   });
 });

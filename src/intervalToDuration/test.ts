@@ -236,22 +236,22 @@ describe("intervalToDuration", () => {
   });
 
   it("normalizes the dates", () => {
-    const laterDate = /* 1405/10/11 */ new TZDate(2027, 0, 1, "Asia/Singapore");
-    const earlierDate = /* 1402/10/11 */ new TZDate(
-      2024,
-      0,
-      1,
+    const laterDate = /* 1405/6/11 */ new TZDate(2026, 8, 2, "Asia/Singapore");
+    const earlierDate = /* 1402/6/11 */ new TZDate(
+      2023,
+      8,
+      2,
       "America/New_York",
     );
     expect(intervalToDuration({ start: laterDate, end: earlierDate })).toEqual({
       days: -30,
-      hours: -11,
+      hours: -12,
       months: -11,
       years: -2,
     });
     expect(intervalToDuration({ start: earlierDate, end: laterDate })).toEqual({
       days: 30,
-      hours: 11,
+      hours: 12,
       months: 11,
       years: 2,
     });
@@ -272,7 +272,7 @@ describe("intervalToDuration", () => {
         intervalToDuration(
           {
             start: new Date(/* 1402/6/12 */ "2023-09-03T00:00:00Z"),
-            end: new Date(/* 1403/6/13 */ "2024-09-03T15:00:00Z"),
+            end: new Date(/* 1403/6/12 */ "2024-09-02T15:00:00Z"),
           },
           { in: tz("Asia/Singapore") },
         ),
@@ -284,7 +284,7 @@ describe("intervalToDuration", () => {
         intervalToDuration(
           {
             start: new Date(/* 1402/6/12 */ "2023-09-03T00:00:00Z"),
-            end: new Date(/* 1403/6/13 */ "2024-09-03T15:00:00Z"),
+            end: new Date(/* 1403/6/12 */ "2024-09-02T15:00:00Z"),
           },
           { in: tz("America/New_York") },
         ),

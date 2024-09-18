@@ -77,12 +77,12 @@ describe("setQuarter", () => {
         setQuarter(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/1/22 */ "2024-04-10T15:00:00.000+08:00");
+      ).toBe(/* 1403/4/22 */ "2024-07-12T15:00:00.000+08:00");
       expect(
         setQuarter(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2, {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1403/1/22 */ "2024-04-10T03:00:00.000-04:00");
+      ).toBe(/* 1403/4/22 */ "2024-07-12T03:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {

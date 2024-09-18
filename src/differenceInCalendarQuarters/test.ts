@@ -107,11 +107,11 @@ describe("differenceInCalendarQuarters", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/1/13 */ new TZDate(2024, 3, 1, "Asia/Singapore");
-    const dateRight = /* 1402/9/10 */ new TZDate(
-      2023,
-      11,
+    const dateLeft = /* 1403/4/1 */ new TZDate(2024, 5, 21, "Asia/Singapore");
+    const dateRight = /* 1402/12/1 */ new TZDate(
+      2024,
       1,
+      20,
       "America/New_York",
     );
     expect(differenceInCalendarQuarters(dateLeft, dateRight)).toBe(2);
@@ -129,8 +129,8 @@ describe("differenceInCalendarQuarters", () => {
       ).toBe(1);
       expect(
         differenceInCalendarQuarters(
-          /* 1403/1/13 */ "2024-04-01T04:00:00Z",
-          /* 1402/10/11 */ "2024-01-01T00:00:00Z",
+          /* 1403/4/1 */ "2024-06-21T04:00:00Z",
+          /* 1403/1/1 */ "2024-03-20T00:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(2);

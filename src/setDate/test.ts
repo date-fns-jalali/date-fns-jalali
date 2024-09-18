@@ -52,12 +52,12 @@ describe("setDate", () => {
         setDate(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 15, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/1/27 */ "2024-04-15T15:00:00.000+08:00");
+      ).toBe(/* 1403/1/15 */ "2024-04-03T15:00:00.000+08:00");
       expect(
         setDate(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 20, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1403/2/1 */ "2024-04-20T00:00:00.000-07:00");
+      ).toBe(/* 1403/1/20 */ "2024-04-08T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {

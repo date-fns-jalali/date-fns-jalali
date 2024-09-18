@@ -52,25 +52,25 @@ describe("lastDayOfDecade", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        lastDayOfDecade(/* 1378/10/10 */ "1999-12-31T15:00:00Z", {
+        lastDayOfDecade(/* 1379/12/30 */ "2001-03-20T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1378/10/10 */ "1999-12-31T00:00:00.000+08:00");
+      ).toBe(/* 1379/12/30 */ "2001-03-20T00:00:00.000+08:00");
       expect(
-        lastDayOfDecade(/* 1378/10/10 */ "1999-12-31T16:00:00Z", {
+        lastDayOfDecade(/* 1379/12/30 */ "2001-03-20T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1388/10/10 */ "2009-12-31T00:00:00.000+08:00");
+      ).toBe(/* 1389/12/29 */ "2011-03-20T00:00:00.000+08:00");
       expect(
-        lastDayOfDecade(/* 1378/10/11 */ "2000-01-01T04:00:00Z", {
+        lastDayOfDecade(/* 1380/1/1 */ "2001-03-21T04:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1378/10/10 */ "1999-12-31T00:00:00.000-05:00");
+      ).toBe(/* 1379/12/30 */ "2001-03-20T00:00:00.000-05:00");
       expect(
-        lastDayOfDecade(/* 1378/10/11 */ "2000-01-01T05:00:00Z", {
+        lastDayOfDecade(/* 1380/1/1 */ "2001-03-21T05:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1388/10/10 */ "2009-12-31T00:00:00.000-05:00");
+      ).toBe(/* 1389/12/29 */ "2011-03-20T00:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {

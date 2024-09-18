@@ -75,7 +75,7 @@ describe("subMonths", () => {
         subMonths(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 10, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1402/3/20 */ "2023-06-10T15:00:00.000+08:00");
+      ).toBe(/* 1402/3/22 */ "2023-06-12T15:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {

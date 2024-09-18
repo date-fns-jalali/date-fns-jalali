@@ -55,7 +55,7 @@ describe("startOfQuarter", () => {
       const context = { in: tz("America/New_York") };
       const result = startOfQuarter(date, context);
       expect(result.toISOString()).toEqual(
-        /* 1400/10/11 */ "2022-01-01T00:00:00.000-05:00",
+        /* 1400/10/1 */ "2021-12-22T00:00:00.000-05:00",
       );
     });
 

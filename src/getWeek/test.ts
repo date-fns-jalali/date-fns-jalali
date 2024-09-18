@@ -61,25 +61,25 @@ describe("getWeek", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getWeek(/* 1403/6/3 */ "2024-08-24T15:00:00Z", {
+        getWeek(/* 1403/6/2 */ "2024-08-23T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(34);
+      ).toBe(23);
       expect(
-        getWeek(/* 1403/6/3 */ "2024-08-24T16:00:00Z", {
+        getWeek(/* 1403/6/2 */ "2024-08-23T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(35);
+      ).toBe(24);
       expect(
-        getWeek(/* 1403/6/4 */ "2024-08-25T03:00:00Z", {
+        getWeek(/* 1403/6/3 */ "2024-08-24T03:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(34);
+      ).toBe(23);
       expect(
-        getWeek(/* 1403/6/4 */ "2024-08-25T04:00:00Z", {
+        getWeek(/* 1403/6/3 */ "2024-08-24T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(35);
+      ).toBe(24);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

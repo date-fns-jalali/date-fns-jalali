@@ -59,11 +59,11 @@ describe("isSameQuarter", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/1/13 */ new TZDate(2024, 3, 1, "Asia/Singapore");
-    const dateRight = /* 1403/1/12 */ new TZDate(
+    const dateLeft = /* 1403/4/1 */ new TZDate(2024, 5, 21, "Asia/Singapore");
+    const dateRight = /* 1403/3/31 */ new TZDate(
       2024,
-      2,
-      31,
+      5,
+      20,
       "America/New_York",
     );
     expect(isSameQuarter(dateLeft, dateRight)).toBe(false);
@@ -74,8 +74,8 @@ describe("isSameQuarter", () => {
     it("allows to specify the context", () => {
       expect(
         isSameQuarter(
-          /* 1403/7/9 */ "2024-09-30T16:00:00Z",
-          /* 1403/7/10 */ "2024-09-31T00:00:00Z",
+          /* 1403/9/30 */ "2024-12-20T15:00:00Z",
+          /* 1403/9/30 */ "2024-12-20T00:00:00Z",
           {
             in: tz("Asia/Singapore"),
           },
@@ -83,8 +83,8 @@ describe("isSameQuarter", () => {
       ).toBe(true);
       expect(
         isSameQuarter(
-          /* 1403/7/9 */ "2024-09-30T15:00:00Z",
-          /* 1403/7/10 */ "2024-09-31T00:00:00Z",
+          /* 1403/9/30 */ "2024-12-20T16:00:00Z",
+          /* 1403/9/30 */ "2024-12-20T00:00:00Z",
           {
             in: tz("Asia/Singapore"),
           },
@@ -92,8 +92,8 @@ describe("isSameQuarter", () => {
       ).toBe(false);
       expect(
         isSameQuarter(
-          /* 1403/7/10 */ "2024-10-01T04:00:00Z",
-          /* 1403/7/11 */ "2024-10-02T00:00:00Z",
+          /* 1403/7/1 */ "2024-09-22T04:00:00Z",
+          /* 1403/7/2 */ "2024-09-23T00:00:00Z",
           {
             in: tz("America/New_York"),
           },
@@ -101,8 +101,8 @@ describe("isSameQuarter", () => {
       ).toBe(true);
       expect(
         isSameQuarter(
-          /* 1403/7/10 */ "2024-10-01T03:00:00Z",
-          /* 1403/7/11 */ "2024-10-02T00:00:00Z",
+          /* 1403/7/1 */ "2024-09-22T03:00:00Z",
+          /* 1403/7/2 */ "2024-09-23T00:00:00Z",
           {
             in: tz("America/New_York"),
           },

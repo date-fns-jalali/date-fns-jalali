@@ -187,7 +187,9 @@ describe("addMonths", () => {
       });
       // Here we add 1 month to 1 Sep 2014 00:00 UTC (which is 1 Sep 2014 09:00 in Tokyo)
       // and we expect to get 1 Oct 2014 00:00 UTC (which is 1 Oct 2014 09:00 in Tokyo)
-      expect(+result).toEqual(+new Date(/* 1393/7/9 */ "2014-10-01T00:00:00Z"));
+      expect(+result).toEqual(
+        +new Date(/* 1393/7/10 */ "2014-10-02T00:00:00Z"),
+      );
     });
 
     it("resolves the context date type", () => {

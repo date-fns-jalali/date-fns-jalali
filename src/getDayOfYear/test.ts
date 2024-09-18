@@ -35,12 +35,12 @@ describe("getDayOfYear", () => {
         getDayOfYear(new Date(/* 1393/4/11 */ "2014-07-02T00:00:00Z"), {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(183);
+      ).toBe(104);
       expect(
         getDayOfYear(new Date(/* 1393/4/11 */ "2014-07-02T00:00:00Z"), {
           in: tz("America/Los_Angeles"),
         }),
-      ).toBe(182);
+      ).toBe(103);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

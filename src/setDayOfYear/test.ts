@@ -58,12 +58,12 @@ describe("setDayOfYear", () => {
         setDayOfYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 123, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/2/13 */ "2024-05-02T15:00:00.000+08:00");
+      ).toBe(/* 1403/4/30 */ "2024-07-20T15:00:00.000+08:00");
       expect(
         setDayOfYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 123, {
           in: tz("Asia/Kolkata"),
         }).toISOString(),
-      ).toBe(/* 1403/2/13 */ "2024-05-02T12:30:00.000+05:30");
+      ).toBe(/* 1403/4/30 */ "2024-07-20T12:30:00.000+05:30");
     });
 
     it("resolves the context date type", () => {

@@ -2663,25 +2663,25 @@ describe("parse", () => {
     it("allows to specify the context", () => {
       expect(
         parse(
-          "2018 hello world July 2nd",
+          ["1390", "hello world", "خرداد", "2-ام"].join(" "),
           "yyyy 'hello world' MMMM do",
           "2024-04-07T00:00:00Z",
           { in: tz("Asia/Singapore") },
         ).toISOString(),
-      ).toBe("2018-07-02T00:00:00.000+08:00");
+      ).toBe("2011-05-23T00:00:00.000+08:00");
       expect(
         parse(
-          "2018 hello world July 2nd",
+          ["1390", "hello world", "خرداد", "2-ام"].join(" "),
           "yyyy 'hello world' MMMM do",
           "2024-04-07T00:00:00Z",
           { in: tz("America/Los_Angeles") },
         ).toISOString(),
-      ).toBe("2018-07-02T00:00:00.000-07:00");
+      ).toBe("2011-05-23T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {
       const result = parse(
-        "2018 hello world July 2nd",
+        ["1390", "hello world", "خرداد", "2-ام"].join(" "),
         "yyyy 'hello world' MMMM do",
         "2024-04-07T00:00:00Z",
         { in: tz("Asia/Tokyo") },

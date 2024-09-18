@@ -98,11 +98,11 @@ describe("differenceInCalendarYears", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/10/12 */ new TZDate(2025, 0, 1, "Asia/Singapore");
-    const dateRight = /* 1402/10/11 */ new TZDate(
-      2024,
-      0,
-      1,
+    const dateLeft = /* 1403/1/1 */ new TZDate(2024, 2, 20, "Asia/Singapore");
+    const dateRight = /* 1402/1/1 */ new TZDate(
+      2023,
+      2,
+      21,
       "America/New_York",
     );
     expect(differenceInCalendarYears(dateLeft, dateRight)).toBe(1);
@@ -122,15 +122,15 @@ describe("differenceInCalendarYears", () => {
     it("allows to specify the context", () => {
       expect(
         differenceInCalendarYears(
-          /* 1404/10/11 */ "2026-01-01T04:00:00Z",
-          /* 1402/10/11 */ "2024-01-01T00:00:00Z",
+          /* 1404/1/1 */ "2025-03-21T03:00:00Z",
+          /* 1402/1/1 */ "2023-03-21T00:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(2);
       expect(
         differenceInCalendarYears(
-          /* 1404/10/11 */ "2026-01-01T05:00:00Z",
-          /* 1402/10/11 */ "2024-01-01T00:00:00Z",
+          /* 1404/1/1 */ "2025-03-21T04:00:00Z",
+          /* 1402/1/1 */ "2023-03-21T00:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(3);

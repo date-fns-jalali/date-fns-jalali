@@ -75,7 +75,7 @@ describe("addQuarters", () => {
         addQuarters(/* 1402/1/11 */ "2023-03-31T00:00:00Z", 1, {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1402/4/9 */ "2023-06-30T20:00:00.000-04:00");
+      ).toBe(/* 1402/4/10 */ "2023-07-01T20:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {

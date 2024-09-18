@@ -24,22 +24,22 @@ describe("getQuarter", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getQuarter(/* 1403/1/12 */ "2024-03-31T16:00:00Z", {
+        getQuarter(/* 1403/3/31 */ "2024-06-20T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(2);
       expect(
-        getQuarter(/* 1403/1/12 */ "2024-03-31T15:00:00Z", {
+        getQuarter(/* 1403/3/31 */ "2024-06-20T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(1);
       expect(
-        getQuarter(/* 1403/1/13 */ "2024-04-01T04:00:00Z", {
+        getQuarter(/* 1403/4/1 */ "2024-06-21T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(2);
       expect(
-        getQuarter(/* 1403/1/13 */ "2024-04-01T03:00:00Z", {
+        getQuarter(/* 1403/4/1 */ "2024-06-21T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(1);

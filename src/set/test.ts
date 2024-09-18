@@ -103,17 +103,17 @@ describe("set", () => {
       expect(
         set(
           new Date(/* 1403/1/22 */ "2024-04-10T07:00:00Z"),
-          { year: 2015 },
+          { year: 1394 },
           { in: tz("Asia/Singapore") },
         ).toISOString(),
-      ).toBe(/* 1394/1/21 */ "2015-04-10T15:00:00.000+08:00");
+      ).toBe(/* 1394/1/22 */ "2015-04-11T15:00:00.000+08:00");
       expect(
         set(
           new Date(/* 1403/1/22 */ "2024-04-10T07:00:00Z"),
-          { year: 2015 },
+          { year: 1394 },
           { in: tz("America/Los_Angeles") },
         ).toISOString(),
-      ).toBe(/* 1394/1/21 */ "2015-04-10T00:00:00.000-07:00");
+      ).toBe(/* 1394/1/22 */ "2015-04-11T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {

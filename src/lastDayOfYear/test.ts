@@ -55,12 +55,12 @@ describe("lastDayOfYear", () => {
         lastDayOfYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/10/11 */ "2024-12-31T00:00:00.000+08:00");
+      ).toBe(/* 1403/12/30 */ "2025-03-20T00:00:00.000+08:00");
       expect(
         lastDayOfYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1403/10/11 */ "2024-12-31T00:00:00.000-08:00");
+      ).toBe(/* 1403/12/30 */ "2025-03-20T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {

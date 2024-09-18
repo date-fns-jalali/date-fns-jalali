@@ -31,7 +31,7 @@ describe("getDecade", () => {
       const result = getDecade(/* 1350/8/17 */ "1971-11-08T07:00:00Z", {
         in: tz("America/New_York"),
       });
-      expect(result).toBe(1970);
+      expect(result).toBe(1350);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

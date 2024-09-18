@@ -77,12 +77,12 @@ describe("endOfMonth", () => {
         endOfMonth(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/2/11 */ "2024-04-30T23:59:59.999+08:00");
+      ).toBe(/* 1403/1/31 */ "2024-04-19T23:59:59.999+08:00");
       expect(
         endOfMonth(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1403/2/11 */ "2024-04-30T23:59:59.999-07:00");
+      ).toBe(/* 1403/1/31 */ "2024-04-19T23:59:59.999-07:00");
     });
 
     it("resolves the context date type", () => {

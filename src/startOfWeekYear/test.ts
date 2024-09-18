@@ -97,28 +97,28 @@ describe("startOfWeekYear", () => {
           firstWeekContainsDate: 4,
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1401/10/12 */ "2023-01-02T00:00:00.000+08:00");
+      ).toBe(/* 1401/12/29 */ "2023-03-20T00:00:00.000+08:00");
       expect(
         startOfWeekYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
           weekStartsOn: 1,
           firstWeekContainsDate: 4,
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1402/10/11 */ "2024-01-01T00:00:00.000+08:00");
+      ).toBe(/* 1401/12/29 */ "2023-03-20T00:00:00.000+08:00");
       expect(
         startOfWeekYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           weekStartsOn: 1,
           firstWeekContainsDate: 4,
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1401/10/12 */ "2023-01-02T00:00:00.000-05:00");
+      ).toBe(/* 1401/12/29 */ "2023-03-20T00:00:00.000-04:00");
       expect(
         startOfWeekYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           weekStartsOn: 1,
           firstWeekContainsDate: 4,
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1402/10/11 */ "2024-01-01T00:00:00.000-05:00");
+      ).toBe(/* 1401/12/29 */ "2023-03-20T00:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {

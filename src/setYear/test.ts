@@ -52,12 +52,12 @@ describe("setYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2014, {
+        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 1393, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1393/1/21 */ "2014-04-10T00:00:00.000-07:00");
+      ).toBe(/* 1393/1/22 */ "2014-04-11T00:00:00.000-07:00");
       expect(
-        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2016, {
+        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 1395, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
       ).toBe(/* 1395/1/22 */ "2016-04-10T15:00:00.000+08:00");

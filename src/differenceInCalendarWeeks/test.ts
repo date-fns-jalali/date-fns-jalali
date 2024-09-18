@@ -161,11 +161,11 @@ describe("differenceInCalendarWeeks", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/4/17 */ new TZDate(2024, 6, 7, "Asia/Singapore");
-    const dateRight = /* 1403/4/10 */ new TZDate(
+    const dateLeft = /* 1403/4/16 */ new TZDate(2024, 6, 6, "Asia/Singapore");
+    const dateRight = /* 1403/4/9 */ new TZDate(
       2024,
       5,
-      30,
+      29,
       "America/New_York",
     );
     expect(differenceInCalendarWeeks(dateLeft, dateRight)).toBe(1);
@@ -176,15 +176,15 @@ describe("differenceInCalendarWeeks", () => {
     it("allows to specify the context", () => {
       expect(
         differenceInCalendarWeeks(
-          /* 1403/5/28 */ "2024-08-18T03:00:00Z",
-          /* 1403/5/11 */ "2024-08-01T00:00:00Z",
+          /* 1403/5/27 */ "2024-08-17T03:00:00Z",
+          /* 1403/5/10 */ "2024-07-31T00:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(2);
       expect(
         differenceInCalendarWeeks(
-          /* 1403/5/28 */ "2024-08-18T04:00:00Z",
-          /* 1403/5/11 */ "2024-08-01T00:00:00Z",
+          /* 1403/5/27 */ "2024-08-17T04:00:00Z",
+          /* 1403/5/10 */ "2024-07-31T00:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(3);

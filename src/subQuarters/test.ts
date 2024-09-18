@@ -75,7 +75,7 @@ describe("subQuarters", () => {
         subQuarters(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1402/7/18 */ "2023-10-10T15:00:00.000+08:00");
+      ).toBe(/* 1402/7/22 */ "2023-10-14T15:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {

@@ -111,25 +111,25 @@ describe("startOfWeek", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        startOfWeek(/* 1403/5/27 */ "2024-08-17T15:00:00Z", {
+        startOfWeek(/* 1403/5/26 */ "2024-08-16T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/5/21 */ "2024-08-11T00:00:00.000+08:00");
+      ).toBe(/* 1403/5/20 */ "2024-08-10T00:00:00.000+08:00");
       expect(
-        startOfWeek(/* 1403/5/27 */ "2024-08-17T16:00:00Z", {
+        startOfWeek(/* 1403/5/26 */ "2024-08-16T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/5/28 */ "2024-08-18T00:00:00.000+08:00");
+      ).toBe(/* 1403/5/27 */ "2024-08-17T00:00:00.000+08:00");
       expect(
-        startOfWeek(/* 1403/5/28 */ "2024-08-18T03:00:00Z", {
+        startOfWeek(/* 1403/5/27 */ "2024-08-17T03:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1403/5/21 */ "2024-08-11T00:00:00.000-04:00");
+      ).toBe(/* 1403/5/20 */ "2024-08-10T00:00:00.000-04:00");
       expect(
-        startOfWeek(/* 1403/5/28 */ "2024-08-18T04:00:00Z", {
+        startOfWeek(/* 1403/5/27 */ "2024-08-17T04:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1403/5/28 */ "2024-08-18T00:00:00.000-04:00");
+      ).toBe(/* 1403/5/27 */ "2024-08-17T00:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {

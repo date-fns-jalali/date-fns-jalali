@@ -33,12 +33,12 @@ describe("isThisMonth", () => {
     it("allows to specify the context", () => {
       fakeNow(new Date(/* 1393/6/11 */ "2014-09-02T00:00:00Z"));
       expect(
-        isThisMonth(/* 1393/6/10 */ "2014-09-01T04:00:00Z", {
+        isThisMonth(/* 1393/6/1 */ "2014-08-23T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);
       expect(
-        isThisMonth(/* 1393/6/10 */ "2014-09-01T03:00:00Z", {
+        isThisMonth(/* 1393/6/1 */ "2014-08-23T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);

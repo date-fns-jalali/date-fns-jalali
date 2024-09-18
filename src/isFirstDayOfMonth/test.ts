@@ -32,22 +32,22 @@ describe("isFirstDayOfMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isFirstDayOfMonth(/* 1403/6/10 */ "2024-08-31T15:00:00Z", {
+        isFirstDayOfMonth(/* 1403/6/31 */ "2024-09-21T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(false);
       expect(
-        isFirstDayOfMonth(/* 1403/6/10 */ "2024-08-31T16:00:00Z", {
+        isFirstDayOfMonth(/* 1403/6/31 */ "2024-09-21T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(true);
       expect(
-        isFirstDayOfMonth(/* 1403/6/11 */ "2024-09-01T03:00:00Z", {
+        isFirstDayOfMonth(/* 1403/6/1 */ "2024-08-22T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isFirstDayOfMonth(/* 1403/6/11 */ "2024-09-01T04:00:00Z", {
+        isFirstDayOfMonth(/* 1403/6/1 */ "2024-08-22T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

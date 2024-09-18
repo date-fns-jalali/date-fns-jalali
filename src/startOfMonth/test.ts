@@ -55,13 +55,13 @@ describe("startOfMonth", () => {
         startOfMonth(/* 1403/5/28 */ "2024-08-18T05:00:00Z", {
           in: tz("Asia/Hong_Kong"),
         }).toISOString(),
-      ).toBe(/* 1403/5/11 */ "2024-08-01T00:00:00.000+08:00");
+      ).toBe(/* 1403/5/1 */ "2024-07-22T00:00:00.000+08:00");
 
       expect(
         startOfMonth(/* 1402/10/11 */ "2024-01-01T19:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1402/10/11 */ "2024-01-01T00:00:00.000-05:00");
+      ).toBe(/* 1402/10/1 */ "2023-12-22T00:00:00.000-05:00");
     });
 
     it("resolves the context date type", () => {

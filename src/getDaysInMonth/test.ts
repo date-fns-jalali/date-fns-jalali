@@ -40,15 +40,15 @@ describe("getDaysInMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getDaysInMonth(/* 1402/11/12 */ "2024-02-01T04:00:00Z", {
+        getDaysInMonth(/* 1402/7/1 */ "2023-09-23T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(31);
       expect(
-        getDaysInMonth(/* 1402/11/12 */ "2024-02-01T05:00:00Z", {
+        getDaysInMonth(/* 1402/7/1 */ "2023-09-23T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(29);
+      ).toBe(30);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

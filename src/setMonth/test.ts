@@ -71,12 +71,12 @@ describe("setMonth", () => {
         setMonth(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1402/12/20 */ "2024-03-10T15:00:00.000+08:00");
+      ).toBe(/* 1403/3/22 */ "2024-06-11T15:00:00.000+08:00");
       expect(
         setMonth(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2, {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1402/12/20 */ "2024-03-10T04:00:00.000-04:00");
+      ).toBe(/* 1403/3/22 */ "2024-06-11T03:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {

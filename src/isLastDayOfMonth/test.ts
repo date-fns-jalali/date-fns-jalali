@@ -32,22 +32,22 @@ describe("isLastDayOfMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isLastDayOfMonth(/* 1403/7/8 */ "2024-09-29T15:00:00Z", {
+        isLastDayOfMonth(/* 1403/7/29 */ "2024-10-20T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(false);
       expect(
-        isLastDayOfMonth(/* 1403/7/8 */ "2024-09-29T16:00:00Z", {
+        isLastDayOfMonth(/* 1403/7/29 */ "2024-10-20T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(true);
       expect(
-        isLastDayOfMonth(/* 1403/6/10 */ "2024-08-31T03:00:00Z", {
+        isLastDayOfMonth(/* 1403/6/31 */ "2024-09-21T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isLastDayOfMonth(/* 1403/6/10 */ "2024-08-31T04:00:00Z", {
+        isLastDayOfMonth(/* 1403/6/31 */ "2024-09-21T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

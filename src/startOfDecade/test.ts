@@ -52,15 +52,15 @@ describe("startOfDecade", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        startOfDecade(/* 1403/5/28 */ "2024-08-18T15:00:00Z", {
+        startOfDecade(/* 1399/5/28 */ "2020-08-18T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1398/10/11 */ "2020-01-01T00:00:00.000+08:00");
+      ).toBe(/* 1390/1/1 */ "2011-03-21T00:00:00.000+08:00");
       expect(
-        startOfDecade(/* 1403/5/28 */ "2024-08-18T17:00:00Z", {
+        startOfDecade(/* 1399/5/28 */ "2020-08-18T17:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1398/10/11 */ "2020-01-01T00:00:00.000-05:00");
+      ).toBe(/* 1390/1/1 */ "2011-03-21T00:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {
