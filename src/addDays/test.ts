@@ -7,19 +7,22 @@ import { addDays } from "./index.js";
 
 describe("addDays", () => {
   it("adds the given number of days", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), 10);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 11));
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 10);
+    expect(result).toEqual(/* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11));
   });
 
   it("accepts a timestamp", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1).getTime(), 10);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 11));
+    const result = addDays(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      10,
+    );
+    expect(result).toEqual(/* 1393/6/20 */ new Date(2014, 8 /* Sep */, 11));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     addDays(date, 11);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -28,7 +31,7 @@ describe("addDays", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addDays(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = addDays(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN);
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -130,19 +133,19 @@ describe("addDays", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        addDays("2024-04-10T07:00:00Z", 10, {
+        addDays(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 10, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-20T15:00:00.000+08:00");
+      ).toBe(/* 1403/2/1 */ "2024-04-20T15:00:00.000+08:00");
       expect(
-        addDays("2024-04-10T07:00:00Z", 10, {
+        addDays(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 10, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe("2024-04-20T00:00:00.000-07:00");
+      ).toBe(/* 1403/2/1 */ "2024-04-20T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = addDays(date, 1, {
         in: tz("Asia/Tokyo"),
       });

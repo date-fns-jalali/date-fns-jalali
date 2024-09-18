@@ -6,25 +6,31 @@ import { subQuarters } from "./index.js";
 
 describe("subQuarters", () => {
   it("subtracts the given number of quarters", () => {
-    const result = subQuarters(new Date(2014, 8 /* Sep */, 1), 3);
-    expect(result).toEqual(new Date(2013, 11 /* Dec */, 1));
+    const result = subQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      3,
+    );
+    expect(result).toEqual(/* 1392/9/10 */ new Date(2013, 11 /* Dec */, 1));
   });
 
   it("accepts a timestamp", () => {
-    const result = subQuarters(new Date(2014, 8 /* Sep */, 1).getTime(), 4);
-    expect(result).toEqual(new Date(2013, 8 /* Sep */, 1));
+    const result = subQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      4,
+    );
+    expect(result).toEqual(/* 1392/6/10 */ new Date(2013, 8 /* Sep */, 1));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     subQuarters(date, 3);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("works well if the desired month has fewer days and the provided date is in the last day of a month", () => {
-    const date = new Date(2014, 11 /* Dec */, 31);
+    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31);
     const result = subQuarters(date, 1);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
   });
 
   it("handles dates before 100 AD", () => {
@@ -44,7 +50,10 @@ describe("subQuarters", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = subQuarters(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = subQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -63,14 +72,14 @@ describe("subQuarters", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        subQuarters("2024-04-10T07:00:00Z", 2, {
+        subQuarters(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2023-10-10T15:00:00.000+08:00");
+      ).toBe(/* 1402/7/18 */ "2023-10-10T15:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {
-      const result = subQuarters("2024-08-18T15:00:00Z", 2, {
+      const result = subQuarters(/* 1403/5/28 */ "2024-08-18T15:00:00Z", 2, {
         in: tz("America/New_York"),
       });
       expect(result).toBeInstanceOf(TZDate);

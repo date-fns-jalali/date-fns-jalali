@@ -6,34 +6,51 @@ import { endOfMonth } from "./index.js";
 
 describe("endOfMonth", () => {
   it("returns the date with the time set to 23:59:59.999 and the date set to the last day of a month", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = endOfMonth(date);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999));
+    expect(result).toEqual(
+      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999),
+    );
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime();
+    const date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+      0,
+    ).getTime();
     const result = endOfMonth(date);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999));
+    expect(result).toEqual(
+      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     endOfMonth(date);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 2, 11, 55, 0));
+    expect(date).toEqual(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
+    );
   });
 
   describe("edge cases", () => {
     it("works for last month in year", () => {
-      const date = new Date(2014, 11 /* Dec */, 1, 0, 0, 0);
+      const date = /* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1, 0, 0, 0);
       const result = endOfMonth(date);
-      expect(result).toEqual(new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999));
+      expect(result).toEqual(
+        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31, 23, 59, 59, 999),
+      );
     });
 
     it("works for last day of month", () => {
-      const date = new Date(2014, 9 /* Oct */, 31);
+      const date = /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31);
       const result = endOfMonth(date);
-      expect(result).toEqual(new Date(2014, 9 /* Oct */, 31, 23, 59, 59, 999));
+      expect(result).toEqual(
+        /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31, 23, 59, 59, 999),
+      );
     });
   });
 
@@ -57,19 +74,19 @@ describe("endOfMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        endOfMonth("2024-04-10T07:00:00Z", {
+        endOfMonth(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-30T23:59:59.999+08:00");
+      ).toBe(/* 1403/2/11 */ "2024-04-30T23:59:59.999+08:00");
       expect(
-        endOfMonth("2024-04-10T07:00:00Z", {
+        endOfMonth(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe("2024-04-30T23:59:59.999-07:00");
+      ).toBe(/* 1403/2/11 */ "2024-04-30T23:59:59.999-07:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = endOfMonth(date, {
         in: tz("Asia/Tokyo"),
       });

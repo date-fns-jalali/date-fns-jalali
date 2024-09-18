@@ -5,12 +5,14 @@ import type { ContextOptions, DateArg } from "../types.js";
 
 describe("getDayOfYear", () => {
   it("returns the day of the year of the given date", () => {
-    const result = getDayOfYear(new Date(2014, 6 /* Jul */, 2));
+    const result = getDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
     expect(result).toBe(183);
   });
 
   it("accepts a timestamp", () => {
-    const result = getDayOfYear(new Date(2014, 0 /* Jan */, 2).getTime());
+    const result = getDayOfYear(
+      /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2).getTime(),
+    );
     expect(result).toBe(2);
   });
 
@@ -30,12 +32,12 @@ describe("getDayOfYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getDayOfYear(new Date("2014-07-02T00:00:00Z"), {
+        getDayOfYear(new Date(/* 1393/4/11 */ "2014-07-02T00:00:00Z"), {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(183);
       expect(
-        getDayOfYear(new Date("2014-07-02T00:00:00Z"), {
+        getDayOfYear(new Date(/* 1393/4/11 */ "2014-07-02T00:00:00Z"), {
           in: tz("America/Los_Angeles"),
         }),
       ).toBe(182);

@@ -6,35 +6,35 @@ import { clamp } from "./index.js";
 
 describe("clamp", () => {
   it("accepts timestamps", () => {
-    const start = new Date(2000, 1, 1).getTime();
-    const date = new Date(2000, 1, 2).getTime();
-    const end = new Date(2000, 1, 3).getTime();
+    const start = /* 1378/11/12 */ new Date(2000, 1, 1).getTime();
+    const date = /* 1378/11/13 */ new Date(2000, 1, 2).getTime();
+    const end = /* 1378/11/14 */ new Date(2000, 1, 3).getTime();
     const result = clamp(date, { start, end });
-    expect(result).toEqual(new Date(2000, 1, 2));
+    expect(result).toEqual(/* 1378/11/13 */ new Date(2000, 1, 2));
   });
 
   it("returns the start date when the date is less than start", () => {
-    const start = new Date(2001, 1, 1);
-    const date = new Date(2000, 1, 1);
-    const end = new Date(2020, 1, 1);
+    const start = /* 1379/11/13 */ new Date(2001, 1, 1);
+    const date = /* 1378/11/12 */ new Date(2000, 1, 1);
+    const end = /* 1398/11/12 */ new Date(2020, 1, 1);
     const result = clamp(date, { start, end });
-    expect(result).toEqual(new Date(2001, 1, 1));
+    expect(result).toEqual(/* 1379/11/13 */ new Date(2001, 1, 1));
   });
 
   it("returns the end date when the date is greater than the end date", () => {
-    const start = new Date(2000, 1, 1);
-    const date = new Date(2003, 1, 1);
-    const end = new Date(2001, 1, 1);
+    const start = /* 1378/11/12 */ new Date(2000, 1, 1);
+    const date = /* 1381/11/12 */ new Date(2003, 1, 1);
+    const end = /* 1379/11/13 */ new Date(2001, 1, 1);
     const result = clamp(date, { start, end });
-    expect(result).toEqual(new Date(2001, 1, 1));
+    expect(result).toEqual(/* 1379/11/13 */ new Date(2001, 1, 1));
   });
 
   it("returns the date when the date is within the bound of start and end", () => {
-    const start = new Date(2000, 1, 1);
-    const date = new Date(2001, 1, 1);
-    const end = new Date(2003, 1, 1);
+    const start = /* 1378/11/12 */ new Date(2000, 1, 1);
+    const date = /* 1379/11/13 */ new Date(2001, 1, 1);
+    const end = /* 1381/11/12 */ new Date(2003, 1, 1);
     const result = clamp(date, { start, end });
-    expect(result).toEqual(new Date(2001, 1, 1));
+    expect(result).toEqual(/* 1379/11/13 */ new Date(2001, 1, 1));
   });
 
   it("resolves the date type by default", () => {
@@ -81,25 +81,25 @@ describe("clamp", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       const interval = {
-        start: "2024-04-10T07:00:00Z",
-        end: "2024-04-12T07:00:00Z",
+        start: /* 1403/1/22 */ "2024-04-10T07:00:00Z",
+        end: /* 1403/1/24 */ "2024-04-12T07:00:00Z",
       };
       expect(
-        clamp("2024-04-11T07:00:00Z", interval, {
+        clamp(/* 1403/1/23 */ "2024-04-11T07:00:00Z", interval, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe("2024-04-11T00:00:00.000-07:00");
+      ).toBe(/* 1403/1/23 */ "2024-04-11T00:00:00.000-07:00");
       expect(
-        clamp("2024-04-11T07:00:00Z", interval, {
+        clamp(/* 1403/1/23 */ "2024-04-11T07:00:00Z", interval, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-11T15:00:00.000+08:00");
+      ).toBe(/* 1403/1/23 */ "2024-04-11T15:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {
       const interval = {
-        start: new Date("2014-09-01T00:00:00Z"),
-        end: new Date("2014-09-05T00:00:00Z"),
+        start: new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z"),
+        end: new Date(/* 1393/6/14 */ "2014-09-05T00:00:00Z"),
       };
       const result = clamp(interval.start, interval, {
         in: tz("Asia/Tokyo"),

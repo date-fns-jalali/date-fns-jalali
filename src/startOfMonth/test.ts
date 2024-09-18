@@ -6,21 +6,30 @@ import { startOfMonth } from "./index.js";
 
 describe("startOfMonth", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the first day of a month", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = startOfMonth(date);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime();
+    const date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+      0,
+    ).getTime();
     const result = startOfMonth(date);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     startOfMonth(date);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 2, 11, 55, 0));
+    expect(date).toEqual(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -43,20 +52,20 @@ describe("startOfMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        startOfMonth("2024-08-18T05:00:00Z", {
+        startOfMonth(/* 1403/5/28 */ "2024-08-18T05:00:00Z", {
           in: tz("Asia/Hong_Kong"),
         }).toISOString(),
-      ).toBe("2024-08-01T00:00:00.000+08:00");
+      ).toBe(/* 1403/5/11 */ "2024-08-01T00:00:00.000+08:00");
 
       expect(
-        startOfMonth("2024-01-01T19:00:00Z", {
+        startOfMonth(/* 1402/10/11 */ "2024-01-01T19:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe("2024-01-01T00:00:00.000-05:00");
+      ).toBe(/* 1402/10/11 */ "2024-01-01T00:00:00.000-05:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = startOfMonth(date, {
         in: tz("Asia/Tokyo"),
       });

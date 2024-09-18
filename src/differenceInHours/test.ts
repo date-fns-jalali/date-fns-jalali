@@ -6,40 +6,40 @@ import { differenceInHours } from "./index.js";
 describe("differenceInHours", () => {
   it("returns the number of hours between the given dates with `trunc` as a default rounding method", () => {
     const result = differenceInHours(
-      new Date(2014, 6 /* Jul */, 2, 6, 0, 29),
-      new Date(2014, 6 /* Jul */, 2, 20, 0, 28.973),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 6, 0, 29),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 20, 0, 28.973),
     );
     expect(result).toBe(-13);
   });
 
   it("returns the number of hours between the given dates", () => {
     const result = differenceInHours(
-      new Date(2014, 6 /* Jul */, 2, 20, 0),
-      new Date(2014, 6 /* Jul */, 2, 6, 0),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 20, 0),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 6, 0),
     );
     expect(result).toBe(14);
   });
 
   it("returns a negative number if the time value of the first date is smaller", () => {
     const result = differenceInHours(
-      new Date(2014, 6 /* Jul */, 2, 6, 0),
-      new Date(2014, 6 /* Jul */, 2, 20, 0),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 6, 0),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2, 20, 0),
     );
     expect(result).toBe(-14);
   });
 
   it("returns a 0, not a negative 0 - issue #2555 ", () => {
     const result = differenceInHours(
-      new Date(2021, 6 /* Jul */, 22, 6, 1, 28.973),
-      new Date(2021, 6 /* Jul */, 22, 6, 1, 28.976),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 6, 1, 28.973),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 6, 1, 28.976),
     );
     expect(result).toBe(0);
   });
 
   it("returns 2 with a rounding method of `ceil`, not a negative 0 - issue #2555 ", () => {
     const result = differenceInHours(
-      new Date(2021, 6 /* Jul */, 22, 7, 1, 29, 976),
-      new Date(2021, 6 /* Jul */, 22, 6, 1, 28, 173),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 7, 1, 29, 976),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 6, 1, 28, 173),
       { roundingMethod: "ceil" },
     );
     expect(result).toBe(2);
@@ -47,8 +47,8 @@ describe("differenceInHours", () => {
 
   it("returns 1 with a rounding method of `floor`, not a negative 0 - issue #2555 ", () => {
     const result = differenceInHours(
-      new Date(2021, 6 /* Jul */, 22, 7, 1, 29, 976),
-      new Date(2021, 6 /* Jul */, 22, 6, 1, 28, 173),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 7, 1, 29, 976),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 6, 1, 28, 173),
       { roundingMethod: "floor" },
     );
     expect(result).toBe(1);
@@ -56,8 +56,8 @@ describe("differenceInHours", () => {
 
   it("returns 1 with a rounding method of `round`, not a negative 0 - issue #2555 ", () => {
     const result = differenceInHours(
-      new Date(2021, 6 /* Jul */, 22, 7, 1, 29, 976),
-      new Date(2021, 6 /* Jul */, 22, 6, 1, 28, 173),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 7, 1, 29, 976),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 6, 1, 28, 173),
       { roundingMethod: "round" },
     );
     expect(result).toBe(1);
@@ -65,8 +65,8 @@ describe("differenceInHours", () => {
 
   it("returns 1 with a rounding method of `trunc`, not a negative 0 - issue #2555 ", () => {
     const result = differenceInHours(
-      new Date(2021, 6 /* Jul */, 22, 7, 1, 29, 976),
-      new Date(2021, 6 /* Jul */, 22, 6, 1, 28, 173),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 7, 1, 29, 976),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 6, 1, 28, 173),
       { roundingMethod: "trunc" },
     );
     expect(result).toBe(1);
@@ -74,8 +74,8 @@ describe("differenceInHours", () => {
 
   it("accepts timestamps", () => {
     const result = differenceInHours(
-      new Date(2014, 8 /* Sep */, 5, 18, 0).getTime(),
-      new Date(2014, 8 /* Sep */, 5, 6, 0).getTime(),
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 18, 0).getTime(),
+      /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 6, 0).getTime(),
     );
     expect(result).toBe(12);
   });
@@ -83,32 +83,32 @@ describe("differenceInHours", () => {
   describe("edge cases", () => {
     it("the difference is less than an hour, but the given dates are in different calendar hours", () => {
       const result = differenceInHours(
-        new Date(2014, 8 /* Sep */, 5, 12),
-        new Date(2014, 8 /* Sep */, 5, 11, 59),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 12),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 11, 59),
       );
       expect(result).toBe(0);
     });
 
     it("the same for the swapped dates", () => {
       const result = differenceInHours(
-        new Date(2014, 8 /* Sep */, 5, 11, 59),
-        new Date(2014, 8 /* Sep */, 5, 12),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 11, 59),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 12),
       );
       expect(result).toBe(0);
     });
 
     it("the difference is an integral number of hours", () => {
       const result = differenceInHours(
-        new Date(2014, 8 /* Sep */, 5, 13, 0),
-        new Date(2014, 8 /* Sep */, 5, 12, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 13, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 12, 0),
       );
       expect(result).toBe(1);
     });
 
     it("the given dates are the same", () => {
       const result = differenceInHours(
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
       );
       expect(result).toBe(0);
     });
@@ -119,8 +119,8 @@ describe("differenceInHours", () => {
       }
 
       const result = differenceInHours(
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
       );
 
       const resultIsNegative = isNegativeZero(result);
@@ -131,14 +131,14 @@ describe("differenceInHours", () => {
   it("returns NaN if the first date is `Invalid Date`", () => {
     const result = differenceInHours(
       new Date(NaN),
-      new Date(2017, 0 /* Jan */, 1),
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
     );
     expect(isNaN(result)).toBe(true);
   });
 
   it("returns NaN if the second date is `Invalid Date`", () => {
     const result = differenceInHours(
-      new Date(2017, 0 /* Jan */, 1),
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
       new Date(NaN),
     );
     expect(isNaN(result)).toBe(true);
@@ -159,8 +159,20 @@ describe("differenceInHours", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2024, 5, 7, 8, "Asia/Singapore");
-    const dateRight = new TZDate(2024, 5, 6, 4, "America/New_York");
+    const dateLeft = /* 1403/3/18 */ new TZDate(
+      2024,
+      5,
+      7,
+      8,
+      "Asia/Singapore",
+    );
+    const dateRight = /* 1403/3/17 */ new TZDate(
+      2024,
+      5,
+      6,
+      4,
+      "America/New_York",
+    );
     expect(differenceInHours(dateLeft, dateRight)).toBe(16);
     expect(differenceInHours(dateRight, dateLeft)).toBe(-16);
   });
@@ -168,14 +180,22 @@ describe("differenceInHours", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        differenceInHours("2024-08-18T03:00:00Z", "2024-08-01T00:00:00Z", {
-          in: tz("America/New_York"),
-        }),
+        differenceInHours(
+          /* 1403/5/28 */ "2024-08-18T03:00:00Z",
+          /* 1403/5/11 */ "2024-08-01T00:00:00Z",
+          {
+            in: tz("America/New_York"),
+          },
+        ),
       ).toBe(411);
       expect(
-        differenceInHours("2024-08-18T03:00:00Z", "2024-08-01T00:00:00Z", {
-          in: tz("Asia/Singapore"),
-        }),
+        differenceInHours(
+          /* 1403/5/28 */ "2024-08-18T03:00:00Z",
+          /* 1403/5/11 */ "2024-08-01T00:00:00Z",
+          {
+            in: tz("Asia/Singapore"),
+          },
+        ),
       ).toBe(411);
     });
 

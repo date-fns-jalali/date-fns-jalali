@@ -5,17 +5,21 @@ import type { ContextOptions, DateArg } from "../types.js";
 
 describe("isFirstDayOfMonth", () => {
   it("returns true if the given date is the first day of a month", () => {
-    const result = isFirstDayOfMonth(new Date(2014, 9 /* Oct */, 1));
+    const result = isFirstDayOfMonth(
+      /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1),
+    );
     expect(result).toBe(true);
   });
 
   it("returns false if the given date is not the first day of a month", () => {
-    const result = isFirstDayOfMonth(new Date(2014, 9 /* Oct */, 2));
+    const result = isFirstDayOfMonth(
+      /* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2),
+    );
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 9 /* Oct */, 1).getTime();
+    const date = /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1).getTime();
     const result = isFirstDayOfMonth(date);
     expect(result).toBe(true);
   });
@@ -28,22 +32,22 @@ describe("isFirstDayOfMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isFirstDayOfMonth("2024-08-31T15:00:00Z", {
+        isFirstDayOfMonth(/* 1403/6/10 */ "2024-08-31T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(false);
       expect(
-        isFirstDayOfMonth("2024-08-31T16:00:00Z", {
+        isFirstDayOfMonth(/* 1403/6/10 */ "2024-08-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(true);
       expect(
-        isFirstDayOfMonth("2024-09-01T03:00:00Z", {
+        isFirstDayOfMonth(/* 1403/6/11 */ "2024-09-01T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isFirstDayOfMonth("2024-09-01T04:00:00Z", {
+        isFirstDayOfMonth(/* 1403/6/11 */ "2024-09-01T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

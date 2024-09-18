@@ -5,12 +5,14 @@ import { getQuarter } from "./index.js";
 
 describe("getQuarter", () => {
   it("returns the quarter of the given date", () => {
-    const result = getQuarter(new Date(2014, 6 /* Jul */, 2));
+    const result = getQuarter(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
     expect(result).toBe(3);
   });
 
   it("accepts a timestamp", () => {
-    const result = getQuarter(new Date(2014, 3 /* Apr */, 2).getTime());
+    const result = getQuarter(
+      /* 1393/1/13 */ new Date(2014, 3 /* Apr */, 2).getTime(),
+    );
     expect(result).toBe(2);
   });
 
@@ -22,16 +24,24 @@ describe("getQuarter", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getQuarter("2024-03-31T16:00:00Z", { in: tz("Asia/Singapore") }),
+        getQuarter(/* 1403/1/12 */ "2024-03-31T16:00:00Z", {
+          in: tz("Asia/Singapore"),
+        }),
       ).toBe(2);
       expect(
-        getQuarter("2024-03-31T15:00:00Z", { in: tz("Asia/Singapore") }),
+        getQuarter(/* 1403/1/12 */ "2024-03-31T15:00:00Z", {
+          in: tz("Asia/Singapore"),
+        }),
       ).toBe(1);
       expect(
-        getQuarter("2024-04-01T04:00:00Z", { in: tz("America/New_York") }),
+        getQuarter(/* 1403/1/13 */ "2024-04-01T04:00:00Z", {
+          in: tz("America/New_York"),
+        }),
       ).toBe(2);
       expect(
-        getQuarter("2024-04-01T03:00:00Z", { in: tz("America/New_York") }),
+        getQuarter(/* 1403/1/13 */ "2024-04-01T03:00:00Z", {
+          in: tz("America/New_York"),
+        }),
       ).toBe(1);
     });
 

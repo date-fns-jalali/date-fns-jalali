@@ -5,31 +5,37 @@ import type { ContextOptions, DateArg } from "../types.js";
 import { isToday } from "./index.js";
 
 describe("isToday", () => {
-  const { fakeNow } = fakeDate(new Date(2014, 8 /* Sep */, 25));
+  const { fakeNow } = fakeDate(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
 
   it("returns true if the given date is today", () => {
-    const result = isToday(new Date(2014, 8 /* Sep */, 25));
+    const result = isToday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
     expect(result).toBe(true);
   });
 
   it("returns false if the given date is not today", () => {
-    const result = isToday(new Date(2014, 8 /* Sep */, 26));
+    const result = isToday(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26));
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const result = isToday(new Date(2014, 8 /* Sep */, 25).getTime());
+    const result = isToday(
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime(),
+    );
     expect(result).toBe(true);
   });
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      fakeNow(new Date("2024-08-18T15:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T15:00:00Z"));
       expect(
-        isToday("2024-08-18T04:00:00Z", { in: tz("America/New_York") }),
+        isToday(/* 1403/5/28 */ "2024-08-18T04:00:00Z", {
+          in: tz("America/New_York"),
+        }),
       ).toBe(true);
       expect(
-        isToday("2024-08-18T03:00:00Z", { in: tz("America/New_York") }),
+        isToday(/* 1403/5/28 */ "2024-08-18T03:00:00Z", {
+          in: tz("America/New_York"),
+        }),
       ).toBe(false);
     });
 

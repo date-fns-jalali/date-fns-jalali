@@ -6,24 +6,24 @@ import { isSameQuarter } from "./index.js";
 describe("isSameQuarter", () => {
   it("returns true if the given dates have the same quarter (and year)", () => {
     const result = isSameQuarter(
-      new Date(2014, 0 /* Jan */, 1),
-      new Date(2014, 2 /* Mar */, 8),
+      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
+      /* 1392/12/17 */ new Date(2014, 2 /* Mar */, 8),
     );
     expect(result).toBe(true);
   });
 
   it("returns false if the given dates have different quarters", () => {
     const result = isSameQuarter(
-      new Date(2014, 0 /* Jan */, 1),
-      new Date(2013, 8 /* Sep */, 25),
+      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
+      /* 1392/7/3 */ new Date(2013, 8 /* Sep */, 25),
     );
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
     const result = isSameQuarter(
-      new Date(2014, 6 /* Jul */, 2).getTime(),
-      new Date(2014, 8 /* Sep */, 25).getTime(),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(),
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime(),
     );
     expect(result).toBe(true);
   });
@@ -31,14 +31,14 @@ describe("isSameQuarter", () => {
   it("returns false if the first date is `Invalid Date`", () => {
     const result = isSameQuarter(
       new Date(NaN),
-      new Date(1989, 6 /* Jul */, 10),
+      /* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10),
     );
     expect(result).toBe(false);
   });
 
   it("returns false if the second date is `Invalid Date`", () => {
     const result = isSameQuarter(
-      new Date(1987, 1 /* Feb */, 11),
+      /* 1365/11/22 */ new Date(1987, 1 /* Feb */, 11),
       new Date(NaN),
     );
     expect(result).toBe(false);
@@ -59,8 +59,13 @@ describe("isSameQuarter", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2024, 3, 1, "Asia/Singapore");
-    const dateRight = new TZDate(2024, 2, 31, "America/New_York");
+    const dateLeft = /* 1403/1/13 */ new TZDate(2024, 3, 1, "Asia/Singapore");
+    const dateRight = /* 1403/1/12 */ new TZDate(
+      2024,
+      2,
+      31,
+      "America/New_York",
+    );
     expect(isSameQuarter(dateLeft, dateRight)).toBe(false);
     expect(isSameQuarter(dateRight, dateLeft)).toBe(true);
   });
@@ -68,24 +73,40 @@ describe("isSameQuarter", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isSameQuarter("2024-09-30T16:00:00Z", "2024-09-31T00:00:00Z", {
-          in: tz("Asia/Singapore"),
-        }),
+        isSameQuarter(
+          /* 1403/7/9 */ "2024-09-30T16:00:00Z",
+          /* 1403/7/10 */ "2024-09-31T00:00:00Z",
+          {
+            in: tz("Asia/Singapore"),
+          },
+        ),
       ).toBe(true);
       expect(
-        isSameQuarter("2024-09-30T15:00:00Z", "2024-09-31T00:00:00Z", {
-          in: tz("Asia/Singapore"),
-        }),
+        isSameQuarter(
+          /* 1403/7/9 */ "2024-09-30T15:00:00Z",
+          /* 1403/7/10 */ "2024-09-31T00:00:00Z",
+          {
+            in: tz("Asia/Singapore"),
+          },
+        ),
       ).toBe(false);
       expect(
-        isSameQuarter("2024-10-01T04:00:00Z", "2024-10-02T00:00:00Z", {
-          in: tz("America/New_York"),
-        }),
+        isSameQuarter(
+          /* 1403/7/10 */ "2024-10-01T04:00:00Z",
+          /* 1403/7/11 */ "2024-10-02T00:00:00Z",
+          {
+            in: tz("America/New_York"),
+          },
+        ),
       ).toBe(true);
       expect(
-        isSameQuarter("2024-10-01T03:00:00Z", "2024-10-02T00:00:00Z", {
-          in: tz("America/New_York"),
-        }),
+        isSameQuarter(
+          /* 1403/7/10 */ "2024-10-01T03:00:00Z",
+          /* 1403/7/11 */ "2024-10-02T00:00:00Z",
+          {
+            in: tz("America/New_York"),
+          },
+        ),
       ).toBe(false);
     });
 
@@ -100,9 +121,13 @@ describe("isSameQuarter", () => {
       ) {
         isSameQuarter(arg1, arg2, { in: options?.in });
       }
-      _test("2014-02-11T00:00:00.000Z", "2014-05-18T00:00:00.000Z", {
-        in: tz("Asia/Singapore"),
-      });
+      _test(
+        /* 1392/11/22 */ "2014-02-11T00:00:00.000Z",
+        /* 1393/2/28 */ "2014-05-18T00:00:00.000Z",
+        {
+          in: tz("Asia/Singapore"),
+        },
+      );
     });
   });
 });

@@ -6,24 +6,24 @@ import { differenceInCalendarYears } from "./index.js";
 describe("differenceInCalendarYears", () => {
   it("returns the number of calendar years between the given dates", () => {
     const result = differenceInCalendarYears(
-      new Date(2012, 6 /* Jul */, 2, 18, 0),
-      new Date(2011, 6 /* Jul */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 18, 0),
+      /* 1390/4/11 */ new Date(2011, 6 /* Jul */, 2, 6, 0),
     );
     expect(result).toBe(1);
   });
 
   it("returns a negative number if the time value of the first date is smaller", () => {
     const result = differenceInCalendarYears(
-      new Date(2011, 6 /* Jul */, 2, 6, 0),
-      new Date(2012, 6 /* Jul */, 2, 18, 0),
+      /* 1390/4/11 */ new Date(2011, 6 /* Jul */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 18, 0),
     );
     expect(result).toBe(-1);
   });
 
   it("accepts timestamps", () => {
     const result = differenceInCalendarYears(
-      new Date(2014, 6 /* Jul */, 2).getTime(),
-      new Date(2010, 6 /* Jul */, 2).getTime(),
+      /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(),
+      /* 1389/4/11 */ new Date(2010, 6 /* Jul */, 2).getTime(),
     );
     expect(result).toBe(4);
   });
@@ -31,32 +31,32 @@ describe("differenceInCalendarYears", () => {
   describe("edge cases", () => {
     it("the difference is less than a year, but the given dates are in different calendar years", () => {
       const result = differenceInCalendarYears(
-        new Date(2015, 0 /* Jan */, 1),
-        new Date(2014, 11 /* Dec */, 31),
+        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
+        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31),
       );
       expect(result).toBe(1);
     });
 
     it("the same for the swapped dates", () => {
       const result = differenceInCalendarYears(
-        new Date(2014, 11 /* Dec */, 31),
-        new Date(2015, 0 /* Jan */, 1),
+        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31),
+        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
       );
       expect(result).toBe(-1);
     });
 
     it("the days and months of the given dates are the same", () => {
       const result = differenceInCalendarYears(
-        new Date(2014, 8 /* Sep */, 5),
-        new Date(2012, 8 /* Sep */, 5),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5),
+        /* 1391/6/15 */ new Date(2012, 8 /* Sep */, 5),
       );
       expect(result).toBe(2);
     });
 
     it("the given dates are the same", () => {
       const result = differenceInCalendarYears(
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
       );
       expect(result).toBe(0);
     });
@@ -67,8 +67,8 @@ describe("differenceInCalendarYears", () => {
       }
 
       const result = differenceInCalendarYears(
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
       );
 
       const resultIsNegative = isNegativeZero(result);
@@ -79,14 +79,14 @@ describe("differenceInCalendarYears", () => {
   it("returns NaN if the first date is `Invalid Date`", () => {
     const result = differenceInCalendarYears(
       new Date(NaN),
-      new Date(2017, 0 /* Jan */, 1),
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
     );
     expect(isNaN(result)).toBe(true);
   });
 
   it("returns NaN if the second date is `Invalid Date`", () => {
     const result = differenceInCalendarYears(
-      new Date(2017, 0 /* Jan */, 1),
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
       new Date(NaN),
     );
     expect(isNaN(result)).toBe(true);
@@ -98,8 +98,13 @@ describe("differenceInCalendarYears", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2025, 0, 1, "Asia/Singapore");
-    const dateRight = new TZDate(2024, 0, 1, "America/New_York");
+    const dateLeft = /* 1403/10/12 */ new TZDate(2025, 0, 1, "Asia/Singapore");
+    const dateRight = /* 1402/10/11 */ new TZDate(
+      2024,
+      0,
+      1,
+      "America/New_York",
+    );
     expect(differenceInCalendarYears(dateLeft, dateRight)).toBe(1);
     expect(differenceInCalendarYears(dateRight, dateLeft)).toBe(0);
   });
@@ -117,15 +122,15 @@ describe("differenceInCalendarYears", () => {
     it("allows to specify the context", () => {
       expect(
         differenceInCalendarYears(
-          "2026-01-01T04:00:00Z",
-          "2024-01-01T00:00:00Z",
+          /* 1404/10/11 */ "2026-01-01T04:00:00Z",
+          /* 1402/10/11 */ "2024-01-01T00:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(2);
       expect(
         differenceInCalendarYears(
-          "2026-01-01T05:00:00Z",
-          "2024-01-01T00:00:00Z",
+          /* 1404/10/11 */ "2026-01-01T05:00:00Z",
+          /* 1402/10/11 */ "2024-01-01T00:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(3);

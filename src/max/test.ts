@@ -7,35 +7,35 @@ import { max } from "./index.js";
 describe("max", () => {
   it("returns the latest date", () => {
     const result = max([
-      new Date(1989, 6 /* Jul */, 10),
-      new Date(1987, 1 /* Feb */, 11),
+      /* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10),
+      /* 1365/11/22 */ new Date(1987, 1 /* Feb */, 11),
     ]);
-    expect(result).toEqual(new Date(1989, 6 /* Jul */, 10));
+    expect(result).toEqual(/* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10));
   });
 
   it("accepts array with more than 2 entries", () => {
     const result = max([
-      new Date(1987, 1 /* Feb */, 11),
-      new Date(1989, 6 /* Jul */, 10),
-      new Date(1995, 6 /* Jul */, 2),
-      new Date(1990, 0 /* Jan */, 1),
+      /* 1365/11/22 */ new Date(1987, 1 /* Feb */, 11),
+      /* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10),
+      /* 1374/4/11 */ new Date(1995, 6 /* Jul */, 2),
+      /* 1368/10/11 */ new Date(1990, 0 /* Jan */, 1),
     ]);
-    expect(result).toEqual(new Date(1995, 6 /* Jul */, 2));
+    expect(result).toEqual(/* 1374/4/11 */ new Date(1995, 6 /* Jul */, 2));
   });
 
   it("accepts timestamps", () => {
     const result = max([
-      new Date(1989, 6 /* Jul */, 10).getTime(),
-      new Date(1987, 1 /* Feb */, 11).getTime(),
+      /* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10).getTime(),
+      /* 1365/11/22 */ new Date(1987, 1 /* Feb */, 11).getTime(),
     ]);
-    expect(result).toEqual(new Date(1989, 6 /* Jul */, 10));
+    expect(result).toEqual(/* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10));
   });
 
   it("returns `Invalid Date` if any given date is invalid", () => {
     const result = max([
-      new Date(1989, 6 /* Jul */, 10),
+      /* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10),
       new Date(NaN),
-      new Date(1987, 1 /* Feb */, 11),
+      /* 1365/11/22 */ new Date(1987, 1 /* Feb */, 11),
     ]);
     expect(isNaN(+result)).toBe(true);
   });
@@ -52,7 +52,11 @@ describe("max", () => {
   });
 
   it("resolves the first date object type in the array", () => {
-    const result = max([Date.now(), "2024-01-01T00:00:00Z", new UTCDate()]);
+    const result = max([
+      Date.now(),
+      /* 1402/10/11 */ "2024-01-01T00:00:00Z",
+      new UTCDate(),
+    ]);
     expect(result).toBeInstanceOf(UTCDate);
     assertType<assertType.Equal<UTCDate, typeof result>>(true);
   });
@@ -61,7 +65,7 @@ describe("max", () => {
     const result = max([
       new Date(),
       Date.now(),
-      "2024-01-01T00:00:00Z",
+      /* 1402/10/11 */ "2024-01-01T00:00:00Z",
       new UTCDate(),
     ]);
     expect(result).toBeInstanceOf(Date);
@@ -70,7 +74,7 @@ describe("max", () => {
 
   describe("context", () => {
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = max([date], { in: tz("Asia/Tokyo") });
       expect(result).toBeInstanceOf(TZDate);
       assertType<assertType.Equal<TZDate, typeof result>>(true);

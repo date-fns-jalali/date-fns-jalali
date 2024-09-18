@@ -5,12 +5,16 @@ import { getHours } from "./index.js";
 
 describe("getHours", () => {
   it("returns the hours of the given date", () => {
-    const result = getHours(new Date(2012, 1 /* Feb */, 29, 11, 45));
+    const result = getHours(
+      /* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29, 11, 45),
+    );
     expect(result).toBe(11);
   });
 
   it("accepts a timestamp", () => {
-    const result = getHours(new Date(2014, 3 /* Apr */, 2, 23, 30).getTime());
+    const result = getHours(
+      /* 1393/1/13 */ new Date(2014, 3 /* Apr */, 2, 23, 30).getTime(),
+    );
     expect(result).toBe(23);
   });
 
@@ -22,10 +26,14 @@ describe("getHours", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getHours("2023-08-18T15:00:00Z", { in: tz("Asia/Singapore") }),
+        getHours(/* 1402/5/27 */ "2023-08-18T15:00:00Z", {
+          in: tz("Asia/Singapore"),
+        }),
       ).toBe(23);
       expect(
-        getHours("2023-08-18T15:00:00Z", { in: tz("America/New_York") }),
+        getHours(/* 1402/5/27 */ "2023-08-18T15:00:00Z", {
+          in: tz("America/New_York"),
+        }),
       ).toBe(11);
     });
 
