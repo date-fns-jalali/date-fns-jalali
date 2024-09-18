@@ -6,8 +6,8 @@ import {
 } from "../../constants/index.js";
 import type { ParseResult } from "./types.js";
 import { numericPatterns } from "./constants.js";
-import { isLeapYear } from "../../isLeapYear/index";
-import { newDate as coreNewDate } from "../../_core/newDate/index";
+import { isLeapYear } from "../../isLeapYear/index.js";
+import { newDate as coreNewDate } from "../../_core/newDate/index.js";
 
 export function mapValue<TInput, TResult>(
   parseFnResult: ParseResult<TInput>,

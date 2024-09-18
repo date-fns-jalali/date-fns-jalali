@@ -5,10 +5,10 @@ import { getDstTransitions } from "../../test/dst/tzOffsetTransitions.js";
 import { assertType } from "../_lib/test/index.js";
 import { addMonths } from "./index.js";
 
-import { getMonth as coreGetMonth } from "../_core/getMonth/index";
-import { getDate as coreGetDate } from "../_core/getDate/index";
-import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index";
-import { newDate } from "../_core/newDate/index";
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { getDate as coreGetDate } from "../_core/getDate/index.js";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+import { newDate } from "../_core/newDate/index.js";
 
 describe("addMonths", () => {
   it("adds the given number of months", () => {
