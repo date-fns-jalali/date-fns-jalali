@@ -1,6 +1,10 @@
 import {
-  findCommentInPath, generateDateCommentText,
- isNewDate, isUTCDate,
+  findCommentInPath,
+  generateDateCommentText,
+  generateStringDateCommentText,
+  isNewDate,
+  isStringDate,
+  isUTCDate,
 } from "./utils";
 import { toGregorian } from "../../src/_lib/jalali/index";
 
@@ -30,6 +34,14 @@ function setValue(j, node, args) {
   }
 }
 
+function setStringValue(j, node, args) {
+  let y = args[0].toString().padStart(4, "0");
+  let m = (args[1] + 1).toString().padStart(2, "0");
+  let d = args[2].toString().padStart(2, "0");
+  let rest = node.value.slice(10);
+  node.value = `${y}-${m}-${d}${rest}`;
+}
+
 function applyComments(ast, j) {
   return ast
     .find(j.NewExpression, (node) => {
@@ -56,6 +68,38 @@ function applyComments(ast, j) {
       const g = toGregorian(...args);
       const gArgs = [g.gy, g.gm - 1, g.gd];
       setValue(j, path.node, gArgs);
+    });
+}
+
+function applyStringComments(ast, j, ctx) {
+  if (ctx.isFormatOrParse) {
+    return;
+  }
+  return ast
+    .find(j.Literal, (node) => {
+      return isStringDate(node);
+    })
+    .forEach((path) => {
+      const jText = generateStringDateCommentText(path.value);
+      if (jText === null) {
+        return;
+      }
+
+      const text = findCommentInPath(path);
+      if (text === null) {
+        return;
+      }
+
+      if (jText === text.trim()) {
+        return;
+      }
+      const args = text
+        .trim()
+        .split("/")
+        .map((n) => +n);
+      const g = toGregorian(...args);
+      const gArgs = [g.gy, g.gm - 1, g.gd];
+      setStringValue(j, path.node, gArgs);
     });
 }
 
@@ -104,7 +148,15 @@ export default function transformer(file, api) {
   let ast = j(file.source);
 
   const ctx = {};
+  if (
+    file.path === "src/format/test.ts" ||
+    file.path === "src/lightFormat/test.ts" ||
+    file.path === "src/parse/test.ts"
+  ) {
+    ctx.isFormatOrParse = true;
+  }
 
+  applyStringComments(ast, j, ctx);
   applyComments(ast, j, ctx);
   applyUTCComment(ast, j, ctx);
 

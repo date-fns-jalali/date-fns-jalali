@@ -1,5 +1,16 @@
 import { toJalali } from "../../src/_lib/jalali/index";
 
+export function isStringDate(node) {
+  if (node.type === "StringLiteral") {
+    // e.g. "2021-01-01" or "2021-01-01T..."
+    if (node.value.length >= 10) {
+      return true;
+    }
+    return true;
+  }
+  return false;
+}
+
 export function isNewDate(node) {
   if (node.callee.name !== "Date") {
     return false;
@@ -53,6 +64,27 @@ export function generateDateCommentText(node) {
   return ja.join("/");
 }
 
+export function generateStringDateCommentText(node) {
+  let value = node.value.toString();
+  // e.g. "2021-01-01" or "2021-01-01T..."
+  if (value.length > 10) {
+    if (!value.charAt(10) === "T") {
+      return null;
+    }
+    value = value.slice(0, 10);
+  }
+  if (value.charAt(4) !== "-" || value.charAt(7) !== "-") {
+    return null;
+  }
+  const [y, m, d] = value.split("-").map((v) => parseInt(v, 10));
+  if (isNaN(y) || isNaN(m) || isNaN(d)) {
+    return null;
+  }
+  const jd = toJalali(y, m, d);
+  const ja = [jd.jy, jd.jm, jd.jd];
+  return ja.join("/");
+}
+
 export function addImports(ast, imports) {
   let body = ast.get().node.program.body;
   const importDeclarations = body.filter(
@@ -76,6 +108,13 @@ export function addCommentToPath(text, path, j) {
   const comments = (node.comments = node.comments || []);
   const comment = j.commentBlock(` ${text} G2J`, true, false);
   comments.push(comment);
+}
+
+export function addCommentToStringPath(text, path, j) {
+  const comments = path.node.comments || [];
+  const comment = j.commentBlock(` ${text} G2J`, true, false);
+  comments.push(comment);
+  path.node.comments = comments;
 }
 
 export function findCommentInPath(path) {

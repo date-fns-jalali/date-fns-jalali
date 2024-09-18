@@ -1,6 +1,11 @@
 import {
-  addCommentToPath, generateDateCommentText,
- isNewDate, isUTCDate,
+  addCommentToPath,
+  addCommentToStringPath,
+  generateDateCommentText,
+  generateStringDateCommentText,
+  isNewDate,
+  isStringDate,
+  isUTCDate,
 } from "./utils";
 
 function addComments(ast, j) {
@@ -31,6 +36,23 @@ function addUTCComment(ast, j) {
     });
 }
 
+function addStringComments(ast, j, ctx) {
+  if (ctx.isFormatOrParse) {
+    return;
+  }
+  return ast
+    .find(j.Literal, (node) => {
+      return isStringDate(node);
+    })
+    .forEach((path) => {
+      const text = generateStringDateCommentText(path.value);
+      if (text === null) {
+        return;
+      }
+      addCommentToStringPath(text, path, j);
+    });
+}
+
 export default function transformer(file, api) {
   if (
     file.path.startsWith("src/_core/") ||
@@ -47,6 +69,15 @@ export default function transformer(file, api) {
   let ast = j(file.source);
 
   const ctx = {};
+
+  if (
+    file.path === "src/format/test.ts" ||
+    file.path === "src/lightFormat/test.ts" ||
+    file.path === "src/parse/test.ts"
+  ) {
+    ctx.isFormatOrParse = true;
+  }
+  addStringComments(ast, j, ctx);
 
   addComments(ast, j, ctx);
   addUTCComment(ast, j, ctx);
