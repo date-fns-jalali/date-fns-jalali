@@ -78,7 +78,7 @@ export function differenceInBusinessDays(
   const sign = diff < 0 ? -1 : 1;
   const weeks = Math.trunc(diff / 7);
 
-  let result = weeks * 5;
+  let result = weeks * 6;
   let movingDate = addDays(earlierDate_, weeks * 7);
 
   // the loop below will run at most 6 times to account for the remaining days that don't makeup a full week
