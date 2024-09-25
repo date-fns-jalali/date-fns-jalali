@@ -6,22 +6,31 @@ import { TZDate, tz } from "@date-fns/tz";
 
 describe("addSeconds", () => {
   it("adds the given number of seconds", () => {
-    const result = addSeconds(new Date(2014, 6 /* Jul */, 10, 12, 45, 0), 30);
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 30));
+    const result = addSeconds(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0),
+      30,
+    );
+    expect(result).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30),
+    );
   });
 
   it("accepts a timestamp", () => {
     const result = addSeconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 0).getTime(),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0).getTime(),
       20,
     );
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 20));
+    expect(result).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 20),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 6 /* Jul */, 10, 12, 45, 0);
+    const date = /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0);
     addSeconds(date, 15);
-    expect(date).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 0));
+    expect(date).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -30,7 +39,10 @@ describe("addSeconds", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addSeconds(new Date(2014, 6 /* Jul */, 10, 12, 45, 0), NaN);
+    const result = addSeconds(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 0),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -49,14 +61,14 @@ describe("addSeconds", () => {
   describe("context", () => {
     it("allows to specify the context and handles timezones correctly", () => {
       expect(
-        addSeconds(new Date("2024-08-18T15:00:00Z"), 18000, {
+        addSeconds(new Date(/* 1403/5/28 */ "2024-08-18T15:00:00Z"), 18000, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toEqual("2024-08-19T04:00:00.000+08:00");
+      ).toEqual(/* 1403/5/29 */ "2024-08-19T04:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {
-      const result = addSeconds("2024-08-18T15:00:00Z", 30, {
+      const result = addSeconds(/* 1403/5/28 */ "2024-08-18T15:00:00Z", 30, {
         in: tz("Asia/Tokyo"),
       });
       expect(result).toBeInstanceOf(TZDate);

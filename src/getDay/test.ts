@@ -5,12 +5,14 @@ import { getDay } from "./index.js";
 
 describe("getDay", () => {
   it("returns the day of the week of the given date", () => {
-    const result = getDay(new Date(2012, 1 /* Feb */, 29));
+    const result = getDay(/* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29));
     expect(result).toBe(3);
   });
 
   it("accepts a timestamp", () => {
-    const result = getDay(new Date(2014, 5 /* Jun */, 1).getTime());
+    const result = getDay(
+      /* 1393/3/11 */ new Date(2014, 5 /* Jun */, 1).getTime(),
+    );
     expect(result).toBe(0);
   });
 
@@ -22,10 +24,14 @@ describe("getDay", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getDay(new Date("2023-08-18T15:00:00Z"), { in: tz("Asia/Singapore") }),
+        getDay(new Date(/* 1402/5/27 */ "2023-08-18T15:00:00Z"), {
+          in: tz("Asia/Singapore"),
+        }),
       ).toBe(5);
       expect(
-        getDay(new Date("2023-08-18T16:00:00Z"), { in: tz("Asia/Singapore") }),
+        getDay(new Date(/* 1402/5/27 */ "2023-08-18T16:00:00Z"), {
+          in: tz("Asia/Singapore"),
+        }),
       ).toBe(6);
     });
 

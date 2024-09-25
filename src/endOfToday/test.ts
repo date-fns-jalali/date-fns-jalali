@@ -5,12 +5,14 @@ import { endOfToday } from "./index.js";
 
 describe("endOfToday", () => {
   const { fakeNow } = fakeDate(
-    new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500),
+    /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500),
   );
 
   it("returns the current date with the time settled to 23:59:59.999", () => {
     const result = endOfToday();
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 25, 23, 59, 59, 999));
+    expect(result).toEqual(
+      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 23, 59, 59, 999),
+    );
   });
 
   it("resolves the default date type", () => {
@@ -21,17 +23,17 @@ describe("endOfToday", () => {
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      fakeNow(new Date("2014-09-25T16:00:00Z"));
+      fakeNow(new Date(/* 1393/7/3 */ "2014-09-25T16:00:00Z"));
       expect(
         endOfToday({
           in: tz("Asia/Tokyo"),
         }).toISOString(),
-      ).toBe("2014-09-26T23:59:59.999+09:00");
+      ).toBe(/* 1393/7/4 */ "2014-09-26T23:59:59.999+09:00");
       expect(
         endOfToday({
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe("2014-09-25T23:59:59.999-04:00");
+      ).toBe(/* 1393/7/3 */ "2014-09-25T23:59:59.999-04:00");
     });
 
     it("resolves the context date type", () => {

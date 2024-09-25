@@ -6,19 +6,25 @@ import { setYear } from "./index.js";
 
 describe("setYear", () => {
   it("sets the year", () => {
-    const result = setYear(new Date(2014, 8 /* Sep */, 1), 2013);
-    expect(result).toEqual(new Date(2013, 8 /* Sep */, 1));
+    const result = setYear(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      1392,
+    );
+    expect(result).toEqual(/* 1392/6/10 */ new Date(2013, 8 /* Sep */, 1));
   });
 
   it("accepts a timestamp", () => {
-    const result = setYear(new Date(2014, 8 /* Sep */, 1).getTime(), 2016);
-    expect(result).toEqual(new Date(2016, 8 /* Sep */, 1));
+    const result = setYear(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      1395,
+    );
+    expect(result).toEqual(/* 1395/6/10 */ new Date(2016, 7 /* Aug */, 31));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     setYear(date, 2011);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -27,7 +33,7 @@ describe("setYear", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = setYear(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = setYear(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN);
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -46,19 +52,19 @@ describe("setYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        setYear("2024-04-10T07:00:00Z", 2014, {
+        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 1393, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe("2014-04-10T00:00:00.000-07:00");
+      ).toBe(/* 1393/1/22 */ "2014-04-11T00:00:00.000-07:00");
       expect(
-        setYear("2024-04-10T07:00:00Z", 2016, {
+        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 1395, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2016-04-10T15:00:00.000+08:00");
+      ).toBe(/* 1395/1/22 */ "2016-04-10T15:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {
-      const result = setYear("2014-09-01T00:00:00Z", 2010, {
+      const result = setYear(/* 1393/6/10 */ "2014-09-01T00:00:00Z", 2010, {
         in: tz("Asia/Tokyo"),
       });
       expect(result).toBeInstanceOf(TZDate);

@@ -2,6 +2,11 @@ import { constructFrom } from "../constructFrom/index.js";
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { getDate as coreGetDate } from "../_core/getDate/index.js";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.js";
+
 /**
  * The {@link getDaysInMonth} function options.
  */
@@ -30,10 +35,10 @@ export function getDaysInMonth(
   options?: GetDaysInMonthOptions | undefined,
 ): number {
   const _date = toDate(date, options?.in);
-  const year = _date.getFullYear();
-  const monthIndex = _date.getMonth();
+  const year = coreGetFullYear(_date);
+  const monthIndex = coreGetMonth(_date);
   const lastDayOfMonth = constructFrom(_date, 0);
-  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
+  coreSetFullYear(lastDayOfMonth, year, monthIndex + 1, 0);
   lastDayOfMonth.setHours(0, 0, 0, 0);
-  return lastDayOfMonth.getDate();
+  return coreGetDate(lastDayOfMonth);
 }

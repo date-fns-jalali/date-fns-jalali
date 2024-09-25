@@ -6,21 +6,30 @@ import { startOfQuarter } from "./index.js";
 
 describe("startOfQuarter", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the first day of a quarter", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = startOfQuarter(date);
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 1));
+    expect(result).toEqual(/* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22));
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime();
+    const date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+      0,
+    ).getTime();
     const result = startOfQuarter(date);
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 1));
+    expect(result).toEqual(/* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     startOfQuarter(date);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 2, 11, 55, 0));
+    expect(date).toEqual(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -42,14 +51,16 @@ describe("startOfQuarter", () => {
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      const date = new Date(2022, 1 /* Feb */, 19);
+      const date = /* 1400/11/30 */ new Date(2022, 1 /* Feb */, 19);
       const context = { in: tz("America/New_York") };
       const result = startOfQuarter(date, context);
-      expect(result.toISOString()).toEqual("2022-01-01T00:00:00.000-05:00");
+      expect(result.toISOString()).toEqual(
+        /* 1400/10/1 */ "2021-12-22T00:00:00.000-05:00",
+      );
     });
 
     it("resolves the context date type", () => {
-      const date = new Date(2022, 1 /* Feb */, 19);
+      const date = /* 1400/11/30 */ new Date(2022, 1 /* Feb */, 19);
       const context = { in: tz("America/New_York") };
       const result = startOfQuarter(date, context);
       expect(result).toBeInstanceOf(TZDate);

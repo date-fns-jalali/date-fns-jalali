@@ -6,32 +6,32 @@ import type { ContextOptions, DateArg } from "../types.js";
 describe("differenceInQuarters", () => {
   it("returns the number of full quarters between the given dates with `trunc` as a default rounding method", () => {
     const result = differenceInQuarters(
-      new Date(2012, 6 /* Jul */, 2, 5, 0),
-      new Date(2011, 6 /* Jul */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 5, 0),
+      /* 1390/4/12 */ new Date(2011, 6 /* Jul */, 3, 6, 0),
     );
     expect(result).toBe(3);
   });
 
   it("returns the number of full quarters between the given dates", () => {
     const result = differenceInQuarters(
-      new Date(2012, 6 /* Jul */, 2, 18, 0),
-      new Date(2011, 6 /* Jul */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 18, 0),
+      /* 1390/4/11 */ new Date(2011, 6 /* Jul */, 2, 6, 0),
     );
     expect(result).toBe(4);
   });
 
   it("returns the number of full quarters between the given dates with `trunc` as a default rounding method", () => {
     const result = differenceInQuarters(
-      new Date(2012, 6 /* Jul */, 2, 18, 0),
-      new Date(2011, 4 /* May */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 18, 0),
+      /* 1390/2/12 */ new Date(2011, 4 /* May */, 2, 6, 0),
     );
     expect(result).toBe(4);
   });
 
   it("returns the number of full quarters between the given dates with `ceil` as a rounding method", () => {
     const result = differenceInQuarters(
-      new Date(2012, 6 /* Jul */, 2, 18, 0),
-      new Date(2011, 4 /* May */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 18, 0),
+      /* 1390/2/12 */ new Date(2011, 4 /* May */, 2, 6, 0),
       { roundingMethod: "ceil" },
     );
     expect(result).toBe(5);
@@ -39,8 +39,8 @@ describe("differenceInQuarters", () => {
 
   it("returns the number of full quarters between the given dates with `floor` as a rounding method", () => {
     const result = differenceInQuarters(
-      new Date(2012, 6 /* Jul */, 2, 18, 0),
-      new Date(2011, 4 /* May */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 18, 0),
+      /* 1390/2/12 */ new Date(2011, 4 /* May */, 2, 6, 0),
       { roundingMethod: "floor" },
     );
     expect(result).toBe(4);
@@ -48,8 +48,8 @@ describe("differenceInQuarters", () => {
 
   it("returns the number of full quarters between the given dates with `round` as a rounding method", () => {
     const result = differenceInQuarters(
-      new Date(2012, 6 /* Jul */, 2, 18, 0),
-      new Date(2011, 4 /* May */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 18, 0),
+      /* 1390/2/12 */ new Date(2011, 4 /* May */, 2, 6, 0),
       { roundingMethod: "round" },
     );
     expect(result).toBe(5);
@@ -57,24 +57,24 @@ describe("differenceInQuarters", () => {
 
   it("returns a negative number if the time value of the first date is smaller", () => {
     const result = differenceInQuarters(
-      new Date(2011, 6 /* Jul */, 2, 6, 0),
-      new Date(2012, 6 /* Jul */, 2, 18, 0),
+      /* 1390/4/11 */ new Date(2011, 6 /* Jul */, 2, 6, 0),
+      /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 18, 0),
     );
     expect(result).toBe(-4);
   });
 
   it("returns a 0, not a negative 0 - issue #2555 ", () => {
     const result = differenceInQuarters(
-      new Date(2021, 6 /* Jul */, 22, 6, 1, 28.973),
-      new Date(2021, 6 /* Jul */, 22, 6, 1, 28.976),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 6, 1, 28.973),
+      /* 1400/4/31 */ new Date(2021, 6 /* Jul */, 22, 6, 1, 28.976),
     );
     expect(Object.is(result, 0)).toBe(true);
   });
 
   it("accepts timestamps", () => {
     const result = differenceInQuarters(
-      new Date(2014, 9 /* Oct */, 2).getTime(),
-      new Date(2010, 6 /* Jul */, 2).getTime(),
+      /* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2).getTime(),
+      /* 1389/4/10 */ new Date(2010, 6 /* Jul */, 1).getTime(),
     );
     expect(result).toBe(17);
   });
@@ -82,32 +82,32 @@ describe("differenceInQuarters", () => {
   describe("edge cases", () => {
     it("the difference is less than a quarter, but the given dates are in different calendar quarters", () => {
       const result = differenceInQuarters(
-        new Date(2014, 6 /* Jul */, 1),
-        new Date(2014, 5 /* Jun */, 30),
+        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+        /* 1393/4/9 */ new Date(2014, 5 /* Jun */, 30),
       );
       expect(result).toBe(0);
     });
 
     it("the same for the swapped dates", () => {
       const result = differenceInQuarters(
-        new Date(2014, 5 /* Jun */, 30),
-        new Date(2014, 6 /* Jul */, 1),
+        /* 1393/4/9 */ new Date(2014, 5 /* Jun */, 30),
+        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
       );
       expect(result).toBe(0);
     });
 
     it("the days of months of the given dates are the same", () => {
       const result = differenceInQuarters(
-        new Date(2014, 3 /* Apr */, 6),
-        new Date(2014, 0 /* Jan */, 6),
+        /* 1393/1/17 */ new Date(2014, 3 /* Apr */, 6),
+        /* 1392/10/16 */ new Date(2014, 0 /* Jan */, 6),
       );
       expect(result).toBe(1);
     });
 
     it("the given dates are the same", () => {
       const result = differenceInQuarters(
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
       );
       expect(result).toBe(0);
     });
@@ -118,8 +118,8 @@ describe("differenceInQuarters", () => {
       }
 
       const result = differenceInQuarters(
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
-        new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
       );
 
       const resultIsNegative = isNegativeZero(result);
@@ -130,14 +130,14 @@ describe("differenceInQuarters", () => {
   it("returns NaN if the first date is `Invalid Date`", () => {
     const result = differenceInQuarters(
       new Date(NaN),
-      new Date(2017, 0 /* Jan */, 1),
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
     );
     expect(isNaN(result)).toBe(true);
   });
 
   it("returns NaN if the second date is `Invalid Date`", () => {
     const result = differenceInQuarters(
-      new Date(2017, 0 /* Jan */, 1),
+      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
       new Date(NaN),
     );
     expect(isNaN(result)).toBe(true);
@@ -158,8 +158,13 @@ describe("differenceInQuarters", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2022, 3, 1, "Asia/Singapore");
-    const dateRight = new TZDate(2021, 11, 31, "America/New_York");
+    const dateLeft = /* 1401/1/12 */ new TZDate(2022, 3, 1, "Asia/Singapore");
+    const dateRight = /* 1400/10/10 */ new TZDate(
+      2021,
+      11,
+      31,
+      "America/New_York",
+    );
     expect(differenceInQuarters(dateLeft, dateRight)).toBe(1);
     expect(differenceInQuarters(dateRight, dateLeft)).toBe(-1);
   });
@@ -167,8 +172,8 @@ describe("differenceInQuarters", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       const result = differenceInQuarters(
-        "2024-01-10T07:00:00Z",
-        "2023-01-10T07:00:00Z",
+        /* 1402/10/20 */ "2024-01-10T07:00:00Z",
+        /* 1401/10/20 */ "2023-01-10T07:00:00Z",
         {
           in: tz("America/Los_Angeles"),
         },

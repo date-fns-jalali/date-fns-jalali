@@ -6,22 +6,31 @@ import { subMinutes } from "./index.js";
 
 describe("subMinutes", () => {
   it("subtracts the given number of minutes", () => {
-    const result = subMinutes(new Date(2014, 6 /* Jul */, 10, 12, 0), 30);
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 10, 11, 30));
+    const result = subMinutes(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 0),
+      30,
+    );
+    expect(result).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 11, 30),
+    );
   });
 
   it("accepts a timestamp", () => {
     const result = subMinutes(
-      new Date(2014, 6 /* Jul */, 10, 12, 0).getTime(),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 0).getTime(),
       20,
     );
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 10, 11, 40));
+    expect(result).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 11, 40),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 6 /* Jul */, 10, 12, 0);
+    const date = /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 0);
     subMinutes(date, 25);
-    expect(date).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 0));
+    expect(date).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 0),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -30,7 +39,10 @@ describe("subMinutes", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = subMinutes(new Date(2014, 6 /* Jul */, 10, 12, 0), NaN);
+    const result = subMinutes(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 0),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -49,14 +61,14 @@ describe("subMinutes", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        subMinutes("2024-04-10T07:00:00Z", 10, {
+        subMinutes(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 10, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T15:00:00.000+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T15:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {
-      const result = subMinutes("2024-08-18T15:00:00Z", 30, {
+      const result = subMinutes(/* 1403/5/28 */ "2024-08-18T15:00:00Z", 30, {
         in: tz("America/New_York"),
       });
       expect(result).toBeInstanceOf(TZDate);

@@ -6,7 +6,7 @@ import { assertType } from "../_lib/test/index.js";
 
 describe("constructNow", () => {
   it("creates a new Date instance using the constructor from the reference date", () => {
-    const result = constructNow(new Date("2023-10-25T12:00:00"));
+    const result = constructNow(new Date(/* 1402/8/3 */ "2023-10-25T12:00:00"));
 
     expect(result instanceof Date).toBe(true);
     expect(+result - Date.now()).toBeLessThan(10); // Give 10 ms of slack
@@ -22,7 +22,7 @@ describe("constructNow", () => {
   });
 
   it("creates a new Date instance using a string as the reference date", () => {
-    const result = constructNow("2023-10-25T12:00:00");
+    const result = constructNow(/* 1402/8/3 */ "2023-10-25T12:00:00");
 
     expect(result instanceof Date).toBe(true);
     expect(+result - Date.now()).toBeLessThan(10); // Give 10 ms of slack
@@ -31,7 +31,9 @@ describe("constructNow", () => {
 
   it("creates a new custom Date instance using the constructor from the reference date", () => {
     class CustomDate extends Date {}
-    const result = constructNow(new CustomDate("2023-10-26T12:00:00"));
+    const result = constructNow(
+      new CustomDate(/* 1402/8/4 */ "2023-10-26T12:00:00"),
+    );
 
     expect(result instanceof CustomDate).toBe(true);
     expect(+result - Date.now()).toBeLessThan(10); // Give 10 ms of slack

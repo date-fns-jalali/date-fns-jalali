@@ -6,39 +6,39 @@ import type { ContextOptions, DateArg } from "../types.js";
 import { isThisMonth } from "./index.js";
 
 describe("isThisMonth", () => {
-  const { fakeNow } = fakeDate(new Date(2014, 8 /* Sep */, 1));
+  const { fakeNow } = fakeDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
 
   it("returns true if the given date and the current date have the same month (and year)", () => {
-    const date = new Date(2014, 8 /* Sep */, 15);
+    const date = /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15);
     expect(isThisMonth(date)).toBe(true);
   });
 
   it("returns false if the given date and the current date have different months", () => {
-    const date = new Date(2013, 7 /* Aug */, 31);
+    const date = /* 1392/6/9 */ new Date(2013, 7 /* Aug */, 31);
     expect(isThisMonth(date)).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 8 /* Sep */, 30).getTime();
+    const date = /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15).getTime();
     expect(isThisMonth(date)).toBe(true);
   });
 
   it("respects date extensions", () => {
-    expect(isThisMonth(new UTCDate(+new Date(2014, 8 /* Sep */, 1)))).toBe(
-      true,
-    );
+    expect(
+      isThisMonth(new UTCDate(/* 1393/6/10 */ +new Date(2014, 8 /* Sep */, 1))),
+    ).toBe(true);
   });
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      fakeNow(new Date("2014-09-02T00:00:00Z"));
+      fakeNow(new Date(/* 1393/6/11 */ "2014-09-02T00:00:00Z"));
       expect(
-        isThisMonth("2014-09-01T04:00:00Z", {
+        isThisMonth(/* 1393/6/1 */ "2014-08-23T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);
       expect(
-        isThisMonth("2014-09-01T03:00:00Z", {
+        isThisMonth(/* 1393/6/1 */ "2014-08-23T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);

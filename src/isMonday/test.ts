@@ -5,17 +5,19 @@ import { isMonday } from "./index.js";
 
 describe("isMonday", () => {
   it("returns true if the given date is Monday", () => {
-    const result = isMonday(new Date(2014, 8 /* Sep */, 22));
+    const result = isMonday(/* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22));
     expect(result).toBe(true);
   });
 
   it("returns false if the given date is not Monday", () => {
-    const result = isMonday(new Date(2014, 8 /* Sep */, 25));
+    const result = isMonday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const result = isMonday(new Date(2014, 1 /* Feb */, 10).getTime());
+    const result = isMonday(
+      /* 1392/11/21 */ new Date(2014, 1 /* Feb */, 10).getTime(),
+    );
     expect(result).toBe(true);
   });
 
@@ -27,22 +29,22 @@ describe("isMonday", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isMonday("2024-08-18T15:00:00Z", {
+        isMonday(/* 1403/5/28 */ "2024-08-18T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(false);
       expect(
-        isMonday("2024-08-18T16:00:00Z", {
+        isMonday(/* 1403/5/28 */ "2024-08-18T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(true);
       expect(
-        isMonday("2024-08-10T04:00:00Z", {
+        isMonday(/* 1403/5/20 */ "2024-08-10T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isMonday("2024-08-10T03:00:00Z", {
+        isMonday(/* 1403/5/20 */ "2024-08-10T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);

@@ -1,6 +1,8 @@
 import { normalizeDates } from "../_lib/normalizeDates/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+
 /**
  * The {@link isSameYear} function options.
  */
@@ -35,5 +37,5 @@ export function isSameYear(
     laterDate,
     earlierDate,
   );
-  return laterDate_.getFullYear() === earlierDate_.getFullYear();
+  return coreGetFullYear(laterDate_) === coreGetFullYear(earlierDate_);
 }

@@ -1,6 +1,8 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { setDate as coreSetDate } from "../_core/setDate/index.js";
+
 /**
  * The {@link startOfMonth} function options.
  */
@@ -38,7 +40,7 @@ export function startOfMonth<
   options?: StartOfMonthOptions<ResultDate> | undefined,
 ): ResultDate {
   const _date = toDate(date, options?.in);
-  _date.setDate(1);
+  coreSetDate(_date, 1);
   _date.setHours(0, 0, 0, 0);
   return _date;
 }

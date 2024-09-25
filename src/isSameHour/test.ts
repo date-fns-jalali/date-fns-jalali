@@ -6,35 +6,41 @@ import { isSameHour } from "./index.js";
 describe("isSameHour", () => {
   it("returns true if the given dates have the same hour", () => {
     const result = isSameHour(
-      new Date(2014, 8 /* Sep */, 4, 6, 0),
-      new Date(2014, 8 /* Sep */, 4, 6, 30),
+      /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4, 6, 0),
+      /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4, 6, 30),
     );
     expect(result).toBe(true);
   });
 
   it("returns false if the given dates have different hours", () => {
     const result = isSameHour(
-      new Date(2014, 8 /* Sep */, 4, 6, 0),
-      new Date(2014, 8 /* Sep */, 4, 5, 0),
+      /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4, 6, 0),
+      /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4, 5, 0),
     );
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
     const result = isSameHour(
-      new Date(2014, 8 /* Sep */, 4, 18, 0).getTime(),
-      new Date(2014, 8 /* Sep */, 4, 18, 45).getTime(),
+      /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4, 18, 0).getTime(),
+      /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4, 18, 45).getTime(),
     );
     expect(result).toBe(true);
   });
 
   it("returns false if the first date is `Invalid Date`", () => {
-    const result = isSameHour(new Date(NaN), new Date(1989, 6 /* Jul */, 10));
+    const result = isSameHour(
+      new Date(NaN),
+      /* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10),
+    );
     expect(result).toBe(false);
   });
 
   it("returns false if the second date is `Invalid Date`", () => {
-    const result = isSameHour(new Date(1987, 1 /* Feb */, 11), new Date(NaN));
+    const result = isSameHour(
+      /* 1365/11/22 */ new Date(1987, 1 /* Feb */, 11),
+      new Date(NaN),
+    );
     expect(result).toBe(false);
   });
 
@@ -53,8 +59,21 @@ describe("isSameHour", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2024, 8, 9, 7, "America/New_York");
-    const dateRight = new TZDate(2024, 8, 9, 16, 15, "Asia/Kolkata");
+    const dateLeft = /* 1403/6/19 */ new TZDate(
+      2024,
+      8,
+      9,
+      7,
+      "America/New_York",
+    );
+    const dateRight = /* 1403/6/19 */ new TZDate(
+      2024,
+      8,
+      9,
+      16,
+      15,
+      "Asia/Kolkata",
+    );
     expect(isSameHour(dateLeft, dateRight)).toBe(false);
     expect(isSameHour(dateRight, dateLeft)).toBe(true);
   });
@@ -62,14 +81,22 @@ describe("isSameHour", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isSameHour("2024-04-10T07:00:00Z", "2024-04-10T07:30:00Z", {
-          in: tz("Asia/Kolkata"),
-        }),
+        isSameHour(
+          /* 1403/1/22 */ "2024-04-10T07:00:00Z",
+          /* 1403/1/22 */ "2024-04-10T07:30:00Z",
+          {
+            in: tz("Asia/Kolkata"),
+          },
+        ),
       ).toBe(false);
       expect(
-        isSameHour("2024-04-10T07:30:00Z", "2024-04-10T08:00:00Z", {
-          in: tz("Asia/Kolkata"),
-        }),
+        isSameHour(
+          /* 1403/1/22 */ "2024-04-10T07:30:00Z",
+          /* 1403/1/22 */ "2024-04-10T08:00:00Z",
+          {
+            in: tz("Asia/Kolkata"),
+          },
+        ),
       ).toBe(true);
     });
 
