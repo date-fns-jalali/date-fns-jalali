@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { addImports, uniqueImports } from "./utils";
 import path from "node:path";
 
