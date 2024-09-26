@@ -5,12 +5,16 @@ import { getWeekYear } from "./index.js";
 
 describe("getWeekYear", () => {
   it("returns the local week-numbering year of the given date", () => {
-    const result = getWeekYear(new Date(2004, 11 /* Dec */, 26));
+    const result = getWeekYear(
+      /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26),
+    );
     expect(result).toBe(2005);
   });
 
   it("accepts a timestamp", () => {
-    const result = getWeekYear(new Date(2000, 11 /* Dec */, 30).getTime());
+    const result = getWeekYear(
+      /* 1379/10/10 */ new Date(2000, 11 /* Dec */, 30).getTime(),
+    );
     expect(result).toBe(2000);
   });
 
@@ -28,7 +32,7 @@ describe("getWeekYear", () => {
   });
 
   it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale", () => {
-    const date = new Date(2004, 11 /* Dec */, 26);
+    const date = /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26);
     const result = getWeekYear(date, {
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 },
@@ -38,7 +42,7 @@ describe("getWeekYear", () => {
   });
 
   it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
-    const date = new Date(2004, 11 /* Dec */, 26);
+    const date = /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26);
     const result = getWeekYear(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
@@ -52,25 +56,25 @@ describe("getWeekYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getWeekYear("2023-12-31T15:00:00Z", {
+        getWeekYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
           in: tz("Asia/Singapore"),
           weekStartsOn: 1,
         }),
       ).toBe(2023);
       expect(
-        getWeekYear("2023-12-31T16:00:00Z", {
+        getWeekYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
           weekStartsOn: 1,
         }),
       ).toBe(2024);
       expect(
-        getWeekYear("2024-01-01T04:00:00Z", {
+        getWeekYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           in: tz("America/New_York"),
           weekStartsOn: 1,
         }),
       ).toBe(2023);
       expect(
-        getWeekYear("2024-01-01T05:00:00Z", {
+        getWeekYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           in: tz("America/New_York"),
           weekStartsOn: 1,
         }),

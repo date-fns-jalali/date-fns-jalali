@@ -6,21 +6,29 @@ import { startOfHour } from "./index.js";
 
 describe("startOfHour", () => {
   it("returns the date with the time set to the first millisecond of an hour", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55);
     const result = startOfHour(date);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 2, 11));
+    expect(result).toEqual(/* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55);
     startOfHour(date);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 2, 11, 55));
+    expect(date).toEqual(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55),
+    );
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55).getTime();
+    const date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+    ).getTime();
     const result = startOfHour(date);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 2, 11));
+    expect(result).toEqual(/* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11));
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -43,19 +51,19 @@ describe("startOfHour", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        startOfHour("2024-04-10T07:30:30Z", {
+        startOfHour(/* 1403/1/22 */ "2024-04-10T07:30:30Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T15:00:00.000+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T15:00:00.000+08:00");
       expect(
-        startOfHour("2024-04-10T07:30:30Z", {
+        startOfHour(/* 1403/1/22 */ "2024-04-10T07:30:30Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe("2024-04-10T03:00:00.000-04:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T03:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-02T11:55:00Z");
+      const date = new Date(/* 1393/6/11 */ "2014-09-02T11:55:00Z");
       const result = startOfHour(date, {
         in: tz("Asia/Tokyo"),
       });

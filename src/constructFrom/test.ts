@@ -7,8 +7,8 @@ import type { ContextOptions, DateArg } from "../types.js";
 
 describe("constructFrom", () => {
   it("should create a new Date instance using the constructor from the reference date", () => {
-    const referenceDate = new Date("2023-10-25T12:00:00");
-    const value = new Date("2023-10-26T12:00:00");
+    const referenceDate = new Date(/* 1402/8/3 */ "2023-10-25T12:00:00");
+    const value = new Date(/* 1402/8/4 */ "2023-10-26T12:00:00");
 
     const result = constructFrom(referenceDate, value);
 
@@ -19,7 +19,7 @@ describe("constructFrom", () => {
 
   it("should create a new Date instance using a number as the reference date", () => {
     const referenceDate = 1635158400000; // October 25, 2023
-    const value = new Date("2023-10-26T12:00:00");
+    const value = new Date(/* 1402/8/4 */ "2023-10-26T12:00:00");
 
     const result = constructFrom(referenceDate, value);
 
@@ -29,8 +29,8 @@ describe("constructFrom", () => {
 
   it("should create a new custom Date instance using the constructor from the reference date", () => {
     class CustomDate extends Date {}
-    const referenceDate = new CustomDate("2023-10-25T12:00:00");
-    const value = new CustomDate("2023-10-26T12:00:00");
+    const referenceDate = new CustomDate(/* 1402/8/3 */ "2023-10-25T12:00:00");
+    const value = new CustomDate(/* 1402/8/4 */ "2023-10-26T12:00:00");
 
     const result = constructFrom(referenceDate, value);
 

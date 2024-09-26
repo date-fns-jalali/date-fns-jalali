@@ -7,24 +7,30 @@ import { addMilliseconds } from "./index.js";
 describe("addMilliseconds", () => {
   it("adds the given number of milliseconds", () => {
     const result = addMilliseconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
       750,
     );
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 750));
+    expect(result).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 750),
+    );
   });
 
   it("accepts a timestamp", () => {
     const result = addMilliseconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0).getTime(),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0).getTime(),
       500,
     );
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 500));
+    expect(result).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 500),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0);
+    const date = /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0);
     addMilliseconds(date, 250);
-    expect(date).toEqual(new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0));
+    expect(date).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -34,7 +40,7 @@ describe("addMilliseconds", () => {
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
     const result = addMilliseconds(
-      new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 12, 45, 30, 0),
       NaN,
     );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
@@ -55,14 +61,14 @@ describe("addMilliseconds", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        addMilliseconds("2024-04-10T07:00:00Z", 10, {
+        addMilliseconds(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 10, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T15:00:00.010+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T15:00:00.010+08:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2024-04-10T07:00:00Z");
+      const date = new Date(/* 1403/1/22 */ "2024-04-10T07:00:00Z");
       const result = addMilliseconds(date, 10, {
         in: tz("Asia/Singapore"),
       });

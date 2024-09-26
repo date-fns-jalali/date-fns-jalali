@@ -6,37 +6,39 @@ import type { ContextOptions, DateArg } from "../types.js";
 import { isThisYear } from "./index.js";
 
 describe("isThisYear", () => {
-  const { fakeNow } = fakeDate(new Date(2014, 0 /* Jan */, 1));
+  const { fakeNow } = fakeDate(/* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1));
 
   it("returns true if the given date and the current date have the same year", () => {
-    const date = new Date(2014, 6 /* Jul */, 2);
+    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2);
     expect(isThisYear(date)).toBe(true);
   });
 
   it("returns false if the given date and the current date have different years", () => {
-    const date = new Date(2015, 6 /* Jul */, 2);
+    const date = /* 1394/4/11 */ new Date(2015, 6 /* Jul */, 2);
     expect(isThisYear(date)).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 6 /* Jul */, 2).getTime();
+    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime();
     expect(isThisYear(date)).toBe(true);
   });
 
   it("respects date extensions", () => {
-    expect(isThisYear(new UTCDate(+new Date(2014, 0 /* Jan */, 1)))).toBe(true);
+    expect(
+      isThisYear(new UTCDate(/* 1392/10/11 */ +new Date(2014, 0 /* Jan */, 1))),
+    ).toBe(true);
   });
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      fakeNow(new Date("2024-01-02T00:00:00Z"));
+      fakeNow(new Date(/* 1402/10/12 */ "2024-01-02T00:00:00Z"));
       expect(
-        isThisYear("2024-01-01T04:00:00Z", {
+        isThisYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isThisYear("2024-01-01T05:00:00Z", {
+        isThisYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

@@ -5,12 +5,14 @@ import { getYear } from "./index.js";
 
 describe("getYear", () => {
   it("returns the year of the given date", () => {
-    const result = getYear(new Date(2014, 6 /* Jul */, 2));
+    const result = getYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
     expect(result).toBe(2014);
   });
 
   it("accepts a timestamp", () => {
-    const result = getYear(new Date(2000, 3 /* Apr */, 2).getTime());
+    const result = getYear(
+      /* 1379/1/14 */ new Date(2000, 3 /* Apr */, 2).getTime(),
+    );
     expect(result).toBe(2000);
   });
 
@@ -22,22 +24,22 @@ describe("getYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getYear("2023-12-31T15:00:00Z", {
+        getYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(2023);
       expect(
-        getYear("2023-12-31T16:00:00Z", {
+        getYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(2024);
       expect(
-        getYear("2024-01-01T04:00:00Z", {
+        getYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(2023);
       expect(
-        getYear("2024-01-01T05:00:00Z", {
+        getYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(2024);

@@ -5,12 +5,14 @@ import { getDate } from "./index.js";
 
 describe("getDate", () => {
   it("returns the day of the month of the given date", () => {
-    const result = getDate(new Date(2012, 1 /* Feb */, 29));
+    const result = getDate(/* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29));
     expect(result).toBe(29);
   });
 
   it("accepts a timestamp", () => {
-    const result = getDate(new Date(2014, 11 /* Dec */, 31).getTime());
+    const result = getDate(
+      /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31).getTime(),
+    );
     expect(result).toBe(31);
   });
 
@@ -22,10 +24,14 @@ describe("getDate", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getDate(new Date("2024-08-18T15:00:00Z"), { in: tz("Asia/Singapore") }),
+        getDate(new Date(/* 1403/5/28 */ "2024-08-18T15:00:00Z"), {
+          in: tz("Asia/Singapore"),
+        }),
       ).toBe(18);
       expect(
-        getDate(new Date("2024-08-18T16:00:00Z"), { in: tz("Asia/Singapore") }),
+        getDate(new Date(/* 1403/5/28 */ "2024-08-18T16:00:00Z"), {
+          in: tz("Asia/Singapore"),
+        }),
       ).toBe(19);
     });
 

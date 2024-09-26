@@ -5,17 +5,21 @@ import { getDaysInMonth } from "./index.js";
 
 describe("getDaysInMonth", () => {
   it("returns the number of days in the month of the given date", () => {
-    const result = getDaysInMonth(new Date(2100, 1 /* Feb */, 11));
+    const result = getDaysInMonth(
+      /* 1478/11/23 */ new Date(2100, 1 /* Feb */, 11),
+    );
     expect(result).toBe(28);
   });
 
   it("works for the February of a leap year", () => {
-    const result = getDaysInMonth(new Date(2000, 1 /* Feb */, 11));
+    const result = getDaysInMonth(
+      /* 1378/11/22 */ new Date(2000, 1 /* Feb */, 11),
+    );
     expect(result).toBe(29);
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 6 /* Jul */, 2).getTime();
+    const date = /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime();
     const result = getDaysInMonth(date);
     expect(result).toBe(31);
   });
@@ -36,12 +40,12 @@ describe("getDaysInMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getDaysInMonth("2024-02-01T04:00:00Z", {
+        getDaysInMonth(/* 1402/11/12 */ "2024-02-01T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(31);
       expect(
-        getDaysInMonth("2024-02-01T05:00:00Z", {
+        getDaysInMonth(/* 1402/11/12 */ "2024-02-01T05:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(29);

@@ -6,21 +6,34 @@ import { TZDate, tz } from "@date-fns/tz";
 
 describe("startOfYear", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the first day of a year", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = startOfYear(date);
-    expect(result).toEqual(new Date(2014, 0 /* Jan */, 1, 0, 0, 0, 0));
+    expect(result).toEqual(
+      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1, 0, 0, 0, 0),
+    );
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime();
+    const date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+      0,
+    ).getTime();
     const result = startOfYear(date);
-    expect(result).toEqual(new Date(2014, 0 /* Dec */, 1, 0, 0, 0, 0));
+    expect(result).toEqual(
+      /* 1392/10/11 */ new Date(2014, 0 /* Dec */, 1, 0, 0, 0, 0),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     startOfYear(date);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 2, 11, 55, 0));
+    expect(date).toEqual(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
+    );
   });
 
   it("handles dates before 100 AD", () => {
@@ -54,29 +67,29 @@ describe("startOfYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        startOfYear("2023-12-31T15:00:00Z", {
+        startOfYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2023-01-01T00:00:00.000+08:00");
+      ).toBe(/* 1401/10/11 */ "2023-01-01T00:00:00.000+08:00");
       expect(
-        startOfYear("2023-12-31T16:00:00Z", {
+        startOfYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-01-01T00:00:00.000+08:00");
+      ).toBe(/* 1402/10/11 */ "2024-01-01T00:00:00.000+08:00");
       expect(
-        startOfYear("2024-01-01T04:00:00Z", {
+        startOfYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe("2023-01-01T00:00:00.000-05:00");
+      ).toBe(/* 1401/10/11 */ "2023-01-01T00:00:00.000-05:00");
       expect(
-        startOfYear("2024-01-01T05:00:00Z", {
+        startOfYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe("2024-01-01T00:00:00.000-05:00");
+      ).toBe(/* 1402/10/11 */ "2024-01-01T00:00:00.000-05:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = startOfYear(date, {
         in: tz("Asia/Tokyo"),
       });

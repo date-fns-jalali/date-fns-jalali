@@ -5,12 +5,14 @@ import { endOfYesterday } from "./index.js";
 
 describe("endOfYesterday", () => {
   const { fakeNow } = fakeDate(
-    new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500),
+    /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500),
   );
 
   it("returns yesterday with the time settled to 23:59:59.999", () => {
     const result = endOfYesterday();
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 24, 23, 59, 59, 999));
+    expect(result).toEqual(
+      /* 1393/7/2 */ new Date(2014, 8 /* Sep */, 24, 23, 59, 59, 999),
+    );
   });
 
   it("handles dates before 100 AD", () => {
@@ -34,21 +36,21 @@ describe("endOfYesterday", () => {
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      fakeNow(new Date("2024-08-18T15:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T15:00:00Z"));
       expect(endOfYesterday({ in: tz("Asia/Singapore") }).toISOString()).toBe(
-        "2024-08-17T23:59:59.999+08:00",
+        /* 1403/5/27 */ "2024-08-17T23:59:59.999+08:00",
       );
-      fakeNow(new Date("2024-08-18T16:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T16:00:00Z"));
       expect(endOfYesterday({ in: tz("Asia/Singapore") }).toISOString()).toBe(
-        "2024-08-18T23:59:59.999+08:00",
+        /* 1403/5/28 */ "2024-08-18T23:59:59.999+08:00",
       );
-      fakeNow(new Date("2024-08-18T03:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T03:00:00Z"));
       expect(endOfYesterday({ in: tz("America/New_York") }).toISOString()).toBe(
-        "2024-08-16T23:59:59.999-04:00",
+        /* 1403/5/26 */ "2024-08-16T23:59:59.999-04:00",
       );
-      fakeNow(new Date("2024-08-18T04:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T04:00:00Z"));
       expect(endOfYesterday({ in: tz("America/New_York") }).toISOString()).toBe(
-        "2024-08-17T23:59:59.999-04:00",
+        /* 1403/5/27 */ "2024-08-17T23:59:59.999-04:00",
       );
     });
 

@@ -7,25 +7,28 @@ import { addMonths } from "./index.js";
 
 describe("addMonths", () => {
   it("adds the given number of months", () => {
-    const result = addMonths(new Date(2014, 8 /* Sep */, 1), 5);
-    expect(result).toEqual(new Date(2015, 1 /* Feb */, 1));
+    const result = addMonths(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 5);
+    expect(result).toEqual(/* 1393/11/12 */ new Date(2015, 1 /* Feb */, 1));
   });
 
   it("accepts a timestamp", () => {
-    const result = addMonths(new Date(2014, 8 /* Sep */, 1).getTime(), 12);
-    expect(result).toEqual(new Date(2015, 8 /* Sep */, 1));
+    const result = addMonths(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      12,
+    );
+    expect(result).toEqual(/* 1394/6/10 */ new Date(2015, 8 /* Sep */, 1));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     addMonths(date, 12);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("works well if the desired month has fewer days and the provided date is in the last day of a month", () => {
-    const date = new Date(2014, 11 /* Dec */, 31);
+    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31);
     const result = addMonths(date, 2);
-    expect(result).toEqual(new Date(2015, 1 /* Feb */, 28));
+    expect(result).toEqual(/* 1393/12/9 */ new Date(2015, 1 /* Feb */, 28));
   });
 
   it("handles dates before 100 AD", () => {
@@ -45,7 +48,10 @@ describe("addMonths", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addMonths(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = addMonths(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -162,17 +168,17 @@ describe("addMonths", () => {
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = addMonths(date, 1, {
         in: tz("Asia/Tokyo"),
       });
       // Here we add 1 month to 1 Sep 2014 00:00 UTC (which is 1 Sep 2014 09:00 in Tokyo)
       // and we expect to get 1 Oct 2014 00:00 UTC (which is 1 Oct 2014 09:00 in Tokyo)
-      expect(+result).toEqual(+new Date("2014-10-01T00:00:00Z"));
+      expect(+result).toEqual(+new Date(/* 1393/7/9 */ "2014-10-01T00:00:00Z"));
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = addMonths(date, 1, {
         in: tz("Asia/Tokyo"),
       });

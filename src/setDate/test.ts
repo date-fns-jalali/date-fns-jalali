@@ -6,19 +6,22 @@ import { setDate } from "./index.js";
 
 describe("setDate", () => {
   it("sets the day of the month", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1), 30);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 30));
+    const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 30);
+    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
   });
 
   it("accepts a timestamp", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1).getTime(), 25);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 25));
+    const result = setDate(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      25,
+    );
+    expect(result).toEqual(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     setDate(date, 20);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -27,7 +30,7 @@ describe("setDate", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = setDate(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = setDate(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), NaN);
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -46,19 +49,19 @@ describe("setDate", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        setDate("2024-04-10T07:00:00Z", 15, {
+        setDate(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 15, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-15T15:00:00.000+08:00");
+      ).toBe(/* 1403/1/27 */ "2024-04-15T15:00:00.000+08:00");
       expect(
-        setDate("2024-04-10T07:00:00Z", 20, {
+        setDate(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 20, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe("2024-04-20T00:00:00.000-07:00");
+      ).toBe(/* 1403/2/1 */ "2024-04-20T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = setDate(date, 15, {
         in: tz("Asia/Tokyo"),
       });
