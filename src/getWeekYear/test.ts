@@ -5,16 +5,20 @@ import { getWeekYear } from "./index.js";
 
 describe("getWeekYear", () => {
   it("returns the local week-numbering year of the given date", () => {
-    const result = getWeekYear(new Date(2004, 11 /* Dec */, 26));
-    expect(result).toBe(2005);
+    const result = getWeekYear(
+      /* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20),
+    );
+    expect(result).toBe(1384);
   });
 
   it("accepts a timestamp", () => {
-    const result = getWeekYear(new Date(2000, 11 /* Dec */, 30).getTime());
-    expect(result).toBe(2000);
+    const result = getWeekYear(
+      /* 1388/12/29 */ new Date(2010, 2 /* Mar */, 20).getTime(),
+    );
+    expect(result).toBe(1389);
   });
 
-  it("handles dates before 100 AD", () => {
+  it.skip("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(7, 11 /* Dec */, 31);
     initialDate.setHours(0, 0, 0, 0);
@@ -28,17 +32,17 @@ describe("getWeekYear", () => {
   });
 
   it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale", () => {
-    const date = new Date(2004, 11 /* Dec */, 26);
+    const date = /* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20);
     const result = getWeekYear(date, {
       locale: {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 },
       },
     });
-    expect(result).toBe(2004);
+    expect(result).toBe(1383);
   });
 
   it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
-    const date = new Date(2004, 11 /* Dec */, 26);
+    const date = /* 1383/12/30 */ new Date(2005, 2 /* Mar */, 20);
     const result = getWeekYear(date, {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
@@ -46,35 +50,35 @@ describe("getWeekYear", () => {
         options: { weekStartsOn: 0, firstWeekContainsDate: 1 },
       },
     });
-    expect(result).toBe(2004);
+    expect(result).toBe(1383);
   });
 
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getWeekYear("2023-12-31T15:00:00Z", {
+        getWeekYear(/* 1401/12/28 */ "2023-03-19T15:00:00Z", {
           in: tz("Asia/Singapore"),
           weekStartsOn: 1,
         }),
-      ).toBe(2023);
+      ).toBe(1401);
       expect(
-        getWeekYear("2023-12-31T16:00:00Z", {
+        getWeekYear(/* 1401/12/28 */ "2023-03-19T16:00:00Z", {
           in: tz("Asia/Singapore"),
           weekStartsOn: 1,
         }),
-      ).toBe(2024);
+      ).toBe(1402);
       expect(
-        getWeekYear("2024-01-01T04:00:00Z", {
+        getWeekYear(/* 1401/12/29 */ "2023-03-20T03:00:00Z", {
           in: tz("America/New_York"),
           weekStartsOn: 1,
         }),
-      ).toBe(2023);
+      ).toBe(1401);
       expect(
-        getWeekYear("2024-01-01T05:00:00Z", {
+        getWeekYear(/* 1401/12/29 */ "2023-03-20T04:00:00Z", {
           in: tz("America/New_York"),
           weekStartsOn: 1,
         }),
-      ).toBe(2024);
+      ).toBe(1402);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

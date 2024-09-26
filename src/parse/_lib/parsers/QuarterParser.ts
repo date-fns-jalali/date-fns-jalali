@@ -3,6 +3,8 @@ import { Parser } from "../Parser.js";
 import type { ParseFlags, ParseResult } from "../types.js";
 import { parseNDigits } from "../utils.js";
 
+import { setMonth as coreSetMonth } from "../../../_core/setMonth/index.js";
+
 export class QuarterParser extends Parser<number> {
   priority = 120;
 
@@ -62,7 +64,7 @@ export class QuarterParser extends Parser<number> {
     _flags: ParseFlags,
     value: number,
   ): DateType {
-    date.setMonth((value - 1) * 3, 1);
+    coreSetMonth(date, (value - 1) * 3, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }

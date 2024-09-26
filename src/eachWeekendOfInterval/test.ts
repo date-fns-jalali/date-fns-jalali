@@ -8,54 +8,48 @@ import { eachWeekendOfInterval } from "./index.js";
 describe("eachWeekendOfInterval", () => {
   it("returns all weekends within the interval", () => {
     const result = eachWeekendOfInterval({
-      start: new Date(2018, 8 /* Sept */, 17),
-      end: new Date(2018, 8 /* Sept */, 30),
+      start: /* 1397/6/26 */ new Date(2018, 8 /* Sep */, 17),
+      end: /* 1397/7/8 */ new Date(2018, 8 /* Sep */, 30),
     });
     expect(result).toEqual([
-      new Date(2018, 8 /* Sept */, 22),
-      new Date(2018, 8 /* Sept */, 23),
-      new Date(2018, 8 /* Sept */, 29),
-      new Date(2018, 8 /* Sept */, 30),
+      /* 1397/6/30 */ new Date(2018, 8 /* Sep */, 21),
+      /* 1397/7/6 */ new Date(2018, 8 /* Sep */, 28),
     ]);
   });
 
   it("returns all weekends within the interval when starting on a weekend", () => {
     const result = eachWeekendOfInterval({
-      start: new Date(2018, 8 /* Sept */, 22),
-      end: new Date(2018, 8 /* Sept */, 30),
+      start: /* 1397/6/30 */ new Date(2018, 8 /* Sep */, 21),
+      end: /* 1397/7/8 */ new Date(2018, 8 /* Sep */, 30),
     });
     expect(result).toEqual([
-      new Date(2018, 8 /* Sept */, 22),
-      new Date(2018, 8 /* Sept */, 23),
-      new Date(2018, 8 /* Sept */, 29),
-      new Date(2018, 8 /* Sept */, 30),
+      /* 1397/6/30 */ new Date(2018, 8 /* Sep */, 21),
+      /* 1397/7/6 */ new Date(2018, 8 /* Sep */, 28),
     ]);
   });
 
   it("returns reversed array if the start date is after the end date", () => {
     const result = eachWeekendOfInterval({
-      start: new Date(2018, 8 /* Sept */, 30),
-      end: new Date(2018, 8 /* Sept */, 17),
+      start: /* 1397/7/8 */ new Date(2018, 8 /* Sept */, 30),
+      end: /* 1397/6/26 */ new Date(2018, 8 /* Sept */, 17),
     });
     expect(result).toEqual([
-      new Date(2018, 8 /* Sept */, 30),
-      new Date(2018, 8 /* Sept */, 29),
-      new Date(2018, 8 /* Sept */, 23),
-      new Date(2018, 8 /* Sept */, 22),
+      /* 1397/7/6 */ new Date(2018, 8 /* Sep */, 28),
+      /* 1397/6/30 */ new Date(2018, 8 /* Sep */, 21),
     ]);
   });
 
   it("returns an empty array if the start date is `Invalid Date`", () => {
     const result = eachWeekendOfInterval({
       start: new Date(NaN),
-      end: new Date(2019, 11 /* Dec */, 31),
+      end: /* 1398/10/10 */ new Date(2019, 11 /* Dec */, 31),
     });
     expect(result).toEqual([]);
   });
 
   it("returns an empty array if the end date is `Invalid Date`", () => {
     const result = eachWeekendOfInterval({
-      start: new Date(2019, 0 /* Jan */, 1),
+      start: /* 1397/10/11 */ new Date(2019, 0 /* Jan */, 1),
       end: new Date(NaN),
     });
     expect(result).toEqual([]);
@@ -71,8 +65,8 @@ describe("eachWeekendOfInterval", () => {
 
   it("resolves the date type by default", () => {
     const interval = {
-      start: +new Date("2024-01-01T00:00:00Z"),
-      end: +new Date("2024-12-31T23:59:59Z"),
+      start: +new Date(/* 1402/10/11 */ "2024-01-01T00:00:00Z"),
+      end: +new Date(/* 1403/10/11 */ "2024-12-31T23:59:59Z"),
     };
     const result = eachWeekendOfInterval(interval);
     expect(result[0]).toBeInstanceOf(Date);
@@ -81,7 +75,7 @@ describe("eachWeekendOfInterval", () => {
 
   it("resolves the start date object type", () => {
     const interval = {
-      start: new TZDate(2024, 4, 18, 0, "Asia/Singapore"),
+      start: /* 1403/2/29 */ new TZDate(2024, 4, 18, 0, "Asia/Singapore"),
       end: new UTCDate(2024, 4, 28, 0, 0),
     };
     const result = eachWeekendOfInterval(interval);
@@ -99,27 +93,35 @@ describe("eachWeekendOfInterval", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2023, 11, 19, 23, "Asia/Singapore");
-    const dateRight = new TZDate(2023, 11, 31, 12, "America/New_York");
+    const dateLeft = /* 1402/9/28 */ new TZDate(
+      2023,
+      11,
+      19,
+      23,
+      "Asia/Singapore",
+    );
+    const dateRight = /* 1402/10/10 */ new TZDate(
+      2023,
+      11,
+      31,
+      12,
+      "America/New_York",
+    );
     expect(
       eachWeekendOfInterval({ start: dateLeft, end: dateRight }).map((d) =>
         d.toISOString(),
       ),
     ).toEqual([
-      "2023-12-23T00:00:00.000+08:00",
-      "2023-12-24T00:00:00.000+08:00",
-      "2023-12-30T00:00:00.000+08:00",
-      "2023-12-31T00:00:00.000+08:00",
+      /* 1402/10/1 */ "2023-12-22T00:00:00.000+08:00",
+      /* 1402/10/8 */ "2023-12-29T00:00:00.000+08:00",
     ]);
     expect(
       eachWeekendOfInterval({ start: dateRight, end: dateLeft }).map((d) =>
         d.toISOString(),
       ),
     ).toEqual([
-      "2023-12-31T00:00:00.000-05:00",
-      "2023-12-30T00:00:00.000-05:00",
-      "2023-12-24T00:00:00.000-05:00",
-      "2023-12-23T00:00:00.000-05:00",
+      /* 1402/10/8 */ "2023-12-29T00:00:00.000-05:00",
+      /* 1402/10/1 */ "2023-12-22T00:00:00.000-05:00",
     ]);
   });
 
@@ -135,44 +137,35 @@ describe("eachWeekendOfInterval", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       const interval = {
-        start: "2024-04-01T00:00:00Z",
-        end: "2024-04-30T23:59:59Z",
+        start: /* 1403/1/13 */ "2024-04-01T00:00:00Z",
+        end: /* 1403/2/11 */ "2024-04-30T23:59:59Z",
       };
       expect(
         eachWeekendOfInterval(interval, { in: tz("America/New_York") }).map(
           (date) => date.toISOString(),
         ),
       ).toEqual([
-        "2024-03-31T00:00:00.000-04:00",
-        "2024-04-06T00:00:00.000-04:00",
-        "2024-04-07T00:00:00.000-04:00",
-        "2024-04-13T00:00:00.000-04:00",
-        "2024-04-14T00:00:00.000-04:00",
-        "2024-04-20T00:00:00.000-04:00",
-        "2024-04-21T00:00:00.000-04:00",
-        "2024-04-27T00:00:00.000-04:00",
-        "2024-04-28T00:00:00.000-04:00",
+        /* 1403/1/17 */ "2024-04-05T00:00:00.000-04:00",
+        /* 1403/1/24 */ "2024-04-12T00:00:00.000-04:00",
+        /* 1403/2/0 */ "2024-04-19T00:00:00.000-04:00",
+        /* 1403/2/7 */ "2024-04-26T00:00:00.000-04:00",
       ]);
       expect(
         eachWeekendOfInterval(interval, { in: tz("Asia/Singapore") }).map(
           (date) => date.toISOString(),
         ),
       ).toEqual([
-        "2024-04-06T00:00:00.000+08:00",
-        "2024-04-07T00:00:00.000+08:00",
-        "2024-04-13T00:00:00.000+08:00",
-        "2024-04-14T00:00:00.000+08:00",
-        "2024-04-20T00:00:00.000+08:00",
-        "2024-04-21T00:00:00.000+08:00",
-        "2024-04-27T00:00:00.000+08:00",
-        "2024-04-28T00:00:00.000+08:00",
+        /* 1403/1/17 */ "2024-04-05T00:00:00.000+08:00",
+        /* 1403/1/24 */ "2024-04-12T00:00:00.000+08:00",
+        /* 1403/2/0 */ "2024-04-19T00:00:00.000+08:00",
+        /* 1403/2/7 */ "2024-04-26T00:00:00.000+08:00",
       ]);
     });
 
     it("resolves the context date type", () => {
       const interval = {
-        start: new Date("2024-09-01T00:00:00Z"),
-        end: new Date("2024-09-30T00:00:00Z"),
+        start: new Date(/* 1403/6/11 */ "2024-09-01T00:00:00Z"),
+        end: new Date(/* 1403/7/9 */ "2024-09-30T00:00:00Z"),
       };
       const result = eachWeekendOfInterval(interval, {
         in: tz("Asia/Tokyo"),

@@ -7,33 +7,33 @@ import { eachMinuteOfInterval } from "./index.js";
 describe("eachMinuteOfInterval", () => {
   it("should return an array of Date objects containing a Date for each minute between the interval", () => {
     const result = eachMinuteOfInterval({
-      start: new Date(2020, 10, 14, 13, 0),
-      end: new Date(2020, 10, 14, 13, 5),
+      start: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
+      end: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 5),
     });
 
     expect(result).toEqual([
-      new Date(2020, 10, 14, 13, 0),
-      new Date(2020, 10, 14, 13, 1),
-      new Date(2020, 10, 14, 13, 2),
-      new Date(2020, 10, 14, 13, 3),
-      new Date(2020, 10, 14, 13, 4),
-      new Date(2020, 10, 14, 13, 5),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 1),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 2),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 3),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 4),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 5),
     ]);
   });
 
   it("should handle all the minutes that are not in the beginning", () => {
     const result = eachMinuteOfInterval({
-      start: new Date(2020, 10, 14, 13, 0, 33),
-      end: new Date(2020, 10, 14, 13, 2),
+      start: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0, 33),
+      end: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 2),
     });
 
-    expect(result[0]).toEqual(new Date(2020, 10, 14, 13));
-    expect(result[2]).toEqual(new Date(2020, 10, 14, 13, 2));
+    expect(result[0]).toEqual(/* 1399/8/24 */ new Date(2020, 10, 14, 13));
+    expect(result[2]).toEqual(/* 1399/8/24 */ new Date(2020, 10, 14, 13, 2));
   });
 
   it("should accept timestamps", () => {
-    const start = new Date(2020, 10, 14, 13, 0).getTime();
-    const end = new Date(2020, 10, 14, 13, 2).getTime();
+    const start = /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0).getTime();
+    const end = /* 1399/8/24 */ new Date(2020, 10, 14, 13, 2).getTime();
 
     const result = eachMinuteOfInterval({
       start,
@@ -41,47 +41,47 @@ describe("eachMinuteOfInterval", () => {
     });
 
     expect(result).toEqual([
-      new Date(2020, 10, 14, 13, 0),
-      new Date(2020, 10, 14, 13, 1),
-      new Date(2020, 10, 14, 13, 2),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 1),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 2),
     ]);
   });
 
   it("treats intervals shorter than a minute as valid", () => {
     const block = eachMinuteOfInterval.bind(null, {
-      start: new Date(2014, 10, 14, 10, 1, 0),
-      end: new Date(2014, 10, 14, 10, 1, 1),
+      start: /* 1393/8/23 */ new Date(2014, 10, 14, 10, 1, 0),
+      end: /* 1393/8/23 */ new Date(2014, 10, 14, 10, 1, 1),
     });
     expect(block).not.toThrow();
   });
 
   it("returns reversed array if the start date is after the end date", () => {
     const result = eachMinuteOfInterval({
-      start: new Date(2020, 10, 14, 13, 5),
-      end: new Date(2020, 10, 14, 13, 0),
+      start: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 5),
+      end: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
     });
 
     expect(result).toEqual([
-      new Date(2020, 10, 14, 13, 5),
-      new Date(2020, 10, 14, 13, 4),
-      new Date(2020, 10, 14, 13, 3),
-      new Date(2020, 10, 14, 13, 2),
-      new Date(2020, 10, 14, 13, 1),
-      new Date(2020, 10, 14, 13, 0),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 5),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 4),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 3),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 2),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 1),
+      /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
     ]);
   });
 
   it("returns an empty array if the start date is `Invalid Date`", () => {
     const result = eachMinuteOfInterval({
       start: new Date(NaN),
-      end: new Date(2014, 9 /* Oct */, 6),
+      end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6),
     });
     expect(result).toEqual([]);
   });
 
   it("returns an empty array if the end date is `Invalid Date`", () => {
     const result = eachMinuteOfInterval({
-      start: new Date(2014, 9 /* Oct */, 12),
+      start: /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
       end: new Date(NaN),
     });
     expect(result).toEqual([]);
@@ -97,54 +97,54 @@ describe("eachMinuteOfInterval", () => {
 
   describe("options.step", () => {
     const interval = {
-      start: new Date(2020, 9, 14, 13, 1),
-      end: new Date(2020, 9, 14, 13, 7),
+      start: /* 1399/7/23 */ new Date(2020, 9, 14, 13, 1),
+      end: /* 1399/7/23 */ new Date(2020, 9, 14, 13, 7),
     };
 
     it("returns an array with starts of hours from the hour of the start date to the hour of the end date with the given step", () => {
       const result = eachMinuteOfInterval(interval, { step: 3 });
       expect(result).toEqual([
-        new Date(2020, 9, 14, 13, 1),
-        new Date(2020, 9, 14, 13, 4),
-        new Date(2020, 9, 14, 13, 7),
+        /* 1399/7/23 */ new Date(2020, 9, 14, 13, 1),
+        /* 1399/7/23 */ new Date(2020, 9, 14, 13, 4),
+        /* 1399/7/23 */ new Date(2020, 9, 14, 13, 7),
       ]);
     });
 
     it("returns reversed array if `options.step` is negative", () => {
       const result = eachMinuteOfInterval(
         {
-          start: new Date(2020, 10, 14, 13, 0),
-          end: new Date(2020, 10, 14, 13, 5),
+          start: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
+          end: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 5),
         },
         { step: -1 },
       );
 
       expect(result).toEqual([
-        new Date(2020, 10, 14, 13, 5),
-        new Date(2020, 10, 14, 13, 4),
-        new Date(2020, 10, 14, 13, 3),
-        new Date(2020, 10, 14, 13, 2),
-        new Date(2020, 10, 14, 13, 1),
-        new Date(2020, 10, 14, 13, 0),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 5),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 4),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 3),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 2),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 1),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
       ]);
     });
 
     it("reverses array twice if `options.step` is negative and the interval is negative too", () => {
       const result = eachMinuteOfInterval(
         {
-          start: new Date(2020, 10, 14, 13, 5),
-          end: new Date(2020, 10, 14, 13, 0),
+          start: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 5),
+          end: /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
         },
         { step: -1 },
       );
 
       expect(result).toEqual([
-        new Date(2020, 10, 14, 13, 0),
-        new Date(2020, 10, 14, 13, 1),
-        new Date(2020, 10, 14, 13, 2),
-        new Date(2020, 10, 14, 13, 3),
-        new Date(2020, 10, 14, 13, 4),
-        new Date(2020, 10, 14, 13, 5),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 0),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 1),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 2),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 3),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 4),
+        /* 1399/8/24 */ new Date(2020, 10, 14, 13, 5),
       ]);
     });
 
@@ -171,8 +171,8 @@ describe("eachMinuteOfInterval", () => {
 
   it("resolves the start date object type", () => {
     const interval = {
-      start: new TZDate("2024-09-01T00:00:00Z"),
-      end: new UTCDate("2024-09-01T00:05:00Z"),
+      start: new TZDate(/* 1403/6/11 */ "2024-09-01T00:00:00Z"),
+      end: new UTCDate(/* 1403/6/11 */ "2024-09-01T00:05:00Z"),
     };
     const result = eachMinuteOfInterval(interval);
     expect(result[0]).toBeInstanceOf(TZDate);
@@ -182,7 +182,7 @@ describe("eachMinuteOfInterval", () => {
   it("resolves the end date object type if the start isn't object", () => {
     const interval = {
       start: Date.now(),
-      end: new UTCDate("2024-09-01T00:00:00Z"),
+      end: new UTCDate(/* 1403/6/11 */ "2024-09-01T00:00:00Z"),
     };
     const result = eachMinuteOfInterval(interval);
     expect(result[0]).toBeInstanceOf(UTCDate);
@@ -190,31 +190,45 @@ describe("eachMinuteOfInterval", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2024, 8, 9, 6, 40, "America/New_York");
-    const dateRight = new TZDate(2024, 8, 9, 16, 15, "Asia/Kolkata");
+    const dateLeft = /* 1403/6/19 */ new TZDate(
+      2024,
+      8,
+      9,
+      6,
+      40,
+      "America/New_York",
+    );
+    const dateRight = /* 1403/6/19 */ new TZDate(
+      2024,
+      8,
+      9,
+      16,
+      15,
+      "Asia/Kolkata",
+    );
     expect(
       eachMinuteOfInterval({ start: dateLeft, end: dateRight }).map((d) =>
         d.toISOString(),
       ),
     ).toEqual([
-      "2024-09-09T06:40:00.000-04:00",
-      "2024-09-09T06:41:00.000-04:00",
-      "2024-09-09T06:42:00.000-04:00",
-      "2024-09-09T06:43:00.000-04:00",
-      "2024-09-09T06:44:00.000-04:00",
-      "2024-09-09T06:45:00.000-04:00",
+      /* 1403/6/19 */ "2024-09-09T06:40:00.000-04:00",
+      /* 1403/6/19 */ "2024-09-09T06:41:00.000-04:00",
+      /* 1403/6/19 */ "2024-09-09T06:42:00.000-04:00",
+      /* 1403/6/19 */ "2024-09-09T06:43:00.000-04:00",
+      /* 1403/6/19 */ "2024-09-09T06:44:00.000-04:00",
+      /* 1403/6/19 */ "2024-09-09T06:45:00.000-04:00",
     ]);
     expect(
       eachMinuteOfInterval({ start: dateRight, end: dateLeft }).map((d) =>
         d.toISOString(),
       ),
     ).toEqual([
-      "2024-09-09T16:15:00.000+05:30",
-      "2024-09-09T16:14:00.000+05:30",
-      "2024-09-09T16:13:00.000+05:30",
-      "2024-09-09T16:12:00.000+05:30",
-      "2024-09-09T16:11:00.000+05:30",
-      "2024-09-09T16:10:00.000+05:30",
+      /* 1403/6/19 */ "2024-09-09T16:15:00.000+05:30",
+      /* 1403/6/19 */ "2024-09-09T16:14:00.000+05:30",
+      /* 1403/6/19 */ "2024-09-09T16:13:00.000+05:30",
+      /* 1403/6/19 */ "2024-09-09T16:12:00.000+05:30",
+      /* 1403/6/19 */ "2024-09-09T16:11:00.000+05:30",
+      /* 1403/6/19 */ "2024-09-09T16:10:00.000+05:30",
     ]);
   });
 
@@ -230,35 +244,35 @@ describe("eachMinuteOfInterval", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       const interval = {
-        start: "2024-04-10T07:00:00Z",
-        end: "2024-04-10T07:03:00Z",
+        start: /* 1403/1/22 */ "2024-04-10T07:00:00Z",
+        end: /* 1403/1/22 */ "2024-04-10T07:03:00Z",
       };
       expect(
         eachMinuteOfInterval(interval, { in: tz("America/Los_Angeles") }).map(
           (date) => date.toISOString(),
         ),
       ).toEqual([
-        "2024-04-10T00:00:00.000-07:00",
-        "2024-04-10T00:01:00.000-07:00",
-        "2024-04-10T00:02:00.000-07:00",
-        "2024-04-10T00:03:00.000-07:00",
+        /* 1403/1/22 */ "2024-04-10T00:00:00.000-07:00",
+        /* 1403/1/22 */ "2024-04-10T00:01:00.000-07:00",
+        /* 1403/1/22 */ "2024-04-10T00:02:00.000-07:00",
+        /* 1403/1/22 */ "2024-04-10T00:03:00.000-07:00",
       ]);
       expect(
         eachMinuteOfInterval(interval, { in: tz("Asia/Singapore") }).map(
           (date) => date.toISOString(),
         ),
       ).toEqual([
-        "2024-04-10T15:00:00.000+08:00",
-        "2024-04-10T15:01:00.000+08:00",
-        "2024-04-10T15:02:00.000+08:00",
-        "2024-04-10T15:03:00.000+08:00",
+        /* 1403/1/22 */ "2024-04-10T15:00:00.000+08:00",
+        /* 1403/1/22 */ "2024-04-10T15:01:00.000+08:00",
+        /* 1403/1/22 */ "2024-04-10T15:02:00.000+08:00",
+        /* 1403/1/22 */ "2024-04-10T15:03:00.000+08:00",
       ]);
     });
 
     it("resolves the context date type", () => {
       const interval = {
-        start: new Date("2014-09-01T13:00:00Z"),
-        end: new Date("2014-09-01T13:02:00Z"),
+        start: new Date(/* 1393/6/10 */ "2014-09-01T13:00:00Z"),
+        end: new Date(/* 1393/6/10 */ "2014-09-01T13:02:00Z"),
       };
       const result = eachMinuteOfInterval(interval, {
         in: tz("Asia/Tokyo"),

@@ -6,35 +6,41 @@ import { isSameMonth } from "./index.js";
 describe("isSameMonth", () => {
   it("returns true if the given dates have the same month (and year)", () => {
     const result = isSameMonth(
-      new Date(2014, 8 /* Sep */, 2),
-      new Date(2014, 8 /* Sep */, 25),
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2),
+      /* 1393/6/3 */ new Date(2014, 7 /* Aug */, 25),
     );
     expect(result).toBe(true);
   });
 
   it("returns false if the given dates have different months", () => {
     const result = isSameMonth(
-      new Date(2014, 8 /* Sep */, 2),
-      new Date(2013, 8 /* Sep */, 25),
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2),
+      /* 1392/7/3 */ new Date(2013, 8 /* Sep */, 25),
     );
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
     const result = isSameMonth(
-      new Date(2014, 8 /* Sep */, 2).getTime(),
-      new Date(2014, 8 /* Sep */, 25).getTime(),
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2).getTime(),
+      /* 1393/6/3 */ new Date(2014, 7 /* Sep */, 25).getTime(),
     );
     expect(result).toBe(true);
   });
 
   it("returns false if the first date is `Invalid Date`", () => {
-    const result = isSameMonth(new Date(NaN), new Date(1989, 6 /* Jul */, 10));
+    const result = isSameMonth(
+      new Date(NaN),
+      /* 1368/4/19 */ new Date(1989, 6 /* Jul */, 10),
+    );
     expect(result).toBe(false);
   });
 
   it("returns false if the second date is `Invalid Date`", () => {
-    const result = isSameMonth(new Date(1987, 1 /* Feb */, 11), new Date(NaN));
+    const result = isSameMonth(
+      /* 1365/11/22 */ new Date(1987, 1 /* Feb */, 11),
+      new Date(NaN),
+    );
     expect(result).toBe(false);
   });
 
@@ -44,8 +50,20 @@ describe("isSameMonth", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2023, 11, 31, 23, "Asia/Singapore");
-    const dateRight = new TZDate(2023, 11, 31, 12, "America/New_York");
+    const dateLeft = /* 1402/10/30 */ new TZDate(
+      2024,
+      0,
+      20,
+      23,
+      "Asia/Singapore",
+    );
+    const dateRight = /* 1402/10/30 */ new TZDate(
+      2024,
+      0,
+      20,
+      12,
+      "America/New_York",
+    );
     expect(isSameMonth(dateLeft, dateRight)).toBe(false);
     expect(isSameMonth(dateRight, dateLeft)).toBe(true);
   });
@@ -62,14 +80,22 @@ describe("isSameMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isSameMonth("2014-09-02T15:00:00Z", "2014-09-25T16:00:00Z", {
-          in: tz("Asia/Singapore"),
-        }),
+        isSameMonth(
+          /* 1393/7/3 */ "2014-09-25T15:00:00Z",
+          /* 1393/7/13 */ "2014-10-05T16:00:00Z",
+          {
+            in: tz("Asia/Singapore"),
+          },
+        ),
       ).toBe(true);
       expect(
-        isSameMonth("2014-09-02T15:00:00Z", "2015-09-02T16:00:00Z", {
-          in: tz("Asia/Singapore"),
-        }),
+        isSameMonth(
+          /* 1393/6/31 */ "2014-09-22T15:00:00Z",
+          /* 1394/6/31 */ "2015-09-22T16:00:00Z",
+          {
+            in: tz("Asia/Singapore"),
+          },
+        ),
       ).toBe(false);
     });
 

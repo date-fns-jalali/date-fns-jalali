@@ -5,17 +5,19 @@ import { isWednesday } from "./index.js";
 
 describe("isWednesday", () => {
   it("returns true if the given date is Wednesday", () => {
-    const result = isWednesday(new Date(2014, 8 /* Sep */, 24));
+    const result = isWednesday(/* 1393/7/2 */ new Date(2014, 8 /* Sep */, 24));
     expect(result).toBe(true);
   });
 
   it("returns false if the given date is not Wednesday", () => {
-    const result = isWednesday(new Date(2014, 8 /* Sep */, 25));
+    const result = isWednesday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const result = isWednesday(new Date(2014, 1 /* Feb */, 12).getTime());
+    const result = isWednesday(
+      /* 1392/11/23 */ new Date(2014, 1 /* Feb */, 12).getTime(),
+    );
     expect(result).toBe(true);
   });
 
@@ -27,12 +29,12 @@ describe("isWednesday", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isWednesday("2024-08-21T03:00:00Z", {
+        isWednesday(/* 1403/5/31 */ "2024-08-21T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isWednesday("2024-08-21T04:00:00Z", {
+        isWednesday(/* 1403/5/31 */ "2024-08-21T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

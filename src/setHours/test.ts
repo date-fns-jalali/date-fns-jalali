@@ -6,19 +6,27 @@ import { setHours } from "./index.js";
 
 describe("setHours", () => {
   it("sets the amount of hours", () => {
-    const result = setHours(new Date(2014, 8 /* Sep */, 1, 11, 30), 4);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 4, 30));
+    const result = setHours(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30),
+      4,
+    );
+    expect(result).toEqual(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 4, 30),
+    );
   });
 
   it("accepts a timestamp", () => {
-    const result = setHours(new Date(2014, 8 /* Sep */, 1, 11).getTime(), 5);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 5));
+    const result = setHours(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11).getTime(),
+      5,
+    );
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 5));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1, 11);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11);
     setHours(date, 12);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1, 11));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11));
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -27,7 +35,10 @@ describe("setHours", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = setHours(new Date(2014, 8 /* Sep */, 1, 11, 30), NaN);
+    const result = setHours(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1, 11, 30),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -46,19 +57,19 @@ describe("setHours", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        setHours("2024-04-10T07:00:00Z", 16, {
+        setHours(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 16, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T16:00:00.000+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T16:00:00.000+08:00");
       expect(
-        setHours("2024-04-10T07:00:00Z", 16, {
+        setHours(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 16, {
           in: tz("Asia/Kolkata"),
         }).toISOString(),
-      ).toBe("2024-04-10T16:30:00.000+05:30");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T16:30:00.000+05:30");
     });
 
     it("resolves the context date type", () => {
-      const result = setHours("2014-09-01T00:00:00Z", 16, {
+      const result = setHours(/* 1393/6/10 */ "2014-09-01T00:00:00Z", 16, {
         in: tz("Asia/Tokyo"),
       });
       expect(result).toBeInstanceOf(TZDate);

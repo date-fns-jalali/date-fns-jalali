@@ -5,17 +5,19 @@ import { isFriday } from "./index.js";
 
 describe("isFriday", () => {
   it("returns true if the given date is Friday", () => {
-    const result = isFriday(new Date(2014, 8 /* Sep */, 26));
+    const result = isFriday(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26));
     expect(result).toBe(true);
   });
 
   it("returns false if the given date is not Friday", () => {
-    const result = isFriday(new Date(2014, 8 /* Sep */, 25));
+    const result = isFriday(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const result = isFriday(new Date(2014, 1 /* Feb */, 14).getTime());
+    const result = isFriday(
+      /* 1392/11/25 */ new Date(2014, 1 /* Feb */, 14).getTime(),
+    );
     expect(result).toBe(true);
   });
 
@@ -27,22 +29,22 @@ describe("isFriday", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        isFriday("2024-08-15T15:00:00Z", {
+        isFriday(/* 1403/5/25 */ "2024-08-15T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(false);
       expect(
-        isFriday("2024-08-15T16:00:00Z", {
+        isFriday(/* 1403/5/25 */ "2024-08-15T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(true);
       expect(
-        isFriday("2024-08-16T03:00:00Z", {
+        isFriday(/* 1403/5/26 */ "2024-08-16T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);
       expect(
-        isFriday("2024-08-16T04:00:00Z", {
+        isFriday(/* 1403/5/26 */ "2024-08-16T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(true);

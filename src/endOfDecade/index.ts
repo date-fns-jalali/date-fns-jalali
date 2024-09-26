@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.js";
+
 /**
  * The {@link endOfDecade} function options.
  */
@@ -39,9 +42,9 @@ export function endOfDecade<
   // end with 0. I.e. 2001-2010 instead of current 2000-2009. It's a breaking
   // change, so it can only be done in 4.0.
   const _date = toDate(date, options?.in);
-  const year = _date.getFullYear();
+  const year = coreGetFullYear(_date);
   const decade = 9 + Math.floor(year / 10) * 10;
-  _date.setFullYear(decade, 11, 31);
+  coreSetFullYear(_date, decade + 1, 0, 0);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }

@@ -6,20 +6,28 @@ import { endOfSecond } from "./index.js";
 
 describe("endOfSecond", () => {
   it("returns the date with the time set to the last millisecond before a second ends", () => {
-    const date = new Date(2014, 11, 1, 22, 15, 30);
+    const date = /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 30);
     const result = endOfSecond(date);
-    expect(result).toEqual(new Date(2014, 11, 1, 22, 15, 30, 999));
+    expect(result).toEqual(
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 30, 999),
+    );
   });
 
   it("accepts a timestamp", () => {
-    const result = endOfSecond(new Date(2014, 11, 1, 22, 15, 45).getTime());
-    expect(result).toEqual(new Date(2014, 11, 1, 22, 15, 45, 999));
+    const result = endOfSecond(
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 45).getTime(),
+    );
+    expect(result).toEqual(
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 45, 999),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 11, 1, 22, 15, 15, 300);
+    const date = /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 15, 300);
     endOfSecond(date);
-    expect(date).toEqual(new Date(2014, 11, 1, 22, 15, 15, 300));
+    expect(date).toEqual(
+      /* 1393/9/10 */ new Date(2014, 11, 1, 22, 15, 15, 300),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -42,19 +50,19 @@ describe("endOfSecond", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        endOfSecond("2024-04-10T07:00:00Z", {
+        endOfSecond(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T15:00:00.999+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T15:00:00.999+08:00");
       expect(
-        endOfSecond("2024-04-10T07:00:00Z", {
+        endOfSecond(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe("2024-04-10T00:00:00.999-07:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T00:00:00.999-07:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = endOfSecond(date, {
         in: tz("Asia/Tokyo"),
       });

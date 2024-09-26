@@ -6,37 +6,43 @@ import type { ContextOptions, DateArg } from "../types.js";
 import { isTomorrow } from "./index.js";
 
 describe("isTomorrow", () => {
-  const { fakeNow } = fakeDate(new Date(2014, 8 /* Sep */, 25));
+  const { fakeNow } = fakeDate(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
 
   it("returns true if the given date is tomorrow", () => {
-    const result = isTomorrow(new Date(2014, 8 /* Sep */, 26));
+    const result = isTomorrow(/* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26));
     expect(result).toBe(true);
   });
 
   it("returns false if the given date is not tomorrow", () => {
-    const result = isTomorrow(new Date(2014, 8 /* Sep */, 25));
+    const result = isTomorrow(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
     expect(result).toBe(false);
   });
 
   it("accepts a timestamp", () => {
-    const result = isTomorrow(new Date(2014, 8 /* Sep */, 26).getTime());
+    const result = isTomorrow(
+      /* 1393/7/4 */ new Date(2014, 8 /* Sep */, 26).getTime(),
+    );
     expect(result).toBe(true);
   });
 
   it("respects date extensions", () => {
-    expect(isTomorrow(new UTCDate(+new Date(2014, 8 /* Aug */, 26)))).toBe(
-      true,
-    );
+    expect(
+      isTomorrow(new UTCDate(/* 1393/7/4 */ +new Date(2014, 8 /* Aug */, 26))),
+    ).toBe(true);
   });
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      fakeNow(new Date("2024-08-18T15:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T15:00:00Z"));
       expect(
-        isTomorrow("2024-08-19T04:00:00Z", { in: tz("America/New_York") }),
+        isTomorrow(/* 1403/5/29 */ "2024-08-19T04:00:00Z", {
+          in: tz("America/New_York"),
+        }),
       ).toBe(true);
       expect(
-        isTomorrow("2024-08-19T03:00:00Z", { in: tz("America/New_York") }),
+        isTomorrow(/* 1403/5/29 */ "2024-08-19T03:00:00Z", {
+          in: tz("America/New_York"),
+        }),
       ).toBe(false);
     });
 

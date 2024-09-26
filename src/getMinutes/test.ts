@@ -5,12 +5,16 @@ import { getMinutes } from "./index.js";
 
 describe("getMinutes", () => {
   it("returns the minutes of the given date", () => {
-    const result = getMinutes(new Date(2012, 1 /* Feb */, 29, 11, 45, 5));
+    const result = getMinutes(
+      /* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29, 11, 45, 5),
+    );
     expect(result).toBe(45);
   });
 
   it("accepts a timestamp", () => {
-    const result = getMinutes(new Date(2014, 3 /* Apr */, 2, 23, 30).getTime());
+    const result = getMinutes(
+      /* 1393/1/13 */ new Date(2014, 3 /* Apr */, 2, 23, 30).getTime(),
+    );
     expect(result).toBe(30);
   });
 
@@ -22,12 +26,12 @@ describe("getMinutes", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getMinutes("2024-04-10T07:45:00Z", {
+        getMinutes(/* 1403/1/22 */ "2024-04-10T07:45:00Z", {
           in: tz("Asia/Kolkata"),
         }),
       ).toBe(15);
       expect(
-        getMinutes("2024-04-10T07:45:00Z", {
+        getMinutes(/* 1403/1/22 */ "2024-04-10T07:45:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(45);

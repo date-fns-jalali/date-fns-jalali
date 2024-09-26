@@ -10,6 +10,8 @@ import type {
   WeekOptions,
 } from "../types.js";
 
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.js";
+
 /**
  * The {@link startOfWeekYear} function options.
  */
@@ -73,7 +75,7 @@ export function startOfWeekYear<
 
   const year = getWeekYear(date, options);
   const firstWeek = constructFrom(options?.in || date, 0);
-  firstWeek.setFullYear(year, 0, firstWeekContainsDate);
+  coreSetFullYear(firstWeek, year, 0, firstWeekContainsDate);
   firstWeek.setHours(0, 0, 0, 0);
   const _date = startOfWeek(firstWeek, options);
   return _date;

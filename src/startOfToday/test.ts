@@ -5,12 +5,12 @@ import { startOfToday } from "./index.js";
 
 describe("startOfToday", () => {
   const { fakeNow } = fakeDate(
-    new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500),
+    /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500),
   );
 
   it("returns the current date with the time set to 00:00:00", () => {
     const result = startOfToday();
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 25));
+    expect(result).toEqual(/* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25));
   });
 
   it("resolves the date type by default", () => {
@@ -21,21 +21,21 @@ describe("startOfToday", () => {
 
   describe("context", () => {
     it("allows to specify the context", () => {
-      fakeNow(new Date("2024-08-18T15:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T15:00:00Z"));
       expect(startOfToday({ in: tz("Asia/Singapore") }).toISOString()).toBe(
-        "2024-08-18T00:00:00.000+08:00",
+        /* 1403/5/28 */ "2024-08-18T00:00:00.000+08:00",
       );
-      fakeNow(new Date("2024-08-18T16:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T16:00:00Z"));
       expect(startOfToday({ in: tz("Asia/Singapore") }).toISOString()).toBe(
-        "2024-08-19T00:00:00.000+08:00",
+        /* 1403/5/29 */ "2024-08-19T00:00:00.000+08:00",
       );
-      fakeNow(new Date("2024-08-18T03:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T03:00:00Z"));
       expect(startOfToday({ in: tz("America/New_York") }).toISOString()).toBe(
-        "2024-08-17T00:00:00.000-04:00",
+        /* 1403/5/27 */ "2024-08-17T00:00:00.000-04:00",
       );
-      fakeNow(new Date("2024-08-18T04:00:00Z"));
+      fakeNow(new Date(/* 1403/5/28 */ "2024-08-18T04:00:00Z"));
       expect(startOfToday({ in: tz("America/New_York") }).toISOString()).toBe(
-        "2024-08-18T00:00:00.000-04:00",
+        /* 1403/5/28 */ "2024-08-18T00:00:00.000-04:00",
       );
     });
 

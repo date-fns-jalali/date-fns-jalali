@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { isLeapYear as coreIsLeapYear } from "../_core/isLeapYear/index.js";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+
 export interface IsLeapYearOptions extends ContextOptions<Date> {}
 
 /**
@@ -26,6 +29,6 @@ export function isLeapYear(
   options?: IsLeapYearOptions | undefined,
 ): boolean {
   const _date = toDate(date, options?.in);
-  const year = _date.getFullYear();
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+  const year = coreGetFullYear(_date);
+  return coreIsLeapYear(year);
 }

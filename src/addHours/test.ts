@@ -6,22 +6,31 @@ import { addHours } from "./index.js";
 
 describe("addHours", () => {
   it("adds the given numbers of hours", () => {
-    const result = addHours(new Date(2014, 6 /* Jul */, 10, 23, 0), 2);
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 11, 1, 0));
+    const result = addHours(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 23, 0),
+      2,
+    );
+    expect(result).toEqual(
+      /* 1393/4/20 */ new Date(2014, 6 /* Jul */, 11, 1, 0),
+    );
   });
 
   it("accepts a timestamp", () => {
     const result = addHours(
-      new Date(2014, 6 /* Jul */, 10, 23, 0).getTime(),
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 23, 0).getTime(),
       26,
     );
-    expect(result).toEqual(new Date(2014, 6 /* Jul */, 12, 1, 0));
+    expect(result).toEqual(
+      /* 1393/4/21 */ new Date(2014, 6 /* Jul */, 12, 1, 0),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 6 /* Jul */, 10, 23, 0);
+    const date = /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 23, 0);
     addHours(date, 10);
-    expect(date).toEqual(new Date(2014, 6 /* Jul */, 10, 23, 0));
+    expect(date).toEqual(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 23, 0),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -30,7 +39,10 @@ describe("addHours", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addHours(new Date(2014, 6 /* Jul */, 10, 23, 0), NaN);
+    const result = addHours(
+      /* 1393/4/19 */ new Date(2014, 6 /* Jul */, 10, 23, 0),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -49,19 +61,19 @@ describe("addHours", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        addHours("2024-04-10T07:00:00Z", 2, {
+        addHours(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T17:00:00.000+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T17:00:00.000+08:00");
       expect(
-        addHours("2024-04-10T07:00:00Z", 2, {
+        addHours(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe("2024-04-10T02:00:00.000-07:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T02:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = addHours(date, 2, {
         in: tz("Asia/Tokyo"),
       });
