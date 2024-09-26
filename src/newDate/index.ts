@@ -1,3 +1,4 @@
+import { newDate as coreNewDate } from "../_core/newDate/index.js";
 /**
  * @name newDate
  * @category Common Helpers
@@ -21,5 +22,5 @@ export function newDate(
   seconds: number = 0,
   ms: number = 0,
 ): Date {
-  return new Date(year, monthIndex, date, hours, minutes, seconds, ms);
+  return coreNewDate(year, monthIndex, date, hours, minutes, seconds, ms);
 }

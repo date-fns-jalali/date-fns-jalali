@@ -2,6 +2,9 @@ import { normalizeInterval } from "../_lib/normalizeInterval/index.js";
 import { constructFrom } from "../constructFrom/index.js";
 import type { ContextOptions, Interval, StepOptions } from "../types.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.js";
+import { setDate as coreSetDate } from "../_core/setDate/index.js";
+
 /**
  * The {@link eachDayOfInterval} function options.
  */
@@ -83,7 +86,7 @@ export function eachDayOfInterval<
 
   while (+date <= endTime) {
     dates.push(constructFrom(start, date));
-    date.setDate(date.getDate() + step);
+    coreSetDate(date, coreGetDate(date) + step);
     date.setHours(0, 0, 0, 0);
   }
 

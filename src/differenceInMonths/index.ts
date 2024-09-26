@@ -4,6 +4,11 @@ import { differenceInCalendarMonths } from "../differenceInCalendarMonths/index.
 import { isLastDayOfMonth } from "../isLastDayOfMonth/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.js";
+import { getDate as coreGetDate } from "../_core/getDate/index.js";
+import { setDate as coreSetDate } from "../_core/setDate/index.js";
+
 /**
  * The {@link differenceInMonths} function options.
  */
@@ -44,10 +49,16 @@ export function differenceInMonths(
 
   if (difference < 1) return 0;
 
-  if (workingLaterDate.getMonth() === 1 && workingLaterDate.getDate() > 27)
-    workingLaterDate.setDate(30);
+  if (
+    coreGetMonth(workingLaterDate) === 1 &&
+    coreGetDate(workingLaterDate) > 27
+  )
+    coreSetDate(workingLaterDate, 30);
 
-  workingLaterDate.setMonth(workingLaterDate.getMonth() - sign * difference);
+  coreSetMonth(
+    workingLaterDate,
+    coreGetMonth(workingLaterDate) - sign * difference,
+  );
 
   let isLastMonthNotFull = compareAsc(workingLaterDate, earlierDate_) === -sign;
 

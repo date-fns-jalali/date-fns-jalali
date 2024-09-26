@@ -1,6 +1,11 @@
 import { constructFrom } from "../constructFrom/index.js";
 import type { ContextFn, GenericDateConstructor } from "../types.js";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.js";
+import { getDate as coreGetDate } from "../_core/getDate/index.js";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.js";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.js";
+
 /**
  * @name transpose
  * @category Generic Helpers
@@ -39,7 +44,12 @@ export function transpose<InputDate extends Date, ResultDate extends Date>(
   const date_ = isConstructor(constructor)
     ? new constructor(0)
     : constructFrom(constructor, 0);
-  date_.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+  coreSetFullYear(
+    date_,
+    coreGetFullYear(date),
+    coreGetMonth(date),
+    coreGetDate(date),
+  );
   date_.setHours(
     date.getHours(),
     date.getMinutes(),

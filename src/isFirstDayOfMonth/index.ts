@@ -1,6 +1,8 @@
 import { toDate } from "../toDate/index.js";
 import type { ContextOptions, DateArg } from "../types.js";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.js";
+
 /**
  * The {@link isFirstDayOfMonth} function options.
  */
@@ -28,5 +30,5 @@ export function isFirstDayOfMonth(
   date: DateArg<Date> & {},
   options?: IsFirstDayOfMonthOptions | undefined,
 ): boolean {
-  return toDate(date, options?.in).getDate() === 1;
+  return coreGetDate(toDate(date, options?.in)) === 1;
 }
