@@ -164,8 +164,8 @@ describe("formatRelative", () => {
       0,
       "America/New_York",
     );
-    expect(formatRelative(dateLeft, dateRight)).toBe("07/04/1987");
-    expect(formatRelative(dateRight, dateLeft)).toBe("04/04/1986");
+    expect(formatRelative(dateLeft, dateRight)).toBe("1366/04/13");
+    expect(formatRelative(dateRight, dateLeft)).toBe("1365/01/15");
   });
 
   describe("context", () => {
@@ -178,7 +178,7 @@ describe("formatRelative", () => {
             in: tz("Asia/Singapore"),
           },
         ),
-      ).toBe("yesterday at 8:00 AM");
+      ).toBe("دیروز در 8:00 ق.ظ.");
       expect(
         formatRelative(
           /* 1403/6/13 */ "2024-09-03T00:00:00Z",
@@ -187,7 +187,7 @@ describe("formatRelative", () => {
             in: tz("Asia/Singapore"),
           },
         ),
-      ).toBe("today at 8:00 AM");
+      ).toBe("امروز در 8:00 ق.ظ.");
       expect(
         formatRelative(
           /* 1403/6/13 */ "2024-09-03T00:00:00Z",
@@ -196,7 +196,7 @@ describe("formatRelative", () => {
             in: tz("America/New_York"),
           },
         ),
-      ).toBe("yesterday at 8:00 PM");
+      ).toBe("دیروز در 8:00 ب.ظ.");
       expect(
         formatRelative(
           /* 1403/6/13 */ "2024-09-03T00:00:00Z",
@@ -205,7 +205,7 @@ describe("formatRelative", () => {
             in: tz("America/New_York"),
           },
         ),
-      ).toBe("today at 8:00 PM");
+      ).toBe("امروز در 8:00 ب.ظ.");
     });
   });
 });

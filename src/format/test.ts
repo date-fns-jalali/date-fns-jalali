@@ -1116,12 +1116,12 @@ describe("format", () => {
         format(date, "yyyy-MM-dd", {
           in: tz("Pacific/Midway"), // UTC-11:00
         }),
-      ).toBe("2024-09-16");
+      ).toBe("1403-06-26");
       expect(
         format(date, "yyyy-MM-dd", {
           in: tz("Pacific/Kiritimati"), // UTC+14:00
         }),
-      ).toBe("2024-09-18");
+      ).toBe("1403-06-28");
     });
   });
 });
