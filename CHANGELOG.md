@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v2.1.1 - 2025-07-30
+
+### Fixed
+
+- Fixed CommonJS support by adjusting the `main` field in `package.json`.
+
 ## v2.1.0 - 2024-09-14
 
 ### Added

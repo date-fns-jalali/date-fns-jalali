@@ -1,13 +1,13 @@
 {
   "name": "@date-fns/utc",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "UTC date utils",
   "scripts": {
     "test": "env TZ=Asia/Kolkata vitest",
     "build": "make build"
   },
   "type": "module",
-  "main": "index.js",
+  "main": "index.cjs",
   "module": "index.js",
   "exports": {
     "./package.json": "./package.json",
