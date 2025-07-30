@@ -12,6 +12,7 @@
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
     "allowJs": true,
     // Project References setup
     "composite": true,
