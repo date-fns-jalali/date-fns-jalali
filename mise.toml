@@ -1,0 +1,5 @@
+[tools]
+node = "lts"
+
+[hooks]
+postinstall = 'npx corepack enable'
