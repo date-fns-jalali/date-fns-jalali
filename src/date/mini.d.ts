@@ -1,4 +1,4 @@
-import { type UTCDate } from "./index.ts";
+import { type UTCDate } from "./index.js";
 
 /**
  * UTC date class. It maps getters and setters to corresponding UTC methods,
