@@ -1,5 +1,5 @@
 [tools]
-node = "lts"
+node = { version = "lts", postinstall = "corepack enable" }
 
-[hooks]
-postinstall = 'npx corepack enable'
+[settings]
+experimental = true
