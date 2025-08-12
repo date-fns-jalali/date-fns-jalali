@@ -7,47 +7,55 @@
     "build": "make build"
   },
   "type": "module",
-  "main": "index.cjs",
-  "module": "index.js",
   "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "require": {
-        "types": "./index.d.cts",
-        "default": "./index.cjs"
+    ".": "./src/index.ts",
+    "./date": "./src/date/index.ts",
+    "./date/mini": "./src/date/mini.ts",
+    "./utc": "./src/utc/index.ts"
+  },
+  "publishConfig": {
+    "main": "index.cjs",
+    "module": "index.js",
+    "exports": {
+      "./package.json": "./package.json",
+      ".": {
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        },
+        "import": {
+          "types": "./index.d.ts",
+          "default": "./index.js"
+        }
       },
-      "import": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      }
-    },
-    "./date": {
-      "require": {
-        "types": "./date/index.d.cts",
-        "default": "./date/index.cjs"
+      "./date": {
+        "require": {
+          "types": "./date/index.d.cts",
+          "default": "./date/index.cjs"
+        },
+        "import": {
+          "default": "./date/index.js"
+        }
       },
-      "import": {
-        "default": "./date/index.js"
-      }
-    },
-    "./date/mini": {
-      "require": {
-        "types": "./date/mini.d.cts",
-        "default": "./date/mini.cjs"
+      "./date/mini": {
+        "require": {
+          "types": "./date/mini.d.cts",
+          "default": "./date/mini.cjs"
+        },
+        "import": {
+          "types": "./date/mini.d.ts",
+          "default": "./date/mini.js"
+        }
       },
-      "import": {
-        "types": "./date/mini.d.ts",
-        "default": "./date/mini.js"
-      }
-    },
-    "./utc": {
-      "require": {
-        "types": "./utc/index.d.cts",
-        "default": "./utc/index.cjs"
-      },
-      "import": {
-        "types": "./utc/index.d.ts",
-        "default": "./utc/index.js"
+      "./utc": {
+        "require": {
+          "types": "./utc/index.d.cts",
+          "default": "./utc/index.cjs"
+        },
+        "import": {
+          "types": "./utc/index.d.ts",
+          "default": "./utc/index.js"
+        }
       }
     }
   },
