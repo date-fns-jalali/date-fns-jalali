@@ -1,0 +1,5 @@
+{
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "/home/vscode/.local/share/mise/shims/node"
+  }
+}
