@@ -5,7 +5,7 @@ import { UTCDate } from "./index.js";
 describe("UTCDate", () => {
   it("creates date in UTC", () => {
     expect(new UTCDate(1987, 1, 11).getTime()).toBe(
-      new Date(1987, 1, 11, 5, 30).getTime()
+      new Date(1987, 1, 11, 5, 30).getTime(),
     );
   });
 
@@ -129,23 +129,23 @@ describe("UTCDate", () => {
   describe("toString", () => {
     it("returns string representing the given date in UTC timezone", () => {
       expect(new UTCDate(1987, 1, 11, 12, 13, 14, 15).toString()).toBe(
-        "Wed Feb 11 1987 12:13:14 GMT+0000 (Coordinated Universal Time)"
+        "Wed Feb 11 1987 12:13:14 GMT+0000 (Coordinated Universal Time)",
       );
     });
 
     it("formats midnight as 00:00", () => {
       expect(new UTCDate(1987, 1, 11).toString()).toBe(
-        "Wed Feb 11 1987 00:00:00 GMT+0000 (Coordinated Universal Time)"
+        "Wed Feb 11 1987 00:00:00 GMT+0000 (Coordinated Universal Time)",
       );
     });
 
     it("works with Symbol.toPrimitive", () => {
       expect(
-        new UTCDate(1987, 1, 11, 12, 13, 14, 15)[Symbol.toPrimitive]("string")
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15)[Symbol.toPrimitive]("string"),
       ).toBe("Wed Feb 11 1987 12:13:14 GMT+0000 (Coordinated Universal Time)");
 
       expect(
-        new UTCDate(1987, 1, 11, 12, 13, 14, 15)[Symbol.toPrimitive]("default")
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15)[Symbol.toPrimitive]("default"),
       ).toBe("Wed Feb 11 1987 12:13:14 GMT+0000 (Coordinated Universal Time)");
     });
   });
@@ -153,7 +153,7 @@ describe("UTCDate", () => {
   describe("toDateString", () => {
     it("returns string representing the given date in UTC timezone", () => {
       expect(new UTCDate(1987, 1, 11, 12, 13, 14, 15).toDateString()).toBe(
-        "Wed Feb 11 1987"
+        "Wed Feb 11 1987",
       );
     });
   });
@@ -161,13 +161,13 @@ describe("UTCDate", () => {
   describe("toTimeString", () => {
     it("returns string representing the given time in UTC timezone", () => {
       expect(new UTCDate(1987, 1, 11, 12, 13, 14, 15).toTimeString()).toBe(
-        "12:13:14 GMT+0000 (Coordinated Universal Time)"
+        "12:13:14 GMT+0000 (Coordinated Universal Time)",
       );
     });
 
     it("formats midnight as 00:00", () => {
       expect(new UTCDate(1987, 1, 11).toTimeString()).toBe(
-        "00:00:00 GMT+0000 (Coordinated Universal Time)"
+        "00:00:00 GMT+0000 (Coordinated Universal Time)",
       );
     });
   });
@@ -175,7 +175,7 @@ describe("UTCDate", () => {
   describe("toLocaleString", () => {
     it("returns localized date time string", () => {
       expect(
-        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleString("en-GB")
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleString("en-GB"),
       ).toBe("11/02/1987, 12:13:14");
     });
 
@@ -183,7 +183,7 @@ describe("UTCDate", () => {
       expect(
         new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleString("en-GB", {
           month: "long",
-        })
+        }),
       ).toBe("February");
     });
 
@@ -191,7 +191,7 @@ describe("UTCDate", () => {
       expect(
         new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleString("en-GB", {
           timeZone: "Asia/Kolkata",
-        })
+        }),
       ).toBe("11/02/1987, 17:43:14");
     });
   });
@@ -199,7 +199,7 @@ describe("UTCDate", () => {
   describe("toLocaleDateString", () => {
     it("returns localized date string", () => {
       expect(
-        new UTCDate(1999, 11, 31, 23, 59, 59).toLocaleDateString("en-GB")
+        new UTCDate(1999, 11, 31, 23, 59, 59).toLocaleDateString("en-GB"),
       ).toBe("31/12/1999");
     });
 
@@ -207,7 +207,7 @@ describe("UTCDate", () => {
       expect(
         new UTCDate(1999, 11, 31, 23, 59, 59).toLocaleString("en-GB", {
           month: "long",
-        })
+        }),
       ).toBe("December");
     });
 
@@ -215,7 +215,7 @@ describe("UTCDate", () => {
       expect(
         new UTCDate(1999, 11, 31, 23, 59, 59).toLocaleDateString("en-GB", {
           timeZone: "Asia/Kolkata",
-        })
+        }),
       ).toBe("01/01/2000");
     });
   });
@@ -223,7 +223,7 @@ describe("UTCDate", () => {
   describe("toLocaleTimeString", () => {
     it("returns localized time string", () => {
       expect(
-        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleTimeString("en-GB")
+        new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleTimeString("en-GB"),
       ).toBe("12:13:14");
     });
 
@@ -231,7 +231,7 @@ describe("UTCDate", () => {
       expect(
         new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleTimeString("en-GB", {
           hour: "numeric",
-        })
+        }),
       ).toBe("12");
     });
 
@@ -239,7 +239,7 @@ describe("UTCDate", () => {
       expect(
         new UTCDate(1987, 1, 11, 12, 13, 14, 15).toLocaleTimeString("en-GB", {
           timeZone: "Asia/Kolkata",
-        })
+        }),
       ).toBe("17:43:14");
     });
   });

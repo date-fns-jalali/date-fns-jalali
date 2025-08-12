@@ -7,10 +7,10 @@ export class UTCDateMini extends Date {
         ? // Enables Sinon's fake timers that override the constructor
           Date.now()
         : arguments.length === 1
-        ? typeof arguments[0] === "string"
-          ? +new Date(arguments[0])
-          : arguments[0]
-        : Date.UTC(...arguments)
+          ? typeof arguments[0] === "string"
+            ? +new Date(arguments[0])
+            : arguments[0]
+          : Date.UTC(...arguments),
     );
   }
 
