@@ -1,5 +1,6 @@
 {
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "scripts/**/*.ts"],
+  "references": [{ "path": "../build" }],
   "compilerOptions": {
     "target": "ESNext",
     "lib": [],
