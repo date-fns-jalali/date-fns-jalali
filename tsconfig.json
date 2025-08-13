@@ -11,6 +11,10 @@
     "skipLibCheck": true,
     "outDir": "lib",
     "sourceMap": true,
-    "declaration": true
+    "declaration": true,
+    // Project References setup
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": ".ts/tsconfig.tsbuildinfo"
   }
 }
