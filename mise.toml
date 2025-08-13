@@ -3,6 +3,9 @@
 node = { version = "lts", postinstall = "corepack enable && node -v > .nvmrc" }
 deno = "latest"
 
+[env]
+_.file = '.env'
+
 [settings]
 # Enable extra features
 experimental = true
