@@ -1,4 +1,4 @@
-# date-fns documentation utilities & types
+# @date-fns/docs
 
 This library is used to load docs into the database and provide a schema for the website.
 
