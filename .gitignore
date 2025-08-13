@@ -5,3 +5,7 @@ node_modules/
 .ts/
 # Dist
 /lib/
+# Secrets
+.env
+.env.*
+!.env.example
