@@ -6,3 +6,5 @@ deno = "latest"
 [settings]
 # Enable extra features
 experimental = true
+# Ignore idiomatic version files
+idiomatic_version_file_enable_tools = []
