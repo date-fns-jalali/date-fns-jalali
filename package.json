@@ -31,9 +31,9 @@
     "typesaurus": "^10.7.0"
   },
   "devDependencies": {
-"@date-fns/build": "workspace:^",
+    "@date-fns/build": "workspace:^",
     "@deno/doc": "jsr:^0.181.0",
-    "@types/node": "^20.16.5",
+    "@types/node": "^20.19.9",
     "json-bond": "^1.0.0",
     "typescript": "^5.6.2"
   },
