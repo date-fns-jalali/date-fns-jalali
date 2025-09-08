@@ -1,11 +1,11 @@
-import { readFile } from "fs/promises";
 import type { DocNode, DocNodeModuleDoc } from "@deno/doc";
-import path from "path";
-import { isExportNode, isModuleDocNode } from "../src/data/index.ts";
+import { readFile } from "fs/promises";
 import type { Root } from "mdast";
 import { toMarkdown } from "mdast-util-to-markdown";
-import { xxh32 } from "smolxxh";
+import path from "path";
 import { canonize } from "smolcanon";
+import { xxh32 } from "smolxxh";
+import { isExportNode, isModuleDocNode } from "../src/data/index.ts";
 
 //#region Package
 
@@ -172,6 +172,8 @@ declarations.forEach((declaration) => {
       console.log(`- kind: ${declaration.kind}`);
       break;
 
+    // @ts-expect-error: Deno doc types aren't accurate:
+    // https://github.com/denoland/deno_doc/pull/737
     case "reference":
       console.log(`- kind: re-export`);
       break;

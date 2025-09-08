@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
+import type { DocNode } from "@deno/doc";
+import { describe, expect, it } from "vitest";
 import { isExportNode, isModuleDocNode, repoPath } from "./index.js";
-import type { DocNode, DocNodeModuleDoc } from "@deno/doc";
 
 describe("isExportNode", () => {
   it("returns true for export nodes", () => {
@@ -37,6 +37,8 @@ const fnNode: DocNode = {
     filename: "file:///wrkspc/date-fns/src/eachWeekendOfInterval/index.ts",
     line: 58,
     col: 0,
+    // @ts-expect-error: Deno doc types aren't accurate:
+    // https://github.com/denoland/deno_doc/pull/737
     byteIndex: 1752,
   },
   declarationKind: "export",
@@ -191,6 +193,8 @@ const fnImportNode: DocNode = {
     filename: "file:///wrkspc/date-fns/src/eachWeekendOfYear/index.ts",
     line: 1,
     col: 0,
+    // @ts-expect-error: Deno doc types aren't accurate:
+    // https://github.com/denoland/deno_doc/pull/737
     byteIndex: 0,
   },
   declarationKind: "private",
@@ -207,6 +211,8 @@ const moduleDocNode: DocNode = {
     filename: "file:///wrkspc/date-fns/src/constants/index.ts",
     line: 1,
     col: 0,
+    // @ts-expect-error: Deno doc types aren't accurate:
+    // https://github.com/denoland/deno_doc/pull/737
     byteIndex: 0,
   },
   declarationKind: "export",
@@ -214,6 +220,8 @@ const moduleDocNode: DocNode = {
     tags: [
       {
         kind: "module",
+        // @ts-expect-error: Deno doc types aren't accurate:
+        // https://github.com/denoland/deno_doc/pull/737
         name: "constants",
       },
       {

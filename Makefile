@@ -2,7 +2,7 @@
 .PHONY: build
 build:
 	@rm -rf lib
-	@pnpm exec tsc
+	@pnpm exec tsdown --out-dir ./lib --unbundle --dts
 	@rsync --archive --prune-empty-dirs --include='*.d.ts' --include='*.json' -f 'hide,! */' --relative src/./ lib
 	@cp *.md lib
 	@cp package.json lib
