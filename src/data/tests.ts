@@ -1,11 +1,22 @@
 import { describe, it, expect } from "vitest";
-import { isExportNode, repoPath } from "./index.js";
-import type { DocNode } from "@deno/doc";
+import { isExportNode, isModuleDocNode, repoPath } from "./index.js";
+import type { DocNode, DocNodeModuleDoc } from "@deno/doc";
 
 describe("isExportNode", () => {
   it("returns true for export nodes", () => {
     expect(isExportNode(fnNode)).toBe(true);
     expect(isExportNode(fnImportNode)).toBe(false);
+  });
+
+  it("returns false for module doc nodes", () => {
+    expect(isExportNode(moduleDocNode)).toBe(false);
+  });
+});
+
+describe("isModuleDocNode", () => {
+  it("returns true for module doc nodes", () => {
+    expect(isModuleDocNode(moduleDocNode)).toBe(true);
+    expect(isModuleDocNode(fnNode)).toBe(false);
   });
 });
 
@@ -188,6 +199,35 @@ const fnImportNode: DocNode = {
     src: "file:///wrkspc/date-fns/src/eachWeekendOfInterval/index.ts",
     imported: "eachWeekendOfInterval",
   },
+};
+
+const moduleDocNode: DocNode = {
+  name: "",
+  location: {
+    filename: "file:///wrkspc/date-fns/src/constants/index.ts",
+    line: 1,
+    col: 0,
+    byteIndex: 0,
+  },
+  declarationKind: "export",
+  jsDoc: {
+    tags: [
+      {
+        kind: "module",
+        name: "constants",
+      },
+      {
+        kind: "unsupported",
+        value: "@summary Useful constants",
+      },
+      {
+        kind: "unsupported",
+        value:
+          '@description\nCollection of useful date constants.\n\nThe constants could be imported from `date-fns/constants`:\n\n```ts\nimport { maxTime, minTime } from "date-fns/constants";\n\nfunction isAllowedTime(time) {\nreturn time <= maxTime && time >= minTime;\n}\n```',
+      },
+    ],
+  },
+  kind: "moduleDoc",
 };
 
 //#endregion
