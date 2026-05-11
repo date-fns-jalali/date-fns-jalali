@@ -7457,6 +7457,7 @@
     "js-fns": "^2.5.2",
     "jscodeshift": "^0.15.2",
     "lodash": "^4.17.21",
+    "oxfmt": "^0.49.0",
     "oxlint": "^1.14.0",
     "oxlint-tsgolint": "^0.1.6",
     "playwright": "^1.54.1",
