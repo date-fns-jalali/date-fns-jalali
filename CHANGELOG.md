@@ -8,6 +8,16 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v4.2.0 - 2026-05-18
+
+This is a minor release in all senses, it only includes documentation updates (first of many) that points to the new [You Don't Need date-fns\*](https://date-fns.org/you-dont-need-date-fns) page.
+
+\* Not really
+
+### Changed
+
+- Added Temporal API references to the JSDoc annotations of `add`, `addBusinessDays`, and `addDays`.
+
 ## v4.1.0 - 2024-09-17
 
 This release adds time zone support to format functions (that I somehow missed when working on the feature) and fixes a few bugs.
@@ -241,7 +251,6 @@ This release is brought to you by @kossnocorp.
 - **BREAKING** The arguments are not explicitly converted to the target types. Instead, they are passed as is, delegating this task to type checkers.
 
 - **BREAKING**: Functions that accept `Interval` arguments now do not throw an error if the start is before the end and handle it as a negative interval. If one of the properties in an `Invalid Date`, these functions also do not throw and handle them as invalid intervals.
-
   - `areIntervalsOverlapping` normalize intervals before comparison, so `{ start: a, end: b }` is practically equivalent to `{ start: b, end: a }`. When comparing intervals with one of the properties being `Invalid Date`, the function will return false unless the others are valid and equal, given the `inclusive` option is passed. Otherwise, and when even one of the intervals has both properties invalid, the function will always return `false`.
 
   - `getOverlappingDaysInIntervals` now normalizes intervals before comparison, so `{ start: a, end: b }` is practically equivalent to `{ start: b, end: a }`. If any of the intervals’ properties is an `Invalid Date`, the function will always return 0.
@@ -1286,7 +1295,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```
 
 - **BREAKING** renamed ISO week-numbering year helpers:
-
   - `addISOYears` → `addISOWeekYears`
   - `differenceInCalendarISOYears` → `differenceInCalendarISOWeekYears`
   - `differenceInISOYears` → `differenceInISOWeekYears`
@@ -1303,7 +1311,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   e.g., `startOfWeekYear`.
 
 - **BREAKING**: functions renamed:
-
   - `areRangesOverlapping` → `areIntervalsOverlapping`
   - `eachDay` → `eachDayOfInterval`
   - `getOverlappingDaysInRanges` → `getOverlappingDaysInIntervals`
@@ -1371,7 +1378,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```
 
 - **BREAKING**: functions renamed:
-
   - `distanceInWords` → `formatDistance`
   - `distanceInWordsStrict` → `formatDistanceStrict`
   - `distanceInWordsToNow` → `formatDistanceToNow`
@@ -1468,7 +1474,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 - **BREAKING**: new locale format.
   See [docs/Locale](https://date-fns.org/docs/Locale).
   Locales renamed:
-
   - `en` → `en-US`
   - `zh_cn` → `zh-CN`
   - `zh_tw` → `zh-TW`
@@ -1530,7 +1535,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   | NaN       | Invalid Date | NaN    | 'NaN'       | false   |
 
   Notes:
-
   - as before, arguments expected to be `Date` are converted to `Date` using _date-fns'_ `toDate` function;
   - arguments expected to be numbers are converted to integer numbers using our custom `toInteger` implementation
     (see [#765](https://github.com/date-fns/date-fns/pull/765));
@@ -1542,7 +1546,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   If any resulting argument is invalid (i.e. `NaN` for numbers and `Invalid Date` for dates),
   an invalid value will be returned:
-
   - `false` for functions that return booleans (expect `isValid`);
   - `Invalid Date` for functions that return dates;
   - and `NaN` for functions that return numbers.
@@ -1636,7 +1639,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   See PR [#558](https://github.com/date-fns/date-fns/pull/558)
 
 - New locale-dependent week-numbering year helpers:
-
   - `getWeek`
 
   - `getWeekYear`
@@ -1652,7 +1654,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 - [Added `getUnixTime` function](https://github.com/date-fns/date-fns/pull/870). Kudos to [@Kingwl](https://github.com/Kingwl).
 
 - [New decade helpers](https://github.com/date-fns/date-fns/pull/839). Thanks to [@y-nk](https://github.com/y-nk)!
-
   - `getDecade`
 
   - `startOfDecade`
@@ -1666,7 +1667,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 - Added new function `fromUnixTime`. Thanks to [@xkizer](https://github.com/xkizer).
 
 - New interval, month, and year helpers to fetch a list of all Saturdays and Sundays (weekends) for a given date interval. `eachWeekendOfInterval` is the handler function while the other two are wrapper functions. Kudos to [@laekettavong](https://github.com/laekettavong)!
-
   - `eachWeekendOfInterval`
 
   - `eachWeekendOfMonth`
@@ -1678,13 +1678,11 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 - `parseISO` function that parses ISO 8601 strings. See [#1023](https://github.com/date-fns/date-fns/pull/1023).
 
 - Add constants that can be imported directly from `date-fns` or the submodule `date-fns/constants`:
-
   - `maxTime`
 
   - `minTime`
 
 - New locales:
-
   - [Norwegian Nynorsk locale (nn)](https://github.com/date-fns/date-fns/pull/1172)
     by [@draperunner](https://github.com/draperunner).
 
@@ -2220,7 +2218,6 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 - [Flow](http://flowtype.org/) declarations for each function
   in [the ".js.flow" style](http://flowtype.org/docs/declarations.html#declaration-files).
   Kudos to [@JohnyDays](https://github.com/JohnyDays). See related PRs:
-
   - [#205](https://github.com/date-fns/date-fns/pull/205)
 
   - [#207](https://github.com/date-fns/date-fns/pull/207)
