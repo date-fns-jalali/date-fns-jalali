@@ -13,6 +13,7 @@
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "strict": true,
+    "types": ["node"],
     // TODO: Enable these when we can:
     // "noUncheckedIndexedAccess": true,
     // "exactOptionalPropertyTypes": true
