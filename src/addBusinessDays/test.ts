@@ -2,6 +2,7 @@ import { TZDate, tz } from "@date-fns/tz";
 import { UTCDate } from "@date-fns/utc";
 import { describe, expect, it } from "vitest";
 import { assertType } from "../_lib/test/index.ts";
+import { getDstTransitions } from "../_lib/tzOffsetTransitions.ts";
 import { addBusinessDays } from "./index.ts";
 
 describe("addBusinessDays", () => {
@@ -125,6 +126,26 @@ describe("addBusinessDays", () => {
       });
       expect(result).toBeInstanceOf(TZDate);
       assertType<assertType.Equal<TZDate, typeof result>>(true);
+    });
+  });
+
+  const dstTransitions = getDstTransitions(2017);
+  const dstOnlyDescribe =
+    dstTransitions.start && dstTransitions.end ? describe : describe.skip;
+  const tzName =
+    Intl.DateTimeFormat().resolvedOptions().timeZone || process.env.tz;
+
+  dstOnlyDescribe(`DST (${tzName || "(unknown)"})`, () => {
+    it("works across DST-start weekend", () => {
+      const date = new Date(dstTransitions.start!);
+      date.setDate(date.getDate() - 2);
+      date.setHours(date.getHours() - 1, 30, 0, 0);
+
+      const result = addBusinessDays(date, 1);
+      const expected = new Date(date);
+      expected.setDate(expected.getDate() + 3);
+
+      expect(result).toEqual(expected);
     });
   });
 });

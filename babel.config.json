@@ -49,7 +49,14 @@
     }
   },
 
-  "ignore": ["src/**/*.d.ts", "src/**/test.ts"],
+  "ignore": [
+    "src/tp/**",
+    "src/_lib/tp/**",
+    "src/**/index.tp.ts",
+    "src/**/*.d.ts",
+    "src/**/test.ts",
+    "src/**/test.tp.ts"
+  ],
 
   "retainLines": true
 }

@@ -2,7 +2,7 @@ import { readdir } from "fs/promises";
 import path from "path";
 
 const ignorePattern = /^_|\./; // can't start with `_` or have a `.` in it
-const ignoredDirs = ["locale", "esm", "fp", "constants"];
+const ignoredDirs = ["locale", "esm", "fp", "constants", "tp"];
 
 export interface FnFile {
   name: string;

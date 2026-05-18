@@ -8,8 +8,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link addBusinessDays} function options.
  */
-export interface AddBusinessDaysOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface AddBusinessDaysOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name addBusinessDays
@@ -18,6 +19,12 @@ export interface AddBusinessDaysOptions<DateType extends Date = Date>
  *
  * @description
  * Add the specified number of business days (mon - fri) to the given date, ignoring weekends.
+ *
+ * **You don't need date-fns\***:
+ *
+ * Temporal doesn't have built-in business day arithmetic, so you still need date-fns for this.
+ *
+ * \* **Not really**, see: https://date-fns.org/you-dont-need-date-fns
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.

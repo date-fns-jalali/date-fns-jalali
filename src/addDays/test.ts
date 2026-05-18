@@ -1,8 +1,8 @@
 import { TZDate, tz } from "@date-fns/tz";
 import { UTCDate } from "@date-fns/utc";
 import { describe, expect, it } from "vitest";
-import { getDstTransitions } from "../_lib/tzOffsetTransitions.ts";
 import { assertType } from "../_lib/test/index.ts";
+import { getDstTransitions } from "../_lib/tzOffsetTransitions.ts";
 import { addDays } from "./index.ts";
 
 describe("addDays", () => {
@@ -31,89 +31,6 @@ describe("addDays", () => {
     const result = addDays(new Date(2014, 8 /* Sep */, 1), NaN);
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
-
-  const dstTransitions = getDstTransitions(2017);
-  const dstOnly = dstTransitions.start && dstTransitions.end ? it : it.skip;
-  const tzName =
-    Intl.DateTimeFormat().resolvedOptions().timeZone || process.env.tz;
-  const HOUR = 1000 * 60 * 60;
-  const MINUTE = 1000 * 60;
-  // It's usually 1 hour, but for some timezones, e.g. Australia/Lord_Howe, it is 30 minutes
-  const dstOffset =
-    dstTransitions.start && dstTransitions.end
-      ? (dstTransitions.end.getTimezoneOffset() -
-          dstTransitions.start.getTimezoneOffset()) *
-        MINUTE
-      : NaN;
-
-  dstOnly(
-    `works at DST-start boundary in local timezone: ${tzName || "(unknown)"}`,
-    () => {
-      const date = dstTransitions.start;
-      const result = addDays(date!, 1);
-      expect(result).toEqual(new Date(date!.getTime() + 24 * HOUR));
-    },
-  );
-
-  dstOnly(
-    `works at DST-start - 30 mins in local timezone: ${tzName || "(unknown)"}`,
-    () => {
-      const date = new Date(dstTransitions.start!.getTime() - 0.5 * HOUR);
-      const result = addDays(date, 1);
-      // started before the transition so will only be 23 hours later in local time
-      expect(result).toEqual(new Date(date.getTime() + 24 * HOUR - dstOffset));
-    },
-  );
-
-  dstOnly(
-    `works at DST-start - 60 mins in local timezone: ${tzName || "(unknown)"}`,
-    () => {
-      const date = new Date(dstTransitions.start!.getTime() - 1 * HOUR);
-      const result = addDays(date, 1);
-      // started before the transition so will only be 23 hours later in local time
-      expect(result).toEqual(new Date(date.getTime() + 24 * HOUR - dstOffset));
-    },
-  );
-
-  dstOnly(
-    `works at DST-end boundary in local timezone: ${tzName || "(unknown)"}`,
-    () => {
-      const date = dstTransitions.end;
-      const result = addDays(date!, 1);
-      expect(result).toEqual(new Date(date!.getTime() + 24 * HOUR));
-    },
-  );
-
-  dstOnly(
-    `works at DST-end - 30 mins in local timezone: ${tzName || "(unknown)"}`,
-    () => {
-      const date = new Date(dstTransitions.end!.getTime() - 0.5 * HOUR);
-      const result = addDays(date, 1);
-      // started before the transition so will be 25 hours later in local
-      // time because one hour repeats after DST ends.
-      expect(result).toEqual(new Date(date.getTime() + 24 * HOUR + dstOffset));
-    },
-  );
-
-  dstOnly(
-    `works at DST-end - 60 mins in local timezone: ${tzName || "(unknown)"}`,
-    () => {
-      const date = new Date(dstTransitions.end!.getTime() - 1 * HOUR);
-      const result = addDays(date, 1);
-      // started before the transition so will be 25 hours later in local
-      // time because one hour repeats after DST ends.
-      expect(result).toEqual(new Date(date.getTime() + 24 * HOUR + dstOffset));
-    },
-  );
-
-  dstOnly(
-    `doesn't mutate if zero increment is used: ${tzName || "(unknown)"}`,
-    () => {
-      const date = new Date(dstTransitions.end!);
-      const result = addDays(date, 0);
-      expect(result).toEqual(date);
-    },
-  );
 
   it("resolves the date type by default", () => {
     const result = addDays(Date.now(), 5);
@@ -148,6 +65,72 @@ describe("addDays", () => {
       });
       expect(result).toBeInstanceOf(TZDate);
       assertType<assertType.Equal<TZDate, typeof result>>(true);
+    });
+  });
+
+  const dstTransitions = getDstTransitions(2017);
+  const dstOnlyDescribe =
+    dstTransitions.start && dstTransitions.end ? describe : describe.skip;
+  const tzName =
+    Intl.DateTimeFormat().resolvedOptions().timeZone || process.env.tz;
+
+  dstOnlyDescribe(`DST (${tzName || "(unknown)"})`, () => {
+    const HOUR = 1000 * 60 * 60;
+    const MINUTE = 1000 * 60;
+    // It's usually 1 hour, but for some timezones, e.g. Australia/Lord_Howe, it is 30 minutes
+    const dstOffset =
+      dstTransitions.start && dstTransitions.end
+        ? (dstTransitions.end.getTimezoneOffset() -
+            dstTransitions.start.getTimezoneOffset()) *
+          MINUTE
+        : NaN;
+
+    it("works at DST-start boundary", () => {
+      const date = dstTransitions.start;
+      const result = addDays(date!, 1);
+      expect(result).toEqual(new Date(date!.getTime() + 24 * HOUR));
+    });
+
+    it("works at DST-start - 30 mins", () => {
+      const date = new Date(dstTransitions.start!.getTime() - 0.5 * HOUR);
+      const result = addDays(date, 1);
+      // started before the transition so will only be 23 hours later in local time
+      expect(result).toEqual(new Date(date.getTime() + 24 * HOUR - dstOffset));
+    });
+
+    it("works at DST-start - 60 mins", () => {
+      const date = new Date(dstTransitions.start!.getTime() - 1 * HOUR);
+      const result = addDays(date, 1);
+      // started before the transition so will only be 23 hours later in local time
+      expect(result).toEqual(new Date(date.getTime() + 24 * HOUR - dstOffset));
+    });
+
+    it("works at DST-end boundary", () => {
+      const date = dstTransitions.end;
+      const result = addDays(date!, 1);
+      expect(result).toEqual(new Date(date!.getTime() + 24 * HOUR));
+    });
+
+    it("works at DST-end - 30 mins", () => {
+      const date = new Date(dstTransitions.end!.getTime() - 0.5 * HOUR);
+      const result = addDays(date, 1);
+      // started before the transition so will be 25 hours later in local
+      // time because one hour repeats after DST ends.
+      expect(result).toEqual(new Date(date.getTime() + 24 * HOUR + dstOffset));
+    });
+
+    it("works at DST-end - 60 mins", () => {
+      const date = new Date(dstTransitions.end!.getTime() - 1 * HOUR);
+      const result = addDays(date, 1);
+      // started before the transition so will be 25 hours later in local
+      // time because one hour repeats after DST ends.
+      expect(result).toEqual(new Date(date.getTime() + 24 * HOUR + dstOffset));
+    });
+
+    it("doesn't mutate if zero increment is used", () => {
+      const date = new Date(dstTransitions.end!);
+      const result = addDays(date, 0);
+      expect(result).toEqual(date);
     });
   });
 });

@@ -62,7 +62,7 @@ async function generatePackageJSON({
           },
           import: {
             types: "./index.d.ts",
-            default: "./index.ts",
+            default: "./index.js",
           },
         },
       ],
