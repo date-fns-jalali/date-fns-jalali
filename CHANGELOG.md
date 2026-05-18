@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v4.2.1 - 2026-05-19
+
+### Fixed
+
+- Fixed type definitions missing in v4.2.0 due to TypeScript misconfiguration.
+
 ## v4.2.0 - 2026-05-18
 
 This is a minor release in all senses, it only includes documentation updates (first of many) that points to the new [You Don't Need date-fns\*](https://date-fns.org/you-dont-need-date-fns) page.

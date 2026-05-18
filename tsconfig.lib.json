@@ -1,6 +1,10 @@
 {
   "extends": "./src/tsconfig",
-  "compilerOptions": {},
+  "compilerOptions": {
+    "outDir": "./lib",
+    "incremental": false,
+    "composite": false
+  },
   "include": ["src/**/*.ts"],
   "exclude": [
     "lib",

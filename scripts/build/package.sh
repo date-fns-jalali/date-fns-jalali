@@ -39,7 +39,6 @@ env BABEL_ENV=esm pnpm babel src \
   --out-file-extension .js \
   --quiet
 
-
 # Add fallback for Next.js and other tools that modularize imports:
 pnpm tsx scripts/build/modularized.ts
 
