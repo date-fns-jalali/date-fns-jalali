@@ -2,5 +2,10 @@
   "name": "@date-fns/root",
   "version": "0.0.0",
   "private": true,
-  "description": "date-fns monorepo root"
+  "description": "date-fns monorepo root",
+  "devDependencies": {
+    "oxfmt": "^0.50.0",
+    "oxlint": "^1.65.0",
+    "oxlint-tsgolint": "^0.22.1"
+  }
 }

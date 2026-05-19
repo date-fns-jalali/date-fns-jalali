@@ -1,6 +1,9 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": ["typescript"],
+  "options": {
+    "typeAware": true
+  },
   "categories": {
     "correctness": "off"
   },
