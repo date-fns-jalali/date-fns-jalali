@@ -9,12 +9,26 @@ export default defineConfig({
           name: "main",
           include: ["src/**/test.ts"],
           exclude: ["src/tmp/**"],
+
+          browser: {
+            // Enable it via --browser
+            // enabled: true,
+            provider: playwright(),
+            instances: [{ browser: "chromium" }],
+          },
         },
       },
       {
         test: {
           name: "temporarily",
           include: ["src/**/test.tp.ts"],
+
+          browser: {
+            // Enable it via --browser
+            // enabled: true,
+            provider: playwright(),
+            instances: [{ browser: "chromium" }],
+          },
         },
       },
     ],
@@ -22,11 +36,5 @@ export default defineConfig({
     // Speed up tests, but also it's a workaround for the browser issue:
     // https://github.com/vitest-dev/vitest/issues/5382
     isolate: false,
-    browser: {
-      // Enable it via --browser
-      // enabled: true,
-      provider: playwright(),
-      instances: [{ browser: "chromium" }],
-    },
   },
 });

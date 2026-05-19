@@ -1,11 +1,25 @@
+[tasks."install/playwright"]
+run = "pnpm playwright install chromium --with-deps"
+# NOTE: It prompts for sudo to install OS dependencies
+raw = true
+
 [tasks."test"]
 depends = ["test/unit", "test/tz"]
 
 [tasks."test/unit"]
-run = "pnpm vitest --run"
+run = "pnpm vitest run"
 
 [tasks."test/unit:watch"]
 run = "pnpm vitest"
+
+[tasks."test/browser"]
+run = "pnpm vitest run --browser"
+
+[tasks."test/browser:watch"]
+run = "pnpm vitest --browser"
+
+[tasks."test/node"]
+run = "./scripts/test/node.sh"
 
 [tasks."test/tz/base"]
 run = "./scripts/test/tz.sh"
@@ -16,16 +30,12 @@ run = "bun ./scripts/test/tzOffset.ts"
 [tasks."test/tz/iana"]
 run = "bun ./scripts/test/tzIANA.ts"
 
+[tasks."test/locales"]
+run = "pnpm tsx ./scripts/build/localeSnapshots/index.ts --test"
+env = { TZ = "utc" }
+
 [tasks."test/smoke"]
 run = "./scripts/test/smoke.sh"
 
 [tasks."test/types"]
 run = "./scripts/test/types.sh"
-
-[tasks."locale-snapshots"]
-run = "pnpm tsx ./scripts/build/localeSnapshots/index.ts"
-env = { TZ = "utc" }
-
-[tasks."locale-snapshots:test"]
-run = "pnpm tsx ./scripts/build/localeSnapshots/index.ts --test"
-env = { TZ = "utc" }

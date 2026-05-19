@@ -23,13 +23,13 @@ for version in "${versions_array[@]}"; do
   printf "\n🚧 Running tests in $version\n"
   cmd="node@${version}"
 
-  mise x "${version}" -- node --eval 'require("./dist")'
+  mise x "${cmd}" -- node --eval 'require("./dist")'
   printf "✅ Package CommonJS is ok!\n"
 
-  mise x "${version}" -- node scripts/test/node/esm.js
+  mise x "${cmd}" -- node scripts/test/node/esm.js
   printf "✅ Package ESM is ok!\n"
 
-  TZ=Asia/Kolkata mise x "${version}" -- pnpm vitest run
+  TZ=Asia/Kolkata mise x "${cmd}" -- pnpm vitest run
 done
 
 printf "✅ All Node.js tests passed\n"
