@@ -17,7 +17,7 @@ import { DateFnsDocs } from "./types.js";
 export function findCategory(ref: ContainerReflection, id: number) {
   const category = ref.categories?.find((category) =>
     // TODO: Fix the type error if TypeDoc becomes more eloborate
-    (category.children as unknown as number[]).includes(id)
+    (category.children as unknown as number[]).includes(id),
   );
   return category?.title;
 }
@@ -28,7 +28,7 @@ export function findCategory(ref: ContainerReflection, id: number) {
  * @returns the reflection summary string if found
  */
 export function findSummary(
-  ref: DeclarationReflection | SignatureReflection
+  ref: DeclarationReflection | SignatureReflection,
 ): string | undefined {
   return findTag(ref, "@summary");
 }
@@ -39,7 +39,7 @@ export function findSummary(
  * @returns the function description string if found
  */
 export function findDescription(
-  ref: DeclarationReflection | SignatureReflection
+  ref: DeclarationReflection | SignatureReflection,
 ): string | undefined {
   return findTag(ref, "@description");
 }
@@ -50,7 +50,7 @@ export function findDescription(
  * @returns the reflection example strings
  */
 export function findExamples(
-  ref: DeclarationReflection | SignatureReflection
+  ref: DeclarationReflection | SignatureReflection,
 ): string[] {
   return findTags(ref, "@example");
 }
@@ -63,7 +63,7 @@ export function findExamples(
  */
 export function findTags(
   ref: DeclarationReflection | SignatureReflection,
-  tag: `@${string}`
+  tag: `@${string}`,
 ): string[] {
   const foundTags = ref.comment?.blockTags.filter((b) => b.tag === tag);
   if (!foundTags) return [];
@@ -78,7 +78,7 @@ export function findTags(
  */
 export function findTag(
   ref: DeclarationReflection | SignatureReflection,
-  tag: `@${string}`
+  tag: `@${string}`,
 ): string | undefined {
   if (tag === "@summary" && ref.comment?.summary.length)
     return joinCommentParts(ref.comment.summary);
@@ -93,12 +93,12 @@ export function findTag(
  * @returns the function reflection
  */
 export function findFn(
-  ref: ContainerReflection
+  ref: ContainerReflection,
 ): DeclarationReflection | undefined {
   return ref.children?.find(
     (child) =>
       child.kind === DateFnsDocs.ReflectionKind.Function &&
-      child.name === ref.name
+      child.name === ref.name,
   );
 }
 
@@ -117,7 +117,7 @@ export function findFnSummary(fn: DeclarationReflection): string | undefined {
  * @returns the function description string if found
  */
 export function findFnDescription(
-  fn: DeclarationReflection
+  fn: DeclarationReflection,
 ): string | undefined {
   return findFnTag(fn, "@description");
 }
@@ -148,12 +148,12 @@ export function findFnExamples(fn: DeclarationReflection): string[] {
  */
 export function findFnTags(
   fn: DeclarationReflection,
-  tag: `@${string}`
+  tag: `@${string}`,
 ): string[] {
   return (
     fn.signatures?.reduce<string[]>(
       (acc, signature) => acc.concat(findTags(signature, tag)),
-      []
+      [],
     ) || []
   );
 }
@@ -166,7 +166,7 @@ export function findFnTags(
  */
 export function findFnTag(
   fn: DeclarationReflection,
-  tag: `@${string}`
+  tag: `@${string}`,
 ): string | undefined {
   if (!fn.signatures) return;
   for (const signature of fn.signatures) {
@@ -182,7 +182,7 @@ export function findFnTag(
  * @returns the function description string if found
  */
 export function findSignatureReturns(
-  signature: SignatureReflection
+  signature: SignatureReflection,
 ): string | undefined {
   return findTag(signature, "@returns");
 }
@@ -212,7 +212,7 @@ export function joinCommentParts(parts: CommentDisplayPart[]): string {
  */
 export function traverseType(
   type: SomeType,
-  cb: (ref: SomeType) => void
+  cb: (ref: SomeType) => void,
 ): void {
   cb(type);
 

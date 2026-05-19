@@ -11,7 +11,8 @@ import type {
  * The {@link isMatch} function options.
  */
 export interface IsMatchOptions
-  extends LocalizedOptions<"options" | "match" | "formatLong">,
+  extends
+    LocalizedOptions<"options" | "match" | "formatLong">,
     WeekOptions,
     FirstWeekContainsDateOptions,
     AdditionalTokensOptions {}

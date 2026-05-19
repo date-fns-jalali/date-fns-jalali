@@ -6,8 +6,7 @@ import type { ContextOptions, DateArg, ISOFormatOptions } from "../types.ts";
  * The {@link formatISO} function options.
  */
 export interface FormatISOOptions
-  extends ISOFormatOptions,
-    ContextOptions<Date> {}
+  extends ISOFormatOptions, ContextOptions<Date> {}
 
 /**
  * @name formatISO

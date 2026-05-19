@@ -10,12 +10,7 @@ const eraValues = {
 const quarterValues = {
   narrow: ["1", "2", "3", "4"] as const,
   abbreviated: ["ر1", "ر2", "ر3", "ر4"] as const,
-  wide: [
-    "الربع الأول",
-    "الربع الثاني",
-    "الربع الثالث",
-    "الربع الرابع",
-  ] as const,
+  wide: ["الربع الأول", "الربع الثاني", "الربع الثالث", "الربع الرابع"] as const,
 };
 
 const monthValues = {

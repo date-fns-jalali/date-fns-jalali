@@ -15,7 +15,8 @@ import type {
  * The {@link setWeekYear} function options.
  */
 export interface SetWeekYearOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">,
+  extends
+    LocalizedOptions<"options">,
     WeekOptions,
     FirstWeekContainsDateOptions,
     ContextOptions<DateType> {}

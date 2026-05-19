@@ -38,9 +38,9 @@ import(configPath)
           .then((doc) =>
             doc?.update(($) =>
               $.field("versions").set(
-                doc.data.versions.filter((v) => v.version !== version)
-              )
-            )
+                doc.data.versions.filter((v) => v.version !== version),
+              ),
+            ),
           ),
 
         db.versions
@@ -49,7 +49,7 @@ import(configPath)
             $.field("version").eq(version),
           ])
           .then((versions) =>
-            Promise.all(versions.map((version) => version.ref.remove()))
+            Promise.all(versions.map((version) => version.ref.remove())),
           ),
 
         db.pages
@@ -82,15 +82,15 @@ import(configPath)
                       submodules: allSubmodules,
                       createdAt,
                     },
-                  ])
-                )
+                  ]),
+                ),
               )
             : packageRef.set({
                 name: packageName,
                 versions: [
                   { version, preRelease, submodules: allSubmodules, createdAt },
                 ],
-              })
+              }),
         ),
 
         db.versions.add({
@@ -105,7 +105,7 @@ import(configPath)
               "title",
               "summary",
               "submodules",
-            ])
+            ]),
           ),
           createdAt,
           categories: config.categories,
@@ -114,8 +114,8 @@ import(configPath)
 
         Promise.all(
           pages.map((page) =>
-            db.pages.id().then((pageId) => pagesBatch.pages.set(pageId, page))
-          )
+            db.pages.id().then((pageId) => pagesBatch.pages.set(pageId, page)),
+          ),
         ).then(pagesBatch),
       ]);
     }
@@ -148,7 +148,7 @@ async function getVersion(config: DateFnsDocs.Config) {
 
 async function getFnPages(
   config: DateFnsDocs.Config,
-  version: string
+  version: string,
 ): Promise<DateFnsDocs.TypeDocPage[]> {
   const refs = await readRefsFromJSON(config, configDir);
 
@@ -195,13 +195,13 @@ async function getFnPages(
 
 async function getMarkdownPages(
   config: DateFnsDocs.Config,
-  version: string
+  version: string,
 ): Promise<DateFnsDocs.MarkdownPage[]> {
   return Promise.all(
     config.files.map(async (file) => {
       const markdown = await readFile(
         path.resolve(configDir, file.path),
-        "utf8"
+        "utf8",
       );
       return {
         ...pick(file, ["slug", "category", "title", "summary"]),
@@ -211,6 +211,6 @@ async function getMarkdownPages(
         package: packageName,
         submodules: allSubmodules,
       };
-    })
+    }),
   );
 }

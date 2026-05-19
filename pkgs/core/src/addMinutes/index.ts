@@ -5,8 +5,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link addMinutes} function options.
  */
-export interface AddMinutesOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface AddMinutesOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name addMinutes

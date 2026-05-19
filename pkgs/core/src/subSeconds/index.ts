@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link subSeconds} function options.
  */
-export interface SubSecondsOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SubSecondsOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * Subtract the specified number of seconds from the given date.

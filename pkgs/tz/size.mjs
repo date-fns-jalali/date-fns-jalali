@@ -60,13 +60,13 @@ async function measure() {
       console.log(gray(code));
       console.log("");
       console.log(
-        `Length: ${blue(code.length)} ${formatDiff(code.length - lastLength)}`
+        `Length: ${blue(code.length)} ${formatDiff(code.length - lastLength)}`,
       );
       console.log("");
       console.log(
         `Size: ${blue(bytes(size, { decimalPlaces: 3 }))} ${formatDiff(
-          size - lastSize
-        )}`
+          size - lastSize,
+        )}`,
       );
       console.log("");
 
@@ -92,7 +92,7 @@ function measureSize(code) {
         params: {
           [constants.BROTLI_PARAM_QUALITY]: 11, // Use maximum compression quality
         },
-      })
+      }),
     );
 
     pipe.on("error", reject);

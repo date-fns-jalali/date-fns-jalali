@@ -1,7 +1,7 @@
 packages:
   - pkgs/*
 allowBuilds:
-  '@parcel/watcher': true
-  '@swc/core': true
+  "@parcel/watcher": true
+  "@swc/core": true
   esbuild: true
   protobufjs: true

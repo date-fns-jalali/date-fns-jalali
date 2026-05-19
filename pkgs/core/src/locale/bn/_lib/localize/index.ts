@@ -37,12 +37,7 @@ const eraValues = {
 const quarterValues = {
   narrow: ["১", "২", "৩", "৪"] as const,
   abbreviated: ["১ত্রৈ", "২ত্রৈ", "৩ত্রৈ", "৪ত্রৈ"] as const,
-  wide: [
-    "১ম ত্রৈমাসিক",
-    "২য় ত্রৈমাসিক",
-    "৩য় ত্রৈমাসিক",
-    "৪র্থ ত্রৈমাসিক",
-  ] as const,
+  wide: ["১ম ত্রৈমাসিক", "২য় ত্রৈমাসিক", "৩য় ত্রৈমাসিক", "৪র্থ ত্রৈমাসিক"] as const,
 };
 
 const monthValues = {

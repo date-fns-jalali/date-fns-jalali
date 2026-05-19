@@ -6,8 +6,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link setMonth} function options.
  */
-export interface SetMonthOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SetMonthOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setMonth

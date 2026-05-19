@@ -4,8 +4,9 @@ import type { ContextOptions } from "../types.ts";
 /**
  * The {@link endOfTomorrow} function options.
  */
-export interface EndOfTomorrowOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface EndOfTomorrowOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfTomorrow

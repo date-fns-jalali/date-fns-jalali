@@ -7,8 +7,7 @@ import type { ContextOptions, DateArg } from "../types.ts";
  * The {@link formatDistanceToNowStrict} function options.
  */
 export interface FormatDistanceToNowStrictOptions
-  extends FormatDistanceStrictOptions,
-    ContextOptions<Date> {}
+  extends FormatDistanceStrictOptions, ContextOptions<Date> {}
 
 /**
  * @name formatDistanceToNowStrict

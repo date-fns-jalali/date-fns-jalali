@@ -12,9 +12,7 @@ import type {
  * The {@link isThisWeek} function options.
  */
 export interface IsThisWeekOptions
-  extends WeekOptions,
-    LocalizedOptions<"options">,
-    ContextOptions<Date> {}
+  extends WeekOptions, LocalizedOptions<"options">, ContextOptions<Date> {}
 
 /**
  * @name isThisWeek

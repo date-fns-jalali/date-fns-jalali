@@ -34,8 +34,7 @@ export interface Locale {
  * The locale options.
  */
 export interface LocaleOptions
-  extends WeekOptions,
-    FirstWeekContainsDateOptions {}
+  extends WeekOptions, FirstWeekContainsDateOptions {}
 
 /// Format distance types
 
@@ -140,8 +139,7 @@ export type FormatRelativeFn = <DateType extends Date>(
  * The {@link FormatRelativeFn} function options.
  */
 export interface FormatRelativeFnOptions
-  extends WeekOptions,
-    LocalizedOptions<"options" | "formatRelative"> {}
+  extends WeekOptions, LocalizedOptions<"options" | "formatRelative"> {}
 
 /**
  * The locale function used inside the {@link FormatRelativeFn} function

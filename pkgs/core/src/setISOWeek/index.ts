@@ -5,8 +5,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link setISOWeek} function options.
  */
-export interface SetISOWeekOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SetISOWeekOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setISOWeek

@@ -9,8 +9,9 @@ import type { ContextOptions } from "../types.ts";
 /**
  * The {@link parseISO} function options.
  */
-export interface ParseISOOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {
+export interface ParseISOOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {
   /** The additional number of digits in the extended year format */
   additionalDigits?: 0 | 1 | 2;
 }

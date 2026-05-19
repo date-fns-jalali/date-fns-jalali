@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link startOfMonth} function options.
  */
-export interface StartOfMonthOptions<ResultDate extends Date>
-  extends ContextOptions<ResultDate> {}
+export interface StartOfMonthOptions<
+  ResultDate extends Date,
+> extends ContextOptions<ResultDate> {}
 
 /**
  * @name startOfMonth

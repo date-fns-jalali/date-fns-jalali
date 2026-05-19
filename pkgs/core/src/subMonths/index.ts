@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The subMonths function options.
  */
-export interface SubMonthsOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SubMonthsOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name subMonths

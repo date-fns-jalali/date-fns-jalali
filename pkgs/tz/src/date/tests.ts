@@ -51,17 +51,17 @@ describe("TZDate", () => {
         expect(new TZDate("2024-02-11", "America/New_York").toISOString()).toBe(
           "2024-02-10T19:00:00.000-05:00",
         );
-        expect(new TZDate(beforeGMTDateStr, "America/New_York").toISOString()).toBe(
-            "1880-02-10T19:03:58.000-04:56"
-        );
+        expect(
+          new TZDate(beforeGMTDateStr, "America/New_York").toISOString(),
+        ).toBe("1880-02-10T19:03:58.000-04:56");
         expect(new TZDate("1880-02-11", "America/New_York").toISOString()).toBe(
-            "1880-02-10T19:03:58.000-04:56"
+          "1880-02-10T19:03:58.000-04:56",
         );
-        expect(new TZDate(beforeGMTDateStr, "Asia/Singapore").toISOString()).toBe(
-            "1880-02-11T06:55:25.000+06:55"
-        );
+        expect(
+          new TZDate(beforeGMTDateStr, "Asia/Singapore").toISOString(),
+        ).toBe("1880-02-11T06:55:25.000+06:55");
         expect(new TZDate("1880-02-11", "Asia/Singapore").toISOString()).toBe(
-            "1880-02-11T06:55:25.000+06:55"
+          "1880-02-11T06:55:25.000+06:55",
         );
       });
 
@@ -74,12 +74,12 @@ describe("TZDate", () => {
         expect(new TZDate(nativeDate, "America/New_York").toISOString()).toBe(
           "1987-02-10T19:00:00.000-05:00",
         );
-        expect(new TZDate(beforeGMTNativeDate, "Asia/Singapore").toISOString()).toBe(
-            "1880-02-11T06:55:25.000+06:55"
-        );
-        expect(new TZDate(beforeGMTNativeDate, "America/New_York").toISOString()).toBe(
-            "1880-02-10T19:03:58.000-04:56"
-        );
+        expect(
+          new TZDate(beforeGMTNativeDate, "Asia/Singapore").toISOString(),
+        ).toBe("1880-02-11T06:55:25.000+06:55");
+        expect(
+          new TZDate(beforeGMTNativeDate, "America/New_York").toISOString(),
+        ).toBe("1880-02-10T19:03:58.000-04:56");
       });
 
       it("creates a new date from date values", () => {
@@ -91,10 +91,10 @@ describe("TZDate", () => {
           "2024-02-01T00:00:00.000-05:00",
         );
         expect(new TZDate(1880, 1, "Asia/Singapore").toISOString()).toBe(
-            "1880-02-01T00:00:00.000+06:55"
+          "1880-02-01T00:00:00.000+06:55",
         );
         expect(new TZDate(1880, 1, "America/New_York").toISOString()).toBe(
-            "1880-02-01T00:00:00.000-04:56"
+          "1880-02-01T00:00:00.000-04:56",
         );
         // Date
         expect(new TZDate(2024, 1, 11, "Asia/Singapore").toISOString()).toBe(
@@ -104,10 +104,10 @@ describe("TZDate", () => {
           "2024-02-11T00:00:00.000-05:00",
         );
         expect(new TZDate(1880, 1, 11, "Asia/Singapore").toISOString()).toBe(
-            "1880-02-11T00:00:00.000+06:55"
+          "1880-02-11T00:00:00.000+06:55",
         );
         expect(new TZDate(1880, 1, 11, "America/New_York").toISOString()).toBe(
-            "1880-02-11T00:00:00.000-04:56"
+          "1880-02-11T00:00:00.000-04:56",
         );
         // Hours
         expect(
@@ -117,10 +117,10 @@ describe("TZDate", () => {
           new TZDate(2024, 1, 11, 12, "America/New_York").toISOString(),
         ).toBe("2024-02-11T12:00:00.000-05:00");
         expect(
-            new TZDate(1880, 1, 11, 12, "Asia/Singapore").toISOString()
+          new TZDate(1880, 1, 11, 12, "Asia/Singapore").toISOString(),
         ).toBe("1880-02-11T12:00:00.000+06:55");
         expect(
-            new TZDate(1880, 1, 11, 12, "America/New_York").toISOString()
+          new TZDate(1880, 1, 11, 12, "America/New_York").toISOString(),
         ).toBe("1880-02-11T12:00:00.000-04:56");
         // Minutes
         expect(
@@ -130,10 +130,10 @@ describe("TZDate", () => {
           new TZDate(2024, 1, 11, 12, 30, "America/New_York").toISOString(),
         ).toBe("2024-02-11T12:30:00.000-05:00");
         expect(
-            new TZDate(1880, 1, 11, 12, 30, "Asia/Singapore").toISOString()
+          new TZDate(1880, 1, 11, 12, 30, "Asia/Singapore").toISOString(),
         ).toBe("1880-02-11T12:30:00.000+06:55");
         expect(
-            new TZDate(1880, 1, 11, 12, 30, "America/New_York").toISOString()
+          new TZDate(1880, 1, 11, 12, 30, "America/New_York").toISOString(),
         ).toBe("1880-02-11T12:30:00.000-04:56");
         // Seconds
         expect(
@@ -143,10 +143,10 @@ describe("TZDate", () => {
           new TZDate(2024, 1, 11, 12, 30, 45, "America/New_York").toISOString(),
         ).toBe("2024-02-11T12:30:45.000-05:00");
         expect(
-            new TZDate(1880, 1, 11, 12, 30, 45, "Asia/Singapore").toISOString()
+          new TZDate(1880, 1, 11, 12, 30, 45, "Asia/Singapore").toISOString(),
         ).toBe("1880-02-11T12:30:45.000+06:55");
         expect(
-            new TZDate(1880, 1, 11, 12, 30, 45, "America/New_York").toISOString()
+          new TZDate(1880, 1, 11, 12, 30, 45, "America/New_York").toISOString(),
         ).toBe("1880-02-11T12:30:45.000-04:56");
         // Milliseconds
         expect(
@@ -174,28 +174,28 @@ describe("TZDate", () => {
           ).toISOString(),
         ).toBe("2024-02-11T12:30:45.987-05:00");
         expect(
-            new TZDate(
-                1880,
-                1,
-                11,
-                12,
-                30,
-                45,
-                987,
-                "Asia/Singapore"
-            ).toISOString()
+          new TZDate(
+            1880,
+            1,
+            11,
+            12,
+            30,
+            45,
+            987,
+            "Asia/Singapore",
+          ).toISOString(),
         ).toBe("1880-02-11T12:30:45.987+06:55");
         expect(
-            new TZDate(
-                1880,
-                1,
-                11,
-                12,
-                30,
-                45,
-                987,
-                "America/New_York"
-            ).toISOString()
+          new TZDate(
+            1880,
+            1,
+            11,
+            12,
+            30,
+            45,
+            987,
+            "America/New_York",
+          ).toISOString(),
         ).toBe("1880-02-11T12:30:45.987-04:56");
       });
 
@@ -1320,11 +1320,13 @@ describe("TZDate", () => {
           30,
         );
         expect(new TZDate(dateStr, "Asia/Singapore").getUTCSeconds()).toBe(30);
-        expect(new TZDate(beforeGMTDateStr, "America/New_York").getUTCSeconds()).toBe(
-            30
-        );
-        expect(new TZDate(beforeGMTDateStr, "Asia/Singapore").getUTCSeconds()).toBe(30);
-    });
+        expect(
+          new TZDate(beforeGMTDateStr, "America/New_York").getUTCSeconds(),
+        ).toBe(30);
+        expect(
+          new TZDate(beforeGMTDateStr, "Asia/Singapore").getUTCSeconds(),
+        ).toBe(30);
+      });
 
       it("returns NaN when the date or time zone are invalid", () => {
         expect(new TZDate(NaN, "America/New_York").getUTCSeconds()).toBe(NaN);
@@ -1657,8 +1659,12 @@ describe("TZDate", () => {
         const beforeGMTDate = new TZDate(beforeGMTDateStr, "America/New_York");
         const beforeGMTNewDate = beforeGMTDate.withTimeZone("Asia/Singapore");
 
-        expect(beforeGMTDate.toISOString()).toBe("1880-02-10T19:03:58.000-04:56");
-        expect(beforeGMTNewDate.toISOString()).toBe("1880-02-11T06:55:25.000+06:55");
+        expect(beforeGMTDate.toISOString()).toBe(
+          "1880-02-10T19:03:58.000-04:56",
+        );
+        expect(beforeGMTNewDate.toISOString()).toBe(
+          "1880-02-11T06:55:25.000+06:55",
+        );
       });
     });
 
@@ -1671,10 +1677,10 @@ describe("TZDate", () => {
           new TZDate(defaultDateStr, "Asia/Singapore").getTimezoneOffset(),
         ).toBe(-480);
         expect(
-          new TZDate(beforeGMTDateStr, "America/New_York").getTimezoneOffset()
+          new TZDate(beforeGMTDateStr, "America/New_York").getTimezoneOffset(),
         ).toBe(296);
         expect(
-            new TZDate(beforeGMTDateStr, "Asia/Singapore").getTimezoneOffset()
+          new TZDate(beforeGMTDateStr, "Asia/Singapore").getTimezoneOffset(),
         ).toBe(-415);
       });
 
@@ -1729,9 +1735,9 @@ describe("TZDate", () => {
 
         const beforeGMTDate = new Date("1880-01-01T00:00:00.000+08:00");
         expect(
-            new TZDate(+beforeGMTDate, "America/New_York")[Symbol.toPrimitive](
-                "number"
-            )
+          new TZDate(+beforeGMTDate, "America/New_York")[Symbol.toPrimitive](
+            "number",
+          ),
         ).toBe(+beforeGMTDate);
       });
     });
@@ -1753,23 +1759,23 @@ describe("TZDate", () => {
         expect(new TZDate(2015, 8, 1, "Asia/Pyongyang").toISOString()).toBe(
           "2015-09-01T00:00:00.000+08:30",
         );
-        expect(new TZDate(1880, 0, 1, 22, 25, 54, "America/New_York").toISOString()).toBe(
-            "1880-01-01T22:25:54.000-04:56"
-        );
+        expect(
+          new TZDate(1880, 0, 1, 22, 25, 54, "America/New_York").toISOString(),
+        ).toBe("1880-01-01T22:25:54.000-04:56");
         expect(new TZDate(1880, 0, 1, "America/New_York").toISOString()).toBe(
-            "1880-01-01T00:00:00.000-04:56"
+          "1880-01-01T00:00:00.000-04:56",
         );
         expect(new TZDate(1880, 0, 1, "Asia/Pyongyang").toISOString()).toBe(
-            "1880-01-01T00:00:00.000+08:23"
+          "1880-01-01T00:00:00.000+08:23",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Moscow").toISOString()).toBe(
-            "1880-01-01T00:00:00.000+02:30"
+          "1880-01-01T00:00:00.000+02:30",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Berlin").toISOString()).toBe(
-            "1880-01-01T00:00:00.000+00:53"
+          "1880-01-01T00:00:00.000+00:53",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Vienna").toISOString()).toBe(
-            "1880-01-01T00:00:00.000+01:05"
+          "1880-01-01T00:00:00.000+01:05",
         );
       });
     });
@@ -1785,23 +1791,23 @@ describe("TZDate", () => {
         expect(new TZDate(2015, 8, 1, "Asia/Pyongyang").toJSON()).toBe(
           "2015-09-01T00:00:00.000+08:30",
         );
-        expect(new TZDate(1880, 0, 1, 22, 25, 54, "America/New_York").toJSON()).toBe(
-            "1880-01-01T22:25:54.000-04:56"
-        );
+        expect(
+          new TZDate(1880, 0, 1, 22, 25, 54, "America/New_York").toJSON(),
+        ).toBe("1880-01-01T22:25:54.000-04:56");
         expect(new TZDate(1880, 0, 1, "America/New_York").toJSON()).toBe(
-            "1880-01-01T00:00:00.000-04:56"
+          "1880-01-01T00:00:00.000-04:56",
         );
         expect(new TZDate(1880, 0, 1, "Asia/Pyongyang").toJSON()).toBe(
-            "1880-01-01T00:00:00.000+08:23"
+          "1880-01-01T00:00:00.000+08:23",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Moscow").toJSON()).toBe(
-            "1880-01-01T00:00:00.000+02:30"
+          "1880-01-01T00:00:00.000+02:30",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Berlin").toJSON()).toBe(
-            "1880-01-01T00:00:00.000+00:53"
+          "1880-01-01T00:00:00.000+00:53",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Vienna").toJSON()).toBe(
-            "1880-01-01T00:00:00.000+01:05"
+          "1880-01-01T00:00:00.000+01:05",
         );
       });
     });
@@ -1817,23 +1823,23 @@ describe("TZDate", () => {
         expect(new TZDate(2020, 5, 1, "America/New_York").toString()).toBe(
           "Mon Jun 01 2020 00:00:00 GMT-0400 (Eastern Daylight Time)",
         );
-        expect(new TZDate(1880, 0, 1, 22, 25, 54, "America/New_York").toString()).toBe(
-            "Thu Jan 01 1880 22:25:54 GMT-0456 (GMT-04:56:02)"
-        );
+        expect(
+          new TZDate(1880, 0, 1, 22, 25, 54, "America/New_York").toString(),
+        ).toBe("Thu Jan 01 1880 22:25:54 GMT-0456 (GMT-04:56:02)");
         expect(new TZDate(1880, 0, 1, "America/New_York").toString()).toBe(
-            "Thu Jan 01 1880 00:00:00 GMT-0456 (GMT-04:56:02)"
+          "Thu Jan 01 1880 00:00:00 GMT-0456 (GMT-04:56:02)",
         );
         expect(new TZDate(1880, 0, 1, "Asia/Pyongyang").toString()).toBe(
-            "Thu Jan 01 1880 00:00:00 GMT+0823 (GMT+08:23)"
+          "Thu Jan 01 1880 00:00:00 GMT+0823 (GMT+08:23)",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Moscow").toString()).toBe(
-            "Thu Jan 01 1880 00:00:00 GMT+0230 (GMT+02:30:17)"
+          "Thu Jan 01 1880 00:00:00 GMT+0230 (GMT+02:30:17)",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Berlin").toString()).toBe(
-            "Thu Jan 01 1880 00:00:00 GMT+0053 (GMT+00:53:28)"
+          "Thu Jan 01 1880 00:00:00 GMT+0053 (GMT+00:53:28)",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Vienna").toString()).toBe(
-            "Thu Jan 01 1880 00:00:00 GMT+0105 (GMT+01:05:21)"
+          "Thu Jan 01 1880 00:00:00 GMT+0105 (GMT+01:05:21)",
         );
       });
     });
@@ -1846,23 +1852,23 @@ describe("TZDate", () => {
         expect(
           new TZDate("2020-01-01T00:00:00Z", "America/New_York").toDateString(),
         ).toBe("Tue Dec 31 2019");
-        expect(new TZDate(1880, 0, 1, 22, 25, 54, "America/New_York").toDateString()).toBe(
-            "Thu Jan 01 1880"
-        );
+        expect(
+          new TZDate(1880, 0, 1, 22, 25, 54, "America/New_York").toDateString(),
+        ).toBe("Thu Jan 01 1880");
         expect(new TZDate(1880, 0, 1, "America/New_York").toDateString()).toBe(
-            "Thu Jan 01 1880"
+          "Thu Jan 01 1880",
         );
         expect(new TZDate(1880, 0, 1, "Asia/Pyongyang").toDateString()).toBe(
-            "Thu Jan 01 1880"
+          "Thu Jan 01 1880",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Moscow").toDateString()).toBe(
-            "Thu Jan 01 1880"
+          "Thu Jan 01 1880",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Berlin").toDateString()).toBe(
-            "Thu Jan 01 1880"
+          "Thu Jan 01 1880",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Vienna").toDateString()).toBe(
-            "Thu Jan 01 1880"
+          "Thu Jan 01 1880",
         );
       });
     });
@@ -1882,19 +1888,19 @@ describe("TZDate", () => {
           "00:00:00 GMT-0400 (Eastern Daylight Time)",
         );
         expect(new TZDate(1880, 0, 1, "America/New_York").toTimeString()).toBe(
-            "00:00:00 GMT-0456 (GMT-04:56:02)"
+          "00:00:00 GMT-0456 (GMT-04:56:02)",
         );
         expect(new TZDate(1880, 0, 1, "Asia/Pyongyang").toTimeString()).toBe(
-            "00:00:00 GMT+0823 (GMT+08:23)"
+          "00:00:00 GMT+0823 (GMT+08:23)",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Moscow").toTimeString()).toBe(
-            "00:00:00 GMT+0230 (GMT+02:30:17)"
+          "00:00:00 GMT+0230 (GMT+02:30:17)",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Berlin").toTimeString()).toBe(
-            "00:00:00 GMT+0053 (GMT+00:53:28)"
+          "00:00:00 GMT+0053 (GMT+00:53:28)",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Vienna").toTimeString()).toBe(
-            "00:00:00 GMT+0105 (GMT+01:05:21)"
+          "00:00:00 GMT+0105 (GMT+01:05:21)",
         );
       });
     });
@@ -1914,19 +1920,19 @@ describe("TZDate", () => {
           ).toUTCString(),
         ).toBe("Tue, 11 Feb 2020 08:00:00 GMT");
         expect(new TZDate(1880, 0, 1, "America/New_York").toUTCString()).toBe(
-            "Thu, 01 Jan 1880 04:56:02 GMT"
+          "Thu, 01 Jan 1880 04:56:02 GMT",
         );
         expect(new TZDate(1880, 0, 1, "Asia/Pyongyang").toUTCString()).toBe(
-            "Wed, 31 Dec 1879 15:37:00 GMT"
+          "Wed, 31 Dec 1879 15:37:00 GMT",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Moscow").toUTCString()).toBe(
-            "Wed, 31 Dec 1879 21:29:43 GMT"
+          "Wed, 31 Dec 1879 21:29:43 GMT",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Berlin").toUTCString()).toBe(
-            "Wed, 31 Dec 1879 23:06:32 GMT"
+          "Wed, 31 Dec 1879 23:06:32 GMT",
         );
         expect(new TZDate(1880, 0, 1, "Europe/Vienna").toUTCString()).toBe(
-            "Wed, 31 Dec 1879 22:54:39 GMT"
+          "Wed, 31 Dec 1879 22:54:39 GMT",
         );
       });
     });

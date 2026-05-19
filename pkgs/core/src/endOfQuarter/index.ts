@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link endOfQuarter} function options.
  */
-export interface EndOfQuarterOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface EndOfQuarterOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfQuarter

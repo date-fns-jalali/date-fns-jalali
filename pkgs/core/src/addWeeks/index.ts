@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link addWeeks} function options.
  */
-export interface AddWeeksOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface AddWeeksOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name addWeeks

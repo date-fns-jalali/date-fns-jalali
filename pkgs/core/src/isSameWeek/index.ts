@@ -7,9 +7,7 @@ import type { ContextOptions, DateArg } from "../types.ts";
  * The {@link isSameWeek} function options.
  */
 export interface IsSameWeekOptions
-  extends WeekOptions,
-    LocalizedOptions<"options">,
-    ContextOptions<Date> {}
+  extends WeekOptions, LocalizedOptions<"options">, ContextOptions<Date> {}
 
 /**
  * @name isSameWeek

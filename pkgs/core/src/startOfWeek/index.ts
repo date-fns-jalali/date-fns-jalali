@@ -11,9 +11,7 @@ import type {
  * The {@link startOfWeek} function options.
  */
 export interface StartOfWeekOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">,
-    WeekOptions,
-    ContextOptions<DateType> {}
+  extends LocalizedOptions<"options">, WeekOptions, ContextOptions<DateType> {}
 
 /**
  * @name startOfWeek

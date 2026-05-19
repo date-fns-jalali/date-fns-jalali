@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link subDays} function options.
  */
-export interface SubDaysOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SubDaysOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name subDays

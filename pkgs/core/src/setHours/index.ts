@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link setHours} function options.
  */
-export interface SetHoursOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SetHoursOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setHours

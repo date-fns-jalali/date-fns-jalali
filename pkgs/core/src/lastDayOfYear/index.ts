@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link lastDayOfYear} function options.
  */
-export interface LastDayOfYearOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface LastDayOfYearOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfYear

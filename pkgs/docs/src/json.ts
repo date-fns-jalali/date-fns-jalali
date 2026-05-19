@@ -17,7 +17,7 @@ import { findFn, traverseType } from "./utils.js";
  */
 export async function readRefsFromJSON(
   config: DateFnsDocs.Config,
-  configDir: string
+  configDir: string,
 ): Promise<DateFnsDocs.Reflection[]> {
   const jsonPath = path.resolve(configDir, config.json);
   const docs = await readDocsJSON(jsonPath);
@@ -112,7 +112,7 @@ function traverseRefs(refl: DeclarationReflection, cb: (ref: RefType) => void) {
   refl.extendedTypes?.forEach(extractRefFromType);
 
   refl.typeParameters?.forEach(
-    (rfl) => rfl.type && traverseType(rfl.type, extractRefFromType)
+    (rfl) => rfl.type && traverseType(rfl.type, extractRefFromType),
   );
 
   refl.children?.forEach((rfl) => traverseRefs(rfl, cb));
@@ -143,7 +143,7 @@ function typesMap(ref: ContainerReflection) {
 
 function traverseTypes(
   ref: ContainerReflection | DeclarationReflection,
-  cb: (ref: DeclarationReflection) => void
+  cb: (ref: DeclarationReflection) => void,
 ) {
   ref.children?.forEach((r) => {
     cb(r);
@@ -157,7 +157,7 @@ function traverseTypes(
  * @returns parsed container reflection
  */
 export async function readDocsJSON(
-  jsonPath: string
+  jsonPath: string,
 ): Promise<ContainerReflection> {
   const docsJSON = await readFile(jsonPath, "utf8");
   return JSON.parse(docsJSON) as ContainerReflection;

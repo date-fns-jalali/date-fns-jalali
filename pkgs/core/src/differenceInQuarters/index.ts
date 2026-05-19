@@ -6,8 +6,7 @@ import type { ContextOptions, DateArg, RoundingOptions } from "../types.ts";
  * The {@link differenceInQuarters} function options.
  */
 export interface DifferenceInQuartersOptions
-  extends RoundingOptions,
-    ContextOptions<Date> {}
+  extends RoundingOptions, ContextOptions<Date> {}
 
 /**
  * @name differenceInQuarters

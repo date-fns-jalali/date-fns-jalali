@@ -21,7 +21,8 @@ import type {
  * The {@link formatDistanceStrict} function options.
  */
 export interface FormatDistanceStrictOptions
-  extends LocalizedOptions<"formatDistance">,
+  extends
+    LocalizedOptions<"formatDistance">,
     RoundingOptions,
     ContextOptions<Date> {
   /** Add "X ago"/"in X" in the locale language */

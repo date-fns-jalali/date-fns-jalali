@@ -8,7 +8,7 @@ console.log(
       .split(" ")
       .slice(1)
       .join(" ")
-  } ######`
+  } ######`,
 );
 
 function handle(fn, ...args) {
@@ -126,9 +126,9 @@ function print(date) {
 
 function format(date) {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
-    date.getDate()
+    date.getDate(),
   )}T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(
-    date.getSeconds()
+    date.getSeconds(),
   )}.${pad(date.getMilliseconds(), 3)}${tz(date)}`;
 }
 

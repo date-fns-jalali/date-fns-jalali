@@ -2,10 +2,10 @@
   "name": "@date-fns/example-cdn",
   "version": "0.1.0",
   "description": "Example of date-fns usage with CDN versions",
-  "main": "example.ts",
-  "author": "Sasha Koss <koss@nocorp.me>",
   "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
   "type": "module",
+  "main": "example.ts",
   "scripts": {
     "build": "rm -rf node_modules/date-fns && mkdir -p node_modules && cp -r ../../lib node_modules/date-fns || pnpm run build-date-fns",
     "build-date-fns": "env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",

@@ -15,9 +15,8 @@ import type {
  * The {@link formatRelative} function options.
  */
 export interface FormatRelativeOptions
-  extends LocalizedOptions<
-      "options" | "localize" | "formatLong" | "formatRelative"
-    >,
+  extends
+    LocalizedOptions<"options" | "localize" | "formatLong" | "formatRelative">,
     WeekOptions,
     ContextOptions<Date> {}
 

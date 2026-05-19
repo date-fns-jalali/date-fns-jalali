@@ -12,9 +12,7 @@ import type {
  * The {@link setDay} function options.
  */
 export interface SetDayOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">,
-    WeekOptions,
-    ContextOptions<DateType> {}
+  extends LocalizedOptions<"options">, WeekOptions, ContextOptions<DateType> {}
 
 /**
  * @name setDay

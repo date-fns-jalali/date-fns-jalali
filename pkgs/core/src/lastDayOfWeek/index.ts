@@ -11,9 +11,7 @@ import type {
  * The {@link lastDayOfWeek} function options.
  */
 export interface LastDayOfWeekOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">,
-    WeekOptions,
-    ContextOptions<DateType> {}
+  extends LocalizedOptions<"options">, WeekOptions, ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfWeek

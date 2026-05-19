@@ -13,7 +13,8 @@ import type {
  * The {@link roundToNearestHours} function options.
  */
 export interface RoundToNearestHoursOptions<DateType extends Date = Date>
-  extends NearestToUnitOptions<NearestHours>,
+  extends
+    NearestToUnitOptions<NearestHours>,
     RoundingOptions,
     ContextOptions<DateType> {}
 

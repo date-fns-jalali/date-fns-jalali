@@ -4,8 +4,9 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link nextWednesday} function options.
  */
-export interface NextWednesdayOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface NextWednesdayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name nextWednesday

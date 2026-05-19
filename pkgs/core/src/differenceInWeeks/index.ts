@@ -6,8 +6,7 @@ import type { ContextOptions, DateArg, RoundingOptions } from "../types.ts";
  * The {@link differenceInWeeks} function options.
  */
 export interface DifferenceInWeeksOptions
-  extends RoundingOptions,
-    ContextOptions<Date> {}
+  extends RoundingOptions, ContextOptions<Date> {}
 
 /**
  * @name differenceInWeeks
