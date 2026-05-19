@@ -1,8 +1,0 @@
-packages:
-  - "."
-  - "playground"
-  - "test/engines"
-
-onlyBuiltDependencies:
-  - "@swc/core"
-  - esbuild

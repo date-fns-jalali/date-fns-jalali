@@ -2,6 +2,24 @@
   "name": "@date-fns/tz",
   "version": "1.4.1",
   "description": "date-fns timezone utils",
+  "keywords": [
+    "date",
+    "date-fns",
+    "datetime",
+    "time",
+    "timezones",
+    "tz"
+  ],
+  "homepage": "https://github.com/date-fns/date-fns#readme",
+  "bugs": {
+    "url": "https://github.com/date-fns/date-fns/issues"
+  },
+  "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/date-fns/date-fns.git"
+  },
   "type": "module",
   "module": "src/index.ts",
   "exports": {
@@ -104,24 +122,6 @@
   "scripts": {
     "test": "vitest run"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/date-fns/tz.git"
-  },
-  "keywords": [
-    "date-fns",
-    "tz",
-    "timezones",
-    "date",
-    "time",
-    "datetime"
-  ],
-  "author": "Sasha Koss <koss@nocorp.me>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/date-fns/tz/issues"
-  },
-  "homepage": "https://github.com/date-fns/tz#readme",
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@babel/cli": "^7.28.0",
@@ -143,6 +143,5 @@
     "tinybench": "^2.7.0",
     "typescript": "5.9.2",
     "vitest": "^3.2.4"
-  },
-  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+  }
 }

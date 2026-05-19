@@ -2,11 +2,24 @@
   "name": "@date-fns/docs",
   "version": "0.38.0",
   "description": "date-fns documentation utilities & types",
-  "type": "module",
-  "main": "index.js",
+  "keywords": [
+    "date-fns"
+  ],
+  "homepage": "https://github.com/date-fns/date-fns#readme",
+  "bugs": {
+    "url": "https://github.com/date-fns/date-fns/issues"
+  },
+  "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/date-fns/date-fns.git"
+  },
   "bin": {
     "date-fns-docs": "./src/bin.ts"
   },
+  "type": "module",
+  "main": "index.js",
   "exports": {
     ".": "./src/index.ts"
   },
@@ -25,19 +38,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/date-fns/docs.git"
-  },
-  "keywords": [
-    "date-fns"
-  ],
-  "author": "Sasha Koss <koss@nocorp.me>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/date-fns/docs/issues"
-  },
-  "homepage": "https://github.com/date-fns/docs#readme",
   "dependencies": {
     "firebase-admin": "^12.4.0",
     "js-fns": "^2.5.2",
@@ -46,7 +46,6 @@
     "typesaurus": "^10.7.0"
   },
   "devDependencies": {
-    "@date-fns/build": "workspace:^",
     "@deno/doc": "jsr:^0.181.0",
     "@types/mdast": "^4.0.4",
     "@types/node": "^20.19.9",

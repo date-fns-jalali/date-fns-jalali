@@ -2,7 +2,6 @@
 
 import { readFile, readdir, rmdir, stat, unlink, writeFile } from "fs/promises";
 import { dirname, join, relative, resolve } from "path";
-import { flattenImportPath, flattenPath } from "@date-fns/build";
 
 const dirsToRemove = new Set<string>();
 const root = resolve(process.env.PACKAGE_OUTPUT_PATH || "lib");
@@ -83,3 +82,28 @@ async function getFiles(dir: string): Promise<string[]> {
 }
 
 main();
+
+function flattenImportPath(
+  relativeRoot: string,
+  filePath: string,
+  relImportPath: string,
+): string {
+  const importPath = join(dirname(filePath), relImportPath);
+
+  const newFilePath = flattenPath(relativeRoot, filePath);
+  const newFullImportPath = flattenPath(relativeRoot, importPath);
+
+  // Determine the relative path between newFilePath and newFullImportPath
+  const newImportPath = relative(dirname(newFilePath), newFullImportPath);
+
+  return newImportPath.startsWith(".") ? newImportPath : "./" + newImportPath;
+}
+
+function flattenPath(relativeRoot: string, oldPath: string) {
+  const ignoreMove = [new RegExp(`^${relativeRoot}/index`)];
+
+  if (ignoreMove.some((r) => r.test(oldPath))) return oldPath;
+  return oldPath
+    .replace(/([^/]+)\/index\.(.+)$/, "$1.$2")
+    .replace(/([^/]+)\/index$/, "$1");
+}
