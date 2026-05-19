@@ -1,9 +1,0 @@
-node_modules
-tmp
-lib
-# TypeScript
-/.ts/
-# Secrets
-.env
-.env.*
-!.env.example

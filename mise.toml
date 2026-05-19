@@ -1,3 +1,7 @@
+experimental_monorepo_root = true
+[monorepo]
+config_roots = ["pkgs/*"]
+
 [tools]
 # Stack
 node = "latest"
@@ -13,6 +17,9 @@ watchexec = "latest"
 experimental = true
 # Ignore idiomatic version files
 idiomatic_version_file_enable_tools = []
+
+[env]
+MISE_EXPERIMENTAL = true # Enable monorepo root support
 
 [tasks."types"]
 run = "pnpm tsgo --build"
