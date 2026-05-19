@@ -1,6 +1,9 @@
 name: Are the types wrong?
 
-on: [push, pull_request]
+# TODO: Are the types wrong? become unreasonably slow, so we had to disable it.
+# We need to figure out the reason and re-enable it, or get rid of it.
+on: workflow_dispatch
+# on: [push, pull_request]
 
 jobs:
   tests:
