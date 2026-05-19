@@ -1,0 +1,11 @@
+# Node.js
+node_modules/
+.pnpm-store/
+# TypeScript
+.ts/
+# Dist
+/lib/
+# Secrets
+.env
+.env.*
+!.env.example

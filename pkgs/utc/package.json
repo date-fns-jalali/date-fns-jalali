@@ -1,0 +1,96 @@
+{
+  "name": "@date-fns/utc",
+  "version": "2.1.1",
+  "description": "UTC date utils",
+  "scripts": {
+    "test": "env TZ=Asia/Kolkata vitest",
+    "build": "make build"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./date": "./src/date/index.ts",
+    "./date/mini": "./src/date/mini.ts",
+    "./utc": "./src/utc/index.ts"
+  },
+  "publishConfig": {
+    "main": "index.cjs",
+    "module": "index.js",
+    "exports": {
+      "./package.json": "./package.json",
+      ".": {
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        },
+        "import": {
+          "types": "./index.d.ts",
+          "default": "./index.js"
+        }
+      },
+      "./date": {
+        "require": {
+          "types": "./date/index.d.cts",
+          "default": "./date/index.cjs"
+        },
+        "import": {
+          "default": "./date/index.js"
+        }
+      },
+      "./date/mini": {
+        "require": {
+          "types": "./date/mini.d.cts",
+          "default": "./date/mini.cjs"
+        },
+        "import": {
+          "types": "./date/mini.d.ts",
+          "default": "./date/mini.js"
+        }
+      },
+      "./utc": {
+        "require": {
+          "types": "./utc/index.d.cts",
+          "default": "./utc/index.cjs"
+        },
+        "import": {
+          "types": "./utc/index.d.ts",
+          "default": "./utc/index.js"
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/date-fns/utc.git"
+  },
+  "keywords": [
+    "date-fns",
+    "Date",
+    "UTC",
+    "Time zones"
+  ],
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/date-fns/utc/issues"
+  },
+  "homepage": "https://github.com/date-fns/utc#readme",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.16.2",
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.24.1",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-typescript": "^7.24.1",
+    "@parcel/watcher": "^2.4.1",
+    "@sinonjs/fake-timers": "^13.0.1",
+    "@types/sinonjs__fake-timers": "^8.1.5",
+    "babel-plugin-replace-import-extension": "^1.1.4",
+    "glob": "^11.0.0",
+    "minimatch": "^10.0.1",
+    "prettier": "^3.6.2",
+    "typescript": "5.9.2",
+    "vitest": "^3.2.4"
+  },
+  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+}
