@@ -75,14 +75,14 @@ Starting with [v1.3.0](https://github.com/date-fns/tz/releases/tag/v1.3.0), `@da
 To use it, you need to import the following polyfills in your entry point:
 
 ```ts
-import "@formatjs/intl-getcanonicallocales/polyfill";
-import "@formatjs/intl-locale/polyfill";
-import "@formatjs/intl-pluralrules/polyfill";
-import "@formatjs/intl-numberformat/polyfill";
-import "@formatjs/intl-numberformat/locale-data/en";
-import "@formatjs/intl-datetimeformat/polyfill";
-import "@formatjs/intl-datetimeformat/locale-data/en";
-import "@formatjs/intl-datetimeformat/add-golden-tz"; // or: "@formatjs/intl-datetimeformat/add-all-tz"
+import "@formatjs/intl-getcanonicallocales/polyfill.js";
+import "@formatjs/intl-locale/polyfill.js";
+import "@formatjs/intl-pluralrules/polyfill.js";
+import "@formatjs/intl-numberformat/polyfill.js";
+import "@formatjs/intl-numberformat/locale-data/en.js";
+import "@formatjs/intl-datetimeformat/polyfill.js";
+import "@formatjs/intl-datetimeformat/locale-data/en.js";
+import "@formatjs/intl-datetimeformat/add-golden-tz.js"; // or: "@formatjs/intl-datetimeformat/add-all-tz.js"
 ```
 
 [The JavaScriptCore engine](https://github.com/apple-opensource/JavaScriptCore) is also supported and tested but does not require any polyfills.

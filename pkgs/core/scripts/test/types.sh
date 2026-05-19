@@ -6,9 +6,10 @@
 
 set -e
 
-# cd to the root dir
 root="$(pwd)/$(dirname "$0")/../.."
-export PACKAGE_OUTPUT_PATH=$(realpath "$root/tmp/types")
+root_rel_path="$root/tmp/types"
+mkdir -p "$root_rel_path"
+export PACKAGE_OUTPUT_PATH=$(realpath "$root_rel_path")
 
 export PACKAGE_SKIP_BEAUTIFY=true
 export PACKAGE_SKIP_CDN=true

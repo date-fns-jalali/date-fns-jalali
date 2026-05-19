@@ -29,7 +29,7 @@ listLocales()
     Promise.all(
       locales.map(async (localeObj) => {
         const { code, fullPath } = localeObj;
-        const locale: Locale = (await import(`@wrkspc/src/locale/${code}`))[
+        const locale: Locale = (await import(`../../../src/locale/${code}`))[
           convertLocaleToConst(code)
         ];
         const source = (

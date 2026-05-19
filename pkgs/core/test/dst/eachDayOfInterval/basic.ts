@@ -1,6 +1,6 @@
 // This is basic DST test for eachDayOfInterval
 
-import { eachDayOfInterval } from "../../../src/eachDayOfInterval/index.js";
+import { eachDayOfInterval } from "../../../src/eachDayOfInterval/index.ts";
 import assert from "assert";
 
 if (process.env.TZ !== "Asia/Damascus")

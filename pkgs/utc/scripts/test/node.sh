@@ -7,18 +7,23 @@ set -e
 # First, make sure the library is built
 make build
 
+# Apply publishConfig to package.json
+jaq -i '. + .publishConfig' ./dist/package.json
+
 versions_array=(
-  "node@18"
-  "node@20"
-  "node@22"
-  "node@23"
-  "node@24"
+  "20"
+  "22"
+  "23"
+  "24"
+  "25"
+  "26"
 )
 
 for version in "${versions_array[@]}"; do
   printf "\n🚧 Running tests in $version\n"
+  cmd="node@${version}"
 
-  mise x "${version}" -- node --eval 'require("./lib")'
+  mise x "${version}" -- node --eval 'require("./dist")'
   printf "✅ Package CommonJS is ok!\n"
 
   mise x "${version}" -- node scripts/test/node/esm.js

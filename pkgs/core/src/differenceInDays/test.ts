@@ -1,6 +1,6 @@
 import { TZDate, tz } from "@date-fns/tz";
 import { describe, expect, it } from "vitest";
-import { getDstTransitions } from "../_lib/tzOffsetTransitions.ts";
+import { getDstTransitions } from "../_lib/test/tzOffsetTransitions.ts";
 import type { ContextOptions } from "../types.ts";
 import { differenceInDays } from "./index.ts";
 

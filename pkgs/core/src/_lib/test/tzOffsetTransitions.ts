@@ -1,7 +1,7 @@
-type PartialInterval = {
+interface PartialInterval {
   start: Date | undefined;
   end: Date | undefined;
-};
+}
 
 /**
  * Fetch the start and end of DST for the local time
@@ -73,7 +73,7 @@ function previousTickTimezoneOffset(date: Date): number {
  * but sometimes there are non-DST changes, e.g.
  * when a country changes its time zone
  * @param year
- * @returns array of objects, each  with the following 
+ * @returns array of objects, each  with the following
  * propeerties:
  * - `date` - a `Date` representing the first instant
  *   when the new timezone offset is effective.

@@ -1,13 +1,18 @@
 {
-  "extends": "./src/tsconfig",
+  "extends": "./tsconfig",
   "compilerOptions": {
-    "outDir": "./lib",
-    "incremental": false,
-    "composite": false
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "composite": false,
+    "incremental": false
   },
   "include": ["src/**/*.ts"],
   "exclude": [
-    "lib",
+    "dist",
     "node_modules",
     "config",
     "test.js",

@@ -1,6 +1,6 @@
 // This is an edge case DST test for parseISO
 
-import { parseISO } from "../../../src/parseISO/index.js";
+import { parseISO } from "../../../src/parseISO/index.ts";
 import assert from "assert";
 
 if (process.env.TZ !== "Pacific/Apia")
@@ -12,5 +12,5 @@ if (parseInt(process.version.match(/^v(\d+)\./)?.[1] || "0") < 10)
 assert.strictEqual(parseISO("2011-12-30").getDate(), 31);
 assert.strictEqual(
   parseISO("2011-12-30T03:30").toString(),
-  "Sat Dec 31 2011 03:30:00 GMT+1400 (Apia Daylight Time)",
+  "Sat Dec 31 2011 03:30:00 GMT+1400 (Samoa Daylight Time)",
 );

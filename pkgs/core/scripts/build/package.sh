@@ -16,7 +16,7 @@ root="$(pwd)/$(dirname "$0")/../.."
 cd "$root" || exit 1
 
 # XXX: $PACKAGE_OUTPUT_PATH must be an absolute path!
-dir=${PACKAGE_OUTPUT_PATH:-"$root/lib"}
+dir=${PACKAGE_OUTPUT_PATH:-"$root/dist"}
 export PACKAGE_OUTPUT_PATH="$dir"
 
 # Clean up output dir
@@ -70,7 +70,7 @@ echo
 echo "🚧 Building TypeScript definitions..."
 
 # Generate TypeScript
-pnpm tsc --project tsconfig.lib.json --outDir "$dir"
+pnpm tsgo --project tsconfig.dist.json --outDir "$dir"
 
 echo "🟢 TypeScript definitions are ready!"
 
@@ -128,8 +128,8 @@ for pattern in CHANGELOG.md \
   package.json \
   docs \
   LICENSE.md \
-  README.md \
-  SECURITY.md
+  ../../README.md \
+  ../../SECURITY.md
 do
   cp -r "$pattern" "$dir"
 done

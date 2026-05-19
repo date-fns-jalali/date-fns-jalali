@@ -84,13 +84,11 @@
     "@babel/preset-typescript": "^7.24.1",
     "@date-fns/dev": "workspace:*",
     "@parcel/watcher": "^2.4.1",
-    "@sinonjs/fake-timers": "^13.0.1",
-    "@types/sinonjs__fake-timers": "^8.1.5",
     "@typescript/native-preview": "7.0.0-dev.20260421.2",
     "babel-plugin-replace-import-extension": "^1.1.4",
     "glob": "^11.0.0",
     "minimatch": "^10.0.1",
     "prettier": "^3.6.2",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.6"
   }
 }

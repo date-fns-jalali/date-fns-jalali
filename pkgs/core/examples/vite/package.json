@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "pnpm run build-date-fns && tsc && vite build",
-    "build-date-fns": "rm -rf node_modules/date-fns && cp -r ../../lib node_modules/date-fns || env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
+    "build-date-fns": "rm -rf node_modules/date-fns && cp -r ../../dist node_modules/date-fns || env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
     "test": "echo \"We're just testing if it builds atm\""
   },
   "dependencies": {

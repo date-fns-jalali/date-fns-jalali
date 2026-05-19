@@ -3,10 +3,12 @@
   "compilerOptions": {
     "rootDir": "./src",
     "sourceMap": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "skipLibCheck": true,
     "declaration": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "composite": false,
+    "incremental": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["**/tysts.ts", "**/tests.ts"]

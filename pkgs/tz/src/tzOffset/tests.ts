@@ -108,7 +108,7 @@ describe("tzOffset", () => {
     beforeEach(() => {
       mockFormat = vi.fn(() => "5 GMT+08:00");
       const dtf = new Intl.DateTimeFormat();
-      vi.spyOn(Intl, "DateTimeFormat").mockImplementation(() => {
+      vi.spyOn(Intl, "DateTimeFormat").mockImplementation(function () {
         return { ...dtf, format: mockFormat };
       });
     });

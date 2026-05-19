@@ -1,9 +1,9 @@
 import { TZDate, tz } from "@date-fns/tz";
 import { UTCDate } from "@date-fns/utc";
 import { describe, expect, it } from "vitest";
-import { getDstTransitions } from "../_lib/tzOffsetTransitions.ts";
 import { assertType } from "../_lib/test/index.ts";
 import { addMonths } from "./index.ts";
+import { getDstTransitions } from "../_lib/test/tzOffsetTransitions.ts";
 
 describe("addMonths", () => {
   it("adds the given number of months", () => {

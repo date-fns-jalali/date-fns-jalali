@@ -11,6 +11,7 @@ bun = "latest"
 # Tools
 gh = "latest"
 watchexec = "latest"
+jaq = "latest"
 
 [settings]
 # Enable extra features

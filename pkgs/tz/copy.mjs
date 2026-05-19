@@ -31,13 +31,13 @@ if (watch) {
 }
 
 async function copy(path) {
-  const libPath = srcRegExp.test(path)
-    ? path.replace(/^src/, "lib")
-    : join("lib", path);
-  const dir = dirname(libPath);
+  const distPath = srcRegExp.test(path)
+    ? path.replace(/^src/, "dist")
+    : join("dist", path);
+  const dir = dirname(distPath);
   await mkdir(dir, { recursive: true });
-  await copyFile(path, libPath);
-  console.log(`Copied ${path} to ${libPath}`);
+  await copyFile(path, distPath);
+  console.log(`Copied ${path} to ${distPath}`);
 }
 
 export function debounceByArgs(func, waitFor) {

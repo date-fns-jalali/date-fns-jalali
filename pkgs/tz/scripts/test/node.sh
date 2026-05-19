@@ -10,13 +10,16 @@ printf "🤖 Running Node.js versions tests\n"
 printf "👷 Building the package\n"
 make build > /dev/null
 
+# Apply publishConfig to package.json
+jaq -i '. + .publishConfig' ./dist/package.json
+
 versions=(
-  "16"
-  "18"
   "20"
   "22"
   "23"
   "24"
+  "25"
+  "26"
 )
 
 for version in "${versions[@]}"; do

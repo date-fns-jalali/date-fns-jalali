@@ -1,9 +1,8 @@
 // @ts-nocheck - It's tripping with the new TS/TS config
-
 import { fromEntries, last, sample, uniq } from "js-fns";
 import sg from "simple-git";
 import { Octokit } from "@octokit/core";
-import { format } from "@wrkspc/src/format/index.ts";
+import { format } from "../../src/fp/format/index.ts";
 
 const git = sg();
 const gh = new Octokit({ auth: process.env.OCTOKIT_TOKEN });

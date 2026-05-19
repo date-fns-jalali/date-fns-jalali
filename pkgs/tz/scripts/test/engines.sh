@@ -10,7 +10,9 @@ cd test/engines
 
 engines=(
   "hermes"
-  "javascriptcore"
+	# TODO: Enable JavaScriptCore tests once jsvu fixes the issue:
+	# https://github.com/GoogleChromeLabs/jsvu/issues/172
+  # "javascriptcore"
 )
 
 # Install engines

@@ -1,5 +1,4 @@
-import FakeTimers from "@sinonjs/fake-timers";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { UTCDate } from "./index.js";
 
 describe("UTCDate", () => {
@@ -245,15 +244,12 @@ describe("UTCDate", () => {
   });
 
   describe("Sinon fake timers", () => {
-    let timers: FakeTimers.InstalledClock;
     beforeEach(() => {
-      timers = FakeTimers.install({
-        now: new Date(1987, 1, 11, 12, 13, 14, 15),
-      });
+      vi.useFakeTimers({ now: new Date(1987, 1, 11, 12, 13, 14, 15) });
     });
 
     afterEach(() => {
-      timers.uninstall();
+      vi.useRealTimers();
     });
 
     it("mocks the date", () => {

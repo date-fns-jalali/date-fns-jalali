@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": "./src",
     "sourceMap": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "skipLibCheck": true,
     "declaration": true,
     "emitDeclarationOnly": true,

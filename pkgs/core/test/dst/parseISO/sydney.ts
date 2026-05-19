@@ -1,6 +1,6 @@
 // This is basic DST test for parseISO
 
-import { parseISO } from "../../../src/parseISO/index.js";
+import { parseISO } from "../../../src/parseISO/index.ts";
 import assert from "assert";
 
 if (process.env.TZ !== "Australia/Sydney")

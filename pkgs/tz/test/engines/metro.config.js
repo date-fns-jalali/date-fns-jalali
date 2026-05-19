@@ -2,7 +2,7 @@
 const path = require("path");
 
 const projectRoot = __dirname;
-const monorepoRoot = path.resolve(projectRoot, "../..");
+const monorepoRoot = path.resolve(projectRoot, "../../../..");
 
 module.exports = {
   resolver: {

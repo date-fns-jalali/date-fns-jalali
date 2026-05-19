@@ -12,6 +12,7 @@
   },
   "ignorePatterns": [
     "**/lib",
+    "**/dist",
     "**/tmp",
     "**/examples",
     "**/.ts",

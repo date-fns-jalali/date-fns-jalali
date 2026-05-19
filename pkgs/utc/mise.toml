@@ -1,0 +1,13 @@
+[tasks."test"]
+depends = ["test/unit", "test/node"]
+
+[tasks."test/unit"]
+run = "pnpm vitest --run"
+env = { TZ = "Asia/Kolkata" }
+
+[tasks."test/unit:watch"]
+run = "pnpm vitest"
+env = { TZ = "Asia/Kolkata" }
+
+[tasks."test/node"]
+run = "./scripts/test/node.sh"
