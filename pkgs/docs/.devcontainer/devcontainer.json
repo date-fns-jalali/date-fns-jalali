@@ -1,0 +1,30 @@
+{
+  "name": "@date-fns/docs",
+
+  "build": { "dockerfile": "Dockerfile", "context": ".." },
+
+  // Put repo to /wrkspc
+  "workspaceMount": "source=${localWorkspaceFolder},target=/wrkspc/${localWorkspaceFolderBasename},type=bind",
+  "workspaceFolder": "/wrkspc/${localWorkspaceFolderBasename}",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "tamasfe.even-better-toml",
+        "nefrob.vscode-just-syntax",
+        "docker.docker",
+        "esbenp.prettier-vscode",
+        "hverlin.mise-vscode",
+        "tekumara.typos-vscode",
+        "davidlday.languagetool-linter"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "fish",
+        "terminal.integrated.profiles.linux": {
+          "fish": { "path": "/usr/bin/fish" }
+        },
+        "mise.binPath": "/home/vscode/.local/bin/mise"
+      }
+    }
+  }
+}
