@@ -60,7 +60,7 @@ export class TZDateMini extends Date {
 
   //#region time
 
-  setTime(time) {
+  setTime(_time) {
     Date.prototype.setTime.apply(this, arguments);
     syncToInternal(this);
     return +this;

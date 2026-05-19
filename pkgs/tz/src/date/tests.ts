@@ -2364,14 +2364,9 @@ function withDSTStart(tz: string, fn: (date: TZDate) => void) {
   fn(new TZDate(2020, 2, 8, tz));
 }
 
-function withDSTEnd(tz: string, fn: (date: TZDate) => void) {
-  fn(new TZDate(2020, 10, 1, tz));
-}
-
 function utcStr(date: TZDate) {
   return new Date(+date).toISOString();
 }
 
 const laName = "America/Los_Angeles";
 const nyName = "America/New_York";
-const sgName = "Asia/Singapore";

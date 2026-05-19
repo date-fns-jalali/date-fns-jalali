@@ -1,3 +1,4 @@
+// oxlint-disable-next-line typescript/no-require-imports -- This is a CommonJS test
 const { tzOffset, TZDate } = require("../../lib/index.cjs");
 
 {

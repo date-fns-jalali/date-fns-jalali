@@ -6,6 +6,7 @@ bun = "latest"
 
 # Tools
 gh = "latest"
+watchexec = "latest"
 
 [settings]
 # Enable extra features
@@ -18,3 +19,9 @@ run = "pnpm tsgo --build"
 
 [tasks."types:watch"]
 run = "pnpm tsgo --build --watch"
+
+[tasks."lint"]
+run = "pnpm oxlint"
+
+[tasks."lint:watch"]
+run = "watchexec --exts ts,js --clear -- pnpm oxlint"

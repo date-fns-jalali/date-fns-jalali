@@ -158,7 +158,7 @@ declarations.forEach((declaration) => {
   always(srcPath);
 
   const module = srcPath.replace("/index.ts", "");
-  const modulePath = `./${module}`;
+  const _modulePath = `./${module}`;
 
   console.log(`- file: ${srcPath}`);
   console.log(`- module: ${module}`);

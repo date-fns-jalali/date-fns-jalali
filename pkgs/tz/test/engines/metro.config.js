@@ -1,3 +1,4 @@
+// oxlint-disable-next-line typescript/no-require-imports -- Metro needs CommonJS
 const path = require("path");
 
 const projectRoot = __dirname;

@@ -40,7 +40,7 @@ export namespace DateFnsDocs {
     kind: Kind;
     /** The module reflection. */
     ref: DeclarationReflection;
-    /** Overriden category. */
+    /** Overridden category. */
     category: string | undefined;
   }
 
