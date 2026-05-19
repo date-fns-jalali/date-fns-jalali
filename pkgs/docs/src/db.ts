@@ -1,4 +1,4 @@
-import { schema, Typesaurus } from "typesaurus";
+import { schema, type Typesaurus } from "typesaurus";
 import type { DateFnsDocs } from "./types.js";
 
 export const db = schema(($) => ({

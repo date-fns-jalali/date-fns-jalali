@@ -1,4 +1,4 @@
-import { TZDate, tzOffset } from "../../../src/index.ts";
+import { TZDate, tzOffset } from "../../../src/index";
 
 {
   const date = new Date(2022, 2, 13);

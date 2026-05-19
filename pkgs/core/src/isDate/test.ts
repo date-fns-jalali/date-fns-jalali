@@ -1,3 +1,5 @@
+/// <reference lib="dom" />
+
 import { afterEach, describe, expect, it } from "vitest";
 import { assertType } from "../_lib/test/index.ts";
 import { isDate } from "./index.ts";

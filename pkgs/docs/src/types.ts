@@ -1,5 +1,5 @@
-import type { StringifiedJSON } from "typeroo/json";
 import type { DeclarationReflection } from "typedoc";
+import type { StringifiedJSON } from "typeroo/json";
 
 export namespace DateFnsDocs {
   /**

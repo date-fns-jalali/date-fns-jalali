@@ -1,5 +1,5 @@
-import { formatRFC3339 } from "@wrkspc/src/formatRFC3339/index.ts";
 import assert from "node:assert";
+import { formatRFC3339 } from "../../src/formatRFC3339/index.ts";
 
 /**
  * Australia/Eucla (Australia) is interesting for its positive to UTC time, with 45 minutes offset.

@@ -18,7 +18,10 @@ export class SecondParser extends Parser<number> {
     }
   }
 
-  validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  override validate<DateType extends Date>(
+    _date: DateType,
+    value: number,
+  ): boolean {
     return value >= 0 && value <= 59;
   }
 

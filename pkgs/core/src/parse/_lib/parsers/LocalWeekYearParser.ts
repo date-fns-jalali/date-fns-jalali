@@ -35,7 +35,7 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     }
   }
 
-  validate<DateType extends Date>(
+  override validate<DateType extends Date>(
     _date: DateType,
     value: YearParserValue,
   ): boolean {

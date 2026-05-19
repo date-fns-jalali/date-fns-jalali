@@ -1,6 +1,0 @@
-{
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "debug.javascript.defaultRuntimeExecutable": {
-    "pwa-node": "/home/vscode/.local/share/mise/shims/node"
-  }
-}

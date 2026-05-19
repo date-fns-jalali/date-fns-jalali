@@ -1,5 +1,5 @@
-import { formatRelative } from "@wrkspc/src/formatRelative/index.ts";
-import type { Locale } from "@wrkspc/src/types.ts";
+import { formatRelative } from "../../../../src/formatRelative/index.ts";
+import type { Locale } from "../../../../src/types.ts";
 import { baseDate, relativeDates } from "../_lib/distanceDates.ts";
 
 export default function renderFormatRelative(locale: Locale) {

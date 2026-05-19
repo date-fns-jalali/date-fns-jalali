@@ -12,3 +12,9 @@ gh = "latest"
 experimental = true
 # Ignore idiomatic version files
 idiomatic_version_file_enable_tools = []
+
+[tasks."types"]
+run = "pnpm tsgo --build"
+
+[tasks."types:watch"]
+run = "pnpm tsgo --build --watch"

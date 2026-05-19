@@ -25,7 +25,10 @@ export class DayOfYearParser extends Parser<number> {
     }
   }
 
-  validate<DateType extends Date>(date: DateType, value: number): boolean {
+  override validate<DateType extends Date>(
+    date: DateType,
+    value: number,
+  ): boolean {
     const year = date.getFullYear();
     const isLeapYear = isLeapYearIndex(year);
     if (isLeapYear) {

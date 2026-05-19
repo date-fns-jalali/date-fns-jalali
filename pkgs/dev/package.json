@@ -1,0 +1,9 @@
+{
+  "name": "@date-fns/dev",
+  "version": "0.0.0",
+  "private": true,
+  "description": "date-fns dev package",
+  "exports": {
+    "./tsconfig": "./tsconfig.json"
+  }
+}

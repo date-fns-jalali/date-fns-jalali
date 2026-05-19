@@ -1,8 +1,8 @@
-import { format } from "@wrkspc/src/format/index.ts";
-import { isValid } from "@wrkspc/src/isValid/index.ts";
-import { parse } from "@wrkspc/src/parse/index.ts";
-import { toDate } from "@wrkspc/src/toDate/index.ts";
-import type { Locale } from "@wrkspc/src/types.ts";
+import { format } from "../../../../src/format/index.ts";
+import { isValid } from "../../../../src/isValid/index.ts";
+import { parse } from "../../../../src/parse/index.ts";
+import { toDate } from "../../../../src/toDate/index.ts";
+import type { Locale } from "../../../../src/types.ts";
 import formatParseTokens from "./formatParseTokens.ts";
 
 export default function renderFormatParse(locale: Locale) {

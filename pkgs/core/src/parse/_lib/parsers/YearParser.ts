@@ -45,7 +45,7 @@ export class YearParser extends Parser<YearParserValue> {
     }
   }
 
-  validate<DateType extends Date>(
+  override validate<DateType extends Date>(
     _date: DateType,
     value: YearParserValue,
   ): boolean {

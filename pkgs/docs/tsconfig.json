@@ -1,24 +1,3 @@
 {
-  "include": ["src/**/*.ts", "scripts/**/*.ts"],
-  "compilerOptions": {
-    "target": "ESNext",
-    "lib": [],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "allowImportingTsExtensions": true,
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "exactOptionalPropertyTypes": true,
-    "skipLibCheck": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "declaration": true,
-    // Project References setup
-    "composite": true,
-    "incremental": true,
-    "tsBuildInfoFile": ".ts/tsconfig.tsbuildinfo",
-    "types": ["node"]
-  }
+  "extends": "@date-fns/dev/tsconfig"
 }

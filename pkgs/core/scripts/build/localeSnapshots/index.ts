@@ -9,7 +9,7 @@
 
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
-import type { Locale } from "@wrkspc/src/locale/types.ts";
+import type { Locale } from "../../../src/types.ts";
 import { listLocales } from "../../_lib/listLocales.ts";
 import { formatCode } from "../_lib/prettier.ts";
 import { convertLocaleToConst } from "./_lib/locale.ts";

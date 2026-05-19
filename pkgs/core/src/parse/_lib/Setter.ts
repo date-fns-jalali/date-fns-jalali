@@ -48,7 +48,7 @@ export class ValueSetter<Value> extends Setter {
     }
   }
 
-  validate<DateType extends Date>(
+  override validate<DateType extends Date>(
     date: DateType,
     options: ParserOptions,
   ): boolean {
@@ -66,7 +66,7 @@ export class ValueSetter<Value> extends Setter {
 
 export class DateTimezoneSetter extends Setter {
   priority = TIMEZONE_UNIT_PRIORITY;
-  subPriority = -1;
+  override subPriority = -1;
   context: ContextFn<Date>;
 
   constructor(

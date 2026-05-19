@@ -1,6 +1,6 @@
 import { fromTp, toTpInstant } from "../_lib/tp/index.ts";
-import { DateArg, Duration } from "../types.ts";
-import { AddOptions } from "./index.ts";
+import type { DateArg, Duration } from "../types.ts";
+import type { AddOptions } from "./index.ts";
 
 export function tpyAdd<
   DateType extends Date,

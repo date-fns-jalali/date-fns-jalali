@@ -1,6 +1,6 @@
 import { constructFrom } from "../../constructFrom/index.ts";
 import { toDate } from "../../toDate/index.ts";
-import { ContextOptions, DateArg } from "../../types.ts";
+import type { ContextOptions, DateArg } from "../../types.ts";
 
 export function toTpInstant<
   DateType extends Date,
