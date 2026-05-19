@@ -1,0 +1,15 @@
+# Node.js
+node_modules/
+.pnpm-store/
+# TypeScript
+.ts/
+# Dist
+/lib/
+# Temporary
+/tmp/
+# Secrets
+.env
+.env.*
+!.env.example
+# tzdata
+/tzdata/
