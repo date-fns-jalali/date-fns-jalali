@@ -1,7 +1,6 @@
-import { afterEach, beforeEach } from "vitest";
+import { afterEach, beforeEach, vi } from "vitest";
 import { addLeadingZeros } from "../addLeadingZeros/index.ts";
 import { setDefaultOptions } from "../defaultOptions/index.ts";
-import sinon from "sinon";
 
 export function assertType<Type>(_value: Type) {}
 
@@ -40,20 +39,16 @@ export function generateOffset(originalDate: Date) {
 }
 
 export function fakeDate(date: number | Date) {
-  let clock: sinon.SinonFakeTimers | undefined;
-
   function fakeNow(date: number | Date) {
-    clock?.restore();
-    clock = sinon.useFakeTimers(+date);
+    vi.setSystemTime(date);
   }
 
   beforeEach(() => {
-    fakeNow(+date);
+    vi.useFakeTimers({ now: date });
   });
 
   afterEach(() => {
-    clock?.restore();
-    clock = undefined;
+    vi.useRealTimers();
   });
 
   return { fakeNow };

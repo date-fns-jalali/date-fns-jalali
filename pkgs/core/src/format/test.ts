@@ -1,5 +1,4 @@
 import { tz } from "@date-fns/tz";
-import sinon from "sinon";
 import {
   afterEach,
   beforeEach,
@@ -582,23 +581,23 @@ describe("format", () => {
       ].join(" ");
       expect(result).toBe(expectedResult);
 
-      const getTimezoneOffsetStub = sinon.stub(
+      const getTimezoneOffsetStub = vi.spyOn(
         Date.prototype,
         "getTimezoneOffset",
       );
-      getTimezoneOffsetStub.returns(0);
+      getTimezoneOffsetStub.mockReturnValue(0);
       const resultZeroOffset = format(date, "X XX XXX XXXX XXXXX");
       expect(resultZeroOffset).toBe("Z Z Z Z Z");
 
-      getTimezoneOffsetStub.returns(480);
+      getTimezoneOffsetStub.mockReturnValue(480);
       const resultNegativeOffset = format(date, "X XX XXX XXXX XXXXX");
       expect(resultNegativeOffset).toBe("-08 -0800 -08:00 -0800 -08:00");
 
-      getTimezoneOffsetStub.returns(450);
+      getTimezoneOffsetStub.mockReturnValue(450);
       const resultNegative30Offset = format(date, "X XX XXX XXXX XXXXX");
       expect(resultNegative30Offset).toBe("-0730 -0730 -07:30 -0730 -07:30");
 
-      getTimezoneOffsetStub.restore();
+      getTimezoneOffsetStub.mockRestore();
     });
 
     it("ISO-8601 without Z", () => {
@@ -623,21 +622,21 @@ describe("format", () => {
       ].join(" ");
       expect(result).toBe(expectedResult);
 
-      const getTimezoneOffsetStub = sinon.stub(
+      const getTimezoneOffsetStub = vi.spyOn(
         Date.prototype,
         "getTimezoneOffset",
       );
-      getTimezoneOffsetStub.returns(480);
+      getTimezoneOffsetStub.mockReturnValue(480);
       const resultNegativeOffset = format(date, "O OO OOO OOOO");
       expect(resultNegativeOffset).toBe("GMT-8 GMT-8 GMT-8 GMT-08:00");
 
-      getTimezoneOffsetStub.returns(450);
+      getTimezoneOffsetStub.mockReturnValue(450);
       const resultNegative30Offset = format(date, "O OO OOO OOOO");
       expect(resultNegative30Offset).toBe(
         "GMT-7:30 GMT-7:30 GMT-7:30 GMT-07:30",
       );
 
-      getTimezoneOffsetStub.restore();
+      getTimezoneOffsetStub.mockRestore();
     });
 
     it("Specific non-location", () => {

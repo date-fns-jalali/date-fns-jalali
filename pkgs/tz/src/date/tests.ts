@@ -1,5 +1,4 @@
-import FakeTimers from "@sinonjs/fake-timers";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { constructFromSymbol } from "../constants/index.ts";
 import { TZDate } from "./index.js";
 
@@ -7,15 +6,14 @@ describe("TZDate", () => {
   const defaultDateStr = "1987-02-11T00:00:00.000Z";
   const beforeGMTDateStr = "1880-02-11T00:00:00.000Z";
 
-  let timers: FakeTimers.InstalledClock;
   let now = new Date();
 
   function fakeNow(date = new Date(defaultDateStr)) {
     now = date;
-    timers = FakeTimers.install({ now });
+    vi.useFakeTimers({ now });
   }
 
-  afterEach(() => timers?.uninstall());
+  afterEach(() => vi.useRealTimers());
 
   describe("static", () => {
     describe("constructor", () => {

@@ -1,6 +1,5 @@
 import { tz } from "@date-fns/tz";
-import sinon from "sinon";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { generateOffset } from "../_lib/test/index.ts";
 import { formatISO } from "./index.ts";
 
@@ -10,22 +9,22 @@ describe("formatISO", () => {
     const tzOffsetExtended = generateOffset(date);
     expect(formatISO(date)).toBe(`2019-03-03T19:00:52${tzOffsetExtended}`);
 
-    const getTimezoneOffsetStub = sinon.stub(
+    const getTimezoneOffsetStub = vi.spyOn(
       Date.prototype,
       "getTimezoneOffset",
     );
 
-    getTimezoneOffsetStub.returns(480);
+    getTimezoneOffsetStub.mockReturnValue(480);
     const tzNegativeOffsetExtended = generateOffset(date);
     expect(formatISO(date)).toBe(
       `2019-03-03T19:00:52${tzNegativeOffsetExtended}`,
     );
 
-    getTimezoneOffsetStub.returns(0);
+    getTimezoneOffsetStub.mockReturnValue(0);
     const tzZOffsetExtended = generateOffset(date);
     expect(formatISO(date)).toBe(`2019-03-03T19:00:52${tzZOffsetExtended}`);
 
-    getTimezoneOffsetStub.restore();
+    getTimezoneOffsetStub.mockRestore();
   });
 
   it("accepts a timestamp", () => {
