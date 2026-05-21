@@ -19,4 +19,4 @@ jobs:
         run: mise //pkgs/core:install/playwright
 
       - name: Browser tests
-        run: pnpm vitest run --browser
+        run: mise //pkgs/core:test/browser
