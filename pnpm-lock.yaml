@@ -241,8 +241,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1
       date-fns:
-        specifier: 4.0.0-alpha.1
-        version: 4.0.0-alpha.1
+        specifier: workspace:*
+        version: link:../core
       glob:
         specifier: ^10.3.12
         version: 10.4.5
@@ -3164,9 +3164,6 @@ packages:
   dashdash@1.14.1:
     resolution: {integrity: sha512-jRFi8UDGo6j+odZiEpjazZaWqEal3w/basFjQHQEwVtZJGDpxbH1MeYluwCS8Xq5wmLJooDlMgvVarmWfGM44g==}
     engines: {node: '>=0.10'}
-
-  date-fns@4.0.0-alpha.1:
-    resolution: {integrity: sha512-st+1LN3p60ZFMjk83XRuNEdjSIuzNnN8e62XxeqWpC6F9f38N7QwflF6uxC32golMjcb1iTcHQ6AGs6IXAU7zw==}
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -7826,8 +7823,6 @@ snapshots:
   dashdash@1.14.1:
     dependencies:
       assert-plus: 1.0.0
-
-  date-fns@4.0.0-alpha.1: {}
 
   debug@2.6.9:
     dependencies:

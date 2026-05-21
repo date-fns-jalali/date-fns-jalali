@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## Unreleased
+
+### Changed
+
+- Made `package.json` a bit smaller by removing dev fields when building the package.
+
 ## v4.2.1 - 2026-05-19
 
 ### Fixed

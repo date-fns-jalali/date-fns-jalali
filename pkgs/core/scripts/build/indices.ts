@@ -53,6 +53,17 @@ async function generatePackageJSON({
   packageJSON.exports = Object.fromEntries(
     [
       ["./package.json", "./package.json"],
+      [".", "./src/index.ts"],
+    ]
+      .concat(mapWrkspExports(["./constants", "./locale", "./fp"], "."))
+      .concat(mapWrkspExports(mapFiles(fns)))
+      .concat(mapWrkspExports(mapFiles(fpFns), "./fp"))
+      .concat(mapWrkspExports(mapFiles(locales), "./locale")),
+  );
+  packageJSON.publishConfig ||= {};
+  packageJSON.publishConfig.exports = Object.fromEntries(
+    [
+      ["./package.json", "./package.json"],
       [
         ".",
         {
@@ -67,10 +78,10 @@ async function generatePackageJSON({
         },
       ],
     ]
-      .concat(mapExports(["./constants", "./locale", "./fp"], "."))
-      .concat(mapExports(mapFiles(fns)))
-      .concat(mapExports(mapFiles(fpFns), "./fp"))
-      .concat(mapExports(mapFiles(locales), "./locale")),
+      .concat(mapPublishExports(["./constants", "./locale", "./fp"], "."))
+      .concat(mapPublishExports(mapFiles(fns)))
+      .concat(mapPublishExports(mapFiles(fpFns), "./fp"))
+      .concat(mapPublishExports(mapFiles(locales), "./locale")),
   );
   return JSON.stringify(packageJSON, null, 2);
 }
@@ -79,7 +90,15 @@ function mapFiles(files: File[]) {
   return files.map((file) => file.path);
 }
 
-function mapExports(paths: string[], prefix = ".") {
+function mapWrkspExports(paths: string[], prefix = ".") {
+  return paths.map((path) => {
+    const subPth = path.slice(1);
+    const pth = `${prefix}${subPth}`;
+    return [pth, `${prefix}/src${subPth}/index.ts`];
+  });
+}
+
+function mapPublishExports(paths: string[], prefix = ".") {
   return paths.map((path) => {
     const pth = `${prefix}${path.slice(1)}`;
     return [

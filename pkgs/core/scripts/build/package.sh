@@ -136,6 +136,16 @@ done
 
 echo "🟢 Misc files are ready!"
 
+echo
+echo "🚧 Cleaning up package.json..."
+
+package_json_path="$dir/package.json"
+jaq -i '. + .publishConfig' "$package_json_path"
+jaq -i 'del(.devDependencies, .scripts, .publishConfig)' "$package_json_path"
+
+echo "🟢 package.json is ready!"
+
+
 #endregion
 
 #region CDN
