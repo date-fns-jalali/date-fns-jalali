@@ -13,7 +13,7 @@ run = "pnpm vitest"
 env = { TZ = "Asia/Singapore" }
 
 [tasks."test/edge"]
-run = "pnpm exec date-fns-tz-test ./test/edge/"
+run = "pnpm exec date-fns-test-tz ./test/edge/"
 
 [tasks."test/node"]
 run = "./scripts/test/node.sh"

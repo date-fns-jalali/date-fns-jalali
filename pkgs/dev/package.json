@@ -4,7 +4,7 @@
   "private": true,
   "description": "date-fns dev package",
   "bin": {
-    "date-fns-tz-test": "./src/test/tz.ts"
+    "date-fns-test-tz": "./src/test/tz.ts"
   },
   "type": "module",
   "exports": {
