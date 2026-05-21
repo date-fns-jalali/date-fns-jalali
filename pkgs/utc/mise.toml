@@ -2,12 +2,13 @@
 depends = ["test/unit", "test/node"]
 
 [tasks."test/unit"]
-run = "pnpm vitest --run"
-env = { TZ = "Asia/Kolkata" }
+run = "pnpm vitest run"
 
 [tasks."test/unit:watch"]
 run = "pnpm vitest"
-env = { TZ = "Asia/Kolkata" }
+
+[tasks."test/tz"]
+run = "pnpm exec date-fns-test-tz ./src/"
 
 [tasks."test/node"]
 run = "./scripts/test/node.sh"

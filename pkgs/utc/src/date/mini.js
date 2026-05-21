@@ -4,7 +4,7 @@ export class UTCDateMini extends Date {
 
     this.setTime(
       arguments.length === 0
-        ? // Enables Sinon's fake timers that override the constructor
+        ? // Enables Vitest/Sinon fake timers that override the constructor
           Date.now()
         : arguments.length === 1
           ? typeof arguments[0] === "string"

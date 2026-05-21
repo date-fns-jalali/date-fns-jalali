@@ -3,8 +3,12 @@ import { UTCDate } from "./index.js";
 
 describe("UTCDate", () => {
   it("creates date in UTC", () => {
+    const tzOffset = -new Date(1987, 1, 11).getTimezoneOffset();
+    const hoursOffset = Math.trunc(tzOffset / 60);
+    const minutesOffset = tzOffset % 60;
+
     expect(new UTCDate(1987, 1, 11).getTime()).toBe(
-      new Date(1987, 1, 11, 5, 30).getTime(),
+      new Date(1987, 1, 11, hoursOffset, minutesOffset).getTime(),
     );
   });
 
