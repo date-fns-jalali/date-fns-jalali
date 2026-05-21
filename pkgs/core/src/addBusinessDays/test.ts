@@ -138,7 +138,7 @@ describe("addBusinessDays", () => {
   dstOnlyDescribe(`DST (${tzName || "(unknown)"})`, () => {
     it("works across DST-start weekend", () => {
       const date = new Date(dstTransitions.start!);
-      date.setDate(date.getDate() - 2);
+      date.setDate(date.getDate() - ((date.getDay() + 2) % 7));
       date.setHours(date.getHours() - 1, 30, 0, 0);
 
       const result = addBusinessDays(date, 1);

@@ -2,11 +2,11 @@
 
 The package provides `Date` extensions `TZDate` and `TZDateMini` that perform all calculations in the given time zone rather than the system time zone.
 
-Using it makes [date-fns](https://github.com/date-fns/date-fns) operate in given time zone but can also be used without it.
+Using it makes [date-fns](https://github.com/date-fns/date-fns) operate in the given time zone but can also be used without it.
 
-Like everything else in the date-fns ecosystem, the library is build-size aware. The smallest component, `TZDateMini,` is only `916 B`.
+Like everything else in the date-fns ecosystem, the library is build-size aware. The smallest component, `TZDateMini,` is only `1.34 KB`.
 
-**Need only UTC?** See [@date-fns/utc](https://github.com/date-fns/utc) that provides lighter solution.
+**Need only UTC?** See [@date-fns/utc](https://github.com/date-fns/utc) that provides a lighter solution.
 
 ## Installation
 
@@ -16,7 +16,7 @@ npm install @date-fns/tz --save
 
 ## Usage
 
-`TZDate` and `TZDateMini` have API similar to `Date`, but perform all calculations in the given time zone, which might be essential when operating across different time zones, calculating dates for users in different regions, or rendering chart or calendar component:
+`TZDate` and `TZDateMini` have the API similar to `Date`, but perform all calculations in the given time zone, which might be essential when operating across different time zones, calculating dates for users in different regions, or rendering chart or calendar components:
 
 ```ts
 import { TZDate } from "@date-fns/tz";
@@ -50,9 +50,9 @@ new TZDate(2022, 2, 13, "-2359");
 
 ### Difference between `TZDate` and `TZDateMini`
 
-The main difference between `TZDate` and `TZDateMini` is the build footprint. The `TZDateMini` is `916 B`, and the `TZDate` is `1.2 kB`. While the difference is slight it might be essential in some environments and use cases.
+The main difference between `TZDate` and `TZDateMini` is the build footprint. The `TZDateMini` is `1.34 KB KB`, and the `TZDate` is `1.69 KB`. While the difference is slight, it might be essential in some environments and use cases.
 
-Unlike `TZDateMini` which implements only getters, setters, and `getTimezoneOffset`, `TZDate` also provides formatter functions, mirroring all original `Date` functionality:
+Unlike `TZDateMini`, which implements only getters, setters, and `getTimezoneOffset`, `TZDate` also provides formatter functions, mirroring all original `Date` functionality:
 
 ```ts
 import { TZDateMini, TZDate } from "@date-fns/tz";
@@ -70,7 +70,7 @@ Even though `TZDate` has a complete API, developers rarely use the formatter fun
 
 ### React Native / Hermes JS Engine
 
-Starting with [v1.3.0](https://github.com/date-fns/tz/releases/tag/v1.3.0), `@date-fns/tz` supports [Format.JS polyfills](https://formatjs.github.io/docs/polyfills/intl-datetimeformat/) that are required for [Hermes JS Engine](https://github.com/facebook/hermes/blob/main/README.md) powering React Native runtime to work correctly.
+Starting with [v1.3.0](https://github.com/date-fns/tz/releases/tag/v1.3.0), `@date-fns/tz` supports [Format.JS polyfills](https://formatjs.github.io/docs/polyfills/intl-datetimeformat/) that are required for the [Hermes JS Engine](https://github.com/facebook/hermes/blob/main/README.md) powering React Native runtime to work correctly.
 
 To use it, you need to import the following polyfills in your entry point:
 
@@ -114,7 +114,7 @@ The constructor mirrors the original `Date` parameters except for the last time 
 
 #### `TZDate.tz`
 
-The static `tz` function allows to construct `TZDate` instance with just a time zone:
+The static `tz` function allows you to construct a `TZDate` instance with just a time zone:
 
 ```ts
 // Create now in Singapore time zone:
@@ -125,7 +125,7 @@ new TZDate("Asia/Singapore");
 //=> Invalid Date
 ```
 
-Just like the constructor, the function accepts all parameters variants:
+Just like the constructor, the function accepts all parameter variants:
 
 ```ts
 TZDate.tz("Asia/Singapore", 2022, 2);
@@ -153,7 +153,7 @@ new TZDate().timeZone;
 
 #### `withTimeZone`
 
-The `withTimeZone` method allows to create a new `TZDate` instance with a different time zone:
+The `withTimeZone` method allows you to create a new `TZDate` instance with a different time zone:
 
 ```ts
 const sg = new TZDate(2022, 2, 13, "Asia/Singapore");
@@ -189,7 +189,7 @@ import { constructFromSymbol } from "@date-fns/tz";
 
 ### `tz`
 
-The `tz` function allows to specify the context for the [date-fns] functions (**starting from date-fns@4**):
+The `tz` function allows you to specify the context for the [date-fns] functions (**starting from date-fns@4**):
 
 ```ts
 import { isSameDay } from "date-fns";
@@ -203,7 +203,7 @@ isSameDay("2024-09-09T23:00:00-04:00", "2024-09-10T10:00:00+08:00", {
 
 ### `tzOffset`
 
-The `tzOffset` function allows to get the time zone UTC offset in minutes from the given time zone and a date:
+The `tzOffset` function allows you to get the time zone UTC offset in minutes from the given time zone and a date:
 
 ```ts
 import { tzOffset } from "@date-fns/tz";
@@ -248,7 +248,7 @@ tzScan("America/New_York", {
 
 ### `tzName`
 
-The function returns time zone name in human-readable format, e.g. `"Singapore Standard Time"` in the give date and time.
+The function returns the time zone name in human-readable format, e.g. `"Singapore Standard Time"` in the given date and time.
 
 ```ts
 import { tzName } from "@date-fns/tz";

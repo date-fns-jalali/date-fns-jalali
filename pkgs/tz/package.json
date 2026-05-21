@@ -1,6 +1,6 @@
 {
   "name": "@date-fns/tz",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "date-fns timezone utils",
   "keywords": [
     "date",
@@ -140,6 +140,7 @@
     "minimatch": "^10.0.1",
     "picocolors": "^1.0.0",
     "prettier": "^3.6.2",
+    "rolldown": "1.0.0-beta.30",
     "tinybench": "^2.7.0",
     "vitest": "^4.1.6"
   }

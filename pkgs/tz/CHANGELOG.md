@@ -8,6 +8,14 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v1.5.0 - 2026-05-21
+
+### Fixed
+
+- Fixed incorrect calculations when the date lands on the specified time zone DST hour when the system time zone is west of it.
+
+- Fixed historical date calculations for time zones with seconds offset in certain time zones (namely `Asia/Colombo`, `Asia/Jerusalem`, `Europe/Istanbul`, `Europe/Chisinau`, `Europe/Minsk`, `Europe/Simferopol`, `Europe/Sofia`, `Europe/Vilnius`).
+
 ## v1.4.1 - 2025-08-12
 
 ### Fixed
