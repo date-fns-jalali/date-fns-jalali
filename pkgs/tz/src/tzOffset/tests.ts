@@ -103,7 +103,7 @@ describe("tzOffset", () => {
     });
   });
 
-  describe("Intl.DateTimeFormat format", () => {
+  describe("Intl.DateTimeFormat format", { concurrent: false }, () => {
     let mockFormat = vi.fn();
     beforeEach(() => {
       mockFormat = vi.fn(() => "5 GMT+08:00");

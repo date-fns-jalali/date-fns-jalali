@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { assertType, fakeDate } from "../_lib/test/index.ts";
 import { endOfYesterday } from "./index.ts";
 
-describe("endOfYesterday", () => {
+describe("endOfYesterday", { concurrent: false }, () => {
   const { fakeNow } = fakeDate(
     new Date(2014, 8 /* Sep */, 25, 14, 30, 45, 500),
   );

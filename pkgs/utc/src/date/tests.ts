@@ -243,7 +243,7 @@ describe("UTCDate", () => {
     });
   });
 
-  describe("fake timers", () => {
+  describe("fake timers", { concurrent: false }, () => {
     beforeEach(() => {
       vi.useFakeTimers({ now: new Date(1987, 1, 11, 12, 13, 14, 15) });
     });

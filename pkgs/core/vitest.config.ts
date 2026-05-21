@@ -7,11 +7,14 @@ export default defineConfig({
       {
         test: {
           name: "main",
-          include: ["src/**/test.ts"],
-          exclude: ["src/tmp/**"],
+
+          dir: "src", // Limit glob scope
+          include: ["**/test.ts"],
 
           // Speed up tests
           isolate: false,
+          pool: "threads",
+          sequence: { concurrent: true },
 
           browser: {
             // Enable it via --browser
@@ -24,10 +27,14 @@ export default defineConfig({
       {
         test: {
           name: "temporarily",
-          include: ["src/**/test.tp.ts"],
+
+          dir: "src", // Limit glob scope
+          include: ["**/test.tp.ts"],
 
           // Speed up tests
           isolate: false,
+          pool: "threads",
+          sequence: { concurrent: true },
 
           browser: {
             // Enable it via --browser

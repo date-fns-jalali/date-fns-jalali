@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { fakeDate } from "../_lib/test/index.ts";
 import { isPast } from "./index.ts";
 
-describe("isPast", () => {
+describe("isPast", { concurrent: false }, () => {
   fakeDate(new Date(2014, 8 /* Sep */, 25));
 
   it("returns true if the given date is in the past", () => {

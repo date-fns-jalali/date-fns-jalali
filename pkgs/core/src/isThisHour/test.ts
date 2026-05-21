@@ -5,7 +5,7 @@ import { fakeDate } from "../_lib/test/index.ts";
 import type { ContextOptions } from "../types.ts";
 import { isThisHour } from "./index.ts";
 
-describe("isThisHour", () => {
+describe("isThisHour", { concurrent: false }, () => {
   const { fakeNow } = fakeDate(
     new Date(2014, 8 /* Sep */, 25, 18, 15, 15, 500),
   );

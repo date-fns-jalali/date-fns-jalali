@@ -4,7 +4,7 @@ import { fakeDate } from "../_lib/test/index.ts";
 import type { FormatDistanceFn } from "../locale/types.ts";
 import { formatDistanceToNowStrict } from "./index.ts";
 
-describe("formatDistanceToNowStrict", () => {
+describe("formatDistanceToNowStrict", { concurrent: false }, () => {
   fakeDate(new Date(1986, 3, 4, 10, 32, 0));
 
   describe("seconds", () => {

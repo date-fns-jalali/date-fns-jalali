@@ -405,17 +405,25 @@ if (testOffset) timeZonesToTest.push(...offsetTimeZones);
 testTimeZones(timeZonesToTest);
 
 async function testTimeZone(timeZone: string) {
+  // NOTE: We set `VITEST_MAX_WORKERS=1` to handle parallelism at our level.
+  // Otherwise, Vitest would spawn multiple workers, along with the ones we
+  // spawn, which simply hangs the system.
   const result = await $({
     nothrow: true,
-  })`TZ=${timeZone} pnpm vitest run ${testsPath}`.quiet();
+  })`VITEST_MAX_WORKERS=1 TZ=${timeZone} pnpm vitest run ${testsPath}`.quiet();
   if (result.exitCode) {
     failedTimeZones.push(timeZone);
     console.log(`🔴 ${timeZone}: FAIL`);
-    if (process.env.FAIL_FAST) {
+
+    if (process.env.DEBUG_OUTPUT || process.env.FAIL_FAST) {
+      console.log("--- stdout ------------------------------------------");
       console.log(result.stdout);
+      console.log("--- stderr ------------------------------------------");
       console.error(result.stderr);
-      process.exit(1);
+      console.log("-----------------------------------------------------");
     }
+
+    if (process.env.FAIL_FAST) process.exit(1);
   } else {
     console.log(`🟢 ${timeZone}: OK`);
   }
@@ -424,8 +432,7 @@ async function testTimeZone(timeZone: string) {
 async function testTimeZones(timeZones: string[]) {
   await promiseQueue(
     timeZones.map((timeZone) => () => testTimeZone(timeZone)),
-    // NOTE: Full parallelism kills CPU with Vitest
-    availableParallelism() / 2,
+    availableParallelism(),
   );
 
   console.log("");

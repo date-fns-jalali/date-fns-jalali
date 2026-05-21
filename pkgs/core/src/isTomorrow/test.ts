@@ -5,7 +5,7 @@ import { fakeDate } from "../_lib/test/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 import { isTomorrow } from "./index.ts";
 
-describe("isTomorrow", () => {
+describe("isTomorrow", { concurrent: false }, () => {
   const { fakeNow } = fakeDate(new Date(2014, 8 /* Sep */, 25));
 
   it("returns true if the given date is tomorrow", () => {

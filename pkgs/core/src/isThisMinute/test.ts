@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { fakeDate } from "../_lib/test/index.ts";
 import { isThisMinute } from "./index.ts";
 
-describe("isThisMinute", () => {
+describe("isThisMinute", { concurrent: false }, () => {
   fakeDate(new Date(2014, 8 /* Sep */, 25, 18, 30, 15, 500));
 
   it("returns true if the given date and the current date have the same minute", () => {

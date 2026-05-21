@@ -5,7 +5,7 @@ import { fakeDate } from "../_lib/test/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 import { isThisWeek } from "./index.ts";
 
-describe("isThisWeek", () => {
+describe("isThisWeek", { concurrent: false }, () => {
   const { fakeNow } = fakeDate(new Date(2014, 8 /* Sep */, 21));
 
   it("returns true if the given date and the current date have the same week", () => {

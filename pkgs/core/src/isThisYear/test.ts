@@ -5,7 +5,7 @@ import { fakeDate } from "../_lib/test/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 import { isThisYear } from "./index.ts";
 
-describe("isThisYear", () => {
+describe("isThisYear", { concurrent: false }, () => {
   const { fakeNow } = fakeDate(new Date(2014, 0 /* Jan */, 1));
 
   it("returns true if the given date and the current date have the same year", () => {

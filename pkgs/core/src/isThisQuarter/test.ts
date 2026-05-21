@@ -5,7 +5,7 @@ import { fakeDate } from "../_lib/test/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 import { isThisQuarter } from "./index.ts";
 
-describe("isThisQuarter", () => {
+describe("isThisQuarter", { concurrent: false }, () => {
   const { fakeNow } = fakeDate(new Date(2014, 6 /* Jul */, 1));
 
   it("returns true if the given date and the current date have the same quarter (and year)", () => {

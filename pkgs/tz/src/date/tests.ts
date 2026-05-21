@@ -8,6 +8,7 @@ describe("TZDate", () => {
 
   let now = new Date();
 
+  // NOTE: Make sure to add `{ concurrent: false }` to all tests that use it!
   function fakeNow(date = new Date(defaultDateStr)) {
     now = date;
     vi.useFakeTimers({ now });
@@ -17,7 +18,7 @@ describe("TZDate", () => {
 
   describe("static", () => {
     describe("constructor", () => {
-      it("creates a new date", () => {
+      it("creates a new date", { concurrent: false }, () => {
         fakeNow();
         const date = new TZDate();
         expect(+date).toBe(+now);
@@ -235,7 +236,7 @@ describe("TZDate", () => {
     });
 
     describe("TZ", () => {
-      it("constructs now date in the timezone", () => {
+      it("constructs now date in the timezone", { concurrent: false }, () => {
         fakeNow();
         const date = TZDate.tz("Asia/Singapore");
         expect(date.toISOString()).toBe("1987-02-11T08:00:00.000+08:00");
