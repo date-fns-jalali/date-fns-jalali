@@ -24,25 +24,44 @@ export abstract class Setter {
 }
 
 export class ValueSetter<Value> extends Setter {
-  constructor(
-    private value: Value,
+  private value: Value;
 
-    private validateValue: <DateType extends Date>(
+  private validateValue: <DateType extends Date>(
+    date: DateType,
+    value: Value,
+    options: ParserOptions,
+  ) => boolean;
+
+  private setValue: <DateType extends Date>(
+    date: DateType,
+    flags: ParseFlags,
+    value: Value,
+    options: ParserOptions,
+  ) => DateType | [DateType, ParseFlags];
+
+  public priority: number;
+
+  constructor(
+    value: Value,
+    validateValue: <DateType extends Date>(
       date: DateType,
       value: Value,
       options: ParserOptions,
     ) => boolean,
-
-    private setValue: <DateType extends Date>(
+    setValue: <DateType extends Date>(
       date: DateType,
       flags: ParseFlags,
       value: Value,
       options: ParserOptions,
     ) => DateType | [DateType, ParseFlags],
-    public priority: number,
+    priority: number,
     subPriority?: number,
   ) {
     super();
+    this.value = value;
+    this.validateValue = validateValue;
+    this.setValue = setValue;
+    this.priority = priority;
     if (subPriority) {
       this.subPriority = subPriority;
     }

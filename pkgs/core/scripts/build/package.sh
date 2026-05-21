@@ -40,7 +40,7 @@ env BABEL_ENV=esm pnpm babel src \
   --quiet
 
 # Add fallback for Next.js and other tools that modularize imports:
-pnpm tsx scripts/build/modularized.ts
+node scripts/build/modularized.ts
 
 echo "🟢 ESM code is ready!"
 
@@ -100,7 +100,7 @@ echo
 echo "🚧 Flattening the modules..."
 
 # Flatten the structure
-pnpm tsx scripts/build/flatten.ts
+node scripts/build/flatten.ts
 
 echo "🟢 Flattening is complete!"
 
@@ -112,7 +112,7 @@ echo
 echo "🚧 Building CommonJS type definitions..."
 
 # Generate .d.cts files
-pnpm tsx scripts/build/cts.ts
+node scripts/build/cts.ts
 
 echo "🟢 CommonJS type definitions are ready!"
 

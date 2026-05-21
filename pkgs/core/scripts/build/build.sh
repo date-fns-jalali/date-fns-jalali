@@ -6,6 +6,6 @@
 
 set -ex
 
-pnpm tsx ./scripts/build/indices.ts
+node ./scripts/build/indices.ts
 ./scripts/build/docs.sh
-pnpm tsx ./scripts/build/fp.ts
+node ./scripts/build/fp.ts

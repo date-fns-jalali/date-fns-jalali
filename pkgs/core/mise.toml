@@ -34,7 +34,7 @@ run = "pnpm exec date-fns-tz-test ./src/ --offset"
 run = "pnpm exec date-fns-tz-test ./src/ --iana"
 
 [tasks."test/locales"]
-run = "pnpm tsx ./scripts/build/localeSnapshots/index.ts --test"
+run = "node ./scripts/build/localeSnapshots/index.ts --test"
 env = { TZ = "utc" }
 
 [tasks."test/smoke"]
