@@ -21,14 +21,17 @@ run = "pnpm vitest --browser"
 [tasks."test/node"]
 run = "./scripts/test/node.sh"
 
-[tasks."test/tz/base"]
+[tasks."test/edge"]
 run = "./scripts/test/tz.sh"
 
-[tasks."test/tz/offset"]
-run = "bun ./scripts/test/tzOffset.ts"
+[tasks."test/tz"]
+run = "pnpm exec date-fns-tz-test ./src/"
 
-[tasks."test/tz/iana"]
-run = "bun ./scripts/test/tzIANA.ts"
+[tasks."test/tz:offset"]
+run = "pnpm exec date-fns-tz-test ./src/ --offset"
+
+[tasks."test/tz:iana"]
+run = "pnpm exec date-fns-tz-test ./src/ --iana"
 
 [tasks."test/locales"]
 run = "pnpm tsx ./scripts/build/localeSnapshots/index.ts --test"

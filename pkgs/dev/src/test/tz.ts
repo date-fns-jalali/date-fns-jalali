@@ -1,11 +1,18 @@
-/**
- * The script runs the test suite against every time zone in the IANA database.
- * It's a part of the test process.
- */
+#!/usr/bin/env node
 
-import { testTimeZones } from "./_lib/tz.ts";
+import { $ } from "zx";
+import { availableParallelism } from "node:os";
 
-testTimeZones([
+const [, , testsPath, ...args] = process.argv;
+
+let testIana = args.some((arg) => arg === "--iana" || arg === "--all");
+let testOffset = args.some((arg) => arg === "--offset" || arg === "--all");
+if (!testIana && !testOffset) {
+  testIana = true;
+  testOffset = true;
+}
+
+const ianaTimeZones = [
   "Africa/Abidjan",
   "Africa/Accra",
   "Africa/Algiers",
@@ -38,9 +45,9 @@ testTimeZones([
   "America/Argentina/San_Juan",
   "America/Argentina/San_Luis",
   "America/Argentina/Tucuman",
-  // "America/Argentina/Ushuaia",
-  // "America/Asuncion",
-  // "America/Atikokan",
+  "America/Argentina/Ushuaia",
+  "America/Asuncion",
+  "America/Atikokan",
   "America/Bahia",
   "America/Bahia_Banderas",
   "America/Barbados",
@@ -48,14 +55,14 @@ testTimeZones([
   "America/Belize",
   "America/Blanc-Sablon",
   "America/Boa_Vista",
-  // "America/Bogota",
+  "America/Bogota",
   "America/Boise",
   "America/Cambridge_Bay",
   "America/Campo_Grande",
   "America/Cancun",
   "America/Caracas",
   "America/Cayenne",
-  // "America/Cayman",
+  "America/Cayman",
   "America/Chicago",
   "America/Chihuahua",
   "America/Costa_Rica",
@@ -343,4 +350,130 @@ testTimeZones([
   "Pacific/Tongatapu",
   "Pacific/Wake",
   "Pacific/Wallis",
-]);
+];
+
+const offsetTimeZones = [
+  "UTC-12:00",
+  "UTC-11:00",
+  "UTC-10:00",
+  "UTC-09:30",
+  "UTC-09:00",
+  "UTC-08:00",
+  "UTC-07:00",
+  "UTC-06:00",
+  "UTC-05:00",
+  "UTC-04:30",
+  "UTC-04:00",
+  "UTC-03:30",
+  "UTC-03:00",
+  "UTC-02:00",
+  "UTC-01:00",
+  "UTC",
+  "UTC+01:00",
+  "UTC+02:00",
+  "UTC+03:00",
+  "UTC+03:30",
+  "UTC+04:00",
+  "UTC+04:30",
+  "UTC+05:00",
+  "UTC+05:30",
+  "UTC+05:45",
+  "UTC+06:00",
+  "UTC+06:30",
+  "UTC+07:00",
+  "UTC+08:00",
+  "UTC+08:30",
+  "UTC+08:45",
+  "UTC+09:00",
+  "UTC+09:30",
+  "UTC+10:00",
+  "UTC+10:30",
+  "UTC+11:00",
+  "UTC+11:30",
+  "UTC+12:00",
+  "UTC+12:45",
+  "UTC+13:00",
+  "UTC+14:00",
+];
+
+const failedTimeZones: string[] = [];
+
+const timeZonesToTest = [];
+if (testIana) timeZonesToTest.push(...ianaTimeZones);
+if (testOffset) timeZonesToTest.push(...offsetTimeZones);
+
+testTimeZones(timeZonesToTest);
+
+async function testTimeZone(timeZone: string) {
+  const result = await $({
+    nothrow: true,
+  })`TZ=${timeZone} pnpm vitest run ${testsPath}`.quiet();
+  if (result.exitCode) {
+    failedTimeZones.push(timeZone);
+    console.log(`🔴 ${timeZone}: FAIL`);
+    if (process.env.FAIL_FAST) {
+      console.log(result.stdout);
+      console.error(result.stderr);
+      process.exit(1);
+    }
+  } else {
+    console.log(`🟢 ${timeZone}: OK`);
+  }
+}
+
+async function testTimeZones(timeZones: string[]) {
+  await promiseQueue(
+    timeZones.map((timeZone) => () => testTimeZone(timeZone)),
+    // NOTE: Full parallelism kills CPU with Vitest
+    availableParallelism() / 2,
+  );
+
+  console.log("");
+
+  if (failedTimeZones.length) {
+    console.log(`🔴 ${failedTimeZones.length} time zones failed:\n`);
+
+    failedTimeZones.forEach((timeZone) => {
+      console.log(
+        `- ${timeZone} (\`TZ=${timeZone} pnpm vitest run ${testsPath}\`)`,
+      );
+    });
+
+    process.exit(1);
+  }
+
+  console.log(`🟢 All ${timeZones.length} time zones passed!`);
+}
+
+function promiseQueue<Type>(
+  promises: Array<() => Promise<Type>>,
+  max: number,
+): Promise<Type[]> {
+  const queue: Array<() => void> = [];
+
+  const all = Promise.all<Type>(
+    new Array(promises.length).fill(null).map((_, index) => {
+      const promise = new Promise<void>((resolve) => {
+        queue[index] = () => {
+          // Trigger the queue promise
+          resolve();
+          // Return it, so the worker function can wait for
+          return promise;
+        };
+      }).then(() => promises[index]());
+      return promise;
+    }),
+  );
+
+  async function next() {
+    const promise = queue.shift();
+    if (!promise) return;
+    await promise();
+    return next();
+  }
+
+  // Create the worker functions
+  Promise.all(new Array(max).fill(null).map(() => next()));
+
+  return all;
+}

@@ -11,8 +11,5 @@ jobs:
       - uses: jdx/mise-action@v4
       - run: pnpm install
 
-      - name: Offset tests
-        run: mise //pkgs/core:test/tz/offset
-
-      - name: IANA tests
-        run: mise //pkgs/core:test/tz/iana
+      - name: Time zone tests
+        run: mise //pkgs/core:test/tz

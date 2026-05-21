@@ -1,5 +1,5 @@
 {
-  "extends": "@date-fns/dev/tsconfig",
+  "extends": "@date-fns/dev/config/tsconfig",
   "references": [{ "path": "../../" }],
   "compilerOptions": {
     "verbatimModuleSyntax": false,
