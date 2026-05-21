@@ -29,9 +29,9 @@ listLocales()
     Promise.all(
       locales.map(async (localeObj) => {
         const { code, fullPath } = localeObj;
-        const locale: Locale = (await import(`../../../src/locale/${code}`))[
-          convertLocaleToConst(code)
-        ];
+        const locale: Locale = (
+          await import(`../../../src/locale/${code}/index.ts`)
+        )[convertLocaleToConst(code)];
         const source = (
           await readFile(path.join(process.cwd(), fullPath))
         ).toString();
