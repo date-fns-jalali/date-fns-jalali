@@ -24,6 +24,8 @@ build: prepare-build
 	@env BABEL_ENV=cjs pnpm babel src --config-file ./babel.config.json --source-root src --out-dir dist --extensions .js,.ts --out-file-extension .cjs --quiet
 	@node copy.mjs
 	@make build-cts
+	@jaq -i '. + .publishConfig' dist/package.json
+	@jaq -i 'del(.devDependencies, .scripts, .publishConfig)' dist/package.json
 
 build-cts:
 	@find dist -name '*.d.ts' | while read file; do \
