@@ -226,6 +226,7 @@ export function traverseType(
     case "reference":
     case "literal":
     case "inferred":
+    case "unknown":
       return;
 
     case "reflection":
@@ -289,7 +290,6 @@ export function traverseType(
       return;
 
     case "predicate":
-    case "unknown":
     case "optional":
     case "rest":
     default:

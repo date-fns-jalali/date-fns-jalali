@@ -50,7 +50,7 @@ export const config = {
       category: "General",
       title: "Contributing",
       summary: "Contribution manual",
-      path: "../CONTRIBUTING.md",
+      path: "../../../CONTRIBUTING.md",
     },
     {
       type: "markdown",
@@ -58,7 +58,7 @@ export const config = {
       category: "General",
       title: "Security policy",
       summary: "Security policy",
-      path: "../SECURITY.md",
+      path: "../../../SECURITY.md",
     },
     {
       type: "markdown",
