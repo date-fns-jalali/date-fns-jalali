@@ -10,13 +10,15 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 ## Unreleased
 
-Kudos to [@ImRodry](https://github.com/ImRodry) for the `pt` locale fix.
+Kudos to [@ImRodry](https://github.com/ImRodry) and [@puneetdixit200](https://github.com/puneetdixit200) for their contributions.
 
 ### Fixed
 
 - Fixed missing modularized optimization fallback ([for Next.js and others](https://x.com/kossnocorp/status/1731181274579325260)). See [#4193](https://x.com/kossnocorp/status/1731181274579325260).
 
 - Fixed `pt` locale first day of week to be Sunday. See [#4195](https://github.com/date-fns/date-fns/pull/4195) by [@ImRodry](https://github.com/ImRodry).
+
+- Fixed `zh-CN`, `zh-HK`, and `zh-TW` locale month parsing for October, November, and December. See [#4194](https://github.com/date-fns/date-fns/pull/4194) by [@puneetdixit200](https://github.com/puneetdixit200).
 
 ### Changed
 
