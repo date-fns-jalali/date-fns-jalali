@@ -10,9 +10,13 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 ## Unreleased
 
+Kudos to [@ImRodry](https://github.com/ImRodry) for the `pt` locale fix.
+
 ### Fixed
 
 - Fixed missing modularized optimization fallback ([for Next.js and others](https://x.com/kossnocorp/status/1731181274579325260)). See [#4193](https://x.com/kossnocorp/status/1731181274579325260).
+
+- Fixed `pt` locale first day of week to be Sunday. See [#4195](https://github.com/date-fns/date-fns/pull/4195) by [@ImRodry](https://github.com/ImRodry).
 
 ### Changed
 
