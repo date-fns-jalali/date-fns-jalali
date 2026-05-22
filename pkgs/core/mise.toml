@@ -46,3 +46,7 @@ run = "./scripts/test/types.sh"
 [tasks."gen/locales/snapshots"]
 run = "node ./scripts/build/localeSnapshots/index.ts"
 env = { TZ = "utc" }
+
+[tasks."release/docs"]
+run = "./scripts/release/docs.sh"
+env = { APP_ENV = "production" }
