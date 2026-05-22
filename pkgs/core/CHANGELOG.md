@@ -10,6 +10,10 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 ## Unreleased
 
+### Fixed
+
+- Fixed missing modularized optimization fallback ([for Next.js and others](https://x.com/kossnocorp/status/1731181274579325260)). See [#4193](https://x.com/kossnocorp/status/1731181274579325260).
+
 ### Changed
 
 - Made `package.json` a bit smaller by removing dev fields when building the package.
