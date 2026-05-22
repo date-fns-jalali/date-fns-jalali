@@ -8,7 +8,7 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
-## Unreleased
+## v4.3.0
 
 Kudos to [@ImRodry](https://github.com/ImRodry) and [@puneetdixit200](https://github.com/puneetdixit200) for their contributions.
 
