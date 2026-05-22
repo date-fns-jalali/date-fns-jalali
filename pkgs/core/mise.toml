@@ -42,3 +42,7 @@ run = "./scripts/test/smoke.sh"
 
 [tasks."test/types"]
 run = "./scripts/test/types.sh"
+
+[tasks."gen/locales/snapshots"]
+run = "node ./scripts/build/localeSnapshots/index.ts"
+env = { TZ = "utc" }
