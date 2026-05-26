@@ -2,4 +2,4 @@
 
 set -ex
 
-jscodeshift --extensions=ts,js --parser=ts -t scripts/transform/apply-test-comments.mjs src
+pnpm jscodeshift --extensions=ts,js --parser=ts -t scripts/transform/apply-test-comments.mjs src
