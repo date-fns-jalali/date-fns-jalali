@@ -3,8 +3,8 @@ packages:
   - submodules/*
 
 onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@swc/core'
+  - "@parcel/watcher"
+  - "@swc/core"
   - bun
   - esbuild
   - protobufjs
