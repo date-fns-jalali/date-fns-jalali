@@ -31,7 +31,7 @@ function useCoreMethod(method, ast, j, ctx) {
     ctx.imports.push({
       method,
       variable: coreMethod,
-      filePath: `src/_core/${method}/index.js`,
+      filePath: `src/_core/${method}/index.ts`,
     });
   }
 }
@@ -72,7 +72,7 @@ function useNewDate(ast, j, ctx) {
     ctx.imports.push({
       method: "newDate",
       variable: "coreNewDate",
-      filePath: `src/_core/newDate/index.js`,
+      filePath: `src/_core/newDate/index.ts`,
     });
   }
 }
@@ -96,7 +96,7 @@ function useDateUTC(ast, j, ctx) {
     ctx.imports.push({
       method: "dateUTC",
       variable: "coreDateUTC",
-      filePath: `src/_core/dateUTC/index.js`,
+      filePath: `src/_core/dateUTC/index.ts`,
     });
   }
 }
@@ -113,7 +113,7 @@ function useCoreIsLeapYear(ast, j, ctx) {
     ctx.imports.push({
       method: "isLeapYear",
       variable: "coreIsLeapYear",
-      filePath: `src/_core/isLeapYear/index.js`,
+      filePath: `src/_core/isLeapYear/index.ts`,
     });
   });
 }
