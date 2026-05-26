@@ -3,6 +3,9 @@ import { Parser } from "../Parser.ts";
 import type { ParseFlags, ParseResult } from "../types.ts";
 import { mapValue, normalizeTwoDigitYear, parseNDigits } from "../utils.ts";
 
+import { getFullYear as coreGetFullYear } from "../../../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../../../_core/setFullYear/index.ts";
+
 export interface YearParserValue {
   year: number;
   isTwoDigitYear: boolean;
@@ -57,21 +60,21 @@ export class YearParser extends Parser<YearParserValue> {
     flags: ParseFlags,
     value: YearParserValue,
   ): DateType {
-    const currentYear = date.getFullYear();
+    const currentYear = coreGetFullYear(date);
 
     if (value.isTwoDigitYear) {
       const normalizedTwoDigitYear = normalizeTwoDigitYear(
         value.year,
         currentYear,
       );
-      date.setFullYear(normalizedTwoDigitYear, 0, 1);
+      coreSetFullYear(date, normalizedTwoDigitYear, 0, 1);
       date.setHours(0, 0, 0, 0);
       return date;
     }
 
     const year =
       !("era" in flags) || flags.era === 1 ? value.year : 1 - value.year;
-    date.setFullYear(year, 0, 1);
+    coreSetFullYear(date, year, 0, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }

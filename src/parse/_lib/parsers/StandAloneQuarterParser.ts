@@ -3,6 +3,8 @@ import { Parser } from "../Parser.ts";
 import type { ParseFlags, ParseResult } from "../types.ts";
 import { parseNDigits } from "../utils.ts";
 
+import { setMonth as coreSetMonth } from "../../../_core/setMonth/index.ts";
+
 export class StandAloneQuarterParser extends Parser<number> {
   priority = 120;
 
@@ -62,7 +64,7 @@ export class StandAloneQuarterParser extends Parser<number> {
     _flags: ParseFlags,
     value: number,
   ): DateType {
-    date.setMonth((value - 1) * 3, 1);
+    coreSetMonth(date, (value - 1) * 3, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }

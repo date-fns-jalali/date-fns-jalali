@@ -2,6 +2,11 @@ import { constructFrom } from "../constructFrom/index.ts";
 import { constructNow } from "../constructNow/index.ts";
 import type { ContextOptions } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link startOfTomorrow} function options.
  */
@@ -32,12 +37,12 @@ export function startOfTomorrow<ContextDate extends Date>(
   options?: StartOfTomorrowOptions<ContextDate> | undefined,
 ): ContextDate {
   const now = constructNow(options?.in);
-  const year = now.getFullYear();
-  const month = now.getMonth();
-  const day = now.getDate();
+  const year = coreGetFullYear(now);
+  const month = coreGetMonth(now);
+  const day = coreGetDate(now);
 
   const date = constructFrom(options?.in, 0);
-  date.setFullYear(year, month, day + 1);
+  coreSetFullYear(date, year, month, day + 1);
   date.setHours(0, 0, 0, 0);
   return date;
 }
