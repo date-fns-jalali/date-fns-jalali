@@ -7,8 +7,8 @@ import {
   isNewDate,
   isStringDate,
   isUTCDate,
-} from "./utils";
-import { toGregorian } from "../../src/_lib/jalali/index";
+  toGregorian,
+} from "./utils.mjs";
 
 const months = [
   "Jan",

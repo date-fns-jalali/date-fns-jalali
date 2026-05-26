@@ -8,7 +8,7 @@ import {
   isNewDate,
   isStringDate,
   isUTCDate,
-} from "./utils";
+} from "./utils.mjs";
 
 function addComments(ast, j) {
   return ast

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { addImports, uniqueImports } from "./utils";
+import { addImports, uniqueImports } from "./utils.mjs";
 import path from "node:path";
 
 const capitalize = (s) => {
