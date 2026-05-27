@@ -195,8 +195,10 @@ describe("roundToNearestHours", () => {
   describe("edge cases", () => {
     it("rounds up to the next day", () => {
       expect(
-        roundToNearestHours(new Date(2014, 6, 10, 23, 59, 59, 999)),
-      ).toEqual(new Date(2014, 6, 11));
+        roundToNearestHours(
+          /* 1393/4/19 */ new Date(2014, 6, 10, 23, 59, 59, 999),
+        ),
+      ).toEqual(/* 1393/4/20 */ new Date(2014, 6, 11));
     });
 
     it("ceils correctly with 0 seconds and 1 millisecond", () => {
@@ -213,37 +215,51 @@ describe("roundToNearestHours", () => {
 
   describe("examples", () => {
     it("example 1", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56));
-      expect(result).toEqual(new Date(2014, 6, 10, 13));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 34, 56),
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 13));
     });
 
     it("example 2", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
-        nearestTo: 6,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 12));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 34, 56),
+        {
+          nearestTo: 6,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12));
     });
 
     it("example 3", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
-        nearestTo: 8,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 16));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 34, 56),
+        {
+          nearestTo: 8,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 16));
     });
 
     it("example 4", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 1, 23, 45), {
-        roundingMethod: "ceil",
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 2));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 1, 23, 45),
+        {
+          roundingMethod: "ceil",
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 2));
     });
 
     it("example 5", () => {
-      const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
-        roundingMethod: "floor",
-        nearestTo: 8,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 8));
+      const result = roundToNearestHours(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 34, 56),
+        {
+          roundingMethod: "floor",
+          nearestTo: 8,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 8));
     });
   });
 
@@ -262,21 +278,24 @@ describe("roundToNearestHours", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        roundToNearestHours("2024-04-10T07:00:00Z", {
+        roundToNearestHours(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T15:00:00.000+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T15:00:00.000+08:00");
       expect(
-        roundToNearestHours("2024-04-10T07:00:00Z", {
+        roundToNearestHours(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Kolkata"),
         }).toISOString(),
-      ).toBe("2024-04-10T13:00:00.000+05:30");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T13:00:00.000+05:30");
     });
 
     it("resolves the context date type", () => {
-      const result = roundToNearestHours("2014-09-01T00:00:00Z", {
-        in: tz("Asia/Tokyo"),
-      });
+      const result = roundToNearestHours(
+        /* 1393/6/10 */ "2014-09-01T00:00:00Z",
+        {
+          in: tz("Asia/Tokyo"),
+        },
+      );
       expect(result).toBeInstanceOf(TZDate);
       assertType<assertType.Equal<TZDate, typeof result>>(true);
     });
@@ -290,5 +309,13 @@ function makeDate(
   milliseconds: number = 0,
 ) {
   // helper to make tests more readable since we mostly care about hours and minutes
-  return new Date(2014, 6 /* Jul */, 10, hours, minutes, seconds, milliseconds);
+  return /* 1393/4/19 */ new Date(
+    2014,
+    6 /* Jul */,
+    10,
+    hours,
+    minutes,
+    seconds,
+    milliseconds,
+  );
 }

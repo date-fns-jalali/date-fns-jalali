@@ -6,25 +6,31 @@ import { UTCDate } from "@date-fns/utc";
 
 describe("addQuarters", () => {
   it("adds the given number of quarters", () => {
-    const result = addQuarters(new Date(2014, 8 /* Sep */, 1), 1);
-    expect(result).toEqual(new Date(2014, 11 /* Dec */, 1));
+    const result = addQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      1,
+    );
+    expect(result).toEqual(/* 1393/9/10 */ new Date(2014, 11 /* Dec */, 1));
   });
 
   it("accepts a timestamp", () => {
-    const result = addQuarters(new Date(2014, 8 /* Sep */, 1).getTime(), 4);
-    expect(result).toEqual(new Date(2015, 8 /* Sep */, 1));
+    const result = addQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
+      4,
+    );
+    expect(result).toEqual(/* 1394/6/10 */ new Date(2015, 8 /* Sep */, 1));
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 1);
+    const date = /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1);
     addQuarters(date, 4);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
+    expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("works well if the desired month has fewer days and the provided date is in the last day of a month", () => {
-    const date = new Date(2014, 11 /* Dec */, 31);
+    const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31);
     const result = addQuarters(date, 3);
-    expect(result).toEqual(new Date(2015, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1394/7/8 */ new Date(2015, 8 /* Sep */, 30));
   });
 
   it("handles dates before 100 AD", () => {
@@ -44,7 +50,10 @@ describe("addQuarters", () => {
   });
 
   it("returns `Invalid Date` if the given amount is NaN", () => {
-    const result = addQuarters(new Date(2014, 8 /* Sep */, 1), NaN);
+    const result = addQuarters(
+      /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+      NaN,
+    );
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
@@ -63,14 +72,14 @@ describe("addQuarters", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        addQuarters("2023-03-31T00:00:00Z", 1, {
+        addQuarters(/* 1402/1/11 */ "2023-03-31T00:00:00Z", 1, {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe("2023-06-30T20:00:00.000-04:00");
+      ).toBe(/* 1402/4/9 */ "2023-06-30T20:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2023-09-01T00:00:00Z");
+      const date = new Date(/* 1402/6/10 */ "2023-09-01T00:00:00Z");
       const result = addQuarters(date, 1, {
         in: tz("Asia/Tokyo"),
       });
