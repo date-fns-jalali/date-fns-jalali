@@ -13,31 +13,48 @@ format_code=true
 include_docs=true
 include_fp=true
 include_i18n=true
+dist=
 
-for arg in "$@"; do
-  if [ "$arg" = "--no-cjs" ]; then
-    build_cjs=false
-  fi
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --dist)
+      if [ -z "$2" ]; then
+        echo "Missing value for --dist"
+        exit 1
+      fi
 
-  if [ "$arg" = "--no-cdn" ]; then
-    build_cdn=false
-  fi
-
-  if [ "$arg" = "--no-format" ]; then
-    format_code=false
-  fi
-
-  if [ "$arg" = "--no-docs" ]; then
-    include_docs=false
-  fi
-
-  if [ "$arg" = "--no-fp" ]; then
-    include_fp=false
-  fi
-
-  if [ "$arg" = "--no-i18n" ]; then
-    include_i18n=false
-  fi
+      dist="$2"
+      shift 2
+      ;;
+    --no-cjs)
+      build_cjs=false
+      shift
+      ;;
+    --no-cdn)
+      build_cdn=false
+      shift
+      ;;
+    --no-format)
+      format_code=false
+      shift
+      ;;
+    --no-docs)
+      include_docs=false
+      shift
+      ;;
+    --no-fp)
+      include_fp=false
+      shift
+      ;;
+    --no-i18n)
+      include_i18n=false
+      shift
+      ;;
+    *)
+      echo "Unknown argument: $1"
+      exit 1
+      ;;
+  esac
 done
 
 echo "⚡️ Building package"
@@ -48,9 +65,8 @@ echo "⚡️ Building package"
 root="$(pwd)/$(dirname "$0")/../.."
 cd "$root" || exit 1
 
-# XXX: $PACKAGE_OUTPUT_PATH must be an absolute path!
-dir=${PACKAGE_OUTPUT_PATH:-"$root/dist"}
-export PACKAGE_OUTPUT_PATH="$dir"
+# XXX: $dir must be an absolute path!
+dir=${dist:-"$root/dist"}
 
 # Clean up output dir
 rm -rf "$dir"
@@ -73,7 +89,7 @@ env BABEL_ENV=esm pnpm babel src \
   --quiet
 
 # Add fallback for Next.js and other tools that modularize imports:
-node scripts/build/modularized.ts
+node scripts/build/modularized.ts "$dir"
 
 echo "🟢 ESM code is ready!"
 
@@ -136,7 +152,7 @@ echo
 echo "🚧 Flattening the modules..."
 
 # Flatten the structure
-node scripts/build/flatten.ts
+node scripts/build/flatten.ts "$dir"
 
 echo "🟢 Flattening is complete!"
 
@@ -149,7 +165,7 @@ if [ "$build_cjs" = true ]; then
   echo "🚧 Building CommonJS type definitions..."
 
   # Generate .d.cts files
-  node scripts/build/cts.ts
+  node scripts/build/cts.ts "$dir"
 
   echo "🟢 CommonJS type definitions are ready!"
 else
@@ -197,7 +213,7 @@ echo
 if [ "$build_cdn" = true ]; then
   echo "🚧 Building CDN versions..."
 
-  bun ./scripts/build/cdn.ts
+  bun ./scripts/build/cdn.ts "$dir"
 
   echo "🟢 CDN versions are ready!"
 else

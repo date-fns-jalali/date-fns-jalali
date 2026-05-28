@@ -10,7 +10,10 @@
 import { readdir, copyFile } from "fs/promises";
 import { join, resolve } from "path";
 
-const root = resolve(process.env.PACKAGE_OUTPUT_PATH || "lib");
+const outputPath = process.argv[2];
+if (!outputPath) throw new Error("Output path is not set");
+
+const root = resolve(outputPath);
 
 createCTSFiles(resolve(root));
 

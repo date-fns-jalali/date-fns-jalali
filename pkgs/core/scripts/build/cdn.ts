@@ -9,10 +9,10 @@ import { dirname, join, relative } from "path";
 import { listLocales, type LocaleFile } from "../_lib/listLocales.ts";
 import { promiseQueue } from "../test/_lib/queue.ts";
 
-if (!process.env.PACKAGE_OUTPUT_PATH)
-  throw new Error("PACKAGE_OUTPUT_PATH is not set");
+const outputPath = process.argv[2];
+if (!outputPath) throw new Error("Output path is not set");
 
-const out = relative(process.cwd(), process.env.PACKAGE_OUTPUT_PATH);
+const out = relative(process.cwd(), outputPath);
 
 const indexPath = join(out, "cdn.js");
 const fpIndexPath = join(out, "fp", "cdn.js");

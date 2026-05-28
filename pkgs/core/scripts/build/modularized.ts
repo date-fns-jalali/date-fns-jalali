@@ -12,7 +12,10 @@ import { readdir, writeFile, readFile } from "fs/promises";
 import { basename, dirname, join, resolve } from "path";
 import { convertLocaleToConst } from "./localeSnapshots/_lib/locale.ts";
 
-const root = resolve(process.env.PACKAGE_OUTPUT_PATH || "lib");
+const outputPath = process.argv[2];
+if (!outputPath) throw new Error("Output path is not set");
+
+const root = resolve(outputPath);
 
 addNextJSFallbacks(root);
 

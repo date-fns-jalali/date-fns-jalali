@@ -4,7 +4,10 @@ import { readFile, readdir, rmdir, stat, unlink, writeFile } from "fs/promises";
 import { dirname, join, relative, resolve } from "path";
 
 const dirsToRemove = new Set<string>();
-const root = resolve(process.env.PACKAGE_OUTPUT_PATH || "lib");
+const outputPath = process.argv[2];
+if (!outputPath) throw new Error("Output path is not set");
+
+const root = resolve(outputPath);
 const relativeRoot = relative(process.cwd(), root);
 
 async function main() {

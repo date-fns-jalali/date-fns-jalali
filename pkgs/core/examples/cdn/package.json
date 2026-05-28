@@ -8,7 +8,7 @@
   "main": "example.ts",
   "scripts": {
     "build": "rm -rf node_modules/date-fns && mkdir -p node_modules && cp -r ../../dist node_modules/date-fns || pnpm run build-date-fns",
-    "build-date-fns": "env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
+    "build-date-fns": "../../scripts/build/package.sh --dist \"$(pwd)/node_modules/date-fns\"",
     "test": "pnpm run test-basic && pnpm run test-fp && pnpm run test-locale && pnpm run test-locales",
     "test-basic": "test $(env TZ=UTC node ./basic.js) = true",
     "test-fp": "test $(env TZ=UTC node ./fp.js) = true",

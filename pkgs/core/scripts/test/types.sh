@@ -9,9 +9,9 @@ set -e
 root="$(pwd)/$(dirname "$0")/../.."
 root_rel_path="$root/tmp/types"
 mkdir -p "$root_rel_path"
-export PACKAGE_OUTPUT_PATH=$(realpath "$root_rel_path")
+package_output_path=$(realpath "$root_rel_path")
 
-./scripts/build/package.sh --no-format --no-cdn
+./scripts/build/package.sh --dist "$package_output_path" --no-format --no-cdn
 
-echo "$PACKAGE_OUTPUT_PATH"
-pnpm attw --pack "$PACKAGE_OUTPUT_PATH"
+echo "$package_output_path"
+pnpm attw --pack "$package_output_path"

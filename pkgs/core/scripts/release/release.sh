@@ -22,12 +22,12 @@ git tag -a "$VERSION" -m "$VERSION"
 git push
 
 # Build the package
-PACKAGE_PATH="$(pwd)/../../tmp/package"
-env PACKAGE_OUTPUT_PATH="$PACKAGE_PATH" ./scripts/build/package.sh
+package_path="$(pwd)/../../tmp/package"
+./scripts/build/package.sh --dist "$package_path"
 
 # Right now, we do releases manually, but when we move to GitHub Actions we'll need this line:
 # echo "//registry.npmjs.org/:_authToken=$NPM_KEY" > ~/.npmrc
-cd "$PACKAGE_PATH" || exit 1
+cd "$package_path" || exit 1
 if [ "$IS_PRE_RELEASE" = true ]
 then
   pnpm publish --tag next
