@@ -7,6 +7,39 @@
 
 set -e
 
+build_cjs=true
+build_cdn=true
+format_code=true
+include_docs=true
+include_fp=true
+include_i18n=true
+
+for arg in "$@"; do
+  if [ "$arg" = "--no-cjs" ]; then
+    build_cjs=false
+  fi
+
+  if [ "$arg" = "--no-cdn" ]; then
+    build_cdn=false
+  fi
+
+  if [ "$arg" = "--no-format" ]; then
+    format_code=false
+  fi
+
+  if [ "$arg" = "--no-docs" ]; then
+    include_docs=false
+  fi
+
+  if [ "$arg" = "--no-fp" ]; then
+    include_fp=false
+  fi
+
+  if [ "$arg" = "--no-i18n" ]; then
+    include_i18n=false
+  fi
+done
+
 echo "⚡️ Building package"
 
 #region Prepare
@@ -48,19 +81,24 @@ echo "🟢 ESM code is ready!"
 
 #region CommonJS
 
-echo
-echo "🚧 Building CommonJS code..."
+if [ "$build_cjs" = true ]; then
+  echo
+  echo "🚧 Building CommonJS code..."
 
-# Transpile CommonJS versions of files
-env BABEL_ENV=cjs pnpm babel src \
-  --config-file ./babel.config.json \
-  --source-root src \
-  --out-dir "$dir" \
-  --extensions .js,.ts \
-  --out-file-extension .cjs \
-  --quiet
+  # Transpile CommonJS versions of files
+  env BABEL_ENV=cjs pnpm babel src \
+    --config-file ./babel.config.json \
+    --source-root src \
+    --out-dir "$dir" \
+    --extensions .js,.ts \
+    --out-file-extension .cjs \
+    --quiet
 
-echo "🟢 CommonJS code is ready!"
+  echo "🟢 CommonJS code is ready!"
+else
+  echo
+  echo "⚪️ --no-cjs is set, CommonJS code is skipped"
+fi
 
 #endregion
 
@@ -82,19 +120,17 @@ echo
 echo "🚧 Formatting code..."
 
 # Make it prettier
-if [ -z "$PACKAGE_SKIP_BEAUTIFY" ]; then
+if [ "$format_code" = true ]; then
   pnpm prettier --write --ignore-path "" "$dir" 1> /dev/null
-fi
 
-echo "🟢 Formatting is complete!"
+  echo "🟢 Formatting is complete!"
+else
+  echo "⚪️ --no-format is set, formatting is skipped"
+fi
 
 #endregion
 
 #region Flattening
-
-if [ -n "$TEST_FLATTEN" ]; then
-  exit 0
-fi
 
 echo
 echo "🚧 Flattening the modules..."
@@ -108,13 +144,18 @@ echo "🟢 Flattening is complete!"
 
 #region CommonJS types
 
-echo
-echo "🚧 Building CommonJS type definitions..."
+if [ "$build_cjs" = true ]; then
+  echo
+  echo "🚧 Building CommonJS type definitions..."
 
-# Generate .d.cts files
-node scripts/build/cts.ts
+  # Generate .d.cts files
+  node scripts/build/cts.ts
 
-echo "🟢 CommonJS type definitions are ready!"
+  echo "🟢 CommonJS type definitions are ready!"
+else
+  echo
+  echo "⚪️ --no-cjs is set, CommonJS type definitions are skipped"
+fi
 
 #endregion
 
@@ -153,14 +194,53 @@ echo "🟢 package.json is ready!"
 echo
 
 # Build CDN versions
-if [ -z "$PACKAGE_SKIP_CDN" ]; then
+if [ "$build_cdn" = true ]; then
   echo "🚧 Building CDN versions..."
 
   bun ./scripts/build/cdn.ts
 
   echo "🟢 CDN versions are ready!"
 else
-  echo "⚪️ PACKAGE_SKIP_CDN is set, CDN versions are skipped"
+  echo "⚪️ --no-cdn is set, CDN versions are skipped"
+fi
+
+#endregion
+
+#region Cleanup
+
+if [ "$include_docs" = false ]; then
+  echo
+  echo "🚧 Removing docs files..."
+
+  rm -rf "$dir/docs" \
+    "$dir/CHANGELOG.md" \
+    "$dir/SECURITY.md" \
+    "$dir/LICENSE.md"
+
+  echo "🟢 Docs files are removed!"
+fi
+
+if [ "$include_fp" = false ]; then
+  echo
+  echo "🚧 Removing FP files..."
+
+  rm -rf "$dir"/fp*
+
+  echo "🟢 FP files are removed!"
+fi
+
+if [ "$include_i18n" = false ]; then
+  echo
+  echo "🚧 Removing I18n files..."
+
+  rm -rf "$dir"/locale* \
+    "$dir"/format.* \
+    "$dir"/formatDistance* \
+    "$dir"/formatDuration* \
+    "$dir"/formatRelative* \
+    "$dir"/parse.*
+
+  echo "🟢 I18n files are removed!"
 fi
 
 #endregion

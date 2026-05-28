@@ -11,10 +11,7 @@ root_rel_path="$root/tmp/types"
 mkdir -p "$root_rel_path"
 export PACKAGE_OUTPUT_PATH=$(realpath "$root_rel_path")
 
-export PACKAGE_SKIP_BEAUTIFY=true
-export PACKAGE_SKIP_CDN=true
-
-./scripts/build/package.sh
+./scripts/build/package.sh --no-format --no-cdn
 
 echo "$PACKAGE_OUTPUT_PATH"
 pnpm attw --pack "$PACKAGE_OUTPUT_PATH"
