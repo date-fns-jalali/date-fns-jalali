@@ -1,5 +1,28 @@
+import { existsSync } from "node:fs";
 import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
+
+const systemChromePath = [
+  process.env.VITEST_BROWSER_EXECUTABLE_PATH,
+  process.env.GOOGLE_CHROME_BIN,
+  "/usr/bin/google-chrome",
+  "/usr/bin/google-chrome-stable",
+].find(
+  (candidate): candidate is string =>
+    typeof candidate === "string" && existsSync(candidate),
+);
+
+const browserProvider = playwright(
+  systemChromePath
+    ? {
+        launchOptions: {
+          executablePath: systemChromePath,
+        },
+      }
+    : {},
+);
+
+const browserInstances = [{ browser: "chromium" as const }];
 
 export default defineConfig({
   test: {
@@ -11,16 +34,16 @@ export default defineConfig({
           exclude: ["src/tmp/**"],
         },
       },
-      // node (pnpm test): RangeError: Temporal error: Not yet implemented.
-      // chromium (pnpm test --browser): ReferenceError: Temporal is not defined
-      // use commit in branch "google-chrome-testing" to test it locally
-
-      // {
-      //   test: {
-      //     name: "temporarily",
-      //     include: ["src/**/test.tp.ts"],
-      //   },
-      // },
+      {
+        test: {
+          name: "temporarily",
+          include: ["src/**/test.tp.ts"],
+          browser: {
+            provider: browserProvider,
+            instances: browserInstances,
+          },
+        },
+      },
     ],
 
     // Speed up tests, but also it's a workaround for the browser issue:
@@ -29,8 +52,8 @@ export default defineConfig({
     browser: {
       // Enable it via --browser
       // enabled: true,
-      provider: playwright(),
-      instances: [{ browser: "chromium" }],
+      provider: browserProvider,
+      instances: browserInstances,
     },
   },
 });
