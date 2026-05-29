@@ -1,7 +1,6 @@
 import { toTpInstant } from "../_lib/tp/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
-import { tpIsSaturday } from "../tp/isSaturday/index.ts";
-import { tpIsSunday } from "../tp/isSunday/index.ts";
+import { tpIsFriday } from "../tp/isFriday/index.ts";
 import { tpIsWeekend } from "../tp/isWeekend/index.ts";
 import type { DateArg } from "../types.ts";
 import type { AddBusinessDaysOptions } from "./index.ts";
@@ -39,10 +38,8 @@ export function tpyAddBusinessDays<
   if (startedOnWeekend && tpIsWeekend(temporal) && amount !== 0) {
     // If we're reducing days, we want to add days until we land on a weekday
     // If we're adding days we want to reduce days until we land on a weekday
-    if (tpIsSaturday(temporal))
-      temporal = temporal.add({ days: sign < 0 ? 2 : -1 });
-    if (tpIsSunday(temporal))
-      temporal = temporal.add({ days: sign < 0 ? 1 : -2 });
+    if (tpIsFriday(temporal))
+      temporal = temporal.add({ days: (sign < 0 ? 1 : -2) });
   }
 
   // Restore hours to avoid DST lag
