@@ -1,6 +1,8 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link setDate} function options.
  */
@@ -38,6 +40,6 @@ export function setDate<
   options?: SetDateOptions<ResultDate> | undefined,
 ): ResultDate {
   const _date = toDate(date, options?.in);
-  _date.setDate(dayOfMonth);
+  coreSetDate(_date, dayOfMonth);
   return _date;
 }

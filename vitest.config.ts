@@ -11,12 +11,16 @@ export default defineConfig({
           exclude: ["src/tmp/**"],
         },
       },
-      {
-        test: {
-          name: "temporarily",
-          include: ["src/**/test.tp.ts"],
-        },
-      },
+      // node (pnpm test): RangeError: Temporal error: Not yet implemented.
+      // chromium (pnpm test --browser): ReferenceError: Temporal is not defined
+      // use commit in branch "google-chrome-testing" to test it locally
+
+      // {
+      //   test: {
+      //     name: "temporarily",
+      //     include: ["src/**/test.tp.ts"],
+      //   },
+      // },
     ],
 
     // Speed up tests, but also it's a workaround for the browser issue:

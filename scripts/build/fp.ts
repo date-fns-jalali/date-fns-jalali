@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 async function main() {
   const fns = await readRefsFromJSON(
     config,
-    path.resolve(__dirname, "../../docs/"),
+    path.resolve(import.meta.dirname, "../../docs/"),
   );
 
   await Promise.all(
@@ -46,6 +46,7 @@ async function main() {
           ),
       );
       if (!pure) return;
+      if (ref.fn.name === "newDate") return;
 
       async function writeFn(
         arity: number,
