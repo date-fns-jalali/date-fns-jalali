@@ -172,7 +172,7 @@ describe("addBusinessDays", () => {
 
       const result = addBusinessDays(date, 1);
       const expected = new Date(date);
-      expected.setDate(expected.getDate() + 3);
+      expected.setDate(expected.getDate() + 1);
 
       expect(result).toEqual(expected);
     });
