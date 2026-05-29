@@ -16,6 +16,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 ## v4.4.0 - 2026-05-30
 
+This release revisits the approach to CDN usage and introduces a new package, `@date-fns/cdn` and deprecates the `date-fns` CDN scripts. It allowed reducing the zipped package size from `5.83 MB` down to `3.96 MB` without introducing any breaking changes.
+
+In `v5.0.0-alpha.0` where CDN scripts are completely removed from `date-fns` the change is more significant and brings the zipped package size down to `2.89 MB`.
+
+It is just the first step in optimizing the package size. Expect further size reduction in the future v4 and v5 versions.
+
 ### Changed
 
 - **DEPRECATED**: The `date-fns` CDN scripts are now deprecated and will be removed in the next major release. Please switch to the new `@date-fns/cdn` package for CDN usage.
