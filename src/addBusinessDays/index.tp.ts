@@ -19,12 +19,12 @@ export function tpyAddBusinessDays<
   const startedOnWeekend = tpIsWeekend(temporal);
   const hours = temporal.hour;
   const sign = amount < 0 ? -1 : 1;
-  const fullWeeks = Math.trunc(amount / 5);
+  const fullWeeks = Math.trunc(amount / 6);
 
   temporal = temporal.add({ days: fullWeeks * 7 });
 
   // Get remaining days not part of a full week
-  let restDays = Math.abs(amount % 5);
+  let restDays = Math.abs(amount % 6);
 
   // Loops over remaining days
   while (restDays > 0) {
