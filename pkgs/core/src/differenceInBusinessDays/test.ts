@@ -9,7 +9,7 @@ describe("differenceInBusinessDays", () => {
       /* 1393/4/27 */ new Date(2014, 6 /* Jul */, 18),
       /* 1392/10/20 */ new Date(2014, 0 /* Jan */, 10),
     );
-    expect(result).toBe(135);
+    expect(result).toBe(162);
   });
 
   it("can handle long ranges", () => {
@@ -17,31 +17,31 @@ describe("differenceInBusinessDays", () => {
       /* 14378/10/12 */ new Date(15000, 0 /* Jan */, 1),
       /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
     );
-    expect(result).toBe(3387885);
+    expect(result).toBe(4065462);
   });
 
   it("the same except given first date falls on a weekend", () => {
     const result = differenceInBusinessDays(
-      /* 1398/4/29 */ new Date(2019, 6 /* Jul */, 20),
-      /* 1398/4/27 */ new Date(2019, 6 /* Jul */, 18),
+      /* 1398/4/28 */ new Date(2019, 6 /* Jul */, 19),
+      /* 1398/4/26 */ new Date(2019, 6 /* Jul */, 17),
     );
     expect(result).toBe(2);
   });
 
   it("the same except given second date falls on a weekend", () => {
     const result = differenceInBusinessDays(
-      /* 1398/5/1 */ new Date(2019, 6 /* Jul */, 23),
-      /* 1398/4/29 */ new Date(2019, 6 /* Jul */, 20),
+      /* 1398/4/31 */ new Date(2019, 6 /* Jul */, 22),
+      /* 1398/4/28 */ new Date(2019, 6 /* Jul */, 19),
     );
-    expect(result).toBe(1);
+    expect(result).toBe(2);
   });
 
   it("the same except both given dates fall on a weekend", () => {
     const result = differenceInBusinessDays(
-      /* 1398/5/6 */ new Date(2019, 6 /* Jul */, 28),
-      /* 1398/4/29 */ new Date(2019, 6 /* Jul */, 20),
+      /* 1398/5/4 */ new Date(2019, 6 /* Jul */, 26),
+      /* 1398/4/28 */ new Date(2019, 6 /* Jul */, 19),
     );
-    expect(result).toBe(5);
+    expect(result).toBe(6);
   });
 
   it("returns a negative number if the time value of the first date is smaller", () => {
@@ -49,7 +49,7 @@ describe("differenceInBusinessDays", () => {
       /* 1392/10/20 */ new Date(2014, 0 /* Jan */, 10),
       /* 1393/4/29 */ new Date(2014, 6 /* Jul */, 20),
     );
-    expect(result).toBe(-135);
+    expect(result).toBe(-164);
   });
 
   it("accepts timestamps", () => {
@@ -57,7 +57,7 @@ describe("differenceInBusinessDays", () => {
       /* 1393/4/27 */ new Date(2014, 6, 18).getTime(),
       /* 1392/10/20 */ new Date(2014, 0, 10).getTime(),
     );
-    expect(result).toBe(135);
+    expect(result).toBe(162);
   });
 
   it("normalizes the dates", () => {
@@ -68,8 +68,8 @@ describe("differenceInBusinessDays", () => {
       1,
       "America/New_York",
     );
-    expect(differenceInBusinessDays(dateLeft, dateRight)).toBe(262);
-    expect(differenceInBusinessDays(dateRight, dateLeft)).toBe(-261);
+    expect(differenceInBusinessDays(dateLeft, dateRight)).toBe(314);
+    expect(differenceInBusinessDays(dateRight, dateLeft)).toBe(-313);
   });
 
   it("allows dates to be of different types", () => {
@@ -89,14 +89,14 @@ describe("differenceInBusinessDays", () => {
           /* 1403/1/19 */ "2024-04-07T02:00:00Z",
           { in: tz("America/New_York") },
         ),
-      ).toBe(1);
+      ).toBe(3);
       expect(
         differenceInBusinessDays(
           /* 1403/1/22 */ "2024-04-10T02:00:00Z",
           /* 1403/1/19 */ "2024-04-07T02:00:00Z",
           { in: tz("Asia/Singapore") },
         ),
-      ).toBe(2);
+      ).toBe(3);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {
@@ -121,8 +121,8 @@ describe("differenceInBusinessDays", () => {
 
     it("the same for the swapped dates", () => {
       const result = differenceInBusinessDays(
-        /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4, 23, 59),
-        /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5, 0, 0),
+        /* 1393/6/12 */ new Date(2014, 8 /* Sep */, 3, 23, 59),
+        /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4, 0, 0),
       );
       expect(result).toBe(-1);
     });

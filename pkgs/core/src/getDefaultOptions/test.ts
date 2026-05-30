@@ -29,7 +29,7 @@ describe("getDefaultOptions", () => {
     const result = startOfWeek(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
     );
-    expect(result).toEqual(/* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31));
+    expect(result).toEqual(/* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30));
 
     // Mutating the original object does affect `startOfWeek`
     const _defaultOptions = getInternalDefaultOptions();
