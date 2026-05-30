@@ -26,14 +26,18 @@ describe("getDefaultOptions", () => {
   it("mutating the result does not affect functions that use options", () => {
     const defaultOptionsClone = getDefaultOptions();
     defaultOptionsClone.weekStartsOn = 1;
-    const result = startOfWeek(new Date(2014, 8 /* Sep */, 2, 11, 55, 0));
-    expect(result).toEqual(new Date(2014, 7 /* Aug */, 31));
+    const result = startOfWeek(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
+    );
+    expect(result).toEqual(/* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31));
 
     // Mutating the original object does affect `startOfWeek`
     const _defaultOptions = getInternalDefaultOptions();
     _defaultOptions.weekStartsOn = 1;
-    const result2 = startOfWeek(new Date(2014, 8 /* Sep */, 2, 11, 55, 0));
-    expect(result2).toEqual(new Date(2014, 8 /* Sep */, 1));
+    const result2 = startOfWeek(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
+    );
+    expect(result2).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
   it("returns new values after setting them via `setDefaultOptions`", () => {
