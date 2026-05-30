@@ -13,7 +13,7 @@ describe("isMatch", () => {
 
   it("accepts a date & format with locale", () => {
     expect(
-      isMatch("28-a de februaro", "do 'de' MMMM", {
+      isMatch("28th of farvardin", "do 'of' MMMM", {
         locale: enUS,
       }),
     ).toBe(true);

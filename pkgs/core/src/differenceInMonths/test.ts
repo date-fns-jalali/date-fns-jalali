@@ -29,18 +29,18 @@ describe("differenceInMonths", () => {
   });
 
   describe("edge cases", () => {
-    it("it returns diff of 1 month between Feb 28 2021 and Jan 30 2021", () => {
+    it("it returns diff of 1 month between 29 Esfand 1398 and 30 Bahman 1398", () => {
       const result = differenceInMonths(
-        /* 1399/12/10 */ new Date(2021, 1 /* Feb */, 28),
-        /* 1399/11/11 */ new Date(2021, 0 /* Jan */, 30),
+        /* 1398/12/29 */ new Date(2020, 2 /* Mar */, 19),
+        /* 1398/11/30 */ new Date(2020, 1 /* Feb */, 19),
       );
       expect(result).toBe(1);
     });
 
-    it("it returns diff of 1 month between Feb 28 2021 and Jan 31 2021", () => {
+    it("it returns diff of 1 month between 30 Esfand 1399 and 30 Bahman 1399", () => {
       const result = differenceInMonths(
-        /* 1399/12/10 */ new Date(2021, 1 /* Feb */, 28),
-        /* 1399/11/12 */ new Date(2021, 0 /* Jan */, 31),
+        /* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20),
+        /* 1399/11/30 */ new Date(2021, 1 /* Feb */, 18),
       );
       expect(result).toBe(1);
     });
@@ -61,10 +61,10 @@ describe("differenceInMonths", () => {
       expect(result).toBe(1);
     });
 
-    it("it returns diff of 6 month between Oct, 31 2021 and Apr, 30 2021", () => {
+    it("it returns diff of 6 month between 31 Ordibehesh 1400 and 30 Azar 1399", () => {
       const result = differenceInMonths(
-        /* 1400/8/9 */ new Date(2021, 9 /* Oct */, 31),
-        /* 1400/2/10 */ new Date(2021, 3 /* Apr */, 30),
+        /* 1400/2/31 */ new Date(2021, 4 /* May */, 21),
+        /* 1399/8/30 */ new Date(2020, 10 /* Nov */, 20),
       );
       expect(result).toBe(6);
     });
@@ -146,11 +146,11 @@ describe("differenceInMonths", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/10/12 */ new TZDate(2025, 0, 1, "Asia/Singapore");
-    const dateRight = /* 1402/10/11 */ new TZDate(
-      2024,
-      0,
-      1,
+    const dateLeft = /* 1403/1/1 */ new TZDate(2024, 2, 20, "Asia/Singapore");
+    const dateRight = /* 1402/1/1 */ new TZDate(
+      2023,
+      2,
+      21,
       "America/New_York",
     );
     expect(differenceInMonths(dateLeft, dateRight)).toBe(11);

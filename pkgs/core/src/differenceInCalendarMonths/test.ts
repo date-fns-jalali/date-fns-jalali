@@ -31,16 +31,16 @@ describe("differenceInCalendarMonths", () => {
   describe("edge cases", () => {
     it("returns 1 when dates are in different months but less than a month apart", () => {
       const result = differenceInCalendarMonths(
-        /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
-        /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31),
+        /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23),
+        /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22),
       );
       expect(result).toBe(1);
     });
 
     it("returns -1 for swapped dates with a month difference", () => {
       const result = differenceInCalendarMonths(
-        /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31),
-        /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+        /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22),
+        /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23),
       );
       expect(result).toBe(-1);
     });
@@ -98,11 +98,11 @@ describe("differenceInCalendarMonths", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1403/10/12 */ new TZDate(2025, 0, 1, "Asia/Singapore");
-    const dateRight = /* 1402/10/11 */ new TZDate(
-      2024,
-      0,
-      1,
+    const dateLeft = /* 1403/10/1 */ new TZDate(2024, 11, 21, "Asia/Singapore");
+    const dateRight = /* 1402/10/1 */ new TZDate(
+      2023,
+      11,
+      22,
       "America/New_York",
     );
     expect(differenceInCalendarMonths(dateLeft, dateRight)).toBe(12);
@@ -129,8 +129,8 @@ describe("differenceInCalendarMonths", () => {
       ).toBe(1);
       expect(
         differenceInCalendarMonths(
-          /* 1404/6/9 */ "2025-08-31T00:00:00Z",
-          /* 1404/5/10 */ "2025-08-01T04:00:00Z",
+          /* 1404/6/31 */ "2025-09-22T00:00:00Z",
+          /* 1404/6/1 */ "2025-08-23T04:00:00Z",
           { in: tz("America/New_York") },
         ),
       ).toBe(0);
