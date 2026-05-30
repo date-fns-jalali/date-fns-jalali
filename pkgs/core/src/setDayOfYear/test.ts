@@ -10,7 +10,7 @@ describe("setDayOfYear", () => {
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2),
       2,
     );
-    expect(result).toEqual(/* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2));
+    expect(result).toEqual(/* 1393/1/2 */ new Date(2014, 2 /* Mar */, 22));
   });
 
   it("accepts a timestamp", () => {
@@ -18,7 +18,7 @@ describe("setDayOfYear", () => {
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(),
       60,
     );
-    expect(result).toEqual(/* 1392/12/10 */ new Date(2014, 2 /* Mar */, 1));
+    expect(result).toEqual(/* 1393/2/29 */ new Date(2014, 4 /* May */, 19));
   });
 
   it("does not mutate the original date", () => {
@@ -58,12 +58,12 @@ describe("setDayOfYear", () => {
         setDayOfYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 123, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/2/13 */ "2024-05-02T15:00:00.000+08:00");
+      ).toBe(/* 1403/4/30 */ "2024-07-20T15:00:00.000+08:00");
       expect(
         setDayOfYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 123, {
           in: tz("Asia/Kolkata"),
         }).toISOString(),
-      ).toBe(/* 1403/2/13 */ "2024-05-02T12:30:00.000+05:30");
+      ).toBe(/* 1403/4/30 */ "2024-07-20T12:30:00.000+05:30");
     });
 
     it("resolves the context date type", () => {

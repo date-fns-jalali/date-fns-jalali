@@ -11,12 +11,12 @@ describe("eachYearOfInterval", () => {
       end: /* 1396/7/20 */ new Date(2017, 9 /* Oct */, 12),
     });
     expect(result).toEqual([
-      /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-      /* 1391/10/12 */ new Date(2013, 0 /* Jan */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-      /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
-      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
+      /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+      /* 1392/1/1 */ new Date(2013, 2 /* Mar */, 21),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+      /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20),
+      /* 1396/1/1 */ new Date(2017, 2 /* Mar */, 21),
     ]);
   });
 
@@ -26,12 +26,12 @@ describe("eachYearOfInterval", () => {
       end: /* 1396/7/20 */ new Date(2017, 9 /* Oct */, 12).getTime(),
     });
     expect(result).toEqual([
-      /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-      /* 1391/10/12 */ new Date(2013, 0 /* Jan */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-      /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
-      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
+      /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+      /* 1392/1/1 */ new Date(2013, 2 /* Mar */, 21),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+      /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20),
+      /* 1396/1/1 */ new Date(2017, 2 /* Mar */, 21),
     ]);
   });
 
@@ -41,12 +41,12 @@ describe("eachYearOfInterval", () => {
       end: /* 1396/7/20 */ new Date(2017, 9 /* Oct */, 12, 22, 15),
     });
     expect(result).toEqual([
-      /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-      /* 1391/10/12 */ new Date(2013, 0 /* Jan */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-      /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
-      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
+      /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+      /* 1392/1/1 */ new Date(2013, 2 /* Mar */, 21),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+      /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20),
+      /* 1396/1/1 */ new Date(2017, 2 /* Mar */, 21),
     ]);
   });
 
@@ -55,7 +55,7 @@ describe("eachYearOfInterval", () => {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 15),
     });
-    expect(result).toEqual([/* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1)]);
+    expect(result).toEqual([/* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21)]);
   });
 
   it("returns one year if the both arguments are the same", () => {
@@ -63,7 +63,7 @@ describe("eachYearOfInterval", () => {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
     });
-    expect(result).toEqual([/* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1)]);
+    expect(result).toEqual([/* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21)]);
   });
 
   it("returns reversed array if the start date is after the end date", () => {
@@ -72,12 +72,12 @@ describe("eachYearOfInterval", () => {
       end: /* 1391/7/15 */ new Date(2012, 9 /* Oct */, 6),
     });
     expect(result).toEqual([
-      /* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1),
-      /* 1394/10/11 */ new Date(2016, 0 /* Jan */, 1),
-      /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
-      /* 1391/10/12 */ new Date(2013, 0 /* Jan */, 1),
-      /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
+      /* 1396/1/1 */ new Date(2017, 2 /* Mar */, 21),
+      /* 1395/1/1 */ new Date(2016, 2 /* Mar */, 20),
+      /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21),
+      /* 1392/1/1 */ new Date(2013, 2 /* Mar */, 21),
+      /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
     ]);
   });
 
@@ -114,16 +114,16 @@ describe("eachYearOfInterval", () => {
     it("returns an array with starts of days from the day of the start date to the day of the end date with the given step", () => {
       const result = eachYearOfInterval(interval, { step: 3 });
       expect(result).toEqual([
-        /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
+        /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
       ]);
     });
 
     it("returns reversed array if `options.step` is negative", () => {
       const result = eachYearOfInterval(interval, { step: -3 });
       expect(result).toEqual([
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-        /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+        /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
       ]);
     });
 
@@ -133,8 +133,8 @@ describe("eachYearOfInterval", () => {
         { step: -3 },
       );
       expect(result).toEqual([
-        /* 1390/10/11 */ new Date(2012, 0 /* Jan */, 1),
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
+        /* 1391/1/1 */ new Date(2012, 2 /* Mar */, 20),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
       ]);
     });
 
@@ -177,17 +177,17 @@ describe("eachYearOfInterval", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = /* 1402/10/11 */ new TZDate(
-      2024,
-      0,
-      1,
+    const dateLeft = /* 1402/1/1 */ new TZDate(
+      2023,
+      2,
+      21,
       0,
       "Asia/Singapore",
     );
-    const dateRight = /* 1405/10/11 */ new TZDate(
-      2027,
-      0,
-      1,
+    const dateRight = /* 1405/1/1 */ new TZDate(
+      2026,
+      2,
+      21,
       0,
       "America/New_York",
     );
@@ -196,21 +196,21 @@ describe("eachYearOfInterval", () => {
         d.toISOString(),
       ),
     ).toEqual([
-      /* 1402/10/11 */ "2024-01-01T00:00:00.000+08:00",
-      /* 1403/10/12 */ "2025-01-01T00:00:00.000+08:00",
-      /* 1404/10/11 */ "2026-01-01T00:00:00.000+08:00",
-      /* 1405/10/11 */ "2027-01-01T00:00:00.000+08:00",
+      /* 1402/1/1 */ "2023-03-21T00:00:00.000+08:00",
+      /* 1403/1/1 */ "2024-03-20T00:00:00.000+08:00",
+      /* 1404/1/1 */ "2025-03-21T00:00:00.000+08:00",
+      /* 1405/1/1 */ "2026-03-21T00:00:00.000+08:00",
     ]);
     expect(
       eachYearOfInterval({ start: dateRight, end: dateLeft }).map((d) =>
         d.toISOString(),
       ),
     ).toEqual([
-      /* 1405/10/11 */ "2027-01-01T00:00:00.000-05:00",
-      /* 1404/10/11 */ "2026-01-01T00:00:00.000-05:00",
-      /* 1403/10/12 */ "2025-01-01T00:00:00.000-05:00",
-      /* 1402/10/11 */ "2024-01-01T00:00:00.000-05:00",
-      /* 1401/10/11 */ "2023-01-01T00:00:00.000-05:00",
+      /* 1405/1/1 */ "2026-03-21T00:00:00.000-04:00",
+      /* 1404/1/1 */ "2025-03-21T00:00:00.000-04:00",
+      /* 1403/1/1 */ "2024-03-20T00:00:00.000-04:00",
+      /* 1402/1/1 */ "2023-03-21T00:00:00.000-04:00",
+      /* 1401/1/1 */ "2022-03-21T00:00:00.000-04:00",
     ]);
   });
 
@@ -234,20 +234,20 @@ describe("eachYearOfInterval", () => {
           (date) => date.toISOString(),
         ),
       ).toEqual([
-        /* 1402/10/11 */ "2024-01-01T00:00:00.000-08:00",
-        /* 1403/10/12 */ "2025-01-01T00:00:00.000-08:00",
-        /* 1404/10/11 */ "2026-01-01T00:00:00.000-08:00",
-        /* 1405/10/11 */ "2027-01-01T00:00:00.000-08:00",
+        /* 1403/1/1 */ "2024-03-20T00:00:00.000-07:00",
+        /* 1404/1/1 */ "2025-03-21T00:00:00.000-07:00",
+        /* 1405/1/1 */ "2026-03-21T00:00:00.000-07:00",
+        /* 1406/1/1 */ "2027-03-21T00:00:00.000-07:00",
       ]);
       expect(
         eachYearOfInterval(interval, { in: tz("Asia/Singapore") }).map((date) =>
           date.toISOString(),
         ),
       ).toEqual([
-        /* 1402/10/11 */ "2024-01-01T00:00:00.000+08:00",
-        /* 1403/10/12 */ "2025-01-01T00:00:00.000+08:00",
-        /* 1404/10/11 */ "2026-01-01T00:00:00.000+08:00",
-        /* 1405/10/11 */ "2027-01-01T00:00:00.000+08:00",
+        /* 1403/1/1 */ "2024-03-20T00:00:00.000+08:00",
+        /* 1404/1/1 */ "2025-03-21T00:00:00.000+08:00",
+        /* 1405/1/1 */ "2026-03-21T00:00:00.000+08:00",
+        /* 1406/1/1 */ "2027-03-21T00:00:00.000+08:00",
       ]);
     });
 

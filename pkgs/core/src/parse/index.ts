@@ -382,7 +382,7 @@ export function parse<
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   if (!formatStr)
     return dateStr ? invalidDate() : toDate(referenceDate, options?.in);

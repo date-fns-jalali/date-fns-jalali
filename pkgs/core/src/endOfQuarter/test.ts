@@ -9,7 +9,7 @@ describe("endOfQuarter", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = endOfQuarter(date);
     expect(result).toEqual(
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999),
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999),
     );
   });
 
@@ -24,7 +24,7 @@ describe("endOfQuarter", () => {
     ).getTime();
     const result = endOfQuarter(date);
     expect(result).toEqual(
-      /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30, 23, 59, 59, 999),
+      /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22, 23, 59, 59, 999),
     );
   });
 
@@ -59,12 +59,12 @@ describe("endOfQuarter", () => {
         endOfQuarter(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/4/10 */ "2024-06-30T23:59:59.999+08:00");
+      ).toBe(/* 1403/3/31 */ "2024-06-20T23:59:59.999+08:00");
       expect(
         endOfQuarter(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1403/4/10 */ "2024-06-30T23:59:59.999-07:00");
+      ).toBe(/* 1403/3/31 */ "2024-06-20T23:59:59.999-07:00");
     });
 
     it("resolves the context date type", () => {

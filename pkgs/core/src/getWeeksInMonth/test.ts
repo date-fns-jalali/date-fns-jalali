@@ -8,7 +8,7 @@ describe("getWeeksInMonth", () => {
     const result = getWeeksInMonth(
       /* 1393/11/19 */ new Date(2015, 1 /* Feb */, 8, 18, 0),
     );
-    expect(result).toBe(4);
+    expect(result).toBe(5);
   });
 
   it("allows to specify which day is the first day of the week", () => {
@@ -48,7 +48,7 @@ describe("getWeeksInMonth", () => {
 
   it("accepts timestamps", () => {
     const result = getWeeksInMonth(
-      /* 1396/1/19 */ new Date(2017, 3 /* Apr */, 8, 18, 0).getTime(),
+      /* 1396/2/19 */ new Date(2017, 4 /* May */, 9, 18, 0).getTime(),
     );
     expect(result).toBe(6);
   });
@@ -69,22 +69,22 @@ describe("getWeeksInMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        getWeeksInMonth(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
+        getWeeksInMonth(/* 1402/2/31 */ "2023-05-21T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(6);
       expect(
-        getWeeksInMonth(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
+        getWeeksInMonth(/* 1402/2/31 */ "2023-05-21T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
       ).toBe(5);
       expect(
-        getWeeksInMonth(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
+        getWeeksInMonth(/* 1402/3/1 */ "2023-05-22T03:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(6);
       expect(
-        getWeeksInMonth(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
+        getWeeksInMonth(/* 1402/3/1 */ "2023-05-22T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(5);
