@@ -1,4 +1,4 @@
-import { isLeapJalaliYear } from "../../_lib/jalali/index.js";
+import { isLeapJalaliYear } from "../../_lib/jalali/index.ts";
 
 /**
  *

@@ -1,4 +1,4 @@
-import { toJalali } from "../../_lib/jalali/index.js";
+import { toJalali } from "../../_lib/jalali/index.ts";
 
 /**
  *
