@@ -8,7 +8,7 @@ describe("setYear", () => {
   it("sets the year", () => {
     const result = setYear(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
-      2013,
+      1392,
     );
     expect(result).toEqual(/* 1392/6/10 */ new Date(2013, 8 /* Sep */, 1));
   });
@@ -16,9 +16,9 @@ describe("setYear", () => {
   it("accepts a timestamp", () => {
     const result = setYear(
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
-      2016,
+      1395,
     );
-    expect(result).toEqual(/* 1395/6/11 */ new Date(2016, 8 /* Sep */, 1));
+    expect(result).toEqual(/* 1395/6/10 */ new Date(2016, 7 /* Aug */, 31));
   });
 
   it("does not mutate the original date", () => {
@@ -52,12 +52,12 @@ describe("setYear", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2014, {
+        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 1393, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1393/1/21 */ "2014-04-10T00:00:00.000-07:00");
+      ).toBe(/* 1393/1/22 */ "2014-04-11T00:00:00.000-07:00");
       expect(
-        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2016, {
+        setYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 1395, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
       ).toBe(/* 1395/1/22 */ "2016-04-10T15:00:00.000+08:00");

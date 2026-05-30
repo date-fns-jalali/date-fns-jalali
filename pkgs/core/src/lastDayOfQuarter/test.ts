@@ -8,7 +8,7 @@ describe("lastDayOfQuarter", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the last day of a quarter", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = lastDayOfQuarter(date);
-    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22));
   });
 
   it("accepts a timestamp", () => {
@@ -21,7 +21,7 @@ describe("lastDayOfQuarter", () => {
       0,
     ).getTime();
     const result = lastDayOfQuarter(date);
-    expect(result).toEqual(/* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30));
+    expect(result).toEqual(/* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22));
   });
 
   it("does not mutate the original date", () => {
@@ -55,12 +55,12 @@ describe("lastDayOfQuarter", () => {
         lastDayOfQuarter(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1403/4/10 */ "2024-06-30T00:00:00.000-07:00");
+      ).toBe(/* 1403/3/31 */ "2024-06-20T00:00:00.000-07:00");
       expect(
         lastDayOfQuarter(/* 1403/2/21 */ "2024-05-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/4/10 */ "2024-06-30T00:00:00.000+08:00");
+      ).toBe(/* 1403/3/31 */ "2024-06-20T00:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {

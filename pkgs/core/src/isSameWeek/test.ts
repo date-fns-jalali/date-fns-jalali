@@ -14,7 +14,7 @@ describe("isSameWeek", () => {
 
   it("returns false if the given dates have different weeks", () => {
     const result = isSameWeek(
-      /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30),
+      /* 1393/6/7 */ new Date(2014, 7 /* Aug */, 29),
       /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4),
     );
     expect(result).toBe(false);
@@ -117,8 +117,8 @@ describe("isSameWeek", () => {
     it("allows to specify the context", () => {
       expect(
         isSameWeek(
-          /* 1403/6/3 */ "2024-08-24T15:00:00Z",
-          /* 1403/6/3 */ "2024-08-24T18:00:00Z",
+          /* 1403/6/2 */ "2024-08-23T15:00:00Z",
+          /* 1403/6/2 */ "2024-08-23T18:00:00Z",
           {
             in: tz("Asia/Singapore"),
           },
@@ -126,8 +126,8 @@ describe("isSameWeek", () => {
       ).toBe(false);
       expect(
         isSameWeek(
-          /* 1403/6/3 */ "2024-08-24T16:00:00Z",
-          /* 1403/6/3 */ "2024-08-24T18:00:00Z",
+          /* 1403/6/2 */ "2024-08-23T16:00:00Z",
+          /* 1403/6/2 */ "2024-08-23T18:00:00Z",
           {
             in: tz("Asia/Singapore"),
           },

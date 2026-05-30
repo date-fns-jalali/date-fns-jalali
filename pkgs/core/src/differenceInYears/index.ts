@@ -51,8 +51,8 @@ export function differenceInYears(
   // Now we need to calculate if the difference is full. To do that we set
   // both dates to the same year and check if the both date's month and day
   // form a full year.
-  coreSetFullYear(laterDate_, 1584);
-  coreSetFullYear(earlierDate_, 1584);
+  coreSetFullYear(laterDate_, 1399);
+  coreSetFullYear(earlierDate_, 1399);
 
   // For it to be true, when the later date is indeed later than the earlier date
   // (2026-02-01 - 2023-12-10 = 3 years), the difference is full if

@@ -9,7 +9,7 @@ describe("endOfDecade", () => {
     const date = /* 1396/1/21 */ new Date(2017, 3 /* Apr */, 10, 0, 0, 0);
     const result = endOfDecade(date);
     expect(result).toEqual(
-      /* 1398/10/10 */ new Date(2019, 11 /* Dec */, 31, 23, 59, 59, 999),
+      /* 1399/12/30 */ new Date(2021, 2 /* Mar */, 20, 23, 59, 59, 999),
     );
   });
 
@@ -24,7 +24,7 @@ describe("endOfDecade", () => {
     ).getTime();
     const result = endOfDecade(date);
     expect(result).toEqual(
-      /* 1388/10/10 */ new Date(2009, 11 /* Dec */, 31, 23, 59, 59, 999),
+      /* 1389/12/29 */ new Date(2011, 2 /* Mar */, 20, 23, 59, 59, 999),
     );
   });
 
@@ -43,10 +43,10 @@ describe("endOfDecade", () => {
 
   it("properly works with negative numbers", () => {
     expect(endOfDecade(/* 1379/10/12 */ new Date(2001, 0, 1))).toEqual(
-      /* 1388/10/10 */ new Date(2009, 11, 31, 23, 59, 59, 999),
+      /* 1379/12/30 */ new Date(2001, 2, 20, 23, 59, 59, 999),
     );
     expect(endOfDecade(/* -2631/10/10 */ new Date(-2009, 0, 1))).toEqual(
-      /* -2622/10/9 */ new Date(-2001, 11, 31, 23, 59, 59, 999),
+      /* -2631/12/30 */ new Date(-2009, 2, 22, 23, 59, 59, 999),
     );
   });
 
@@ -68,12 +68,12 @@ describe("endOfDecade", () => {
         endOfDecade(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1408/10/11 */ "2029-12-31T23:59:59.999+08:00");
+      ).toBe(/* 1409/12/29 */ "2031-03-20T23:59:59.999+08:00");
       expect(
         endOfDecade(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1408/10/11 */ "2029-12-31T23:59:59.999-08:00");
+      ).toBe(/* 1409/12/29 */ "2031-03-20T23:59:59.999-07:00");
     });
 
     it("resolves the context date type", () => {

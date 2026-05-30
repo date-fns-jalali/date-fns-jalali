@@ -11,14 +11,14 @@ describe("eachWeekOfInterval", () => {
       end: /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23),
     });
     expect(result).toEqual([
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-      /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-      /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-      /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-      /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-      /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-      /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-      /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23),
+      /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+      /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+      /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+      /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+      /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+      /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+      /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+      /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22),
     ]);
   });
 
@@ -28,14 +28,14 @@ describe("eachWeekOfInterval", () => {
       end: /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23).getTime(),
     });
     expect(result).toEqual([
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-      /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-      /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-      /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-      /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-      /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-      /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-      /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23),
+      /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+      /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+      /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+      /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+      /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+      /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+      /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+      /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22),
     ]);
   });
 
@@ -45,14 +45,14 @@ describe("eachWeekOfInterval", () => {
       end: /* 1393/9/4 */ new Date(2014, 10 /* Nov */, 25, 22, 16),
     });
     expect(result).toEqual([
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-      /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-      /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-      /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-      /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-      /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-      /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-      /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23),
+      /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+      /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+      /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+      /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+      /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+      /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+      /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+      /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22),
     ]);
   });
 
@@ -82,7 +82,7 @@ describe("eachWeekOfInterval", () => {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/16 */ new Date(2014, 9 /* Oct */, 8, 15),
     });
-    expect(result).toEqual([/* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5)]);
+    expect(result).toEqual([/* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4)]);
   });
 
   it("returns one day if the both arguments are the same", () => {
@@ -90,7 +90,7 @@ describe("eachWeekOfInterval", () => {
       start: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6, 14),
     });
-    expect(result).toEqual([/* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5)]);
+    expect(result).toEqual([/* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4)]);
   });
 
   it("returns reversed array if the start date is after the end date", () => {
@@ -99,14 +99,14 @@ describe("eachWeekOfInterval", () => {
       end: /* 1393/7/14 */ new Date(2014, 9 /* Oct */, 6),
     });
     expect(result).toEqual([
-      /* 1393/9/2 */ new Date(2014, 10 /* Nov */, 23),
-      /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-      /* 1393/8/18 */ new Date(2014, 10 /* Nov */, 9),
-      /* 1393/8/11 */ new Date(2014, 10 /* Nov */, 2),
-      /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-      /* 1393/7/27 */ new Date(2014, 9 /* Oct */, 19),
-      /* 1393/7/20 */ new Date(2014, 9 /* Oct */, 12),
-      /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
+      /* 1393/9/1 */ new Date(2014, 10 /* Nov */, 22),
+      /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+      /* 1393/8/17 */ new Date(2014, 10 /* Nov */, 8),
+      /* 1393/8/10 */ new Date(2014, 10 /* Nov */, 1),
+      /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+      /* 1393/7/26 */ new Date(2014, 9 /* Oct */, 18),
+      /* 1393/7/19 */ new Date(2014, 9 /* Oct */, 11),
+      /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
     ]);
   });
 
@@ -183,18 +183,18 @@ describe("eachWeekOfInterval", () => {
         d.toISOString(),
       ),
     ).toEqual([
-      /* 1402/9/26 */ "2023-12-17T00:00:00.000+08:00",
-      /* 1402/10/3 */ "2023-12-24T00:00:00.000+08:00",
-      /* 1402/10/10 */ "2023-12-31T00:00:00.000+08:00",
+      /* 1402/9/25 */ "2023-12-16T00:00:00.000+08:00",
+      /* 1402/10/2 */ "2023-12-23T00:00:00.000+08:00",
+      /* 1402/10/9 */ "2023-12-30T00:00:00.000+08:00",
     ]);
     expect(
       eachWeekOfInterval({ start: dateRight, end: dateLeft }).map((d) =>
         d.toISOString(),
       ),
     ).toEqual([
-      /* 1402/10/10 */ "2023-12-31T00:00:00.000-05:00",
-      /* 1402/10/3 */ "2023-12-24T00:00:00.000-05:00",
-      /* 1402/9/26 */ "2023-12-17T00:00:00.000-05:00",
+      /* 1402/10/9 */ "2023-12-30T00:00:00.000-05:00",
+      /* 1402/10/2 */ "2023-12-23T00:00:00.000-05:00",
+      /* 1402/9/25 */ "2023-12-16T00:00:00.000-05:00",
     ]);
   });
 
@@ -218,20 +218,20 @@ describe("eachWeekOfInterval", () => {
           (date) => date.toISOString(),
         ),
       ).toEqual([
-        /* 1403/1/19 */ "2024-04-07T00:00:00.000-07:00",
-        /* 1403/1/26 */ "2024-04-14T00:00:00.000-07:00",
-        /* 1403/2/2 */ "2024-04-21T00:00:00.000-07:00",
-        /* 1403/2/9 */ "2024-04-28T00:00:00.000-07:00",
+        /* 1403/1/18 */ "2024-04-06T00:00:00.000-07:00",
+        /* 1403/1/25 */ "2024-04-13T00:00:00.000-07:00",
+        /* 1403/2/1 */ "2024-04-20T00:00:00.000-07:00",
+        /* 1403/2/8 */ "2024-04-27T00:00:00.000-07:00",
       ]);
       expect(
         eachWeekOfInterval(interval, { in: tz("Asia/Singapore") }).map((date) =>
           date.toISOString(),
         ),
       ).toEqual([
-        /* 1403/1/19 */ "2024-04-07T00:00:00.000+08:00",
-        /* 1403/1/26 */ "2024-04-14T00:00:00.000+08:00",
-        /* 1403/2/2 */ "2024-04-21T00:00:00.000+08:00",
-        /* 1403/2/9 */ "2024-04-28T00:00:00.000+08:00",
+        /* 1403/1/18 */ "2024-04-06T00:00:00.000+08:00",
+        /* 1403/1/25 */ "2024-04-13T00:00:00.000+08:00",
+        /* 1403/2/1 */ "2024-04-20T00:00:00.000+08:00",
+        /* 1403/2/8 */ "2024-04-27T00:00:00.000+08:00",
       ]);
     });
 
@@ -257,18 +257,18 @@ describe("eachWeekOfInterval", () => {
     it("returns an array with starts of days from the day of the start date to the day of the end date with the given step", () => {
       const result = eachWeekOfInterval(interval, { step: 3 });
       expect(result).toEqual([
-        /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-        /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-        /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
+        /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+        /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+        /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
       ]);
     });
 
     it("returns reversed array if `options.step` is negative", () => {
       const result = eachWeekOfInterval(interval, { step: -3 });
       expect(result).toEqual([
-        /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
-        /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-        /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
+        /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
+        /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+        /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
       ]);
     });
 
@@ -278,9 +278,9 @@ describe("eachWeekOfInterval", () => {
         { step: -3 },
       );
       expect(result).toEqual([
-        /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5),
-        /* 1393/8/4 */ new Date(2014, 9 /* Oct */, 26),
-        /* 1393/8/25 */ new Date(2014, 10 /* Nov */, 16),
+        /* 1393/7/12 */ new Date(2014, 9 /* Oct */, 4),
+        /* 1393/8/3 */ new Date(2014, 9 /* Oct */, 25),
+        /* 1393/8/24 */ new Date(2014, 10 /* Nov */, 15),
       ]);
     });
 

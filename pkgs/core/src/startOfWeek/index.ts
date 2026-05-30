@@ -58,7 +58,7 @@ export function startOfWeek<
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   const _date = toDate(date, options?.in);
   const day = _date.getDay();

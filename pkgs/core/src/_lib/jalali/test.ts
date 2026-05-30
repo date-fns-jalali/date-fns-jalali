@@ -41,7 +41,10 @@ describe("j2d/d2j", () => {
     for (let i = START; i < END; i++) {
       const { jy, jm, jd } = d2j(i);
       const j = j2d(jy, jm, jd);
-      expect(j).toBe(i);
+      if (j !== i) {
+        // vitest can't handle millions of assertions, so we only call expect when there's a failure
+        expect(j).toBe(i);
+      }
     }
   });
   it("each day of year should be one from tomorrow", () => {
@@ -49,7 +52,10 @@ describe("j2d/d2j", () => {
       let last_day = j2d(y, 1, 0);
       for (const [m, d] of JALALI_YEAR_DAYS) {
         const j = j2d(y, m, d);
-        expect(j - last_day).toBe(1);
+        if (j - last_day !== 1) {
+          // vitest can't handle millions of assertions, so we only call expect when there's a failure
+          expect(j - last_day).toBe(1);
+        }
         last_day = j;
       }
     }
@@ -101,7 +107,10 @@ describe("j2d/d2j", () => {
     for (let i = START; i < END; i++) {
       const { gy, gm, gd } = d2g(i);
       const j = g2d(gy, gm, gd);
-      expect(j).toBe(i);
+      if (j !== i) {
+        // vitest can't handle millions of assertions, so we only call expect when there's a failure
+        expect(j).toBe(i);
+      }
     }
   });
   it("should handle negative/overflow month", () => {
