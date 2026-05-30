@@ -4,6 +4,8 @@ import { Parser } from "../Parser.ts";
 import type { ParseFlags, ParseResult } from "../types.ts";
 import { mapValue, parseNDigits, parseNumericPattern } from "../utils.ts";
 
+import { setMonth as coreSetMonth } from "../../../_core/setMonth/index.ts";
+
 export class StandAloneMonthParser extends Parser<number> {
   priority = 110;
 
@@ -66,7 +68,7 @@ export class StandAloneMonthParser extends Parser<number> {
     _flags: ParseFlags,
     value: number,
   ): DateType {
-    date.setMonth(value, 1);
+    coreSetMonth(date, value, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }

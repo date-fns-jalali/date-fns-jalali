@@ -5,6 +5,9 @@ import { isWeekend } from "../isWeekend/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link addBusinessDays} function options.
  */
@@ -56,14 +59,14 @@ export function addBusinessDays<
   const sign = amount < 0 ? -1 : 1;
   const fullWeeks = Math.trunc(amount / 5);
 
-  _date.setDate(_date.getDate() + fullWeeks * 7);
+  coreSetDate(_date, coreGetDate(_date) + fullWeeks * 7);
 
   // Get remaining days not part of a full week
   let restDays = Math.abs(amount % 5);
 
   // Loops over remaining days
   while (restDays > 0) {
-    _date.setDate(_date.getDate() + sign);
+    coreSetDate(_date, coreGetDate(_date) + sign);
     if (!isWeekend(_date, options)) restDays -= 1;
   }
 
@@ -74,9 +77,9 @@ export function addBusinessDays<
     // If we're reducing days, we want to add days until we land on a weekday
     // If we're adding days we want to reduce days until we land on a weekday
     if (isSaturday(_date, options))
-      _date.setDate(_date.getDate() + (sign < 0 ? 2 : -1));
+      coreSetDate(_date, coreGetDate(_date) + (sign < 0 ? 2 : -1));
     if (isSunday(_date, options))
-      _date.setDate(_date.getDate() + (sign < 0 ? 1 : -2));
+      coreSetDate(_date, coreGetDate(_date) + (sign < 0 ? 1 : -2));
   }
 
   // Restore hours to avoid DST lag

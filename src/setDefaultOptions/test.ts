@@ -82,9 +82,9 @@ describe("setDefaultOptions", () => {
       );
 
       // Manually set `locale` take priority over `defaultOptions.locale`
-      expect(format(new Date(2014, 0, 1), "PPPpp", { locale: defaultLocale })).toEqual(
-        "January 1st, 2014 at 12:00:00 AM",
-      );
+      expect(
+        format(new Date(2014, 0, 1), "PPPpp", { locale: defaultLocale }),
+      ).toEqual("January 1st, 2014 at 12:00:00 AM");
     });
 
     it("formatDistance", () => {
@@ -136,7 +136,9 @@ describe("setDefaultOptions", () => {
       expect(formatDuration({ years: 1 })).toEqual("1 jaro");
 
       // Manually set `locale` take priority over `defaultOptions.locale`
-      expect(formatDuration({ years: 1 }, { locale: defaultLocale })).toEqual("1 year");
+      expect(formatDuration({ years: 1 }, { locale: defaultLocale })).toEqual(
+        "1 year",
+      );
     });
 
     it("formatRelative", () => {

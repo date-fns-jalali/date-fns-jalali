@@ -2,6 +2,10 @@ import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
 import type { ContextOptions, Interval, StepOptions } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link eachMonthOfInterval} function options.
  */
@@ -70,7 +74,7 @@ export function eachMonthOfInterval<
   const endTime = reversed ? +start : +end;
   const date = reversed ? end : start;
   date.setHours(0, 0, 0, 0);
-  date.setDate(1);
+  coreSetDate(date, 1);
 
   let step = options?.step ?? 1;
   if (!step) return [];
@@ -83,7 +87,7 @@ export function eachMonthOfInterval<
 
   while (+date <= endTime) {
     dates.push(constructFrom(start, date));
-    date.setMonth(date.getMonth() + step);
+    coreSetMonth(date, coreGetMonth(date) + step);
   }
 
   return reversed ? dates.reverse() : dates;
