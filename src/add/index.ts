@@ -7,9 +7,8 @@ import type { ContextOptions, DateArg, Duration } from "../types.ts";
 /**
  * The {@link add} function options.
  */
-export interface AddOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface AddOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name add

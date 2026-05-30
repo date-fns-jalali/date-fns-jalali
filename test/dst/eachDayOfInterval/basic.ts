@@ -18,5 +18,5 @@ assert.deepStrictEqual(
     "Thu Mar 26 2020 00:00:00 GMT+0200 (GMT+03:00)",
     "Fri Mar 27 2020 01:00:00 GMT+0300 (GMT+03:00)",
     "Sat Mar 28 2020 00:00:00 GMT+0300 (GMT+03:00)",
-  ]
+  ],
 );
