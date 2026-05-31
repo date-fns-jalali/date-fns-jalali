@@ -6,12 +6,12 @@ describe("lightFormat", () => {
 
   it("accepts a timestamp", () => {
     const date = /* 1393/1/15 */ new Date(2014, 3, 4).getTime();
-    expect(lightFormat(date, "yyyy-MM-dd")).toBe("2014-04-04");
+    expect(lightFormat(date, "yyyy-MM-dd")).toBe("1393-01-15");
   });
 
   it("escapes characters between the single quote characters", () => {
     const result = lightFormat(date, "'yyyy-'MM-dd'D yyyy-'MM-dd'");
-    expect(result).toBe("yyyy-04-04D yyyy-04-04");
+    expect(result).toBe("yyyy-01-15D yyyy-01-15");
   });
 
   it('two single quote characters are transformed into a "real" single quote', () => {
@@ -22,7 +22,7 @@ describe("lightFormat", () => {
   it("accepts new line character", () => {
     const date = /* 1393/1/15 */ new Date(2014, 3, 4, 5);
     expect(lightFormat(date, "yyyy-MM-dd'\n'HH:mm:ss")).toBe(
-      "2014-04-04\n05:00:00",
+      "1393-01-15\n05:00:00",
     );
   });
 
@@ -30,7 +30,7 @@ describe("lightFormat", () => {
     describe("regular year", () => {
       it("works as expected", () => {
         const result = lightFormat(date, "y yy yyy yyyy yyyyy");
-        expect(result).toBe("1986 86 1986 1986 01986");
+        expect(result).toBe("1365 65 1365 1365 01365");
       });
 
       it("1 BC formats as 1", () => {
@@ -38,7 +38,7 @@ describe("lightFormat", () => {
         date.setFullYear(0 /* Jan */, 1);
         date.setHours(0, 0, 0, 0);
         const result = lightFormat(date, "y");
-        expect(result).toBe("1");
+        expect(result).toBe("623");
       });
 
       it("2 BC formats as 2", () => {
@@ -46,7 +46,7 @@ describe("lightFormat", () => {
         date.setFullYear(-1, 0 /* Jan */, 1);
         date.setHours(0, 0, 0, 0);
         const result = lightFormat(date, "y");
-        expect(result).toBe("2");
+        expect(result).toBe("624");
       });
     });
   });
@@ -54,14 +54,14 @@ describe("lightFormat", () => {
   describe("month", () => {
     it("formatting month", () => {
       const result = lightFormat(date, "M MM");
-      expect(result).toBe("4 04");
+      expect(result).toBe("1 01");
     });
   });
 
   describe("day", () => {
     it("date", () => {
       const result = lightFormat(date, "d dd");
-      expect(result).toBe("4 04");
+      expect(result).toBe("15 15");
     });
   });
 

@@ -9,7 +9,7 @@ describe("startOfYear", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = startOfYear(date);
     expect(result).toEqual(
-      /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1, 0, 0, 0, 0),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21, 0, 0, 0, 0),
     );
   });
 
@@ -24,7 +24,7 @@ describe("startOfYear", () => {
     ).getTime();
     const result = startOfYear(date);
     expect(result).toEqual(
-      /* 1392/10/11 */ new Date(2014, 0 /* Dec */, 1, 0, 0, 0, 0),
+      /* 1393/1/1 */ new Date(2014, 2 /* Mar */, 21, 0, 0, 0, 0),
     );
   });
 
@@ -41,7 +41,7 @@ describe("startOfYear", () => {
     initialDate.setFullYear(9, 0 /* Jan */, 5);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(9, 0 /* Jan */, 1);
+    expectedResult.setFullYear(8, 2 /* Mar */, 22);
     expectedResult.setHours(0, 0, 0, 0);
     const result = startOfYear(initialDate);
     expect(result).toEqual(expectedResult);
@@ -70,22 +70,22 @@ describe("startOfYear", () => {
         startOfYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1401/10/11 */ "2023-01-01T00:00:00.000+08:00");
+      ).toBe(/* 1402/1/1 */ "2023-03-21T00:00:00.000+08:00");
       expect(
         startOfYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1402/10/11 */ "2024-01-01T00:00:00.000+08:00");
+      ).toBe(/* 1402/1/1 */ "2023-03-21T00:00:00.000+08:00");
       expect(
         startOfYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1401/10/11 */ "2023-01-01T00:00:00.000-05:00");
+      ).toBe(/* 1402/1/1 */ "2023-03-21T00:00:00.000-04:00");
       expect(
         startOfYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1402/10/11 */ "2024-01-01T00:00:00.000-05:00");
+      ).toBe(/* 1402/1/1 */ "2023-03-21T00:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {

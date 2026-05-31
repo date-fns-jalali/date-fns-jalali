@@ -23,7 +23,7 @@ describe("isSameQuarter", () => {
   it("accepts a timestamp", () => {
     const result = isSameQuarter(
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime(),
+      /* 1393/6/3 */ new Date(2014, 7 /* Aug */, 25).getTime(),
     );
     expect(result).toBe(true);
   });
@@ -66,7 +66,7 @@ describe("isSameQuarter", () => {
       31,
       "America/New_York",
     );
-    expect(isSameQuarter(dateLeft, dateRight)).toBe(false);
+    expect(isSameQuarter(dateLeft, dateRight)).toBe(true);
     expect(isSameQuarter(dateRight, dateLeft)).toBe(true);
   });
 
@@ -89,7 +89,7 @@ describe("isSameQuarter", () => {
             in: tz("Asia/Singapore"),
           },
         ),
-      ).toBe(false);
+      ).toBe(true);
       expect(
         isSameQuarter(
           /* 1403/7/10 */ "2024-10-01T04:00:00Z",
@@ -107,7 +107,7 @@ describe("isSameQuarter", () => {
             in: tz("America/New_York"),
           },
         ),
-      ).toBe(false);
+      ).toBe(true);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

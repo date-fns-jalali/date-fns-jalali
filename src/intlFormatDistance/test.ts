@@ -1,6 +1,16 @@
 import { TZDate, tz } from "@date-fns/tz";
 import { describe, expect, it } from "vitest";
-import { intlFormatDistance } from "./index.ts";
+import { intlFormatDistance as originalIntlFormatDistance } from "./index.ts";
+
+const intlFormatDistance = (
+  ...args: Parameters<typeof originalIntlFormatDistance>
+) => {
+  const [laterDate, earlierDate, options] = args;
+  return originalIntlFormatDistance(laterDate, earlierDate, {
+    locale: "en-US",
+    ...options,
+  });
+};
 
 describe("intlFormatDistance", () => {
   describe("with default values", () => {
@@ -314,7 +324,7 @@ describe("intlFormatDistance", () => {
           /* 1365/3/1 */ new Date(1986, 4, 22),
           /* 1365/1/12 */ new Date(1986, 3, 1),
         );
-        expect(result).toBe("next month");
+        expect(result).toBe("in 2 months");
       });
 
       it("works with past", () => {
@@ -330,7 +340,7 @@ describe("intlFormatDistance", () => {
           /* 1365/1/12 */ new Date(1986, 3, 1),
           /* 1365/3/1 */ new Date(1986, 4, 22),
         );
-        expect(result).toBe("last month");
+        expect(result).toBe("2 months ago");
       });
     });
 
@@ -348,7 +358,7 @@ describe("intlFormatDistance", () => {
           /* 1365/4/1 */ new Date(1986, 5, 22),
           /* 1364/11/12 */ new Date(1986, 1, 1),
         );
-        expect(result).toBe("next quarter");
+        expect(result).toBe("in 2 quarters");
       });
 
       it("works with past", () => {
@@ -364,7 +374,7 @@ describe("intlFormatDistance", () => {
           /* 1364/11/12 */ new Date(1986, 1, 1),
           /* 1365/4/1 */ new Date(1986, 5, 22),
         );
-        expect(result).toBe("last quarter");
+        expect(result).toBe("2 quarters ago");
       });
     });
 
@@ -416,7 +426,7 @@ describe("intlFormatDistance", () => {
           /* 1366/8/11 */ new Date(1987, 10, 2),
           /* 1364/11/12 */ new Date(1986, 1, 1),
         );
-        expect(result).toBe("next year");
+        expect(result).toBe("in 2 years");
       });
 
       it("works with past", () => {
@@ -432,7 +442,7 @@ describe("intlFormatDistance", () => {
           /* 1364/11/12 */ new Date(1986, 1, 1),
           /* 1366/8/11 */ new Date(1987, 10, 2),
         );
-        expect(result).toBe("last year");
+        expect(result).toBe("2 years ago");
       });
     });
 

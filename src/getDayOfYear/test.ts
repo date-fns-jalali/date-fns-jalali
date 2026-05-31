@@ -6,14 +6,14 @@ import type { ContextOptions, DateArg } from "../types.ts";
 describe("getDayOfYear", () => {
   it("returns the day of the year of the given date", () => {
     const result = getDayOfYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
-    expect(result).toBe(183);
+    expect(result).toBe(104);
   });
 
   it("accepts a timestamp", () => {
     const result = getDayOfYear(
       /* 1392/10/12 */ new Date(2014, 0 /* Jan */, 2).getTime(),
     );
-    expect(result).toBe(2);
+    expect(result).toBe(288);
   });
 
   it("handles dates before 100 AD", () => {
@@ -21,7 +21,7 @@ describe("getDayOfYear", () => {
     initialDate.setFullYear(0, 11 /* Dec */, 31);
     initialDate.setHours(0, 0, 0, 0);
     const result = getDayOfYear(initialDate);
-    expect(result).toBe(366);
+    expect(result).toBe(285);
   });
 
   it("returns NaN if the given date is invalid", () => {
@@ -35,12 +35,12 @@ describe("getDayOfYear", () => {
         getDayOfYear(new Date(/* 1393/4/11 */ "2014-07-02T00:00:00Z"), {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(183);
+      ).toBe(104);
       expect(
         getDayOfYear(new Date(/* 1393/4/11 */ "2014-07-02T00:00:00Z"), {
           in: tz("America/Los_Angeles"),
         }),
-      ).toBe(182);
+      ).toBe(103);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

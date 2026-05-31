@@ -40,7 +40,7 @@ describe("isThisQuarter", () => {
         }),
       ).toBe(true);
       expect(
-        isThisQuarter(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
+        isThisQuarter(/* 1402/9/30 */ "2023-12-21T05:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);

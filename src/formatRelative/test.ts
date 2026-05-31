@@ -1,6 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { formatRelative } from "./index.ts";
 import { TZDate, tz } from "@date-fns/tz";
+import { enUS } from "../locale/en-US/index.ts";
+import { formatRelative as originalFormatRelative } from "./index.ts";
+
+const formatRelative = (...args: Parameters<typeof originalFormatRelative>) => {
+  const [date, baseDate, options] = args;
+  return originalFormatRelative(date, baseDate, {
+    locale: enUS,
+    ...options,
+  });
+};
 
 describe("formatRelative", () => {
   const baseDate = /* 1365/1/15 */ new Date(
@@ -16,7 +25,7 @@ describe("formatRelative", () => {
   it("accepts a timestamp", () => {
     const date = /* 1393/1/15 */ new Date(2014, 3 /* Apr */, 4);
     expect(formatRelative(date.getTime(), baseDate.getTime())).toBe(
-      "04/04/2014",
+      "01/15/1393",
     );
   });
 
@@ -25,7 +34,7 @@ describe("formatRelative", () => {
       /* 1365/1/8 */ new Date(1986, 2 /* Mar */, 28, 16, 50),
       baseDate,
     );
-    expect(result).toBe("03/28/1986");
+    expect(result).toBe("01/08/1365");
   });
 
   it("last week", () => {
@@ -73,7 +82,7 @@ describe("formatRelative", () => {
       /* 1365/1/22 */ new Date(1986, 3 /* Apr */, 11, 16, 50),
       baseDate,
     );
-    expect(result).toBe("04/11/1986");
+    expect(result).toBe("01/22/1365");
   });
 
   describe("edge cases", () => {
@@ -103,7 +112,7 @@ describe("formatRelative", () => {
       const date = new Date(0);
       date.setFullYear(7, 11 /* Dec */, 31);
       date.setHours(0, 0, 0, 0);
-      expect(formatRelative(date, baseDate)).toBe("12/31/0007");
+      expect(formatRelative(date, baseDate)).toBe("10/09/0615");
     });
   });
 
@@ -164,8 +173,8 @@ describe("formatRelative", () => {
       0,
       "America/New_York",
     );
-    expect(formatRelative(dateLeft, dateRight)).toBe("07/04/1987");
-    expect(formatRelative(dateRight, dateLeft)).toBe("04/04/1986");
+    expect(formatRelative(dateLeft, dateRight)).toBe("04/13/1366");
+    expect(formatRelative(dateRight, dateLeft)).toBe("01/15/1365");
   });
 
   describe("context", () => {

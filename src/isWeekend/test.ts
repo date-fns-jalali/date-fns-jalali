@@ -6,7 +6,7 @@ import { isWeekend } from "./index.ts";
 describe("isWeekend", () => {
   it("returns true if the given date is in a weekend", () => {
     const result = isWeekend(/* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5));
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it("returns false if the given date is not in a weekend", () => {
@@ -18,7 +18,7 @@ describe("isWeekend", () => {
     const result = isWeekend(
       /* 1393/7/13 */ new Date(2014, 9 /* Oct */, 5).getTime(),
     );
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it("returns false if the given date is `Invalid Date`", () => {
@@ -32,7 +32,7 @@ describe("isWeekend", () => {
         isWeekend(/* 1403/5/28 */ "2024-08-18T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(true);
+      ).toBe(false);
       expect(
         isWeekend(/* 1403/5/29 */ "2024-08-19T01:00:00Z", {
           in: tz("Asia/Singapore"),
@@ -42,12 +42,12 @@ describe("isWeekend", () => {
         isWeekend(/* 1403/5/27 */ "2024-08-17T03:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(false);
+      ).toBe(true);
       expect(
         isWeekend(/* 1403/5/27 */ "2024-08-17T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(true);
+      ).toBe(false);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

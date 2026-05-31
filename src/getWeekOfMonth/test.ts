@@ -8,7 +8,7 @@ describe("getWeekOfMonth", () => {
     const result = getWeekOfMonth(
       /* 1396/8/24 */ new Date(2017, 10 /* Nov */, 15),
     );
-    expect(result).toBe(3);
+    expect(result).toBe(4);
   });
 
   describe("edge cases", () => {
@@ -17,7 +17,7 @@ describe("getWeekOfMonth", () => {
         const result = getWeekOfMonth(
           /* 1396/8/10 */ new Date(2017, 10 /* Nov */, 1),
         );
-        expect(result).toBe(1);
+        expect(result).toBe(2);
       });
     });
 
@@ -26,7 +26,7 @@ describe("getWeekOfMonth", () => {
         const result = getWeekOfMonth(
           /* 1396/9/9 */ new Date(2017, 10 /* Nov */, 30),
         );
-        expect(result).toBe(5);
+        expect(result).toBe(2);
       });
     });
 
@@ -35,7 +35,7 @@ describe("getWeekOfMonth", () => {
         const result = getWeekOfMonth(
           /* 1396/8/9 */ new Date(2017, 9 /* Oct */, 31),
         );
-        expect(result).toBe(5);
+        expect(result).toBe(2);
       });
     });
   });
@@ -47,7 +47,7 @@ describe("getWeekOfMonth", () => {
         weekStartsOn: 1,
       },
     );
-    expect(result).toBe(1);
+    expect(result).toBe(2);
   });
 
   it("allows to specify which day is the first day of the week in locale", () => {
@@ -59,7 +59,7 @@ describe("getWeekOfMonth", () => {
         },
       },
     );
-    expect(result).toBe(6);
+    expect(result).toBe(2);
   });
 
   it("options.weekStartsOn overwrites the first day of the week specified in locale", () => {
@@ -72,14 +72,14 @@ describe("getWeekOfMonth", () => {
         },
       },
     );
-    expect(result).toBe(3);
+    expect(result).toBe(4);
   });
 
   it("accepts a timestamp", () => {
     const result = getWeekOfMonth(
       /* 1396/8/10 */ new Date(2017, 10 /* Nov */, 1).getTime(),
     );
-    expect(result).toBe(1);
+    expect(result).toBe(2);
   });
 
   it("returns NaN if the given date is invalid", () => {
@@ -94,7 +94,7 @@ describe("getWeekOfMonth", () => {
         weekStartsOn: 1,
       },
     );
-    expect(result).toBe(1);
+    expect(result).toBe(3);
   });
 
   describe("context", () => {
@@ -103,22 +103,22 @@ describe("getWeekOfMonth", () => {
         getWeekOfMonth(/* 1403/6/3 */ "2024-08-24T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(4);
+      ).toBe(2);
       expect(
         getWeekOfMonth(/* 1403/6/3 */ "2024-08-24T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(5);
+      ).toBe(2);
       expect(
         getWeekOfMonth(/* 1403/6/4 */ "2024-08-25T03:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(4);
+      ).toBe(2);
       expect(
         getWeekOfMonth(/* 1403/6/4 */ "2024-08-25T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(5);
+      ).toBe(2);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

@@ -27,7 +27,7 @@ describe("intervalToDuration", () => {
     expect(result).toEqual({
       years: 1,
       months: 1,
-      days: 1,
+      days: 2,
       hours: 1,
       minutes: 1,
       seconds: 1,
@@ -49,7 +49,7 @@ describe("intervalToDuration", () => {
     };
     const result = intervalToDuration(interval);
 
-    expect(result).toEqual({ months: -1 });
+    expect(result).toEqual({ months: -1, days: -2 });
   });
 
   it("returns an empty object if interval's start date invalid", () => {
@@ -118,7 +118,7 @@ describe("intervalToDuration", () => {
       const start = /* 1400/6/9 */ new Date(2021, 7, 31);
       const end = addMonths(start, 1);
 
-      expect(end).toEqual(/* 1400/7/8 */ new Date(2021, 8, 30));
+      expect(end).toEqual(/* 1400/7/9 */ new Date(2021, 9, 1));
 
       const duration = intervalToDuration({ start, end });
       const expectedDuration = {
@@ -147,7 +147,7 @@ describe("intervalToDuration", () => {
       });
       const expectedDuration = {
         months: 2,
-        days: 2,
+        days: 1,
       };
 
       expect(duration).toEqual(expectedDuration);
@@ -160,8 +160,8 @@ describe("intervalToDuration", () => {
           end: /* 1400/6/9 */ new Date(2021, 7, 31),
         });
         const expectedDuration = {
-          months: 6,
-          days: 3,
+          months: 5,
+          days: 30,
         };
 
         expect(duration).toEqual(expectedDuration);
@@ -173,8 +173,8 @@ describe("intervalToDuration", () => {
           end: /* 1400/6/8 */ new Date(2021, 7, 30),
         });
         const expectedDuration = {
-          months: 6,
-          days: 2,
+          months: 5,
+          days: 29,
         };
 
         expect(duration).toEqual(expectedDuration);
@@ -186,8 +186,8 @@ describe("intervalToDuration", () => {
           end: /* 1400/6/7 */ new Date(2021, 7, 29),
         });
         const expectedDuration = {
-          months: 6,
-          days: 1,
+          months: 5,
+          days: 28,
         };
 
         expect(duration).toEqual(expectedDuration);
@@ -199,7 +199,8 @@ describe("intervalToDuration", () => {
           end: /* 1400/6/6 */ new Date(2021, 7, 28),
         });
         const expectedDuration = {
-          months: 6,
+          months: 5,
+          days: 27,
         };
 
         expect(duration).toEqual(expectedDuration);
@@ -214,7 +215,7 @@ describe("intervalToDuration", () => {
         });
         const expectedDuration = {
           months: 5,
-          days: 30,
+          days: 26,
         };
 
         expect(duration).toEqual(expectedDuration);
@@ -227,7 +228,6 @@ describe("intervalToDuration", () => {
         });
         const expectedDuration = {
           months: 1,
-          days: 1,
         };
 
         expect(duration).toEqual(expectedDuration);
@@ -244,13 +244,13 @@ describe("intervalToDuration", () => {
       "America/New_York",
     );
     expect(intervalToDuration({ start: laterDate, end: earlierDate })).toEqual({
-      days: -30,
+      days: -29,
       hours: -11,
       months: -11,
       years: -2,
     });
     expect(intervalToDuration({ start: earlierDate, end: laterDate })).toEqual({
-      days: 30,
+      days: 29,
       hours: 11,
       months: 11,
       years: 2,
@@ -278,6 +278,7 @@ describe("intervalToDuration", () => {
         ),
       ).toEqual({
         years: 1,
+        days: 1,
         hours: 15,
       });
       expect(
@@ -290,6 +291,7 @@ describe("intervalToDuration", () => {
         ),
       ).toEqual({
         years: 1,
+        days: 1,
         hours: 15,
       });
     });

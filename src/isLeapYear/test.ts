@@ -41,7 +41,7 @@ describe("isLeapYear", () => {
         isLeapYear(/* 1390/10/11 */ "2012-01-01T00:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(true);
+      ).toBe(false);
       expect(
         isLeapYear(/* 1390/10/11 */ "2012-01-01T00:00:00Z", {
           in: tz("America/New_York"),

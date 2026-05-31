@@ -72,22 +72,22 @@ describe("differenceInCalendarWeeks", () => {
       /* 1393/4/21 */ new Date(2014, 6 /* Jul */, 12).getTime(),
       /* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2).getTime(),
     );
-    expect(result).toBe(1);
+    expect(result).toBe(2);
   });
 
   describe("edge cases", () => {
     it("the difference is less than a week, but the given dates are in different calendar weeks", () => {
       const result = differenceInCalendarWeeks(
-        /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6),
-        /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5),
+        /* 1393/4/21 */ new Date(2014, 6 /* Jul */, 12),
+        /* 1393/4/20 */ new Date(2014, 6 /* Jul */, 11),
       );
       expect(result).toBe(1);
     });
 
     it("the same for the swapped dates", () => {
       const result = differenceInCalendarWeeks(
-        /* 1393/4/14 */ new Date(2014, 6 /* Jul */, 5),
-        /* 1393/4/15 */ new Date(2014, 6 /* Jul */, 6),
+        /* 1393/4/20 */ new Date(2014, 6 /* Jul */, 11),
+        /* 1393/4/21 */ new Date(2014, 6 /* Jul */, 12),
       );
       expect(result).toBe(-1);
     });
@@ -125,8 +125,8 @@ describe("differenceInCalendarWeeks", () => {
     it("properly works with negative numbers", () => {
       const a = /* 1393/4/18 */ new Date(2014, 6 /* Jul */, 9);
       const b = /* 1393/4/28 */ new Date(2014, 6 /* Jul */, 19);
-      expect(differenceInCalendarWeeks(b, a)).toBe(1);
-      expect(differenceInCalendarWeeks(a, b)).toBe(-1);
+      expect(differenceInCalendarWeeks(b, a)).toBe(2);
+      expect(differenceInCalendarWeeks(a, b)).toBe(-2);
     });
   });
 
@@ -169,7 +169,7 @@ describe("differenceInCalendarWeeks", () => {
       "America/New_York",
     );
     expect(differenceInCalendarWeeks(dateLeft, dateRight)).toBe(1);
-    expect(differenceInCalendarWeeks(dateRight, dateLeft)).toBe(0);
+    expect(differenceInCalendarWeeks(dateRight, dateLeft)).toBe(-1);
   });
 
   describe("context", () => {
@@ -180,7 +180,7 @@ describe("differenceInCalendarWeeks", () => {
           /* 1403/5/11 */ "2024-08-01T00:00:00Z",
           { in: tz("America/New_York") },
         ),
-      ).toBe(2);
+      ).toBe(3);
       expect(
         differenceInCalendarWeeks(
           /* 1403/5/28 */ "2024-08-18T04:00:00Z",

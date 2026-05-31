@@ -31,16 +31,16 @@ describe("differenceInCalendarMonths", () => {
   describe("edge cases", () => {
     it("returns 1 when dates are in different months but less than a month apart", () => {
       const result = differenceInCalendarMonths(
-        /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
-        /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31),
+        /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23),
+        /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22),
       );
       expect(result).toBe(1);
     });
 
     it("returns -1 for swapped dates with a month difference", () => {
       const result = differenceInCalendarMonths(
-        /* 1393/6/9 */ new Date(2014, 7 /* Aug */, 31),
-        /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
+        /* 1393/6/31 */ new Date(2014, 8 /* Sep */, 22),
+        /* 1393/7/1 */ new Date(2014, 8 /* Sep */, 23),
       );
       expect(result).toBe(-1);
     });
@@ -106,7 +106,7 @@ describe("differenceInCalendarMonths", () => {
       "America/New_York",
     );
     expect(differenceInCalendarMonths(dateLeft, dateRight)).toBe(12);
-    expect(differenceInCalendarMonths(dateRight, dateLeft)).toBe(-11);
+    expect(differenceInCalendarMonths(dateRight, dateLeft)).toBe(-12);
   });
 
   it("allows dates to be of different types", () => {
@@ -133,7 +133,7 @@ describe("differenceInCalendarMonths", () => {
           /* 1404/5/10 */ "2025-08-01T04:00:00Z",
           { in: tz("America/New_York") },
         ),
-      ).toBe(0);
+      ).toBe(1);
     });
 
     it("context doesn't enforce argument and context to be of the same type", () => {

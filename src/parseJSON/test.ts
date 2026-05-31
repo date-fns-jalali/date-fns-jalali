@@ -7,7 +7,7 @@ import { parseJSON } from "./index.ts";
 describe("parseJSON", () => {
   it("parses a formatted new Date() back to UTC - issue 2149", () => {
     const date = new Date();
-    const jsonFormat = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+    const jsonFormat = date.toISOString();
     const parsedDate = parseJSON(jsonFormat);
     expect(parsedDate.toISOString()).toBe(date.toISOString());
   });

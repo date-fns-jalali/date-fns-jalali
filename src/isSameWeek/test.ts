@@ -17,7 +17,7 @@ describe("isSameWeek", () => {
       /* 1393/6/8 */ new Date(2014, 7 /* Aug */, 30),
       /* 1393/6/13 */ new Date(2014, 8 /* Sep */, 4),
     );
-    expect(result).toBe(false);
+    expect(result).toBe(true);
   });
 
   it("allows to specify which day is the first day of the week", () => {
@@ -123,7 +123,7 @@ describe("isSameWeek", () => {
             in: tz("Asia/Singapore"),
           },
         ),
-      ).toBe(false);
+      ).toBe(true);
       expect(
         isSameWeek(
           /* 1403/6/3 */ "2024-08-24T16:00:00Z",

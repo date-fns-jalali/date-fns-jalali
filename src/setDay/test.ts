@@ -53,7 +53,7 @@ describe("setDay", () => {
   describe("the day index is more than 6", () => {
     it("sets the day of the next week", () => {
       const result = setDay(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), 8);
-      expect(result).toEqual(/* 1393/6/17 */ new Date(2014, 8 /* Sep */, 8));
+      expect(result).toEqual(/* 1393/6/16 */ new Date(2014, 8 /* Sep */, 7));
     });
 
     it("allows to specify which day is the first day of the week", () => {
@@ -78,7 +78,7 @@ describe("setDay", () => {
   describe("the day index is less than 0", () => {
     it("sets the day of the last week", () => {
       const result = setDay(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1), -6);
-      expect(result).toEqual(/* 1393/6/3 */ new Date(2014, 7 /* Aug */, 25));
+      expect(result).toEqual(/* 1393/6/2 */ new Date(2014, 7 /* Aug */, 24));
     });
 
     it("allows to specify which day is the first day of the week", () => {
@@ -146,12 +146,12 @@ describe("setDay", () => {
         setDay(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 15, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/2/3 */ "2024-04-22T15:00:00.000+08:00");
+      ).toBe(/* 1403/2/2 */ "2024-04-21T15:00:00.000+08:00");
       expect(
         setDay(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 15, {
           in: tz("Asia/Kolkata"),
         }).toISOString(),
-      ).toBe(/* 1403/2/3 */ "2024-04-22T12:30:00.000+05:30");
+      ).toBe(/* 1403/2/2 */ "2024-04-21T12:30:00.000+05:30");
     });
 
     it("resolves the context date type", () => {

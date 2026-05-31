@@ -1,7 +1,18 @@
 import { describe, expect, it } from "vitest";
+import { enUS } from "../locale/en-US/index.ts";
 import type { FormatDistanceFn } from "../locale/types.ts";
-import { formatDistanceStrict } from "./index.ts";
+import { formatDistanceStrict as originalFormatDistanceStrict } from "./index.ts";
 import { TZDate, tz } from "@date-fns/tz";
+
+const formatDistanceStrict = (
+  ...args: Parameters<typeof originalFormatDistanceStrict>
+) => {
+  const [laterDate, earlierDate, options] = args;
+  return originalFormatDistanceStrict(laterDate, earlierDate, {
+    locale: enUS,
+    ...options,
+  });
+};
 
 describe("formatDistanceStrict", () => {
   describe("seconds", () => {

@@ -31,16 +31,16 @@ describe("differenceInCalendarYears", () => {
   describe("edge cases", () => {
     it("the difference is less than a year, but the given dates are in different calendar years", () => {
       const result = differenceInCalendarYears(
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
-        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
+        /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20),
       );
       expect(result).toBe(1);
     });
 
     it("the same for the swapped dates", () => {
       const result = differenceInCalendarYears(
-        /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31),
-        /* 1393/10/11 */ new Date(2015, 0 /* Jan */, 1),
+        /* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20),
+        /* 1394/1/1 */ new Date(2015, 2 /* Mar */, 21),
       );
       expect(result).toBe(-1);
     });
@@ -106,7 +106,7 @@ describe("differenceInCalendarYears", () => {
       "America/New_York",
     );
     expect(differenceInCalendarYears(dateLeft, dateRight)).toBe(1);
-    expect(differenceInCalendarYears(dateRight, dateLeft)).toBe(0);
+    expect(differenceInCalendarYears(dateRight, dateLeft)).toBe(-1);
   });
 
   it("allows dates to be of different types", () => {
@@ -133,7 +133,7 @@ describe("differenceInCalendarYears", () => {
           /* 1402/10/11 */ "2024-01-01T00:00:00Z",
           { in: tz("America/New_York") },
         ),
-      ).toBe(3);
+      ).toBe(2);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

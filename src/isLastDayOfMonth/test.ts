@@ -8,7 +8,7 @@ describe("isLastDayOfMonth", () => {
     const result = isLastDayOfMonth(
       /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31),
     );
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it("returns false if the given date is not in the last day of month", () => {
@@ -21,7 +21,7 @@ describe("isLastDayOfMonth", () => {
   it("accepts a timestamp", () => {
     const date = /* 1393/8/9 */ new Date(2014, 9 /* Oct */, 31).getTime();
     const result = isLastDayOfMonth(date);
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it("returns false if the given date is `Invalid Date`", () => {
@@ -40,7 +40,7 @@ describe("isLastDayOfMonth", () => {
         isLastDayOfMonth(/* 1403/7/8 */ "2024-09-29T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(true);
+      ).toBe(false);
       expect(
         isLastDayOfMonth(/* 1403/6/10 */ "2024-08-31T03:00:00Z", {
           in: tz("America/New_York"),
@@ -50,7 +50,7 @@ describe("isLastDayOfMonth", () => {
         isLastDayOfMonth(/* 1403/6/10 */ "2024-08-31T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(true);
+      ).toBe(false);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

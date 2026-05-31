@@ -11,7 +11,7 @@ describe("addBusinessDays", () => {
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1),
       10,
     );
-    expect(result).toEqual(/* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15));
+    expect(result).toEqual(/* 1393/6/22 */ new Date(2014, 8 /* Sep */, 13));
   });
 
   it("handles negative amount", () => {
@@ -19,26 +19,26 @@ describe("addBusinessDays", () => {
       /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15),
       -10,
     );
-    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
+    expect(result).toEqual(/* 1393/6/12 */ new Date(2014, 8 /* Sep */, 3));
   });
 
-  it("returns the Monday when 1 day is added on the Friday", () => {
+  it("returns the Saturday when 1 day is added on the Friday", () => {
     expect(
       addBusinessDays(/* 1398/10/20 */ new Date(2020, 0 /* Jan */, 10), 1),
     ).toEqual(
       // Friday
-      // Monday
-      /* 1398/10/23 */ new Date(2020, 0 /* Jan */, 13),
+      // Saturday
+      /* 1398/10/21 */ new Date(2020, 0 /* Jan */, 11),
     );
   });
 
-  it("returns the Monday when 1 day is added on the Satuday", () => {
+  it("returns the Sunday when 1 day is added on the Saturday", () => {
     expect(
       addBusinessDays(/* 1398/10/21 */ new Date(2020, 0 /* Jan */, 11), 1),
     ).toEqual(
       // Saturday
-      // Monday
-      /* 1398/10/23 */ new Date(2020, 0 /* Jan */, 13),
+      // Sunday
+      /* 1398/10/22 */ new Date(2020, 0 /* Jan */, 12),
     );
   });
 
@@ -57,7 +57,7 @@ describe("addBusinessDays", () => {
       /* 1392/10/11 */ new Date(2014, 0 /* Jan */, 1),
       3387885,
     );
-    expect(result).toEqual(/* 14378/10/12 */ new Date(15000, 0 /* Jan */, 1));
+    expect(result).toEqual(/* 12214/6/12 */ new Date(12835, 8 /* Sep */, 2));
   });
 
   it("accepts a timestamp", () => {
@@ -65,7 +65,7 @@ describe("addBusinessDays", () => {
       /* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1).getTime(),
       10,
     );
-    expect(result).toEqual(/* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15));
+    expect(result).toEqual(/* 1393/6/22 */ new Date(2014, 8 /* Sep */, 13));
   });
 
   it("does not mutate the original date", () => {
@@ -95,21 +95,21 @@ describe("addBusinessDays", () => {
     expect(subtractResult).toEqual(/* 1398/5/21 */ new Date(2019, 7, 12));
 
     const subtractResultWeekend = addBusinessDays(
-      /* 1398/5/26 */ new Date(2019, 7, 17),
+      /* 1398/5/25 */ new Date(2019, 7, 16),
       -5,
     );
     expect(subtractResultWeekend).toEqual(
-      /* 1398/5/21 */ new Date(2019, 7, 12),
+      /* 1398/5/20 */ new Date(2019, 7, 11),
     );
 
     const addResult = addBusinessDays(/* 1398/5/27 */ new Date(2019, 7, 18), 5);
-    expect(addResult).toEqual(/* 1398/6/1 */ new Date(2019, 7, 23));
+    expect(addResult).toEqual(/* 1398/6/2 */ new Date(2019, 7, 24));
 
     const addResultWeekend = addBusinessDays(
-      /* 1398/5/26 */ new Date(2019, 7, 17),
+      /* 1398/5/25 */ new Date(2019, 7, 16),
       5,
     );
-    expect(addResultWeekend).toEqual(/* 1398/6/1 */ new Date(2019, 7, 23));
+    expect(addResultWeekend).toEqual(/* 1398/5/30 */ new Date(2019, 7, 21));
   });
 
   it("resolves the date type by default", () => {
@@ -130,22 +130,22 @@ describe("addBusinessDays", () => {
         addBusinessDays(/* 1403/5/30 */ "2024-08-20T15:00:00Z", 3, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/6/2 */ "2024-08-23T23:00:00.000+08:00");
+      ).toBe(/* 1403/6/3 */ "2024-08-24T23:00:00.000+08:00");
       expect(
         addBusinessDays(/* 1403/5/30 */ "2024-08-20T16:00:00Z", 3, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1403/6/5 */ "2024-08-26T00:00:00.000+08:00");
+      ).toBe(/* 1403/6/4 */ "2024-08-25T00:00:00.000+08:00");
       expect(
         addBusinessDays(new Date(/* 1403/5/31 */ "2024-08-21T03:00:00Z"), 3, {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1403/6/2 */ "2024-08-23T23:00:00.000-04:00");
+      ).toBe(/* 1403/6/3 */ "2024-08-24T23:00:00.000-04:00");
       expect(
         addBusinessDays(new Date(/* 1403/5/31 */ "2024-08-21T04:00:00Z"), 3, {
           in: tz("America/New_York"),
         }).toISOString(),
-      ).toBe(/* 1403/6/5 */ "2024-08-26T00:00:00.000-04:00");
+      ).toBe(/* 1403/6/4 */ "2024-08-25T00:00:00.000-04:00");
     });
 
     it("resolves the context date type", () => {
@@ -172,7 +172,7 @@ describe("addBusinessDays", () => {
 
       const result = addBusinessDays(date, 1);
       const expected = new Date(date);
-      expected.setDate(expected.getDate() + 3);
+      expected.setDate(expected.getDate() + 1);
 
       expect(result).toEqual(expected);
     });

@@ -10,12 +10,12 @@ describe("formatISODuration", () => {
 
     expect(result).toBe("P39Y2M20DT7H5M0S");
   });
-  it("Everything returns P1Y1M1DT1H1M1S (1 of everything)", () => {
+  it("Everything returns P1Y1M2DT1H1M1S (1 of everything in Jalali)", () => {
     const start = new Date(2020, 2, 1, 12, 0, 0);
     const end = new Date(2021, 3, 2, 13, 1, 1);
     const result = formatISODuration(intervalToDuration({ start, end }));
 
-    expect(result).toBe("P1Y1M1DT1H1M1S");
+    expect(result).toBe("P1Y1M2DT1H1M1S");
   });
   it("Returns P0Y0M0DT0H0M0S when the dates are the same", () => {
     const start = new Date(2020, 2, 1, 12, 0, 0);
@@ -52,12 +52,12 @@ describe("formatISODuration", () => {
 
     expect(result).toBe("P0Y0M1DT0H0M0S");
   });
-  it("Months returns P0Y1M0DT0H0M0S (1 month)", () => {
+  it("Months returns P0Y1M2DT0H0M0S (1 Jalali month)", () => {
     const start = new Date(2020, 2, 1, 12, 0, 0);
     const end = new Date(2020, 3, 1, 12, 0, 0);
     const result = formatISODuration(intervalToDuration({ start, end }));
 
-    expect(result).toBe("P0Y1M0DT0H0M0S");
+    expect(result).toBe("P0Y1M2DT0H0M0S");
   });
   it("Years returns P1Y0M0DT0H0M1S (1 year)", () => {
     const start = new Date(2020, 2, 1, 12, 0, 0);
