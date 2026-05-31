@@ -1,6 +1,11 @@
 import { constructNow } from "../constructNow/index.ts";
 import type { ContextOptions } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link endOfTomorrow} function options.
  */
@@ -32,12 +37,12 @@ export function endOfTomorrow<
   ResultDate extends Date = DateType,
 >(options?: EndOfTomorrowOptions<ResultDate> | undefined): ResultDate {
   const now = constructNow(options?.in);
-  const year = now.getFullYear();
-  const month = now.getMonth();
-  const day = now.getDate();
+  const year = coreGetFullYear(now);
+  const month = coreGetMonth(now);
+  const day = coreGetDate(now);
 
   const date = constructNow(options?.in);
-  date.setFullYear(year, month, day + 1);
+  coreSetFullYear(date, year, month, day + 1);
   date.setHours(23, 59, 59, 999);
   return options?.in ? options.in(date) : (date as ResultDate);
 }

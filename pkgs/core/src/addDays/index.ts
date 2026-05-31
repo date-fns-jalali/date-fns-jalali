@@ -2,6 +2,9 @@ import { constructFrom } from "../constructFrom/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link addDays} function options.
  */
@@ -63,6 +66,6 @@ export function addDays<
   // If 0 days, no-op to avoid changing times in the hour before end of DST
   if (!amount) return _date;
 
-  _date.setDate(_date.getDate() + amount);
+  coreSetDate(_date, coreGetDate(_date) + amount);
   return _date;
 }
