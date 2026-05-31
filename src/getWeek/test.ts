@@ -16,12 +16,12 @@ describe("getWeek", () => {
     expect(result).toBe(1);
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(7, 11 /* Dec */, 30);
     initialDate.setHours(0, 0, 0, 0);
     const result = getWeek(initialDate);
-    expect(result).toBe(1);
+    expect(result).toBe(42);
   });
 
   it("properly works with negative numbers", () => {

@@ -18,12 +18,12 @@ describe("getWeekYear", () => {
     expect(result).toBe(1389);
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(7, 11 /* Dec */, 31);
     initialDate.setHours(0, 0, 0, 0);
     const result = getWeekYear(initialDate);
-    expect(result).toBe(8);
+    expect(result).toBe(-614);
   });
 
   it("returns NaN if the given date is invalid", () => {

@@ -2,6 +2,7 @@ import { TZDate, tz } from "@date-fns/tz";
 import { UTCDate } from "@date-fns/utc";
 import { describe, expect, it } from "vitest";
 import { assertType } from "../_lib/test/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.js";
 import { setWeek } from "./index.ts";
 
 describe("setWeek", () => {
@@ -24,12 +25,12 @@ describe("setWeek", () => {
     expect(date).toEqual(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(4, 0 /* Jan */, 4);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(4, 11 /* Dec */, 19);
+    coreSetFullYear(expectedResult, -618, 11, 23);
     expectedResult.setHours(0, 0, 0, 0);
     const result = setWeek(initialDate, 52);
     expect(result).toEqual(expectedResult);

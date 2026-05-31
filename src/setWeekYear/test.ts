@@ -2,6 +2,7 @@ import { TZDate, tz } from "@date-fns/tz";
 import { UTCDate } from "@date-fns/utc";
 import { describe, expect, it } from "vitest";
 import { assertType } from "../_lib/test/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.js";
 import { setWeekYear } from "./index.ts";
 
 describe("setWeekYear", () => {
@@ -27,21 +28,21 @@ describe("setWeekYear", () => {
     expect(date).toEqual(/* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29));
   });
 
-  it.skip("sets local week-numbering years less than 100", () => {
+  it("sets local week-numbering years less than 100", () => {
     const initialDate = /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(7, 0 /* Jan */, 1);
+    coreSetFullYear(expectedResult, 7, 9, 8);
     expectedResult.setHours(0, 0, 0, 0);
     const result = setWeekYear(initialDate, 7);
     expect(result).toEqual(expectedResult);
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(8, 11 /* Dec */, 29);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(7, 0 /* Jan */, 1);
+    coreSetFullYear(expectedResult, 7, 9, 1);
     expectedResult.setHours(0, 0, 0, 0);
     const result = setWeekYear(initialDate, 7);
     expect(result).toEqual(expectedResult);
