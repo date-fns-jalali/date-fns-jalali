@@ -1895,3 +1895,25 @@
 - HU: rewrite the fallback dates and relative phrases into Persian/Jalali outputs such as `1393/01/15`, `سه‌شنبه گذشته در 12:00 ق.ظ.`, `دیروز در 10:22 ب.ظ.`, and `امروز در 4:50 ب.ظ.`, and skip the `handles dates before 100 AD` case
 - AI: add an `enUS` wrapper around `formatRelative`, keep the English relative phrases like `last Tuesday at 12:00 AM`, `yesterday at 10:22 PM`, and `today at 4:50 PM`, but update the date-form fallback expectations to Jalali-style numeric dates such as `01/15/1393`, `01/08/1365`, `01/22/1365`, and keep the pre-100 AD case enabled with a new Jalali-based expectation
 - needs attention
+
+# Summary
+
+## Where HU is better
+
+- HU is stronger on default-library behavior: when a test does not explicitly opt into `enUS` or another English locale, Persian/Jalali expectations are the better fit for this repo and its main users.
+- HU usually fixes boundary-sensitive logic by moving the sample date, argument, or context to the correct Jalali case instead of forcing a new expected value onto the old Gregorian-shaped setup.
+- HU is better on user-facing text and examples. For this project, Persian outputs like `امروز`, Persian month names, and Farsi ordinals are usually better than English outputs like `today`.
+- HU is generally more credible in week, week-year, decade, end/start-of-period, and many business-day tests, where Jalali calendar boundaries matter more than preserving the upstream Gregorian fixture shape.
+
+## Where AI is better
+
+- AI is better when the test is explicitly about English behavior, such as cases that intentionally pass `enUS` or use `Intl` in an English-locale scenario.
+- AI is better at preserving coverage in some hard areas that HU skips, especially pre-100 AD, parse-heavy blocks, and a few interval edge cases.
+- AI sometimes keeps tests less brittle by generating locale-dependent strings from helpers instead of hardcoding every English phrase, which is useful for explicit English-locale tests.
+
+## Overall judgment
+
+- HU is the better baseline for this repository. It aligns more often with Jalali semantics, the repo's default locale expectations, and the likely needs of Persian users.
+- AI is most useful as a secondary source of ideas: keep its explicit-locale wrappers where the test really wants English behavior, and reuse its non-skipped coverage after verifying the expected values against Jalali rules.
+- The main weakness in HU is skipped coverage. The main weakness in AI is that many fixes look mechanical: changing only expectations, preserving Gregorian/English assumptions in default tests, or introducing suspicious values that need manual review.
+- Best combined approach: prefer HU for default behavior and localized outputs, then selectively cherry-pick AI ideas only for explicit `enUS`/`Intl` coverage and for re-enabling skipped cases with Jalali-correct assertions.
