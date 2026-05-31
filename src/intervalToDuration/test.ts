@@ -140,7 +140,9 @@ describe("intervalToDuration", () => {
       expect(duration).toEqual(expectedDuration);
     });
 
-    it.skip("returns correct duration for Feb 28 to Apr 30 interval - issue 2910", () => {
+    it.skip(
+      "returns correct duration for 9 Esfand 1400 to 10 Ordibehesht 1401 interval - issue 2910",
+      () => {
       const duration = intervalToDuration({
         start: /* 1400/12/9 */ new Date(2022, 1, 28),
         end: /* 1401/2/10 */ new Date(2022, 3, 30),
@@ -151,10 +153,13 @@ describe("intervalToDuration", () => {
       };
 
       expect(duration).toEqual(expectedDuration);
-    });
+      },
+    );
 
     describe("issue 2470", () => {
-      it.skip("returns correct duration for Feb 28 to Aug 31 interval", () => {
+      it.skip(
+        "returns correct duration for 10 Esfand 1399 to 9 Shahrivar 1400 interval",
+        () => {
         const duration = intervalToDuration({
           start: /* 1399/12/10 */ new Date(2021, 1, 28),
           end: /* 1400/6/9 */ new Date(2021, 7, 31),
@@ -165,9 +170,12 @@ describe("intervalToDuration", () => {
         };
 
         expect(duration).toEqual(expectedDuration);
-      });
+        },
+      );
 
-      it.skip("returns correct duration for Feb 28 to Aug 30 interval", () => {
+      it.skip(
+        "returns correct duration for 10 Esfand 1399 to 8 Shahrivar 1400 interval",
+        () => {
         const duration = intervalToDuration({
           start: /* 1399/12/10 */ new Date(2021, 1, 28),
           end: /* 1400/6/8 */ new Date(2021, 7, 30),
@@ -178,9 +186,12 @@ describe("intervalToDuration", () => {
         };
 
         expect(duration).toEqual(expectedDuration);
-      });
+        },
+      );
 
-      it.skip("returns correct duration for Feb 28 to Aug 29 interval", () => {
+      it.skip(
+        "returns correct duration for 10 Esfand 1399 to 7 Shahrivar 1400 interval",
+        () => {
         const duration = intervalToDuration({
           start: /* 1399/12/10 */ new Date(2021, 1, 28),
           end: /* 1400/6/7 */ new Date(2021, 7, 29),
@@ -191,9 +202,12 @@ describe("intervalToDuration", () => {
         };
 
         expect(duration).toEqual(expectedDuration);
-      });
+        },
+      );
 
-      it.skip("returns correct duration for Feb 28 to Aug 28 interval", () => {
+      it.skip(
+        "returns correct duration for 10 Esfand 1399 to 6 Shahrivar 1400 interval",
+        () => {
         const duration = intervalToDuration({
           start: /* 1399/12/10 */ new Date(2021, 1, 28),
           end: /* 1400/6/6 */ new Date(2021, 7, 28),
@@ -203,10 +217,13 @@ describe("intervalToDuration", () => {
         };
 
         expect(duration).toEqual(expectedDuration);
-      });
+        },
+      );
 
-      it.skip("returns correct duration for Feb 28 to Aug 27 interval", () => {
-        // Feb 28 to July 28 is 5 months, July 28 to Aug 27 is 30 days
+      it.skip(
+        "returns correct duration for 10 Esfand 1399 to 5 Shahrivar 1400 interval",
+        () => {
+        // 10 Esfand to 10 Mordad is 5 months, 10 Mordad to 5 Shahrivar is 30 days
 
         const duration = intervalToDuration({
           start: /* 1399/12/10 */ new Date(2021, 1, 28),
@@ -218,9 +235,12 @@ describe("intervalToDuration", () => {
         };
 
         expect(duration).toEqual(expectedDuration);
-      });
+        },
+      );
 
-      it.skip("returns correct duration for Apr 30 to May 31 interval", () => {
+      it.skip(
+        "returns correct duration for 10 Ordibehesht 1400 to 10 Khordad 1400 interval",
+        () => {
         const duration = intervalToDuration({
           start: /* 1400/2/10 */ new Date(2021, 3, 30),
           end: /* 1400/3/10 */ new Date(2021, 4, 31),
@@ -231,7 +251,8 @@ describe("intervalToDuration", () => {
         };
 
         expect(duration).toEqual(expectedDuration);
-      });
+        },
+      );
     });
   });
 
