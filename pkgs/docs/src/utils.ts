@@ -6,7 +6,8 @@ import type {
   SignatureReflection,
   SomeType,
 } from "typedoc";
-import { DateFnsDocs } from "./types.js";
+
+const reflectionKindFunction = 64;
 
 /**
  * Find reflection category in a reflection container.
@@ -97,7 +98,7 @@ export function findFn(
 ): DeclarationReflection | undefined {
   return ref.children?.find(
     (child) =>
-      child.kind === DateFnsDocs.ReflectionKind.Function &&
+      child.kind === reflectionKindFunction &&
       child.name === ref.name,
   );
 }
@@ -226,6 +227,7 @@ export function traverseType(
     case "reference":
     case "literal":
     case "inferred":
+    case "unknown":
       return;
 
     case "reflection":
@@ -289,7 +291,6 @@ export function traverseType(
       return;
 
     case "predicate":
-    case "unknown":
     case "optional":
     case "rest":
     default:
