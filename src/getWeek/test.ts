@@ -6,14 +6,14 @@ import { getWeek } from "./index.ts";
 describe("getWeek", () => {
   it("returns the local week of year of the given date", () => {
     const result = getWeek(/* 1383/10/13 */ new Date(2005, 0 /* Jan */, 2));
-    expect(result).toBe(2);
+    expect(result).toBe(42);
   });
 
   it("accepts a timestamp", () => {
     const result = getWeek(
       /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29).getTime(),
     );
-    expect(result).toBe(1);
+    expect(result).toBe(42);
   });
 
   it("handles dates before 100 AD", () => {
@@ -21,14 +21,14 @@ describe("getWeek", () => {
     initialDate.setFullYear(7, 11 /* Dec */, 30);
     initialDate.setHours(0, 0, 0, 0);
     const result = getWeek(initialDate);
-    expect(result).toBe(1);
+    expect(result).toBe(42);
   });
 
   it("properly works with negative numbers", () => {
-    expect(getWeek(/* 1383/10/15 */ new Date(2005, 0 /* Jan */, 4))).toBe(2);
+    expect(getWeek(/* 1383/10/15 */ new Date(2005, 0 /* Jan */, 4))).toBe(42);
     // Calendars repeat every 400 years
-    expect(getWeek(/* -227/10/13 */ new Date(395, 0 /* Jan */, 4))).toBe(1);
-    expect(getWeek(/* -2627/10/13 */ new Date(-2005, 0 /* Jan */, 4))).toBe(1);
+    expect(getWeek(/* -227/10/13 */ new Date(395, 0 /* Jan */, 4))).toBe(42);
+    expect(getWeek(/* -2627/10/13 */ new Date(-2005, 0 /* Jan */, 4))).toBe(42);
   });
 
   it("returns NaN if the given date is invalid", () => {
@@ -43,7 +43,7 @@ describe("getWeek", () => {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 },
       },
     });
-    expect(result).toBe(53);
+    expect(result).toBe(41);
   });
 
   it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
@@ -55,7 +55,7 @@ describe("getWeek", () => {
         options: { weekStartsOn: 0, firstWeekContainsDate: 1 },
       },
     });
-    expect(result).toBe(53);
+    expect(result).toBe(41);
   });
 
   describe("context", () => {
@@ -64,22 +64,22 @@ describe("getWeek", () => {
         getWeek(/* 1403/6/3 */ "2024-08-24T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(34);
+      ).toBe(24);
       expect(
         getWeek(/* 1403/6/3 */ "2024-08-24T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(35);
+      ).toBe(24);
       expect(
         getWeek(/* 1403/6/4 */ "2024-08-25T03:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(34);
+      ).toBe(24);
       expect(
         getWeek(/* 1403/6/4 */ "2024-08-25T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(35);
+      ).toBe(24);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

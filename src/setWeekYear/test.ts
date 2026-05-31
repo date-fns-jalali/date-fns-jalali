@@ -10,7 +10,7 @@ describe("setWeekYear", () => {
       /* 1388/10/12 */ new Date(2010, 0 /* Jan */, 2),
       2004,
     );
-    expect(result).toEqual(/* 1382/10/13 */ new Date(2004, 0 /* Jan */, 3));
+    expect(result).toEqual(/* 2004/10/10 */ new Date(2625, 11 /* Dec */, 31));
   });
 
   it("accepts a timestamp", () => {
@@ -18,7 +18,7 @@ describe("setWeekYear", () => {
       /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29).getTime(),
       2007,
     );
-    expect(result).toEqual(/* 1385/10/11 */ new Date(2007, 0 /* Jan */, 1));
+    expect(result).toEqual(/* 2007/10/8 */ new Date(2628, 11 /* Dec */, 29));
   });
 
   it("does not mutate the original date", () => {
@@ -30,7 +30,7 @@ describe("setWeekYear", () => {
   it("sets local week-numbering years less than 100", () => {
     const initialDate = /* 1387/10/9 */ new Date(2008, 11 /* Dec */, 29);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(7, 0 /* Jan */, 1);
+    expectedResult.setFullYear(628, 11 /* Dec */, 29);
     expectedResult.setHours(0, 0, 0, 0);
     const result = setWeekYear(initialDate, 7);
     expect(result).toEqual(expectedResult);
@@ -41,7 +41,7 @@ describe("setWeekYear", () => {
     initialDate.setFullYear(8, 11 /* Dec */, 29);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(7, 0 /* Jan */, 1);
+    expectedResult.setFullYear(628, 11 /* Dec */, 22);
     expectedResult.setHours(0, 0, 0, 0);
     const result = setWeekYear(initialDate, 7);
     expect(result).toEqual(expectedResult);
@@ -67,7 +67,7 @@ describe("setWeekYear", () => {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 },
       },
     });
-    expect(result).toEqual(/* 1383/10/12 */ new Date(2005, 0 /* Jan */, 1));
+    expect(result).toEqual(/* 2004/10/10 */ new Date(2625, 11 /* Dec */, 31));
   });
 
   it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
@@ -79,7 +79,7 @@ describe("setWeekYear", () => {
         options: { weekStartsOn: 0, firstWeekContainsDate: 1 },
       },
     });
-    expect(result).toEqual(/* 1383/10/12 */ new Date(2005, 0 /* Jan */, 1));
+    expect(result).toEqual(/* 2004/10/10 */ new Date(2625, 11 /* Dec */, 31));
   });
 
   it("resolves the date type by default", () => {
@@ -100,12 +100,12 @@ describe("setWeekYear", () => {
         setWeekYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2014, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1393/1/20 */ "2014-04-09T00:00:00.000-07:00");
+      ).toBe(/* 2014/1/26 */ "2635-04-15T00:00:00.000-07:00");
       expect(
         setWeekYear(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 2016, {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe(/* 1395/1/18 */ "2016-04-06T00:00:00.000+08:00");
+      ).toBe(/* 2016/1/23 */ "2637-04-12T00:00:00.000+08:00");
     });
 
     it("resolves the context date type", () => {

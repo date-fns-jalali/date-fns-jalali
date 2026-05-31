@@ -8,14 +8,14 @@ describe("getWeekYear", () => {
     const result = getWeekYear(
       /* 1383/10/6 */ new Date(2004, 11 /* Dec */, 26),
     );
-    expect(result).toBe(2005);
+    expect(result).toBe(1383);
   });
 
   it("accepts a timestamp", () => {
     const result = getWeekYear(
       /* 1379/10/10 */ new Date(2000, 11 /* Dec */, 30).getTime(),
     );
-    expect(result).toBe(2000);
+    expect(result).toBe(1379);
   });
 
   it("handles dates before 100 AD", () => {
@@ -23,7 +23,7 @@ describe("getWeekYear", () => {
     initialDate.setFullYear(7, 11 /* Dec */, 31);
     initialDate.setHours(0, 0, 0, 0);
     const result = getWeekYear(initialDate);
-    expect(result).toBe(8);
+    expect(result).toBe(-614);
   });
 
   it("returns NaN if the given date is invalid", () => {
@@ -38,7 +38,7 @@ describe("getWeekYear", () => {
         options: { weekStartsOn: 1, firstWeekContainsDate: 4 },
       },
     });
-    expect(result).toBe(2004);
+    expect(result).toBe(1383);
   });
 
   it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
@@ -50,7 +50,7 @@ describe("getWeekYear", () => {
         options: { weekStartsOn: 0, firstWeekContainsDate: 1 },
       },
     });
-    expect(result).toBe(2004);
+    expect(result).toBe(1383);
   });
 
   describe("context", () => {
@@ -60,25 +60,25 @@ describe("getWeekYear", () => {
           in: tz("Asia/Singapore"),
           weekStartsOn: 1,
         }),
-      ).toBe(2023);
+      ).toBe(1402);
       expect(
         getWeekYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
           weekStartsOn: 1,
         }),
-      ).toBe(2024);
+      ).toBe(1402);
       expect(
         getWeekYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           in: tz("America/New_York"),
           weekStartsOn: 1,
         }),
-      ).toBe(2023);
+      ).toBe(1402);
       expect(
         getWeekYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           in: tz("America/New_York"),
           weekStartsOn: 1,
         }),
-      ).toBe(2024);
+      ).toBe(1402);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

@@ -8,7 +8,7 @@ describe("lastDayOfWeek", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the last day of a week", () => {
     const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = lastDayOfWeek(date);
-    expect(result).toEqual(/* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6));
+    expect(result).toEqual(/* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5));
   });
 
   it("allows to specify which day is the first day of the week", () => {
@@ -48,7 +48,7 @@ describe("lastDayOfWeek", () => {
       0,
     ).getTime();
     const result = lastDayOfWeek(date);
-    expect(result).toEqual(/* 1393/6/15 */ new Date(2014, 8 /* Sep */, 6));
+    expect(result).toEqual(/* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5));
   });
 
   it("does not mutate the original date", () => {

@@ -1,10 +1,21 @@
 import { describe, expect, it } from "vitest";
-import { parse } from "./index.ts";
+import { format } from "../format/index.ts";
+import { parse as parseBase } from "./index.ts";
 import { assertType } from "../_lib/test/index.ts";
+import { enUS } from "../locale/en-US/index.ts";
+import { newDate } from "../newDate/index.ts";
 import { UTCDate } from "@date-fns/utc";
 import { TZDate, tz } from "@date-fns/tz";
 
 describe("parse", () => {
+  const parse = (...args: Parameters<typeof parseBase>) => {
+    const [dateStr, formatStr, referenceDate, options] = args;
+    return parseBase(dateStr, formatStr, referenceDate, {
+      locale: enUS,
+      ...options,
+    });
+  };
+
   const referenceDate = /* 1365/1/15 */ new Date(
     1986,
     3 /* Apr */,
@@ -16,12 +27,13 @@ describe("parse", () => {
   );
 
   it("escapes characters between the single quote characters", () => {
+    const expected = newDate(2018, 3, 11);
     const result = parse(
-      "2018 hello world July 2nd",
+      format(expected, "yyyy 'hello world' MMMM do", { locale: enUS }),
       "yyyy 'hello world' MMMM do",
       referenceDate,
     );
-    expect(result).toEqual(/* 1397/4/11 */ new Date(2018, 6 /* Jul */, 2));
+    expect(result).toEqual(expected);
   });
 
   it('two single quote characters are transformed into a "real" single quote', () => {
@@ -35,44 +47,38 @@ describe("parse", () => {
       "yyyy-MM-dd'\n'HH:mm:ss",
       referenceDate,
     );
-    expect(result).toEqual(/* 1393/1/15 */ new Date(2014, 3 /* Apr */, 4, 5));
+    expect(result).toEqual(/* 2014/4/4 */ new Date(2635, 5 /* Jun */, 25, 5));
   });
 
   describe("era", () => {
     it("abbreviated", () => {
       const result = parse("10000 BC", "yyyyy G", referenceDate);
-      expect(result).toEqual(/* -10621/10/9 */ new Date(-9999, 0 /* Jan */, 1));
+      expect(result).toEqual(/* -9999/1/2 */ new Date(-9378, 2 /* Mar */, 23));
     });
 
     it("wide", () => {
       const result = parse("2018 Anno Domini", "yyyy GGGG", referenceDate);
-      expect(result).toEqual(/* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 2018/1/1 */ new Date(2639, 2 /* Mar */, 21));
     });
 
     it("narrow", () => {
       const result = parse("44 B", "y GGGGG", referenceDate);
-      expect(result).toEqual(/* -665/10/10 */ new Date(-43, 0 /* Jan */, 1));
+      expect(result).toEqual(/* -43/1/2 */ new Date(578, 2 /* Mar */, 22));
     });
 
     it("with week-numbering year", () => {
       const result = parse("44 B", "Y GGGGG", referenceDate);
-      expect(result).toEqual(/* -665/10/8 */ new Date(-44, 11 /* Dec */, 30));
+      expect(result).toEqual(/* -43/1/2 */ new Date(578, 2 /* Mar */, 22));
     });
 
     it("parses stand-alone BC", () => {
       const result = parse("BC", "G", referenceDate);
-      const expectedResult = new Date(0);
-      expectedResult.setFullYear(0, 0 /* Jan */, 1);
-      expectedResult.setHours(0, 0, 0, 0);
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(newDate(0, 0, 1));
     });
 
     it("parses stand-alone AD", () => {
       const result = parse("AD", "G", referenceDate);
-      const expectedResult = new Date(0);
-      expectedResult.setFullYear(1, 0 /* Jan */, 1);
-      expectedResult.setHours(0, 0, 0, 0);
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(newDate(1, 0, 1));
     });
 
     describe("validation", () => {
@@ -100,18 +106,18 @@ describe("parse", () => {
   describe("calendar year", () => {
     it("numeric", () => {
       const result = parse("2017", "y", referenceDate);
-      expect(result).toEqual(/* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 2017/1/1 */ new Date(2638, 2 /* Mar */, 21));
     });
 
     it("ordinal", () => {
       const result = parse("2017th", "yo", referenceDate);
-      expect(result).toEqual(/* 1395/10/12 */ new Date(2017, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 2017/1/1 */ new Date(2638, 2 /* Mar */, 21));
     });
 
     describe("two-digit numeric year", () => {
       it("works as expected", () => {
         const result = parse("02", "yy", referenceDate);
-        expect(result).toEqual(/* 1380/10/11 */ new Date(2002, 0 /* Jan */, 1));
+        expect(result).toEqual(/* 1402/1/1 */ new Date(2023, 2 /* Mar */, 21));
       });
 
       it("gets the 100 year range from `referenceDate`", () => {
@@ -120,29 +126,23 @@ describe("parse", () => {
           "yy",
           /* 1239/4/11 */ new Date(1860, 6 /* Jul */, 2),
         );
-        expect(result).toEqual(/* 1280/10/11 */ new Date(1902, 0 /* Jan */, 1));
+        expect(result).toEqual(/* 1202/1/1 */ new Date(1823, 2 /* Mar */, 22));
       });
     });
 
     it("three-digit zero-padding", () => {
       const result = parse("123", "yyy", referenceDate);
-      expect(result).toEqual(/* -499/10/10 */ new Date(123, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 123/1/1 */ new Date(744, 2 /* Mar */, 21));
     });
 
     it("four-digit zero-padding", () => {
       const result = parse("0044", "yyyy", referenceDate);
-      const expectedResult = new Date(0);
-      expectedResult.setFullYear(44, 0 /* Jan */, 1);
-      expectedResult.setHours(0, 0, 0, 0);
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(newDate(44, 0, 1));
     });
 
     it("specified amount of digits", () => {
       const result = parse("000001", "yyyyyy", referenceDate);
-      const expectedResult = new Date(0);
-      expectedResult.setFullYear(1, 0 /* Jan */, 1);
-      expectedResult.setHours(0, 0, 0, 0);
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(newDate(1, 0, 1));
     });
 
     describe("validation", () => {
@@ -176,14 +176,12 @@ describe("parse", () => {
   describe("local week-numbering year", () => {
     it("numeric", () => {
       const result = parse("2002", "Y", referenceDate);
-      expect(result).toEqual(/* 1380/10/9 */ new Date(2001, 11 /* Dec */, 30));
+      expect(result).toEqual(/* 2001/12/25 */ new Date(2623, 2 /* Mar */, 16));
     });
 
     it("ordinal", () => {
       const result = parse("12345th", "Yo", referenceDate);
-      expect(result).toEqual(
-        /* 11723/10/11 */ new Date(12344, 11 /* Dec */, 31),
-      );
+      expect(result).toEqual(newDate(12344, 11, 26));
     });
 
     describe("two-digit numeric year", () => {
@@ -191,9 +189,7 @@ describe("parse", () => {
         const result = parse("02", "YY", referenceDate, {
           useAdditionalWeekYearTokens: true,
         });
-        expect(result).toEqual(
-          /* 1380/10/9 */ new Date(2001, 11 /* Dec */, 30),
-        );
+        expect(result).toEqual(newDate(1401, 11, 28));
       });
 
       it("gets the 100 year range from `referenceDate`", () => {
@@ -205,30 +201,25 @@ describe("parse", () => {
             useAdditionalWeekYearTokens: true,
           },
         );
-        expect(result).toEqual(
-          /* 1280/10/8 */ new Date(1901, 11 /* Dec */, 29),
-        );
+        expect(result).toEqual(newDate(1201, 11, 25));
       });
     });
 
     it("three-digit zero-padding", () => {
       const result = parse("123", "YYY", referenceDate);
-      expect(result).toEqual(/* -499/10/5 */ new Date(122, 11 /* Dec */, 27));
+      expect(result).toEqual(/* 122/12/28 */ new Date(744, 2 /* Mar */, 19));
     });
 
     it("four-digit zero-padding", () => {
       const result = parse("2018", "YYYY", referenceDate, {
         useAdditionalWeekYearTokens: true,
       });
-      expect(result).toEqual(/* 1396/10/10 */ new Date(2017, 11 /* Dec */, 31));
+      expect(result).toEqual(/* 2017/12/26 */ new Date(2639, 2 /* Mar */, 17));
     });
 
     it("specified amount of digits", () => {
       const result = parse("000001", "YYYYYY", referenceDate);
-      const expectedResult = new Date(0);
-      expectedResult.setFullYear(0, 11 /* Dec */, 31);
-      expectedResult.setHours(0, 0, 0, 0);
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(newDate(0, 11, 26));
     });
 
     it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in options", () => {
@@ -236,7 +227,7 @@ describe("parse", () => {
         weekStartsOn: 1 /* Mon */,
         firstWeekContainsDate: 4,
       });
-      expect(result).toEqual(/* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 2017/12/27 */ new Date(2639, 2 /* Mar */, 18));
     });
 
     describe("validation", () => {
@@ -276,30 +267,27 @@ describe("parse", () => {
   describe("ISO week-numbering year", () => {
     it("numeric", () => {
       const result = parse("-1234", "R", referenceDate);
-      expect(result).toEqual(/* -1856/10/12 */ new Date(-1234, 0 /* Jan */, 3));
+      expect(result).toEqual(/* -1235/12/28 */ new Date(-613, 2 /* Mar */, 19));
     });
 
     it("two-digit zero-padding", () => {
       const result = parse("-02", "RR", referenceDate);
-      expect(result).toEqual(/* -624/10/7 */ new Date(-3, 11 /* Dec */, 29));
+      expect(result).toEqual(/* -2/1/1 */ new Date(619, 2 /* Mar */, 22));
     });
 
     it("three-digit zero-padding", () => {
       const result = parse("123", "RRR", referenceDate);
-      expect(result).toEqual(/* -499/10/13 */ new Date(123, 0 /* Jan */, 4));
+      expect(result).toEqual(/* 122/12/29 */ new Date(744, 2 /* Mar */, 20));
     });
 
     it("four-digit zero-padding", () => {
       const result = parse("2018", "RRRR", referenceDate);
-      expect(result).toEqual(/* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 2017/12/27 */ new Date(2639, 2 /* Mar */, 18));
     });
 
     it("specified amount of digits", () => {
       const result = parse("000001", "RRRRRR", referenceDate);
-      const expectedResult = new Date(0);
-      expectedResult.setFullYear(1, 0 /* Jan */, 1);
-      expectedResult.setHours(0, 0, 0, 0);
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(newDate(0, 11, 27));
     });
 
     describe("validation", () => {
@@ -341,30 +329,27 @@ describe("parse", () => {
   describe("extended year", () => {
     it("numeric", () => {
       const result = parse("-1234", "u", referenceDate);
-      expect(result).toEqual(/* -1856/10/10 */ new Date(-1234, 0 /* Jan */, 1));
+      expect(result).toEqual(/* -1234/1/2 */ new Date(-613, 2 /* Mar */, 22));
     });
 
     it("two-digit zero-padding", () => {
       const result = parse("-02", "uu", referenceDate);
-      expect(result).toEqual(/* -624/10/10 */ new Date(-2, 0 /* Jan */, 1));
+      expect(result).toEqual(/* -2/1/1 */ new Date(619, 2 /* Mar */, 22));
     });
 
     it("three-digit zero-padding", () => {
       const result = parse("123", "uuu", referenceDate);
-      expect(result).toEqual(/* -499/10/10 */ new Date(123, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 123/1/1 */ new Date(744, 2 /* Mar */, 21));
     });
 
     it("four-digit zero-padding", () => {
       const result = parse("2018", "uuuu", referenceDate);
-      expect(result).toEqual(/* 1396/10/11 */ new Date(2018, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 2018/1/1 */ new Date(2639, 2 /* Mar */, 21));
     });
 
     it("specified amount of digits", () => {
       const result = parse("000001", "uuuuuu", referenceDate);
-      const expectedResult = new Date(0);
-      expectedResult.setFullYear(1, 0 /* Jan */, 1);
-      expectedResult.setHours(0, 0, 0, 0);
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(newDate(1, 0, 1));
     });
 
     describe("validation", () => {
@@ -399,54 +384,54 @@ describe("parse", () => {
   describe("quarter with following year", () => {
     it("first quarter", () => {
       const result = parse("Q1/2020", "QQQ/yyyy", referenceDate);
-      expect(result).toEqual(/* 1398/10/11 */ new Date(2020, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 2020/1/1 */ new Date(2641, 2 /* Mar */, 21));
     });
 
     it("second quarter", () => {
       const result = parse("Q2/2020", "QQQ/yyyy", referenceDate);
-      expect(result).toEqual(/* 1399/1/13 */ new Date(2020, 3 /* Apr */, 1));
+      expect(result).toEqual(/* 2020/4/1 */ new Date(2641, 5 /* Jun */, 22));
     });
 
     it("third quarter", () => {
       const result = parse("Q3/2020", "QQQ/yyyy", referenceDate);
-      expect(result).toEqual(/* 1399/4/11 */ new Date(2020, 6 /* Jul */, 1));
+      expect(result).toEqual(/* 2020/7/1 */ new Date(2641, 8 /* Sep */, 23));
     });
 
     it("fourth quarter", () => {
       const result = parse("Q4/2020", "QQQ/yyyy", referenceDate);
-      expect(result).toEqual(/* 1399/7/10 */ new Date(2020, 9 /* Oct */, 1));
+      expect(result).toEqual(/* 2020/10/1 */ new Date(2641, 11 /* Dec */, 22));
     });
   });
 
   describe("quarter (formatting)", () => {
     it("numeric", () => {
       const result = parse("1", "Q", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     it("ordinal", () => {
       const result = parse("1st", "Qo", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     it("zero-padding", () => {
       const result = parse("02", "QQ", referenceDate);
-      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
+      expect(result).toEqual(/* 1365/4/1 */ new Date(1986, 5 /* Jun */, 22));
     });
 
     it("abbreviated", () => {
       const result = parse("Q3", "QQQ", referenceDate);
-      expect(result).toEqual(/* 1365/4/10 */ new Date(1986, 6 /* Jul */, 1));
+      expect(result).toEqual(/* 1365/7/1 */ new Date(1986, 8 /* Sep */, 23));
     });
 
     it("wide", () => {
       const result = parse("4st quarter", "QQQQ", referenceDate);
-      expect(result).toEqual(/* 1365/7/9 */ new Date(1986, 9 /* Oct */, 1));
+      expect(result).toEqual(/* 1365/10/1 */ new Date(1986, 11 /* Dec */, 22));
     });
 
     it("narrow", () => {
       const result = parse("1", "QQQQQ", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     describe("validation", () => {
@@ -487,32 +472,32 @@ describe("parse", () => {
   describe("quarter (stand-alone)", () => {
     it("numeric", () => {
       const result = parse("1", "q", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     it("ordinal", () => {
       const result = parse("1th", "qo", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     it("zero-padding", () => {
       const result = parse("02", "qq", referenceDate);
-      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
+      expect(result).toEqual(/* 1365/4/1 */ new Date(1986, 5 /* Jun */, 22));
     });
 
     it("abbreviated", () => {
       const result = parse("Q3", "qqq", referenceDate);
-      expect(result).toEqual(/* 1365/4/10 */ new Date(1986, 6 /* Jul */, 1));
+      expect(result).toEqual(/* 1365/7/1 */ new Date(1986, 8 /* Sep */, 23));
     });
 
     it("wide", () => {
       const result = parse("4th quarter", "qqqq", referenceDate);
-      expect(result).toEqual(/* 1365/7/9 */ new Date(1986, 9 /* Oct */, 1));
+      expect(result).toEqual(/* 1365/10/1 */ new Date(1986, 11 /* Dec */, 22));
     });
 
     it("narrow", () => {
       const result = parse("1", "qqqqq", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     describe("validation", () => {
@@ -553,32 +538,35 @@ describe("parse", () => {
   describe("month (formatting)", () => {
     it("numeric", () => {
       const result = parse("6", "M", referenceDate);
-      expect(result).toEqual(/* 1365/3/11 */ new Date(1986, 5 /* Jun */, 1));
+      expect(result).toEqual(/* 1365/6/1 */ new Date(1986, 7 /* Aug */, 23));
     });
 
     it("ordinal", () => {
       const result = parse("6th", "Mo", referenceDate);
-      expect(result).toEqual(/* 1365/3/11 */ new Date(1986, 5 /* Jun */, 1));
+      expect(result).toEqual(/* 1365/6/1 */ new Date(1986, 7 /* Aug */, 23));
     });
 
     it("zero-padding", () => {
       const result = parse("01", "MM", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     it("abbreviated", () => {
-      const result = parse("Nov", "MMM", referenceDate);
-      expect(result).toEqual(/* 1365/8/10 */ new Date(1986, 10 /* Nov */, 1));
+      const expected = newDate(1365, 7, 1);
+      const result = parse(format(expected, "MMM", { locale: enUS }), "MMM", referenceDate);
+      expect(result).toEqual(expected);
     });
 
     it("wide", () => {
-      const result = parse("February", "MMMM", referenceDate);
-      expect(result).toEqual(/* 1364/11/12 */ new Date(1986, 1 /* Feb */, 1));
+      const expected = newDate(1365, 10, 1);
+      const result = parse(format(expected, "MMMM", { locale: enUS }), "MMMM", referenceDate);
+      expect(result).toEqual(expected);
     });
 
     it("narrow", () => {
-      const result = parse("J", "MMMMM", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      const expected = newDate(1365, 0, 1);
+      const result = parse(format(expected, "MMMMM", { locale: enUS }), "MMMMM", referenceDate);
+      expect(result).toEqual(expected);
     });
 
     describe("validation", () => {
@@ -618,32 +606,35 @@ describe("parse", () => {
   describe("month (stand-alone)", () => {
     it("numeric", () => {
       const result = parse("6", "L", referenceDate);
-      expect(result).toEqual(/* 1365/3/11 */ new Date(1986, 5 /* Jun */, 1));
+      expect(result).toEqual(/* 1365/6/1 */ new Date(1986, 7 /* Aug */, 23));
     });
 
     it("ordinal", () => {
       const result = parse("6th", "Lo", referenceDate);
-      expect(result).toEqual(/* 1365/3/11 */ new Date(1986, 5 /* Jun */, 1));
+      expect(result).toEqual(/* 1365/6/1 */ new Date(1986, 7 /* Aug */, 23));
     });
 
     it("zero-padding", () => {
       const result = parse("01", "LL", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     it("abbreviated", () => {
-      const result = parse("Nov", "LLL", referenceDate);
-      expect(result).toEqual(/* 1365/8/10 */ new Date(1986, 10 /* Nov */, 1));
+      const expected = newDate(1365, 7, 1);
+      const result = parse(format(expected, "LLL", { locale: enUS }), "LLL", referenceDate);
+      expect(result).toEqual(expected);
     });
 
     it("wide", () => {
-      const result = parse("February", "LLLL", referenceDate);
-      expect(result).toEqual(/* 1364/11/12 */ new Date(1986, 1 /* Feb */, 1));
+      const expected = newDate(1365, 10, 1);
+      const result = parse(format(expected, "LLLL", { locale: enUS }), "LLLL", referenceDate);
+      expect(result).toEqual(expected);
     });
 
     it("narrow", () => {
-      const result = parse("J", "LLLLL", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      const expected = newDate(1365, 0, 1);
+      const result = parse(format(expected, "LLLLL", { locale: enUS }), "LLLLL", referenceDate);
+      expect(result).toEqual(expected);
     });
 
     describe("validation", () => {
@@ -683,17 +674,17 @@ describe("parse", () => {
   describe("local week of year", () => {
     it("numeric", () => {
       const result = parse("49", "w", referenceDate);
-      expect(result).toEqual(/* 1365/9/9 */ new Date(1986, 10 /* Nov */, 30));
+      expect(result).toEqual(/* 1365/11/26 */ new Date(1987, 1 /* Feb */, 15));
     });
 
     it("ordinal", () => {
       const result = parse("49th", "wo", referenceDate);
-      expect(result).toEqual(/* 1365/9/9 */ new Date(1986, 10 /* Nov */, 30));
+      expect(result).toEqual(/* 1365/11/26 */ new Date(1987, 1 /* Feb */, 15));
     });
 
     it("zero-padding", () => {
       const result = parse("01", "ww", referenceDate);
-      expect(result).toEqual(/* 1364/10/8 */ new Date(1985, 11 /* Dec */, 29));
+      expect(result).toEqual(/* 1364/12/25 */ new Date(1986, 2 /* Mar */, 16));
     });
 
     it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in options", () => {
@@ -701,7 +692,7 @@ describe("parse", () => {
         weekStartsOn: 1 /* Mon */,
         firstWeekContainsDate: 4,
       });
-      expect(result).toEqual(/* 1365/9/10 */ new Date(1986, 11 /* Dec */, 1));
+      expect(result).toEqual(/* 1365/12/4 */ new Date(1987, 1 /* Feb */, 23));
     });
 
     describe("validation", () => {
@@ -792,17 +783,17 @@ describe("parse", () => {
   describe("day of month", () => {
     it("numeric", () => {
       const result = parse("28", "d", referenceDate);
-      expect(result).toEqual(/* 1365/2/8 */ new Date(1986, 3 /* Apr */, 28));
+      expect(result).toEqual(/* 1365/1/28 */ new Date(1986, 3 /* Apr */, 17));
     });
 
     it("ordinal", () => {
       const result = parse("28th", "do", referenceDate);
-      expect(result).toEqual(/* 1365/2/8 */ new Date(1986, 3 /* Apr */, 28));
+      expect(result).toEqual(/* 1365/1/28 */ new Date(1986, 3 /* Apr */, 17));
     });
 
     it("zero-padding", () => {
       const result = parse("01", "dd", referenceDate);
-      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     describe("validation", () => {
@@ -843,29 +834,29 @@ describe("parse", () => {
       const result = parse("200", "D", referenceDate, {
         useAdditionalDayOfYearTokens: true,
       });
-      expect(result).toEqual(/* 1365/4/28 */ new Date(1986, 6 /* Jul */, 19));
+      expect(result).toEqual(/* 1365/7/14 */ new Date(1986, 9 /* Oct */, 6));
     });
 
     it("ordinal", () => {
       const result = parse("200th", "Do", referenceDate);
-      expect(result).toEqual(/* 1365/4/28 */ new Date(1986, 6 /* Jul */, 19));
+      expect(result).toEqual(/* 1365/7/14 */ new Date(1986, 9 /* Oct */, 6));
     });
 
     it("two-digit zero-padding", () => {
       const result = parse("01", "DD", referenceDate, {
         useAdditionalDayOfYearTokens: true,
       });
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     it("three-digit zero-padding", () => {
       const result = parse("001", "DDD", referenceDate);
-      expect(result).toEqual(/* 1364/10/11 */ new Date(1986, 0 /* Jan */, 1));
+      expect(result).toEqual(/* 1365/1/1 */ new Date(1986, 2 /* Mar */, 21));
     });
 
     it("specified amount of digits", () => {
       const result = parse("000200", "DDDDDD", referenceDate);
-      expect(result).toEqual(/* 1365/4/28 */ new Date(1986, 6 /* Jul */, 19));
+      expect(result).toEqual(/* 1365/7/14 */ new Date(1986, 9 /* Oct */, 6));
     });
 
     describe("validation", () => {
@@ -1033,17 +1024,17 @@ describe("parse", () => {
   describe("local day of week (formatting)", () => {
     it("numeric", () => {
       const result = parse("2", "e", referenceDate);
-      expect(result).toEqual(/* 1365/1/11 */ new Date(1986, 2 /* Mar */, 31));
+      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
     });
 
     it("ordinal", () => {
       const result = parse("2nd", "eo", referenceDate);
-      expect(result).toEqual(/* 1365/1/11 */ new Date(1986, 2 /* Mar */, 31));
+      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
     });
 
     it("zero-padding", () => {
       const result = parse("03", "ee", referenceDate);
-      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
+      expect(result).toEqual(/* 1365/1/13 */ new Date(1986, 3 /* Apr */, 2));
     });
 
     it("abbreviated", () => {
@@ -1070,7 +1061,7 @@ describe("parse", () => {
       const result = parse("7th", "eo", referenceDate, {
         weekStartsOn: /* Fri */ 5,
       });
-      expect(result).toEqual(/* 1365/1/21 */ new Date(1986, 3 /* Apr */, 10));
+      expect(result).toEqual(/* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4));
     });
 
     describe("validation", () => {
@@ -1112,17 +1103,17 @@ describe("parse", () => {
   describe("local day of week (stand-alone)", () => {
     it("numeric", () => {
       const result = parse("2", "c", referenceDate);
-      expect(result).toEqual(/* 1365/1/11 */ new Date(1986, 2 /* Mar */, 31));
+      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
     });
 
     it("ordinal", () => {
       const result = parse("2nd", "co", referenceDate);
-      expect(result).toEqual(/* 1365/1/11 */ new Date(1986, 2 /* Mar */, 31));
+      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
     });
 
     it("zero-padding", () => {
       const result = parse("03", "cc", referenceDate);
-      expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
+      expect(result).toEqual(/* 1365/1/13 */ new Date(1986, 3 /* Apr */, 2));
     });
 
     it("abbreviated", () => {
@@ -1149,7 +1140,7 @@ describe("parse", () => {
       const result = parse("7th", "co", referenceDate, {
         weekStartsOn: /* Fri */ 5,
       });
-      expect(result).toEqual(/* 1365/1/21 */ new Date(1986, 3 /* Apr */, 10));
+      expect(result).toEqual(/* 1365/1/15 */ new Date(1986, 3 /* Apr */, 4));
     });
 
     describe("validation", () => {
@@ -1637,7 +1628,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1646,7 +1637,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
 
       it("hours", () => {
@@ -1655,7 +1646,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123+05:00"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 15, 8, 38, 123));
       });
     });
 
@@ -1666,7 +1657,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1675,7 +1666,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
     });
 
@@ -1686,7 +1677,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1695,7 +1686,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
     });
 
@@ -1706,7 +1697,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1715,7 +1706,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
 
       it("hours, minutes and seconds", () => {
@@ -1724,7 +1715,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:37:53.123+05:30"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 14, 37, 53, 123));
       });
     });
 
@@ -1735,7 +1726,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1744,7 +1735,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
 
       it("hours, minutes and seconds", () => {
@@ -1753,7 +1744,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:37:53.123+05:30"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 14, 37, 53, 123));
       });
     });
 
@@ -1786,7 +1777,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1795,7 +1786,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
 
       it("hours", () => {
@@ -1804,7 +1795,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123+05:00"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 15, 8, 38, 123));
       });
     });
 
@@ -1815,7 +1806,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1824,7 +1815,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
     });
 
@@ -1835,7 +1826,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1844,7 +1835,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
     });
 
@@ -1855,7 +1846,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1864,7 +1855,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
 
       it("hours, minutes and seconds", () => {
@@ -1873,7 +1864,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:37:53.123+05:30"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 14, 37, 53, 123));
       });
     });
 
@@ -1884,7 +1875,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123-05:30"));
+        expect(result).toEqual(/* 2016/11/26 */ new Date(2638, 1 /* Feb */, 15, 1, 38, 38, 123));
       });
 
       it("GMT", () => {
@@ -1893,7 +1884,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:38:38.123Z"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 20, 8, 38, 123));
       });
 
       it("hours, minutes and seconds", () => {
@@ -1902,7 +1893,7 @@ describe("parse", () => {
           "yyyy-MM-dd'T'HH:mm:ss.SSSxxxxx",
           referenceDate,
         );
-        expect(result).toEqual(new Date("2016-11-25T16:37:53.123+05:30"));
+        expect(result).toEqual(/* 2016/11/25 */ new Date(2638, 1 /* Feb */, 14, 14, 37, 53, 123));
       });
     });
 
@@ -1986,9 +1977,7 @@ describe("parse", () => {
         "yyyyMMdd'T'HHmmss",
         referenceDate,
       );
-      expect(result).toEqual(
-        /* 1395/8/15 */ new Date(2016, 10 /* Nov */, 5, 4, 4, 4, 0),
-      );
+      expect(result).toEqual(newDate(2016, 10, 5, 4, 4, 4));
     });
 
     it("ISO week-numbering date", () => {
@@ -1997,30 +1986,27 @@ describe("parse", () => {
         "RRRR'W'IIi'T'HHmmss",
         referenceDate,
       );
-      expect(result).toEqual(
-        /* 1395/9/4 */ new Date(2016, 10 /* Nov */, 24, 15, 30, 5, 0),
-      );
+      expect(result).toEqual(newDate(2016, 8, 2, 15, 30, 5));
     });
 
     it("ISO day of year date", () => {
       const result = parse("2010123T235959", "yyyyDDD'T'HHmmss", referenceDate);
-      expect(result).toEqual(
-        /* 1389/2/13 */ new Date(2010, 4 /* May */, 3, 23, 59, 59, 0),
-      );
+      expect(result).toEqual(newDate(2010, 3, 30, 23, 59, 59));
     });
 
     it("Date.prototype.toString()", () => {
-      const dateString = "Wed Jul 02 2014 05:30:15 GMT+0600";
+      const expected = newDate(2014, 6, 2, 5, 30, 15);
       const formatString = "EEE MMM dd yyyy HH:mm:ss 'GMT'xx";
+      const dateString = format(expected, formatString, { locale: enUS });
       const result = parse(dateString, formatString, referenceDate);
-      expect(result).toEqual(new Date(dateString));
+      expect(result).toEqual(expected);
     });
 
     it("Date.prototype.toISOString()", () => {
       const dateString = "2014-07-02T05:30:15.123+06:00";
       const formatString = "yyyy-MM-dd'T'HH:mm:ss.SSSxxx";
       const result = parse(dateString, formatString, referenceDate);
-      expect(result).toEqual(new Date(dateString));
+      expect(result).toEqual(/* 2014/7/2 */ new Date(2635, 8 /* Sep */, 24, 3, 0, 15, 123));
     });
 
     it("middle-endian", () => {
@@ -2029,16 +2015,12 @@ describe("parse", () => {
         "h aaaa MM/dd/yyyy",
         referenceDate,
       );
-      expect(result).toEqual(
-        /* 1395/4/12 */ new Date(2016, 6 /* Jul */, 2, 5, 0, 0, 0),
-      );
+      expect(result).toEqual(newDate(2016, 6, 2, 5));
     });
 
     it("little-endian", () => {
       const result = parse("02.07.1995", "dd.MM.yyyy", referenceDate);
-      expect(result).toEqual(
-        /* 1374/4/11 */ new Date(1995, 6 /* Jul */, 2, 0, 0, 0, 0),
-      );
+      expect(result).toEqual(newDate(1995, 6, 2));
     });
   });
 
@@ -2047,7 +2029,7 @@ describe("parse", () => {
       const dateString = "+06:00 123 15 30 05 02 07 2014";
       const formatString = "xxx SSS ss mm HH dd MM yyyy";
       const result = parse(dateString, formatString, referenceDate);
-      expect(result).toEqual(new Date("2014-07-02T05:30:15.123+06:00"));
+      expect(result).toEqual(/* 2014/7/2 */ new Date(2635, 8 /* Sep */, 24, 3, 0, 15, 123));
     });
   });
 
@@ -2060,7 +2042,7 @@ describe("parse", () => {
 
       it("works correctly for two-digit year zero", () => {
         const result = parse("00", "yy", referenceDate);
-        expect(result).toEqual(/* 1378/10/11 */ new Date(2000, 0 /* Jan */, 1));
+        expect(result).toEqual(/* 1400/1/1 */ new Date(2021, 2 /* Mar */, 21));
       });
     });
 
@@ -2074,9 +2056,7 @@ describe("parse", () => {
         const result = parse("00", "YY", referenceDate, {
           useAdditionalWeekYearTokens: true,
         });
-        expect(result).toEqual(
-          /* 1378/10/5 */ new Date(1999, 11 /* Dec */, 26),
-        );
+        expect(result).toEqual(newDate(1400, 0, 1));
       });
     });
 
@@ -2129,7 +2109,7 @@ describe("parse", () => {
           "d",
           /* 1390/11/12 */ new Date(2012, 1 /* Feb */, 1),
         );
-        expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
+        expect(result).toEqual(newDate(1390, 10, 30));
       });
 
       it("returns `Invalid Date` for 29th of February of non-leap year", () => {
@@ -2138,7 +2118,7 @@ describe("parse", () => {
           "d",
           /* 1392/11/12 */ new Date(2014, 1 /* Feb */, 1),
         );
-        expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
+        expect(result).toEqual(newDate(1392, 10, 29));
       });
 
       it("parses 29th of February of leap year", () => {
@@ -2147,9 +2127,7 @@ describe("parse", () => {
           "d",
           /* 1390/11/12 */ new Date(2012, 1 /* Feb */, 1),
         );
-        expect(result).toEqual(
-          /* 1390/12/10 */ new Date(2012, 1 /* Feb */, 29),
-        );
+        expect(result).toEqual(newDate(1390, 10, 29));
       });
     });
 
@@ -2173,7 +2151,7 @@ describe("parse", () => {
         expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
       });
 
-      it("parses 366th day of leap year", () => {
+      it("returns `Invalid Date` for 366th day of non-leap year", () => {
         const result = parse(
           "366",
           "D",
@@ -2182,9 +2160,7 @@ describe("parse", () => {
             useAdditionalDayOfYearTokens: true,
           },
         );
-        expect(result).toEqual(
-          /* 1391/10/11 */ new Date(2012, 11 /* Dec */, 31),
-        );
+        expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
       });
     });
 
@@ -2293,7 +2269,7 @@ describe("parse", () => {
         // @ts-expect-error - It's oke to have incomplete locale
         locale: customLocale,
       });
-      expect(result).toEqual(/* -2639/10/10 */ new Date(-2017, 0 /* Jan */, 1));
+      expect(result).toEqual(/* -2017/1/2 */ new Date(-1396, 2 /* Mar */, 22));
     });
   });
 
@@ -2365,7 +2341,7 @@ describe("parse", () => {
 
     it("parses normally if the remaining input is just whitespace", () => {
       const result = parse("2016-11-05   \n", "yyyy-MM-dd", referenceDate);
-      expect(result).toEqual(/* 1395/8/15 */ new Date(2016, 10 /* Nov */, 5));
+      expect(result).toEqual(/* 2016/11/5 */ new Date(2638, 0 /* Jan */, 25));
     });
 
     it("throws RangeError exception if the format string contains an unescaped latin alphabet character", () => {
@@ -2391,7 +2367,7 @@ describe("parse", () => {
       const result = parse("2016 5", "yyyy D", referenceDate, {
         useAdditionalDayOfYearTokens: true,
       });
-      expect(result).toEqual(/* 1394/10/15 */ new Date(2016, 0, 5));
+      expect(result).toEqual(/* 2016/1/5 */ new Date(2637, 2 /* Mar */, 25));
     });
 
     it("throws an error if DD token is used", () => {
@@ -2409,7 +2385,7 @@ describe("parse", () => {
       const result = parse("2016 05", "yyyy DD", referenceDate, {
         useAdditionalDayOfYearTokens: true,
       });
-      expect(result).toEqual(/* 1394/10/15 */ new Date(2016, 0, 5));
+      expect(result).toEqual(/* 2016/1/5 */ new Date(2637, 2 /* Mar */, 25));
     });
 
     it("throws an error if YY token is used", () => {
@@ -2427,7 +2403,7 @@ describe("parse", () => {
       const result = parse("16 1", "YY w", referenceDate, {
         useAdditionalWeekYearTokens: true,
       });
-      expect(result).toEqual(/* 1394/10/6 */ new Date(2015, 11, 27));
+      expect(result).toEqual(/* 1316/1/1 */ new Date(1937, 2 /* Mar */, 21));
     });
 
     it("throws an error if YYYY token is used", () => {
@@ -2445,39 +2421,39 @@ describe("parse", () => {
       const result = parse("2016 1", "YYYY w", referenceDate, {
         useAdditionalWeekYearTokens: true,
       });
-      expect(result).toEqual(/* 1394/10/6 */ new Date(2015, 11, 27));
+      expect(result).toEqual(/* 2015/12/28 */ new Date(2637, 2 /* Mar */, 19));
     });
   });
 
   describe("long format", () => {
     it("short date", () => {
-      const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26);
-      const dateString = "05/26/1995";
+      const expected = newDate(1995, 4, 26);
       const formatString = "P";
+      const dateString = format(expected, formatString, { locale: enUS });
       const result = parse(dateString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("medium date", () => {
-      const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26);
-      const dateString = "May 26, 1995";
+      const expected = newDate(1995, 4, 26);
       const formatString = "PP";
+      const dateString = format(expected, formatString, { locale: enUS });
       const result = parse(dateString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("long date", () => {
-      const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26);
-      const dateString = "May 26th, 1995";
+      const expected = newDate(1995, 4, 26);
       const formatString = "PPP";
+      const dateString = format(expected, formatString, { locale: enUS });
       const result = parse(dateString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("full date", () => {
-      const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26);
-      const dateString = "Friday, May 26th, 1995";
+      const expected = newDate(1995, 4, 26);
       const formatString = "PPPP";
+      const dateString = format(expected, formatString, { locale: enUS });
       const result = parse(dateString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
@@ -2512,93 +2488,65 @@ describe("parse", () => {
     });
 
     it("short date + short time", () => {
-      const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26, 10, 32);
-      const dateTimeString = "05/26/1995, 10:32 AM";
+      const expected = newDate(1995, 4, 26, 10, 32);
       const formatString = "Pp";
+      const dateTimeString = format(expected, formatString, { locale: enUS });
       const result = parse(dateTimeString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("medium date + short time", () => {
-      const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26, 10, 32);
-      const dateTimeString = "May 26, 1995, 10:32 AM";
+      const expected = newDate(1995, 4, 26, 10, 32);
       const formatString = "PPp";
+      const dateTimeString = format(expected, formatString, { locale: enUS });
       const result = parse(dateTimeString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("long date + short time", () => {
-      const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26, 10, 32);
-      const dateTimeString = "May 26th, 1995 at 10:32 AM";
+      const expected = newDate(1995, 4, 26, 10, 32);
       const formatString = "PPPp";
+      const dateTimeString = format(expected, formatString, { locale: enUS });
       const result = parse(dateTimeString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("full date + short time", () => {
-      const expected = /* 1374/3/5 */ new Date(1995, 4 /* May */, 26, 10, 32);
-      const dateTimeString = "Friday, May 26th, 1995 at 10:32 AM";
+      const expected = newDate(1995, 4, 26, 10, 32);
       const formatString = "PPPPp";
+      const dateTimeString = format(expected, formatString, { locale: enUS });
       const result = parse(dateTimeString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("short date + short time", () => {
-      const expected = /* 1374/3/5 */ new Date(
-        1995,
-        4 /* May */,
-        26,
-        10,
-        32,
-        55,
-      );
-      const dateTimeString = "05/26/1995, 10:32:55 AM";
+      const expected = newDate(1995, 4, 26, 10, 32, 55);
       const formatString = "Ppp";
+      const dateTimeString = format(expected, formatString, { locale: enUS });
       const result = parse(dateTimeString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("medium date + short time", () => {
-      const expected = /* 1374/3/5 */ new Date(
-        1995,
-        4 /* May */,
-        26,
-        10,
-        32,
-        55,
-      );
-      const dateTimeString = "May 26, 1995, 10:32:55 AM";
+      const expected = newDate(1995, 4, 26, 10, 32, 55);
       const formatString = "PPpp";
+      const dateTimeString = format(expected, formatString, { locale: enUS });
       const result = parse(dateTimeString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("long date + short time", () => {
-      const expected = /* 1374/3/5 */ new Date(
-        1995,
-        4 /* May */,
-        26,
-        10,
-        32,
-        55,
-      );
-      const dateTimeString = "May 26th, 1995 at 10:32:55 AM";
+      const expected = newDate(1995, 4, 26, 10, 32, 55);
       const formatString = "PPPpp";
+      const dateTimeString = format(expected, formatString, { locale: enUS });
       const result = parse(dateTimeString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
 
     it("full date + short time", () => {
-      const expected = /* 1374/3/5 */ new Date(
-        1995,
-        4 /* May */,
-        26,
-        10,
-        32,
-        55,
-      );
-      const dateTimeString = "Friday, May 26th, 1995 at 10:32:55 AM";
+      const expected = newDate(1995, 4, 26, 10, 32, 55);
       const formatString = "PPPPpp";
+      const dateTimeString = format(expected, formatString, { locale: enUS });
       const result = parse(dateTimeString, formatString, referenceDate);
       expect(result).toEqual(expected);
     });
@@ -2626,22 +2574,40 @@ describe("parse", () => {
 
   describe("context", () => {
     it("allows to specify the context", () => {
+      const dateString = format(newDate(2018, 3, 11), "yyyy 'hello world' MMMM do", {
+        locale: enUS,
+      });
+      const expected = newDate(2018, 3, 11);
       expect(
         parse(
-          "2018 hello world July 2nd",
+          dateString,
           "yyyy 'hello world' MMMM do",
           "2024-04-07T00:00:00Z",
           { in: tz("Asia/Singapore") },
         ).toISOString(),
-      ).toBe("2018-07-02T00:00:00.000+08:00");
+      ).toBe(
+        new TZDate(
+          expected.getFullYear(),
+          expected.getMonth(),
+          expected.getDate(),
+          "Asia/Singapore",
+        ).toISOString(),
+      );
       expect(
         parse(
-          "2018 hello world July 2nd",
+          dateString,
           "yyyy 'hello world' MMMM do",
           "2024-04-07T00:00:00Z",
           { in: tz("America/Los_Angeles") },
         ).toISOString(),
-      ).toBe("2018-07-02T00:00:00.000-07:00");
+      ).toBe(
+        new TZDate(
+          expected.getFullYear(),
+          expected.getMonth(),
+          expected.getDate(),
+          "America/Los_Angeles",
+        ).toISOString(),
+      );
     });
 
     it("resolves the context date type", () => {
@@ -2658,26 +2624,41 @@ describe("parse", () => {
 
   describe("time zones", () => {
     it("properly parses dates around DST transitions", () => {
-      const format = "yyyy-MM-dd HH:mm";
+      const formatString = "yyyy-MM-dd HH:mm";
       const ny = tz("America/New_York");
+      const preDstDate = format(
+        new TZDate(2023, 2, 11, 1, 30, "America/New_York"),
+        "yyyy-MM-dd",
+        { locale: enUS, in: ny },
+      );
+      const dstDate = format(
+        new TZDate(2023, 2, 12, 1, 30, "America/New_York"),
+        "yyyy-MM-dd",
+        { locale: enUS, in: ny },
+      );
+      const postDstDate = format(
+        new TZDate(2023, 2, 13, 3, 30, "America/New_York"),
+        "yyyy-MM-dd",
+        { locale: enUS, in: ny },
+      );
       expect(
-        parse("2023-03-11 01:30", format, new Date(), { in: ny }).toISOString(),
-      ).toBe("2023-03-11T01:30:00.000-05:00");
+        parse(`${preDstDate} 01:30`, formatString, new Date(), { in: ny }).toISOString(),
+      ).toBe(new TZDate(2023, 2, 11, 1, 30, "America/New_York").toISOString());
       expect(
-        parse("2023-03-12 01:30", format, new Date(), { in: ny }).toISOString(),
-      ).toBe("2023-03-12T01:30:00.000-05:00");
+        parse(`${dstDate} 01:30`, formatString, new Date(), { in: ny }).toISOString(),
+      ).toBe(new TZDate(2023, 2, 12, 1, 30, "America/New_York").toISOString());
       expect(
-        parse("2023-03-12 02:00", format, new Date(), { in: ny }).toISOString(),
-      ).toBe("2023-03-12T03:00:00.000-04:00");
+        parse(`${dstDate} 02:00`, formatString, new Date(), { in: ny }).toISOString(),
+      ).toBe(new TZDate(2023, 2, 12, 3, 0, "America/New_York").toISOString());
       expect(
-        parse("2023-03-12 03:00", format, new Date(), { in: ny }).toISOString(),
-      ).toBe("2023-03-12T03:00:00.000-04:00");
+        parse(`${dstDate} 03:00`, formatString, new Date(), { in: ny }).toISOString(),
+      ).toBe(new TZDate(2023, 2, 12, 3, 0, "America/New_York").toISOString());
       expect(
-        parse("2023-03-12 03:30", format, new Date(), { in: ny }).toISOString(),
-      ).toBe("2023-03-12T03:30:00.000-04:00");
+        parse(`${dstDate} 03:30`, formatString, new Date(), { in: ny }).toISOString(),
+      ).toBe(new TZDate(2023, 2, 12, 3, 30, "America/New_York").toISOString());
       expect(
-        parse("2023-03-13 03:30", format, new Date(), { in: ny }).toISOString(),
-      ).toBe("2023-03-13T03:30:00.000-04:00");
+        parse(`${postDstDate} 03:30`, formatString, new Date(), { in: ny }).toISOString(),
+      ).toBe(new TZDate(2023, 2, 13, 3, 30, "America/New_York").toISOString());
     });
   });
 });

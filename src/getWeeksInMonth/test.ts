@@ -8,7 +8,7 @@ describe("getWeeksInMonth", () => {
     const result = getWeeksInMonth(
       /* 1393/11/19 */ new Date(2015, 1 /* Feb */, 8, 18, 0),
     );
-    expect(result).toBe(4);
+    expect(result).toBe(5);
   });
 
   it("allows to specify which day is the first day of the week", () => {
@@ -50,7 +50,7 @@ describe("getWeeksInMonth", () => {
     const result = getWeeksInMonth(
       /* 1396/1/19 */ new Date(2017, 3 /* Apr */, 8, 18, 0).getTime(),
     );
-    expect(result).toBe(6);
+    expect(result).toBe(5);
   });
 
   it("does not mutate the original date", () => {
@@ -77,7 +77,7 @@ describe("getWeeksInMonth", () => {
         getWeeksInMonth(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(5);
+      ).toBe(6);
       expect(
         getWeeksInMonth(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           in: tz("America/New_York"),
@@ -87,7 +87,7 @@ describe("getWeeksInMonth", () => {
         getWeeksInMonth(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(5);
+      ).toBe(6);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

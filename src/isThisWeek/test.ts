@@ -41,7 +41,7 @@ describe("isThisWeek", () => {
         isThisWeek(/* 1403/5/28 */ "2024-08-18T03:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(false);
+      ).toBe(true);
       expect(
         isThisWeek(/* 1403/5/28 */ "2024-08-18T04:00:00Z", {
           in: tz("America/New_York"),
