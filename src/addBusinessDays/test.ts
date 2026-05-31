@@ -22,32 +22,32 @@ describe("addBusinessDays", () => {
     expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
-  it("returns the Monday when 1 day is added on the Friday", () => {
+  it("returns the next business day when 1 day is added on Jomeh", () => {
     expect(
       addBusinessDays(/* 1398/10/19 */ new Date(2020, 0 /* Jan */, 9), 1),
     ).toEqual(
-      // Friday
-      // Monday
+      // Jomeh
+      // Shanbeh
       /* 1398/10/21 */ new Date(2020, 0 /* Jan */, 11),
     );
   });
 
-  it("returns the Monday when 1 day is added on the Satuday", () => {
+  it("returns the next business day when 1 day is added on Shanbeh", () => {
     expect(
       addBusinessDays(/* 1398/10/20 */ new Date(2020, 0 /* Jan */, 10), 1),
     ).toEqual(
-      // Saturday
-      // Monday
+      // Shanbeh
+      // Yekshanbeh
       /* 1398/10/21 */ new Date(2020, 0 /* Jan */, 11),
     );
   });
 
-  it("returns the Monday when 1 day is added on the Sunday", () => {
+  it("returns the next business day when 1 day is added on Yekshanbeh", () => {
     expect(
       addBusinessDays(/* 1398/10/22 */ new Date(2020, 0 /* Jan */, 12), 1),
     ).toEqual(
-      // Sunday
-      // Monday
+      // Yekshanbeh
+      // Doshanbeh
       /* 1398/10/23 */ new Date(2020, 0 /* Jan */, 13),
     );
   });
@@ -87,7 +87,7 @@ describe("addBusinessDays", () => {
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
-  it("starting from a weekend day should land on a weekday when reducing a divisible by 5", () => {
+  it("starting from a weekend day should land on a business day when shifting by a full Jalali workweek", () => {
     const subtractResult = addBusinessDays(
       /* 1398/5/27 */ new Date(2019, 7, 18),
       -6,

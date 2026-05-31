@@ -195,7 +195,7 @@ describe("setDefaultOptions", () => {
 
     it("isMatch", () => {
       // For reference: not setting any options
-      expect(isMatch("11 دی 1392 در 12:00:00 ق.ظ.", "PPPpp")).toBe(true);
+      expect(isMatch("11-ام دی 1392 در 12:00:00 ق.ظ.", "PPPpp")).toBe(true);
 
       setDefaultOptions({ locale: otherLocale });
 
@@ -203,7 +203,7 @@ describe("setDefaultOptions", () => {
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       expect(
-        isMatch("11 دی 1392 در 12:00:00 ق.ظ.", "PPPpp", {
+        isMatch("11-ام دی 1392 در 12:00:00 ق.ظ.", "PPPpp", {
           locale: defaultLocale,
         }),
       ).toBe(true);
@@ -211,9 +211,9 @@ describe("setDefaultOptions", () => {
 
     it("parse", () => {
       // For reference: not setting any options
-      expect(parse("11 دی 1392 در 12:00:00 ق.ظ.", "PPPpp", new Date())).toEqual(
-        /* 1392/10/11 */ new Date(2014, 0, 1),
-      );
+      expect(
+        parse("11-ام دی 1392 در 12:00:00 ق.ظ.", "PPPpp", new Date()),
+      ).toEqual(/* 1392/10/11 */ new Date(2014, 0, 1));
 
       setDefaultOptions({ locale: otherLocale });
 
@@ -223,7 +223,7 @@ describe("setDefaultOptions", () => {
 
       // Manually set `locale` take priority over `defaultOptions.locale`
       expect(
-        parse("11 دی 1392 در 12:00:00 ق.ظ.", "PPPpp", new Date(), {
+        parse("11-ام دی 1392 در 12:00:00 ق.ظ.", "PPPpp", new Date(), {
           locale: defaultLocale,
         }),
       ).toEqual(/* 1392/10/11 */ new Date(2014, 0, 1));

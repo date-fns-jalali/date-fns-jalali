@@ -33,14 +33,14 @@ describe("lightFormat", () => {
         expect(result).toBe("1365 65 1365 1365 01365");
       });
 
-      it("1 BC formats as 1", () => {
+      it("Jalali year 1 formats as 1", () => {
         const date = /* 1/10/10 */ new Date(622, 11 /* Dec */, 31);
 
         const result = lightFormat(date, "y");
         expect(result).toBe("1");
       });
 
-      it("2 BC formats as 2", () => {
+      it("Jalali year 2 formats as 2", () => {
         const date = /* 2/10/10 */ new Date(624, 0 /* Jan */, 1);
 
         const result = lightFormat(date, "y");

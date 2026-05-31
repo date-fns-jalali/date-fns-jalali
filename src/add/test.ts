@@ -85,7 +85,7 @@ describe("add", () => {
   it("works well if the desired month has fewer days and the provided date is on the last day of a month", () => {
     const date = /* 1393/10/10 */ new Date(2014, 11 /* Dec */, 31);
     const result = add(date, { months: 9 });
-    expect(result).toEqual(/* 1394/7/10 */ new Date(2015, 9 /* Sep */, 2));
+    expect(result).toEqual(/* 1394/7/10 */ new Date(2015, 9 /* Oct */, 2));
   });
 
   const dstTransitions = getDstTransitions(2017);
