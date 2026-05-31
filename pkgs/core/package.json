@@ -8170,7 +8170,7 @@
     "test": "vitest run",
     "lint": "oxlint --type-aware",
     "types": "tsc --build --pretty",
-    "locale-snapshots": "env TZ=utc tsx --tsconfig scripts/tsconfig.json -- ./scripts/build/localeSnapshots/index.ts",
+    "locale-snapshots": "env TZ=utc node ./scripts/build/localeSnapshots/index.ts",
     "stats": "cloc . --exclude-dir=node_modules,lib,examples,tmp,.git --exclude-ext=yaml,yml,json,svg,xml"
   },
   "devDependencies": {
