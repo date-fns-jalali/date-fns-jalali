@@ -1,4 +1,26 @@
+fix tests
 
+first see what is intended to be tested in the test case in garegorian calendar logic, then try to test the same logic in Jalali calendar logic, and update test cases accordingly.
+
+--
+you can only update comment before date, 
+
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const result = startOfMonth(date);
+    expect(result).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
+
+to 
+
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const result = startOfMonth(date);
+    expect(result).toEqual(/* 1393/6/1 */ new Date(2014, 8 /* Sep */, 1));
+
+then run ./scripts/transform/apply-test-comments.sh, it will update the test case to
+
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const result = startOfMonth(date);
+    expect(result).toEqual(/* 1393/6/1 */ new Date(2014, 7 /* Aug */, 23));
+--
 
 use helper as needed:
 
