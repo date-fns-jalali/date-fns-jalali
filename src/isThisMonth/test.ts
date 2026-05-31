@@ -19,7 +19,7 @@ describe("isThisMonth", () => {
   });
 
   it("accepts a timestamp", () => {
-    const date = /* 1393/7/8 */ new Date(2014, 8 /* Sep */, 30).getTime();
+    const date = /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15).getTime();
     expect(isThisMonth(date)).toBe(true);
   });
 
@@ -38,7 +38,7 @@ describe("isThisMonth", () => {
         }),
       ).toBe(true);
       expect(
-        isThisMonth(/* 1393/6/10 */ "2014-09-01T03:00:00Z", {
+        isThisMonth(/* 1393/5/31 */ "2014-08-22T04:00:00Z", {
           in: tz("America/New_York"),
         }),
       ).toBe(false);

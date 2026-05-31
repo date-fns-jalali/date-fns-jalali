@@ -29,7 +29,7 @@ describe("subYears", () => {
       /* 1394/12/10 */ new Date(2016, 1 /* Feb */, 29),
       1,
     );
-    expect(result).toEqual(/* 1393/12/9 */ new Date(2015, 1 /* Feb */, 28));
+    expect(result).toEqual(/* 1393/12/10 */ new Date(2015, 2 /* Mar */, 1));
   });
 
   it("handles dates before 100 AD", () => {
@@ -37,7 +37,7 @@ describe("subYears", () => {
     initialDate.setFullYear(0, 1 /* Feb */, 29);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(-1, 1 /* Feb */, 28);
+    expectedResult.setFullYear(-1, 2 /* Mar */, 21);
     expectedResult.setHours(0, 0, 0, 0);
     const result = subYears(initialDate, 1);
     expect(result).toEqual(expectedResult);
@@ -74,7 +74,7 @@ describe("subYears", () => {
         subYears(/* 1403/1/22 */ "2024-04-10T07:00:00Z", 5, {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe(/* 1398/1/21 */ "2019-04-10T00:00:00.000-07:00");
+      ).toBe(/* 1398/1/22 */ "2019-04-11T00:00:00.000-07:00");
     });
 
     it("resolves the context date type", () => {

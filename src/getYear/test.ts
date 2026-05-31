@@ -6,14 +6,14 @@ import { getYear } from "./index.ts";
 describe("getYear", () => {
   it("returns the year of the given date", () => {
     const result = getYear(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
-    expect(result).toBe(2014);
+    expect(result).toBe(1393);
   });
 
   it("accepts a timestamp", () => {
     const result = getYear(
       /* 1379/1/14 */ new Date(2000, 3 /* Apr */, 2).getTime(),
     );
-    expect(result).toBe(2000);
+    expect(result).toBe(1379);
   });
 
   it("returns NaN if the given date is invalid", () => {
@@ -27,22 +27,22 @@ describe("getYear", () => {
         getYear(/* 1402/10/10 */ "2023-12-31T15:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(2023);
+      ).toBe(1402);
       expect(
         getYear(/* 1402/10/10 */ "2023-12-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(2024);
+      ).toBe(1402);
       expect(
         getYear(/* 1402/10/11 */ "2024-01-01T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(2023);
+      ).toBe(1402);
       expect(
         getYear(/* 1402/10/11 */ "2024-01-01T05:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(2024);
+      ).toBe(1402);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

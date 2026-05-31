@@ -9,7 +9,7 @@ describe("differenceInQuarters", () => {
       /* 1391/4/12 */ new Date(2012, 6 /* Jul */, 2, 5, 0),
       /* 1390/4/11 */ new Date(2011, 6 /* Jul */, 2, 6, 0),
     );
-    expect(result).toBe(3);
+    expect(result).toBe(4);
   });
 
   it("returns the number of full quarters between the given dates", () => {
@@ -76,7 +76,7 @@ describe("differenceInQuarters", () => {
       /* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2).getTime(),
       /* 1389/4/11 */ new Date(2010, 6 /* Jul */, 2).getTime(),
     );
-    expect(result).toBe(17);
+    expect(result).toBe(16);
   });
 
   describe("edge cases", () => {

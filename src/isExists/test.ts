@@ -8,7 +8,7 @@ describe("isValid", () => {
   });
 
   it("returns false if the given date is invalid", () => {
-    const result = isExists(2018, 1 /* Feb */, 31);
+    const result = isExists(2018, 11, 31);
     expect(result).toBe(false);
   });
 });

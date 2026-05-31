@@ -8,7 +8,7 @@ describe("isFirstDayOfMonth", () => {
     const result = isFirstDayOfMonth(
       /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1),
     );
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it("returns false if the given date is not the first day of a month", () => {
@@ -21,7 +21,7 @@ describe("isFirstDayOfMonth", () => {
   it("accepts a timestamp", () => {
     const date = /* 1393/7/9 */ new Date(2014, 9 /* Oct */, 1).getTime();
     const result = isFirstDayOfMonth(date);
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it("returns false if the given date is `Invalid Date`", () => {
@@ -40,7 +40,7 @@ describe("isFirstDayOfMonth", () => {
         isFirstDayOfMonth(/* 1403/6/10 */ "2024-08-31T16:00:00Z", {
           in: tz("Asia/Singapore"),
         }),
-      ).toBe(true);
+      ).toBe(false);
       expect(
         isFirstDayOfMonth(/* 1403/6/11 */ "2024-09-01T03:00:00Z", {
           in: tz("America/New_York"),
@@ -50,7 +50,7 @@ describe("isFirstDayOfMonth", () => {
         isFirstDayOfMonth(/* 1403/6/11 */ "2024-09-01T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(true);
+      ).toBe(false);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

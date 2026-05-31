@@ -8,14 +8,14 @@ describe("getDaysInMonth", () => {
     const result = getDaysInMonth(
       /* 1478/11/23 */ new Date(2100, 1 /* Feb */, 11),
     );
-    expect(result).toBe(28);
+    expect(result).toBe(30);
   });
 
   it("works for the February of a leap year", () => {
     const result = getDaysInMonth(
       /* 1378/11/22 */ new Date(2000, 1 /* Feb */, 11),
     );
-    expect(result).toBe(29);
+    expect(result).toBe(30);
   });
 
   it("accepts a timestamp", () => {
@@ -29,7 +29,7 @@ describe("getDaysInMonth", () => {
     date.setFullYear(0, 1 /* Feb */, 15);
     date.setHours(0, 0, 0, 0);
     const result = getDaysInMonth(date);
-    expect(result).toBe(29);
+    expect(result).toBe(30);
   });
 
   it("returns NaN if the given date is invalid", () => {
@@ -43,12 +43,12 @@ describe("getDaysInMonth", () => {
         getDaysInMonth(/* 1402/11/12 */ "2024-02-01T04:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(31);
+      ).toBe(30);
       expect(
         getDaysInMonth(/* 1402/11/12 */ "2024-02-01T05:00:00Z", {
           in: tz("America/New_York"),
         }),
-      ).toBe(29);
+      ).toBe(30);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

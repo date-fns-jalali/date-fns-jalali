@@ -34,7 +34,7 @@ describe("differenceInMonths", () => {
         /* 1399/12/10 */ new Date(2021, 1 /* Feb */, 28),
         /* 1399/11/11 */ new Date(2021, 0 /* Jan */, 30),
       );
-      expect(result).toBe(1);
+      expect(result).toBe(0);
     });
 
     it("it returns diff of 1 month between Feb 28 2021 and Jan 31 2021", () => {
@@ -42,7 +42,7 @@ describe("differenceInMonths", () => {
         /* 1399/12/10 */ new Date(2021, 1 /* Feb */, 28),
         /* 1399/11/12 */ new Date(2021, 0 /* Jan */, 31),
       );
-      expect(result).toBe(1);
+      expect(result).toBe(0);
     });
 
     it("it returns diff of 1 month between Nov, 30 2021 and Oct, 31 2021", () => {
@@ -66,7 +66,7 @@ describe("differenceInMonths", () => {
         /* 1400/8/9 */ new Date(2021, 9 /* Oct */, 31),
         /* 1400/2/10 */ new Date(2021, 3 /* Apr */, 30),
       );
-      expect(result).toBe(6);
+      expect(result).toBe(5);
     });
 
     it("it returns diff of -1 month between Sep, 30 2021 and Oct, 31 2021", () => {
@@ -153,8 +153,8 @@ describe("differenceInMonths", () => {
       1,
       "America/New_York",
     );
-    expect(differenceInMonths(dateLeft, dateRight)).toBe(11);
-    expect(differenceInMonths(dateRight, dateLeft)).toBe(-11);
+    expect(differenceInMonths(dateLeft, dateRight)).toBe(12);
+    expect(differenceInMonths(dateRight, dateLeft)).toBe(-12);
   });
 
   it("allows dates to be of different types", () => {

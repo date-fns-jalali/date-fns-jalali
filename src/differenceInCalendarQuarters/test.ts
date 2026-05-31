@@ -31,16 +31,16 @@ describe("differenceInCalendarQuarters", () => {
   describe("edge cases", () => {
     it("the difference is less than a quarter, but the given dates are in different calendar quarters", () => {
       const result = differenceInCalendarQuarters(
-        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
-        /* 1393/4/9 */ new Date(2014, 5 /* Jun */, 30),
+        /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
+        /* 1393/3/31 */ new Date(2014, 5 /* Jun */, 21),
       );
       expect(result).toBe(1);
     });
 
     it("the same for the swapped dates", () => {
       const result = differenceInCalendarQuarters(
-        /* 1393/4/9 */ new Date(2014, 5 /* Jun */, 30),
-        /* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1),
+        /* 1393/3/31 */ new Date(2014, 5 /* Jun */, 21),
+        /* 1393/4/1 */ new Date(2014, 5 /* Jun */, 22),
       );
       expect(result).toBe(-1);
     });
@@ -115,7 +115,7 @@ describe("differenceInCalendarQuarters", () => {
       "America/New_York",
     );
     expect(differenceInCalendarQuarters(dateLeft, dateRight)).toBe(2);
-    expect(differenceInCalendarQuarters(dateRight, dateLeft)).toBe(-1);
+    expect(differenceInCalendarQuarters(dateRight, dateLeft)).toBe(-2);
   });
 
   describe("context", () => {
@@ -133,7 +133,7 @@ describe("differenceInCalendarQuarters", () => {
           /* 1402/10/11 */ "2024-01-01T00:00:00Z",
           { in: tz("America/New_York") },
         ),
-      ).toBe(2);
+      ).toBe(1);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {

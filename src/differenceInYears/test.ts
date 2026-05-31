@@ -34,7 +34,7 @@ describe("differenceInYears", () => {
         /* 1382/12/10 */ new Date(2004, 1 /* Feb */, 29, 0, 0),
         /* 1380/12/10 */ new Date(2002, 2 /* Mar */, 1, 0, 0),
       );
-      expect(result).toBe(1);
+      expect(result).toBe(2);
     });
 
     it("supports past dates with right side before leap day", () => {
@@ -92,7 +92,7 @@ describe("differenceInYears", () => {
         /* 1393/6/14 */ new Date(2014, 8 /* Sep */, 5),
         /* 1391/6/15 */ new Date(2012, 8 /* Sep */, 5),
       );
-      expect(result).toBe(2);
+      expect(result).toBe(1);
     });
 
     it("the given dates are the same", () => {

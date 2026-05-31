@@ -7,7 +7,7 @@ describe("isSameMonth", () => {
   it("returns true if the given dates have the same month (and year)", () => {
     const result = isSameMonth(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25),
+      /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15),
     );
     expect(result).toBe(true);
   });
@@ -23,7 +23,7 @@ describe("isSameMonth", () => {
   it("accepts a timestamp", () => {
     const result = isSameMonth(
       /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2).getTime(),
-      /* 1393/7/3 */ new Date(2014, 8 /* Sep */, 25).getTime(),
+      /* 1393/6/24 */ new Date(2014, 8 /* Sep */, 15).getTime(),
     );
     expect(result).toBe(true);
   });
@@ -64,7 +64,7 @@ describe("isSameMonth", () => {
       12,
       "America/New_York",
     );
-    expect(isSameMonth(dateLeft, dateRight)).toBe(false);
+    expect(isSameMonth(dateLeft, dateRight)).toBe(true);
     expect(isSameMonth(dateRight, dateLeft)).toBe(true);
   });
 
@@ -82,7 +82,7 @@ describe("isSameMonth", () => {
       expect(
         isSameMonth(
           /* 1393/6/11 */ "2014-09-02T15:00:00Z",
-          /* 1393/7/3 */ "2014-09-25T16:00:00Z",
+          /* 1393/6/25 */ "2014-09-15T16:00:00Z",
           {
             in: tz("Asia/Singapore"),
           },

@@ -59,7 +59,7 @@ describe("isSameYear", () => {
             in: tz("Asia/Singapore"),
           },
         ),
-      ).toBe(false);
+      ).toBe(true);
       expect(
         isSameYear(
           /* 1402/10/10 */ "2023-12-31T16:00:00Z",
@@ -68,7 +68,7 @@ describe("isSameYear", () => {
             in: tz("Asia/Singapore"),
           },
         ),
-      ).toBe(true);
+      ).toBe(false);
     });
 
     it("doesn't enforce argument and context to be of the same type", () => {
