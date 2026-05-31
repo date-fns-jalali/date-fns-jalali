@@ -204,158 +204,158 @@
  DONE  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YY token if useAdditionalWeekYearTokens is set to true
  DONE  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YYYY token if useAdditionalWeekYearTokens is set to true
  DONE  |main| src/format/test.ts > format > context > allows to specify the context
- FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 5 seconds
- FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 10 seconds
- FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 20 seconds
- FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > half a minute
- FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than a minute
- FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > 1 minute
- FAIL  |main| src/formatDistance/test.ts > formatDistance > minutes > less than a minute
- FAIL  |main| src/formatDistance/test.ts > formatDistance > minutes > 1 minute
- FAIL  |main| src/formatDistance/test.ts > formatDistance > minutes > n minutes
- FAIL  |main| src/formatDistance/test.ts > formatDistance > hours > about 1 hour
- FAIL  |main| src/formatDistance/test.ts > formatDistance > hours > about n hours
- FAIL  |main| src/formatDistance/test.ts > formatDistance > days > 1 day
- FAIL  |main| src/formatDistance/test.ts > formatDistance > days > n days
- FAIL  |main| src/formatDistance/test.ts > formatDistance > months > about 1 month
- FAIL  |main| src/formatDistance/test.ts > formatDistance > months > n months
- FAIL  |main| src/formatDistance/test.ts > formatDistance > years > about 1 year
- FAIL  |main| src/formatDistance/test.ts > formatDistance > years > over 1 year
- FAIL  |main| src/formatDistance/test.ts > formatDistance > years > almost n years
- FAIL  |main| src/formatDistance/test.ts > formatDistance > years > about n years
- FAIL  |main| src/formatDistance/test.ts > formatDistance > years > over n years
- FAIL  |main| src/formatDistance/test.ts > formatDistance > accepts timestamps
- FAIL  |main| src/formatDistance/test.ts > formatDistance > when the addSuffix option is true > adds a past suffix
- FAIL  |main| src/formatDistance/test.ts > formatDistance > when the addSuffix option is true > adds a future suffix
- FAIL  |main| src/formatDistance/test.ts > formatDistance > normalizes the dates
- FAIL  |main| src/formatDistance/test.ts > formatDistance > context > allows to specify the context
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > seconds > when no unit is set > 0 seconds
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > seconds > when no unit is set > 5 seconds
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > minutes > 1 minute
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > minutes > n minutes
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > hours > 1 hour
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > hours > n hours
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > days > 1 day
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > days > n days
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > months > 1 month
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > months > n months
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > years > returns `1 year` - see issue 2388
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > years > returns `2 years` - see issue 2388
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > years > 1 year
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > years > n years
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > second > 0 seconds
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > second > 5 seconds
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > second > 120 seconds
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > minute > 0 minutes
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > minute > 5 minutes
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > minute > 120 minutes
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > hour > 0 hours
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > hour > 5 hours
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > hour > 48 hours
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > day > 0 days
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > day > 5 days
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > day > 60 days
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > month > 0 months
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > month > 5 months
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > month > 12 months - see issue 2388
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > month > 24 months
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > year > 0 years
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > year > 5 years
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > accepts timestamps
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the addSuffix option is true > adds a past suffix
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the addSuffix option is true > adds a future suffix
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > default is "round"
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > "floor"
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > "ceil"
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > "round" (down)
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > "round" (up)
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > edge cases > detects unit correctly for short months
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > normalizes the dates
- FAIL  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > context > allows to specify the context
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > less than 5 seconds
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > less than 10 seconds
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > less than 20 seconds
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > half a minute
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > less than a minute
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > 1 minute
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > minutes > less than a minute
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > minutes > 1 minute
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > minutes > n minutes
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > hours > about 1 hour
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > hours > about n hours
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > days > 1 day
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > days > n days
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > months > about 1 month
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > months > n months
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > about 1 year
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > over 1 year
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > almost n years
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > about n years
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > over n years
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > accepts a timestamp
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > when the addSuffix option is true > adds a past suffix
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > when the addSuffix option is true > adds a future suffix
- FAIL  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > respects date extensions
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > seconds > when no unit is set > 0 seconds
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > seconds > when no unit is set > 5 seconds
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > minutes > 1 minute
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > minutes > n minutes
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > hours > 1 hour
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > hours > n hours
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > days > 1 day
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > days > n days
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > months > 1 month
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > months > n months
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > years > 1 year
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > years > n years
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > second > 0 seconds
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > second > 5 seconds
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > second > 120 seconds
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > minute > 0 minutes
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > minute > 5 minutes
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > minute > 120 minutes
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > hour > 0 hours
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > hour > 5 hours
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > hour > 48 hours
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > day > 0 days
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > day > 5 days
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > day > 60 days
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > month > 0 months
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > month > 5 months
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > month > 24 months
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > year > returns `1 year` - see issue 2388
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > year > returns `2 years` - see issue 2388
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > year > 0 years
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > year > 5 years
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > accepts timestamps
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the addSuffix option is true > adds a past suffix
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the addSuffix option is true > adds a future suffix
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > default is "round"
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > "floor"
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > "ceil"
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > "round" (down)
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > "round" (up)
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > edge cases > detects unit correctly for short months
- FAIL  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > respects date extensions
- FAIL  |main| src/formatDuration/test.ts > formatDuration > formats full duration
- FAIL  |main| src/formatDuration/test.ts > formatDuration > formats partial duration
- FAIL  |main| src/formatDuration/test.ts > formatDuration > allows to customize the format
- FAIL  |main| src/formatDuration/test.ts > formatDuration > does not include zeros by default
- FAIL  |main| src/formatDuration/test.ts > formatDuration > allows to include zeros
- FAIL  |main| src/formatDuration/test.ts > formatDuration > allows to customize the delimiter
- FAIL  |main| src/formatISODuration/test.ts > formatISODuration > Everything returns P1Y1M1DT1H1M1S (1 of everything)
- FAIL  |main| src/formatISODuration/test.ts > formatISODuration > Months returns P0Y1M0DT0H0M0S (1 month)
- FAIL  |main| src/formatRelative/test.ts > formatRelative > accepts a timestamp
- FAIL  |main| src/formatRelative/test.ts > formatRelative > before the last week
- FAIL  |main| src/formatRelative/test.ts > formatRelative > last week
- FAIL  |main| src/formatRelative/test.ts > formatRelative > yesterday
- FAIL  |main| src/formatRelative/test.ts > formatRelative > today
- FAIL  |main| src/formatRelative/test.ts > formatRelative > tomorrow
- FAIL  |main| src/formatRelative/test.ts > formatRelative > next week
- FAIL  |main| src/formatRelative/test.ts > formatRelative > after the next week
- FAIL  |main| src/formatRelative/test.ts > formatRelative > edge cases > handles dates before 100 AD
- FAIL  |main| src/formatRelative/test.ts > formatRelative > normalizes the dates
- FAIL  |main| src/formatRelative/test.ts > formatRelative > context > allows to specify the context
+ DONE  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 5 seconds
+ DONE  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 10 seconds
+ DONE  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 20 seconds
+ DONE  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > half a minute
+ DONE  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than a minute
+ DONE  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > 1 minute
+ DONE  |main| src/formatDistance/test.ts > formatDistance > minutes > less than a minute
+ DONE  |main| src/formatDistance/test.ts > formatDistance > minutes > 1 minute
+ DONE  |main| src/formatDistance/test.ts > formatDistance > minutes > n minutes
+ DONE  |main| src/formatDistance/test.ts > formatDistance > hours > about 1 hour
+ DONE  |main| src/formatDistance/test.ts > formatDistance > hours > about n hours
+ DONE  |main| src/formatDistance/test.ts > formatDistance > days > 1 day
+ DONE  |main| src/formatDistance/test.ts > formatDistance > days > n days
+ DONE  |main| src/formatDistance/test.ts > formatDistance > months > about 1 month
+ DONE  |main| src/formatDistance/test.ts > formatDistance > months > n months
+ DONE  |main| src/formatDistance/test.ts > formatDistance > years > about 1 year
+ DONE  |main| src/formatDistance/test.ts > formatDistance > years > over 1 year
+ DONE  |main| src/formatDistance/test.ts > formatDistance > years > almost n years
+ DONE  |main| src/formatDistance/test.ts > formatDistance > years > about n years
+ DONE  |main| src/formatDistance/test.ts > formatDistance > years > over n years
+ DONE  |main| src/formatDistance/test.ts > formatDistance > accepts timestamps
+ DONE  |main| src/formatDistance/test.ts > formatDistance > when the addSuffix option is true > adds a past suffix
+ DONE  |main| src/formatDistance/test.ts > formatDistance > when the addSuffix option is true > adds a future suffix
+ DONE  |main| src/formatDistance/test.ts > formatDistance > normalizes the dates
+ DONE  |main| src/formatDistance/test.ts > formatDistance > context > allows to specify the context
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > seconds > when no unit is set > 0 seconds
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > seconds > when no unit is set > 5 seconds
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > minutes > 1 minute
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > minutes > n minutes
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > hours > 1 hour
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > hours > n hours
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > days > 1 day
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > days > n days
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > months > 1 month
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > months > n months
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > years > returns `1 year` - see issue 2388
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > years > returns `2 years` - see issue 2388
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > years > 1 year
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > years > n years
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > second > 0 seconds
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > second > 5 seconds
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > second > 120 seconds
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > minute > 0 minutes
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > minute > 5 minutes
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > minute > 120 minutes
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > hour > 0 hours
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > hour > 5 hours
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > hour > 48 hours
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > day > 0 days
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > day > 5 days
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > day > 60 days
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > month > 0 months
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > month > 5 months
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > month > 12 months - see issue 2388
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > month > 24 months
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > year > 0 years
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the unit option is supplied > year > 5 years
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > accepts timestamps
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the addSuffix option is true > adds a past suffix
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the addSuffix option is true > adds a future suffix
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > default is "round"
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > "floor"
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > "ceil"
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > "round" (down)
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > when the roundingMethod option is supplied > "round" (up)
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > edge cases > detects unit correctly for short months
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > normalizes the dates
+ DONE  |main| src/formatDistanceStrict/test.ts > formatDistanceStrict > context > allows to specify the context
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > less than 5 seconds
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > less than 10 seconds
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > less than 20 seconds
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > half a minute
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > less than a minute
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > seconds > when the includeSeconds option is true > 1 minute
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > minutes > less than a minute
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > minutes > 1 minute
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > minutes > n minutes
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > hours > about 1 hour
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > hours > about n hours
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > days > 1 day
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > days > n days
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > months > about 1 month
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > months > n months
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > about 1 year
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > over 1 year
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > almost n years
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > about n years
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > years > over n years
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > accepts a timestamp
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > when the addSuffix option is true > adds a past suffix
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > when the addSuffix option is true > adds a future suffix
+ DONE  |main| src/formatDistanceToNow/test.ts > formatDistanceToNow > respects date extensions
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > seconds > when no unit is set > 0 seconds
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > seconds > when no unit is set > 5 seconds
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > minutes > 1 minute
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > minutes > n minutes
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > hours > 1 hour
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > hours > n hours
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > days > 1 day
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > days > n days
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > months > 1 month
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > months > n months
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > years > 1 year
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > years > n years
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > second > 0 seconds
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > second > 5 seconds
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > second > 120 seconds
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > minute > 0 minutes
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > minute > 5 minutes
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > minute > 120 minutes
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > hour > 0 hours
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > hour > 5 hours
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > hour > 48 hours
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > day > 0 days
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > day > 5 days
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > day > 60 days
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > month > 0 months
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > month > 5 months
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > month > 24 months
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > year > returns `1 year` - see issue 2388
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > year > returns `2 years` - see issue 2388
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > year > 0 years
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the unit option is supplied > year > 5 years
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > accepts timestamps
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the addSuffix option is true > adds a past suffix
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the addSuffix option is true > adds a future suffix
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > default is "round"
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > "floor"
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > "ceil"
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > "round" (down)
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > when the roundingMethod option is supplied > "round" (up)
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > edge cases > detects unit correctly for short months
+ DONE  |main| src/formatDistanceToNowStrict/test.ts > formatDistanceToNowStrict > respects date extensions
+ DONE  |main| src/formatDuration/test.ts > formatDuration > formats full duration
+ DONE  |main| src/formatDuration/test.ts > formatDuration > formats partial duration
+ DONE  |main| src/formatDuration/test.ts > formatDuration > allows to customize the format
+ DONE  |main| src/formatDuration/test.ts > formatDuration > does not include zeros by default
+ DONE  |main| src/formatDuration/test.ts > formatDuration > allows to include zeros
+ DONE  |main| src/formatDuration/test.ts > formatDuration > allows to customize the delimiter
+ DONE  |main| src/formatISODuration/test.ts > formatISODuration > Everything returns P1Y1M1DT1H1M1S (1 of everything)
+ DONE  |main| src/formatISODuration/test.ts > formatISODuration > Months returns P0Y1M0DT0H0M0S (1 month)
+ DONE  |main| src/formatRelative/test.ts > formatRelative > accepts a timestamp
+ DONE  |main| src/formatRelative/test.ts > formatRelative > before the last week
+ DONE  |main| src/formatRelative/test.ts > formatRelative > last week
+ DONE  |main| src/formatRelative/test.ts > formatRelative > yesterday
+ DONE  |main| src/formatRelative/test.ts > formatRelative > today
+ DONE  |main| src/formatRelative/test.ts > formatRelative > tomorrow
+ DONE  |main| src/formatRelative/test.ts > formatRelative > next week
+ DONE  |main| src/formatRelative/test.ts > formatRelative > after the next week
+ DONE  |main| src/formatRelative/test.ts > formatRelative > edge cases > handles dates before 100 AD
+ DONE  |main| src/formatRelative/test.ts > formatRelative > normalizes the dates
+ DONE  |main| src/formatRelative/test.ts > formatRelative > context > allows to specify the context
  DONE  |main| src/getDate/test.ts > getDate > returns the day of the month of the given date
  DONE  |main| src/getDate/test.ts > getDate > accepts a timestamp
  DONE  |main| src/getDate/test.ts > getDate > context > allows to specify the context

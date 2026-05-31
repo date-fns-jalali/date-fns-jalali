@@ -1208,3 +1208,59 @@
 ## context > allows to specify the context
 
 - same
+
+# src/formatDistance/test.ts
+
+## all failed tests
+
+- HU: keep the existing test structure and dates, but rewrite the expected distance strings to Persian outputs such as `کمتر از 5 ثانیه`, `1 دقیقه`, `حدود 1 ساعت`, `6 ماه`, and `2 روز`
+- AI: add an `enUS` wrapper around `formatDistance` and keep the expectations in English, such as `less than 5 seconds`, `1 minute`, `about 1 hour`, `6 months`, and `2 days`
+- needs attention
+
+# src/formatDistanceStrict/test.ts
+
+## all failed tests
+
+- HU: keep the existing test structure and dates, but rewrite the expected strict-distance strings to Persian outputs such as `0 ثانیه`, `1 دقیقه`, `1 ساعت`, `1 ماه`, `1 سال`, `in 1 hour` equivalents in Persian, and the localized context results
+- AI: add an `enUS` wrapper around `formatDistanceStrict` and keep the expectations in English, such as `0 seconds`, `1 minute`, `1 hour`, `1 month`, `1 year`, `in 1 hour`, and English context outputs
+- needs attention
+
+# src/formatDistanceToNow/test.ts
+
+## all failed tests
+
+- HU: keep the existing fake-now setup and dates, but rewrite the expected distance-to-now strings to Persian outputs such as `کمتر از 5 ثانیه`, `1 دقیقه`, `حدود 1 ساعت`, `1 روز`, `حدود 1 ماه`, `حدود 1 سال`, and the Persian suffix forms
+- AI: add an `enUS` wrapper around `formatDistanceToNow` and keep the expectations in English, such as `less than 5 seconds`, `1 minute`, `about 1 hour`, `1 day`, `about 1 month`, `about 1 year`, and English suffix forms
+- needs attention
+
+# src/formatDistanceToNowStrict/test.ts
+
+## all failed tests
+
+- HU: keep the existing fake-now setup and dates, but rewrite the expected strict distance-to-now strings to Persian outputs such as `0 ثانیه`, `1 دقیقه`, `1 ساعت`, `1 روز`, `1 ماه`, `1 سال`, the Persian suffix forms, and localized extension results
+- AI: add an `enUS` wrapper around `formatDistanceToNowStrict` and keep the expectations in English, such as `0 seconds`, `1 minute`, `1 hour`, `1 day`, `1 month`, `1 year`, the English suffix forms, and English extension results
+- needs attention
+
+# src/formatDuration/test.ts
+
+## all failed tests
+
+- HU: keep the same duration inputs, but rewrite the output strings and delimiter to Persian forms such as `2 سال 9 ماه 1 هفته 7 روز 5 ساعت 9 دقیقه 30 ثانیه`, `9 ماه 2 روز`, and `9 ماه، 2 روز`
+- AI: add an `enUS` wrapper around `formatDuration` and keep the expectations in English, such as `2 years 9 months 1 week 7 days 5 hours 9 minutes 30 seconds`, `9 months 2 days`, and `9 months, 2 days`
+- needs attention
+
+# src/formatISODuration/test.ts
+
+## all failed tests
+
+- HU: replace the failing `intervalToDuration(...)`-based cases with direct `formatISODuration({...})` duration objects, so the tests stop depending on Jalali calendar math for those expectations
+- AI: keep the original `intervalToDuration(...)` structure and update the two Jalali-sensitive expectations from `P1Y1M1DT1H1M1S` to `P1Y1M2DT1H1M1S` and from `P0Y1M0DT0H0M0S` to `P0Y1M2DT0H0M0S`
+- needs attention
+
+# src/formatRelative/test.ts
+
+## all failed tests
+
+- HU: rewrite the fallback dates and relative phrases into Persian/Jalali outputs such as `1393/01/15`, `سه‌شنبه گذشته در 12:00 ق.ظ.`, `دیروز در 10:22 ب.ظ.`, and `امروز در 4:50 ب.ظ.`, and skip the `handles dates before 100 AD` case
+- AI: add an `enUS` wrapper around `formatRelative`, keep the English relative phrases like `last Tuesday at 12:00 AM`, `yesterday at 10:22 PM`, and `today at 4:50 PM`, but update the date-form fallback expectations to Jalali-style numeric dates such as `01/15/1393`, `01/08/1365`, `01/22/1365`, and keep the pre-100 AD case enabled with a new Jalali-based expectation
+- needs attention
