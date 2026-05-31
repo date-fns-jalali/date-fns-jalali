@@ -7,7 +7,7 @@
   "type": "module",
   "main": "example.ts",
   "scripts": {
-    "build": "rm -rf node_modules/date-fns-jalali node_modules/@date-fns-jalali/cdn && mkdir -p node_modules/@date-fns-jalali && cp -r ../../dist/date-fns-jalali node_modules/date-fns-jalali && cp -r ../../dist/date-fns-jalali-cdn node_modules/@date-fns-jalali/cdn || pnpm run build-date-fns-jalali-split",
+    "build": "rm -rf node_modules/date-fns node_modules/date-fns-jalali node_modules/@date-fns-jalali/cdn && mkdir -p node_modules/@date-fns-jalali && if [ -d ../../dist/date-fns-jalali ] && [ -d ../../dist/date-fns-jalali-cdn ]; then cp -r ../../dist/date-fns-jalali node_modules/date-fns-jalali && cp -r ../../dist/date-fns-jalali-cdn node_modules/@date-fns-jalali/cdn; elif [ -d ../../dist/date-fns ] && [ -d ../../dist/date-fns-cdn ]; then cp -r ../../dist/date-fns node_modules/date-fns && cp -r ../../dist/date-fns node_modules/date-fns-jalali && cp -r ../../dist/date-fns-cdn node_modules/@date-fns-jalali/cdn; else pnpm run build-date-fns-jalali-split; fi",
     "build-date-fns-jalali": "mkdir -p node_modules/@date-fns-jalali && ../../scripts/build/package.sh --dist \"$(pwd)/node_modules\" --cdn-dist \"$(pwd)/node_modules/@date-fns-jalali/cdn\"",
     "build-date-fns-jalali-split": "mkdir -p node_modules/@date-fns-jalali && ../../scripts/build/package.sh --dist \"$(pwd)/node_modules\" --cdn-dist \"$(pwd)/node_modules/@date-fns-jalali/cdn\" --split-cdn",
     "test": "pnpm run test-split",
