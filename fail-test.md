@@ -1,3 +1,35 @@
+
+
+use helper as needed:
+
+node show.ts --help
+Usage: node show.ts [options] YYYY-MM [YYYY-MM ...]
+       node show.ts [options] YYYY-MM-DD
+
+Options:
+  -j         Treat inputs as Jalali dates (default)
+  -g         Treat inputs as Gregorian dates
+  -h, --help Show this help message
+
+Examples:
+  node show.ts 1405-01
+  node show.ts -j 1405-01
+  node show.ts -g 2026-03
+  node show.ts 1405-01 1405-02
+  node show.ts -g 2026-03-21
+
+-- output
+
+node show.ts -j 1405-01|head -3
+1405-01
+sh, FAR-01 MAR-21
+ye, FAR-02 MAR-22
+
+node show.ts -j 1405-01-08     
+1405-01-08
+sh, FAR-08 MAR-28
+
+
  FAIL  |main| G1 src/add/test.ts > add > adds the values from the given object
  FAIL  |main| G1 src/add/test.ts > add > supports an undefined value in the duration object
  FAIL  |main| G1 src/add/test.ts > add > works well if the desired month has fewer days and the provided date is on the last day of a month
