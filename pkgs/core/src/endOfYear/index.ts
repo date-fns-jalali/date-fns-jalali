@@ -1,6 +1,9 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link endOfYear} function options.
  */
@@ -34,8 +37,8 @@ export function endOfYear<
   ResultDate extends Date = DateType,
 >(date: DateArg<DateType>, options?: EndOfYearOptions<ResultDate>): ResultDate {
   const _date = toDate(date, options?.in);
-  const year = _date.getFullYear();
-  _date.setFullYear(year + 1, 0, 0);
+  const year = coreGetFullYear(_date);
+  coreSetFullYear(_date, year + 1, 0, 0);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }

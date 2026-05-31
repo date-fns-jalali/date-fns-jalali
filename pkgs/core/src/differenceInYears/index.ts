@@ -3,6 +3,8 @@ import { compareAsc } from "../compareAsc/index.ts";
 import { differenceInCalendarYears } from "../differenceInCalendarYears/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link differenceInYears} function options.
  */
@@ -49,8 +51,8 @@ export function differenceInYears(
   // Now we need to calculate if the difference is full. To do that we set
   // both dates to the same year and check if the both date's month and day
   // form a full year.
-  laterDate_.setFullYear(1584);
-  earlierDate_.setFullYear(1584);
+  coreSetFullYear(laterDate_, 1584);
+  coreSetFullYear(earlierDate_, 1584);
 
   // For it to be true, when the later date is indeed later than the earlier date
   // (2026-02-01 - 2023-12-10 = 3 years), the difference is full if

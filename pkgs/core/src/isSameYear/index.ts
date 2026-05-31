@@ -1,6 +1,8 @@
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+
 /**
  * The {@link isSameYear} function options.
  */
@@ -35,5 +37,5 @@ export function isSameYear(
     laterDate,
     earlierDate,
   );
-  return laterDate_.getFullYear() === earlierDate_.getFullYear();
+  return coreGetFullYear(laterDate_) === coreGetFullYear(earlierDate_);
 }

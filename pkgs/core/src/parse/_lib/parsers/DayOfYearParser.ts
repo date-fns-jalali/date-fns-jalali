@@ -8,6 +8,9 @@ import {
   parseNumericPattern,
 } from "../utils.ts";
 
+import { setMonth as coreSetMonth } from "../../../_core/setMonth/index.ts";
+import { getFullYear as coreGetFullYear } from "../../../_core/getFullYear/index.ts";
+
 export class DayOfYearParser extends Parser<number> {
   priority = 90;
 
@@ -29,7 +32,7 @@ export class DayOfYearParser extends Parser<number> {
     date: DateType,
     value: number,
   ): boolean {
-    const year = date.getFullYear();
+    const year = coreGetFullYear(date);
     const isLeapYear = isLeapYearIndex(year);
     if (isLeapYear) {
       return value >= 1 && value <= 366;
@@ -43,7 +46,7 @@ export class DayOfYearParser extends Parser<number> {
     _flags: ParseFlags,
     value: number,
   ): DateType {
-    date.setMonth(0, value);
+    coreSetMonth(date, 0, value);
     date.setHours(0, 0, 0, 0);
     return date;
   }

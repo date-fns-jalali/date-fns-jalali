@@ -2,6 +2,11 @@ import { constructFrom } from "../constructFrom/index.ts";
 import { constructNow } from "../constructNow/index.ts";
 import type { ContextOptions } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link endOfYesterday} function options.
  */
@@ -33,7 +38,12 @@ export function endOfYesterday<
 >(options?: EndOfYesterdayOptions<ResultDate> | undefined): ResultDate {
   const now = constructNow(options?.in);
   const date = constructFrom(options?.in, 0);
-  date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+  coreSetFullYear(
+    date,
+    coreGetFullYear(now),
+    coreGetMonth(now),
+    coreGetDate(now) - 1,
+  );
   date.setHours(23, 59, 59, 999);
   return date;
 }
