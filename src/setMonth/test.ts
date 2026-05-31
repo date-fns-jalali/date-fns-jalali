@@ -29,12 +29,12 @@ describe("setMonth", () => {
     expect(date).toEqual(/* 1393/6/10 */ new Date(2014, 8 /* Sep */, 1));
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 11 /* Dec */, 31);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(0, 1 /* Feb */, 29);
+    expectedResult.setFullYear(0, 3 /* Apr */, 30);
     expectedResult.setHours(0, 0, 0, 0);
     const result = setMonth(initialDate, 1);
     expect(result).toEqual(expectedResult);

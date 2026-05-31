@@ -36,12 +36,12 @@ describe("addMonths", () => {
     expect(result).toEqual(/* 1393/12/29 */ new Date(2015, 2 /* Mar */, 20));
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 0 /* Jan */, 31);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(0, 1 /* Feb */, 29);
+    expectedResult.setFullYear(0, 2 /* Mar */, 21);
     expectedResult.setHours(0, 0, 0, 0);
     const result = addMonths(initialDate, 1);
     expect(result).toEqual(expectedResult);

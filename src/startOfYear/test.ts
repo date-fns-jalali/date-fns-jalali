@@ -36,12 +36,12 @@ describe("startOfYear", () => {
     );
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(9, 0 /* Jan */, 5);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(9, 0 /* Jan */, 1);
+    expectedResult.setFullYear(8, 2 /* Mar */, 22);
     expectedResult.setHours(0, 0, 0, 0);
     const result = startOfYear(initialDate);
     expect(result).toEqual(expectedResult);

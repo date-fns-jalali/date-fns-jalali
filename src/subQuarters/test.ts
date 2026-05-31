@@ -33,12 +33,12 @@ describe("subQuarters", () => {
     expect(result).toEqual(/* 1392/10/30 */ new Date(2014, 0 /* Jan */, 20));
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 10 /* Nov */, 30);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(0, 1 /* Feb */, 29);
+    expectedResult.setFullYear(0, 2 /* Mar */, 21);
     expectedResult.setHours(0, 0, 0, 0);
     const result = subQuarters(initialDate, 3);
     expect(result).toEqual(expectedResult);

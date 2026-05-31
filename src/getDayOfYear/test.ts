@@ -16,12 +16,12 @@ describe("getDayOfYear", () => {
     expect(result).toBe(31 * 6 + 30 * 3 + 12);
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 11 /* Dec */, 31);
     initialDate.setHours(0, 0, 0, 0);
     const result = getDayOfYear(initialDate);
-    expect(result).toBe(366);
+    expect(result).toBe(285);
   });
 
   it("returns NaN if the given date is invalid", () => {

@@ -24,12 +24,12 @@ describe("getDaysInMonth", () => {
     expect(result).toBe(31);
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const date = new Date(0);
     date.setFullYear(0, 1 /* Feb */, 15);
     date.setHours(0, 0, 0, 0);
     const result = getDaysInMonth(date);
-    expect(result).toBe(29);
+    expect(result).toBe(30);
   });
 
   it("returns NaN if the given date is invalid", () => {

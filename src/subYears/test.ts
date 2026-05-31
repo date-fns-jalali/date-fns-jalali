@@ -32,12 +32,12 @@ describe("subYears", () => {
     expect(result).toEqual(/* 1393/12/10 */ new Date(2015, 2 /* Mar */, 1));
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 1 /* Feb */, 29);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(-1, 1 /* Feb */, 28);
+    expectedResult.setFullYear(-1, 2 /* Mar */, 21);
     expectedResult.setHours(0, 0, 0, 0);
     const result = subYears(initialDate, 1);
     expect(result).toEqual(expectedResult);

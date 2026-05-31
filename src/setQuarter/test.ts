@@ -35,12 +35,12 @@ describe("setQuarter", () => {
     expect(date).toEqual(/* 1393/4/10 */ new Date(2014, 6 /* Jul */, 1));
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(0, 10 /* Nov */, 30);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(0, 1 /* Feb */, 29);
+    expectedResult.setFullYear(0, 4 /* May */, 30);
     expectedResult.setHours(0, 0, 0, 0);
     const result = setQuarter(initialDate, 1);
     expect(result).toEqual(expectedResult);

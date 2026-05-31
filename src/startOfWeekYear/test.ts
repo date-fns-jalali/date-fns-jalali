@@ -29,12 +29,12 @@ describe("startOfWeekYear", () => {
     expect(date).toEqual(/* 1393/4/11 */ new Date(2014, 6 /* Jul */, 2));
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(9, 0 /* Jan */, 1);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(8, 11 /* Dec */, 28);
+    expectedResult.setFullYear(8, 2 /* Mar */, 22);
     expectedResult.setHours(0, 0, 0, 0);
     const result = startOfWeekYear(initialDate);
     expect(result).toEqual(expectedResult);

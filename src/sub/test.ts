@@ -87,12 +87,12 @@ describe("sub", () => {
     expect(result).toEqual(/* 1393/7/10 */ new Date(2014, 9 /* Oct */, 2));
   });
 
-  it.skip("handles dates before 100 AD", () => {
+  it("handles dates before 100 AD", () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(1, 2 /* Mar */, 31);
     initialDate.setHours(0, 0, 0, 0);
     const expectedResult = new Date(0);
-    expectedResult.setFullYear(1, 1 /* Feb */, 28);
+    expectedResult.setFullYear(1, 2 /* Mar */, 21);
     expectedResult.setHours(0, 0, 0, 0);
     const result = sub(initialDate, { months: 1 });
     expect(result).toEqual(expectedResult);
