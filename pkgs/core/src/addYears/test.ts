@@ -2,7 +2,7 @@ import { TZDate, tz } from "@date-fns/tz";
 import { UTCDate } from "@date-fns/utc";
 import { describe, expect, it } from "vitest";
 import { assertType } from "../_lib/test/index.ts";
-import { setFullYear } from "../_core/setFullYear/index.js";
+import { setFullYear } from "../_core/setFullYear/index.ts";
 import { addYears } from "./index.ts";
 
 describe("addYears", () => {
