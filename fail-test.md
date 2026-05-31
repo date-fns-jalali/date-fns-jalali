@@ -481,204 +481,204 @@
  DONE  |main| src/lastDayOfYear/test.ts > lastDayOfYear > context > allows to specify the context
  DONE  |main| src/newDate/test.ts > newDate > create a date
  DONE  |main| src/newDate/test.ts > newDate > create a date with time
- FAIL  |main| src/parse/test.ts > parse > escapes characters between the single quote characters
- FAIL  |main| src/parse/test.ts > parse > accepts new line character
- FAIL  |main| src/parse/test.ts > parse > era > abbreviated
- FAIL  |main| src/parse/test.ts > parse > era > wide
- FAIL  |main| src/parse/test.ts > parse > era > narrow
- FAIL  |main| src/parse/test.ts > parse > era > with week-numbering year
- FAIL  |main| src/parse/test.ts > parse > era > parses stand-alone BC
- FAIL  |main| src/parse/test.ts > parse > era > parses stand-alone AD
- FAIL  |main| src/parse/test.ts > parse > era > validation > throws an error when G is used after G
- FAIL  |main| src/parse/test.ts > parse > calendar year > numeric
- FAIL  |main| src/parse/test.ts > parse > calendar year > ordinal
- FAIL  |main| src/parse/test.ts > parse > calendar year > two-digit numeric year > works as expected
- FAIL  |main| src/parse/test.ts > parse > calendar year > two-digit numeric year > gets the 100 year range from `referenceDate`
- FAIL  |main| src/parse/test.ts > parse > calendar year > three-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > calendar year > four-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > calendar year > specified amount of digits
- FAIL  |main| src/parse/test.ts > parse > local week-numbering year > numeric
- FAIL  |main| src/parse/test.ts > parse > local week-numbering year > ordinal
- FAIL  |main| src/parse/test.ts > parse > local week-numbering year > two-digit numeric year > works as expected
- FAIL  |main| src/parse/test.ts > parse > local week-numbering year > two-digit numeric year > gets the 100 year range from `referenceDate`
- FAIL  |main| src/parse/test.ts > parse > local week-numbering year > three-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > local week-numbering year > four-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > local week-numbering year > specified amount of digits
- FAIL  |main| src/parse/test.ts > parse > local week-numbering year > allows to specify `weekStartsOn` and `firstWeekContainsDate` in options
- FAIL  |main| src/parse/test.ts > parse > ISO week-numbering year > numeric
- FAIL  |main| src/parse/test.ts > parse > ISO week-numbering year > two-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > ISO week-numbering year > three-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > ISO week-numbering year > four-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > ISO week-numbering year > specified amount of digits
- FAIL  |main| src/parse/test.ts > parse > ISO week-numbering year > validation > throws an error when R is used after G
- FAIL  |main| src/parse/test.ts > parse > extended year > numeric
- FAIL  |main| src/parse/test.ts > parse > extended year > two-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > extended year > three-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > extended year > four-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > extended year > specified amount of digits
- FAIL  |main| src/parse/test.ts > parse > extended year > validation > throws an error when u is used after G
- FAIL  |main| src/parse/test.ts > parse > quarter with following year > first quarter
- FAIL  |main| src/parse/test.ts > parse > quarter with following year > second quarter
- FAIL  |main| src/parse/test.ts > parse > quarter with following year > third quarter
- FAIL  |main| src/parse/test.ts > parse > quarter with following year > fourth quarter
- FAIL  |main| src/parse/test.ts > parse > quarter (formatting) > numeric
- FAIL  |main| src/parse/test.ts > parse > quarter (formatting) > ordinal
- FAIL  |main| src/parse/test.ts > parse > quarter (formatting) > zero-padding
- FAIL  |main| src/parse/test.ts > parse > quarter (formatting) > abbreviated
- FAIL  |main| src/parse/test.ts > parse > quarter (formatting) > wide
- FAIL  |main| src/parse/test.ts > parse > quarter (formatting) > narrow
- FAIL  |main| src/parse/test.ts > parse > quarter (stand-alone) > numeric
- FAIL  |main| src/parse/test.ts > parse > quarter (stand-alone) > ordinal
- FAIL  |main| src/parse/test.ts > parse > quarter (stand-alone) > zero-padding
- FAIL  |main| src/parse/test.ts > parse > quarter (stand-alone) > abbreviated
- FAIL  |main| src/parse/test.ts > parse > quarter (stand-alone) > wide
- FAIL  |main| src/parse/test.ts > parse > quarter (stand-alone) > narrow
- FAIL  |main| src/parse/test.ts > parse > month (formatting) > numeric
- FAIL  |main| src/parse/test.ts > parse > month (formatting) > ordinal
- FAIL  |main| src/parse/test.ts > parse > month (formatting) > zero-padding
- FAIL  |main| src/parse/test.ts > parse > month (formatting) > abbreviated
- FAIL  |main| src/parse/test.ts > parse > month (formatting) > wide
- FAIL  |main| src/parse/test.ts > parse > month (formatting) > narrow
- FAIL  |main| src/parse/test.ts > parse > month (stand-alone) > numeric
- FAIL  |main| src/parse/test.ts > parse > month (stand-alone) > ordinal
- FAIL  |main| src/parse/test.ts > parse > month (stand-alone) > zero-padding
- FAIL  |main| src/parse/test.ts > parse > month (stand-alone) > abbreviated
- FAIL  |main| src/parse/test.ts > parse > month (stand-alone) > wide
- FAIL  |main| src/parse/test.ts > parse > month (stand-alone) > narrow
- FAIL  |main| src/parse/test.ts > parse > local week of year > numeric
- FAIL  |main| src/parse/test.ts > parse > local week of year > ordinal
- FAIL  |main| src/parse/test.ts > parse > local week of year > zero-padding
- FAIL  |main| src/parse/test.ts > parse > local week of year > allows to specify `weekStartsOn` and `firstWeekContainsDate` in options
- FAIL  |main| src/parse/test.ts > parse > ISO week of year > ordinal
- FAIL  |main| src/parse/test.ts > parse > day of month > numeric
- FAIL  |main| src/parse/test.ts > parse > day of month > ordinal
- FAIL  |main| src/parse/test.ts > parse > day of month > zero-padding
- FAIL  |main| src/parse/test.ts > parse > day of year > numeric
- FAIL  |main| src/parse/test.ts > parse > day of year > ordinal
- FAIL  |main| src/parse/test.ts > parse > day of year > two-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > day of year > three-digit zero-padding
- FAIL  |main| src/parse/test.ts > parse > day of year > specified amount of digits
- FAIL  |main| src/parse/test.ts > parse > day of year > validation > throws an error when D is used after E
- FAIL  |main| src/parse/test.ts > parse > day of week (formatting) > abbreviated
- FAIL  |main| src/parse/test.ts > parse > day of week (formatting) > wide
- FAIL  |main| src/parse/test.ts > parse > day of week (formatting) > narrow
- FAIL  |main| src/parse/test.ts > parse > day of week (formatting) > short
- FAIL  |main| src/parse/test.ts > parse > day of week (formatting) > allows to specify which day is the first day of the week
- FAIL  |main| src/parse/test.ts > parse > day of week (formatting) > validation > throws an error when E is used after E
- FAIL  |main| src/parse/test.ts > parse > ISO day of week (formatting) > ordinal
- FAIL  |main| src/parse/test.ts > parse > ISO day of week (formatting) > abbreviated
- FAIL  |main| src/parse/test.ts > parse > ISO day of week (formatting) > wide
- FAIL  |main| src/parse/test.ts > parse > ISO day of week (formatting) > narrow
- FAIL  |main| src/parse/test.ts > parse > ISO day of week (formatting) > short
- FAIL  |main| src/parse/test.ts > parse > ISO day of week (formatting) > validation > throws an error when i is used after E
- FAIL  |main| src/parse/test.ts > parse > local day of week (formatting) > ordinal
- FAIL  |main| src/parse/test.ts > parse > local day of week (formatting) > abbreviated
- FAIL  |main| src/parse/test.ts > parse > local day of week (formatting) > wide
- FAIL  |main| src/parse/test.ts > parse > local day of week (formatting) > narrow
- FAIL  |main| src/parse/test.ts > parse > local day of week (formatting) > short
- FAIL  |main| src/parse/test.ts > parse > local day of week (formatting) > allows to specify which day is the first day of the week
- FAIL  |main| src/parse/test.ts > parse > local day of week (formatting) > validation > throws an error when e is used after E
- FAIL  |main| src/parse/test.ts > parse > local day of week (stand-alone) > ordinal
- FAIL  |main| src/parse/test.ts > parse > local day of week (stand-alone) > abbreviated
- FAIL  |main| src/parse/test.ts > parse > local day of week (stand-alone) > wide
- FAIL  |main| src/parse/test.ts > parse > local day of week (stand-alone) > narrow
- FAIL  |main| src/parse/test.ts > parse > local day of week (stand-alone) > short
- FAIL  |main| src/parse/test.ts > parse > local day of week (stand-alone) > allows to specify which day is the first day of the week
- FAIL  |main| src/parse/test.ts > parse > local day of week (stand-alone) > validation > throws an error when c is used after E
- FAIL  |main| src/parse/test.ts > parse > AM, PM > abbreviated
- FAIL  |main| src/parse/test.ts > parse > AM, PM > 12 AM
- FAIL  |main| src/parse/test.ts > parse > AM, PM > 12 PM
- FAIL  |main| src/parse/test.ts > parse > AM, PM > wide
- FAIL  |main| src/parse/test.ts > parse > AM, PM > narrow
- FAIL  |main| src/parse/test.ts > parse > AM, PM > validation > throws an error when a is used after a
- FAIL  |main| src/parse/test.ts > parse > AM, PM > validation > throws an error when a is used after b
- FAIL  |main| src/parse/test.ts > parse > AM, PM > validation > throws an error when a is used after B
- FAIL  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > abbreviated
- FAIL  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > wide
- FAIL  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > narrow
- FAIL  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > validation > throws an error when b is used after a
- FAIL  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > validation > throws an error when b is used after b
- FAIL  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > validation > throws an error when b is used after B
- FAIL  |main| src/parse/test.ts > parse > flexible day period > abbreviated
- FAIL  |main| src/parse/test.ts > parse > flexible day period > wide
- FAIL  |main| src/parse/test.ts > parse > flexible day period > narrow
- FAIL  |main| src/parse/test.ts > parse > flexible day period > validation > throws an error when B is used after a
- FAIL  |main| src/parse/test.ts > parse > flexible day period > validation > throws an error when B is used after b
- FAIL  |main| src/parse/test.ts > parse > flexible day period > validation > throws an error when B is used after B
- FAIL  |main| src/parse/test.ts > parse > hour [1-12] > ordinal
- FAIL  |main| src/parse/test.ts > parse > hour [0-23] > ordinal
- FAIL  |main| src/parse/test.ts > parse > hour [0-23] > validation > throws an error when H is used after a
- FAIL  |main| src/parse/test.ts > parse > hour [0-23] > validation > throws an error when H is used after b
- FAIL  |main| src/parse/test.ts > parse > hour [0-11] > ordinal
- FAIL  |main| src/parse/test.ts > parse > hour [1-24] > ordinal
- FAIL  |main| src/parse/test.ts > parse > hour [1-24] > validation > throws an error when k is used after a
- FAIL  |main| src/parse/test.ts > parse > hour [1-24] > validation > throws an error when k is used after b
- FAIL  |main| src/parse/test.ts > parse > minute > ordinal
- FAIL  |main| src/parse/test.ts > parse > second > ordinal
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > X > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > X > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > X > hours
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XX > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XX > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXX > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXX > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXX > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXX > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXX > hours, minutes and seconds
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXXX > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXXX > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXXX > hours, minutes and seconds
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > x > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > x > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > x > hours
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xx > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xx > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxx > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxx > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxx > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxx > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxx > hours, minutes and seconds
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxxx > hours and minutes
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxxx > GMT
- FAIL  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxxx > hours, minutes and seconds
- FAIL  |main| src/parse/test.ts > parse > common formats > ISO-8601
- FAIL  |main| src/parse/test.ts > parse > common formats > ISO week-numbering date
- FAIL  |main| src/parse/test.ts > parse > common formats > ISO day of year date
- FAIL  |main| src/parse/test.ts > parse > common formats > Date.prototype.toString()
- FAIL  |main| src/parse/test.ts > parse > common formats > Date.prototype.toISOString()
- FAIL  |main| src/parse/test.ts > parse > common formats > middle-endian
- FAIL  |main| src/parse/test.ts > parse > common formats > little-endian
- FAIL  |main| src/parse/test.ts > parse > priority > units of lower priority don't overwrite values of higher priority
- FAIL  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > calendar year > works correctly for two-digit year zero
- FAIL  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > local week-numbering year > works correctly for two-digit year zero
- FAIL  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > day of month > returns `Invalid Date` for invalid day of the month
- FAIL  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > day of month > returns `Invalid Date` for 29th of February of non-leap year
- FAIL  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > day of month > parses 29th of February of leap year
- FAIL  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > day of year > parses 366th day of leap year
- FAIL  |main| src/parse/test.ts > parse > custom locale > allows to pass a custom locale
- FAIL  |main| src/parse/test.ts > parse > accepts a timestamp as `referenceDate`
- FAIL  |main| src/parse/test.ts > parse > edge cases > parses normally if the remaining input is just whitespace
- FAIL  |main| src/parse/test.ts > parse > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows D token if useAdditionalDayOfYearTokens is set to true
- FAIL  |main| src/parse/test.ts > parse > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows DD token if useAdditionalDayOfYearTokens is set to true
- FAIL  |main| src/parse/test.ts > parse > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YY token if useAdditionalWeekYearTokens is set to true
- FAIL  |main| src/parse/test.ts > parse > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YYYY token if useAdditionalWeekYearTokens is set to true
- FAIL  |main| src/parse/test.ts > parse > long format > short date
- FAIL  |main| src/parse/test.ts > parse > long format > medium date
- FAIL  |main| src/parse/test.ts > parse > long format > long date
- FAIL  |main| src/parse/test.ts > parse > long format > full date
- FAIL  |main| src/parse/test.ts > parse > long format > short time
- FAIL  |main| src/parse/test.ts > parse > long format > medium time
- FAIL  |main| src/parse/test.ts > parse > long format > short date + short time
- FAIL  |main| src/parse/test.ts > parse > long format > medium date + short time
- FAIL  |main| src/parse/test.ts > parse > long format > long date + short time
- FAIL  |main| src/parse/test.ts > parse > long format > full date + short time
- FAIL  |main| src/parse/test.ts > parse > long format > short date + short time
- FAIL  |main| src/parse/test.ts > parse > long format > medium date + short time
- FAIL  |main| src/parse/test.ts > parse > long format > long date + short time
- FAIL  |main| src/parse/test.ts > parse > long format > full date + short time
- FAIL  |main| src/parse/test.ts > parse > context > allows to specify the context
- FAIL  |main| src/parse/test.ts > parse > time zones > properly parses dates around DST transitions
- FAIL  |main| src/parseJSON/test.ts > parseJSON > parses a formatted new Date() back to UTC - issue 2149
+ DONE  |main| src/parse/test.ts > parse > escapes characters between the single quote characters
+ DONE  |main| src/parse/test.ts > parse > accepts new line character
+ DONE  |main| src/parse/test.ts > parse > era > abbreviated
+ DONE  |main| src/parse/test.ts > parse > era > wide
+ DONE  |main| src/parse/test.ts > parse > era > narrow
+ DONE  |main| src/parse/test.ts > parse > era > with week-numbering year
+ DONE  |main| src/parse/test.ts > parse > era > parses stand-alone BC
+ DONE  |main| src/parse/test.ts > parse > era > parses stand-alone AD
+ DONE  |main| src/parse/test.ts > parse > era > validation > throws an error when G is used after G
+ DONE  |main| src/parse/test.ts > parse > calendar year > numeric
+ DONE  |main| src/parse/test.ts > parse > calendar year > ordinal
+ DONE  |main| src/parse/test.ts > parse > calendar year > two-digit numeric year > works as expected
+ DONE  |main| src/parse/test.ts > parse > calendar year > two-digit numeric year > gets the 100 year range from `referenceDate`
+ DONE  |main| src/parse/test.ts > parse > calendar year > three-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > calendar year > four-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > calendar year > specified amount of digits
+ DONE  |main| src/parse/test.ts > parse > local week-numbering year > numeric
+ DONE  |main| src/parse/test.ts > parse > local week-numbering year > ordinal
+ DONE  |main| src/parse/test.ts > parse > local week-numbering year > two-digit numeric year > works as expected
+ DONE  |main| src/parse/test.ts > parse > local week-numbering year > two-digit numeric year > gets the 100 year range from `referenceDate`
+ DONE  |main| src/parse/test.ts > parse > local week-numbering year > three-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > local week-numbering year > four-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > local week-numbering year > specified amount of digits
+ DONE  |main| src/parse/test.ts > parse > local week-numbering year > allows to specify `weekStartsOn` and `firstWeekContainsDate` in options
+ DONE  |main| src/parse/test.ts > parse > ISO week-numbering year > numeric
+ DONE  |main| src/parse/test.ts > parse > ISO week-numbering year > two-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > ISO week-numbering year > three-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > ISO week-numbering year > four-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > ISO week-numbering year > specified amount of digits
+ DONE  |main| src/parse/test.ts > parse > ISO week-numbering year > validation > throws an error when R is used after G
+ DONE  |main| src/parse/test.ts > parse > extended year > numeric
+ DONE  |main| src/parse/test.ts > parse > extended year > two-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > extended year > three-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > extended year > four-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > extended year > specified amount of digits
+ DONE  |main| src/parse/test.ts > parse > extended year > validation > throws an error when u is used after G
+ DONE  |main| src/parse/test.ts > parse > quarter with following year > first quarter
+ DONE  |main| src/parse/test.ts > parse > quarter with following year > second quarter
+ DONE  |main| src/parse/test.ts > parse > quarter with following year > third quarter
+ DONE  |main| src/parse/test.ts > parse > quarter with following year > fourth quarter
+ DONE  |main| src/parse/test.ts > parse > quarter (formatting) > numeric
+ DONE  |main| src/parse/test.ts > parse > quarter (formatting) > ordinal
+ DONE  |main| src/parse/test.ts > parse > quarter (formatting) > zero-padding
+ DONE  |main| src/parse/test.ts > parse > quarter (formatting) > abbreviated
+ DONE  |main| src/parse/test.ts > parse > quarter (formatting) > wide
+ DONE  |main| src/parse/test.ts > parse > quarter (formatting) > narrow
+ DONE  |main| src/parse/test.ts > parse > quarter (stand-alone) > numeric
+ DONE  |main| src/parse/test.ts > parse > quarter (stand-alone) > ordinal
+ DONE  |main| src/parse/test.ts > parse > quarter (stand-alone) > zero-padding
+ DONE  |main| src/parse/test.ts > parse > quarter (stand-alone) > abbreviated
+ DONE  |main| src/parse/test.ts > parse > quarter (stand-alone) > wide
+ DONE  |main| src/parse/test.ts > parse > quarter (stand-alone) > narrow
+ DONE  |main| src/parse/test.ts > parse > month (formatting) > numeric
+ DONE  |main| src/parse/test.ts > parse > month (formatting) > ordinal
+ DONE  |main| src/parse/test.ts > parse > month (formatting) > zero-padding
+ DONE  |main| src/parse/test.ts > parse > month (formatting) > abbreviated
+ DONE  |main| src/parse/test.ts > parse > month (formatting) > wide
+ DONE  |main| src/parse/test.ts > parse > month (formatting) > narrow
+ DONE  |main| src/parse/test.ts > parse > month (stand-alone) > numeric
+ DONE  |main| src/parse/test.ts > parse > month (stand-alone) > ordinal
+ DONE  |main| src/parse/test.ts > parse > month (stand-alone) > zero-padding
+ DONE  |main| src/parse/test.ts > parse > month (stand-alone) > abbreviated
+ DONE  |main| src/parse/test.ts > parse > month (stand-alone) > wide
+ DONE  |main| src/parse/test.ts > parse > month (stand-alone) > narrow
+ DONE  |main| src/parse/test.ts > parse > local week of year > numeric
+ DONE  |main| src/parse/test.ts > parse > local week of year > ordinal
+ DONE  |main| src/parse/test.ts > parse > local week of year > zero-padding
+ DONE  |main| src/parse/test.ts > parse > local week of year > allows to specify `weekStartsOn` and `firstWeekContainsDate` in options
+ DONE  |main| src/parse/test.ts > parse > ISO week of year > ordinal
+ DONE  |main| src/parse/test.ts > parse > day of month > numeric
+ DONE  |main| src/parse/test.ts > parse > day of month > ordinal
+ DONE  |main| src/parse/test.ts > parse > day of month > zero-padding
+ DONE  |main| src/parse/test.ts > parse > day of year > numeric
+ DONE  |main| src/parse/test.ts > parse > day of year > ordinal
+ DONE  |main| src/parse/test.ts > parse > day of year > two-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > day of year > three-digit zero-padding
+ DONE  |main| src/parse/test.ts > parse > day of year > specified amount of digits
+ DONE  |main| src/parse/test.ts > parse > day of year > validation > throws an error when D is used after E
+ DONE  |main| src/parse/test.ts > parse > day of week (formatting) > abbreviated
+ DONE  |main| src/parse/test.ts > parse > day of week (formatting) > wide
+ DONE  |main| src/parse/test.ts > parse > day of week (formatting) > narrow
+ DONE  |main| src/parse/test.ts > parse > day of week (formatting) > short
+ DONE  |main| src/parse/test.ts > parse > day of week (formatting) > allows to specify which day is the first day of the week
+ DONE  |main| src/parse/test.ts > parse > day of week (formatting) > validation > throws an error when E is used after E
+ DONE  |main| src/parse/test.ts > parse > ISO day of week (formatting) > ordinal
+ DONE  |main| src/parse/test.ts > parse > ISO day of week (formatting) > abbreviated
+ DONE  |main| src/parse/test.ts > parse > ISO day of week (formatting) > wide
+ DONE  |main| src/parse/test.ts > parse > ISO day of week (formatting) > narrow
+ DONE  |main| src/parse/test.ts > parse > ISO day of week (formatting) > short
+ DONE  |main| src/parse/test.ts > parse > ISO day of week (formatting) > validation > throws an error when i is used after E
+ DONE  |main| src/parse/test.ts > parse > local day of week (formatting) > ordinal
+ DONE  |main| src/parse/test.ts > parse > local day of week (formatting) > abbreviated
+ DONE  |main| src/parse/test.ts > parse > local day of week (formatting) > wide
+ DONE  |main| src/parse/test.ts > parse > local day of week (formatting) > narrow
+ DONE  |main| src/parse/test.ts > parse > local day of week (formatting) > short
+ DONE  |main| src/parse/test.ts > parse > local day of week (formatting) > allows to specify which day is the first day of the week
+ DONE  |main| src/parse/test.ts > parse > local day of week (formatting) > validation > throws an error when e is used after E
+ DONE  |main| src/parse/test.ts > parse > local day of week (stand-alone) > ordinal
+ DONE  |main| src/parse/test.ts > parse > local day of week (stand-alone) > abbreviated
+ DONE  |main| src/parse/test.ts > parse > local day of week (stand-alone) > wide
+ DONE  |main| src/parse/test.ts > parse > local day of week (stand-alone) > narrow
+ DONE  |main| src/parse/test.ts > parse > local day of week (stand-alone) > short
+ DONE  |main| src/parse/test.ts > parse > local day of week (stand-alone) > allows to specify which day is the first day of the week
+ DONE  |main| src/parse/test.ts > parse > local day of week (stand-alone) > validation > throws an error when c is used after E
+ DONE  |main| src/parse/test.ts > parse > AM, PM > abbreviated
+ DONE  |main| src/parse/test.ts > parse > AM, PM > 12 AM
+ DONE  |main| src/parse/test.ts > parse > AM, PM > 12 PM
+ DONE  |main| src/parse/test.ts > parse > AM, PM > wide
+ DONE  |main| src/parse/test.ts > parse > AM, PM > narrow
+ DONE  |main| src/parse/test.ts > parse > AM, PM > validation > throws an error when a is used after a
+ DONE  |main| src/parse/test.ts > parse > AM, PM > validation > throws an error when a is used after b
+ DONE  |main| src/parse/test.ts > parse > AM, PM > validation > throws an error when a is used after B
+ DONE  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > abbreviated
+ DONE  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > wide
+ DONE  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > narrow
+ DONE  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > validation > throws an error when b is used after a
+ DONE  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > validation > throws an error when b is used after b
+ DONE  |main| src/parse/test.ts > parse > AM, PM, noon, midnight > validation > throws an error when b is used after B
+ DONE  |main| src/parse/test.ts > parse > flexible day period > abbreviated
+ DONE  |main| src/parse/test.ts > parse > flexible day period > wide
+ DONE  |main| src/parse/test.ts > parse > flexible day period > narrow
+ DONE  |main| src/parse/test.ts > parse > flexible day period > validation > throws an error when B is used after a
+ DONE  |main| src/parse/test.ts > parse > flexible day period > validation > throws an error when B is used after b
+ DONE  |main| src/parse/test.ts > parse > flexible day period > validation > throws an error when B is used after B
+ DONE  |main| src/parse/test.ts > parse > hour [1-12] > ordinal
+ DONE  |main| src/parse/test.ts > parse > hour [0-23] > ordinal
+ DONE  |main| src/parse/test.ts > parse > hour [0-23] > validation > throws an error when H is used after a
+ DONE  |main| src/parse/test.ts > parse > hour [0-23] > validation > throws an error when H is used after b
+ DONE  |main| src/parse/test.ts > parse > hour [0-11] > ordinal
+ DONE  |main| src/parse/test.ts > parse > hour [1-24] > ordinal
+ DONE  |main| src/parse/test.ts > parse > hour [1-24] > validation > throws an error when k is used after a
+ DONE  |main| src/parse/test.ts > parse > hour [1-24] > validation > throws an error when k is used after b
+ DONE  |main| src/parse/test.ts > parse > minute > ordinal
+ DONE  |main| src/parse/test.ts > parse > second > ordinal
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > X > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > X > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > X > hours
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XX > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XX > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXX > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXX > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXX > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXX > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXX > hours, minutes and seconds
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXXX > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXXX > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/ Z) > XXXXX > hours, minutes and seconds
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > x > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > x > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > x > hours
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xx > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xx > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxx > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxx > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxx > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxx > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxx > hours, minutes and seconds
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxxx > hours and minutes
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxxx > GMT
+ DONE  |main| src/parse/test.ts > parse > timezone (ISO-8601 w/o Z) > xxxxx > hours, minutes and seconds
+ DONE  |main| src/parse/test.ts > parse > common formats > ISO-8601
+ DONE  |main| src/parse/test.ts > parse > common formats > ISO week-numbering date
+ DONE  |main| src/parse/test.ts > parse > common formats > ISO day of year date
+ DONE  |main| src/parse/test.ts > parse > common formats > Date.prototype.toString()
+ DONE  |main| src/parse/test.ts > parse > common formats > Date.prototype.toISOString()
+ DONE  |main| src/parse/test.ts > parse > common formats > middle-endian
+ DONE  |main| src/parse/test.ts > parse > common formats > little-endian
+ DONE  |main| src/parse/test.ts > parse > priority > units of lower priority don't overwrite values of higher priority
+ DONE  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > calendar year > works correctly for two-digit year zero
+ DONE  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > local week-numbering year > works correctly for two-digit year zero
+ DONE  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > day of month > returns `Invalid Date` for invalid day of the month
+ DONE  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > day of month > returns `Invalid Date` for 29th of February of non-leap year
+ DONE  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > day of month > parses 29th of February of leap year
+ DONE  |main| src/parse/test.ts > parse > with `options.strictValidation` = true > day of year > parses 366th day of leap year
+ DONE  |main| src/parse/test.ts > parse > custom locale > allows to pass a custom locale
+ DONE  |main| src/parse/test.ts > parse > accepts a timestamp as `referenceDate`
+ DONE  |main| src/parse/test.ts > parse > edge cases > parses normally if the remaining input is just whitespace
+ DONE  |main| src/parse/test.ts > parse > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows D token if useAdditionalDayOfYearTokens is set to true
+ DONE  |main| src/parse/test.ts > parse > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows DD token if useAdditionalDayOfYearTokens is set to true
+ DONE  |main| src/parse/test.ts > parse > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YY token if useAdditionalWeekYearTokens is set to true
+ DONE  |main| src/parse/test.ts > parse > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YYYY token if useAdditionalWeekYearTokens is set to true
+ DONE  |main| src/parse/test.ts > parse > long format > short date
+ DONE  |main| src/parse/test.ts > parse > long format > medium date
+ DONE  |main| src/parse/test.ts > parse > long format > long date
+ DONE  |main| src/parse/test.ts > parse > long format > full date
+ DONE  |main| src/parse/test.ts > parse > long format > short time
+ DONE  |main| src/parse/test.ts > parse > long format > medium time
+ DONE  |main| src/parse/test.ts > parse > long format > short date + short time
+ DONE  |main| src/parse/test.ts > parse > long format > medium date + short time
+ DONE  |main| src/parse/test.ts > parse > long format > long date + short time
+ DONE  |main| src/parse/test.ts > parse > long format > full date + short time
+ DONE  |main| src/parse/test.ts > parse > long format > short date + short time
+ DONE  |main| src/parse/test.ts > parse > long format > medium date + short time
+ DONE  |main| src/parse/test.ts > parse > long format > long date + short time
+ DONE  |main| src/parse/test.ts > parse > long format > full date + short time
+ DONE  |main| src/parse/test.ts > parse > context > allows to specify the context
+ DONE  |main| src/parse/test.ts > parse > time zones > properly parses dates around DST transitions
+ DONE  |main| src/parseJSON/test.ts > parseJSON > parses a formatted new Date() back to UTC - issue 2149
  FAIL  |main| src/set/test.ts > set > sets all values
  FAIL  |main| src/set/test.ts > set > sets year
  FAIL  |main| src/set/test.ts > set > sets month

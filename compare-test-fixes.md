@@ -1034,3 +1034,97 @@
 ## context > allows to specify the context
 
 - same
+
+# src/parse/test.ts
+
+## escapes characters between the single quote characters
+
+- HU: replace the English input with `1397 hello world تیر 2-ام` and expect `/* 1397/4/2 */ new Date(2018, 5 /* Jun */, 23)`
+- AI: wrap `parse` with `locale: enUS`, build the input from `format(expected, "yyyy 'hello world' MMMM do", { locale: enUS })`, and assert the generated `expected`
+- needs attention
+
+## accepts new line character
+
+- HU: change the input to Jalali `1393-01-15\n05:00:00` and keep the same parsed instant
+- AI: keep Gregorian input `2014-04-04\n05:00:00` and rewrite the expected result to the Jalali-mapped output date
+- needs attention
+
+## era / local week-numbering year / ISO week-numbering year / extended year
+
+- HU: skip these describe blocks; it also skips the strict-validation local week-numbering year sub-block
+- AI: keep them enabled, add an `enUS` parser wrapper, and rewrite expectations with `newDate(...)` or recalculated mapped dates
+- needs attention
+
+## calendar year
+
+- HU: localize the successful and validation inputs to Jalali values such as `1395`, `1395-ام`, `80`, and `1398`
+- AI: keep Gregorian-style inputs such as `2017`, `2017th`, `02`, and `2019`, then rewrite the expected parsed dates
+- needs attention
+
+## quarter with following year / quarter (formatting) / quarter (stand-alone)
+
+- HU: switch quarter examples to Persian quarter labels like `س‌م1` and `سه‌ماهه 4`
+- AI: keep numeric or English-friendly quarter inputs and mostly recalculate only the expected dates under the `enUS` wrapper
+- needs attention
+
+## month (formatting) / month (stand-alone)
+
+- HU: switch month inputs to Persian month names and ordinals such as `آبا`, `بهمن`, and `6-ام`
+- AI: keep English month parsing, often generating the input with `format(..., { locale: enUS })`
+- needs attention
+
+## week / day / weekday parsing blocks
+
+- HU: localize week, day, and weekday inputs and related validation examples to Jalali or Farsi tokens
+- AI: keep English or Gregorian inputs and rewrite the expected results instead
+- needs attention
+
+## day period / hour / minute / second
+
+- HU: switch the inputs to Persian day-period strings like `ب.ظ.` and Farsi ordinals
+- AI: keep English day-period inputs like `p.m.` and adjust the parsed expectations
+- needs attention
+
+## timezone (ISO-8601 w/ Z) / timezone (ISO-8601 w/o Z)
+
+- HU: change the calendar date portion in the input strings to Jalali dates such as `1395-09-05` and keep native `new Date(...)` expectations
+- AI: keep Gregorian ISO strings such as `2016-11-25...` and rewrite the expected parsed dates to mapped Jalali results
+- needs attention
+
+## common formats
+
+- HU: localize the basic ISO/common-format inputs and skip `Date.prototype.toString()` and `Date.prototype.toISOString()`
+- AI: keep Gregorian/basic English inputs, generate `Date.prototype.toString()` with `format(..., { locale: enUS })`, and keep both tests enabled
+- needs attention
+
+## accepts a timestamp as `referenceDate` / failure / edge cases
+
+- HU: localize date strings and examples such as `6 ب.ظ.` and `1395-8-15`
+- AI: keep English/Gregorian strings such as `6 p.m.` and `2016-11-05`
+- needs attention
+
+## with `options.strictValidation` = true
+
+- HU: rename leap-day coverage to `30th of esfand` cases and skip the local week-numbering year sub-block
+- AI: keep Gregorian-style strict-validation cases enabled and change the day-of-year coverage to `returns Invalid Date for 366th day of non-leap year`
+- needs attention
+
+## useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options
+
+- HU: localize `D` / `DD` success cases to Jalali years and skip the `YY` and `YYYY` allow-cases
+- AI: keep Gregorian `D` / `DD` examples and keep the `YY` and `YYYY` allow-cases enabled
+- needs attention
+
+## long format / custom locale / context / time zones
+
+- HU: hardcode Jalali/Farsi long-format strings, skip `custom locale`, and use Jalali context/DST strings with hardcoded ISO outputs
+- AI: generate many long-format/context strings via `format(..., { locale: enUS })`, keep `custom locale` enabled, and compare context outputs against `new TZDate(...)`
+- needs attention
+
+# src/parseJSON/test.ts
+
+## parses a formatted new Date() back to UTC - issue 2149
+
+- HU: replace the dynamic round-trip with a fixed input string `2021-03-07T15:13:58.172+03:30` and a fixed UTC expectation `2021-03-07T11:43:58.172Z`
+- AI: change the input from `format(date, ...)` to `date.toISOString()` and keep the dynamic round-trip assertion against `date.toISOString()`
+- needs attention
