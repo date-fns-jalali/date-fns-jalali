@@ -169,6 +169,7 @@ export * from "./minutesToMilliseconds/index.ts";
 export * from "./minutesToSeconds/index.ts";
 export * from "./monthsToQuarters/index.ts";
 export * from "./monthsToYears/index.ts";
+export * from "./newDate/index.ts";
 export * from "./nextDay/index.ts";
 export * from "./nextFriday/index.ts";
 export * from "./nextMonday/index.ts";

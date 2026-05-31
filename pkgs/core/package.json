@@ -184,6 +184,7 @@
     "./minutesToSeconds": "./src/minutesToSeconds/index.ts",
     "./monthsToQuarters": "./src/monthsToQuarters/index.ts",
     "./monthsToYears": "./src/monthsToYears/index.ts",
+    "./newDate": "./src/newDate/index.ts",
     "./nextDay": "./src/nextDay/index.ts",
     "./nextFriday": "./src/nextFriday/index.ts",
     "./nextMonday": "./src/nextMonday/index.ts",
@@ -2483,6 +2484,16 @@
         "import": {
           "types": "./monthsToYears.d.ts",
           "default": "./monthsToYears.js"
+        }
+      },
+      "./newDate": {
+        "require": {
+          "types": "./newDate.d.cts",
+          "default": "./newDate.cjs"
+        },
+        "import": {
+          "types": "./newDate.d.ts",
+          "default": "./newDate.js"
         }
       },
       "./nextDay": {
