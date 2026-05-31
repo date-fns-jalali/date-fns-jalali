@@ -3,12 +3,16 @@ import { getDaysInMonth } from "../getDaysInMonth/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.ts";
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link setMonth} function options.
  */
-export interface SetMonthOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface SetMonthOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name setMonth
@@ -41,15 +45,15 @@ export function setMonth<
   options?: SetMonthOptions<ResultDate> | undefined,
 ): ResultDate {
   const _date = toDate(date, options?.in);
-  const year = _date.getFullYear();
-  const day = _date.getDate();
+  const year = coreGetFullYear(_date);
+  const day = coreGetDate(_date);
 
   const midMonth = constructFrom(options?.in || date, 0);
-  midMonth.setFullYear(year, month, 15);
+  coreSetFullYear(midMonth, year, month, 15);
   midMonth.setHours(0, 0, 0, 0);
   const daysInMonth = getDaysInMonth(midMonth);
 
   // Set the earlier date, allows to wrap Jan 31 to Feb 28
-  _date.setMonth(month, Math.min(day, daysInMonth));
+  coreSetMonth(_date, month, Math.min(day, daysInMonth));
   return _date;
 }

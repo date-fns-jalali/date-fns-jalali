@@ -6,9 +6,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link setISODay} function options.
  */
-export interface SetISODayOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface SetISODayOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name setISODay

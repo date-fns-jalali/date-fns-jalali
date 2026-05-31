@@ -1,12 +1,14 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link startOfDecade} options.
  */
-export interface StartOfDecadeOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface StartOfDecadeOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name startOfDecade
@@ -40,9 +42,9 @@ export function startOfDecade<
   // end with 0. I.e. 2001-2010 instead of current 2000-2009. It's a breaking
   // change, so it can only be done in 4.0.
   const _date = toDate(date, options?.in);
-  const year = _date.getFullYear();
+  const year = coreGetFullYear(_date);
   const decade = Math.floor(year / 10) * 10;
-  _date.setFullYear(decade, 0, 1);
+  coreSetFullYear(_date, decade, 0, 1);
   _date.setHours(0, 0, 0, 0);
   return _date;
 }

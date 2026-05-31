@@ -1,6 +1,8 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+
 /**
  * The {@link getYear} function options.
  */
@@ -28,5 +30,5 @@ export function getYear(
   date: DateArg<Date> & {},
   options?: GetYearOptions | undefined,
 ): number {
-  return toDate(date, options?.in).getFullYear();
+  return coreGetFullYear(toDate(date, options?.in));
 }

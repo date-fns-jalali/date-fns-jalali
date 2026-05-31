@@ -7,11 +7,16 @@ import type {
   WeekOptions,
 } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link endOfWeek} function options.
  */
 export interface EndOfWeekOptions<DateType extends Date = Date>
-  extends WeekOptions, LocalizedOptions<"options">, ContextOptions<DateType> {}
+  extends WeekOptions,
+    LocalizedOptions<"options">,
+    ContextOptions<DateType> {}
 
 /**
  * @name endOfWeek
@@ -56,7 +61,7 @@ export function endOfWeek<
   const day = _date.getDay();
   const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
 
-  _date.setDate(_date.getDate() + diff);
+  coreSetDate(_date, coreGetDate(_date) + diff);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }

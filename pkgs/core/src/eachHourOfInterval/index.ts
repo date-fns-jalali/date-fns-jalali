@@ -6,7 +6,8 @@ import type { ContextOptions, Interval, StepOptions } from "../types.ts";
  * The {@link eachHourOfInterval} function options.
  */
 export interface EachHourOfIntervalOptions<DateType extends Date = Date>
-  extends StepOptions, ContextOptions<DateType> {}
+  extends StepOptions,
+    ContextOptions<DateType> {}
 
 /**
  * The {@link eachHourOfInterval} function result type.

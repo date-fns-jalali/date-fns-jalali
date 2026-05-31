@@ -6,9 +6,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link closestTo} function options.
  */
-export interface ClosestToOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface ClosestToOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * The {@link closestTo} function result type. It resolves the proper data type.

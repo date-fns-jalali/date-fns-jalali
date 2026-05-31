@@ -7,11 +7,16 @@ import type {
   WeekOptions,
 } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link lastDayOfWeek} function options.
  */
 export interface LastDayOfWeekOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">, WeekOptions, ContextOptions<DateType> {}
+  extends LocalizedOptions<"options">,
+    WeekOptions,
+    ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfWeek
@@ -50,7 +55,7 @@ export function lastDayOfWeek<
   const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
 
   _date.setHours(0, 0, 0, 0);
-  _date.setDate(_date.getDate() + diff);
+  coreSetDate(_date, coreGetDate(_date) + diff);
 
   return _date;
 }

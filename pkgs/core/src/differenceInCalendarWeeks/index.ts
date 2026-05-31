@@ -13,7 +13,9 @@ import type {
  * The {@link differenceInCalendarWeeks} function options.
  */
 export interface DifferenceInCalendarWeeksOptions
-  extends LocalizedOptions<"options">, WeekOptions, ContextOptions<Date> {}
+  extends LocalizedOptions<"options">,
+    WeekOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarWeeks

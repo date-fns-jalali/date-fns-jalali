@@ -2,12 +2,13 @@ import { constructFrom } from "../constructFrom/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link setYear} function options.
  */
-export interface SetYearOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface SetYearOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name setYear
@@ -44,6 +45,6 @@ export function setYear<
   // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
   if (isNaN(+date_)) return constructFrom(options?.in || date, NaN);
 
-  date_.setFullYear(year);
+  coreSetFullYear(date_, year);
   return date_;
 }

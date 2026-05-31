@@ -5,9 +5,8 @@ import type { ContextFn, ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link max} function options.
  */
-export interface MaxOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface MaxOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name max

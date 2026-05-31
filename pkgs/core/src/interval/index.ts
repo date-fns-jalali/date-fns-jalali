@@ -4,9 +4,8 @@ import type { ContextOptions, DateArg, NormalizedInterval } from "../types.ts";
 /**
  * The {@link interval} function options.
  */
-export interface IntervalOptions<
-  ContextDate extends Date = Date,
-> extends ContextOptions<ContextDate> {
+export interface IntervalOptions<ContextDate extends Date = Date>
+  extends ContextOptions<ContextDate> {
   /** Asserts that the interval is positive (start is after the end). */
   assertPositive?: boolean;
 }

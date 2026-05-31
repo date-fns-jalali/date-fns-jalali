@@ -2,11 +2,15 @@ import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
 import type { ContextOptions, Interval, StepOptions } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link eachDayOfInterval} function options.
  */
 export interface EachDayOfIntervalOptions<DateType extends Date = Date>
-  extends StepOptions, ContextOptions<DateType> {}
+  extends StepOptions,
+    ContextOptions<DateType> {}
 
 /**
  * The {@link eachDayOfInterval} function result type. It resolves the proper data type.
@@ -82,7 +86,7 @@ export function eachDayOfInterval<
 
   while (+date <= endTime) {
     dates.push(constructFrom(start, date));
-    date.setDate(date.getDate() + step);
+    coreSetDate(date, coreGetDate(date) + step);
     date.setHours(0, 0, 0, 0);
   }
 
