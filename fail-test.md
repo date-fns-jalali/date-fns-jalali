@@ -131,79 +131,79 @@
  DONE  |main| src/endOfYear/test.ts > endOfYear > returns the date with the time set to 23:59:59.999 and the date set to the last day of a year
  DONE  |main| src/endOfYear/test.ts > endOfYear > accepts a timestamp
  DONE  |main| src/endOfYear/test.ts > endOfYear > context > allows to specify the context
- FAIL  |main| src/format/test.ts > format > accepts a timestamp
- FAIL  |main| src/format/test.ts > format > escapes characters between the single quote characters
- FAIL  |main| src/format/test.ts > format > accepts new line character
- FAIL  |main| src/format/test.ts > format > ordinal numbers > ordinal day of an ordinal month
- FAIL  |main| src/format/test.ts > format > ordinal numbers > should return a correct ordinal number
- FAIL  |main| src/format/test.ts > format > era
- FAIL  |main| src/format/test.ts > format > year > regular year > works as expected
- FAIL  |main| src/format/test.ts > format > year > regular year > 1 BC formats as 1
- FAIL  |main| src/format/test.ts > format > year > regular year > 2 BC formats as 2
- FAIL  |main| src/format/test.ts > format > year > regular year > 2 BC formats as 2nd
- FAIL  |main| src/format/test.ts > format > year > local week-numbering year > works as expected
- FAIL  |main| src/format/test.ts > format > year > local week-numbering year > the first week of the next year
- FAIL  |main| src/format/test.ts > format > year > local week-numbering year > allows to specify `weekStartsOn` and `firstWeekContainsDate` in options
- FAIL  |main| src/format/test.ts > format > year > local week-numbering year > the first week of year
- FAIL  |main| src/format/test.ts > format > year > local week-numbering year > 1 BC formats as 1
- FAIL  |main| src/format/test.ts > format > year > local week-numbering year > 2 BC formats as 2
- FAIL  |main| src/format/test.ts > format > year > extended year > works as expected
- FAIL  |main| src/format/test.ts > format > year > extended year > 1 BC formats as 0
- FAIL  |main| src/format/test.ts > format > year > extended year > 2 BC formats as -1
- FAIL  |main| src/format/test.ts > format > quarter > formatting quarter
- FAIL  |main| src/format/test.ts > format > quarter > stand-alone quarter
- FAIL  |main| src/format/test.ts > format > quarter > returns a correct quarter for each month
- FAIL  |main| src/format/test.ts > format > month > formatting month
- FAIL  |main| src/format/test.ts > format > month > stand-alone month
- FAIL  |main| src/format/test.ts > format > week > local week of year > works as expected
- FAIL  |main| src/format/test.ts > format > week > local week of year > allows to specify `weekStartsOn` and `firstWeekContainsDate` in options
- FAIL  |main| src/format/test.ts > format > week > ISO week of year
- FAIL  |main| src/format/test.ts > format > day > date
- FAIL  |main| src/format/test.ts > format > day > day of year > works as expected
- FAIL  |main| src/format/test.ts > format > day > day of year > returns a correct day number for the last day of a leap year
- FAIL  |main| src/format/test.ts > format > week day > day of week > works as expected
- FAIL  |main| src/format/test.ts > format > week day > ISO day of week > works as expected
- FAIL  |main| src/format/test.ts > format > week day > formatting day of week > works as expected
- FAIL  |main| src/format/test.ts > format > week day > formatting day of week > by default, 1 is Sunday, 2 is Monday, ...
- FAIL  |main| src/format/test.ts > format > week day > stand-alone day of week > works as expected
- FAIL  |main| src/format/test.ts > format > week day > stand-alone day of week > by default, 1 is Sunday, 2 is Monday, ...
- FAIL  |main| src/format/test.ts > format > day period and hour > hour [1-12]
- FAIL  |main| src/format/test.ts > format > day period and hour > hour [0-23]
- FAIL  |main| src/format/test.ts > format > day period and hour > hour [0-11]
- FAIL  |main| src/format/test.ts > format > day period and hour > hour [1-24]
- FAIL  |main| src/format/test.ts > format > day period and hour > AM, PM > works as expected
- FAIL  |main| src/format/test.ts > format > day period and hour > AM, PM > 12 PM
- FAIL  |main| src/format/test.ts > format > day period and hour > AM, PM > 12 AM
- FAIL  |main| src/format/test.ts > format > day period and hour > AM, PM, noon, midnight > works as expected
- FAIL  |main| src/format/test.ts > format > day period and hour > AM, PM, noon, midnight > 12 PM
- FAIL  |main| src/format/test.ts > format > day period and hour > AM, PM, noon, midnight > 12 AM
- FAIL  |main| src/format/test.ts > format > day period and hour > flexible day periods > works as expected
- FAIL  |main| src/format/test.ts > format > day period and hour > flexible day periods > 12 PM
- FAIL  |main| src/format/test.ts > format > day period and hour > flexible day periods > 5 PM
- FAIL  |main| src/format/test.ts > format > day period and hour > flexible day periods > 12 AM
- FAIL  |main| src/format/test.ts > format > day period and hour > flexible day periods > 4 AM
- FAIL  |main| src/format/test.ts > format > minute
- FAIL  |main| src/format/test.ts > format > second > second
- FAIL  |main| src/format/test.ts > format > long format > short date
- FAIL  |main| src/format/test.ts > format > long format > medium date
- FAIL  |main| src/format/test.ts > format > long format > long date
- FAIL  |main| src/format/test.ts > format > long format > full date
- FAIL  |main| src/format/test.ts > format > long format > short time
- FAIL  |main| src/format/test.ts > format > long format > medium time
- FAIL  |main| src/format/test.ts > format > long format > long time
- FAIL  |main| src/format/test.ts > format > long format > full time
- FAIL  |main| src/format/test.ts > format > long format > short date + time
- FAIL  |main| src/format/test.ts > format > long format > medium date + time
- FAIL  |main| src/format/test.ts > format > long format > long date + time
- FAIL  |main| src/format/test.ts > format > long format > full date + time
- FAIL  |main| src/format/test.ts > format > long format > allows arbitrary combination of date and time
- FAIL  |main| src/format/test.ts > format > edge cases > handles dates before 100 AD
- FAIL  |main| src/format/test.ts > format > locale features > allows a localize preprocessor
- FAIL  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows D token if useAdditionalDayOfYearTokens is set to true
- FAIL  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows DD token if useAdditionalDayOfYearTokens is set to true
- FAIL  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YY token if useAdditionalWeekYearTokens is set to true
- FAIL  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YYYY token if useAdditionalWeekYearTokens is set to true
- FAIL  |main| src/format/test.ts > format > context > allows to specify the context
+ DONE  |main| src/format/test.ts > format > accepts a timestamp
+ DONE  |main| src/format/test.ts > format > escapes characters between the single quote characters
+ DONE  |main| src/format/test.ts > format > accepts new line character
+ DONE  |main| src/format/test.ts > format > ordinal numbers > ordinal day of an ordinal month
+ DONE  |main| src/format/test.ts > format > ordinal numbers > should return a correct ordinal number
+ DONE  |main| src/format/test.ts > format > era
+ DONE  |main| src/format/test.ts > format > year > regular year > works as expected
+ DONE  |main| src/format/test.ts > format > year > regular year > 1 BC formats as 1
+ DONE  |main| src/format/test.ts > format > year > regular year > 2 BC formats as 2
+ DONE  |main| src/format/test.ts > format > year > regular year > 2 BC formats as 2nd
+ DONE  |main| src/format/test.ts > format > year > local week-numbering year > works as expected
+ DONE  |main| src/format/test.ts > format > year > local week-numbering year > the first week of the next year
+ DONE  |main| src/format/test.ts > format > year > local week-numbering year > allows to specify `weekStartsOn` and `firstWeekContainsDate` in options
+ DONE  |main| src/format/test.ts > format > year > local week-numbering year > the first week of year
+ DONE  |main| src/format/test.ts > format > year > local week-numbering year > 1 BC formats as 1
+ DONE  |main| src/format/test.ts > format > year > local week-numbering year > 2 BC formats as 2
+ DONE  |main| src/format/test.ts > format > year > extended year > works as expected
+ DONE  |main| src/format/test.ts > format > year > extended year > 1 BC formats as 0
+ DONE  |main| src/format/test.ts > format > year > extended year > 2 BC formats as -1
+ DONE  |main| src/format/test.ts > format > quarter > formatting quarter
+ DONE  |main| src/format/test.ts > format > quarter > stand-alone quarter
+ DONE  |main| src/format/test.ts > format > quarter > returns a correct quarter for each month
+ DONE  |main| src/format/test.ts > format > month > formatting month
+ DONE  |main| src/format/test.ts > format > month > stand-alone month
+ DONE  |main| src/format/test.ts > format > week > local week of year > works as expected
+ DONE  |main| src/format/test.ts > format > week > local week of year > allows to specify `weekStartsOn` and `firstWeekContainsDate` in options
+ DONE  |main| src/format/test.ts > format > week > ISO week of year
+ DONE  |main| src/format/test.ts > format > day > date
+ DONE  |main| src/format/test.ts > format > day > day of year > works as expected
+ DONE  |main| src/format/test.ts > format > day > day of year > returns a correct day number for the last day of a leap year
+ DONE  |main| src/format/test.ts > format > week day > day of week > works as expected
+ DONE  |main| src/format/test.ts > format > week day > ISO day of week > works as expected
+ DONE  |main| src/format/test.ts > format > week day > formatting day of week > works as expected
+ DONE  |main| src/format/test.ts > format > week day > formatting day of week > by default, 1 is Sunday, 2 is Monday, ...
+ DONE  |main| src/format/test.ts > format > week day > stand-alone day of week > works as expected
+ DONE  |main| src/format/test.ts > format > week day > stand-alone day of week > by default, 1 is Sunday, 2 is Monday, ...
+ DONE  |main| src/format/test.ts > format > day period and hour > hour [1-12]
+ DONE  |main| src/format/test.ts > format > day period and hour > hour [0-23]
+ DONE  |main| src/format/test.ts > format > day period and hour > hour [0-11]
+ DONE  |main| src/format/test.ts > format > day period and hour > hour [1-24]
+ DONE  |main| src/format/test.ts > format > day period and hour > AM, PM > works as expected
+ DONE  |main| src/format/test.ts > format > day period and hour > AM, PM > 12 PM
+ DONE  |main| src/format/test.ts > format > day period and hour > AM, PM > 12 AM
+ DONE  |main| src/format/test.ts > format > day period and hour > AM, PM, noon, midnight > works as expected
+ DONE  |main| src/format/test.ts > format > day period and hour > AM, PM, noon, midnight > 12 PM
+ DONE  |main| src/format/test.ts > format > day period and hour > AM, PM, noon, midnight > 12 AM
+ DONE  |main| src/format/test.ts > format > day period and hour > flexible day periods > works as expected
+ DONE  |main| src/format/test.ts > format > day period and hour > flexible day periods > 12 PM
+ DONE  |main| src/format/test.ts > format > day period and hour > flexible day periods > 5 PM
+ DONE  |main| src/format/test.ts > format > day period and hour > flexible day periods > 12 AM
+ DONE  |main| src/format/test.ts > format > day period and hour > flexible day periods > 4 AM
+ DONE  |main| src/format/test.ts > format > minute
+ DONE  |main| src/format/test.ts > format > second > second
+ DONE  |main| src/format/test.ts > format > long format > short date
+ DONE  |main| src/format/test.ts > format > long format > medium date
+ DONE  |main| src/format/test.ts > format > long format > long date
+ DONE  |main| src/format/test.ts > format > long format > full date
+ DONE  |main| src/format/test.ts > format > long format > short time
+ DONE  |main| src/format/test.ts > format > long format > medium time
+ DONE  |main| src/format/test.ts > format > long format > long time
+ DONE  |main| src/format/test.ts > format > long format > full time
+ DONE  |main| src/format/test.ts > format > long format > short date + time
+ DONE  |main| src/format/test.ts > format > long format > medium date + time
+ DONE  |main| src/format/test.ts > format > long format > long date + time
+ DONE  |main| src/format/test.ts > format > long format > full date + time
+ DONE  |main| src/format/test.ts > format > long format > allows arbitrary combination of date and time
+ DONE  |main| src/format/test.ts > format > edge cases > handles dates before 100 AD
+ DONE  |main| src/format/test.ts > format > locale features > allows a localize preprocessor
+ DONE  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows D token if useAdditionalDayOfYearTokens is set to true
+ DONE  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows DD token if useAdditionalDayOfYearTokens is set to true
+ DONE  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YY token if useAdditionalWeekYearTokens is set to true
+ DONE  |main| src/format/test.ts > format > useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options > allows YYYY token if useAdditionalWeekYearTokens is set to true
+ DONE  |main| src/format/test.ts > format > context > allows to specify the context
  FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 5 seconds
  FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 10 seconds
  FAIL  |main| src/formatDistance/test.ts > formatDistance > seconds > when the includeSeconds option is true > less than 20 seconds

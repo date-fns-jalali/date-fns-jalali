@@ -1128,3 +1128,83 @@
 - HU: replace the dynamic round-trip with a fixed input string `2021-03-07T15:13:58.172+03:30` and a fixed UTC expectation `2021-03-07T11:43:58.172Z`
 - AI: change the input from `format(date, ...)` to `date.toISOString()` and keep the dynamic round-trip assertion against `date.toISOString()`
 - needs attention
+
+# src/format/test.ts
+
+## accepts a timestamp / escapes characters between the single quote characters / accepts new line character
+
+- same
+
+## ordinal numbers
+
+- HU: rewrite both tests into Jalali/Farsi phrasing and shift the ordinal loop dates so the output runs `1-ام` through `31-ام`
+- AI: keep the original English scaffold and January loop shape, but update the expected ordinals to the Jalali sequence starting at `11-ام`
+- needs attention
+
+## era
+
+- same
+
+## year
+
+- both convert the main year-format expectations to Jalali values
+- HU: skip the regular-year BC cases, and skip the local week-numbering year and extended year blocks
+- AI: keep those BC and extra year blocks enabled and recalculate their expectations, e.g. `623` / `624` and `-622` / `-623`
+- needs attention
+
+## quarter
+
+- both update formatting and stand-alone quarter outputs to Jalali strings like `س‌م1` and `سه‌ماهه 1`
+- HU: shift the month loop by `i + 3` so the quarter sequence is `1 1 1 ... 4 4 4`
+- AI: keep the Jan-to-Dec loop and change the expected sequence to `4 4 4 1 1 1 2 2 2 3 3 3`
+- needs attention
+
+## month
+
+- same fix; AI mostly flattens joined expected strings into string literals
+
+## week
+
+- same fix; AI mostly flattens joined expected strings into string literals
+
+## day
+
+- both update the main `date` and `day of year` expectations to Jalali values
+- HU: keep the leap-year-end case and expect `366`
+- AI: replace it with `/* 1371/10/10 */ new Date(1992, 11 /* Dec */, 31, 23, 59, 59, 999)` and expect `286`
+- needs attention
+
+## week day
+
+- both localize weekday names and ordinal outputs
+- HU: change the default numbering cases to Saturday-first loops/titles and expect `1` through `7`
+- AI: keep Sunday-first titles and expect `2 3 4 5 6 7 1` on shifted inputs
+- needs attention
+
+## day period and hour / minute / second
+
+- same fix; AI mostly flattens joined expected strings into string literals
+
+## long format
+
+- same fix; AI mostly rewrites joined expected strings as plain string literals
+
+## edge cases > handles dates before 100 AD
+
+- HU: skip
+- AI: keep the test and change the expected output to `615 42 1`
+- needs attention
+
+## locale features > allows a localize preprocessor
+
+- HU: keep the existing inputs and expect `11er ` / `12 `
+- AI: import `getDate`, use it in the preprocessor, move the inputs to Jalali month-start dates, and expect `1er janvier` / `2 janvier`
+- needs attention
+
+## useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options
+
+- same
+
+## context > allows to specify the context
+
+- same
