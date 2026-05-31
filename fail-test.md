@@ -407,24 +407,24 @@
  DONE  |main| src/getYear/test.ts > getYear > returns the year of the given date
  DONE  |main| src/getYear/test.ts > getYear > accepts a timestamp
  DONE  |main| src/getYear/test.ts > getYear > context > allows to specify the context
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > returns correct duration (1 of everything)
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > returns a negative duration if interval's start date is greater than its end date
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > returns correct duration for end of month start dates - issue 2611
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > returns correct duration for Feb 28 to Apr 30 interval - issue 2910
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 31 interval
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 30 interval
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 29 interval
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 28 interval
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 27 interval
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Apr 30 to May 31 interval
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > normalizes the dates
- FAIL  |main| src/intervalToDuration/test.ts > intervalToDuration > context > allows to specify the context
- FAIL  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single month > works with future with more than a month
- FAIL  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single month > works with past with more than a month
- FAIL  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single quarter > works with future with more than a quarter
- FAIL  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single quarter > works with past with more than a quarter
- FAIL  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single year > works with future with more that a year
- FAIL  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single year > works with past with more than a year
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > returns correct duration (1 of everything)
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > returns a negative duration if interval's start date is greater than its end date
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > returns correct duration for end of month start dates - issue 2611
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > returns correct duration for Feb 28 to Apr 30 interval - issue 2910
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 31 interval
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 30 interval
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 29 interval
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 28 interval
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 27 interval
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > edge cases > issue 2470 > returns correct duration for Apr 30 to May 31 interval
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > normalizes the dates
+ DONE  |main| src/intervalToDuration/test.ts > intervalToDuration > context > allows to specify the context
+ DONE  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single month > works with future with more than a month
+ DONE  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single month > works with past with more than a month
+ DONE  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single quarter > works with future with more than a quarter
+ DONE  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single quarter > works with past with more than a quarter
+ DONE  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single year > works with future with more that a year
+ DONE  |main| src/intlFormatDistance/test.ts > intlFormatDistance > with default values > works with single year > works with past with more than a year
  DONE  |main| src/isExists/test.ts > isValid > returns false if the given date is invalid
  DONE  |main| src/isFirstDayOfMonth/test.ts > isFirstDayOfMonth > returns true if the given date is the first day of a month
  DONE  |main| src/isFirstDayOfMonth/test.ts > isFirstDayOfMonth > accepts a timestamp
@@ -454,28 +454,28 @@
  DONE  |main| src/isWeekend/test.ts > isWeekend > returns true if the given date is in a weekend
  DONE  |main| src/isWeekend/test.ts > isWeekend > accepts a timestamp
  DONE  |main| src/isWeekend/test.ts > isWeekend > context > allows to specify the context
- FAIL  |main| src/lastDayOfDecade/test.ts > lastDayOfDecade > returns the date with the time set to 00:00:00 and the date set to the last day of a decade
- FAIL  |main| src/lastDayOfDecade/test.ts > lastDayOfDecade > accepts a timestamp
- FAIL  |main| src/lastDayOfDecade/test.ts > lastDayOfDecade > properly works with negative numbers
- FAIL  |main| src/lastDayOfDecade/test.ts > lastDayOfDecade > context > allows to specify the context
- FAIL  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > returns the date with the time set to 00:00:00 and the date set to the last day of a month
- FAIL  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > accepts a timestamp
- FAIL  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > edge cases > works for the February of a leap year
- FAIL  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > edge cases > works for the February of a non-leap year
- FAIL  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > context > allows to specify the context
+ DONE  |main| src/lastDayOfDecade/test.ts > lastDayOfDecade > returns the date with the time set to 00:00:00 and the date set to the last day of a decade
+ DONE  |main| src/lastDayOfDecade/test.ts > lastDayOfDecade > accepts a timestamp
+ DONE  |main| src/lastDayOfDecade/test.ts > lastDayOfDecade > properly works with negative numbers
+ DONE  |main| src/lastDayOfDecade/test.ts > lastDayOfDecade > context > allows to specify the context
+ DONE  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > returns the date with the time set to 00:00:00 and the date set to the last day of a month
+ DONE  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > accepts a timestamp
+ DONE  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > edge cases > works for the February of a leap year
+ DONE  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > edge cases > works for the February of a non-leap year
+ DONE  |main| src/lastDayOfMonth/test.ts > lastDayOfMonth > context > allows to specify the context
  DONE  |main| src/lastDayOfQuarter/test.ts > lastDayOfQuarter > returns the date with the time set to 00:00:00 and the date set to the last day of a quarter
  DONE  |main| src/lastDayOfQuarter/test.ts > lastDayOfQuarter > accepts a timestamp
  DONE  |main| src/lastDayOfQuarter/test.ts > lastDayOfQuarter > context > allows to specify the context
  DONE  |main| src/lastDayOfWeek/test.ts > lastDayOfWeek > returns the date with the time set to 00:00:00 and the date set to the last day of a week
  DONE  |main| src/lastDayOfWeek/test.ts > lastDayOfWeek > accepts a timestamp
- FAIL  |main| src/lightFormat/test.ts > lightFormat > accepts a timestamp
- FAIL  |main| src/lightFormat/test.ts > lightFormat > escapes characters between the single quote characters
- FAIL  |main| src/lightFormat/test.ts > lightFormat > accepts new line character
- FAIL  |main| src/lightFormat/test.ts > lightFormat > year > regular year > works as expected
- FAIL  |main| src/lightFormat/test.ts > lightFormat > year > regular year > 1 BC formats as 1
- FAIL  |main| src/lightFormat/test.ts > lightFormat > year > regular year > 2 BC formats as 2
- FAIL  |main| src/lightFormat/test.ts > lightFormat > month > formatting month
- FAIL  |main| src/lightFormat/test.ts > lightFormat > day > date
+ DONE  |main| src/lightFormat/test.ts > lightFormat > accepts a timestamp
+ DONE  |main| src/lightFormat/test.ts > lightFormat > escapes characters between the single quote characters
+ DONE  |main| src/lightFormat/test.ts > lightFormat > accepts new line character
+ DONE  |main| src/lightFormat/test.ts > lightFormat > year > regular year > works as expected
+ DONE  |main| src/lightFormat/test.ts > lightFormat > year > regular year > 1 BC formats as 1
+ DONE  |main| src/lightFormat/test.ts > lightFormat > year > regular year > 2 BC formats as 2
+ DONE  |main| src/lightFormat/test.ts > lightFormat > month > formatting month
+ DONE  |main| src/lightFormat/test.ts > lightFormat > day > date
  DONE  |main| src/lastDayOfYear/test.ts > lastDayOfYear > returns the date with the time set to 00:00:00 and the date set to the last day of a year
  DONE  |main| src/lastDayOfYear/test.ts > lastDayOfYear > accepts a timestamp
  DONE  |main| src/lastDayOfYear/test.ts > lastDayOfYear > context > allows to specify the context
@@ -679,15 +679,15 @@
  DONE  |main| src/parse/test.ts > parse > context > allows to specify the context
  DONE  |main| src/parse/test.ts > parse > time zones > properly parses dates around DST transitions
  DONE  |main| src/parseJSON/test.ts > parseJSON > parses a formatted new Date() back to UTC - issue 2149
- FAIL  |main| src/set/test.ts > set > sets all values
- FAIL  |main| src/set/test.ts > set > sets year
- FAIL  |main| src/set/test.ts > set > sets month
- FAIL  |main| src/set/test.ts > set > sets day of month
- FAIL  |main| src/set/test.ts > set > context > allows to specify the context
- FAIL  |main| src/set/test.ts > set > value overflow > months overflow into years
- FAIL  |main| src/set/test.ts > set > value overflow > days of months overflow into months
- FAIL  |main| src/set/test.ts > set > edge cases > sets January
- FAIL  |main| src/set/test.ts > set > edge cases > sets the last day of new month if the initial date was the last day of a longer month
+ DONE  |main| src/set/test.ts > set > sets all values
+ DONE  |main| src/set/test.ts > set > sets year
+ DONE  |main| src/set/test.ts > set > sets month
+ DONE  |main| src/set/test.ts > set > sets day of month
+ DONE  |main| src/set/test.ts > set > context > allows to specify the context
+ DONE  |main| src/set/test.ts > set > value overflow > months overflow into years
+ DONE  |main| src/set/test.ts > set > value overflow > days of months overflow into months
+ DONE  |main| src/set/test.ts > set > edge cases > sets January
+ DONE  |main| src/set/test.ts > set > edge cases > sets the last day of new month if the initial date was the last day of a longer month
  DONE  |main| src/setDate/test.ts > setDate > sets the day of the month
  DONE  |main| src/setDate/test.ts > setDate > accepts a timestamp
  DONE  |main| src/setDate/test.ts > setDate > context > allows to specify the context
@@ -697,91 +697,91 @@
  DONE  |main| src/setDayOfYear/test.ts > setDayOfYear > sets the day of the year
  DONE  |main| src/setDayOfYear/test.ts > setDayOfYear > accepts a timestamp
  DONE  |main| src/setDayOfYear/test.ts > setDayOfYear > context > allows to specify the context
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > format
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > formatDistance
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > formatDistanceStrict
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > formatDuration
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > formatRelative
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > isMatch
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > parse
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > eachWeekOfInterval
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > endOfWeek
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > getWeekOfMonth
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > getWeeksInMonth
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > lastDayOfWeek
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > startOfWeek
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > format
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > getWeek
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > getWeekYear
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > parse
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > setWeek
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > setWeekYear
- FAIL  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > startOfWeekYear
- FAIL  |main| src/setMonth/test.ts > setMonth > sets the month
- FAIL  |main| src/setMonth/test.ts > setMonth > sets the last day of the month if the original date was the last day of a longer month
- FAIL  |main| src/setMonth/test.ts > setMonth > accepts a timestamp
- FAIL  |main| src/setMonth/test.ts > setMonth > handles dates before 100 AD
- FAIL  |main| src/setMonth/test.ts > setMonth > context > allows to specify the context
- FAIL  |main| src/setQuarter/test.ts > setQuarter > sets the quarter of the year
- FAIL  |main| src/setQuarter/test.ts > setQuarter > sets the last day of the month if the original date was the last day of a longer month
- FAIL  |main| src/setQuarter/test.ts > setQuarter > accepts a timestamp
- FAIL  |main| src/setQuarter/test.ts > setQuarter > handles dates before 100 AD
- FAIL  |main| src/setQuarter/test.ts > setQuarter > context > allows to specify the context
- FAIL  |main| src/setWeek/test.ts > setWeek > sets the local week
- FAIL  |main| src/setWeek/test.ts > setWeek > accepts a timestamp
- FAIL  |main| src/setWeek/test.ts > setWeek > handles dates before 100 AD
- FAIL  |main| src/setWeek/test.ts > setWeek > allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
- FAIL  |main| src/setWeek/test.ts > setWeek > `options.weekStartsOn` overwrites the first day of the week specified in locale
- FAIL  |main| src/setWeek/test.ts > setWeek > context > allows to specify the context
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > format
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > formatDistance
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > formatDistanceStrict
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > formatDuration
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > formatRelative
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > isMatch
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > locale > parse
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > eachWeekOfInterval
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > endOfWeek
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > getWeekOfMonth
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > getWeeksInMonth
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > lastDayOfWeek
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > weekStartsOn > startOfWeek
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > format
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > getWeek
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > getWeekYear
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > parse
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > setWeek
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > setWeekYear
+ DONE  |main| src/setDefaultOptions/test.ts > setDefaultOptions > firstWeekContainsDate > startOfWeekYear
+ DONE  |main| src/setMonth/test.ts > setMonth > sets the month
+ DONE  |main| src/setMonth/test.ts > setMonth > sets the last day of the month if the original date was the last day of a longer month
+ DONE  |main| src/setMonth/test.ts > setMonth > accepts a timestamp
+ DONE  |main| src/setMonth/test.ts > setMonth > handles dates before 100 AD
+ DONE  |main| src/setMonth/test.ts > setMonth > context > allows to specify the context
+ DONE  |main| src/setQuarter/test.ts > setQuarter > sets the quarter of the year
+ DONE  |main| src/setQuarter/test.ts > setQuarter > sets the last day of the month if the original date was the last day of a longer month
+ DONE  |main| src/setQuarter/test.ts > setQuarter > accepts a timestamp
+ DONE  |main| src/setQuarter/test.ts > setQuarter > handles dates before 100 AD
+ DONE  |main| src/setQuarter/test.ts > setQuarter > context > allows to specify the context
+ DONE  |main| src/setWeek/test.ts > setWeek > sets the local week
+ DONE  |main| src/setWeek/test.ts > setWeek > accepts a timestamp
+ DONE  |main| src/setWeek/test.ts > setWeek > handles dates before 100 AD
+ DONE  |main| src/setWeek/test.ts > setWeek > allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
+ DONE  |main| src/setWeek/test.ts > setWeek > `options.weekStartsOn` overwrites the first day of the week specified in locale
+ DONE  |main| src/setWeek/test.ts > setWeek > context > allows to specify the context
  DONE  |main| src/setYear/test.ts > setYear > sets the year
  DONE  |main| src/setYear/test.ts > setYear > accepts a timestamp
  DONE  |main| src/setYear/test.ts > setYear > context > allows to specify the context
- FAIL  |main| src/setWeekYear/test.ts > setWeekYear > sets the local week-numbering year, saving the week and the day of the week
- FAIL  |main| src/setWeekYear/test.ts > setWeekYear > accepts a timestamp
- FAIL  |main| src/setWeekYear/test.ts > setWeekYear > sets local week-numbering years less than 100
- FAIL  |main| src/setWeekYear/test.ts > setWeekYear > handles dates before 100 AD
- FAIL  |main| src/setWeekYear/test.ts > setWeekYear > allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
- FAIL  |main| src/setWeekYear/test.ts > setWeekYear > `options.weekStartsOn` overwrites the first day of the week specified in locale
- FAIL  |main| src/setWeekYear/test.ts > setWeekYear > context > allows to specify the context
- FAIL  |main| src/startOfDecade/test.ts > startOfDecade > returns the date with the time set to 00:00:00 and the date set to the first day of a year
- FAIL  |main| src/startOfDecade/test.ts > startOfDecade > accepts a timestamp
- FAIL  |main| src/startOfDecade/test.ts > startOfDecade > properly works with negative numbers
- FAIL  |main| src/startOfDecade/test.ts > startOfDecade > context > allows to specify the context
+ DONE  |main| src/setWeekYear/test.ts > setWeekYear > sets the local week-numbering year, saving the week and the day of the week
+ DONE  |main| src/setWeekYear/test.ts > setWeekYear > accepts a timestamp
+ DONE  |main| src/setWeekYear/test.ts > setWeekYear > sets local week-numbering years less than 100
+ DONE  |main| src/setWeekYear/test.ts > setWeekYear > handles dates before 100 AD
+ DONE  |main| src/setWeekYear/test.ts > setWeekYear > allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
+ DONE  |main| src/setWeekYear/test.ts > setWeekYear > `options.weekStartsOn` overwrites the first day of the week specified in locale
+ DONE  |main| src/setWeekYear/test.ts > setWeekYear > context > allows to specify the context
+ DONE  |main| src/startOfDecade/test.ts > startOfDecade > returns the date with the time set to 00:00:00 and the date set to the first day of a year
+ DONE  |main| src/startOfDecade/test.ts > startOfDecade > accepts a timestamp
+ DONE  |main| src/startOfDecade/test.ts > startOfDecade > properly works with negative numbers
+ DONE  |main| src/startOfDecade/test.ts > startOfDecade > context > allows to specify the context
  DONE  |main| src/startOfMonth/test.ts > startOfMonth > returns the date with the time set to 00:00:00 and the date set to the first day of a month
  DONE  |main| src/startOfMonth/test.ts > startOfMonth > accepts a timestamp
  DONE  |main| src/startOfMonth/test.ts > startOfMonth > context > allows to specify the context
  DONE  |main| src/startOfQuarter/test.ts > startOfQuarter > returns the date with the time set to 00:00:00 and the date set to the first day of a quarter
  DONE  |main| src/startOfQuarter/test.ts > startOfQuarter > accepts a timestamp
  DONE  |main| src/startOfQuarter/test.ts > startOfQuarter > context > allows to specify the context
- FAIL  |main| src/startOfWeek/test.ts > startOfWeek > returns the date with the time set to 00:00:00 and the date set to the first day of a week
- FAIL  |main| src/startOfWeek/test.ts > startOfWeek > accepts a timestamp
- FAIL  |main| src/startOfWeek/test.ts > startOfWeek > edge cases > handles the week at the start of a year
- FAIL  |main| src/startOfWeek/test.ts > startOfWeek > context > allows to specify the context
- FAIL  |main| src/startOfWeekYear/test.ts > startOfWeekYear > returns the date with the time set to 00:00:00 and the date set to the first day of a week year
- FAIL  |main| src/startOfWeekYear/test.ts > startOfWeekYear > accepts a timestamp
- FAIL  |main| src/startOfWeekYear/test.ts > startOfWeekYear > handles dates before 100 AD
- FAIL  |main| src/startOfWeekYear/test.ts > startOfWeekYear > allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
- FAIL  |main| src/startOfWeekYear/test.ts > startOfWeekYear > `options.weekStartsOn` overwrites the first day of the week specified in locale
- FAIL  |main| src/startOfWeekYear/test.ts > startOfWeekYear > context > allows to specify the context
- FAIL  |main| src/startOfYear/test.ts > startOfYear > returns the date with the time set to 00:00:00 and the date set to the first day of a year
- FAIL  |main| src/startOfYear/test.ts > startOfYear > accepts a timestamp
- FAIL  |main| src/startOfYear/test.ts > startOfYear > handles dates before 100 AD
- FAIL  |main| src/startOfYear/test.ts > startOfYear > context > allows to specify the context
- FAIL  |main| src/sub/test.ts > sub > subtracts the duration from the given date
- FAIL  |main| src/sub/test.ts > sub > works well if the desired month has fewer days and the provided date is in the last day of a month
- FAIL  |main| src/sub/test.ts > sub > handles dates before 100 AD
- FAIL  |main| src/subBusinessDays/test.ts > subBusinessDays > subtract the given number of business days
- FAIL  |main| src/subBusinessDays/test.ts > subBusinessDays > handles negative amount
- FAIL  |main| src/subBusinessDays/test.ts > subBusinessDays > can handle a large number of business days
- FAIL  |main| src/subBusinessDays/test.ts > subBusinessDays > accepts a timestamp
- FAIL  |main| src/subBusinessDays/test.ts > subBusinessDays > context > allows to specify the context
- FAIL  |main| src/subMonths/test.ts > subMonths > subtracts the given number of months
- FAIL  |main| src/subMonths/test.ts > subMonths > works if the desired month has fewer days and the provided date is in the last day of a month
- FAIL  |main| src/subMonths/test.ts > subMonths > handles dates before 100 AD
- FAIL  |main| src/subMonths/test.ts > subMonths > context > allows to specify the context
- FAIL  |main| src/subQuarters/test.ts > subQuarters > works well if the desired month has fewer days and the provided date is in the last day of a month
- FAIL  |main| src/subQuarters/test.ts > subQuarters > handles dates before 100 AD
- FAIL  |main| src/subQuarters/test.ts > subQuarters > context > allows to specify the context
- FAIL  |main| src/subYears/test.ts > subYears > handles the leap years properly
- FAIL  |main| src/subYears/test.ts > subYears > handles dates before 100 AD
- FAIL  |main| src/subYears/test.ts > subYears > context > allows to specify the context
+ DONE  |main| src/startOfWeek/test.ts > startOfWeek > returns the date with the time set to 00:00:00 and the date set to the first day of a week
+ DONE  |main| src/startOfWeek/test.ts > startOfWeek > accepts a timestamp
+ DONE  |main| src/startOfWeek/test.ts > startOfWeek > edge cases > handles the week at the start of a year
+ DONE  |main| src/startOfWeek/test.ts > startOfWeek > context > allows to specify the context
+ DONE  |main| src/startOfWeekYear/test.ts > startOfWeekYear > returns the date with the time set to 00:00:00 and the date set to the first day of a week year
+ DONE  |main| src/startOfWeekYear/test.ts > startOfWeekYear > accepts a timestamp
+ DONE  |main| src/startOfWeekYear/test.ts > startOfWeekYear > handles dates before 100 AD
+ DONE  |main| src/startOfWeekYear/test.ts > startOfWeekYear > allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
+ DONE  |main| src/startOfWeekYear/test.ts > startOfWeekYear > `options.weekStartsOn` overwrites the first day of the week specified in locale
+ DONE  |main| src/startOfWeekYear/test.ts > startOfWeekYear > context > allows to specify the context
+ DONE  |main| src/startOfYear/test.ts > startOfYear > returns the date with the time set to 00:00:00 and the date set to the first day of a year
+ DONE  |main| src/startOfYear/test.ts > startOfYear > accepts a timestamp
+ DONE  |main| src/startOfYear/test.ts > startOfYear > handles dates before 100 AD
+ DONE  |main| src/startOfYear/test.ts > startOfYear > context > allows to specify the context
+ DONE  |main| src/sub/test.ts > sub > subtracts the duration from the given date
+ DONE  |main| src/sub/test.ts > sub > works well if the desired month has fewer days and the provided date is in the last day of a month
+ DONE  |main| src/sub/test.ts > sub > handles dates before 100 AD
+ DONE  |main| src/subBusinessDays/test.ts > subBusinessDays > subtract the given number of business days
+ DONE  |main| src/subBusinessDays/test.ts > subBusinessDays > handles negative amount
+ DONE  |main| src/subBusinessDays/test.ts > subBusinessDays > can handle a large number of business days
+ DONE  |main| src/subBusinessDays/test.ts > subBusinessDays > accepts a timestamp
+ DONE  |main| src/subBusinessDays/test.ts > subBusinessDays > context > allows to specify the context
+ DONE  |main| src/subMonths/test.ts > subMonths > subtracts the given number of months
+ DONE  |main| src/subMonths/test.ts > subMonths > works if the desired month has fewer days and the provided date is in the last day of a month
+ DONE  |main| src/subMonths/test.ts > subMonths > handles dates before 100 AD
+ DONE  |main| src/subMonths/test.ts > subMonths > context > allows to specify the context
+ DONE  |main| src/subQuarters/test.ts > subQuarters > works well if the desired month has fewer days and the provided date is in the last day of a month
+ DONE  |main| src/subQuarters/test.ts > subQuarters > handles dates before 100 AD
+ DONE  |main| src/subQuarters/test.ts > subQuarters > context > allows to specify the context
+ DONE  |main| src/subYears/test.ts > subYears > handles the leap years properly
+ DONE  |main| src/subYears/test.ts > subYears > handles dates before 100 AD
+ DONE  |main| src/subYears/test.ts > subYears > context > allows to specify the context

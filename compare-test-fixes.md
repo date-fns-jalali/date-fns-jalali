@@ -498,6 +498,637 @@
 
 - same
 
+# src/intervalToDuration/test.ts
+
+## returns correct duration (1 of everything)
+
+- HU: changes the sample dates only
+- AI: changes expected `days` from `1` to `2`
+
+## returns a negative duration if interval's start date is greater than its end date
+
+- HU: changes the sample dates only
+- AI: changes expected result from `{ months: -1 }` to `{ months: -1, days: -2 }`
+
+## edge cases > returns correct duration for end of month start dates - issue 2611
+
+- HU: changes the start/end sample to another month-boundary case
+- AI: changes expected end date from `1400/7/8` to `1400/7/9`
+
+## edge cases > returns correct duration for Feb 28 to Apr 30 interval - issue 2910
+
+- HU: skip
+- AI: unskip and change expected `days` from `2` to `1`
+
+## edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 31 interval
+
+- HU: skip
+- AI: unskip and change expected duration from `6 months, 3 days` to `5 months, 30 days`
+
+## edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 30 interval
+
+- HU: skip
+- AI: unskip and change expected duration from `6 months, 2 days` to `5 months, 29 days`
+
+## edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 29 interval
+
+- HU: skip
+- AI: unskip and change expected duration from `6 months, 1 day` to `5 months, 28 days`
+
+## edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 28 interval
+
+- HU: skip
+- AI: unskip and change expected duration from `6 months` to `5 months, 27 days`
+
+## edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 27 interval
+
+- HU: skip
+- AI: unskip and change expected `days` from `30` to `26`
+
+## edge cases > issue 2470 > returns correct duration for Apr 30 to May 31 interval
+
+- HU: skip
+- AI: unskip and remove expected `days: 1`
+
+## normalizes the dates
+
+- HU: changes the normalization sample dates
+- AI: changes normalized `days` from `30` to `29` in both directions
+
+## context > allows to specify the context
+
+- HU: changes the context end timestamp only
+- AI: adds expected `days: 1` in both context assertions
+
+# src/intlFormatDistance/test.ts
+
+- needs attention: AI also wraps `intlFormatDistance` in this file to default `locale: "en-US"`
+
+## with default values > works with single month > works with future with more than a month
+
+- HU: changes the sample dates and keeps `next month`
+- AI: keeps dates and changes expected text to `in 2 months`
+
+## with default values > works with single month > works with past with more than a month
+
+- HU: changes the sample dates and keeps `last month`
+- AI: keeps dates and changes expected text to `2 months ago`
+
+## with default values > works with single quarter > works with future with more than a quarter
+
+- HU: changes the sample dates and keeps `next quarter`
+- AI: keeps dates and changes expected text to `in 2 quarters`
+
+## with default values > works with single quarter > works with past with more than a quarter
+
+- HU: changes the sample dates and keeps `last quarter`
+- AI: keeps dates and changes expected text to `2 quarters ago`
+
+## with default values > works with single year > works with future with more that a year
+
+- HU: changes the sample dates and keeps `next year`
+- AI: keeps dates and changes expected text to `in 2 years`
+
+## with default values > works with single year > works with past with more than a year
+
+- HU: changes the sample dates and keeps `last year`
+- AI: keeps dates and changes expected text to `2 years ago`
+
+# src/lastDayOfDecade/test.ts
+
+## returns the date with the time set to 00:00:00 and the date set to the last day of a decade
+
+- HU: changes expected result from Gregorian decade end to Jalali decade end `1369/12/29`
+- AI: no change
+
+## accepts a timestamp
+
+- HU: changes expected result from Gregorian decade end to Jalali decade end `1359/12/29`
+- AI: no change
+
+## properly works with negative numbers
+
+- HU: changes both expected decade-end results to Jalali boundaries
+- AI: no change
+
+## context > allows to specify the context
+
+- HU: changes context inputs and expected ISO strings to Jalali decade boundaries
+- AI: no change
+
+# src/lastDayOfMonth/test.ts
+
+## returns the date with the time set to 00:00:00 and the date set to the last day of a month
+
+- same
+
+## accepts a timestamp
+
+- same
+
+## edge cases > works for the February of a leap year
+
+- HU: renames the case to Esfand, changes the sample date, and expects `1399/12/30`
+- AI: keeps the February case and changes expected result to `1390/11/30`
+- needs attention
+
+## edge cases > works for the February of a non-leap year
+
+- HU: renames the case to Esfand, changes the sample date, and expects `1398/12/29`
+- AI: keeps the February case and changes expected result to `1392/11/30`
+- needs attention
+
+## context > allows to specify the context
+
+- same
+
+# src/lightFormat/test.ts
+
+## accepts a timestamp
+
+- same
+
+## escapes characters between the single quote characters
+
+- same
+
+## accepts new line character
+
+- same
+
+## year > regular year > works as expected
+
+- same
+
+## year > regular year > 1 BC formats as 1
+
+- HU: changes the sample date to an explicit Jalali year `1` case and keeps expected `1`
+- AI: keeps the original date setup and changes expected result to `623`
+- needs attention
+
+## year > regular year > 2 BC formats as 2
+
+- HU: changes the sample date to an explicit Jalali year `2` case and keeps expected `2`
+- AI: keeps the original date setup and changes expected result to `624`
+- needs attention
+
+## month > formatting month
+
+- same
+
+## day > date
+
+- same
+
+# src/set/test.ts
+
+## sets all values
+
+- same
+
+## sets year
+
+- same
+
+## sets month
+
+- same
+
+## sets day of month
+
+- same
+
+## context > allows to specify the context
+
+- same
+
+## value overflow > months overflow into years
+
+- same
+
+## value overflow > days of months overflow into months
+
+- HU: changes the sample input and expects overflow into `1393/8/1`
+- AI: keeps the original input and expects `1393/6/31`
+- needs attention
+
+## edge cases > sets January
+
+- same
+
+## edge cases > sets the last day of new month if the initial date was the last day of a longer month
+
+- HU: changes the sample to a Jalali month-end case and expects `1393/9/30`
+- AI: keeps the original sample and changes expected result to `1393/9/9`
+- needs attention
+
+# src/setDefaultOptions/test.ts
+
+## locale > format
+
+- same
+
+## locale > formatDistance
+
+- same
+
+## locale > formatDistanceStrict
+
+- same
+
+## locale > formatDuration
+
+- same
+
+## locale > formatRelative
+
+- same
+
+## locale > isMatch
+
+- HU: changes locale sample strings to Jalali text with `11 دی 1392 ...`
+- AI: changes locale sample strings to Jalali text with ordinal `11-ام دی 1392 ...`
+- needs attention
+
+## locale > parse
+
+- HU: changes parse input strings to Jalali text with `11 دی 1392 ...`
+- AI: changes parse input strings to Jalali text with ordinal `11-ام دی 1392 ...`
+- needs attention
+
+## weekStartsOn > eachWeekOfInterval
+
+- same
+
+## weekStartsOn > endOfWeek
+
+- same
+
+## weekStartsOn > getWeekOfMonth
+
+- same
+
+## weekStartsOn > getWeeksInMonth
+
+- same
+
+## weekStartsOn > lastDayOfWeek
+
+- same
+
+## weekStartsOn > startOfWeek
+
+- same
+
+## firstWeekContainsDate > format
+
+- same
+
+## firstWeekContainsDate > getWeek
+
+- same
+
+## firstWeekContainsDate > getWeekYear
+
+- same
+
+## firstWeekContainsDate > parse
+
+- HU: changes parsed week-year input from `2018` to `1396` and expects Jalali boundary dates
+- AI: keeps input `2018` and changes expected results to years `2639`
+- needs attention
+
+## firstWeekContainsDate > setWeek
+
+- same
+
+## firstWeekContainsDate > setWeekYear
+
+- HU: changes the target week-year argument from `2004` to `1382` and expects Jalali dates
+- AI: keeps `2004` and changes expected results to years `2625` and `2626`
+- needs attention
+
+## firstWeekContainsDate > startOfWeekYear
+
+- same
+
+# src/setMonth/test.ts
+
+## sets the month
+
+- same
+
+## sets the last day of the month if the original date was the last day of a longer month
+
+- HU: changes the sample to a Jalali month-end case and expects `1393/10/30`
+- AI: keeps the original sample and changes expected result to `1393/2/10`
+- needs attention
+
+## accepts a timestamp
+
+- same
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result from February 29 to April 30
+- needs attention
+
+## context > allows to specify the context
+
+- same
+
+# src/setQuarter/test.ts
+
+## sets the quarter of the year
+
+- same
+
+## sets the last day of the month if the original date was the last day of a longer month
+
+- HU: changes the sample to a Jalali month-end case and expects `1393/8/30`
+- AI: keeps the original sample and changes expected result to `1393/3/9`
+- needs attention
+
+## accepts a timestamp
+
+- same
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result from February 29 to May 30
+- needs attention
+
+## context > allows to specify the context
+
+- same
+
+# src/setWeek/test.ts
+
+## sets the local week
+
+- HU: changes the sample date and expects `1384/1/2`
+- AI: keeps the original sample and changes expected result to `1383/1/2`
+- needs attention
+
+## accepts a timestamp
+
+- same
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result to March 14
+- needs attention
+
+## allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
+
+- same
+
+## `options.weekStartsOn` overwrites the first day of the week specified in locale
+
+- same
+
+## context > allows to specify the context
+
+- same
+
+# src/setWeekYear/test.ts
+
+## sets the local week-numbering year, saving the week and the day of the week
+
+- HU: changes the sample and target year to Jalali values and expects `1381/12/25`
+- AI: keeps the original `2004` target and changes expected result to year `2625`
+- needs attention
+
+## accepts a timestamp
+
+- HU: changes the sample and target year to Jalali values and expects `1381/1/1`
+- AI: keeps the original `2007` target and changes expected result to year `2628`
+- needs attention
+
+## sets local week-numbering years less than 100
+
+- HU: skip
+- AI: changes expected pre-100 result to year `628`
+- needs attention
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result to year `628`
+- needs attention
+
+## allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
+
+- HU: changes the sample and target year to Jalali values and expects `1382/1/7`
+- AI: keeps the original `2004` target and changes expected result to year `2625`
+- needs attention
+
+## `options.weekStartsOn` overwrites the first day of the week specified in locale
+
+- HU: changes the sample and target year to Jalali values and expects `1382/1/7`
+- AI: keeps the original `2004` target and changes expected result to year `2625`
+- needs attention
+
+## context > allows to specify the context
+
+- HU: changes context target years to Jalali `1393` and `1395`
+- AI: keeps Gregorian target years and changes expected ISO strings to years `2635` and `2637`
+- needs attention
+
+# src/startOfDecade/test.ts
+
+## returns the date with the time set to 00:00:00 and the date set to the first day of a year
+
+- HU: changes expected result from Gregorian decade start to Jalali decade start `1330/1/1`
+- AI: no change
+
+## accepts a timestamp
+
+- HU: changes expected result from Gregorian decade start to Jalali decade start `1360/1/1`
+- AI: no change
+
+## properly works with negative numbers
+
+- HU: changes both expected decade-start results to Jalali boundaries
+- AI: no change
+
+## context > allows to specify the context
+
+- HU: changes context inputs and expected ISO strings to Jalali decade boundaries
+- AI: no change
+
+# src/startOfWeek/test.ts
+
+## returns the date with the time set to 00:00:00 and the date set to the first day of a week
+
+- same
+
+## accepts a timestamp
+
+- same
+
+## edge cases > handles the week at the start of a year
+
+- same
+
+## context > allows to specify the context
+
+- HU: shifts the context input dates back one day and expects week starts at `1403/5/20` or `1403/5/27`
+- AI: mostly keeps the original inputs and changes the first two expected results to `1403/5/27`
+- needs attention
+
+# src/startOfWeekYear/test.ts
+
+## returns the date with the time set to 00:00:00 and the date set to the first day of a week year
+
+- same
+
+## accepts a timestamp
+
+- same
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result from December 28 to March 22
+- needs attention
+
+## allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale
+
+- same
+
+## `options.weekStartsOn` overwrites the first day of the week specified in locale
+
+- same
+
+## context > allows to specify the context
+
+- same
+
+# src/startOfYear/test.ts
+
+## returns the date with the time set to 00:00:00 and the date set to the first day of a year
+
+- same
+
+## accepts a timestamp
+
+- same
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result from January 1 to March 22
+- needs attention
+
+## context > allows to specify the context
+
+- HU: changes the context inputs to Jalali year-boundary timestamps and expects `1401/1/1` or `1402/1/1`
+- AI: keeps the original year-end inputs and changes all expected results to `1402/1/1`
+- needs attention
+
+# src/sub/test.ts
+
+## subtracts the duration from the given date
+
+- same
+
+## works well if the desired month has fewer days and the provided date is in the last day of a month
+
+- both update expected result to Jalali `1393/7/10`
+- HU: result date comment says `Sep`
+- AI: result date comment says `Oct`
+- needs attention
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result from February 28 to March 21
+- needs attention
+
+# src/subBusinessDays/test.ts
+
+## subtract the given number of business days
+
+- HU: changes amount `10` -> `12` and keeps expected result
+- AI: keeps amount and changes expected result to `1393/5/29`
+
+## handles negative amount
+
+- HU: fixes the input date/comment and changes amount `-10` -> `-12`
+- AI: keeps amount and changes expected result to `1393/6/8`
+
+## can handle a large number of business days
+
+- HU: scales the amount to `(3387885 * 6) / 5` and keeps expected result
+- AI: keeps amount and changes expected result to `3557/2/14`
+
+## accepts a timestamp
+
+- HU: changes amount `10` -> `12` and keeps expected result
+- AI: keeps amount and changes expected result to `1393/5/29`
+
+## context > allows to specify the context
+
+- same
+
+# src/subMonths/test.ts
+
+## subtracts the given number of months
+
+- same
+
+## works if the desired month has fewer days and the provided date is in the last day of a month
+
+- same
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result from February 28 to March 21
+- needs attention
+
+## context > allows to specify the context
+
+- same
+
+# src/subQuarters/test.ts
+
+## works well if the desired month has fewer days and the provided date is in the last day of a month
+
+- HU: changes the sample date to `1393/1/31` and expects `1392/10/30`
+- AI: keeps the original sample and changes expected result to `1393/7/10`
+- needs attention
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result from February 29 to March 21
+- needs attention
+
+## context > allows to specify the context
+
+- same
+
+# src/subYears/test.ts
+
+## handles the leap years properly
+
+- same
+
+## handles dates before 100 AD
+
+- HU: skip
+- AI: changes expected pre-100 result from February 28 to March 21
+- needs attention
+
+## context > allows to specify the context
+
+- same
+
 # src/endOfQuarter/test.ts
 
 - same
