@@ -28,7 +28,7 @@ const cdnPackage = process.env.DATE_FNS_CDN_PACKAGE === "true";
 const sourceMaps = process.env.DATE_FNS_CDN_SOURCE_MAPS === "true";
 const warn = process.env.DATE_FNS_CDN_WARN === "true";
 const warning =
-  'console.log("date-fns CDN files have moved to @date-fns/cdn. Please update your URLs. See: https://date-fns.org/docs/CDN");';
+  'console.log("date-fns-jalali CDN files have moved to @date-fns-jalali/cdn. Please update your URLs. See: https://date-fns.org/docs/CDN");';
 
 const indexPath = join(out, "cdn.js");
 const fpIndexPath = join(out, "fp", "cdn.js");
@@ -63,7 +63,7 @@ if (cdnPackage) {
     cp("LICENSE.md", join(out, "LICENSE.md")),
     writeFile(
       join(out, "README.md"),
-      "# @date-fns/cdn\n\nSee the date-fns CDN documentation: https://date-fns.org/docs/CDN\n",
+      "# @date-fns-jalali/cdn\n\nSee the date-fns-jalali CDN documentation: https://date-fns.org/docs/CDN\n",
     ),
     writePackageJSON(),
   ]);
@@ -154,27 +154,27 @@ function packageImport(fromPath: string, packagePath: string) {
 }
 
 function indexTemplate(fromPath: string) {
-  return `import * as dateFns from "${packageImport(fromPath, "index.js")}";
-window.dateFns = {
-  ...window.dateFns,
-  ...dateFns
+  return `import * as dateFnsJalali from "${packageImport(fromPath, "index.js")}";
+window.dateFnsJalali = {
+  ...window.dateFnsJalali,
+  ...dateFnsJalali
 };`;
 }
 
 function fpIndexTemplate(fromPath: string) {
   return `import * as fp from "${packageImport(fromPath, "fp.js")}";
-window.dateFns = {
-  ...window.dateFns,
+window.dateFnsJalali = {
+  ...window.dateFnsJalali,
   fp
 };`;
 }
 
 function localesIndexTemplate(fromPath: string) {
   return `import * as locales from "${packageImport(fromPath, "locale.js")}";
-window.dateFns = {
-  ...window.dateFns,
+window.dateFnsJalali = {
+  ...window.dateFnsJalali,
   locale: {
-    ...window.dateFns?.locale,
+    ...window.dateFnsJalali?.locale,
     ...locales
   }
 };`;
@@ -182,10 +182,10 @@ window.dateFns = {
 
 function localeTemplate({ name, code }: LocaleFile, fromPath: string) {
   return `import { ${name} } from "${packageImport(fromPath, `locale/${code}.js`)}";
-window.dateFns = {
-  ...window.dateFns,
+window.dateFnsJalali = {
+  ...window.dateFnsJalali,
   locale: {
-    ...window.dateFns?.locale,
+    ...window.dateFnsJalali?.locale,
     ${name}
   }
 };`;
@@ -197,9 +197,9 @@ async function writePackageJSON() {
     join(out, "package.json"),
     JSON.stringify(
       {
-        name: "@date-fns/cdn",
+        name: "@date-fns-jalali/cdn",
         version: packageJSON.version,
-        description: "CDN bundles for date-fns",
+        description: "CDN bundles for date-fns-jalali",
         license: packageJSON.license,
         contributors: packageJSON.contributors,
         repository: packageJSON.repository,
