@@ -1917,3 +1917,122 @@
 - AI is most useful as a secondary source of ideas: keep its explicit-locale wrappers where the test really wants English behavior, and reuse its non-skipped coverage after verifying the expected values against Jalali rules.
 - The main weakness in HU is skipped coverage. The main weakness in AI is that many fixes look mechanical: changing only expectations, preserving Gregorian/English assumptions in default tests, or introducing suspicious values that need manual review.
 - Best combined approach: prefer HU for default behavior and localized outputs, then selectively cherry-pick AI ideas only for explicit `enUS`/`Intl` coverage and for re-enabling skipped cases with Jalali-correct assertions.
+
+# TODO: Improve HU Baseline
+
+## Guardrails For The Next Agent
+
+- Start from HU everywhere; do not replace Jalali/Persian default behavior with upstream Gregorian or English defaults.
+- Keep Persian user-facing outputs as the default path. If a test is intentionally about English behavior, add explicit `enUS` or `locale: "en-US"` coverage instead of changing the default expectation.
+- Prefer re-enabling skipped coverage with Jalali-correct fixtures and assertions over deleting or weakening tests.
+- For week-based and business-day tests, assume Jalali local semantics: Shanbeh is the start of the week, and only Jomeh is a weekend day.
+- Do not preserve upstream Monday-first wording in default Jalali tests. Prefer titles framed around `weekend day`, `business day`, `start of week`, or `next business day`; if a concrete weekday must be named, use Jalali week naming with Shanbeh as day one.
+- For year-zero, BC, and pre-100 coverage, anchor the test semantics near Jalali year zero or Jalali calendar boundaries, not near Gregorian year zero. Do not accept a fix that merely remaps Gregorian zero-era expectations into Jalali output dates.
+- When HU changed a fixture from a Gregorian case to a Jalali case, also rename the test title if the old title is now misleading.
+- Do not add new tests, companion tests, or parallel variants. Improve the existing tests and existing test blocks in place.
+
+## P0: Correctness And Fixture Cleanup
+
+- `src/add/test.ts` — `works well if the desired month has fewer days and the provided date is on the last day of a month` — keep the HU Jalali expectation, but fix the result month comment/value mismatch so `new Date(2015, 9, 2)` is labeled `/* Oct */`, not `/* Sep */`.
+- `src/sub/test.ts` — `works well if the desired month has fewer days and the provided date is in the last day of a month` — fix the HU result month comment so the expected `new Date(2014/2015..., 9, 2)` line uses `/* Oct */` rather than a stale `/* Sep */` comment.
+- `src/addBusinessDays/test.ts` — `returns the Monday when 1 day is added on the Friday` — rename the case away from Monday-specific wording; describe it in Jalali business-day terms such as `returns the next business day when 1 day is added on Jomeh` or a weekend/business-day equivalent.
+- `src/addBusinessDays/test.ts` — `returns the Monday when 1 day is added on the Satuday` — rename the case away from Monday-specific wording; if a concrete weekday is still useful, use Jalali naming such as Shanbeh rather than Gregorian Monday/Saturday framing.
+- `src/addBusinessDays/test.ts` — `starting from a weekend day should land on a weekday when reducing a divisible by 5` — keep the HU weekend-aware fixture strategy, but rewrite the title and assertions around Jalali `weekend day` / `business day` semantics, making it clear why `-6` / `6` is correct when only Jomeh is weekend.
+- `src/getDaysInMonth/test.ts` — `works for the February of a leap year` — keep the HU Esfand semantics, but rename the test so the title does not still claim it is a February-specific Gregorian case.
+- `src/lastDayOfMonth/test.ts` — `works for the February of a leap year` — rename to an Esfand leap-year case and keep the HU Jalali fixture/result.
+- `src/lastDayOfMonth/test.ts` — `works for the February of a non-leap year` — rename to an Esfand non-leap-year case and keep the HU Jalali fixture/result.
+- `src/lightFormat/test.ts` — `1 BC formats as 1` — the HU fixture is now a Jalali year-1 case, so either rename the existing test to Jalali wording or restore BC semantics inside that same existing test; do not leave a BC title on a non-BC fixture.
+- `src/lightFormat/test.ts` — `2 BC formats as 2` — same fix as above: align the existing test with the HU Jalali fixture, or restore BC semantics inside that same existing test.
+- `src/setDefaultOptions/test.ts` — `locale > isMatch` — choose one canonical Persian ordinal/date wording and use it consistently across the suite; do not leave HU and AI variants (`11 دی 1392` vs `11-ام دی 1392`) half-mixed.
+- `src/setDefaultOptions/test.ts` — `locale > parse` — use the same canonical Persian wording chosen for `isMatch`, so `format`, `isMatch`, and `parse` all agree on one localized string shape.
+- `src/eachWeekendOfInterval/test.ts` — `context > allows to specify the context` — fix the HU expected weekend list so it does not contain the impossible date `1403/2/0`; recompute the correct Jalali weekend boundary and update the list.
+- `src/parseJSON/test.ts` — `parses a formatted new Date() back to UTC - issue 2149` — replace the HU hardcoded sample with a stable dynamic round-trip assertion so the test still checks serialization/parsing behavior rather than one fixed timestamp.
+- `src/formatISODuration/test.ts` — `all failed tests` — keep HU's direct `formatISODuration({...})` assertions for pure formatting coverage, but rewrite one of the existing tests so the file still exercises interval-derived Jalali-sensitive durations.
+- `src/intervalToDuration/test.ts` — Gregorian-titled edge cases such as `Feb 28 ...`, `Apr 30 ...`, and `May 31 ...` — rename the existing titles to Jalali month/day wording that matches the actual fixtures; where leap-year month-end semantics are the point, use `30 Esfand` / `29 Esfand` explicitly instead of Gregorian `Feb 28` wording.
+- `src/addMonths/test.ts` — `works well if the desired month has fewer days and the provided date is in the last day of a month` — review the HU Jalali fixture and rename the test if needed so the description matches a Jalali month-end case instead of an upstream Gregorian description.
+- `src/addQuarters/test.ts` — `works well if the desired month has fewer days and the provided date is in the last day of a month` — same cleanup: keep the HU Jalali fixture, but rename the case if the original Gregorian phrasing is now misleading.
+- `src/set/test.ts` — `value overflow > days of months overflow into months` — keep the HU Jalali overflow behavior, but rewrite the title or surrounding wording if the old Gregorian description no longer matches the new fixture.
+- `src/set/test.ts` — `edge cases > sets the last day of new month if the initial date was the last day of a longer month` — same cleanup: align the title with the HU Jalali month-end fixture.
+- `src/setMonth/test.ts` — `sets the last day of the month if the original date was the last day of a longer month` — keep the HU Jalali fixture/result, but rename if needed so the case description matches Jalali month-end logic.
+- `src/setQuarter/test.ts` — `sets the last day of the month if the original date was the last day of a longer month` — same cleanup as `setMonth`.
+- `src/subQuarters/test.ts` — `works well if the desired month has fewer days and the provided date is in the last day of a month` — keep the HU Jalali quarter subtraction fixture, but rename the test if the old Gregorian wording is no longer accurate.
+
+## P1: Restore HU-Skipped Coverage With Jalali-Correct Assertions
+
+- Cross-cutting rule for all items below: when restoring near-zero-year coverage, compute expectations from Jalali year-zero / early-year behavior first, rather than preserving upstream Gregorian-era expectations and translating the output.
+- `src/add/test.ts` — `handles dates before 100 AD` — unskip the HU-skipped test and calculate the Jalali-correct expected date instead of leaving pre-100 coverage removed.
+- `src/getDayOfYear/test.ts` — `handles dates before 100 AD` — unskip and assert the Jalali day-of-year value.
+- `src/getDaysInMonth/test.ts` — `handles dates before 100 AD` — unskip and assert the Jalali month length.
+- `src/getWeek/test.ts` — `handles dates before 100 AD` — unskip and assert the Jalali local week number.
+- `src/getWeekYear/test.ts` — `handles dates before 100 AD` — unskip and assert the Jalali local week-numbering year.
+- `src/intervalToDuration/test.ts` — `edge cases > returns correct duration for Feb 28 to Apr 30 interval - issue 2910` — re-enable the HU-skipped case with Jalali month/day expectations, and rename the existing title away from Gregorian wording to the actual Jalali fixture range.
+- `src/intervalToDuration/test.ts` — `edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 31 interval` — re-enable with Jalali-correct expected months/days, and rename the existing title to Jalali month/day wording; if this case is really about leap-year month-end behavior, anchor it to `30 Esfand`, not `Feb 28`.
+- `src/intervalToDuration/test.ts` — `edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 30 interval` — re-enable with Jalali-correct expected months/days, and rename the existing title to Jalali month/day wording.
+- `src/intervalToDuration/test.ts` — `edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 29 interval` — re-enable with Jalali-correct expected months/days, and rename the existing title to Jalali month/day wording.
+- `src/intervalToDuration/test.ts` — `edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 28 interval` — re-enable with Jalali-correct expected months/days, and rename the existing title to Jalali month/day wording.
+- `src/intervalToDuration/test.ts` — `edge cases > issue 2470 > returns correct duration for Feb 28 to Aug 27 interval` — re-enable with Jalali-correct expected months/days, and rename the existing title to Jalali month/day wording.
+- `src/intervalToDuration/test.ts` — `edge cases > issue 2470 > returns correct duration for Apr 30 to May 31 interval` — re-enable with Jalali-correct expected months/days, and rename the existing title to Jalali month/day wording that matches the actual Jalali fixture range.
+- `src/setMonth/test.ts` — `handles dates before 100 AD` — unskip and restore Jalali coverage for month setting in pre-100 years.
+- `src/setQuarter/test.ts` — `handles dates before 100 AD` — unskip and restore Jalali coverage for quarter setting in pre-100 years.
+- `src/setWeek/test.ts` — `handles dates before 100 AD` — unskip and restore Jalali week-setting coverage.
+- `src/setWeekYear/test.ts` — `sets local week-numbering years less than 100` — unskip and compute the Jalali-correct expected result for week-year values below 100.
+- `src/setWeekYear/test.ts` — `handles dates before 100 AD` — unskip and restore Jalali pre-100 week-year coverage.
+- `src/startOfWeekYear/test.ts` — `handles dates before 100 AD` — unskip and restore the Jalali boundary expectation.
+- `src/startOfYear/test.ts` — `handles dates before 100 AD` — unskip and restore the Jalali new-year boundary expectation.
+- `src/addMonths/test.ts` — `handles dates before 100 AD` — unskip and compute the Jalali-correct expected result.
+- `src/addQuarters/test.ts` — `handles dates before 100 AD` — unskip and compute the Jalali-correct expected result.
+- `src/sub/test.ts` — `handles dates before 100 AD` — unskip and compute the Jalali-correct expected result.
+- `src/subMonths/test.ts` — `handles dates before 100 AD` — unskip and compute the Jalali-correct expected result.
+- `src/subQuarters/test.ts` — `handles dates before 100 AD` — unskip and compute the Jalali-correct expected result.
+- `src/subYears/test.ts` — `handles dates before 100 AD` — unskip and compute the Jalali-correct expected result.
+- `src/formatRelative/test.ts` — `handles dates before 100 AD` — restore the HU-skipped case with a Jalali/Persian expectation rather than leaving the file with a coverage hole.
+- `src/parse/test.ts` — `era / local week-numbering year / ISO week-numbering year / extended year` — re-enable the HU-skipped describe blocks and rewrite inputs/expected values so they are valid under Jalali behavior.
+- `src/parse/test.ts` — `with options.strictValidation = true > local week-numbering year` — restore the skipped strict-validation sub-block with Jalali-correct examples.
+- `src/parse/test.ts` — `common formats` — restore any HU-skipped `Date.prototype.toString()` / `toISOString()` coverage if it can be expressed stably under Jalali expectations; if not, replace it with a stable equivalent instead of leaving it absent.
+- `src/parse/test.ts` — `useAdditionalWeekYearTokens and useAdditionalDayOfYearTokens options` — restore the HU-skipped `YY` and `YYYY` allow-cases with explicit locale/expectation handling where needed.
+- `src/parse/test.ts` — `long format / custom locale / context / time zones` — re-enable the skipped `custom locale` coverage or rewrite an existing assertion in that block into a Jalali-equivalent custom-locale assertion.
+- `src/format/test.ts` — `year > regular year > 1 BC formats as 1` and `2 BC formats as 2` — restore BC semantics in the existing tests if they still matter, otherwise rename those existing tests and convert them to Jalali-year semantics.
+- `src/format/test.ts` — `year > local week-numbering year` — re-enable the HU-skipped block with Jalali-correct expectations.
+- `src/format/test.ts` — `year > extended year` — re-enable the HU-skipped block with Jalali-correct expectations.
+- `src/format/test.ts` — `edge cases > handles dates before 100 AD` — restore the HU-skipped pre-100 formatting case with Jalali output.
+
+## P1.1: Zero-Year And Early-Year Specific Audit
+
+- `src/lightFormat/test.ts` — `1 BC formats as 1` and `2 BC formats as 2` — decide explicitly whether these existing tests should remain BC/Gregorian-heritage compatibility tests or become Jalali early-year tests; do not leave them in a mixed state.
+- `src/format/test.ts` — `year > regular year > 1 BC formats as 1` and `2 BC formats as 2` — if BC semantics are kept, make those existing tests truly assert BC behavior; if Jalali semantics replace them, rename the existing cases so they no longer claim Gregorian BC behavior.
+- `src/addYears/test.ts` — `handles dates before 100 AD` — verify the expectation against Jalali early-year rollover, not Gregorian leap-day carry near year zero.
+- `src/setWeekYear/test.ts` — `sets local week-numbering years less than 100` and `handles dates before 100 AD` — validate week-year expectations using Jalali week-year rules around early years, not translated Gregorian year numbers.
+- `src/startOfWeekYear/test.ts` — `handles dates before 100 AD` — verify that the restored expectation is the Jalali week-year boundary nearest the early-year fixture.
+- `src/startOfYear/test.ts` — `handles dates before 100 AD` — verify that the restored expectation is the Jalali new-year boundary nearest the early-year fixture.
+- `src/parse/test.ts` — `era / extended year / local week-numbering year / ISO week-numbering year` — for any restored near-zero-year cases, separate Jalali early-year semantics from true era-token parsing; do not let Gregorian-era fixtures define the default Jalali interpretation.
+
+## P2: Keep Persian Defaults, Add Explicit English-Locale Coverage Where It Is Actually Intended
+
+- `src/intlFormatDistance/test.ts` — `works with single month / single quarter / single year` future and past cases — keep the HU Jalali-default fixtures, but if an existing assertion is intentionally checking English phrases like `next month` or `last quarter`, make that existing assertion explicit with `locale: "en-US"`.
+- `src/parse/test.ts` — `escapes characters between the single quote characters` — keep the HU Persian/Jalali default test, but if preserving the original English parsing behavior still matters, rewrite the existing test to make its locale intent explicit instead of creating a variant.
+- `src/parse/test.ts` — `accepts new line character` — keep the HU Jalali default case, but if this existing test is meant to cover English-locale parsing, make that locale explicit instead of mixing Gregorian input strings into the default locale path.
+- `src/parse/test.ts` — `calendar year` — for any examples that intentionally stay Gregorian/English, move them behind `enUS`; leave the default path Persian/Jalali.
+- `src/parse/test.ts` — `quarter with following year / quarter (formatting) / quarter (stand-alone)` — keep HU Persian quarter labels by default, but if an existing case is really about English quarter tokens, make that existing case explicitly `enUS`.
+- `src/parse/test.ts` — `month (formatting) / month (stand-alone)` — keep HU Persian month-token coverage by default, but if an existing case is really about English month names, make that existing case explicitly `enUS`.
+- `src/parse/test.ts` — `week / day / weekday parsing blocks` — same rule: keep Persian/Jalali defaults unless an existing case is specifically intended to check English parsing.
+- `src/parse/test.ts` — `day period / hour / minute / second` — keep HU Persian day-period parsing in the default path, and only use English tokens like `p.m.` inside explicit `enUS` cases.
+- `src/parse/test.ts` — `timezone (ISO-8601 w/ Z) / timezone (ISO-8601 w/o Z)` — if English/Gregorian string fixtures are retained, gate them behind explicit locale handling instead of letting them define the default behavior.
+- `src/parse/test.ts` — `long format / context / time zones` — keep each existing test single-purpose: default Persian/Jalali cases stay default, and any retained English-locale case must make its locale explicit in that same existing test.
+- `src/format/test.ts` — `locale features > allows a localize preprocessor` — keep the HU Persian default behavior, but if the existing test is really about another locale shape, make that existing assertion explicit rather than adding another assertion path.
+- `src/formatRelative/test.ts` — `all failed tests` — keep HU's Persian defaults such as `امروز` and `دیروز`; if any existing assertion is really intended to test English relative phrases, rewrite that existing assertion to make `enUS` explicit.
+- `src/setDefaultOptions/test.ts` — `locale > parse`, `locale > isMatch`, and `firstWeekContainsDate > parse` — any remaining English- or Gregorian-shaped existing assertions should be moved behind explicit `enUS` default options instead of living in the Persian default path.
+- `src/formatDistance/test.ts` — `all failed tests` — keep HU Persian defaults; if any existing assertion is really meant to preserve upstream English text behavior, make that specific existing assertion explicit with `enUS`.
+- `src/formatDistanceStrict/test.ts` — `all failed tests` — same rule as `formatDistance`: do not change default Persian expectations back to English; only retarget an existing assertion to `enUS` if that exact assertion is meant to stay English.
+- `src/formatDistanceToNow/test.ts` — `all failed tests` — same rule as above.
+- `src/formatDistanceToNowStrict/test.ts` — `all failed tests` — same rule as above.
+- `src/formatDuration/test.ts` — `all failed tests` — keep the Persian default strings and delimiter behavior; if an existing assertion is truly about English text, make that existing assertion explicit with `enUS`.
+
+## P3: Boundary-Sensitive Audits That Should Be Verified While Editing HU
+
+- `src/getWeekYear/test.ts` — `returns the local week-numbering year of the given date`, `accepts a timestamp`, and `context > allows to specify the context` — keep the HU Jalali week-year direction, but re-run these cases and confirm each boundary fixture against the actual Jalali `firstWeekContainsDate` rules.
+- `src/getWeek/test.ts` — `returns the local week of year of the given date`, `accepts a timestamp`, `properly works with negative numbers`, and `context > allows to specify the context` — keep the HU boundary-based fixtures, but verify every expected value against current Jalali week rules before the next agent lands the final patch.
+- `src/startOfWeek/test.ts` — `context > allows to specify the context` — keep the HU boundary-shift approach, but verify the exact week-start expectations around the `1403/5/20` and `1403/5/27` boundaries.
+- `src/startOfYear/test.ts` — `context > allows to specify the context` — confirm that the HU context timestamps really straddle the Jalali new year the way the test title claims.
+- `src/differenceInBusinessDays/test.ts` — `the same except given first date falls on a weekend`, `the same except given second date falls on a weekend`, `returns a negative number if the time value of the first date is smaller`, and `edge cases > the same for the swapped dates` — keep the HU Jalali weekend fixtures, but re-run and lock down the exact expected counts before making any wider changes.
+- `src/differenceInCalendarWeeks/test.ts` — `edge cases`, `negative numbers`, `normalizes the dates`, and `context > allows to specify the context` — verify the HU boundary fixtures and expected week counts against actual Jalali week starts before treating them as final.
+- `src/differenceInMonths/test.ts` — the renamed Esfand/Bahman edge cases — keep the HU Jalali month-difference interpretation, but confirm that the renamed titles and sample dates still express the original invariant clearly.
