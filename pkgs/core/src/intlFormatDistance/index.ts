@@ -22,7 +22,8 @@ import type { ContextOptions, DateArg, MaybeArray } from "../types.ts";
  * The {@link intlFormatDistance} function options.
  */
 export interface IntlFormatDistanceOptions
-  extends Intl.RelativeTimeFormatOptions, ContextOptions<Date> {
+  extends Intl.RelativeTimeFormatOptions,
+    ContextOptions<Date> {
   /** Force the distance unit */
   unit?: IntlFormatDistanceUnit;
   /** The locales to use (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument) */

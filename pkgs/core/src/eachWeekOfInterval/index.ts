@@ -14,8 +14,7 @@ import type {
  * The {@link eachWeekOfInterval} function options.
  */
 export interface EachWeekOfIntervalOptions<DateType extends Date = Date>
-  extends
-    StepOptions,
+  extends StepOptions,
     WeekOptions,
     LocalizedOptions<"options">,
     ContextOptions<DateType> {}

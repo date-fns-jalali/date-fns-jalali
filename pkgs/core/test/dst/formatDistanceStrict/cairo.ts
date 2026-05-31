@@ -11,5 +11,5 @@ assert.strictEqual(
     new Date(1986, 3, 4, 10, 32, 0),
     new Date(1986, 4, 4, 10, 32, 0),
   ),
-  "1 month",
+  "1 ماه",
 );

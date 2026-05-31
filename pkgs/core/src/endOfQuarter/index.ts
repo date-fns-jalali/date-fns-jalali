@@ -1,12 +1,14 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.ts";
+
 /**
  * The {@link endOfQuarter} function options.
  */
-export interface EndOfQuarterOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface EndOfQuarterOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name endOfQuarter
@@ -38,9 +40,9 @@ export function endOfQuarter<
   options?: EndOfQuarterOptions<ResultDate> | undefined,
 ): ResultDate {
   const _date = toDate(date, options?.in);
-  const currentMonth = _date.getMonth();
+  const currentMonth = coreGetMonth(_date);
   const month = currentMonth - (currentMonth % 3) + 3;
-  _date.setMonth(month, 0);
+  coreSetMonth(_date, month, 0);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }

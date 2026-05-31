@@ -6,21 +6,34 @@ import { UTCDate } from "@date-fns/utc";
 
 describe("endOfDay", () => {
   it("returns the date with the time set to 23:59:59.999", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     const result = endOfDay(date);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 2, 23, 59, 59, 999));
+    expect(result).toEqual(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 23, 59, 59, 999),
+    );
   });
 
   it("accepts a timestamp", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime();
+    const date = /* 1393/6/11 */ new Date(
+      2014,
+      8 /* Sep */,
+      2,
+      11,
+      55,
+      0,
+    ).getTime();
     const result = endOfDay(date);
-    expect(result).toEqual(new Date(2014, 8 /* Sep */, 2, 23, 59, 59, 999));
+    expect(result).toEqual(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 23, 59, 59, 999),
+    );
   });
 
   it("does not mutate the original date", () => {
-    const date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
+    const date = /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0);
     endOfDay(date);
-    expect(date).toEqual(new Date(2014, 8 /* Sep */, 2, 11, 55, 0));
+    expect(date).toEqual(
+      /* 1393/6/11 */ new Date(2014, 8 /* Sep */, 2, 11, 55, 0),
+    );
   });
 
   it("returns `Invalid Date` if the given date is invalid", () => {
@@ -43,19 +56,19 @@ describe("endOfDay", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        endOfDay("2024-04-10T07:00:00Z", {
+        endOfDay(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T23:59:59.999+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T23:59:59.999+08:00");
       expect(
-        endOfDay("2024-04-10T07:00:00Z", {
+        endOfDay(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("America/Los_Angeles"),
         }).toISOString(),
-      ).toBe("2024-04-10T23:59:59.999-07:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T23:59:59.999-07:00");
     });
 
     it("resolves the context date type", () => {
-      const date = new Date("2014-09-01T00:00:00Z");
+      const date = new Date(/* 1393/6/10 */ "2014-09-01T00:00:00Z");
       const result = endOfDay(date, {
         in: tz("Asia/Tokyo"),
       });

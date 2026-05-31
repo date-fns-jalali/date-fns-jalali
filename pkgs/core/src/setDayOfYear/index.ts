@@ -1,12 +1,14 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link setDayOfYear} function options.
  */
-export interface SetDayOfYearOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface SetDayOfYearOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name setDayOfYear
@@ -39,7 +41,7 @@ export function setDayOfYear<
   options?: SetDayOfYearOptions<ResultDate> | undefined,
 ): ResultDate {
   const date_ = toDate(date, options?.in);
-  date_.setMonth(0);
-  date_.setDate(dayOfYear);
+  coreSetMonth(date_, 0);
+  coreSetDate(date_, dayOfYear);
   return date_;
 }
