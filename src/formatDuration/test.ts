@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { formatDuration } from "./index.ts";
+import { enUS } from "../locale/en-US/index.ts";
+import { formatDuration as originalFormatDuration } from "./index.ts";
+
+const formatDuration = (...args: Parameters<typeof originalFormatDuration>) => {
+  const [duration, options] = args;
+  return originalFormatDuration(duration, {
+    locale: enUS,
+    ...options,
+  });
+};
 
 describe("formatDuration", () => {
   it("formats full duration", () => {
