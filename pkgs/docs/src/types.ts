@@ -99,10 +99,11 @@ export namespace DateFnsDocs {
   /**
    * Page preview - a minimal version of {@link Page} for rendering pages index.
    */
-  export interface PagePreview extends Pick<
-    Page,
-    "slug" | "category" | "title" | "summary" | "submodules"
-  > {
+  export interface PagePreview
+    extends Pick<
+      Page,
+      "slug" | "category" | "title" | "summary" | "submodules"
+    > {
     // Old records don't have it
     type?: Page["type"];
   }

@@ -7,7 +7,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
  * The {@link formatDistanceToNow} function options.
  */
 export interface FormatDistanceToNowOptions
-  extends FormatDistanceOptions, ContextOptions<Date> {}
+  extends FormatDistanceOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name formatDistanceToNow

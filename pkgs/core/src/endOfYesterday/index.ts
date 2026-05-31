@@ -5,9 +5,8 @@ import type { ContextOptions } from "../types.ts";
 /**
  * The {@link endOfYesterday} function options.
  */
-export interface EndOfYesterdayOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface EndOfYesterdayOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name endOfYesterday

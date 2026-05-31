@@ -5,9 +5,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link setQuarter} function options.
  */
-export interface SetQuarterOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface SetQuarterOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name setQuarter

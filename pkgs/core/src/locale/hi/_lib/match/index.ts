@@ -80,7 +80,15 @@ const parseDayPatterns = {
     /^शुक्र/i,
     /^शनि/i,
   ] as const,
-  any: [/^रवि/i, /^सोम/i, /^मंगल/i, /^बुध/i, /^गुरु/i, /^शुक्र/i, /^शनि/i] as const,
+  any: [
+    /^रवि/i,
+    /^सोम/i,
+    /^मंगल/i,
+    /^बुध/i,
+    /^गुरु/i,
+    /^शुक्र/i,
+    /^शनि/i,
+  ] as const,
 };
 
 const matchDayPeriodPatterns = {

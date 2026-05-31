@@ -5,7 +5,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link differenceInCalendarISOWeekYears} function options.
  */
-export interface DifferenceInCalendarISOWeekYearsOptions extends ContextOptions<Date> {}
+export interface DifferenceInCalendarISOWeekYearsOptions
+  extends ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarISOWeekYears
