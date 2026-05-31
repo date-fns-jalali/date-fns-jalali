@@ -8,8 +8,8 @@ describe("formatDistance", () => {
     describe("when the includeSeconds option is true", () => {
       it("less than 5 seconds", () => {
         const result = formatDistance(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 3),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 3),
           { includeSeconds: true },
         );
         expect(result).toBe("less than 5 seconds");
@@ -17,8 +17,8 @@ describe("formatDistance", () => {
 
       it("less than 10 seconds", () => {
         const result = formatDistance(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 7),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 7),
           { includeSeconds: true },
         );
         expect(result).toBe("less than 10 seconds");
@@ -26,8 +26,8 @@ describe("formatDistance", () => {
 
       it("less than 20 seconds", () => {
         const result = formatDistance(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 15),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 15),
           { includeSeconds: true },
         );
         expect(result).toBe("less than 20 seconds");
@@ -35,8 +35,8 @@ describe("formatDistance", () => {
 
       it("half a minute", () => {
         const result = formatDistance(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 25),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
           { includeSeconds: true },
         );
         expect(result).toBe("half a minute");
@@ -44,8 +44,8 @@ describe("formatDistance", () => {
 
       it("less than a minute", () => {
         const result = formatDistance(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 32, 45),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 45),
           { includeSeconds: true },
         );
         expect(result).toBe("less than a minute");
@@ -53,8 +53,8 @@ describe("formatDistance", () => {
 
       it("1 minute", () => {
         const result = formatDistance(
-          new Date(1986, 3, 4, 10, 32, 0),
-          new Date(1986, 3, 4, 10, 33, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+          /* 1365/1/15 */ new Date(1986, 3, 4, 10, 33, 0),
           { includeSeconds: true },
         );
         expect(result).toBe("1 minute");
@@ -65,24 +65,24 @@ describe("formatDistance", () => {
   describe("minutes", () => {
     it("less than a minute", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 20),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 20),
       );
       expect(result).toBe("less than a minute");
     });
 
     it("1 minute", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 50),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 50),
       );
       expect(result).toBe("1 minute");
     });
 
     it("n minutes", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 34, 50),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 34, 50),
       );
       expect(result).toBe("3 minutes");
     });
@@ -91,16 +91,16 @@ describe("formatDistance", () => {
   describe("hours", () => {
     it("about 1 hour", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 11, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
       );
       expect(result).toBe("about 1 hour");
     });
 
     it("about n hours", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 13, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 13, 32, 0),
       );
       expect(result).toBe("about 3 hours");
     });
@@ -109,16 +109,16 @@ describe("formatDistance", () => {
   describe("days", () => {
     it("1 day", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 5, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/16 */ new Date(1986, 3, 5, 10, 32, 0),
       );
       expect(result).toBe("1 day");
     });
 
     it("n days", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 7, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0),
       );
       expect(result).toBe("3 days");
     });
@@ -127,16 +127,16 @@ describe("formatDistance", () => {
   describe("months", () => {
     it("about 1 month", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 4, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/2/14 */ new Date(1986, 4, 4, 10, 32, 0),
       );
       expect(result).toBe("about 1 month");
     });
 
     it("n months", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 6, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/4/13 */ new Date(1986, 6, 4, 10, 32, 0),
       );
       expect(result).toBe("3 months");
     });
@@ -145,40 +145,40 @@ describe("formatDistance", () => {
   describe("years", () => {
     it("about 1 year", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1987, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1366/1/15 */ new Date(1987, 3, 4, 10, 32, 0),
       );
       expect(result).toBe("about 1 year");
     });
 
     it("over 1 year", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1987, 9, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1366/7/12 */ new Date(1987, 9, 4, 10, 32, 0),
       );
       expect(result).toBe("over 1 year");
     });
 
     it("almost n years", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1989, 2, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1367/12/13 */ new Date(1989, 2, 4, 10, 32, 0),
       );
       expect(result).toBe("almost 3 years");
     });
 
     it("about n years", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1989, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1368/1/15 */ new Date(1989, 3, 4, 10, 32, 0),
       );
       expect(result).toBe("about 3 years");
     });
 
     it("over n years", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1989, 9, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1368/7/12 */ new Date(1989, 9, 4, 10, 32, 0),
       );
       expect(result).toBe("over 3 years");
     });
@@ -186,8 +186,8 @@ describe("formatDistance", () => {
 
   it("accepts timestamps", () => {
     const result = formatDistance(
-      new Date(1986, 3, 4, 10, 32, 0).getTime(),
-      new Date(1986, 3, 4, 11, 32, 0).getTime(),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0).getTime(),
+      /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0).getTime(),
     );
     expect(result).toBe("about 1 hour");
   });
@@ -195,8 +195,8 @@ describe("formatDistance", () => {
   describe("when the addSuffix option is true", () => {
     it("adds a past suffix", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 25),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 25),
         { includeSeconds: true, addSuffix: true },
       );
       expect(result).toBe("half a minute ago");
@@ -204,8 +204,8 @@ describe("formatDistance", () => {
 
     it("adds a future suffix", () => {
       const result = formatDistance(
-        new Date(1986, 3, 4, 11, 32, 0),
-        new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 11, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         { addSuffix: true },
       );
       expect(result).toBe("in about 1 hour");
@@ -227,8 +227,8 @@ describe("formatDistance", () => {
       };
 
       const result = formatDistance(
-        new Date(1986, 3, 4, 10, 32, 3),
-        new Date(1986, 3, 4, 10, 32, 0),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 3),
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
         {
           includeSeconds: true,
           addSuffix: true,
@@ -242,13 +242,21 @@ describe("formatDistance", () => {
 
   it("throws RangeError if the first date is `Invalid Date`", () => {
     expect(
-      formatDistance.bind(null, new Date(NaN), new Date(1986, 3, 7, 10, 32, 0)),
+      formatDistance.bind(
+        null,
+        new Date(NaN),
+        /* 1365/1/18 */ new Date(1986, 3, 7, 10, 32, 0),
+      ),
     ).toThrow(RangeError);
   });
 
   it("throws RangeError if the second date is `Invalid Date`", () => {
     expect(
-      formatDistance.bind(null, new Date(1986, 3, 4, 10, 32, 0), new Date(NaN)),
+      formatDistance.bind(
+        null,
+        /* 1365/1/15 */ new Date(1986, 3, 4, 10, 32, 0),
+        new Date(NaN),
+      ),
     ).toThrow(RangeError);
   });
 
@@ -259,8 +267,13 @@ describe("formatDistance", () => {
   });
 
   it("normalizes the dates", () => {
-    const dateLeft = new TZDate(2023, 5, 1, "Asia/Singapore");
-    const dateRight = new TZDate(2023, 11, 1, "America/New_York");
+    const dateLeft = /* 1402/3/11 */ new TZDate(2023, 5, 1, "Asia/Singapore");
+    const dateRight = /* 1402/9/10 */ new TZDate(
+      2023,
+      11,
+      1,
+      "America/New_York",
+    );
     expect(formatDistance(dateLeft, dateRight)).toEqual("6 months");
     expect(formatDistance(dateRight, dateLeft)).toBe("6 months");
   });
@@ -277,14 +290,22 @@ describe("formatDistance", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        formatDistance("2024-04-10T07:00:00Z", "2024-04-12T07:00:00Z", {
-          in: tz("America/Los_Angeles"),
-        }),
+        formatDistance(
+          /* 1403/1/22 */ "2024-04-10T07:00:00Z",
+          /* 1403/1/24 */ "2024-04-12T07:00:00Z",
+          {
+            in: tz("America/Los_Angeles"),
+          },
+        ),
       ).toEqual("2 days");
       expect(
-        formatDistance("2024-04-10T07:00:00Z", "2024-04-12T07:00:00Z", {
-          in: tz("Asia/Singapore"),
-        }),
+        formatDistance(
+          /* 1403/1/22 */ "2024-04-10T07:00:00Z",
+          /* 1403/1/24 */ "2024-04-12T07:00:00Z",
+          {
+            in: tz("Asia/Singapore"),
+          },
+        ),
       ).toEqual("2 days");
     });
   });
