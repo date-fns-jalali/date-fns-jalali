@@ -1,4 +1,5 @@
 import { toJalali } from "../../src/_lib/jalali/index.ts";
+export { toGregorian } from "../../src/_lib/jalali/index.ts";
 
 export function isStringDate(node) {
   if (node.type === "StringLiteral") {
