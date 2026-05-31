@@ -1,6 +1,10 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link lastDayOfMonth} function options.
  */
@@ -37,8 +41,8 @@ export function lastDayOfMonth<
   options?: LastDayOfMonthOptions<ResultDate> | undefined,
 ): ResultDate {
   const _date = toDate(date, options?.in);
-  const month = _date.getMonth();
-  _date.setFullYear(_date.getFullYear(), month + 1, 0);
+  const month = coreGetMonth(_date);
+  coreSetFullYear(_date, coreGetFullYear(_date), month + 1, 0);
   _date.setHours(0, 0, 0, 0);
   return toDate(_date, options?.in) as ResultDate;
 }

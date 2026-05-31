@@ -14,7 +14,7 @@ export function toTpInstant<
   try {
     temporal = Temporal.Instant.fromEpochMilliseconds(
       inputDate.getTime(),
-    ).toZonedDateTimeISO(getDateTimeZone(inputDate));
+    ).toZonedDateTimeISO(getDateTimeZone(inputDate)).withCalendar('persian');
   } catch (err) {
     if (err instanceof RangeError) temporal = null;
     else throw err;
