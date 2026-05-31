@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { newDate } from "./index.js";
+import { newDate } from "./index.ts";
 
 describe("newDate", function () {
   it("create a date", function () {
