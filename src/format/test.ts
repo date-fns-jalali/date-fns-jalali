@@ -141,37 +141,37 @@ describe("format", () => {
         );
       });
 
-      it.skip("1 BC formats as 1", () => {
+      it("Jalali year 623 formats as 623", () => {
         const date = new Date(0);
         date.setFullYear(0, 0 /* Jan */, 1);
         date.setHours(0, 0, 0, 0);
         const result = format(date, "y");
-        expect(result).toBe("1");
+        expect(result).toBe("623");
       });
 
-      it.skip("2 BC formats as 2", () => {
+      it("Jalali year 624 formats as 624", () => {
         const date = new Date(0);
         date.setFullYear(-1, 0 /* Jan */, 1);
         date.setHours(0, 0, 0, 0);
         const result = format(date, "y");
-        expect(result).toBe("2");
+        expect(result).toBe("624");
       });
 
-      it.skip("2 BC formats as 2nd", () => {
+      it("Jalali year 624 formats ordinally", () => {
         const date = new Date();
         date.setFullYear(-1, 0 /* Jan */, 1);
         date.setHours(0, 0, 0, 0);
         const result = format(date, "yo");
-        expect(result).toBe("2nd");
+        expect(result).toBe("624-ام");
       });
     });
 
-    describe.skip("local week-numbering year", () => {
+    describe("local week-numbering year", () => {
       it("works as expected", () => {
         const result = format(date, "Y Yo YY YYY YYYY YYYYY", {
           useAdditionalWeekYearTokens: true,
         });
-        expect(result).toBe("1986 1986th 86 1986 1986 01986");
+        expect(result).toBe("1365 1365-ام 65 1365 1365 01365");
       });
 
       it("the first week of the next year", () => {
@@ -182,7 +182,7 @@ describe("format", () => {
             useAdditionalWeekYearTokens: true,
           },
         );
-        expect(result).toBe("2014");
+        expect(result).toBe("1392");
       });
 
       it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in options", () => {
@@ -195,7 +195,7 @@ describe("format", () => {
             useAdditionalWeekYearTokens: true,
           },
         );
-        expect(result).toBe("2013");
+        expect(result).toBe("1392");
       });
 
       it("the first week of year", () => {
@@ -206,23 +206,27 @@ describe("format", () => {
             useAdditionalWeekYearTokens: true,
           },
         );
-        expect(result).toBe("2016");
+        expect(result).toBe("1394");
       });
 
-      it("1 BC formats as 1", () => {
+      it("Jalali local week-numbering year 622 formats as 622", () => {
         const date = new Date(0);
         date.setFullYear(0, 6 /* Jul */, 2);
         date.setHours(0, 0, 0, 0);
-        const result = format(date, "Y");
-        expect(result).toBe("1");
+        const result = format(date, "Y", {
+          useAdditionalWeekYearTokens: true,
+        });
+        expect(result).toBe("622");
       });
 
-      it("2 BC formats as 2", () => {
+      it("Jalali local week-numbering year 623 formats as 623", () => {
         const date = new Date(0);
         date.setFullYear(-1, 6 /* Jul */, 2);
         date.setHours(0, 0, 0, 0);
-        const result = format(date, "Y");
-        expect(result).toBe("2");
+        const result = format(date, "Y", {
+          useAdditionalWeekYearTokens: true,
+        });
+        expect(result).toBe("623");
       });
     });
 
@@ -265,26 +269,26 @@ describe("format", () => {
       });
     });
 
-    describe.skip("extended year", () => {
+    describe("extended year", () => {
       it("works as expected", () => {
         const result = format(date, "u uu uuu uuuu uuuuu");
-        expect(result).toBe("1986 1986 1986 1986 01986");
+        expect(result).toBe("1365 1365 1365 1365 01365");
       });
 
-      it("1 BC formats as 0", () => {
+      it("Jalali extended year -622 formats as -622", () => {
         const date = new Date(0);
         date.setFullYear(0, 0, 1);
         date.setHours(0, 0, 0, 0);
         const result = format(date, "u");
-        expect(result).toBe("0");
+        expect(result).toBe("-622");
       });
 
-      it("2 BC formats as -1", () => {
+      it("Jalali extended year -623 formats as -623", () => {
         const date = new Date(0);
         date.setFullYear(-1, 0, 1);
         date.setHours(0, 0, 0, 0);
         const result = format(date, "u");
-        expect(result).toBe("-1");
+        expect(result).toBe("-623");
       });
     });
   });
@@ -849,11 +853,15 @@ describe("format", () => {
       );
     });
 
-    it.skip("handles dates before 100 AD", () => {
+    it("handles dates before 100 AD", () => {
       const initialDate = new Date(0);
       initialDate.setFullYear(7, 11 /* Dec */, 31);
       initialDate.setHours(0, 0, 0, 0);
-      expect(format(initialDate, "Y ww i")).toBe("8 01 1");
+      expect(
+        format(initialDate, "Y ww i", {
+          useAdditionalWeekYearTokens: true,
+        }),
+      ).toBe("615 42 1");
     });
   });
 

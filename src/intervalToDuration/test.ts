@@ -140,7 +140,7 @@ describe("intervalToDuration", () => {
       expect(duration).toEqual(expectedDuration);
     });
 
-    it.skip(
+    it(
       "returns correct duration for 9 Esfand 1400 to 10 Ordibehesht 1401 interval - issue 2910",
       () => {
       const duration = intervalToDuration({
@@ -149,7 +149,7 @@ describe("intervalToDuration", () => {
       });
       const expectedDuration = {
         months: 2,
-        days: 2,
+          days: 1,
       };
 
       expect(duration).toEqual(expectedDuration);
@@ -157,77 +157,12 @@ describe("intervalToDuration", () => {
     );
 
     describe("issue 2470", () => {
-      it.skip(
+      it(
         "returns correct duration for 10 Esfand 1399 to 9 Shahrivar 1400 interval",
         () => {
         const duration = intervalToDuration({
           start: /* 1399/12/10 */ new Date(2021, 1, 28),
           end: /* 1400/6/9 */ new Date(2021, 7, 31),
-        });
-        const expectedDuration = {
-          months: 6,
-          days: 3,
-        };
-
-        expect(duration).toEqual(expectedDuration);
-        },
-      );
-
-      it.skip(
-        "returns correct duration for 10 Esfand 1399 to 8 Shahrivar 1400 interval",
-        () => {
-        const duration = intervalToDuration({
-          start: /* 1399/12/10 */ new Date(2021, 1, 28),
-          end: /* 1400/6/8 */ new Date(2021, 7, 30),
-        });
-        const expectedDuration = {
-          months: 6,
-          days: 2,
-        };
-
-        expect(duration).toEqual(expectedDuration);
-        },
-      );
-
-      it.skip(
-        "returns correct duration for 10 Esfand 1399 to 7 Shahrivar 1400 interval",
-        () => {
-        const duration = intervalToDuration({
-          start: /* 1399/12/10 */ new Date(2021, 1, 28),
-          end: /* 1400/6/7 */ new Date(2021, 7, 29),
-        });
-        const expectedDuration = {
-          months: 6,
-          days: 1,
-        };
-
-        expect(duration).toEqual(expectedDuration);
-        },
-      );
-
-      it.skip(
-        "returns correct duration for 10 Esfand 1399 to 6 Shahrivar 1400 interval",
-        () => {
-        const duration = intervalToDuration({
-          start: /* 1399/12/10 */ new Date(2021, 1, 28),
-          end: /* 1400/6/6 */ new Date(2021, 7, 28),
-        });
-        const expectedDuration = {
-          months: 6,
-        };
-
-        expect(duration).toEqual(expectedDuration);
-        },
-      );
-
-      it.skip(
-        "returns correct duration for 10 Esfand 1399 to 5 Shahrivar 1400 interval",
-        () => {
-        // 10 Esfand to 10 Mordad is 5 months, 10 Mordad to 5 Shahrivar is 30 days
-
-        const duration = intervalToDuration({
-          start: /* 1399/12/10 */ new Date(2021, 1, 28),
-          end: /* 1400/6/5 */ new Date(2021, 7, 27),
         });
         const expectedDuration = {
           months: 5,
@@ -238,7 +173,73 @@ describe("intervalToDuration", () => {
         },
       );
 
-      it.skip(
+      it(
+        "returns correct duration for 10 Esfand 1399 to 8 Shahrivar 1400 interval",
+        () => {
+        const duration = intervalToDuration({
+          start: /* 1399/12/10 */ new Date(2021, 1, 28),
+          end: /* 1400/6/8 */ new Date(2021, 7, 30),
+        });
+        const expectedDuration = {
+          months: 5,
+          days: 29,
+        };
+
+        expect(duration).toEqual(expectedDuration);
+        },
+      );
+
+      it(
+        "returns correct duration for 10 Esfand 1399 to 7 Shahrivar 1400 interval",
+        () => {
+        const duration = intervalToDuration({
+          start: /* 1399/12/10 */ new Date(2021, 1, 28),
+          end: /* 1400/6/7 */ new Date(2021, 7, 29),
+        });
+        const expectedDuration = {
+          months: 5,
+          days: 28,
+        };
+
+        expect(duration).toEqual(expectedDuration);
+        },
+      );
+
+      it(
+        "returns correct duration for 10 Esfand 1399 to 6 Shahrivar 1400 interval",
+        () => {
+        const duration = intervalToDuration({
+          start: /* 1399/12/10 */ new Date(2021, 1, 28),
+          end: /* 1400/6/6 */ new Date(2021, 7, 28),
+        });
+        const expectedDuration = {
+          months: 5,
+          days: 27,
+        };
+
+        expect(duration).toEqual(expectedDuration);
+        },
+      );
+
+      it(
+        "returns correct duration for 10 Esfand 1399 to 5 Shahrivar 1400 interval",
+        () => {
+        // 10 Esfand to 10 Mordad is 5 months, 10 Mordad to 5 Shahrivar is 26 days
+
+        const duration = intervalToDuration({
+          start: /* 1399/12/10 */ new Date(2021, 1, 28),
+          end: /* 1400/6/5 */ new Date(2021, 7, 27),
+        });
+        const expectedDuration = {
+          months: 5,
+          days: 26,
+        };
+
+        expect(duration).toEqual(expectedDuration);
+        },
+      );
+
+      it(
         "returns correct duration for 10 Ordibehesht 1400 to 10 Khordad 1400 interval",
         () => {
         const duration = intervalToDuration({
@@ -247,7 +248,6 @@ describe("intervalToDuration", () => {
         });
         const expectedDuration = {
           months: 1,
-          days: 1,
         };
 
         expect(duration).toEqual(expectedDuration);

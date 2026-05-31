@@ -99,11 +99,11 @@ describe("formatRelative", () => {
       );
     });
 
-    it.skip("handles dates before 100 AD", () => {
+    it("handles dates before 100 AD", () => {
       const date = new Date(0);
       date.setFullYear(7, 11 /* Dec */, 31);
       date.setHours(0, 0, 0, 0);
-      expect(formatRelative(date, baseDate)).toBe("12/31/0007");
+      expect(formatRelative(date, baseDate)).toBe("0615/10/09");
     });
   });
 
