@@ -53,7 +53,7 @@ describe("parse", () => {
   describe("era", () => {
     it("abbreviated", () => {
       const result = parse("10000 BC", "yyyyy G", referenceDate);
-      expect(result).toEqual(/* -9999/1/2 */ new Date(-9378, 2 /* Mar */, 23));
+      expect(result).toEqual(/* -9999/1/1 */ new Date(-9378, 2 /* Mar */, 23));
     });
 
     it("wide", () => {
@@ -63,12 +63,12 @@ describe("parse", () => {
 
     it("narrow", () => {
       const result = parse("44 B", "y GGGGG", referenceDate);
-      expect(result).toEqual(/* -43/1/2 */ new Date(578, 2 /* Mar */, 22));
+      expect(result).toEqual(/* -43/1/1 */ new Date(578, 2 /* Mar */, 22));
     });
 
     it("with week-numbering year", () => {
       const result = parse("44 B", "Y GGGGG", referenceDate);
-      expect(result).toEqual(/* -43/1/2 */ new Date(578, 2 /* Mar */, 22));
+      expect(result).toEqual(/* -43/1/1 */ new Date(578, 2 /* Mar */, 22));
     });
 
     it("parses stand-alone BC", () => {
@@ -267,7 +267,7 @@ describe("parse", () => {
   describe("ISO week-numbering year", () => {
     it("numeric", () => {
       const result = parse("-1234", "R", referenceDate);
-      expect(result).toEqual(/* -1235/12/28 */ new Date(-613, 2 /* Mar */, 19));
+      expect(result).toEqual(/* -1235/12/27 */ new Date(-613, 2 /* Mar */, 19));
     });
 
     it("two-digit zero-padding", () => {
@@ -329,7 +329,7 @@ describe("parse", () => {
   describe("extended year", () => {
     it("numeric", () => {
       const result = parse("-1234", "u", referenceDate);
-      expect(result).toEqual(/* -1234/1/2 */ new Date(-613, 2 /* Mar */, 22));
+      expect(result).toEqual(/* -1234/1/1 */ new Date(-613, 2 /* Mar */, 22));
     });
 
     it("two-digit zero-padding", () => {
@@ -2269,7 +2269,7 @@ describe("parse", () => {
         // @ts-expect-error - It's oke to have incomplete locale
         locale: customLocale,
       });
-      expect(result).toEqual(/* -2017/1/2 */ new Date(-1396, 2 /* Mar */, 22));
+      expect(result).toEqual(/* -2017/1/1 */ new Date(-1396, 2 /* Mar */, 22));
     });
   });
 
