@@ -119,7 +119,7 @@ function generateTypeDoc(fns: Awaited<ReturnType<typeof listFns>>) {
     "// This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.\n" +
     JSON.stringify(
       {
-        name: "date-fns",
+        name: "date-fns-jalali",
         entryPoints: fns
           .map((fn) => fn.fullPath)
           .concat(["./src/constants/index.ts"]),

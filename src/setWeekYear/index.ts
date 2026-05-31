@@ -11,6 +11,10 @@ import type {
   WeekOptions,
 } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link setWeekYear} function options.
  */
@@ -82,10 +86,10 @@ export function setWeekYear<
   );
 
   const firstWeek = constructFrom(options?.in || date, 0);
-  firstWeek.setFullYear(weekYear, 0, firstWeekContainsDate);
+  coreSetFullYear(firstWeek, weekYear, 0, firstWeekContainsDate);
   firstWeek.setHours(0, 0, 0, 0);
 
   const date_ = startOfWeekYear(firstWeek, options);
-  date_.setDate(date_.getDate() + diff);
+  coreSetDate(date_, coreGetDate(date_) + diff);
   return date_;
 }

@@ -9,3 +9,4 @@ set -ex
 pnpm tsx ./scripts/build/indices.ts
 ./scripts/build/docs.sh
 pnpm tsx ./scripts/build/fp.ts
+pnpx prettier --write package.json typedoc.json

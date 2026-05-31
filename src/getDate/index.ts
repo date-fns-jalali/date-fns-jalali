@@ -1,6 +1,8 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+
 /**
  * The {@link getDate} function options.
  */
@@ -28,5 +30,5 @@ export function getDate(
   date: DateArg<Date> & {},
   options?: GetDateOptions | undefined,
 ): number {
-  return toDate(date, options?.in).getDate();
+  return coreGetDate(toDate(date, options?.in));
 }
