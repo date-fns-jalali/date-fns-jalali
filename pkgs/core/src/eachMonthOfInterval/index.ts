@@ -6,7 +6,8 @@ import type { ContextOptions, Interval, StepOptions } from "../types.ts";
  * The {@link eachMonthOfInterval} function options.
  */
 export interface EachMonthOfIntervalOptions<DateType extends Date = Date>
-  extends StepOptions, ContextOptions<DateType> {}
+  extends StepOptions,
+    ContextOptions<DateType> {}
 
 /**
  * The {@link eachMonthOfInterval} function result type. It resolves the proper data type.

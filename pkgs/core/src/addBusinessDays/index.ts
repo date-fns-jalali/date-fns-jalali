@@ -8,9 +8,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link addBusinessDays} function options.
  */
-export interface AddBusinessDaysOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface AddBusinessDaysOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name addBusinessDays

@@ -4,9 +4,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link lastDayOfQuarter} function options.
  */
-export interface LastDayOfQuarterOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface LastDayOfQuarterOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfQuarter

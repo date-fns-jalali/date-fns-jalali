@@ -4,9 +4,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link startOfDecade} options.
  */
-export interface StartOfDecadeOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface StartOfDecadeOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name startOfDecade

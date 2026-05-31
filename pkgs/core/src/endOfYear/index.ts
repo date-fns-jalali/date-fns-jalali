@@ -4,9 +4,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link endOfYear} function options.
  */
-export interface EndOfYearOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface EndOfYearOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name endOfYear

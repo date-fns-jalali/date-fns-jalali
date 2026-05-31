@@ -4,9 +4,8 @@ import type { ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link setDayOfYear} function options.
  */
-export interface SetDayOfYearOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface SetDayOfYearOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name setDayOfYear
