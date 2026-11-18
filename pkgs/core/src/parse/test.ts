@@ -926,6 +926,35 @@ describe("parse", () => {
       expect(result).toEqual(/* 1365/1/12 */ new Date(1986, 3 /* Apr */, 1));
     });
 
+    it("parses every accepted spelling of Persian day names", () => {
+      const dayNames = [
+        ["شنبه"],
+        ["یکشنبه", "یک‌شنبه", "یک شنبه"],
+        ["دوشنبه", "دو شنبه"],
+        ["سه‌شنبه", "سه شنبه"],
+        ["چهارشنبه", "چهار شنبه"],
+        ["پنجشنبه", "پنج‌شنبه", "پنج شنبه"],
+        ["جمعه"],
+      ];
+
+      dayNames.forEach((names, dayIndex) => {
+        const expected = /* 1365/1/9 + dayIndex */ new Date(
+          1986,
+          2 /* Mar */,
+          29 + dayIndex,
+        );
+
+        names.forEach((name) => {
+          ["E", "EE", "EEE", "EEEE"].forEach((token) => {
+            expect(
+              parse(name, token, referenceDate),
+              `${name} (${token})`,
+            ).toEqual(expected);
+          });
+        });
+      });
+    });
+
     it("narrow", () => {
       const result = parse("چ", "EEEEE", referenceDate);
       expect(result).toEqual(/* 1365/1/13 */ new Date(1986, 3 /* Apr */, 2));
