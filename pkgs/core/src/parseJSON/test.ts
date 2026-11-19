@@ -1,7 +1,6 @@
 import { TZDate, tz } from "@date-fns/tz";
 import { describe, expect, it } from "vitest";
 import { assertType } from "../_lib/test/index.ts";
-import { format } from "../format/index.ts";
 import { parseJSON } from "./index.ts";
 
 describe("parseJSON", () => {
