@@ -12,7 +12,8 @@ import type { ContextOptions, DateArg, LocalizedOptions } from "../types.ts";
  * The {@link formatDistance} function options.
  */
 export interface FormatDistanceOptions
-  extends LocalizedOptions<"formatDistance">, ContextOptions<Date> {
+  extends LocalizedOptions<"formatDistance">,
+    ContextOptions<Date> {
   /** Distances less than a minute are more detailed */
   includeSeconds?: boolean;
   /** Add "X ago"/"in X" in the locale language */

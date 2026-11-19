@@ -14,7 +14,9 @@ import type {
  * The {@link getWeekOfMonth} function options.
  */
 export interface GetWeekOfMonthOptions
-  extends LocalizedOptions<"options">, WeekOptions, ContextOptions<Date> {}
+  extends LocalizedOptions<"options">,
+    WeekOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name getWeekOfMonth
@@ -44,7 +46,7 @@ export function getWeekOfMonth(
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   const currentDayOfMonth = getDate(toDate(date, options?.in));
   if (isNaN(currentDayOfMonth)) return NaN;

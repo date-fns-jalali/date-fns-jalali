@@ -7,12 +7,13 @@ import type {
   WeekOptions,
 } from "../types.ts";
 
+import { newDate as coreNewDate } from "../_core/newDate/index.ts";
+
 /**
  * The {@link isMatch} function options.
  */
 export interface IsMatchOptions
-  extends
-    LocalizedOptions<"options" | "match" | "formatLong">,
+  extends LocalizedOptions<"options" | "match" | "formatLong">,
     WeekOptions,
     FirstWeekContainsDateOptions,
     AdditionalTokensOptions {}
@@ -306,5 +307,5 @@ export function isMatch(
   formatStr: string,
   options?: IsMatchOptions,
 ): boolean {
-  return isValid(parse(dateStr, formatStr, new Date(), options));
+  return isValid(parse(dateStr, formatStr, coreNewDate(), options));
 }

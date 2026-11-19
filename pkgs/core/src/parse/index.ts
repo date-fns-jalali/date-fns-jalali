@@ -29,8 +29,7 @@ export { longFormatters, parsers };
  * The {@link parse} function options.
  */
 export interface ParseOptions<DateType extends Date = Date>
-  extends
-    LocalizedOptions<"options" | "match" | "formatLong">,
+  extends LocalizedOptions<"options" | "match" | "formatLong">,
     FirstWeekContainsDateOptions,
     WeekOptions,
     AdditionalTokensOptions,
@@ -383,7 +382,7 @@ export function parse<
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   if (!formatStr)
     return dateStr ? invalidDate() : toDate(referenceDate, options?.in);

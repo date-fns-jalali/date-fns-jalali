@@ -7,9 +7,8 @@ import type { ContextOptions, Interval } from "../types.ts";
 /**
  * The {@link eachWeekendOfInterval} function options.
  */
-export interface EachWeekendOfIntervalOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface EachWeekendOfIntervalOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * The {@link eachWeekendOfInterval} function result type.

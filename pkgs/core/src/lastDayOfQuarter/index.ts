@@ -1,12 +1,14 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.ts";
+
 /**
  * The {@link lastDayOfQuarter} function options.
  */
-export interface LastDayOfQuarterOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface LastDayOfQuarterOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfQuarter
@@ -38,9 +40,9 @@ export function lastDayOfQuarter<
   options?: LastDayOfQuarterOptions<ResultDate> | undefined,
 ): ResultDate {
   const date_ = toDate(date, options?.in);
-  const currentMonth = date_.getMonth();
+  const currentMonth = coreGetMonth(date_);
   const month = currentMonth - (currentMonth % 3) + 3;
-  date_.setMonth(month, 0);
+  coreSetMonth(date_, month, 0);
   date_.setHours(0, 0, 0, 0);
   return date_;
 }

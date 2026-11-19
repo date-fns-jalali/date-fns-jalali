@@ -1,10 +1,14 @@
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+
 /**
  * The {@link differenceInCalendarMonths} function options.
  */
-export interface DifferenceInCalendarMonthsOptions extends ContextOptions<Date> {}
+export interface DifferenceInCalendarMonthsOptions
+  extends ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarMonths
@@ -39,8 +43,8 @@ export function differenceInCalendarMonths(
     earlierDate,
   );
 
-  const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
-  const monthsDiff = laterDate_.getMonth() - earlierDate_.getMonth();
+  const yearsDiff = coreGetFullYear(laterDate_) - coreGetFullYear(earlierDate_);
+  const monthsDiff = coreGetMonth(laterDate_) - coreGetMonth(earlierDate_);
 
   return yearsDiff * 12 + monthsDiff;
 }

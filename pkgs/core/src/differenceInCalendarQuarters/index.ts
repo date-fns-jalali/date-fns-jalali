@@ -2,10 +2,13 @@ import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { getQuarter } from "../getQuarter/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+
 /**
  * The {@link differenceInCalendarQuarters} function options.
  */
-export interface DifferenceInCalendarQuartersOptions extends ContextOptions<Date> {}
+export interface DifferenceInCalendarQuartersOptions
+  extends ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarQuarters
@@ -40,7 +43,7 @@ export function differenceInCalendarQuarters(
     earlierDate,
   );
 
-  const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
+  const yearsDiff = coreGetFullYear(laterDate_) - coreGetFullYear(earlierDate_);
   const quartersDiff = getQuarter(laterDate_) - getQuarter(earlierDate_);
 
   return yearsDiff * 4 + quartersDiff;

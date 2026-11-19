@@ -10,12 +10,13 @@ import type {
   WeekOptions,
 } from "../types.ts";
 
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link startOfWeekYear} function options.
  */
 export interface StartOfWeekYearOptions<DateType extends Date = Date>
-  extends
-    LocalizedOptions<"options">,
+  extends LocalizedOptions<"options">,
     FirstWeekContainsDateOptions,
     WeekOptions,
     ContextOptions<DateType> {}
@@ -74,7 +75,7 @@ export function startOfWeekYear<
 
   const year = getWeekYear(date, options);
   const firstWeek = constructFrom(options?.in || date, 0);
-  firstWeek.setFullYear(year, 0, firstWeekContainsDate);
+  coreSetFullYear(firstWeek, year, 0, firstWeekContainsDate);
   firstWeek.setHours(0, 0, 0, 0);
   const _date = startOfWeek(firstWeek, options);
   return _date;

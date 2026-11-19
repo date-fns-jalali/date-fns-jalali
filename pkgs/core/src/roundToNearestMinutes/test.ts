@@ -200,9 +200,11 @@ describe("roundToNearestMinutes", () => {
 
   describe("edge cases", () => {
     it("rounds up to the next day", () => {
-      expect(roundToNearestMinutes(new Date(2014, 6, 10, 23, 59, 59))).toEqual(
-        new Date(2014, 6, 11),
-      );
+      expect(
+        roundToNearestMinutes(
+          /* 1393/4/19 */ new Date(2014, 6, 10, 23, 59, 59),
+        ),
+      ).toEqual(/* 1393/4/20 */ new Date(2014, 6, 11));
     });
 
     it("ceils correctly with 0 seconds and 1 millisecond", () => {
@@ -218,30 +220,41 @@ describe("roundToNearestMinutes", () => {
 
   describe("examples", () => {
     it("example 1", () => {
-      const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34));
-      expect(result).toEqual(new Date(2014, 6, 10, 12, 13));
+      const result = roundToNearestMinutes(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 12, 34),
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12, 13));
     });
 
     it("example 2", () => {
-      const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), {
-        nearestTo: 15,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 12, 15));
+      const result = roundToNearestMinutes(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 12, 34),
+        {
+          nearestTo: 15,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12, 15));
     });
 
     it("example 3", () => {
-      const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), {
-        roundingMethod: "floor",
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 12, 12));
+      const result = roundToNearestMinutes(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 12, 34),
+        {
+          roundingMethod: "floor",
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12, 12));
     });
 
     it("example 4", () => {
-      const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), {
-        roundingMethod: "ceil",
-        nearestTo: 30,
-      });
-      expect(result).toEqual(new Date(2014, 6, 10, 12, 30));
+      const result = roundToNearestMinutes(
+        /* 1393/4/19 */ new Date(2014, 6, 10, 12, 12, 34),
+        {
+          roundingMethod: "ceil",
+          nearestTo: 30,
+        },
+      );
+      expect(result).toEqual(/* 1393/4/19 */ new Date(2014, 6, 10, 12, 30));
     });
   });
 
@@ -276,21 +289,24 @@ describe("roundToNearestMinutes", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        roundToNearestMinutes("2024-04-10T07:00:00Z", {
+        roundToNearestMinutes(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Singapore"),
         }).toISOString(),
-      ).toBe("2024-04-10T15:00:00.000+08:00");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T15:00:00.000+08:00");
       expect(
-        roundToNearestMinutes("2024-04-10T07:00:00Z", {
+        roundToNearestMinutes(/* 1403/1/22 */ "2024-04-10T07:00:00Z", {
           in: tz("Asia/Kolkata"),
         }).toISOString(),
-      ).toBe("2024-04-10T12:30:00.000+05:30");
+      ).toBe(/* 1403/1/22 */ "2024-04-10T12:30:00.000+05:30");
     });
 
     it("resolves the context date type", () => {
-      const result = roundToNearestMinutes("2014-09-01T00:00:00Z", {
-        in: tz("Asia/Tokyo"),
-      });
+      const result = roundToNearestMinutes(
+        /* 1393/6/10 */ "2014-09-01T00:00:00Z",
+        {
+          in: tz("Asia/Tokyo"),
+        },
+      );
       expect(result).toBeInstanceOf(TZDate);
       assertType<assertType.Equal<TZDate, typeof result>>(true);
     });
@@ -303,5 +319,13 @@ function makeDate(
   milliseconds: number = 0,
 ) {
   // helper to make tests more readable since we mostly care about minutes and seconds
-  return new Date(2014, 6 /* Jul */, 10, 12, minutes, seconds, milliseconds);
+  return /* 1393/4/19 */ new Date(
+    2014,
+    6 /* Jul */,
+    10,
+    12,
+    minutes,
+    seconds,
+    milliseconds,
+  );
 }

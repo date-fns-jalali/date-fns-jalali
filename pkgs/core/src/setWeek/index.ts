@@ -8,12 +8,14 @@ import type {
   WeekOptions,
 } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link setWeek} function options.
  */
 export interface SetWeekOptions<DateType extends Date = Date>
-  extends
-    LocalizedOptions<"options">,
+  extends LocalizedOptions<"options">,
     WeekOptions,
     FirstWeekContainsDateOptions,
     ContextOptions<DateType> {}
@@ -66,6 +68,6 @@ export function setWeek<
 ): ResultDate {
   const date_ = toDate(date, options?.in);
   const diff = getWeek(date_, options) - week;
-  date_.setDate(date_.getDate() - diff * 7);
+  coreSetDate(date_, coreGetDate(date_) - diff * 7);
   return toDate(date_, options?.in);
 }

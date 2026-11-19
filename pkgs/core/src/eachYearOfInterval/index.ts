@@ -2,11 +2,16 @@ import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
 import type { ContextOptions, Interval, StepOptions } from "../types.ts";
 
+import { setMonth as coreSetMonth } from "../_core/setMonth/index.ts";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link eachYearOfInterval} function options.
  */
 export interface EachYearOfIntervalOptions<DateType extends Date = Date>
-  extends StepOptions, ContextOptions<DateType> {}
+  extends StepOptions,
+    ContextOptions<DateType> {}
 
 /**
  * The {@link eachYearOfInterval} function result type. It resolves the proper data type.
@@ -69,7 +74,7 @@ export function eachYearOfInterval<
   const endTime = reversed ? +start : +end;
   const date = reversed ? end : start;
   date.setHours(0, 0, 0, 0);
-  date.setMonth(0, 1);
+  coreSetMonth(date, 0, 1);
 
   let step = options?.step ?? 1;
   if (!step) return [];
@@ -82,7 +87,7 @@ export function eachYearOfInterval<
 
   while (+date <= endTime) {
     dates.push(constructFrom(start, date));
-    date.setFullYear(date.getFullYear() + step);
+    coreSetFullYear(date, coreGetFullYear(date) + step);
   }
 
   return reversed ? dates.reverse() : dates;

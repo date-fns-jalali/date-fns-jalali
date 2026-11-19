@@ -60,7 +60,7 @@ export namespace DateFnsDocs {
   /**
    * The submodule type.
    */
-  export type Submodule = (typeof import("./consts.js").allSubmodules)[number];
+  export type Submodule = (typeof import("./consts.ts").allSubmodules)[number];
 
   /**
    * The package model.
@@ -99,10 +99,11 @@ export namespace DateFnsDocs {
   /**
    * Page preview - a minimal version of {@link Page} for rendering pages index.
    */
-  export interface PagePreview extends Pick<
-    Page,
-    "slug" | "category" | "title" | "summary" | "submodules"
-  > {
+  export interface PagePreview
+    extends Pick<
+      Page,
+      "slug" | "category" | "title" | "summary" | "submodules"
+    > {
     // Old records don't have it
     type?: Page["type"];
   }

@@ -12,7 +12,7 @@ export interface IsWeekendOptions extends ContextOptions<Date> {}
  * @summary Does the given date fall on a weekend?
  *
  * @description
- * Does the given date fall on a weekend? A weekend is either Saturday (`6`) or Sunday (`0`).
+ * Does the given date fall on a weekend? A weekend is Friday (`5`).
  *
  * @param date - The date to check
  * @param options - An object with options
@@ -29,5 +29,5 @@ export function isWeekend(
   options?: IsWeekendOptions | undefined,
 ): boolean {
   const day = toDate(date, options?.in).getDay();
-  return day === 0 || day === 6;
+  return day === 5;
 }

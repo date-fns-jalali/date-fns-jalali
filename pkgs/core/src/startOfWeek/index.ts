@@ -7,11 +7,16 @@ import type {
   WeekOptions,
 } from "../types.ts";
 
+import { getDate as coreGetDate } from "../_core/getDate/index.ts";
+import { setDate as coreSetDate } from "../_core/setDate/index.ts";
+
 /**
  * The {@link startOfWeek} function options.
  */
 export interface StartOfWeekOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">, WeekOptions, ContextOptions<DateType> {}
+  extends LocalizedOptions<"options">,
+    WeekOptions,
+    ContextOptions<DateType> {}
 
 /**
  * @name startOfWeek
@@ -53,13 +58,13 @@ export function startOfWeek<
     options?.locale?.options?.weekStartsOn ??
     defaultOptions.weekStartsOn ??
     defaultOptions.locale?.options?.weekStartsOn ??
-    0;
+    6;
 
   const _date = toDate(date, options?.in);
   const day = _date.getDay();
   const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
 
-  _date.setDate(_date.getDate() - diff);
+  coreSetDate(_date, coreGetDate(_date) - diff);
   _date.setHours(0, 0, 0, 0);
   return _date;
 }

@@ -1,12 +1,15 @@
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
+import { getMonth as coreGetMonth } from "../_core/getMonth/index.ts";
+import { getFullYear as coreGetFullYear } from "../_core/getFullYear/index.ts";
+import { setFullYear as coreSetFullYear } from "../_core/setFullYear/index.ts";
+
 /**
  * The {@link endOfMonth} function options.
  */
-export interface EndOfMonthOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface EndOfMonthOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name endOfMonth
@@ -38,8 +41,8 @@ export function endOfMonth<
   options?: EndOfMonthOptions<ResultDate> | undefined,
 ): ResultDate {
   const _date = toDate(date, options?.in);
-  const month = _date.getMonth();
-  _date.setFullYear(_date.getFullYear(), month + 1, 0);
+  const month = coreGetMonth(_date);
+  coreSetFullYear(_date, coreGetFullYear(_date), month + 1, 0);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }

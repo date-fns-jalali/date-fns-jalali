@@ -24,26 +24,31 @@ export default defineConfig({
           },
         },
       },
-      {
-        test: {
-          name: "temporarily",
 
-          dir: "src", // Limit glob scope
-          include: ["**/test.tp.ts"],
+      // node (pnpm test): RangeError: Temporal error: Not yet implemented.
+      // chromium (pnpm test --browser): ReferenceError: Temporal is not defined
+      // use commit in branch "google-chrome-testing" to test it locally
 
-          // Speed up tests
-          isolate: false,
-          pool: "threads",
-          sequence: { concurrent: true },
-
-          browser: {
-            // Enable it via --browser
-            // enabled: true,
-            provider: playwright(),
-            instances: [{ browser: "chromium" }],
-          },
-        },
-      },
+      // {
+      //   test: {
+      //     name: "temporarily",
+      //
+      //     dir: "src", // Limit glob scope
+      //     include: ["**/test.tp.ts"],
+      //
+      //     // Speed up tests
+      //     isolate: false,
+      //     pool: "threads",
+      //     sequence: { concurrent: true },
+      //
+      //     browser: {
+      //       // Enable it via --browser
+      //       // enabled: true,
+      //       provider: playwright(),
+      //       instances: [{ browser: "chromium" }],
+      //     },
+      //   },
+      // },
     ],
 
     experimental: {

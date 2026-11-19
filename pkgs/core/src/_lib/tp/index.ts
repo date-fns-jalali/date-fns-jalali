@@ -12,9 +12,9 @@ export function toTpInstant<
   const inputDate = toDate(date, options?.in);
   let temporal: Temporal.ZonedDateTime | null;
   try {
-    temporal = Temporal.Instant.fromEpochMilliseconds(
-      inputDate.getTime(),
-    ).toZonedDateTimeISO(getDateTimeZone(inputDate));
+    temporal = Temporal.Instant.fromEpochMilliseconds(inputDate.getTime())
+      .toZonedDateTimeISO(getDateTimeZone(inputDate))
+      .withCalendar("persian");
   } catch (err) {
     if (err instanceof RangeError) temporal = null;
     else throw err;

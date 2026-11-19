@@ -6,16 +6,13 @@ import { UTCDate } from "@date-fns/utc";
 
 describe("eachWeekendOfMonth", () => {
   it("returns all weekends of the given month", () => {
-    const result = eachWeekendOfMonth(new Date(2022, 1, 20));
+    const result = eachWeekendOfMonth(/* 1400/11/20 */ new Date(2022, 1, 9));
     expect(result).toEqual([
-      new Date(2022, 1, 5),
-      new Date(2022, 1, 6),
-      new Date(2022, 1, 12),
-      new Date(2022, 1, 13),
-      new Date(2022, 1, 19),
-      new Date(2022, 1, 20),
-      new Date(2022, 1, 26),
-      new Date(2022, 1, 27),
+      /* 1400/11/1 */ new Date(2022, 0, 21),
+      /* 1400/11/8 */ new Date(2022, 0, 28),
+      /* 1400/11/15 */ new Date(2022, 1, 4),
+      /* 1400/11/22 */ new Date(2022, 1, 11),
+      /* 1400/11/29 */ new Date(2022, 1, 18),
     ]);
   });
 
@@ -39,39 +36,36 @@ describe("eachWeekendOfMonth", () => {
   describe("context", () => {
     it("allows to specify the context", () => {
       expect(
-        eachWeekendOfMonth("2024-04-01T07:00:00Z", {
+        eachWeekendOfMonth(/* 1403/1/13 */ "2024-04-01T07:00:00Z", {
           in: tz("Asia/Tokyo"),
         }).map((date) => date.toISOString()),
       ).toEqual([
-        "2024-04-06T00:00:00.000+09:00",
-        "2024-04-07T00:00:00.000+09:00",
-        "2024-04-13T00:00:00.000+09:00",
-        "2024-04-14T00:00:00.000+09:00",
-        "2024-04-20T00:00:00.000+09:00",
-        "2024-04-21T00:00:00.000+09:00",
-        "2024-04-27T00:00:00.000+09:00",
-        "2024-04-28T00:00:00.000+09:00",
+        /* 1403/1/3 */ "2024-03-22T00:00:00.000+09:00",
+        /* 1403/1/10 */ "2024-03-29T00:00:00.000+09:00",
+        /* 1403/1/17 */ "2024-04-05T00:00:00.000+09:00",
+        /* 1403/1/24 */ "2024-04-12T00:00:00.000+09:00",
+        /* 1403/1/31 */ "2024-04-19T00:00:00.000+09:00",
       ]);
       expect(
-        eachWeekendOfMonth("2024-04-01T07:00:00Z", {
+        eachWeekendOfMonth(/* 1403/1/13 */ "2024-04-01T07:00:00Z", {
           in: tz("America/New_York"),
         }).map((date) => date.toISOString()),
       ).toEqual([
-        "2024-04-06T00:00:00.000-04:00",
-        "2024-04-07T00:00:00.000-04:00",
-        "2024-04-13T00:00:00.000-04:00",
-        "2024-04-14T00:00:00.000-04:00",
-        "2024-04-20T00:00:00.000-04:00",
-        "2024-04-21T00:00:00.000-04:00",
-        "2024-04-27T00:00:00.000-04:00",
-        "2024-04-28T00:00:00.000-04:00",
+        /* 1403/1/3 */ "2024-03-22T00:00:00.000-04:00",
+        /* 1403/1/10 */ "2024-03-29T00:00:00.000-04:00",
+        /* 1403/1/17 */ "2024-04-05T00:00:00.000-04:00",
+        /* 1403/1/24 */ "2024-04-12T00:00:00.000-04:00",
+        /* 1403/1/31 */ "2024-04-19T00:00:00.000-04:00",
       ]);
     });
 
     it("resolves the context date type", () => {
-      const result = eachWeekendOfMonth(new Date("2024-04-01T00:00:00Z"), {
-        in: tz("Asia/Tokyo"),
-      });
+      const result = eachWeekendOfMonth(
+        new Date(/* 1403/1/13 */ "2024-04-01T00:00:00Z"),
+        {
+          in: tz("Asia/Tokyo"),
+        },
+      );
       expect(result[0]).toBeInstanceOf(TZDate);
       assertType<assertType.Equal<TZDate, (typeof result)[0]>>(true);
     });

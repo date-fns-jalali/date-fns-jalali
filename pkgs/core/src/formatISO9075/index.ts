@@ -7,7 +7,8 @@ import type { ContextOptions, DateArg, ISOFormatOptions } from "../types.ts";
  * The {@link formatISO9075} function options.
  */
 export interface FormatISO9075Options
-  extends ISOFormatOptions, ContextOptions<Date> {}
+  extends ISOFormatOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name formatISO9075

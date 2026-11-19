@@ -5,9 +5,8 @@ import type { ContextFn, ContextOptions, DateArg } from "../types.ts";
 /**
  * The {@link min} function options.
  */
-export interface MinOptions<
-  DateType extends Date = Date,
-> extends ContextOptions<DateType> {}
+export interface MinOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name min
