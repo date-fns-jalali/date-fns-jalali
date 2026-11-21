@@ -7146,6 +7146,7 @@
     }
   },
   "scripts": {
+    "prepublishOnly": "node -e \"if (require('./package.json').exports['.'].endsWith('.ts')) { console.error('Refusing to publish the source manifest: its exports point at TypeScript sources. Publish the built package with ./scripts/release/release.sh.'); process.exit(1) }\"",
     "test": "vitest run",
     "lint": "oxlint --type-aware",
     "types": "tsc --build --pretty",
